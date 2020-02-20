@@ -55,7 +55,8 @@ class NetmikoValidationService(ConnectionService):
                 "result": (
                     netmiko_connection.session_log.getvalue().decode()
                     if hasattr(netmiko_connection, "session_log")
-                    else "No results available after exception. Driver does not support session_log"
+                    else "No results available after exception. "
+                    "Driver does not support session_log"
                 ),
                 "success": False,
             }
