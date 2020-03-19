@@ -59,7 +59,9 @@ class MetaForm(FormMeta):
         return form
 
     def __init__(cls, *args, **kwargs):  # noqa: N805
-        if cls._wtforms_meta is None:
+        super().__init__(*args, **kwargs)
+        if cls._wtforms_meta is None and \
+                'ServiceForm' in [x.__name__ for x in cls.mro()]:
             bases = [MetaFormHelpRenderer]
             for mro_class in cls.__mro__:
                 if "Meta" in mro_class.__dict__:

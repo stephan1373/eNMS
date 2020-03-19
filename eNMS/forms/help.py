@@ -13,11 +13,6 @@ from eNMS.setup import settings
 
 
 class InfiniteDict(dict):
-    """
-    Internal convenience - see https://stackoverflow.com/questions/48729220/
-       set-python-dict-items-recursively-when-given-a-compound-key-foo-bar-baz
-    """
-
     def __missing__(self, val):
         d = InfiniteDict()
         self[val] = d
@@ -67,42 +62,12 @@ class HelpLabel(Label):
 
 
 class MetaFormHelpRenderer(DefaultMeta):
-    """
-    This class provides the adjustment to the WTForm behavior to be able to substitute
-    our custom HelpLabel for a help-capable field.label.
-
-    Other WTForms extension points seem to typically define an internal 'Meta' class as
-    a nested subclass of the Form subclass (i.e., our BaseForm).  We are able to
-    avoid this convention by using another Metaclass modify the setup of the 'Meta'
-    hierarchy.
-
-    This class also looks for the places (in settings) where help files may be located.
-    There is a convention for how these files are named to try to automatically match
-    them up to form fields.
-    """
-
     form_name_regexp = re.compile("Form$")
     split_on_capitalization = re.compile("([A-Z]+[^A-Z]+)")
     service_name_regexp = re.compile("_service")
 
     @staticmethod
     def load_help():
-        """
-        During initialization for this class, scan the directory structure looking
-        for available help files. Relies on some type of standard convention.
-
-        Alternatives: a JSON file could provide this same mapping, but in theory
-        this allows addition of new files with zero configuration if the convention
-        is tolerable.
-
-        This convention is enough for proof-of-concept, but will need adjustment.
-        Today, assuming a directory structure convention that will end in:
-        ['service', 'form_name', 'parameter_file.html']
-
-        This is theory also allows for help for more than just forms.
-
-        :return: dictionary
-        """
         result = InfiniteDict()  # stackoverflow trick; see above
 
         def add_help_file(help_path, help_location):
@@ -130,24 +95,15 @@ class MetaFormHelpRenderer(DefaultMeta):
     help_data, help_enabled = load_help.__func__()
 
     def bind_field(self, form, unbound_field, options=dict()):
-        """
-        Replace the default behavior - add help label if supported and available
-        """
         bound_field = super().bind_field(form, unbound_field, options)
-        return self._add_help(form, bound_field, options)
-
-    def wrap_formdata(self, form, formdata):
-        return super().wrap_formdata(form, formdata)
-
-    def render_field(self, field, render_kw):
-        return super().render_field(field, render_kw)
+        if bound_field is not None and not isinstance(bound_field, FieldList):
+            bound_field = self._add_help(form, bound_field, options)
+        return bound_field
 
     def _convert_form_type(self, form_type):
-        """Convert 'napalm_ping_service' => 'napalm_ping' """
         return self.service_name_regexp.sub("", form_type).lower()
 
     def _convert_form_name(self, form_name):
-        """Convert 'NapalmPingForm' => 'napalm_ping' """
         return "_".join(
             list(
                 filter(
@@ -158,13 +114,9 @@ class MetaFormHelpRenderer(DefaultMeta):
         ).lower()
 
     def _has_help(self, form, bound_field):
-        """
-        Use the form and field to look for any existing context-sensitive help
-        If there is no help data, then skip checking.
-        """
         if not self.help_enabled or isinstance(bound_field, HiddenField):
             return False
-        form_template = getattr(form, "template", "service")
+        form_template = getattr(form, "template", "unknown")
         form_type = getattr(form, "form_type", None)
         if form_type is not None:
             form_type = (
@@ -179,17 +131,11 @@ class MetaFormHelpRenderer(DefaultMeta):
             or form_template != "service"
         ):
             return False
-        # Note: these are likely to be the same values.
         form_type = self._convert_form_type(form_type)
-        # First lookup: based on service (i.e., service/napalm_ping_service/count.html)
-        # Skipping: lookup based on class name NapalmPingForm => napalm_ping since this
-        # will generally match the first lookup.
         help_file = self.help_data[form_template][form_type][bound_field.name]
         if not help_file:
-            # Also look for commonly defined terms/parameters:
             help_file = self.help_data[form_template]["common"][bound_field.name]
         if not help_file:
-            # Second lookup: use all potentially relevant superclass forms
             for mro_class in type(form).__mro__:
                 if mro_class in [object, FlaskForm, Form, type(form)]:
                     continue
@@ -202,10 +148,6 @@ class MetaFormHelpRenderer(DefaultMeta):
         return help_file
 
     def _add_help(self, form, bound_field, options):
-        """
-        Replace the default field.label with an alternate, help-rendering
-        HelpLabel instance.
-        """
         if not isinstance(bound_field, FieldList):
             help_url = self._has_help(form, bound_field)
             if help_url:
