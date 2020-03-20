@@ -33,7 +33,7 @@ class ServiceForm(BaseForm):
     shared = BooleanField("Shared Service")
     scoped_name = StringField("Scoped Name", [InputRequired()])
     description = StringField("Description")
-    device_query = PythonField("Device Query")
+    device_query = PythonField("Device Query (define targets from a python query)")
     device_query_property = SelectField(
         "Query Property Type", choices=(("name", "Name"), ("ip_address", "IP address"))
     )
@@ -51,20 +51,22 @@ class ServiceForm(BaseForm):
     notification_header = StringField(widget=TextArea(), render_kw={"rows": 5})
     include_device_results = BooleanField("Include Device Results")
     include_link_in_summary = BooleanField("Include Result Link in Summary")
-    display_only_failed_nodes = BooleanField("Display only Failed Devices")
+    display_only_failed_nodes = BooleanField("Display only failed nodes")
     mail_recipient = StringField("Mail Recipients (separated by comma)")
     number_of_retries = IntegerField("Number of retries", default=0)
     time_between_retries = IntegerField("Time between retries (in seconds)", default=10)
     maximum_runs = IntegerField("Maximum number of runs", default=1)
-    skip = BooleanField("Skip")
-    skip_query = PythonField("Skip Query (Python)")
+    skip = BooleanField("Skip this Service Regardless")
+    skip_query = PythonField("Skip Service If True (Python)")
     skip_value = SelectField(
-        "Skip Value", choices=(("True", "True"), ("False", "False"),),
+        "Skip Success Value", choices=(("True", "True"), ("False", "False"),),
     )
     vendor = StringField("Vendor")
     operating_system = StringField("Operating System")
     initial_payload = DictField()
-    iteration_values = PythonField("Iteration Values")
+    iteration_values = PythonField(
+        "Iteration values: run service for each value (python query)"
+    )
     iteration_variable_name = StringField(
         "Iteration Variable Name", default="iteration_value"
     )
@@ -75,19 +77,20 @@ class ServiceForm(BaseForm):
     )
     result_postprocessing = CodeField(widget=TextArea(), render_kw={"rows": 8})
     log_level = NoValidationSelectField(
-        "Logging",
+        "Log Level",
         choices=((0, "Disable logging"), *enumerate(app.log_levels, 1)),
         default=1,
     )
     multiprocessing = BooleanField("Multiprocessing")
     max_processes = IntegerField("Maximum number of processes", default=15)
     conversion_method = SelectField(
+        "Conversion Method",
         choices=(
             ("none", "No conversion"),
             ("text", "Text"),
             ("json", "Json dictionary"),
             ("xml", "XML dictionary"),
-        )
+        ),
     )
     validation_method = SelectField(
         "Validation Method",
@@ -102,9 +105,9 @@ class ServiceForm(BaseForm):
         "Content Match", widget=TextArea(), render_kw={"rows": 8}
     )
     content_match_regex = BooleanField("Match content with Regular Expression")
-    dict_match = DictSubstitutionField("Dictionary to Match Against")
-    negative_logic = BooleanField("Negative logic")
-    delete_spaces_before_matching = BooleanField("Delete Spaces before Matching")
+    dict_match = DictSubstitutionField("Dictionary Match")
+    negative_logic = BooleanField("Negative Logic")
+    delete_spaces_before_matching = BooleanField("Delete spaces before matching")
     run_method = SelectField(
         "Run Method",
         choices=(
