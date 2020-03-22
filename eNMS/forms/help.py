@@ -31,12 +31,16 @@ class HelpLabel(Label):
     Field label and a context-sensitive help icon when help is available.
     """
 
-    def __init__(self, field_id, text, help_url):
-        self.field_id = field_id
-        self.text = text
-        self.help_url = help_url or "/static/help/missing.html"
+    def __init__(self, field_id=None, text=None, help_url=None):
+        super().__init__(field_id, text)
+        if field_id is None and text is not None:
+            self.id = text.lower().replace(' ', '_')
+        self.help_url = help_url
 
     def __call__(self, text=None, **kwargs):
+        if self.help_url is None:
+            return super().__call__(text, **kwargs)
+
         if "for_" in kwargs:
             kwargs["for"] = kwargs.pop("for_")
         else:
@@ -152,6 +156,6 @@ class MetaFormHelpRenderer(DefaultMeta):
             help_url = self._has_help(form, bound_field)
             if help_url:
                 bound_field.label = HelpLabel(
-                    bound_field.id, bound_field.label.text, help_url
+                    id=bound_field.id, text=bound_field.label.text, help_url=help_url
                 )
         return bound_field

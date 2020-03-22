@@ -5,7 +5,7 @@ from eNMS.database.dialect import Column, MutableDict, SmallString
 from eNMS.forms.fields import SubstitutionField
 from eNMS.forms.automation import NapalmForm
 from eNMS.models.automation import ConnectionService
-
+from eNMS.forms.help import HelpLabel
 
 class NapalmPingService(ConnectionService):
 
@@ -46,13 +46,13 @@ class NapalmPingService(ConnectionService):
 
 class NapalmPingForm(NapalmForm):
     form_type = HiddenField(default="napalm_ping_service")
-    count = IntegerField(default=5)
-    packet_size = IntegerField(default=100)
-    destination_ip = SubstitutionField()
-    source_ip = SubstitutionField()
-    timeout = IntegerField(default=2)
-    ttl = IntegerField(default=255)
-    vrf = StringField()
+    count = IntegerField(default=5, label=HelpLabel(text="Count", field_id="count", help_url="/static/help/service/napalm_ping/count.html"))
+    packet_size = IntegerField(default=100, label=HelpLabel(text="Packet Size", field_id="packet_size", help_url="/static/help/service/napalm_ping/packet_size.html"))
+    destination_ip = SubstitutionField(label=HelpLabel(text="Destination IP", field_id="destination_ip", help_url="/static/help/service/napalm_ping/destination_ip.html"))
+    source_ip = SubstitutionField(label=HelpLabel(text="Source IP", field_id="source_ip", help_url="/static/help/service/napalm_ping/source_ip.html"))
+    timeout = IntegerField(default=2, label=HelpLabel(text="Timeout", field_id="timeout", help_url="/static/help/service/napalm_ping/timeout.html"))
+    ttl = IntegerField(default=255, label=HelpLabel(text="TTL", field_id="ttl", help_url="/static/help/service/napalm_ping/ttl.html"))
+    vrf = StringField(label=HelpLabel(text="VRF", field_id="vrf", help_url="/static/help/service/napalm_ping/vrf.html"))
     groups = {
         "Ping Parameters": {
             "commands": [

@@ -58,15 +58,15 @@ class MetaForm(FormMeta):
             form_properties[form_type].update(form_properties[base_form_type])
         return form
 
-    def __init__(cls, *args, **kwargs):  # noqa: N805
-        super().__init__(*args, **kwargs)
-        if cls._wtforms_meta is None and \
-                'ServiceForm' in [x.__name__ for x in cls.mro()]:
-            bases = [MetaFormHelpRenderer]
-            for mro_class in cls.__mro__:
-                if "Meta" in mro_class.__dict__:
-                    bases.append(mro_class.Meta)
-            cls._wtforms_meta = type("Meta", tuple(bases), {})
+    # def __init__(cls, *args, **kwargs):  # noqa: N805
+    #     super().__init__(*args, **kwargs)
+    #     if cls._wtforms_meta is None and \
+    #             'ServiceForm' in [x.__name__ for x in cls.mro()]:
+    #         bases = [MetaFormHelpRenderer]
+    #         for mro_class in cls.__mro__:
+    #             if "Meta" in mro_class.__dict__:
+    #                 bases.append(mro_class.Meta)
+    #         cls._wtforms_meta = type("Meta", tuple(bases), {})
 
 
 class BaseForm(FlaskForm, metaclass=MetaForm):
