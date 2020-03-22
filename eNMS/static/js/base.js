@@ -208,7 +208,7 @@ export const setupContextSensitiveHelp = function(panel, name, type, id) {
       })
       .fail(function(err) {
         xhr = null;
-        notify(`Failed to load help at ${help_url}`, "error", 5);
+        notify(`Failed to load help at ${helpUrl || "help url not found"} for element ${labelFor || "no label for element"}`, "error", 5);
       });
     setTimeout(function() {
       if (xhr) {

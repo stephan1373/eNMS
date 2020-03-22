@@ -2,6 +2,8 @@
 **/*.min.css
 **/bundles
 **/.webassets-cache
+eNMS/static/help/**
+**/LICENSE*
 *.py
 *.png
 *.gif

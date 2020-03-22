@@ -7,6 +7,7 @@ from eNMS.forms.automation import NapalmForm
 from eNMS.models.automation import ConnectionService
 from eNMS.forms.help import HelpLabel
 
+
 class NapalmPingService(ConnectionService):
 
     __tablename__ = "napalm_ping_service"

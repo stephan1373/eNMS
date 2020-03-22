@@ -22,6 +22,7 @@ from eNMS.forms.fields import (
     PythonField,
     SubstitutionField,
 )
+from eNMS.forms.help import HelpLabel
 
 
 class ServiceForm(BaseForm):
@@ -37,7 +38,10 @@ class ServiceForm(BaseForm):
     device_query_property = SelectField(
         "Query Property Type", choices=(("name", "Name"), ("ip_address", "IP address"))
     )
-    devices = MultipleInstanceField("Devices")
+    devices = MultipleInstanceField(label=HelpLabel(
+            text="Devices",
+            field_id="devices",
+            help_url="/static/help/service/common/devices.html"))
     pools = MultipleInstanceField("Pools")
     workflows = MultipleInstanceField("Workflows")
     waiting_time = IntegerField(
@@ -57,19 +61,42 @@ class ServiceForm(BaseForm):
     time_between_retries = IntegerField("Time between retries (in seconds)", default=10)
     maximum_runs = IntegerField("Maximum number of runs", default=1)
     skip = BooleanField("Skip this Service Regardless")
-    skip_query = PythonField("Skip Service If True (Python)")
+    skip_query = PythonField(
+        label=HelpLabel(
+            text="Skip Service If True (Python)",
+            field_id="skip_query",
+            help_url="/static/help/service/common/skip_query.html")
+    )
     skip_value = SelectField(
-        "Skip Success Value", choices=(("True", "True"), ("False", "False"),),
+        label=HelpLabel(
+            text="Skip Success Value",
+            field_id="skip_value",
+            help_url="/static/help/service/common/skip_value.html"),
+        choices=(("True", "True"), ("False", "False"),),
     )
-    vendor = StringField("Vendor")
-    operating_system = StringField("Operating System")
-    initial_payload = DictField()
+    vendor = StringField(label=HelpLabel(
+        text="Operating System",
+        field_id="vendor",
+        help_url="/static/help/service/common/vendor.html"))
+    operating_system = StringField(label=HelpLabel(
+        text="Operating System",
+        field_id="operating_system",
+        help_url="/static/help/service/common/operating_system.html"))
+    initial_payload = DictField(**{"label": HelpLabel(
+        text="Initial Payload",
+        field_id="initial_payload",
+        help_url="/static/help/service/common/initial_payload.html")})
     iteration_values = PythonField(
-        "Iteration values: run service for each value (python query)"
-    )
+        label=HelpLabel(
+            text="Iteration values: run service for each value (python query)",
+            field_id="operating_system",
+            help_url="/static/help/service/common/iteration_values.html"))
     iteration_variable_name = StringField(
-        "Iteration Variable Name", default="iteration_value"
-    )
+        default="iteration_value",
+        label=HelpLabel(
+            text="Iteration Variable Name",
+            field_id="operating_system",
+            help_url="/static/help/service/common/operating_system.html"))
     iteration_devices = PythonField("Iteration Devices")
     iteration_devices_property = SelectField(
         "Iteration Devices Property",
@@ -171,17 +198,26 @@ class ConnectionForm(ServiceForm):
     form_type = HiddenField(default="connection")
     abstract_service = True
     credentials = SelectField(
-        "Credentials",
         choices=(
             ("device", "Device Credentials"),
             ("user", "User Credentials"),
             ("custom", "Custom Credentials"),
         ),
+        label=HelpLabel(text="Credentials", field_id="credentials",
+                        help_url="/static/help/service/connection/credentials.html")
     )
-    custom_username = SubstitutionField("Custom Username")
-    custom_password = PasswordSubstitutionField("Custom Password")
-    start_new_connection = BooleanField("Start New Connection")
-    close_connection = BooleanField("Close Connection")
+    custom_username = SubstitutionField(
+        label=HelpLabel(text="Custom Username", field_id="custom_username",
+                        help_url="/static/help/service/connection/custom_username.html"))
+    custom_password = PasswordSubstitutionField(
+        label=HelpLabel(text="Custom Password", field_id="custom_password",
+                        help_url="/static/help/service/connection/custom_password.html"))
+    start_new_connection = BooleanField(
+        label=HelpLabel(text="Start New Connection", field_id="start_new_connection",
+                        help_url="/static/help/service/connection/start_new_connection.html"))
+    close_connection = BooleanField(
+        label=HelpLabel(text="Close Connection", field_id="close_connection",
+                        help_url="/static/help/service/connection/close_connection.html"))
     group = {
         "commands": [
             "credentials",
@@ -240,10 +276,17 @@ class NetmikoForm(ConnectionForm):
 class NapalmForm(ConnectionForm):
     form_type = HiddenField(default="napalm")
     abstract_service = True
-    driver = SelectField(choices=app.NAPALM_DRIVERS)
+    driver = SelectField(
+        choices=app.NAPALM_DRIVERS,
+        label=HelpLabel(text="Driver", field_id="driver",
+                        help_url="/static/help/service/napalm/driver.html")
+    )
     use_device_driver = BooleanField(default=True)
     timeout = IntegerField(default=10)
-    optional_args = DictField()
+    optional_args = DictField(**{"label": HelpLabel(
+        text="Initial Payload",
+        field_id="optional_args",
+        help_url="/static/help/service/napalm/optional_args.html")})
     groups = {
         "Napalm Parameters": {
             "commands": ["driver", "use_device_driver", "timeout", "optional_args"],
