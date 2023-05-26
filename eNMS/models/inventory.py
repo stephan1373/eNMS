@@ -238,6 +238,7 @@ class Link(Object):
     networks = relationship(
         "Network", secondary=db.link_network_table, back_populates="links"
     )
+    logs = relationship("Changelog", back_populates="link")
     __table_args__ = (UniqueConstraint(name, source_id, destination_id),)
 
     @property

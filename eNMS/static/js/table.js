@@ -759,6 +759,9 @@ tables.link = class LinkTable extends Table {
     row.pools = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'pool', ${row.instance}, {parent: '${this.id}', from: 'links', to: 'pools'})">
       Pools</a></b>`;
+    row[`changelogs`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'link',
+      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
