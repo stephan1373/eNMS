@@ -163,6 +163,7 @@ class Credential(AbstractBase):
 
 class Changelog(AbstractBase):
     __tablename__ = "changelog"
+    log_change = False
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "changelog", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
