@@ -37,6 +37,7 @@ import {
   flipRuntimeDisplay,
   getWorkflowState,
   resetWorkflowDisplay,
+  showChangelogPanel,
   switchToWorkflow,
   updateWorkflowRightClickBindings,
 } from "./workflowBuilder.js";
@@ -308,6 +309,7 @@ export function updateBuilderBindings(action) {
         .join(">");
       if (parentPath) switchTo(parentPath);
     },
+    "Changelog": () => showChangelogPanel(),
   });
   $("#builder").contextMenu({
     menuSelector: "#contextMenu",

@@ -773,6 +773,36 @@ function compareWorkflowResults() {
   });
 }
 
+export function showChangelogPanel() {
+  openPanel({
+    name: "changelog",
+    size: "1000 600",
+    content: `
+      <form id="search-form-changelog-${workflow.id}" style="margin: 15px">
+        <div id="tooltip-overlay" class="overlay"></div>
+        <nav
+          id="controls-changelog-${workflow.id}"
+          class="navbar navbar-default nav-controls"
+          role="navigation"
+        ></nav>
+        <table
+          id="table-changelog-${workflow.id}"
+          style="margin-top: 10px;"
+          class="table table-striped table-bordered table-hover"
+          cellspacing="0"
+          width="100%"
+        ></table>
+      </form>`,
+    id: workflow.id,
+    tableId: `changelog-${workflow.id}`,
+    title: "Workflow Changelog",
+    callback: function() {
+      // eslint-disable-next-line new-cap
+      new tables["changelog"](workflow.id);
+    },
+  });
+}
+
 function filterDevice() {
   $("#device-filter-div").toggle();
   if (!$("#device-filter-div").is(":visible")) {
