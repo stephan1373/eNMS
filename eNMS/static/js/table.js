@@ -1528,6 +1528,9 @@ tables.session = class SessionTable extends Table {
 tables.file = class FileTable extends Table {
   addRow(properties) {
     let row = super.addRow(properties);
+    row[`changelogs`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'file',
+      to: 'logs'})">Changelog</a></b>`;
     if (row.type == "folder") {
       row.filename = `<a href="#" onclick="eNMS.administration.enterFolder
         ({ folder: '${row.filename}'})">

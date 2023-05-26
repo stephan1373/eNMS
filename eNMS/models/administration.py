@@ -178,6 +178,8 @@ class Changelog(AbstractBase):
     link = relationship("Link", back_populates="logs", foreign_keys="Changelog.link_id")
     pool_id = db.Column(Integer, ForeignKey("pool.id"))
     pool = relationship("Pool", back_populates="logs", foreign_keys="Changelog.pool_id")
+    file_id = db.Column(Integer, ForeignKey("file.id"))
+    file = relationship("File", back_populates="logs", foreign_keys="Changelog.file_id")
 
     def __repr__(self):
         return self.content
@@ -213,6 +215,7 @@ class File(AbstractBase):
         "Folder", foreign_keys="Folder.folder_id", back_populates="files"
     )
     folder_path = db.Column(db.SmallString)
+    logs = relationship("Changelog", back_populates="file")
 
     def update(self, move_file=True, **kwargs):
         old_path = self.full_path
