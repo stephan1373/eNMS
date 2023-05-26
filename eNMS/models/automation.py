@@ -24,7 +24,7 @@ class Service(AbstractBase):
     __mapper_args__ = {"polymorphic_identity": "service", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    path = db.Column(db.TinyString)
+    path = db.Column(db.TinyString, info={"log_change": False})
     creator = db.Column(db.SmallString)
     admin_only = db.Column(Boolean, default=False)
     shared = db.Column(Boolean, default=False)
