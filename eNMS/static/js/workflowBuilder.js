@@ -800,11 +800,11 @@ export function showChangelogPanel() {
       call({
         url: `/get_workflow_children/${workflow.id}`,
         callback: function(childrenId) {
-          new tables["changelog"](workflow.id);
+          const constraints = {service: childrenId, service_filter: "union"};
+          // eslint-disable-next-line new-cap
+          new tables["changelog"](workflow.id, constraints);
         },
       });
-      // eslint-disable-next-line new-cap
-      
     },
   });
 }

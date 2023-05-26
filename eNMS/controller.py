@@ -715,12 +715,12 @@ class Controller:
         return [pool.base_properties for pool in pools]
 
     def get_workflow_children(self, workflow_id):
-        children = {workflow_id}
         workflow = db.fetch("workflow", id=workflow_id)
+        children = {workflow.name}
 
         def rec(workflow):
             for service in workflow.services:
-                children.add(service.id)
+                children.add(service.name)
                 if service.type == "workflow":
                     rec(service)
 
