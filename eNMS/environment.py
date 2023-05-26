@@ -263,7 +263,7 @@ class Environment:
                     "severity": severity,
                     "content": content,
                     "user": user or getattr(current_user, "name", ""),
-                    **({instance.class_type: instance.id} if instance else {}),
+                    **({f"{instance.class_type}_id": instance.id} if instance else {}),
                 },
             )
         return logger_settings
