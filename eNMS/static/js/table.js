@@ -599,6 +599,9 @@ tables.network = class NetworkTable extends Table {
     row.devices = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'device', ${row.instance}, {parent: '${this.id}', from: 'networks',
       to: 'devices'})">Devices</a></b>`;
+    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'network',
+      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 

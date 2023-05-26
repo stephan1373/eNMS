@@ -55,6 +55,7 @@
     "file",
     "group",
     "link",
+    "network",
     "pool",
     "server",
     "user"
