@@ -302,7 +302,7 @@
         "visible": false
       },
       {
-        "data": "changelogs",
+        "data": "changelog",
         "title": "Changelog",
         "width": "80px",
         "visible": false
@@ -525,7 +525,7 @@
         "visible": false
       },
       {
-        "data": "changelogs",
+        "data": "changelog",
         "title": "Changelog",
         "width": "80px",
         "visible": false
@@ -601,7 +601,7 @@
         "export": false
       },
       {
-        "data": "changelogs",
+        "data": "changelog",
         "title": "Changelog",
         "width": "80px",
         "visible": false
@@ -1129,7 +1129,7 @@
         "width": "80px"
       },
       {
-        "data": "changelogs",
+        "data": "changelog",
         "title": "Changelog",
         "width": "80px",
         "visible": false
@@ -1307,7 +1307,7 @@
         "search": "text"
       },
       {
-        "data": "changelogs",
+        "data": "changelog",
         "title": "Changelog",
         "width": "80px",
         "visible": false
