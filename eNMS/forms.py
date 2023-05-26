@@ -313,6 +313,7 @@ class AdminForm(BaseForm):
 
 
 class ChangelogForm(BaseForm):
+    template = "object"
     form_type = HiddenField(default="changelog")
     id = HiddenField()
     severity = SelectField(
@@ -325,7 +326,7 @@ class ChangelogForm(BaseForm):
             ("critical", "Critical"),
         ),
     )
-    content = StringField(widget=TextArea(), render_kw={"rows": 20})
+    content = StringField(widget=TextArea(), render_kw={"rows": 12})
 
 
 class CredentialForm(BaseForm):
