@@ -49,6 +49,12 @@
     "credential",
     "pool"
   ],
+  "changelog_models": [
+    "device",
+    "file",
+    "link",
+    "pool"
+  ],
   "dont_migrate": {
     "credential": ["id"],
     "group": [
