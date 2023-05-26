@@ -295,6 +295,7 @@ class Pool(AbstractBase):
         secondary=db.credential_device_table,
         back_populates="device_pools",
     )
+    logs = relationship("Changelog", back_populates="pool")
 
     @classmethod
     def configure_events(cls):

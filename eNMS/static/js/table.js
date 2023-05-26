@@ -826,6 +826,9 @@ tables.pool = class PoolTable extends Table {
         '${model}', ${row.instance}, {parent: '${this.id}', from: 'pools',
         to: '${model}s'})">${model.charAt(0).toUpperCase() + model.slice(1)}s</a></b>`;
     }
+    row[`changelogs`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'pool',
+      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 

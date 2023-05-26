@@ -582,6 +582,13 @@
         "visible": false
       },
       {
+        "data": "objectNumber",
+        "title": "Object Count",
+        "width": "170px",
+        "orderable": false,
+        "export": false
+      },
+      {
         "data": "devices",
         "title": "Devices",
         "width": "80px",
@@ -594,11 +601,10 @@
         "export": false
       },
       {
-        "data": "objectNumber",
-        "title": "Object Count",
-        "width": "170px",
-        "orderable": false,
-        "export": false
+        "data": "changelogs",
+        "title": "Changelog",
+        "width": "80px",
+        "visible": false
       },
       {
         "data": "buttons",

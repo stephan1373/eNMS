@@ -16,7 +16,7 @@ from eNMS.variables import vs
 
 
 class Server(AbstractBase):
-    __tablename__ = type = "server"
+    __tablename__ = type = class_type = "server"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     creator = db.Column(db.SmallString)
@@ -176,6 +176,8 @@ class Changelog(AbstractBase):
     )
     link_id = db.Column(Integer, ForeignKey("link.id"))
     link = relationship("Link", back_populates="logs", foreign_keys="Changelog.link_id")
+    pool_id = db.Column(Integer, ForeignKey("pool.id"))
+    pool = relationship("Pool", back_populates="logs", foreign_keys="Changelog.pool_id")
 
     def __repr__(self):
         return self.content
