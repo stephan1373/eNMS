@@ -472,6 +472,7 @@ class Task(AbstractBase):
         "Device", secondary=db.task_device_table, back_populates="tasks"
     )
     pools = relationship("Pool", secondary=db.task_pool_table, back_populates="tasks")
+    logs = relationship("Changelog", back_populates="task")
     service_id = db.Column(Integer, ForeignKey("service.id"))
     service = relationship("Service", back_populates="tasks")
     service_name = association_proxy("service", "name")

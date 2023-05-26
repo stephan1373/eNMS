@@ -1105,6 +1105,12 @@
         "visible": false
       },
       {
+        "data": "changelog",
+        "title": "Changelog",
+        "width": "80px",
+        "visible": false
+      },
+      {
         "data": "buttons",
         "width": "200px",
         "orderable": false,

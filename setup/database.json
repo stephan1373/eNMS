@@ -59,6 +59,7 @@
     "pool",
     "server",
     "service",
+    "task",
     "user"
   ],
   "dont_migrate": {
