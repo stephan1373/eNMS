@@ -93,7 +93,7 @@ class Service(AbstractBase):
     postprocessing = db.Column(db.LargeString)
     postprocessing_mode = db.Column(db.TinyString, default="success")
     log_level = db.Column(Integer, default=1)
-    logs = relationship(
+    service_logs = relationship(
         "ServiceLog",
         foreign_keys="[ServiceLog.service_id]",
         back_populates="service",
@@ -105,6 +105,7 @@ class Service(AbstractBase):
         back_populates="service",
         cascade="all, delete-orphan",
     )
+    logs = relationship("Changelog", back_populates="service")
     maximum_runs = db.Column(Integer, default=1)
     multiprocessing = db.Column(Boolean, default=False)
     max_processes = db.Column(Integer, default=5)

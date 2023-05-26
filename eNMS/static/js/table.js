@@ -915,6 +915,9 @@ tables.service = class ServiceTable extends Table {
     row["runs"] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'run', ${row.instance}, {parent: '${this.id}', from: 'services',
       to: 'runs'})">Runs</a></b>`;
+    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'service',
+      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 

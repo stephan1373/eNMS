@@ -58,6 +58,7 @@
     "network",
     "pool",
     "server",
+    "service",
     "user"
   ],
   "dont_migrate": {
