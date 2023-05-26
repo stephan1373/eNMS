@@ -496,6 +496,9 @@ tables.device = class DeviceTable extends Table {
         '${model}', ${row.instance}, {parent: '${this.id}', from: '${from}',
         to: '${to}'})">${model.charAt(0).toUpperCase() + model.slice(1)}s</a></b>`;
     }
+    row[`changelogs`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'device',
+      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 

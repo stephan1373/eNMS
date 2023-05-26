@@ -266,7 +266,8 @@ class Database:
                     getattr(target, "name", target.id),
                     " | ".join(changelog),
                 )
-                env.log("info", f"UPDATE: {target.type} '{name}': ({changes})")
+                log_content = f"UPDATE: {target.type} '{name}': ({changes})"
+                env.log("info", log_content, instance=target)
 
         for model in vs.models.values():
             if "configure_events" in vars(model):

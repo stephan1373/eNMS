@@ -99,6 +99,7 @@ class Device(Node):
     sessions = relationship(
         "Session", back_populates="device", cascade="all, delete-orphan"
     )
+    logs = relationship("Changelog", back_populates="device")
 
     @classmethod
     def database_init(cls):

@@ -170,6 +170,11 @@ class Changelog(AbstractBase):
     content = db.Column(db.LargeString)
     severity = db.Column(db.TinyString, default="debug")
     user = db.Column(db.SmallString, default="admin")
+    device_id = db.Column(Integer, ForeignKey("device.id"))
+    device = relationship("Device", back_populates="logs", foreign_keys="Changelog.device_id")
+
+    def __repr__(self):
+        return self.content
 
     def update(self, **kwargs):
         super().update(**{"time": vs.get_time(), **kwargs})
