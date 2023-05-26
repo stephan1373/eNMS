@@ -48,6 +48,7 @@ class User(AbstractBase, UserMixin):
     groups = relationship(
         "Group", secondary=db.user_group_table, back_populates="users"
     )
+    logs = relationship("Changelog", back_populates="user")
 
     @classmethod
     def database_init(cls):
@@ -169,7 +170,7 @@ class Changelog(AbstractBase):
     time = db.Column(db.TinyString, index=True)
     content = db.Column(db.LargeString)
     severity = db.Column(db.TinyString, default="debug")
-    user = db.Column(db.SmallString, default="admin")
+    author = db.Column(db.SmallString)
 
     @classmethod
     def database_init(cls):

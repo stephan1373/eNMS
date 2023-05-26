@@ -270,7 +270,7 @@ class Environment:
                 **{
                     "severity": severity,
                     "content": content,
-                    "user": user or getattr(current_user, "name", ""),
+                    "author": user or getattr(current_user, "name", ""),
                     **({f"{instance.class_type}_id": instance.id} if instance else {}),
                 },
             )

@@ -53,7 +53,8 @@
     "device",
     "file",
     "link",
-    "pool"
+    "pool",
+    "user"
   ],
   "dont_migrate": {
     "credential": ["id"],
