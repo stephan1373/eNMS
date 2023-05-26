@@ -714,6 +714,19 @@ class Controller:
         pools = db.query("pool").filter(or_(has_device, has_link)).all()
         return [pool.base_properties for pool in pools]
 
+    def get_workflow_children(self, workflow_id):
+        children = {workflow_id}
+        workflow = db.fetch("workflow", id=workflow_id)
+
+        def rec(workflow):
+            for service in workflow.services:
+                children.add(service.id)
+                if service.type == "workflow":
+                    rec(service)
+
+        rec(workflow)
+        return list(children)
+
     def get_workflow_results(self, path, runtime):
         run = db.fetch("run", runtime=runtime)
         service = db.fetch("service", id=path.split(">")[-1])

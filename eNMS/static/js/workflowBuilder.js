@@ -797,8 +797,14 @@ export function showChangelogPanel() {
     tableId: `changelog-${workflow.id}`,
     title: "Workflow Changelog",
     callback: function() {
+      call({
+        url: `/get_workflow_children/${workflow.id}`,
+        callback: function(childrenId) {
+          new tables["changelog"](workflow.id);
+        },
+      });
       // eslint-disable-next-line new-cap
-      new tables["changelog"](workflow.id);
+      
     },
   });
 }
