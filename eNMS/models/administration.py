@@ -171,7 +171,9 @@ class Changelog(AbstractBase):
     severity = db.Column(db.TinyString, default="debug")
     user = db.Column(db.SmallString, default="admin")
     device_id = db.Column(Integer, ForeignKey("device.id"))
-    device = relationship("Device", back_populates="logs", foreign_keys="Changelog.device_id")
+    device = relationship(
+        "Device", back_populates="logs", foreign_keys="Changelog.device_id"
+    )
     link_id = db.Column(Integer, ForeignKey("link.id"))
     link = relationship("Link", back_populates="logs", foreign_keys="Changelog.link_id")
 

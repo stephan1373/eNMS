@@ -252,7 +252,15 @@ class Environment:
         self.redis("set", f"{key}/info/memory", f"{Process().memory_percent()}%")
         self.redis(mode, f"{key}/jobs/{job}", 1)
 
-    def log(self, severity, content, user=None, change_log=True, logger="root", instance=None):
+    def log(
+        self,
+        severity,
+        content,
+        user=None,
+        change_log=True,
+        logger="root",
+        instance=None,
+    ):
         logger_settings = vs.logging["loggers"].get(logger, {})
         if logger:
             getattr(getLogger(logger), severity)(content)
