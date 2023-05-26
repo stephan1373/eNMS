@@ -25,6 +25,7 @@ class Server(AbstractBase):
     ip_address = db.Column(db.TinyString)
     weight = db.Column(Integer, default=1)
     status = db.Column(db.TinyString, default="down")
+    logs = relationship("Changelog", back_populates="server")
 
 
 class User(AbstractBase, UserMixin):

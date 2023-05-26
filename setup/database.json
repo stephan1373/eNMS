@@ -55,6 +55,7 @@
     "group",
     "link",
     "pool",
+    "server",
     "user"
   ],
   "dont_migrate": {
