@@ -50,6 +50,7 @@
     "pool"
   ],
   "changelog_models": [
+    "credential",
     "device",
     "file",
     "group",

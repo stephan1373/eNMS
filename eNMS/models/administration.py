@@ -156,6 +156,7 @@ class Credential(AbstractBase):
         secondary=db.credential_group_table,
         back_populates="credentials",
     )
+    logs = relationship("Changelog", back_populates="credential")
 
     def update(self, **kwargs):
         super().update(**kwargs)
