@@ -92,6 +92,7 @@ class Group(AbstractBase):
     credentials = relationship(
         "Credential", secondary=db.credential_group_table, back_populates="groups"
     )
+    logs = relationship("Changelog", back_populates="group")
 
     @classmethod
     def database_init(cls):

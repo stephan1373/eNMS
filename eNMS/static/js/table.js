@@ -1314,6 +1314,9 @@ tables.group = class GroupTable extends Table {
     row.users = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'user', ${row.instance}, {parent: '${this.id}', from: 'groups', to: 'users'})">
       Users</a></b>`;
+    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'changelog', ${row.instance}, {parent: '${this.id}', from: 'group',
+      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 

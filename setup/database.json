@@ -52,6 +52,7 @@
   "changelog_models": [
     "device",
     "file",
+    "group",
     "link",
     "pool",
     "user"
