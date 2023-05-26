@@ -309,7 +309,7 @@ export function updateBuilderBindings(action) {
         .join(">");
       if (parentPath) switchTo(parentPath);
     },
-    "Changelog": () => showChangelogPanel(),
+    Changelog: () => showChangelogPanel(),
   });
   $("#builder").contextMenu({
     menuSelector: "#contextMenu",
