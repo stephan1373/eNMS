@@ -281,6 +281,11 @@ class Controller:
             "size": kwargs["size"],
         }
         workflow.labels[label_id] = label
+        env.log(
+            "info",
+            f"Adding label '{kwargs['text']}' to '{workflow}'",
+            instance=workflow,
+        )
         return {"id": label_id, **label}
 
     def database_deletion(self, **kwargs):

@@ -9,6 +9,7 @@ Version 4.6.0: Changelog & Workflow Tree
 - Add changelog button in workflow builder. The changelog of a workflow includes
   - the changes to the worklfow itself
   - the changes to any service in that workflow (including services in subworkflows, etc)
+  - adding and editing labels
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
