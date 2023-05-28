@@ -301,22 +301,25 @@ class Controller:
         instance = db.fetch(type, id=id)
         instance.update_last_modified_properties()
         instance.check_restriction_to_owners("edit")
+        names = defaultdict(list)
         for edge_id in selection["edges"]:
             if type == "workflow":
-                db.delete("workflow_edge", id=edge_id)
+                names["links"].append(db.delete("workflow_edge", id=edge_id)["name"])
             else:
                 instance.links.remove(db.fetch("link", id=edge_id))
         for node_id in selection["nodes"]:
             if isinstance(node_id, str):
-                instance.labels.pop(node_id)
+                names["labels"].append(instance.labels.pop(node_id)["content"])
             elif type == "network":
                 instance.nodes.remove(db.fetch("node", id=node_id))
             else:
                 service = db.fetch("service", id=node_id)
+                names["services"].append(service.name)
                 if not service.shared:
                     db.delete_instance(service)
                 else:
                     instance.services.remove(service)
+        env.log("info", f"Removing '{names}' from '{instance}'", instance=instance)
         return instance.last_modified
 
     def edit_file(self, filepath):
