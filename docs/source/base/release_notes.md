@@ -10,6 +10,7 @@ Version 4.6.0: Changelog & Workflow Tree
   - the changes to the worklfow itself
   - the changes to any service in that workflow (including services in subworkflows, etc)
   - adding, editing and deleting labels
+  - adding and removing services and workflow edges
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
