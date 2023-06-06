@@ -1,4 +1,4 @@
-from jinja2 import Template
+from jinja2 import StrictUndefined, Template
 from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from traceback import format_exc
 from wtforms.widgets import TextArea
@@ -43,7 +43,7 @@ class NetmikoValidationService(ConnectionService):
         local_variables = locals()
         if self.jinja2_template:
             variables = {**local_variables, **run.global_variables()}
-            commands = Template(run.commands).render(variables)
+            commands = Template(run.commands, undefined=StrictUndefined).render(variables)
         else:
             commands = run.sub(run.commands, local_variables)
         netmiko_connection = run.netmiko_connection(device)

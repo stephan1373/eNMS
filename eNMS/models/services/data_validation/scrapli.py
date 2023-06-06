@@ -1,4 +1,4 @@
-from jinja2 import Template
+from jinja2 import StrictUndefined, Template
 from sqlalchemy import Boolean, ForeignKey, Integer, Float
 from wtforms.widgets import TextArea
 
@@ -28,7 +28,7 @@ class ScrapliService(ConnectionService):
     def job(self, run, device):
         if self.jinja2_template:
             variables = {**locals(), **run.global_variables()}
-            commands = Template(run.commands).render(variables)
+            commands = Template(run.commands, undefined=StrictUndefined).render(variables)
         else:
             commands = run.sub(run.commands, locals())
         commands = commands.splitlines()
