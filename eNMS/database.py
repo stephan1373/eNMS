@@ -1,5 +1,6 @@
 from ast import literal_eval
 from atexit import register
+from collections import Counter, defaultdict
 from contextlib import contextmanager
 from flask_login import current_user
 from importlib.util import module_from_spec, spec_from_file_location
@@ -291,6 +292,13 @@ class Database:
                             data={property: data["data"]["data"][property]},
                         )
                         env.vault_client.delete(f"{path}/{old_name}")
+
+        if vs.settings["app"]["config_mode"].lower() == "debug":
+            self.orm_statements = Counter()
+
+            @event.listens_for(self.session, "do_orm_execute")
+            def _do_orm_execute(orm_execute_state):
+                self.orm_statements[str(orm_execute_state.statement)] += 1
 
     def configure_associations(self):
         for name, association in self.relationships["associations"].items():
