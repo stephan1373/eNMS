@@ -302,7 +302,7 @@ class Database:
             def _do_orm_execute(orm_execute_state):
                 statement = str(orm_execute_state.statement)
                 self.orm_statements[statement] += 1
-                if statement in self.orm_statements_runtime:
+                if statement in self.orm_statements_runtime or not env.log_events:
                     return
                 start = datetime.now()
                 orm_execute_state.invoke_statement()
