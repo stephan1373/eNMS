@@ -14,6 +14,7 @@ Version 4.6.0: Changelog & Workflow Tree
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
+- Add runtime display mechanism (Personal or All Runtimes) to results table
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
