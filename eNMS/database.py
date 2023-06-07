@@ -1,8 +1,8 @@
 from ast import literal_eval
 from atexit import register
-from collections import Counter
+from collections import Counter, defaultdict
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask_login import current_user
 from importlib.util import module_from_spec, spec_from_file_location
 from json import loads
@@ -296,17 +296,18 @@ class Database:
 
         if vs.settings["app"]["config_mode"].lower() == "debug":
             self.orm_statements = Counter()
-            self.orm_statements_runtime = {}
+            self.orm_statements_runtime = defaultdict(timedelta)
+            self.monitor_orm_statements = False
 
             @event.listens_for(self.session, "do_orm_execute")
             def _do_orm_execute(orm_execute_state):
+                if not self.monitor_orm_statements:
+                    return
                 statement = str(orm_execute_state.statement)
                 self.orm_statements[statement] += 1
-                if statement in self.orm_statements_runtime or not env.log_events:
-                    return
                 start = datetime.now()
                 orm_execute_state.invoke_statement()
-                self.orm_statements_runtime[statement] = datetime.now() - start
+                self.orm_statements_runtime[statement] += datetime.now() - start
 
     def configure_associations(self):
         for name, association in self.relationships["associations"].items():
