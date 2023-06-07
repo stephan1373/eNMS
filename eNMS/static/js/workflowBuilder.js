@@ -9,7 +9,14 @@ theme: false
 user: false
 */
 
-import { field, flipRuntimeDisplay, runService, runLogic, runtimeDisplay, showRuntimePanel } from "./automation.js";
+import {
+  field,
+  flipRuntimeDisplay,
+  runService,
+  runLogic,
+  runtimeDisplay,
+  showRuntimePanel,
+} from "./automation.js";
 import {
   call,
   configureNamespace,
@@ -788,7 +795,7 @@ export function showChangelogPanel() {
       call({
         url: `/get_workflow_children/${workflow.id}`,
         callback: function(childrenId) {
-          const constraints = {service: childrenId, service_filter: "union"};
+          const constraints = { service: childrenId, service_filter: "union" };
           // eslint-disable-next-line new-cap
           new tables["changelog"](workflow.id, constraints);
         },
