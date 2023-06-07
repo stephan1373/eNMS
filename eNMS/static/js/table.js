@@ -21,7 +21,7 @@ import {
   userIsActive,
 } from "./base.js";
 import { displayFolderPath, folderPath } from "./administration.js";
-import { exportServices } from "./automation.js";
+import { exportServices, runtimeDisplay } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
 export let tables = {};
@@ -1092,6 +1092,7 @@ tables.run = class RunTable extends Table {
       this.bulkFilteringButton(),
       this.clearSearchButton(),
       this.refreshTableButton(),
+
       ` <button
         class="btn btn-info"
         onclick="eNMS.automation.displayCalendar('run')"
@@ -1099,8 +1100,20 @@ tables.run = class RunTable extends Table {
         type="button"
       >
         <span class="glyphicon glyphicon-calendar"></span>
+      </button>
+      <button
+        class="btn btn-info"
+        onclick="eNMS.automation.flipRuntimeDisplay()"
+        data-tooltip="Personal or All Runtimes"
+        type="button"
+      >
+        <span id="runtime-display-icon" class="fa fa-user"></span>
       </button>`,
     ];
+  }
+
+  get filteringConstraints() {
+    return runtimeDisplay == "user" ? { creator: user.name } : {};
   }
 
   get tableOrdering() {

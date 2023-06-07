@@ -7,6 +7,7 @@ user: false
 vis: false
 */
 
+import { flipRuntimeDisplay, runtimeDisplay } from "./automation.js";
 import {
   call,
   configureNamespace,
@@ -34,7 +35,6 @@ import {
   drawWorkflowEdge,
   drawWorkflowNode,
   ends,
-  flipRuntimeDisplay,
   getWorkflowState,
   resetWorkflowDisplay,
   showChangelogPanel,
@@ -531,7 +531,7 @@ export function initBuilder() {
     loadTypes("edge");
   } else {
     loadTypes("service");
-    flipRuntimeDisplay(localStorage.getItem("runtimeDisplay") || "user");
+    flipRuntimeDisplay(runtimeDisplay);
   }
   $("#left-arrow,#right-arrow").addClass("disabled");
   call({
