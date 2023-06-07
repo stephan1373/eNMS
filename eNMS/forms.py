@@ -1157,16 +1157,19 @@ class DeviceForm(ObjectForm):
     vendor = SelectField(
         "Vendor",
         choices=vs.dualize(vs.properties["property_list"]["device"]["vendor"]),
+        validate_choice=False,
     )
     model = SelectField(
         "Model",
         choices=vs.dualize(vs.properties["property_list"]["device"]["model"]),
+        validate_choice=False,
     )
     operating_system = SelectField(
         "Operating System",
         choices=vs.dualize(
             vs.properties["property_list"]["device"]["operating_system"]
         ),
+        validate_choice=False,
     )
     os_version = StringField("OS Version")
     latitude = StringField("Latitude", default=0.0)
@@ -1191,10 +1194,12 @@ class LinkForm(ObjectForm):
     vendor = SelectField(
         "Vendor",
         choices=vs.dualize(vs.properties["property_list"]["link"]["vendor"]),
+        validate_choice=False,
     )
     model = SelectField(
         "Model",
         choices=vs.dualize(vs.properties["property_list"]["link"]["model"]),
+        validate_choice=False,
     )
     source = InstanceField("Source", model="device")
     destination = InstanceField("Destination", model="device")
