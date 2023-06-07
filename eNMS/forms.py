@@ -694,9 +694,9 @@ class ServiceForm(BaseForm):
     credential_type = SelectField(
         "Type of Credentials",
         choices=(
-            ("any", "Any"),
             ("read-write", "Read Write"),
             ("read-only", "Read Only"),
+            ("any", "Any"),
         ),
         help="common/type_of_credentials",
         no_search=True,
