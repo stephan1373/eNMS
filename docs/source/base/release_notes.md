@@ -12,6 +12,7 @@ Version 4.6.0: Changelog & Workflow Tree
   - adding, editing and deleting labels
   - adding and removing services and workflow edges
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
+- Make "any" come last in the list of credential type for a service (default becomes read write)
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
