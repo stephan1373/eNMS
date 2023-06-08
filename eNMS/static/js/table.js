@@ -949,7 +949,6 @@ tables.service = class ServiceTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
-      this.userFilteringButton(),
       `
       <button
         style="background:transparent; border:none; 
@@ -965,6 +964,7 @@ tables.service = class ServiceTable extends Table {
           <option value="false">Display all services</option>
         </select>
       </button>`,
+      this.userFilteringButton(),
       `
       <button
         class="btn btn-info"
