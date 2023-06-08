@@ -307,6 +307,7 @@ export const showRuntimePanel = function(
   const panelId = `${panelType}-${service.id}`;
   call({
     url: `/get_runtimes/${service.id}`,
+    data: { display: runtimeDisplay },
     callback: (runtimes) => {
       if (newRuntime) runtimes.push([runtime, runtime]);
       if (!runtimes.length) return notify(`No ${type} yet.`, "error", 5);
