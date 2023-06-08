@@ -1074,6 +1074,7 @@ class Runner:
         if connection:
             self.log("info", f"Using cached {connection_name}", device)
             return self.update_netmiko_connection(connection)
+        self.check_connection_numbers()
         driver = device.netmiko_driver if self.driver == "device" else self.driver
         self.log(
             "info",
@@ -1113,6 +1114,7 @@ class Runner:
         )
         if self.enable_mode:
             netmiko_connection.enable()
+        self.write_state("connections/netmiko", 1, "increment")
         if self.config_mode:
             kwargs = {}
             if getattr(self, "config_mode_command", None):
@@ -1130,6 +1132,7 @@ class Runner:
         if connection:
             self.log("info", f"Using cached {connection_name}", device)
             return connection
+        self.check_connection_numbers()
         self.log(
             "info",
             f"OPENING {connection_name}",
@@ -1161,6 +1164,7 @@ class Runner:
             **kwargs,
         )
         connection.open()
+        self.write_state("connections/scrapli", 1, "increment")
         vs.connections_cache["scrapli"][self.parent_runtime].setdefault(
             device.name, {}
         )[self.connection_name] = connection
@@ -1172,6 +1176,7 @@ class Runner:
         if connection:
             self.log("info", f"Using cached {connection_name}", device)
             return connection
+        self.check_connection_numbers()
         self.log(
             "info",
             f"OPENING {connection_name}",
@@ -1195,6 +1200,7 @@ class Runner:
             **credentials,
         )
         napalm_connection.open()
+        self.write_state("connections/napalm", 1, "increment")
         vs.connections_cache["napalm"][self.parent_runtime].setdefault(device.name, {})[
             self.connection_name
         ] = napalm_connection
@@ -1259,6 +1265,17 @@ class Runner:
         connection = name or getattr(self, "connection_name", "default")
         return cache.get(device, {}).get(connection)
 
+    def check_connection_numbers(self):
+        if not vs.automation["connections"]["enforce_threshold"]:
+            return
+        state = self.main_run.get_state()
+        total_connections = 1
+        if total_connections >= vs.automation["connections"]["threshold"]:
+            log = f"Too many connections open in parallel ({total_connections})"
+            self.log(vs.automation["connections"]["log_level"], log)
+            if vs.automation["connections"]["raise_exception"]:
+                raise OverflowError(log)
+
     def close_device_connection(self, device):
         for library in ("netmiko", "napalm", "scrapli", "ncclient"):
             connection = self.get_connection(library, device)
@@ -1293,6 +1310,7 @@ class Runner:
             vs.connections_cache[library][self.parent_runtime][device].pop(
                 connection_name
             )
+            self.write_state(f"connections/{library}", -1, "increment")
             self.log("info", f"Closed {connection_log}", device)
         except Exception as exc:
             self.log("error", f"Error while closing {connection_log} ({exc})", device)

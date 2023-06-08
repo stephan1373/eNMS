@@ -1,4 +1,10 @@
 {
+  "connections": {
+    "enforce_threshold": true,
+    "threshold": 2,
+    "log_level": "warning",
+    "raise_exception": true
+  },
   "napalm": {
     "getters": [
       ["get_arp_table", "ARP table"],

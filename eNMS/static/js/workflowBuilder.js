@@ -607,6 +607,7 @@ function displayWorkflowState(result) {
   }
   let nodeUpdates = [];
   let edgeUpdates = [];
+  $("#connections-div").show().html("<p>Open Connections: </p>");
   const serviceIds = workflow.services.map((s) => s.id);
   for (let [path, state] of Object.entries(result.state)) {
     const id = parseInt(path.split(">").slice(-1)[0]);
