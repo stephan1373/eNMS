@@ -34,7 +34,7 @@ import {
   workflow,
 } from "./workflowBuilder.js";
 
-export let runtimeDisplay = localStorage.getItem("userFiltering-run") || "user";
+export let runtimeDisplay = localStorage.getItem("userFiltering-run") || "users";
 
 function openServicePanel(tableId, bulkMode) {
   const args = tableId ? [null, bulkMode, tableId] : [];
