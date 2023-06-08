@@ -485,6 +485,10 @@ export class Table {
       </button>`;
   }
 
+  get userDisplayConstraints() {
+    return this.userFiltering == "user" ? { creator: user.name, creator_filter: "equality" } : {};
+  }
+
   addRow({ properties, tableId, derivedProperties }) {
     let row = { tableId: tableId, ...properties };
     row.instanceProperties = { id: row.id, name: row.name, type: row.type };
@@ -942,7 +946,7 @@ tables.service = class ServiceTable extends Table {
     const parentFiltering = $("#parent-filtering").val() || relationFiltering;
     return {
       workflows_filter: parentFiltering == "true" ? "empty" : "union",
-      creator: this.userFiltering == "user" ? user.name : "",
+      ...this.userDisplayConstraints,
     };
   }
 
