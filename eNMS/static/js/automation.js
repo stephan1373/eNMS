@@ -34,7 +34,7 @@ import {
   workflow,
 } from "./workflowBuilder.js";
 
-export let runtimeDisplay = localStorage.getItem("runtimeDisplay") || "user";
+export let runtimeDisplay = localStorage.getItem("userFiltering-run") || "user";
 
 function openServicePanel(tableId, bulkMode) {
   const args = tableId ? [null, bulkMode, tableId] : [];
@@ -175,15 +175,9 @@ function downloadRun(type, serviceId) {
 
 export function flipRuntimeDisplay(display) {
   runtimeDisplay = display || (runtimeDisplay == "users" ? "user" : "users");
-  localStorage.setItem("runtimeDisplay", runtimeDisplay);
-  $("#runtime-display-icon").attr("class", `fa fa-${runtimeDisplay}`);
-  if (!display) {
-    if (page == "workflow_builder") {
-      switchToWorkflow(currentPath);
-    } else {
-      refreshTable("run");
-    }
-  }
+  localStorage.setItem("userFiltering-run", runtimeDisplay);
+  $("#user-filtering-icon-run").attr("class", `fa fa-${runtimeDisplay}`);
+  if (!display) switchToWorkflow(currentPath);
 }
 
 function stopRun(runtime) {

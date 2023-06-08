@@ -1109,10 +1109,10 @@ tables.run = class RunTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.userFilteringButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
       this.refreshTableButton(),
-
       ` <button
         class="btn btn-info"
         onclick="eNMS.automation.displayCalendar('run')"
@@ -1120,20 +1120,12 @@ tables.run = class RunTable extends Table {
         type="button"
       >
         <span class="glyphicon glyphicon-calendar"></span>
-      </button>
-      <button
-        class="btn btn-info"
-        onclick="eNMS.automation.flipRuntimeDisplay()"
-        data-tooltip="Personal or All Runtimes"
-        type="button"
-      >
-        <span id="runtime-display-icon" class="fa fa-user"></span>
       </button>`,
     ];
   }
 
   get filteringConstraints() {
-    return runtimeDisplay == "user" ? { creator: user.name } : {};
+    return this.userFiltering == "user" ? { creator: user.name } : {};
   }
 
   get tableOrdering() {
