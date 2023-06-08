@@ -45,6 +45,7 @@ export class Table {
       if (visibleColumns) column.visible = visibleColumns.includes(column.data);
       column.name = column.data;
     });
+    this.userFiltering = localStorage.getItem(`userFiltering-${this.type}`) || "users";
     this.id = `${this.type}${id ? `-${id}` : ""}`;
     this.model = this.modelFiltering || this.type;
     tableInstances[this.id] = this;
@@ -467,6 +468,21 @@ export class Table {
         onclick="${onClick}" data-tooltip="Delete"><span class="glyphicon
         glyphicon-${this.relation ? "remove" : "trash"}"></span></button>
       </li>`;
+  }
+
+  userFilteringButton() {
+    return `
+      <button
+        class="btn btn-info"
+        onclick="eNMS.table.userFilteringDisplay('${this.id}')"
+        data-tooltip="Personal or All ${this.type}s"
+        type="button"
+      >
+        <span
+          id="user-filtering-icon-${this.id}"
+          class="fa fa-${this.userFiltering}">
+        </span>
+      </button>`;
   }
 
   addRow({ properties, tableId, derivedProperties }) {
@@ -1263,6 +1279,7 @@ tables.task = class TaskTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.userFilteringButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
@@ -1294,6 +1311,10 @@ tables.task = class TaskTable extends Table {
       </button>`,
       this.bulkDeletionButton(),
     ];
+  }
+
+  get filteringConstraints() {
+    return this.userFiltering == "user" ? { creator: user.name } : {};
   }
 
   buttons(row) {
@@ -1775,6 +1796,14 @@ function exportTable(tableId) {
   refreshTable(tableId);
 }
 
+function userFilteringDisplay(tableId) {
+  let table = tableInstances[tableId];
+  table.userFiltering = table.userFiltering == "user" ? "users" : "user";
+  localStorage.setItem(`userFiltering-${table.type}`, table.userFiltering);
+  $(`#user-filtering-icon-${tableId}`).attr("class", `fa fa-${table.userFiltering}`);
+  refreshTable(tableId);
+}
+
 export const refreshTable = function(tableId, notification, updateParent) {
   if (!$(`#table-${tableId}`).length) return;
   tableInstances[tableId].table.ajax.reload(null, false);
@@ -1919,4 +1948,5 @@ configureNamespace("table", [
   showBulkEditPanel,
   showBulkServiceExportPanel,
   togglePaginationDisplay,
+  userFilteringDisplay,
 ]);
