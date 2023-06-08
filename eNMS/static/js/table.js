@@ -1129,7 +1129,7 @@ tables.run = class RunTable extends Table {
   }
 
   get filteringConstraints() {
-    return this.userFiltering == "user" ? { creator: user.name } : {};
+    return this.userDisplayConstraints;
   }
 
   get tableOrdering() {
@@ -1314,7 +1314,7 @@ tables.task = class TaskTable extends Table {
   }
 
   get filteringConstraints() {
-    return this.userFiltering == "user" ? { creator: user.name } : {};
+    return this.userDisplayConstraints;
   }
 
   buttons(row) {
