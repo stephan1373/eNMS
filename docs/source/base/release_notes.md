@@ -17,6 +17,7 @@ Version 4.6.0: Changelog & Workflow Tree
 - Add runtime display mechanism (Personal or All Runtimes) to results table
 - Add new "start / end query monitoring" python snippet to analyze what SQL queries are sent
   to the database and how long they take to execute.
+- Add new user (per user / all users) filtering mechanism for tasks
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
