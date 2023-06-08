@@ -940,7 +940,10 @@ tables.service = class ServiceTable extends Table {
   get filteringConstraints() {
     const relationFiltering = this.relation ? "false" : "true";
     const parentFiltering = $("#parent-filtering").val() || relationFiltering;
-    return { workflows_filter: parentFiltering == "true" ? "empty" : "union", creator: this.userFiltering == "user" ? user.name : "" };
+    return {
+      workflows_filter: parentFiltering == "true" ? "empty" : "union",
+      creator: this.userFiltering == "user" ? user.name : "",
+    };
   }
 
   get controls() {
