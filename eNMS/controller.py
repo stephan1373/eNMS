@@ -480,15 +480,17 @@ class Controller:
         return [server.status for server in db.fetch_all("server")]
 
     def get_credentials(self, device, optional=False, **kwargs):
-        if kwargs["credentials"] == "device":
-            credentials = db.get_credential(
-                current_user.name, device=device, optional=optional
-            )
-            if not credentials:
-                return
-            return credentials.username, env.get_password(credentials.password)
-        else:
+        if kwargs["credentials"] == "custom":
             return kwargs["username"], kwargs["password"]
+        else:
+            credential = (
+                db.get_credential(current_user.name, device=device, optional=optional)
+                if kwargs["credentials"] == "device"
+                else db.fetch("credential", id=kwargs["named_credential"])
+            )
+            if not credential:
+                return
+            return credential.username, env.get_password(credential.password)
 
     def get_device_logs(self, device_id):
         device_logs = [
