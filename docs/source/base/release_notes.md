@@ -32,6 +32,9 @@ Version 4.6.0: Changelog & Workflow Tree
   same user to retrieve the results without needing read access
 - Add a way to get the parameterized form to display a drop down of devices with custom set
   of constraints for both InstanceField and MultipleInstanceField
+- move "Admin Only" check box into "Access Control" panel:
+  - prevent non-admin users from changing the "Admin Only" value
+  - extend "Admin Only" mechanism to all rbac models (plus the group model)
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
