@@ -1,9 +1,9 @@
 {
   "connections": {
-    "enforce_threshold": true,
-    "threshold": 2,
+    "enforce_threshold": false,
+    "threshold": 100,
     "log_level": "warning",
-    "raise_exception": true
+    "raise_exception": false
   },
   "napalm": {
     "getters": [

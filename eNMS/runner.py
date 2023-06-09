@@ -198,17 +198,18 @@ class Runner:
                 self.write_state(f"placeholder/{property}", value)
         self.write_state("success", True)
 
-    def write_state(self, path, value, method=None):
+    def write_state(self, path, value, method=None, service=True):
+        parent_path = f"/{self.path}" if service else ""
         if env.redis_queue:
             if isinstance(value, bool):
                 value = str(value)
             env.redis(
                 {None: "set", "append": "lpush", "increment": "incr"}[method],
-                f"{self.parent_runtime}/state/{self.path}/{path}",
+                f"{self.parent_runtime}/state{parent_path}/{path}",
                 value,
             )
         else:
-            *keys, last = f"{self.parent_runtime}/{self.path}/{path}".split("/")
+            *keys, last = f"{self.parent_runtime}{parent_path}/{path}".split("/")
             store = vs.run_states
             for key in keys:
                 store = store.setdefault(key, {})
@@ -1121,7 +1122,7 @@ class Runner:
         )
         if self.enable_mode:
             netmiko_connection.enable()
-        self.write_state("connections/netmiko", 1, "increment")
+        self.write_state("connections/netmiko", 1, "increment", False)
         if self.config_mode:
             kwargs = {}
             if getattr(self, "config_mode_command", None):
@@ -1171,7 +1172,7 @@ class Runner:
             **kwargs,
         )
         connection.open()
-        self.write_state("connections/scrapli", 1, "increment")
+        self.write_state("connections/scrapli", 1, "increment", False)
         vs.connections_cache["scrapli"][self.parent_runtime].setdefault(
             device.name, {}
         )[self.connection_name] = connection
@@ -1207,7 +1208,7 @@ class Runner:
             **credentials,
         )
         napalm_connection.open()
-        self.write_state("connections/napalm", 1, "increment")
+        self.write_state("connections/napalm", 1, "increment", False)
         vs.connections_cache["napalm"][self.parent_runtime].setdefault(device.name, {})[
             self.connection_name
         ] = napalm_connection
@@ -1276,7 +1277,10 @@ class Runner:
         if not vs.automation["connections"]["enforce_threshold"]:
             return
         state = self.main_run.get_state()
-        total_connections = 1
+        total_connections = sum(
+            len(vs.connections_cache[library].get(self.parent_runtime, {}))
+            for library in ("netmiko", "scrapli", "napalm")
+        )
         if total_connections >= vs.automation["connections"]["threshold"]:
             log = f"Too many connections open in parallel ({total_connections})"
             self.log(vs.automation["connections"]["log_level"], log)
@@ -1317,7 +1321,7 @@ class Runner:
             vs.connections_cache[library][self.parent_runtime][device].pop(
                 connection_name
             )
-            self.write_state(f"connections/{library}", -1, "increment")
+            self.write_state(f"connections/{library}", -1, "increment", False)
             self.log("info", f"Closed {connection_log}", device)
         except Exception as exc:
             self.log("error", f"Error while closing {connection_log} ({exc})", device)

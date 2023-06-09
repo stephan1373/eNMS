@@ -607,7 +607,16 @@ function displayWorkflowState(result) {
   }
   let nodeUpdates = [];
   let edgeUpdates = [];
-  $("#connections-div").show().html("<p>Open Connections: </p>");
+  const cache = result.state?.connections
+  Object.entries(cache).forEach(([library, connections]) => {
+    if (connections === 0) delete cache[library];
+  });
+  if (!cache || Object.keys(cache).length === 0) {
+    $("#connections-div").hide();
+  } else {
+    const connectionText = Object.entries(cache).map(([library, number]) => `${library} (${number})`).join(" / ");
+    $("#connections-div").show().html(`<p>Open Connections: ${connectionText}</p>`);
+  }
   const serviceIds = workflow.services.map((s) => s.id);
   for (let [path, state] of Object.entries(result.state)) {
     const id = parseInt(path.split(">").slice(-1)[0]);
