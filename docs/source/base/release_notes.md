@@ -31,7 +31,7 @@ Version 4.6.0: Changelog & Workflow Tree
 - If a service is run using aync = true, and the user has service run privilages, allow that
   same user to retrieve the results without needing read access
 - Add a way to get the parameterized form to display a drop down of devices with custom set
-  of constraints (e.g InstanceField(..., constraints={pools: ["name_of_my_pool"]}))
+  of constraints for both InstanceField and MultipleInstanceField
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
