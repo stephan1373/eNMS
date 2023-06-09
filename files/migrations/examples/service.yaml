@@ -9530,7 +9530,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "#!/bin/bash\r\nping_result=`ping -c 5 192.168.56.102`  # Needs privileged\
+  "source_code": "#!/bin/bash\r\nping_result=`ping -c 5 192.168.56.108`  # Needs privileged\
     \ mode\r\nreturn_code=$?\r\nif [ $return_code -ne 0 ]; then\r\n    exit $return_code\
     \  # Indicating Failure\r\nelse\r\n    echo -e \"$ping_result\"\r\n    exit 0\r\
     \nfi\r\n"
@@ -30928,7 +30928,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/is_alive"
+  "rest_url": "http://192.168.56.108:5000/rest/is_alive"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "is_alive"
@@ -31035,7 +31035,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/configuration/{{ device.name }}"
+  "rest_url": "http://192.168.56.108:5000/rest/configuration/{{ device.name }}"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "configuration"
@@ -31142,7 +31142,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/configuration/{{ device.name }}?property=operational_data"
+  "rest_url": "http://192.168.56.108:5000/rest/configuration/{{ device.name }}?property=operational_data"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "operational_data"
@@ -31247,7 +31247,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/instance/device/{{ device.name }}"
+  "rest_url": "http://192.168.56.108:5000/rest/instance/device/{{ device.name }}"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "instance - device"
@@ -31352,7 +31352,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/instance/user/admin"
+  "rest_url": "http://192.168.56.108:5000/rest/instance/user/admin"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "instance - user"
@@ -31590,7 +31590,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/query/device?name={{ device.name }}"
+  "rest_url": "http://192.168.56.108:5000/rest/query/device?name={{ device.name }}"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Query Device - Washington"
@@ -31697,7 +31697,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/query/device?name=NonExisting&allow_none=true"
+  "rest_url": "http://192.168.56.108:5000/rest/query/device?name=NonExisting&allow_none=true"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Query Device - NonExisting"
@@ -31805,7 +31805,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/query/device?operating_system=EOS"
+  "rest_url": "http://192.168.56.108:5000/rest/query/device?operating_system=EOS"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Query Device - OS EOS"
@@ -32056,7 +32056,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/search"
+  "rest_url": "http://192.168.56.108:5000/rest/search"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "First 5 devices"
@@ -32170,7 +32170,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/search"
+  "rest_url": "http://192.168.56.108:5000/rest/search"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Devices with i"
@@ -32288,7 +32288,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/search"
+  "rest_url": "http://192.168.56.108:5000/rest/search"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Configuration with regex TRAFFIC-dd"
@@ -32543,7 +32543,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/instance/device"
+  "rest_url": "http://192.168.56.108:5000/rest/instance/device"
   "restrict_to_owners": []
   "run_method": "once"
   "scoped_name": "POST Update NewDevice property1"
@@ -32650,7 +32650,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/instance/device"
+  "rest_url": "http://192.168.56.108:5000/rest/instance/device"
   "restrict_to_owners": []
   "run_method": "once"
   "scoped_name": "POST Create NewDevice"
@@ -32757,7 +32757,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/instance/device/NewDevice"
+  "rest_url": "http://192.168.56.108:5000/rest/instance/device/NewDevice"
   "restrict_to_owners": []
   "run_method": "once"
   "scoped_name": "DELETE NewDevice"
@@ -32863,7 +32863,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/result/POST Create NewDevice/{{ runtime\
+  "rest_url": "http://192.168.56.108:5000/rest/result/POST Create NewDevice/{{ runtime\
     \ }}"
   "restrict_to_owners": []
   "run_method": "once"
@@ -32978,7 +32978,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/search"
+  "rest_url": "http://192.168.56.108:5000/rest/search"
   "restrict_to_owners": []
   "run_method": "once"
   "scoped_name": "POST Search Result"
@@ -40499,7 +40499,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.102/rest/query/device?name={{ device.name }}"
+  "rest_url": "http://192.168.56.108:5000/rest/query/device?name={{ device.name }}"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "REST Call"
