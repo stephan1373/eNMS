@@ -58,7 +58,7 @@ class RestApi:
         )
 
     def get_result(self, name, runtime, **_):
-        run = db.fetch("run", service_name=name, runtime=runtime, allow_none=True)
+        run = db.fetch("run", service_name=name, runtime=runtime, rbac="run", allow_none=True)
         if not run:
             error_message = (
                 "There are no results or on-going services "
