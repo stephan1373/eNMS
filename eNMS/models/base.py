@@ -100,7 +100,7 @@ class AbstractBase(db.base):
     def filter_rbac_kwargs(self, kwargs):
         if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
             return
-        rbac_properties = ["owners", "restrict_to_owners"]
+        rbac_properties = ["owners", "restrict_to_owners", "admin_only"]
         model_rbac_properties = list(vs.rbac["rbac_models"][self.class_type])
         is_admin = getattr(current_user, "is_admin", True)
         if not is_admin and current_user not in self.owners:

@@ -26,7 +26,6 @@ class Service(AbstractBase):
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.TinyString, info={"log_change": False})
     creator = db.Column(db.SmallString)
-    admin_only = db.Column(Boolean, default=False)
     shared = db.Column(Boolean, default=False)
     scoped_name = db.Column(db.SmallString, index=True)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
@@ -457,7 +456,6 @@ class Task(AbstractBase):
     __tablename__ = type = class_type = "task"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    admin_only = db.Column(Boolean, default=False)
     description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
     last_scheduled_by = db.Column(db.SmallString)

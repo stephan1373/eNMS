@@ -75,6 +75,7 @@ class MetaForm(FormMeta):
         if form_type in vs.rbac["rbac_models"]:
             form.rbac_properties = vs.rbac["rbac_models"].get(form_type, {})
             setattr(form, "owners", MultipleInstanceField("Owners", model="user"))
+            setattr(form, "admin_only", BooleanField("Admin Only", default=False))
             field_properties = {"type": "object-list", "model": "user"}
             vs.form_properties[form_type]["owners"] = field_properties
         for property, property_name in form.rbac_properties.items():
@@ -335,7 +336,6 @@ class CredentialForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
-    admin_only = BooleanField("Admin Only", default=False)
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     role = SelectField(
         "Role",
@@ -509,7 +509,6 @@ class PoolForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
-    admin_only = BooleanField(ui_name="Admin only (only visible to admin users)")
     description = StringField(widget=TextArea(), render_kw={"rows": 8})
     manually_defined = BooleanField(
         ui_name="Manually defined (will not be automatically updated)"
@@ -773,7 +772,6 @@ class ServiceForm(BaseForm):
         ),
         no_search=True,
     )
-    admin_only = BooleanField("Admin Only", default=False)
     log_level = SelectField(
         "Logging",
         choices=(*enumerate(vs.log_levels), (-1, "Disable logging")),
@@ -831,7 +829,6 @@ class ServiceForm(BaseForm):
             "name",
             "scoped_name",
             "creator",
-            "admin_only",
             "type",
             "disabled",
             "disabled_info",
@@ -997,7 +994,6 @@ class TaskForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
-    admin_only = BooleanField("Admin Only", default=False)
     scheduling_mode = SelectField(
         "Scheduling Mode",
         choices=(("cron", "Crontab Scheduling"), ("standard", "Standard Scheduling")),
