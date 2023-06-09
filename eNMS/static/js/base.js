@@ -194,7 +194,7 @@ const deleteInstance = function(type, id, tableId) {
   call({
     url: `/delete_instance/${type}/${id}`,
     callback: function(result) {
-      if (result.delete_aborted) return notify(result.log, result.log_level, 5, true)
+      if (result.delete_aborted) return notify(result.log, result.log_level, 5, true);
       if (type in subtypes.service) {
         type = "service";
         const path = localStorage.getItem("path");

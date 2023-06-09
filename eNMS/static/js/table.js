@@ -486,7 +486,9 @@ export class Table {
   }
 
   get userDisplayConstraints() {
-    return this.userFiltering == "user" ? { creator: user.name, creator_filter: "equality" } : {};
+    return this.userFiltering == "user"
+      ? { creator: user.name, creator_filter: "equality" }
+      : {};
   }
 
   addRow({ properties, tableId, derivedProperties }) {

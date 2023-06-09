@@ -614,8 +614,12 @@ function displayWorkflowState(result) {
   if (!cache || Object.keys(cache).length === 0) {
     $("#connections-div").hide();
   } else {
-    const connectionText = Object.entries(cache).map(([library, number]) => `${library} (${number})`).join(" / ");
-    $("#connections-div").show().html(`<p>Open Connections: ${connectionText}</p>`);
+    const connectionText = Object.entries(cache)
+      .map(([library, number]) => `${library} (${number})`)
+      .join(" / ");
+    $("#connections-div")
+      .show()
+      .html(`<p>Open Connections: ${connectionText}</p>`);
   }
   const serviceIds = workflow.services.map((s) => s.id);
   for (let [path, state] of Object.entries(result.state)) {
