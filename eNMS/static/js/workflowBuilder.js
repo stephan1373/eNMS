@@ -607,7 +607,7 @@ function displayWorkflowState(result) {
   }
   let nodeUpdates = [];
   let edgeUpdates = [];
-  const cache = result.state?.connections
+  const cache = result.state?.connections || {};
   Object.entries(cache).forEach(([library, connections]) => {
     if (connections === 0) delete cache[library];
   });
