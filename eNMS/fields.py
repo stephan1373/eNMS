@@ -194,6 +194,7 @@ class MultipleInstanceField(FieldMixin, WtformsSelectMultipleField):
 
     def __init__(self, *args, **kwargs):
         self.model = kwargs.pop("model")
+        self.constraints = kwargs.pop("constraints", None)
         super().__init__(*args, **kwargs)
         self.choices = ()
 
