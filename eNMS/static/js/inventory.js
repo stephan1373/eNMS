@@ -107,11 +107,17 @@ export function showConnectionPanel(device) {
     callback: () => {
       $(`#address-${device.id}`).selectpicker();
       $(`#custom-credentials-${device.id}`).change(function() {
-        $(`#credentials-fields-${device.id}`).show();
+        $(`#custom-credentials-fields-${device.id}`).show();
+        $(`#named-credentials-fields-${device.id}`).hide();
+      });
+      $(`#named-credentials-${device.id}`).change(function() {
+        $(`#named-credentials-fields-${device.id}`).show();
+        $(`#custom-credentials-fields-${device.id}`).hide();
       });
       $(`#device-credentials-${device.id},#user-credentials-${device.id}`).change(
         function() {
-          $(`#credentials-fields-${device.id}`).hide();
+          $(`#custom-credentials-fields-${device.id}`).hide();
+          $(`#named-credentials-fields-${device.id}`).hide();
         }
       );
     },

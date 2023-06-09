@@ -415,6 +415,7 @@ class DeviceConnectionForm(BaseForm):
         if values.get("is_address", False)
     ]
     address = SelectField(choices=address_choices)
+    named_credential = InstanceField("Named Credential", model="credential")
     username = StringField("Username")
     password = PasswordField("Password")
 

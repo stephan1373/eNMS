@@ -35,6 +35,19 @@
         Authentication with device credentials
       </label>
     </div>
+    {% endif %} {% if settings["ssh"]["credentials"]["named"] %}
+    <div class="radio">
+      <label>
+        <input
+          type="radio"
+          value="device"
+          id="named-credentials"
+          name="credentials"
+          class="add-id"
+        />
+        Authentication with named credential
+      </label>
+    </div>
     {% endif %} {% if settings["ssh"]["credentials"]["custom"] %}
     <div class="radio">
       <label>
@@ -48,8 +61,15 @@
         Authentication with custom credentials
       </label>
     </div>
+    {% endif %} {% if settings["ssh"]["credentials"]["named"] %}
     <br />
-    <div id="credentials-fields" class="add-id" style="display: none;">
+    <div id="named-credentials-fields" class="add-id" style="display: none;">
+      <div class="form-group">
+        {{ form.named_credential(class="form-control") }}
+      </div>
+    </div>
+    {% endif %} {% if settings["ssh"]["credentials"]["custom"] %}
+    <div id="custom-credentials-fields" class="add-id" style="display: none;">
       <div class="form-group">
         {{ form.username(class="form-control", placeholder="Username") }}
       </div>

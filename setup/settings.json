@@ -150,6 +150,7 @@
     "command": "python3 -m flask run -h 0.0.0.0",
     "credentials": {
       "custom": true,
+      "named": true,
       "device": true
     },
     "end_port": 9100,
