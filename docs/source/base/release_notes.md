@@ -110,7 +110,7 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
   - in backup service, don't write to local file, don't update value in database and don't
   update "update" timestamp if the value hasn't changed
   - in the "update database configuration from git", dont update the database configuration
-    if the "update" timestamp from git is the same as the one stored in the database.
+    if the "update" timestamp from git is the same as or older than the one stored in the database.
 - Add parameterized form properties in dedicated accordion in service edit panel
 - Display header and link before results in email notification
 - Files Improvements:
@@ -134,10 +134,15 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
     filesystem. Files are moved to trash via the "update" function so that the file metadata is
     preserved.
     - The path to the trash folder is configured in settings.json > "files" > "trash"
+    - The trash folder cannot be deleted from inside the application
+    - When a file is moved to the trash, the alert is changed to a warning that says the
+    file was moved to the trash folder
     - When importing migration files with "empty database" set to True, or running the mass
     deletion mechanism ("database deletion"), unix files are left untouched.
   - Detect missing files when running scan folder mechanism and mark them as "Not Found"
   - Drag-n-drop the same file multiple times in upload panel no longer possible
+- Fix log not sent when add_secret is False or device is None in the get_credentials function bug
+- Add new 'prepend_filepath' function in workflow builder namespace to add path to file folder before a string
 
 Migration:
 - in file.yaml, remove path to "files" folder for all paths

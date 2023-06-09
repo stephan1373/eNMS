@@ -47,7 +47,7 @@ class VariableStore:
         self.server = getenv("SERVER_NAME", "Localhost")
         self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
         self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
-        self.file_path = self.settings["paths"]["files"] or str(self.path / "files")
+        self.file_path = Path(self.settings["paths"]["files"] or str(self.path / "files"))
         self.migration_path = (
             self.settings["paths"]["migration"] or f"{self.file_path}/migrations"
         )
@@ -133,7 +133,7 @@ class VariableStore:
 
     def _set_report_variables(self):
         self.reports = {"Empty report": ""}
-        for path in Path(self.path / "files" / "reports").glob("**/*"):
+        for path in Path(self.file_path / "reports").glob("**/*"):
             if path.suffix not in {".j2", ".txt"}:
                 continue
             with open(path, "r") as file:
@@ -141,6 +141,7 @@ class VariableStore:
 
     def _set_run_variables(self):
         self.run_targets = {}
+        self.run_services = defaultdict(set)
         self.run_states = defaultdict(dict)
         self.run_logs = defaultdict(lambda: defaultdict(list))
         self.run_stop = defaultdict(bool)
@@ -152,7 +153,7 @@ class VariableStore:
     def set_template_context(self):
         self.template_context = {
             "application_path": str(self.path),
-            "file_path": self.file_path,
+            "file_path": str(self.file_path),
             "automation": self.automation,
             "configuration_properties": self.configuration_properties,
             "form_properties": self.form_properties,
@@ -245,6 +246,9 @@ class VariableStore:
 
     def get_time(self):
         return str(datetime.now())
+
+    def str_to_date(self):
+        return 
 
     def strip_all(self, input):
         return input.translate(str.maketrans("", "", f"{punctuation} "))

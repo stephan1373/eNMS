@@ -63,7 +63,9 @@ class Runner:
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
         self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
-        self.main_run.services.append(self.service)
+        if self.service.id not in vs.run_services[self.parent_runtime]:
+            vs.run_services[self.parent_runtime].add(self.service.id)
+            self.main_run.services.append(self.service)
         creator = db.fetch("user", name=self.main_run.creator, rbac=None)
         self.is_admin_run = creator.is_admin
         self.creator_dict = {"name": creator.name, "email": creator.email}
@@ -784,9 +786,10 @@ class Runner:
                 credential_type=credential_type,
                 optional=self.credentials != "device",
             )
+        if credential:
+            device_log = f" for '{device.name}'" if device else ""
+            self.log("info", f"Using '{credential.name}' credential{device_log}")
         if add_secret and device and credential:
-            log = f"Using '{credential.name}' credential for '{device.name}'"
-            self.log("info", log)
             result["secret"] = env.get_password(credential.enable_password)
         if self.credentials in ("device", "object"):
             result["username"] = credential.username
@@ -963,6 +966,9 @@ class Runner:
         kwargs["rbac"] = "edit"
         return getattr(db, func)(model, username=self.creator, **kwargs)
 
+    def prepend_filepath(self, value):
+        return f"{vs.file_path}{value}"
+
     def get_credential(self, **kwargs):
         credential = db.get_credential(self.creator, **kwargs)
         credential_dict = {"username": credential.username}
@@ -998,6 +1004,7 @@ class Runner:
                 "parent_device": _self.parent_device or device,
                 "payload": _self.payload,
                 "placeholder": _self.main_run.placeholder,
+                "prepend_filepath": _self.prepend_filepath,
                 "send_email": env.send_email,
                 "server": {
                     "ip_address": vs.server_ip,

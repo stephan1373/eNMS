@@ -293,7 +293,7 @@ class Controller:
 
     def delete_instance(self, model, instance_id):
         try:
-            return db.delete(model, id=instance_id).get("name", "")
+            return db.delete(model, id=instance_id)
         except Exception as exc:
             return {"alert": f"Unable to delete {model} ({exc})"}
 
@@ -325,7 +325,7 @@ class Controller:
     def edit_file(self, filepath):
         scoped_path = filepath.replace(">", "/")
         try:
-            with open(Path(f"{vs.file_path}{scoped_path}")) as file:
+            with open(f"{vs.file_path}{scoped_path}") as file:
                 return file.read()
         except FileNotFoundError:
             file = db.fetch("file", path=scoped_path, allow_none=True)
@@ -712,7 +712,7 @@ class Controller:
                     continue
                 elif file.is_dir():
                     folders.add(file)
-                scoped_path = str(file).replace(vs.file_path, "")
+                scoped_path = str(file).replace(str(vs.file_path), "")
                 db.factory("folder" if file.is_dir() else "file", path=scoped_path)
             db.session.commit()
         env.log("info", "Scan of Files Successful")
@@ -918,7 +918,7 @@ class Controller:
 
     def load_debug_snippets(self):
         snippets = {}
-        for path in Path(vs.path / "files" / "snippets").glob("**/*.py"):
+        for path in Path(vs.file_path / "snippets").glob("**/*.py"):
             with open(path, "r") as file:
                 snippets[path.name] = file.read()
         return snippets
@@ -1088,7 +1088,7 @@ class Controller:
 
     def import_services(self, **kwargs):
         file = kwargs["file"]
-        filepath = vs.path / "files" / "services" / file.filename
+        filepath = vs.file_path / "services" / file.filename
         file.save(str(filepath))
         with open_tar(filepath) as tar_file:
             tar_file.extractall(path=vs.path / "files" / "services")
@@ -1249,7 +1249,7 @@ class Controller:
     def save_file(self, filepath, **kwargs):
         scoped_path, content = filepath.replace(">", "/"), None
         if kwargs.get("file_content"):
-            with open(Path(f"{vs.file_path}{scoped_path}"), "w") as file:
+            with open(f"{vs.file_path}{scoped_path}", "w") as file:
                 content = file.write(kwargs["file_content"])
         db.fetch("file", path=scoped_path).update()
         return content
@@ -1296,7 +1296,7 @@ class Controller:
                 continue
 
     def scan_playbook_folder(self):
-        path = vs.settings["paths"]["playbooks"] or vs.path / "files" / "playbooks"
+        path = vs.settings["paths"]["playbooks"] or vs.file_path / "playbooks"
         playbooks = [
             [str(file) for file in Path(path).glob(extension)]
             for extension in ("*.yaml", "*.yml")
@@ -1375,7 +1375,7 @@ class Controller:
                     if type(value) == bytes:
                         value = str(env.decrypt(value), "utf-8")
                     sheet.write(obj_index, index, str(value))
-        workbook.save(vs.path / "files" / "spreadsheets" / filename)
+        workbook.save(vs.file_path / "spreadsheets" / filename)
 
     def topology_import(self, file):
         book = open_workbook(file_contents=file.read())
@@ -1457,7 +1457,8 @@ class Controller:
                 no_update = False
                 for timestamp, value in timestamps.get(property, {}).items():
                     if timestamp == "update":
-                        no_update = value == getattr(device, f"last_{property}_update")
+                        db_date = getattr(device, f"last_{property}_update")
+                        no_update = vs.str_to_date(value) <= vs.str_to_date(db_date)
                     setattr(device, f"last_{property}_{timestamp}", value)
                 filepath = Path(dir.path) / property
                 if not filepath.exists() or no_update:

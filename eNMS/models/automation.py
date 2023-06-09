@@ -448,6 +448,7 @@ class Run(AbstractBase):
         self.payload = self.service_run.payload
         db.session.commit()
         vs.run_targets.pop(self.runtime)
+        vs.run_services.pop(self.runtime)
         env.update_worker_job(self.service.name, mode="decr")
         return self.service_run.results
 

@@ -15,6 +15,7 @@ from logging.config import dictConfig
 from logging import getLogger, info
 from os import getenv, getpid
 from passlib.hash import argon2
+from pathlib import Path
 from psutil import Process
 from redis import Redis
 from redis.exceptions import ConnectionError, TimeoutError
@@ -65,6 +66,7 @@ class Environment:
         if vs.settings["automation"]["use_task_queue"]:
             self.init_dramatiq()
         self.init_connection_pools()
+        Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         main_thread = Thread(target=self.monitor_filesystem)
         main_thread.daemon = True
         main_thread.start()
@@ -73,7 +75,7 @@ class Environment:
     def monitor_filesystem(self):
         class Handler(FileSystemEventHandler):
             def on_any_event(self, event):
-                src_path = event.src_path.replace(vs.file_path, "")
+                src_path = event.src_path.replace(str(vs.file_path), "")
                 if any(
                     src_path.endswith(extension)
                     for extension in vs.settings["files"]["ignored_types"]
@@ -83,7 +85,7 @@ class Environment:
                 file = db.fetch(filetype, path=src_path, allow_none=True)
                 if event.event_type == "moved" and file:
                     file.update(
-                        path=event.dest_path.replace(vs.file_path, ""), move_file=False
+                        path=event.dest_path.replace(str(vs.file_path), ""), move_file=False
                     )
                 elif event.event_type in ("created", "modified"):
                     file = db.factory(filetype, path=src_path)
@@ -100,7 +102,7 @@ class Environment:
 
         event_handler = Handler()
         observer = PollingObserver()
-        observer.schedule(event_handler, path=vs.file_path, recursive=True)
+        observer.schedule(event_handler, path=str(vs.file_path), recursive=True)
         observer.start()
 
     def authenticate_user(self, **kwargs):

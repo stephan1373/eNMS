@@ -1612,7 +1612,7 @@ tables.file = class FileTable extends Table {
   }
 
   get controls() {
-    const status = folderPath == "/files" ? "disabled" : "";
+    const status = folderPath == "" ? "disabled" : "";
     return [
       this.columnDisplay(),
       `
@@ -1636,7 +1636,7 @@ tables.file = class FileTable extends Table {
       <a
         id="upward-folder-btn"
         class="btn btn-info ${status}"
-        onclick="eNMS.administration.enterFolder({})"
+        onclick="eNMS.administration.enterFolder({parent: true})"
         type="button"
       >
         <span class="glyphicon glyphicon-chevron-up"></span>
@@ -1750,7 +1750,7 @@ tables.file = class FileTable extends Table {
   get filteringConstraints() {
     const parentFiltering = ($("#parent-filtering").val() || "true") == "true";
     if (parentFiltering) {
-      const fileFolderPath = settings.paths.files || applicationPath;
+      const fileFolderPath = settings.paths.files || filePath;
       const fullPath = `${fileFolderPath}${folderPath}`;
       return { folder_path: fullPath, folder_path_filter: "equality" };
     } else {
@@ -1804,9 +1804,10 @@ function userFilteringDisplay(tableId) {
   refreshTable(tableId);
 }
 
-export const refreshTable = function(tableId, notification, updateParent) {
+export const refreshTable = function(tableId, notification, updateParent, firstPage) {
   if (!$(`#table-${tableId}`).length) return;
-  tableInstances[tableId].table.ajax.reload(null, false);
+  const table = tableInstances[tableId].table;
+  table.page(firstPage ? 0 : table.page()).ajax.reload(null, false);
   const parentTable = tableInstances[tableId].relation?.relation?.parent;
   if (updateParent && parentTable) refreshTable(parentTable);
   if (notification) notify("Table refreshed.", "success", 5);
