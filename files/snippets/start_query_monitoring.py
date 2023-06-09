@@ -1,5 +1,5 @@
 # This script starts the monitoring mechanism for SQL queries
-# and clears the content of the dict used for the analysis. 
+# and clears the content of the dict used for the analysis.
 # flake8: noqa
 
 db.monitor_orm_statements = True
