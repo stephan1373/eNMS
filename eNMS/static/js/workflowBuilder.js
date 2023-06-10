@@ -816,6 +816,76 @@ function filterDevice() {
   }
 }
 
+function getTree() {
+  call({
+    url: `/get_instance_tree/workflow/${currentPath}`,
+    callback: function(data) {
+      $("#workflow-tree-services")
+        .bind("loaded.jstree", function(e, data) {
+          createTooltips();
+        })
+        .jstree({
+          core: {
+            animation: 100,
+            themes: { stripes: true },
+            data: data,
+          },
+          plugins: ["html_row", "search", "types", "wholerow"],
+          html_row: {
+            default: function(el, node) {
+              if (!node) return;
+              $(el)
+                .find("a")
+                .first().append(`
+              <div style="position: absolute; top: 0px; right: 20px">
+                <button
+                  type="button"
+                  class="btn btn-xs btn-info"
+                  data-tooltip="Find"
+                  onclick='eNMS.builder.highlightNode(${JSON.stringify(node.data)})'
+                >
+                  <span class="glyphicon glyphicon-screenshot"></span>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-xs btn-primary"
+                  data-tooltip="Edit"
+                  onclick='eNMS.base.showInstancePanel(
+                    "${node.data.type}", ${node.data.id}
+                  )'
+                >
+                  <span class="glyphicon glyphicon-edit"></span>
+                </button>
+              </div>
+            `);
+            },
+          },
+          search: {
+            show_only_matches: true,
+          },
+          types: {
+            default: {
+              icon: "glyphicon glyphicon-file",
+            },
+            workflow: {
+              icon: "fa fa-sitemap",
+            },
+          },
+        });
+      let timer = false;
+      $(`#tree-search`).keyup(function() {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(function() {
+          const searchValue = $(`#tree-search`).val();
+          $(`#workflow-tree-services`)
+            .jstree(true)
+            .search(searchValue);
+        }, 500);
+      });
+    },
+  });
+}
+
 function displayWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
@@ -830,6 +900,7 @@ function displayWorkflowTree() {
           $("#run-navbar")
             .appendTo("#workflow-tree-control")
             .show();
+          getTree();
         },
       }
     );

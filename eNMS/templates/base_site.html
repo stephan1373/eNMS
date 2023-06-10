@@ -295,6 +295,13 @@
       </center>
       <div id="workflow-tree-control" style="margin-top: 20px; margin-left: 30px"></div>
       <div id="workflow-tree-services"></div>
+      <input
+        type="text"
+        class="form-control"
+        id="tree-search-${instanceId}"
+        placeholder="Search"
+      >
+      <input type="hidden" name="services" id="services" />
     </div>
     {% endblock body %} {% block javascripts %}
     <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
