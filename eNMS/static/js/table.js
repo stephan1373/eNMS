@@ -1532,6 +1532,7 @@ tables.server = class ServerTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.refreshTableButton(),
       this.clearSearchButton(),
       this.createNewButton(),
