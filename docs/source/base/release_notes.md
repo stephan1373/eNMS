@@ -4,17 +4,18 @@
 Version 4.6.0: Changelog & Workflow Tree
 ----------------------------------------
 
-- Add changelog mechanism for credentials, devices, files, groups, links, networks, pools
-  servers, services, tasks and users.
-- Add changelog button in workflow builder.
-  - The changelog of a workflow includes
-    - the changes to the worklfow itself
-    - the changes to any service in that workflow (including services in subworkflows, etc)
-    - adding, editing and deleting labels
-    - adding and removing services and workflow edges
-  - Add changelog button in workflow builder, service and global RC menus.
-    When a selection is active, the changelog entry will only display changelogs for
-    the subset of services that are selected (similar to skip mechanism).
+- Changelog feature:
+  - Add changelog mechanism for credentials, devices, files, groups, links, networks, pools
+    servers, services, tasks and users.
+  - Add changelog support in workflow builder.
+    - The changelog of a workflow includes
+      - the changes to the worklfow itself
+      - the changes to any service in that workflow (including services in subworkflows, etc)
+      - adding, editing and deleting labels
+      - adding and removing services and workflow edges
+    - Add changelog button in workflow builder, service and global RC menus.
+      When a selection is active, the changelog entry will only display changelogs for
+      the subset of services that are selected (similar to skip mechanism).
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
