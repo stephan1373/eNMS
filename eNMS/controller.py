@@ -21,6 +21,7 @@ from shutil import rmtree
 from sqlalchemy import and_, cast, or_, String
 from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import aliased
+from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
 from sqlalchemy.sql.expression import true
 from subprocess import Popen
 from tarfile import open as open_tar
@@ -399,9 +400,13 @@ class Controller:
         constraint_dict = {**kwargs.get("form", {}), **kwargs.get("constraints", {})}
         for related_model, relation_properties in vs.relationships[model].items():
             related_table = aliased(vs.models[relation_properties["model"]])
+            is_scalar = isinstance(getattr(table, related_model).impl, ScalarAttr)
             match = constraint_dict.get(f"{related_model}_filter")
+            invert = constraint_dict.get(f"{related_model}_invert")
             if match == "empty":
-                query = query.filter(~getattr(table, related_model).any())
+                func = "has" if is_scalar else "any"
+                constraint = getattr(getattr(table, related_model), func)()
+                query = query.filter(constraint if invert else ~constraint)
             else:
                 relation_names = constraint_dict.get(related_model, [])
                 if not relation_names:

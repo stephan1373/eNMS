@@ -17,6 +17,7 @@ import {
   notify,
   openPanel,
   serializeForm,
+  showChangelogPanel,
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
@@ -1820,8 +1821,9 @@ function userFilteringDisplay(tableId) {
 }
 
 function showTableChangelogPanel(tableId) {
-  tableInstances[tableId].displayChangelog = true;
-  refreshTable(tableId);
+  const type = tableInstances[tableId].type;
+  const constraints = {[`${type}_filter`]: "empty", [`${type}_invert`]: true}
+  showChangelogPanel(tableId, constraints);
 }
 
 export const refreshTable = function(tableId, notification, updateParent, firstPage) {
