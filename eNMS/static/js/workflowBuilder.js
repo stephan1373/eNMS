@@ -357,6 +357,7 @@ export function drawWorkflowNode(service) {
       align: "center",
       bold: { color: "#000000" },
     },
+    full_name: service.name,
     shadow: {
       enabled: !defaultService && !isPlaceholder,
       color: service.shared ? "#FF1694" : "#6666FF",
@@ -486,6 +487,7 @@ function getWorkflowLink(includeRuntime) {
 export function updateWorkflowRightClickBindings() {
   updateBuilderBindings(action);
   Object.assign(action, {
+    "Changelog": () => showChangelogPanel(),
     "Link to Workflow": () => getWorkflowLink(),
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
@@ -807,14 +809,20 @@ export function showChangelogPanel() {
     tableId: `changelog-${workflow.id}`,
     title: "Workflow Changelog",
     callback: function() {
-      call({
-        url: `/get_workflow_children/${workflow.id}`,
-        callback: function(childrenId) {
-          const constraints = { service: childrenId, service_filter: "union" };
-          // eslint-disable-next-line new-cap
-          new tables["changelog"](workflow.id, constraints);
-        },
-      });
+      const selection = graph.getSelectedNodes().map((nodeId) => nodes.get(nodeId).full_name);
+      if (selection.length > 0) {
+        const constraints = { service: selection, service_filter: "union" };
+        new tables["changelog"](workflow.id, constraints);
+      } else {
+        call({
+          url: `/get_workflow_children/${workflow.id}`,
+          callback: function(childrenId) {
+            const constraints = { service: childrenId, service_filter: "union" };
+            // eslint-disable-next-line new-cap
+            new tables["changelog"](workflow.id, constraints);
+          },
+        });
+      }
     },
   });
 }
