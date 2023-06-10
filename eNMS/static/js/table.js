@@ -987,6 +987,7 @@ tables.service = class ServiceTable extends Table {
           <option value="false">Display all services</option>
         </select>
       </button>`,
+      this.displayChangelogButton(),
       this.userFilteringButton(),
       `
       <button
