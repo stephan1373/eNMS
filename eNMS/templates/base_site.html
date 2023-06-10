@@ -287,6 +287,10 @@
         {% block content %} {% endblock content %}
       </div>
     </div>
+    <div
+      id="workflow-tree"
+      style="background: #e6ecf0; float: left; height: 100%; border-left: solid; right: 0px; position: absolute; width: 0px;"
+    ></div>
     {% endblock body %} {% block javascripts %}
     <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
     <script>

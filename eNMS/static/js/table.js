@@ -1831,7 +1831,7 @@ function userFilteringDisplay(tableId) {
 
 function showTableChangelogPanel(tableId) {
   const type = tableInstances[tableId].type;
-  const constraints = {[`${type}_filter`]: "empty", [`${type}_invert`]: true}
+  const constraints = { [`${type}_filter`]: "empty", [`${type}_invert`]: true };
   showChangelogPanel(tableId, constraints);
 }
 
