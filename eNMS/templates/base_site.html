@@ -289,20 +289,26 @@
     </div>
     <div id="workflow-tree">
       <div style="display:flex; flex-direction: column;">
-      <center>
-        <h3 id="eNMS" class="workflow_tree_title unselectable" style="font-size:30px">
-          Workflow Tree
-        </h3>
-      </center>
-      <div id="workflow-tree-control" style="margin-top: 20px; margin-left: 30px"></div>
-      <div id="workflow-tree-services" style="padding-left: 10px; padding-right: 10px; overflow: hidden;"></div>
-      <input
-        type="text"
-        class="form-control"
-        id="tree-search-${instanceId}"
-        placeholder="Search"
-      />
-      <input type="hidden" name="services" id="services" />
+        <center>
+          <h3 id="eNMS" class="workflow_tree_title unselectable" style="font-size:30px">
+            Workflow Tree
+          </h3>
+        </center>
+        <div
+          id="workflow-tree-control"
+          style="margin-top: 20px; margin-left: 30px"
+        ></div>
+        <div
+          id="workflow-tree-services"
+          style="padding-left: 10px; padding-right: 10px; overflow: hidden;"
+        ></div>
+        <input
+          type="text"
+          class="form-control"
+          id="tree-search-${instanceId}"
+          placeholder="Search"
+        />
+        <input type="hidden" name="services" id="services" />
       </div>
     </div>
     {% endblock body %} {% block javascripts %}
