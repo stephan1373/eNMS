@@ -493,7 +493,7 @@ export function updateWorkflowRightClickBindings() {
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
     "Restart Workflow from Here": showRestartWorkflowPanel,
-    "Workflow Changelog": () => showChangelogPanel(),
+    "Workflow Changelog": () => showChangelogPanel(true),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
     "Workflow Result Table": () =>
       showRuntimePanel("results", workflow, null, "full_result", null, true),
@@ -785,7 +785,7 @@ function compareWorkflowResults() {
   });
 }
 
-export function showChangelogPanel() {
+export function showChangelogPanel(global) {
   openPanel({
     name: "changelog",
     size: "1000 600",
@@ -809,13 +809,7 @@ export function showChangelogPanel() {
     tableId: `changelog-${workflow.id}`,
     title: "Workflow Changelog",
     callback: function() {
-      const selection = graph
-        .getSelectedNodes()
-        .map((nodeId) => nodes.get(nodeId).full_name);
-      if (selection.length > 0) {
-        const constraints = { service: selection, service_filter: "union" };
-        new tables["changelog"](workflow.id, constraints);
-      } else {
+      if (global) {
         call({
           url: `/get_workflow_children/${workflow.id}`,
           callback: function(childrenId) {
@@ -824,6 +818,12 @@ export function showChangelogPanel() {
             new tables["changelog"](workflow.id, constraints);
           },
         });
+      } else {
+        const selection = graph
+          .getSelectedNodes()
+          .map((nodeId) => nodes.get(nodeId).full_name);
+        const constraints = { service: selection, service_filter: "union" };
+        new tables["changelog"](workflow.id, constraints);
       }
     },
   });
