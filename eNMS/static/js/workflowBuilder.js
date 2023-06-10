@@ -827,19 +827,26 @@ function displayWorkflowTree() {
       {
         ...kwargs,
         complete: () => {
-          $("#run-navbar").appendTo("#workflow-tree").show();
+          $("#run-navbar")
+            .appendTo("#workflow-tree")
+            .show();
         },
       }
     );
   } else {
     $("#run-navbar").hide();
     $(".right_column").animate({ width: "+=450px" }, kwargs);
-    $("#workflow-tree").animate({ width: "-=450px" },       {
-      ...kwargs,
-      complete: () => {
-        $("#run-navbar").appendTo("#workflow-controls").show();
-      },
-    });
+    $("#workflow-tree").animate(
+      { width: "-=450px" },
+      {
+        ...kwargs,
+        complete: () => {
+          $("#run-navbar")
+            .appendTo("#workflow-controls")
+            .show();
+        },
+      }
+    );
   }
   workflowTreeDisplayed = !workflowTreeDisplayed;
 }
