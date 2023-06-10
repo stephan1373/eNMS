@@ -38,6 +38,7 @@ export let editors = {};
 export let history = pageHistory.includes(page) ? [""] : [];
 export let historyPosition = page.includes("table") ? 0 : -1;
 export let jsonEditors = {};
+export let menuIsToggled = false;
 export let userIsActive = true;
 
 let currentTheme = user.theme;
@@ -1367,6 +1368,7 @@ function initSidebar() {
 
   switchMenu();
   $("#menu_toggle").on("click", function() {
+    menuIsToggled = !menuIsToggled;
     call({ url: `/switch_menu/${user.id}` });
     $("body").toggleClass("nav-md nav-sm");
     $("#server-time").hide();

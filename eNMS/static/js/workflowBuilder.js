@@ -22,6 +22,7 @@ import {
   configureNamespace,
   copyToClipboard,
   editors,
+  menuIsToggled,
   moveHistory,
   notify,
   openPanel,
@@ -816,8 +817,10 @@ function filterDevice() {
 
 function displayWorkflowTree() {
   const kwargs = { duration: 500, queue: false };
-  $(".right_column").animate({ width: "-=200px" }, kwargs);
-  $("#workflow-tree").animate({ width: "200px" }, kwargs);
+  if (!menuIsToggled) $("#menu_toggle").click();
+  $("#run-navbar").hide()
+  $(".right_column").animate({ width: "-=300px" }, kwargs);
+  $("#workflow-tree").animate({ width: "300px" }, kwargs);
 }
 
 configureNamespace("workflowBuilder", [
