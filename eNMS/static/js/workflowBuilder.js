@@ -85,6 +85,7 @@ let placeholder;
 let isSuperworkflow;
 let startId;
 let endId;
+let workflowTreeDisplayed;
 
 export function displayWorkflow(workflowData) {
   workflow = workflowData.service;
@@ -816,11 +817,18 @@ function filterDevice() {
 }
 
 function displayWorkflowTree() {
-  const kwargs = { duration: 500, queue: false };
-  if (!menuIsToggled) $("#menu_toggle").click();
-  $("#run-navbar").hide()
-  $(".right_column").animate({ width: "-=300px" }, kwargs);
-  $("#workflow-tree").animate({ width: "300px" }, kwargs);
+  const kwargs = { duration: 200, queue: false };
+  if (!workflowTreeDisplayed) {
+    if (!menuIsToggled) $("#menu_toggle").click();
+    $("#run-navbar").hide()
+    $(".right_column").animate({ width: "-=300px" }, kwargs);
+    $("#workflow-tree").animate({ width: "300px" }, kwargs);
+  } else {
+    $("#run-navbar").show()
+    $(".right_column").animate({ width: "+=300px" }, kwargs);
+    $("#workflow-tree").animate({ width: "-=300px" }, kwargs);
+  }
+  workflowTreeDisplayed = !workflowTreeDisplayed;
 }
 
 configureNamespace("workflowBuilder", [
