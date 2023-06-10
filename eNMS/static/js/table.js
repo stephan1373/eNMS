@@ -413,6 +413,18 @@ export class Table {
       </button>`;
   }
 
+  displayChangelogButton() {
+    return `
+      <button
+        class="btn btn-info"
+        onclick="eNMS.table.showTableChangelogPanel('${this.id}')"
+        data-tooltip="Refresh"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-wrench"></span>
+      </button>`;
+  }
+
   copyTableButton() {
     return `
       <button
@@ -1427,6 +1439,7 @@ tables.user = class UserTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
@@ -1806,6 +1819,11 @@ function userFilteringDisplay(tableId) {
   refreshTable(tableId);
 }
 
+function showTableChangelogPanel(tableId) {
+  tableInstances[tableId].displayChangelog = true;
+  refreshTable(tableId);
+}
+
 export const refreshTable = function(tableId, notification, updateParent, firstPage) {
   if (!$(`#table-${tableId}`).length) return;
   const table = tableInstances[tableId].table;
@@ -1950,6 +1968,7 @@ configureNamespace("table", [
   showBulkDeletionPanel,
   showBulkEditPanel,
   showBulkServiceExportPanel,
+  showTableChangelogPanel,
   togglePaginationDisplay,
   userFilteringDisplay,
 ]);
