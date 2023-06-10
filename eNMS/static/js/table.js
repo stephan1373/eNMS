@@ -540,6 +540,7 @@ tables.device = class DeviceTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
