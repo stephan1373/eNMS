@@ -1299,6 +1299,7 @@ tables.task = class TaskTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.userFilteringButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
