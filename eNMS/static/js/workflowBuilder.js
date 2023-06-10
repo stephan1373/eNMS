@@ -491,6 +491,7 @@ export function updateWorkflowRightClickBindings() {
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
     "Restart Workflow from Here": showRestartWorkflowPanel,
+    "Workflow Changelog": () => showChangelogPanel(),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
     "Workflow Result Table": () =>
       showRuntimePanel("results", workflow, null, "full_result", null, true),
