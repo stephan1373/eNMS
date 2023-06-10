@@ -670,6 +670,7 @@ tables.network = class NetworkTable extends Table {
           <option value="false">Display all networks</option>
         </select>
       </button>`,
+      this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
@@ -807,6 +808,7 @@ tables.link = class LinkTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
@@ -874,6 +876,7 @@ tables.pool = class PoolTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
