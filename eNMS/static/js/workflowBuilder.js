@@ -487,7 +487,7 @@ function getWorkflowLink(includeRuntime) {
 export function updateWorkflowRightClickBindings() {
   updateBuilderBindings(action);
   Object.assign(action, {
-    "Changelog": () => showChangelogPanel(),
+    Changelog: () => showChangelogPanel(),
     "Link to Workflow": () => getWorkflowLink(),
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
@@ -809,7 +809,9 @@ export function showChangelogPanel() {
     tableId: `changelog-${workflow.id}`,
     title: "Workflow Changelog",
     callback: function() {
-      const selection = graph.getSelectedNodes().map((nodeId) => nodes.get(nodeId).full_name);
+      const selection = graph
+        .getSelectedNodes()
+        .map((nodeId) => nodes.get(nodeId).full_name);
       if (selection.length > 0) {
         const constraints = { service: selection, service_filter: "union" };
         new tables["changelog"](workflow.id, constraints);
