@@ -828,7 +828,7 @@ function displayWorkflowTree() {
         ...kwargs,
         complete: () => {
           $("#run-navbar")
-            .appendTo("#workflow-tree")
+            .appendTo("#workflow-tree-control")
             .show();
         },
       }
