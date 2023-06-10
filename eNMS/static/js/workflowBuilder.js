@@ -26,6 +26,7 @@ import {
   notify,
   openPanel,
   showInstancePanel,
+  showChangelogPanel,
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
@@ -487,13 +488,13 @@ function getWorkflowLink(includeRuntime) {
 export function updateWorkflowRightClickBindings() {
   updateBuilderBindings(action);
   Object.assign(action, {
-    Changelog: () => showChangelogPanel(),
+    Changelog: () => showWorkflowChangelogPanel(),
     "Link to Workflow": () => getWorkflowLink(),
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
     "Restart Workflow from Here": showRestartWorkflowPanel,
-    "Workflow Changelog": () => showChangelogPanel(true),
+    "Workflow Changelog": () => showWorkflowChangelogPanel(true),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
     "Workflow Result Table": () =>
       showRuntimePanel("results", workflow, null, "full_result", null, true),
@@ -785,48 +786,22 @@ function compareWorkflowResults() {
   });
 }
 
-export function showChangelogPanel(global) {
-  openPanel({
-    name: "changelog",
-    size: "1000 600",
-    content: `
-      <form id="search-form-changelog-${workflow.id}" style="margin: 15px">
-        <div id="tooltip-overlay" class="overlay"></div>
-        <nav
-          id="controls-changelog-${workflow.id}"
-          class="navbar navbar-default nav-controls"
-          role="navigation"
-        ></nav>
-        <table
-          id="table-changelog-${workflow.id}"
-          style="margin-top: 10px;"
-          class="table table-striped table-bordered table-hover"
-          cellspacing="0"
-          width="100%"
-        ></table>
-      </form>`,
-    id: workflow.id,
-    tableId: `changelog-${workflow.id}`,
-    title: "Workflow Changelog",
-    callback: function() {
-      if (global) {
-        call({
-          url: `/get_workflow_children/${workflow.id}`,
-          callback: function(childrenId) {
-            const constraints = { service: childrenId, service_filter: "union" };
-            // eslint-disable-next-line new-cap
-            new tables["changelog"](workflow.id, constraints);
-          },
-        });
-      } else {
-        const selection = graph
-          .getSelectedNodes()
-          .map((nodeId) => nodes.get(nodeId).full_name);
-        const constraints = { service: selection, service_filter: "union" };
-        new tables["changelog"](workflow.id, constraints);
-      }
-    },
-  });
+export function showWorkflowChangelogPanel(global) {
+  if (global) {
+    call({
+      url: `/get_workflow_children/${workflow.id}`,
+      callback: function(childrenId) {
+        const constraints = { service: childrenId, service_filter: "union" };
+        showChangelogPanel(workflow.id, constraints);
+      },
+    });
+  } else {
+    const selection = graph
+      .getSelectedNodes()
+      .map((nodeId) => nodes.get(nodeId).full_name);
+    const constraints = { service: selection, service_filter: "union" };
+    showChangelogPanel(workflow.id, constraints);
+  }
 }
 
 function filterDevice() {

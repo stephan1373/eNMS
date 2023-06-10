@@ -682,6 +682,35 @@ function addInstancesToRelation(type, id) {
   });
 }
 
+export function showChangelogPanel(id, constraints) {
+  openPanel({
+    name: "changelog",
+    size: "1000 600",
+    content: `
+      <form id="search-form-changelog-${id}" style="margin: 15px">
+        <div id="tooltip-overlay" class="overlay"></div>
+        <nav
+          id="controls-changelog-${id}"
+          class="navbar navbar-default nav-controls"
+          role="navigation"
+        ></nav>
+        <table
+          id="table-changelog-${id}"
+          style="margin-top: 10px;"
+          class="table table-striped table-bordered table-hover"
+          cellspacing="0"
+          width="100%"
+        ></table>
+      </form>`,
+    id: id,
+    tableId: `changelog-${id}`,
+    title: "Changelog",
+    callback: function() {
+      new tables["changelog"](id, constraints);
+    },
+  });
+}
+
 export function showInstancePanel(type, id, mode, tableId, edge) {
   const formType = mode == "bulk-filter" ? `${type}_filtering` : type;
   openPanel({

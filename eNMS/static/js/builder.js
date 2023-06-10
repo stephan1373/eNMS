@@ -37,7 +37,7 @@ import {
   ends,
   getWorkflowState,
   resetWorkflowDisplay,
-  showChangelogPanel,
+  showWorkflowChangelogPanel,
   switchToWorkflow,
   updateWorkflowRightClickBindings,
 } from "./workflowBuilder.js";
@@ -309,7 +309,7 @@ export function updateBuilderBindings(action) {
         .join(">");
       if (parentPath) switchTo(parentPath);
     },
-    Changelog: () => showChangelogPanel(),
+    Changelog: () => showWorkflowChangelogPanel(),
   });
   $("#builder").contextMenu({
     menuSelector: "#contextMenu",
