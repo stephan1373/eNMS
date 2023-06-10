@@ -820,13 +820,26 @@ function displayWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
     if (!menuIsToggled) $("#menu_toggle").click();
-    $("#run-navbar").hide()
-    $(".right_column").animate({ width: "-=300px" }, kwargs);
-    $("#workflow-tree").animate({ width: "300px" }, kwargs);
+    $("#run-navbar").hide();
+    $(".right_column").animate({ width: "-=450px" }, kwargs);
+    $("#workflow-tree").animate(
+      { width: "450px" },
+      {
+        ...kwargs,
+        complete: () => {
+          $("#run-navbar").appendTo("#workflow-tree").show();
+        },
+      }
+    );
   } else {
-    $("#run-navbar").show()
-    $(".right_column").animate({ width: "+=300px" }, kwargs);
-    $("#workflow-tree").animate({ width: "-=300px" }, kwargs);
+    $("#run-navbar").hide();
+    $(".right_column").animate({ width: "+=450px" }, kwargs);
+    $("#workflow-tree").animate({ width: "-=450px" },       {
+      ...kwargs,
+      complete: () => {
+        $("#run-navbar").appendTo("#workflow-controls").show();
+      },
+    });
   }
   workflowTreeDisplayed = !workflowTreeDisplayed;
 }
