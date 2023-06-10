@@ -815,13 +815,11 @@ function filterDevice() {
 }
 
 function displayWorkflowTree() {
-
-    $(".right_column").animate({ width: "-=200px" }, { duration: 500, queue: false });
-    $("#workflow-tree").animate(
-      { width: "200px", opacity: 1 },
-      { duration: 500, queue: false }
-    );
-
+  $(".right_column").animate({ width: "-=200px" }, { duration: 500, queue: false });
+  $("#workflow-tree").animate(
+    { width: "200px", opacity: 1 },
+    { duration: 500, queue: false }
+  );
 }
 
 configureNamespace("workflowBuilder", [
