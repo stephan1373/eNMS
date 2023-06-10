@@ -891,9 +891,9 @@ function displayWorkflowTree() {
   if (!workflowTreeDisplayed) {
     if (!menuIsToggled) $("#menu_toggle").click();
     $("#run-navbar").hide();
-    $(".right_column").animate({ width: "-=450px" }, kwargs);
+    $(".right_column").animate({ width: "-=500px" }, kwargs);
     $("#workflow-tree").animate(
-      { width: "450px" },
+      { width: "500px" },
       {
         ...kwargs,
         complete: () => {
@@ -906,9 +906,9 @@ function displayWorkflowTree() {
     );
   } else {
     $("#run-navbar").hide();
-    $(".right_column").animate({ width: "+=450px" }, kwargs);
+    $(".right_column").animate({ width: "+=500px" }, kwargs);
     $("#workflow-tree").animate(
-      { width: "-=450px" },
+      { width: "-=500px" },
       {
         ...kwargs,
         complete: () => {
