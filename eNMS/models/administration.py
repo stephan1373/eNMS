@@ -175,6 +175,7 @@ class Changelog(AbstractBase):
     severity = db.Column(db.TinyString, default="debug")
     author = db.Column(db.SmallString)
     history = db.Column(JSON, default={})
+    target_type = db.Column(db.SmallString)
 
     @classmethod
     def database_init(cls):

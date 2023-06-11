@@ -269,6 +269,10 @@ class Environment:
         if logger:
             getattr(getLogger(logger), severity)(content)
         if change_log or logger and logger_settings.get("change_log"):
+            log_kwargs = {}
+            if instance:
+                log_kwargs["target_type"] = instance.class_type
+                log_kwargs[f"{instance.class_type}_id"] = instance.id
             db.factory(
                 "changelog",
                 **{
@@ -276,7 +280,7 @@ class Environment:
                     "content": content,
                     "author": user or getattr(current_user, "name", ""),
                     "history": history,
-                    **({f"{instance.class_type}_id": instance.id} if instance else {}),
+                    **log_kwargs
                 },
             )
         return logger_settings

@@ -1416,6 +1416,10 @@ class Controller:
         env.log("info", status)
         return status
 
+    def undo_log(self, log_id):
+        log = db.fetch("changelog", id=log_id)
+        getattr(log, log.target_type).update(**log.history)
+
     def update(self, type, **kwargs):
         try:
             kwargs["must_be_new"] = kwargs.get("id") == ""

@@ -177,6 +177,15 @@ function showMigrationPanel() {
   });
 }
 
+function undoLog(id) {
+  call({
+    url: `/undo_log/${id}`,
+    callback: function() {
+      notify("Changes undone.", "success", 5, true);
+    },
+  });
+}
+
 function migrationsImport() {
   notify("Inventory Import initiated.", "success", 5, true);
   call({
@@ -400,5 +409,6 @@ configureNamespace("administration", [
   showFileUploadPanel,
   showMigrationPanel,
   showProfile,
+  undoLog,
   updateDeviceRbac,
 ]);
