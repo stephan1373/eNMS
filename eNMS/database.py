@@ -235,7 +235,7 @@ class Database:
         def log_instance_update(mapper, connection, target):
             if not env.log_events:
                 return
-            state, changelog = inspect(target), []
+            state, changelog, history = inspect(target), [], {}
             for attr in state.attrs:
                 hist = state.get_history(attr.key, True)
                 if (
@@ -255,10 +255,11 @@ class Database:
                     else:
                         added, deleted = hist.added, hist.deleted
                     if deleted:
-                        change += f"DELETED: {deleted}"
+                        change += f"REMOVED: {deleted}"
                     if added:
                         change += f"{' / ' if deleted else ''}ADDED: {added}"
                 else:
+                    history[attr.key] = hist.deleted[0]
                     change += (
                         f"'{hist.deleted[0] if hist.deleted else None}' => "
                         f"'{hist.added[0] if hist.added else None}'"
@@ -270,7 +271,7 @@ class Database:
                     " | ".join(changelog),
                 )
                 log_content = f"UPDATE: {target.type} '{name}': ({changes})"
-                env.log("info", log_content, instance=target)
+                env.log("info", log_content, instance=target, history=history)
 
         for model in vs.models.values():
             if "configure_events" in vars(model):

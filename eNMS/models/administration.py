@@ -8,6 +8,7 @@ from pathlib import Path
 from shutil import move, rmtree
 from sqlalchemy import Boolean, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
+from sqlalchemy.types import JSON
 from time import ctime
 
 from eNMS.database import db
@@ -173,6 +174,7 @@ class Changelog(AbstractBase):
     content = db.Column(db.LargeString)
     severity = db.Column(db.TinyString, default="debug")
     author = db.Column(db.SmallString)
+    history = db.Column(JSON, default={})
 
     @classmethod
     def database_init(cls):
