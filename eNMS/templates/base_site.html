@@ -288,7 +288,7 @@
       </div>
     </div>
     <div id="workflow-tree" style="display: none">
-      <div style="display:flex; flex-direction: column;">
+      <div style="display:flex; flex-direction: column">
         <center>
           <h3 id="eNMS" class="workflow_tree_title unselectable" style="font-size:30px">
             Workflow Tree
@@ -304,12 +304,14 @@
             style="padding-left: 10px; padding-right: 10px;"
           ></div>
         </div>
-        <input
-          type="text"
-          class="form-control"
-          id="tree-search"
-          placeholder="Search"
-        />
+        <div style="padding: 20px 20px">
+          <input
+            type="text"
+            class="form-control"
+            id="tree-search"
+            placeholder="Search"
+          />
+        </div>
         <input type="hidden" name="services" id="services" />
       </div>
     </div>
