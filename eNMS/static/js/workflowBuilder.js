@@ -10,6 +10,7 @@ user: false
 */
 
 import {
+  displayResultsTree,
   field,
   flipRuntimeDisplay,
   runService,
@@ -607,6 +608,9 @@ function displayWorkflowState(result) {
   updateRuntimes(result);
   if (currentRuntime == "normal") return;
   if (!nodes || !edges || !result.state) return;
+  if (workflowTreeDisplayed) {
+    displayResultsTree(workflow, currentRuntime, "workflow-tree-services");
+  }
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {
       colorService(parseInt(serviceId), status ? "#32cd32" : "#FF6666");

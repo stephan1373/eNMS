@@ -475,15 +475,16 @@ function displayLogs(service, runtime, change) {
   refreshLogs(service, runtime, editor, true);
 }
 
-function displayResultsTree(service, runtime) {
+export function displayResultsTree(service, runtime, id) {
+  const treeId = id ? `#${id}` : `#result-tree-${service.id}`
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
-      $(`#result-tree-${service.id}`)
+      $(treeId)
         .jstree("destroy")
         .empty();
       if (!data) return notify("No results to display.", "error", 5);
-      let tree = $(`#result-tree-${service.id}`).jstree({
+      let tree = $(treeId).jstree({
         core: {
           animation: 100,
           themes: { stripes: true },
