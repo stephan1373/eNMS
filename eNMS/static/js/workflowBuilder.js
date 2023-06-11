@@ -21,6 +21,7 @@ import {
   call,
   configureNamespace,
   copyToClipboard,
+  createTooltips,
   editors,
   menuIsToggled,
   moveHistory,
