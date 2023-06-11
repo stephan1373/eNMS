@@ -890,7 +890,7 @@ function displayWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
     if (!menuIsToggled) $("#menu_toggle").click();
-    $("#workflow-tree").show()
+    $("#workflow-tree").show();
     $("#run-navbar").hide();
     $(".right_column").animate({ width: "-=500px" }, kwargs);
     $("#workflow-tree").animate(
@@ -916,7 +916,7 @@ function displayWorkflowTree() {
           $("#run-navbar")
             .appendTo("#workflow-controls")
             .show();
-          $("#workflow-tree").hide()
+          $("#workflow-tree").hide();
         },
       }
     );
