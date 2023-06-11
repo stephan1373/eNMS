@@ -747,7 +747,7 @@ class Controller:
     def get_workflow_results(self, path, runtime):
         run = db.fetch("run", runtime=runtime)
         service = db.fetch("service", id=path.split(">")[-1])
-        state = run.state
+        state = run.state or run.get_state()
 
         def rec(service, path):
             if path not in state:
@@ -755,7 +755,10 @@ class Controller:
             progress = state[path].get("progress")
             track_progress = progress and progress["device"]["total"]
             data = {"progress": progress["device"]} if track_progress else {}
-            color = "32CD32" if state[path]["result"]["success"] else "FF6666"
+            if "success" in state[path]["result"]:
+                color = "32CD32" if state[path]["result"]["success"] else "FF6666"
+            else:
+                color = "25b6fa"
             result = {
                 "runtime": state[path]["result"]["runtime"],
                 "data": {"properties": service.base_properties, **data},

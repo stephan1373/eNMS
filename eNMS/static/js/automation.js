@@ -476,13 +476,12 @@ function displayLogs(service, runtime, change) {
 }
 
 export function displayResultsTree(service, runtime, id) {
-  const treeId = id ? `#${id}` : `#result-tree-${service.id}`
+  const isWorkflowTree = id ? true : false;
+  const treeId = isWorkflowTree ? `#${id}` : `#result-tree-${service.id}`;
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
-      $(treeId)
-        .jstree("destroy")
-        .empty();
+      $(treeId).jstree("destroy").empty();
       if (!data) return notify("No results to display.", "error", 5);
       let tree = $(treeId).jstree({
         core: {
@@ -508,20 +507,21 @@ export function displayResultsTree(service, runtime, id) {
               progressSummary = `
                 <div style="position: absolute; top: 0px; right: 160px">
                   <span style="color: #32cd32">
-                    ${node.data.progress.success || 0} passed
+                    ${node.data.progress.success || 0}${isWorkflowTree ? "P" : " passed"}
                   </span>
                   ${
                     node.data.progress.skipped > 0
                       ? `<span style="color: #000000">-</span>
                     <span style="color: #7D7D7D">
-                    ${node.data.progress.skipped || 0} skipped
+                    ${node.data.progress.skipped || 0}${isWorkflowTree ? "S" : " skipped"}
+
                     </span>
                   `
                       : ""
                   }
                   <span style="color: #000000">-</span>
                   <span style="color: #FF6666">
-                    ${node.data.progress.failure || 0} failed
+                    ${node.data.progress.failure || 0}${isWorkflowTree ? "F" : " failed"}
                   </span>
                 </div>
               `;

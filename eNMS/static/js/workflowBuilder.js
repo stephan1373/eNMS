@@ -609,7 +609,7 @@ function displayWorkflowState(result) {
   if (currentRuntime == "normal") return;
   if (!nodes || !edges || !result.state) return;
   if (workflowTreeDisplayed) {
-    displayResultsTree(workflow, currentRuntime, "workflow-tree-services");
+    displayResultsTree(workflow, result.run.runtime, "workflow-tree-services");
   }
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {
