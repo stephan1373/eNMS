@@ -886,7 +886,7 @@ function drawTree(data) {
   });
 }
 
-function getTree() {
+function displayWorkflowTree() {
   call({
     url: `/get_instance_tree/workflow/${currentPath}`,
     callback: function(data) {
@@ -895,7 +895,7 @@ function getTree() {
   });
 }
 
-function displayWorkflowTree() {
+function toggleWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
     if (!menuIsToggled) $("#menu_toggle").click();
@@ -910,7 +910,7 @@ function displayWorkflowTree() {
           $("#run-navbar")
             .appendTo("#workflow-tree-control")
             .show();
-          getTree();
+          displayWorkflowTree();
         },
       }
     );
@@ -941,4 +941,5 @@ configureNamespace("workflowBuilder", [
   restartWorkflow,
   stopWorkflow,
   switchToWorkflow,
+  toggleWorkflowTree,
 ]);
