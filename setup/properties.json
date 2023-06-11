@@ -1306,6 +1306,12 @@
         "search": "text",
         "className": "dt-body-left",
         "orderable": false
+      },
+      {
+        "data": "buttons",
+        "width": "50px",
+        "orderable": false,
+        "export": false
       }
     ],
     "file": [

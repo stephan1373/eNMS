@@ -1589,6 +1589,20 @@ tables.changelog = class ChangelogTable extends Table {
   get tableOrdering() {
     return [0, "desc"];
   }
+
+  buttons(row) {
+    return [
+      `
+      <ul class="pagination pagination-lg" style="margin: 0px;">
+        <li>
+          <button type="button" class="btn btn-sm btn-danger"
+          onclick="eNMS.administration.undoLog(${row.id})" data-tooltip="Undo Log"
+            ><span class="glyphicon glyphicon-step-backward"></span
+          ></button>
+        </li>
+      </ul>`,
+    ];
+  }
 };
 
 tables.session = class SessionTable extends Table {
