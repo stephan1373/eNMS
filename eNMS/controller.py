@@ -662,6 +662,7 @@ class Controller:
             ),
             "state": state,
             "run": run.get_properties(include=run_properties) if run else None,
+            "tree": self.get_instance_tree("workflow", path),
             **output,
         }
 
