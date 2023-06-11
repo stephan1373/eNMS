@@ -81,6 +81,8 @@ export let workflow = JSON.parse(localStorage.getItem("workflow"));
 export let currentRuntime = linkRuntime;
 export let graph;
 
+let activeTree = 1;
+export let passiveTree = 2;
 let currentRun;
 let currentPlaceholder;
 let placeholder;
@@ -609,7 +611,7 @@ function displayWorkflowState(result) {
   if (currentRuntime == "normal") displayWorkflowTree();
   if (!nodes || !edges || !result.state) return;
   if (workflowTreeDisplayed) {
-    displayResultsTree(workflow, result.run.runtime, "workflow-tree-services");
+    displayResultsTree(workflow, result.run.runtime, true);
   }
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {
@@ -823,8 +825,7 @@ function filterDevice() {
 }
 
 function drawTree(data) {
-  $("#workflow-tree-services").jstree("destroy").empty();
-  $("#workflow-tree-services")
+  $(`#workflow-tree-services-${passiveTree}`)
     .bind("loaded.jstree", function(e, data) {
       createTooltips();
     })
@@ -881,11 +882,23 @@ function drawTree(data) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(function() {
       const searchValue = $(`#tree-search`).val();
-      $(`#workflow-tree-services`)
+      $(`#workflow-tree-services-${passiveTree}`)
         .jstree(true)
         .search(searchValue);
     }, 500);
   });
+  invertWorkflowTree();
+}
+
+export function invertWorkflowTree() {
+  setTimeout(() => {
+    const activeTreeId = `#workflow-tree-services-${activeTree}`;
+    const passiveTreeId = `#workflow-tree-services-${passiveTree}`;
+    $(`${passiveTreeId}`).show()
+    $(`${activeTreeId}`).hide()
+    $(activeTreeId).jstree("destroy").empty();
+    [activeTree, passiveTree] = [passiveTree, activeTree];
+  }, 50);
 }
 
 function displayWorkflowTree() {

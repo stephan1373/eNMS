@@ -30,6 +30,8 @@ import { refreshTable, tableInstances, tables } from "./table.js";
 import {
   currentRuntime,
   getServiceState,
+  invertWorkflowTree,
+  passiveTree,
   switchToWorkflow,
   workflow,
 } from "./workflowBuilder.js";
@@ -475,13 +477,12 @@ function displayLogs(service, runtime, change) {
   refreshLogs(service, runtime, editor, true);
 }
 
-export function displayResultsTree(service, runtime, id) {
-  const isWorkflowTree = id ? true : false;
-  const treeId = isWorkflowTree ? `#${id}` : `#result-tree-${service.id}`;
+export function displayResultsTree(service, runtime, isWorkflowTree) {
+  const treeId = isWorkflowTree ? `#workflow-tree-services-${passiveTree}` : `#result-tree-${service.id}`;
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
-      $(treeId).jstree("destroy").empty();
+      if (!isWorkflowTree) $(treeId).jstree("destroy").empty();
       if (!data) return notify("No results to display.", "error", 5);
       let tree = $(treeId).jstree({
         core: {
@@ -564,6 +565,7 @@ export function displayResultsTree(service, runtime, id) {
         const service = tree.jstree().get_node(event.target);
         showRuntimePanel("results", service.data.properties, runtime, "result");
       });
+      if (isWorkflowTree) invertWorkflowTree();
     },
   });
 }
