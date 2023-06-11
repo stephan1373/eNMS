@@ -853,9 +853,8 @@ function buildBulkFilterPanel(panel, type, formType, tableId) {
               id="${tableId}-${property}-list"
               name="${property}_filter"
             >
-              <option value="union">Union</option>
-              <option value="intersection">Intersection</option>
-              <option value="empty">Empty</option>
+              <option value="properties">Search accross all properties</option>
+              <option value="names">Search by names</option>
             </select>
           </div>
         `);
