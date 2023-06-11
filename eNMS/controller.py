@@ -1418,7 +1418,18 @@ class Controller:
 
     def undo_log(self, log_id):
         log = db.fetch("changelog", id=log_id)
-        getattr(log, log.target_type).update(**log.history)
+        target = getattr(log, log.target_type)
+        for relationship, history in log.history["lists"].items():
+            target_value = getattr(target, relationship)
+            for instance_id in history["deleted"]:
+                instance = db.fetch(history["type"], id=instance_id, allow_none=True)
+                if instance and instance not in target_value:
+                    target_value.append(instance)
+            for instance_id in history["added"]:
+                instance = db.fetch(history["type"], id=instance_id, allow_none=True)
+                if instance and instance in target_value:
+                    target_value.remove(instance)
+        target.update(**log.history["properties"])
 
     def update(self, type, **kwargs):
         try:

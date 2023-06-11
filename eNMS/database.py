@@ -235,7 +235,7 @@ class Database:
         def log_instance_update(mapper, connection, target):
             if not env.log_events:
                 return
-            state, changelog, history = inspect(target), [], {}
+            state, changelog, history = inspect(target), [], defaultdict(dict)
             for attr in state.attrs:
                 hist = state.get_history(attr.key, True)
                 if (
@@ -254,12 +254,17 @@ class Database:
                         deleted = [x for x in hist.deleted[0] if x not in hist.added[0]]
                     else:
                         added, deleted = hist.added, hist.deleted
+                    history["lists"][attr.key] = {
+                        "added": [x.id for x in added],
+                        "deleted": [x.id for x in deleted],
+                        "type": (added[0] if added else deleted[0]).class_type,
+                    }
                     if deleted:
                         change += f"REMOVED: {deleted}"
                     if added:
                         change += f"{' / ' if deleted else ''}ADDED: {added}"
                 else:
-                    history[attr.key] = hist.deleted[0]
+                    history["properties"][attr.key] = hist.deleted[0]
                     change += (
                         f"'{hist.deleted[0] if hist.deleted else None}' => "
                         f"'{hist.added[0] if hist.added else None}'"
