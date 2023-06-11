@@ -606,7 +606,7 @@ function displayWorkflowState(result) {
   if ($("#workflow-search").val()) return;
   resetWorkflowDisplay();
   updateRuntimes(result);
-  if (currentRuntime == "normal") return;
+  if (currentRuntime == "normal") displayWorkflowTree();
   if (!nodes || !edges || !result.state) return;
   if (workflowTreeDisplayed) {
     displayResultsTree(workflow, result.run.runtime, "workflow-tree-services");
@@ -823,9 +823,7 @@ function filterDevice() {
 }
 
 function drawTree(data) {
-  if ($('#workflow-tree-services').jstree(true)) {
-    $('#workflow-tree-services').jstree(true).destroy();
-  }
+  $("#workflow-tree-services").jstree("destroy").empty();
   $("#workflow-tree-services")
     .bind("loaded.jstree", function(e, data) {
       createTooltips();
