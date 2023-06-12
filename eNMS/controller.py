@@ -1433,9 +1433,9 @@ class Controller:
             if log.history["properties"].get("is_deleted") is False:
                 target_id = getattr(log, f"{log.target_type}_id")
                 statement = (
-                    update(vs.models[log.target_type]).
-                    where(vs.models[log.target_type].id == target_id).
-                    values(is_deleted=False)
+                    update(vs.models[log.target_type])
+                    .where(vs.models[log.target_type].id == target_id)
+                    .values(is_deleted=False)
                 )
                 db.session.execute(statement, {"abort_execute_event": True})
                 db.session.commit()

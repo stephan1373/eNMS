@@ -177,7 +177,9 @@ class Changelog(AbstractBase):
     history = db.Column(JSON, default={})
     target_type = db.Column(db.SmallString)
     workflows = relationship(
-        "Workflow", secondary=db.changelog_workflow_table, back_populates="service_changelogs"
+        "Workflow",
+        secondary=db.changelog_workflow_table,
+        back_populates="service_changelogs",
     )
 
     @classmethod

@@ -129,6 +129,7 @@ class Database:
     def configure_mixins(self):
         class SoftDelete:
             is_deleted = self.Column(Boolean, default=False)
+
         self.soft_deletion = SoftDelete
 
     def create_metabase(self):

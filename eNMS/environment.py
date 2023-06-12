@@ -287,7 +287,7 @@ class Environment:
                     "content": content,
                     "author": user or getattr(current_user, "name", ""),
                     "history": history,
-                    **log_kwargs
+                    **log_kwargs,
                 },
             )
         return logger_settings
