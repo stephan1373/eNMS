@@ -81,7 +81,7 @@ class User(AbstractBase, UserMixin):
             setattr(self, property, list(set(chain.from_iterable(group_value))))
 
 
-class Group(AbstractBase):
+class Group(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "group"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -131,7 +131,7 @@ class Group(AbstractBase):
                 user.update_rbac()
 
 
-class Credential(AbstractBase):
+class Credential(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "credential"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -204,7 +204,7 @@ class Parameters(AbstractBase):
     banner_properties = db.Column(db.Dict)
 
 
-class File(AbstractBase):
+class File(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "file"
     log_change = vs.settings["files"]["log_events"]
     type = db.Column(db.SmallString)

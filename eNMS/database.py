@@ -273,7 +273,8 @@ class Database:
                     if added:
                         change += f"{' / ' if deleted else ''}ADDED: {added}"
                 else:
-                    history["properties"][attr.key] = hist.deleted[0]
+                    if hist.deleted:
+                        history["properties"][attr.key] = hist.deleted[0]
                     change += (
                         f"'{hist.deleted[0] if hist.deleted else None}' => "
                         f"'{hist.added[0] if hist.added else None}'"
