@@ -313,7 +313,7 @@ class Database:
 
             @event.listens_for(self.session, "do_orm_execute")
             def _do_orm_execute(orm_execute_state):
-                if orm_execute_state.parameters.get("abort_execute_event"):
+                if (orm_execute_state.parameters or {}).get("abort_execute_event"):
                     return
                 orm_execute_state.statement = orm_execute_state.statement.options(
                     with_loader_criteria(
