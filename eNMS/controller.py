@@ -1430,7 +1430,7 @@ class Controller:
                 if instance and instance in target_value:
                     target_value.remove(instance)
         if "properties" in log.history:
-            if "is_deleted" in log.history["properties"] and not target:
+            if log.history["properties"].get("is_deleted") is False:
                 target_id = getattr(log, f"{log.target_type}_id")
                 statement = (
                     update(vs.models[log.target_type]).
