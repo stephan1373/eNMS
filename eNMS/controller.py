@@ -737,8 +737,8 @@ class Controller:
 
         def rec(workflow):
             for service in workflow.services:
-                children.add(service.name)
                 if service.type == "workflow":
+                    children.add(service.name)
                     rec(service)
 
         rec(workflow)

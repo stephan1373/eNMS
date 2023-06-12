@@ -273,6 +273,13 @@ class Environment:
             if instance:
                 log_kwargs["target_type"] = instance.class_type
                 log_kwargs[f"{instance.class_type}_id"] = instance.id
+            model = getattr(instance, "class_type", None)
+            if model == "service":
+                log_kwargs["workflows"] = [wf.id for wf in instance.workflows]
+                if instance.type == "workflow":
+                    log_kwargs["workflows"].append(instance.id)
+            elif model == "workflow_edge":
+                log_kwargs["workflows"] = [instance.workflow.id]
             db.factory(
                 "changelog",
                 **{

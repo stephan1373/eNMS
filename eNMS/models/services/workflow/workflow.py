@@ -49,6 +49,9 @@ class Workflow(Service):
     superworkflow = relationship(
         "Workflow", remote_side=[id], foreign_keys="Workflow.superworkflow_id"
     )
+    service_changelogs = relationship(
+        "Changelog", secondary=db.changelog_workflow_table, back_populates="workflows"
+    )
 
     __mapper_args__ = {"polymorphic_identity": "workflow"}
 

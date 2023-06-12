@@ -801,7 +801,7 @@ export function showWorkflowChangelogPanel(global) {
     call({
       url: `/get_workflow_children/${workflow.id}`,
       callback: function(childrenId) {
-        const constraints = { service: childrenId, service_filter: "union" };
+        const constraints = { workflows: childrenId, service_filter: "union" };
         showChangelogPanel(workflow.id, constraints);
       },
     });
@@ -809,7 +809,7 @@ export function showWorkflowChangelogPanel(global) {
     const selection = graph
       .getSelectedNodes()
       .map((nodeId) => nodes.get(nodeId).full_name);
-    const constraints = { service: selection, service_filter: "union" };
+    const constraints = { workflows: selection, service_filter: "union" };
     showChangelogPanel(workflow.id, constraints);
   }
 }

@@ -187,6 +187,16 @@
   },
   "relationships": {
     "associations": {
+      "changelog_workflow": {
+        "model1": {
+          "column": "changelog_id",
+          "foreign_key": "changelog"
+        },
+        "model2": {
+          "column": "workflow_id",
+          "foreign_key": "workflow"
+        }
+      },
       "device_gateway": {
         "model1": {
           "column": "device_id",
