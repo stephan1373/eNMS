@@ -1439,7 +1439,7 @@ class Controller:
                 )
                 db.session.execute(statement, {"abort_execute_event": True})
                 db.session.commit()
-            else:
+            elif target:
                 target.update(**log.history["properties"])
 
     def update(self, type, **kwargs):
