@@ -34,8 +34,10 @@ from sqlalchemy.orm import (
     relationship,
     scoped_session,
     sessionmaker,
+    with_loader_criteria,
 )
 from sqlalchemy.orm.collections import InstrumentedList
+from sqlalchemy.sql.expression import false
 from sqlalchemy.types import JSON
 from time import sleep
 from traceback import format_exc
@@ -52,6 +54,10 @@ class Database:
         self.dialect = self.database_url.split(":")[0]
         self.rbac_error = type("RbacError", (Exception,), {})
         self.configure_columns()
+        class SoftDelete(object):
+            is_deleted = self.Column(Boolean, default=False)
+        self.soft_deletion = SoftDelete
+            
         self.engine = create_engine(
             self.database_url,
             **self.engine["common"],
@@ -307,6 +313,16 @@ class Database:
 
             @event.listens_for(self.session, "do_orm_execute")
             def _do_orm_execute(orm_execute_state):
+                if orm_execute_state.parameters.get("abort_execute_event"):
+                    return
+                orm_execute_state.statement = orm_execute_state.statement.options(
+                    with_loader_criteria(
+                        self.soft_deletion,
+                        lambda cls: cls.is_deleted == false(),
+                        include_aliases=True,
+                        propagate_to_loaders=True,
+                    )
+                )
                 if not self.monitor_orm_statements:
                     return
                 statement = str(orm_execute_state.statement)
@@ -478,7 +494,7 @@ class Database:
                 return {"delete_aborted": True, **abort_delete}
         serialized_instance = instance.serialized
         if not abort_delete:
-            self.session.delete(instance)
+            instance.is_deleted = True
         return serialized_instance
 
     def delete_all(self, *models):

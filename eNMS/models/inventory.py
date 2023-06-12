@@ -61,7 +61,7 @@ class Node(Object):
         super().update(**kwargs)
 
 
-class Device(Node):
+class Device(Node, db.soft_deletion):
     __tablename__ = class_type = export_type = "device"
     __mapper_args__ = {"polymorphic_identity": "device"}
     pretty_name = "Device"

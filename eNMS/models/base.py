@@ -1,6 +1,6 @@
 from collections import defaultdict
 from flask_login import current_user
-from sqlalchemy import or_
+from sqlalchemy import Boolean, or_
 from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy.sql.expression import false
 

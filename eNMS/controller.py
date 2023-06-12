@@ -18,7 +18,7 @@ from re import search, sub
 from requests import get as http_get
 from ruamel import yaml
 from shutil import rmtree
-from sqlalchemy import and_, cast, or_, String
+from sqlalchemy import and_, cast, or_, String, update
 from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import aliased
 from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
@@ -1419,7 +1419,7 @@ class Controller:
     def undo_log(self, log_id):
         log = db.fetch("changelog", id=log_id)
         target = getattr(log, log.target_type)
-        for relationship, history in log.history["lists"].items():
+        for relationship, history in log.history.get("lists", {}).items():
             target_value = getattr(target, relationship)
             for instance_id in history["deleted"]:
                 instance = db.fetch(history["type"], id=instance_id, allow_none=True)
@@ -1429,7 +1429,18 @@ class Controller:
                 instance = db.fetch(history["type"], id=instance_id, allow_none=True)
                 if instance and instance in target_value:
                     target_value.remove(instance)
-        target.update(**log.history["properties"])
+        if "properties" in log.history:
+            if "is_deleted" in log.history["properties"] and not target:
+                target_id = getattr(log, f"{log.target_type}_id")
+                statement = (
+                    update(vs.models[log.target_type]).
+                    where(vs.models[log.target_type].id == target_id).
+                    values(is_deleted=False)
+                )
+                db.session.execute(statement, {"abort_execute_event": True})
+                db.session.commit()
+            else:
+                target.update(**log.history["properties"])
 
     def update(self, type, **kwargs):
         try:
