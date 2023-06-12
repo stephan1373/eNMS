@@ -48,19 +48,20 @@
     "credential",
     "pool"
   ],
-  "changelog_models": [
-    "credential",
-    "device",
-    "file",
-    "group",
-    "link",
-    "network",
-    "pool",
-    "server",
-    "service",
-    "task",
-    "user"
-  ],
+  "changelog_models": {
+    "credential": "Credential",
+    "device": "Device",
+    "file": "File",
+    "group": "Group",
+    "link": "Link",
+    "network": "Network",
+    "pool": "Pool",
+    "server": "Server",
+    "service": "Service",
+    "task": "Task",
+    "user": "User",
+    "workflow_edge": "WorkflowEdge"
+  },
   "dont_migrate": {
     "credential": ["id"],
     "group": [

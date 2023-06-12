@@ -18,7 +18,7 @@ from eNMS.runner import Runner
 from eNMS.variables import vs
 
 
-class Service(AbstractBase):
+class Service(AbstractBase, db.soft_deletion):
     __tablename__ = class_type = export_type = "service"
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "service", "polymorphic_on": type}

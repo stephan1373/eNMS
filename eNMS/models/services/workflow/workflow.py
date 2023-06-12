@@ -313,7 +313,7 @@ class WorkflowForm(ServiceForm):
         )
 
 
-class WorkflowEdge(AbstractBase):
+class WorkflowEdge(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "workflow_edge"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -343,6 +343,7 @@ class WorkflowEdge(AbstractBase):
         foreign_keys="WorkflowEdge.workflow_id",
         lazy="joined",
     )
+    logs = relationship("Changelog", back_populates="workflow_edge")
     __table_args__ = (
         UniqueConstraint(subtype, source_id, destination_id, workflow_id),
     )

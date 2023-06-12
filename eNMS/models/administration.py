@@ -179,10 +179,10 @@ class Changelog(AbstractBase):
 
     @classmethod
     def database_init(cls):
-        for model in vs.database["changelog_models"]:
+        for model, class_name in vs.database["changelog_models"].items():
             kwargs = {"back_populates": "logs", "foreign_keys": f"Changelog.{model}_id"}
             setattr(cls, f"{model}_id", db.Column(Integer, ForeignKey(f"{model}.id")))
-            setattr(cls, model, relationship(model.capitalize(), **kwargs))
+            setattr(cls, model, relationship(class_name, **kwargs))
 
     def __repr__(self):
         return self.content
