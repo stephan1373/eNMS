@@ -1595,10 +1595,14 @@ tables.changelog = class ChangelogTable extends Table {
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
         <li>
-          <button type="button" class="btn btn-sm btn-danger"
-          onclick="eNMS.administration.undoLog(${row.id})" data-tooltip="Undo Log"
-            ><span class="glyphicon glyphicon-step-backward"></span
-          ></button>
+          <button
+            type="button"
+            class="btn btn-sm btn-${row.target_name ? 'danger' : 'dark'}"
+            ${row.target_name ? "" : "disabled"}
+            onclick="eNMS.administration.undoLog(${row.id})" data-tooltip="Undo Log"
+            >
+              <span class="glyphicon glyphicon-step-backward"></span>
+            </button>
         </li>
       </ul>`,
     ];
