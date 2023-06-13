@@ -318,16 +318,6 @@ class Database:
 
             @event.listens_for(self.session, "do_orm_execute")
             def _do_orm_execute(orm_execute_state):
-                if (orm_execute_state.parameters or {}).get("abort_execute_event"):
-                    return
-                orm_execute_state.statement = orm_execute_state.statement.options(
-                    with_loader_criteria(
-                        self.soft_deletion,
-                        lambda cls: cls.is_deleted == false(),
-                        include_aliases=True,
-                        propagate_to_loaders=True,
-                    )
-                )
                 if not self.monitor_orm_statements:
                     return
                 statement = str(orm_execute_state.statement)
@@ -428,6 +418,8 @@ class Database:
         else:
             entity = [vs.models[model]]
         query = self.session.query(*entity)
+        if hasattr(vs.models[model], "is_deleted"):
+            query = query.filter(vs.models[model].is_deleted == false())
         if rbac:
             user = (
                 current_user

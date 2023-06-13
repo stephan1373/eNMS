@@ -104,7 +104,7 @@ class Service(AbstractBase, db.soft_deletion):
         back_populates="service",
         cascade="all, delete-orphan",
     )
-    logs = relationship("Changelog", back_populates="service")
+    logs = relationship("Changelog", back_populates="service", info={"log_change": False})
     maximum_runs = db.Column(Integer, default=1)
     multiprocessing = db.Column(Boolean, default=False)
     max_processes = db.Column(Integer, default=5)
