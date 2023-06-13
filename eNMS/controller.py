@@ -1429,6 +1429,9 @@ class Controller:
                 instance = db.fetch(history["type"], id=instance_id, allow_none=True)
                 if instance and instance in target_value:
                     target_value.remove(instance)
+        for property, values in log.history.get("scalars", {}).items():
+            related_instance = db.fetch(values["type"], id=values["id"])
+            setattr(target, property, related_instance)
         if "properties" in log.history:
             if log.history["properties"].get("is_deleted") is False:
                 target_id = getattr(log, f"{log.target_type}_id")
