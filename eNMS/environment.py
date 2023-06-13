@@ -271,8 +271,11 @@ class Environment:
         if change_log or logger and logger_settings.get("change_log"):
             log_kwargs = {}
             if instance:
-                log_kwargs["target_type"] = instance.class_type
-                log_kwargs[f"{instance.class_type}_id"] = instance.id
+                log_kwargs = {
+                    "target_name": instance.name,
+                    "target_type": instance.class_type,
+                    f"{instance.class_type}_id": instance.id
+                }
             model = getattr(instance, "class_type", None)
             if model == "service":
                 log_kwargs["workflows"] = [wf.id for wf in instance.workflows]
