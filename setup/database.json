@@ -63,9 +63,10 @@
     "workflow_edge": "WorkflowEdge"
   },
   "dont_migrate": {
-    "credential": ["id"],
+    "credential": ["id", "is_deleted", "logs"],
     "group": [
       "id",
+      "is_deleted",
       "credentials",
       "rbac_configuration_devices",
       "rbac_connect_devices",
@@ -94,11 +95,13 @@
       "rbac_schedule_services",
       "rbac_schedule_tasks",
       "rbac_target_devices",
-      "rbac_use_files"
+      "rbac_use_files",
+      "logs"
     ],
     "device": [
       "id",
       "configuration",
+      "is_deleted",
       "operational_data",
       "specialized_data",
       "services",
@@ -111,10 +114,11 @@
       "runs",
       "target_services",
       "tasks",
-      "users"
+      "users",
+      "logs"
     ],
-    "file": ["id", "filename", "folder_path", "full_path", "status"],
-    "folder": ["id", "filename", "folder_path", "full_path", "status"],
+    "file": ["id", "filename", "folder_path", "full_path", "is_deleted", "status", "logs"],
+    "folder": ["id", "filename", "folder_path", "full_path", "is_deleted", "status", "logs"],
     "link": [
       "id",
       "pools",
@@ -123,7 +127,9 @@
       "destination_id",
       "destination_name",
       "source_id",
-      "source_name"
+      "source_name",
+      "logs",
+      "is_deleted"
     ],
     "pool": [
       "credential_devices",
@@ -134,7 +140,9 @@
       "service_number",
       "services",
       "network_number",
-      "user_number"
+      "user_number",
+      "logs",
+      "is_deleted"
     ],
     "service": [
       "children",
@@ -149,9 +157,12 @@
       "tasks",
       "workflows",
       "tasks",
-      "edges"
+      "edges",
+      "logs",
+      "service_changelogs",
+      "is_deleted"
     ],
-    "network": ["id", "path"],
+    "network": ["id", "path", "logs", "is_deleted"],
     "task": [
       "id",
       "service_name",
@@ -159,13 +170,16 @@
       "next_run_time",
       "is_active",
       "time_before_next_run",
-      "status"
+      "status",
+      "logs",
+      "is_deleted"
     ],
     "user": [
       "id",
       "devices",
       "pools",
       "groups",
+      "is_deleted",
       "last_login",
       "links",
       "menu",
@@ -181,9 +195,10 @@
       "user_networks",
       "user_pools",
       "user_services",
-      "user_tasks"
+      "user_tasks",
+      "logs"
     ],
-    "workflow_edge": ["id", "source_id", "destination_id", "workflow_id"]
+    "workflow_edge": ["id", "source_id", "destination_id", "workflow_id", "logs", "is_deleted"]
   },
   "relationships": {
     "associations": {
