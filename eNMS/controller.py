@@ -301,7 +301,8 @@ class Controller:
     def delete_builder_selection(self, type, id, **selection):
         instance = db.fetch(type, id=id)
         instance.update_last_modified_properties()
-        instance.check_restriction_to_owners("edit")
+        if type == "workflow":
+            instance.check_restriction_to_owners("edit")
         names = defaultdict(list)
         for edge_id in selection["edges"]:
             if type == "workflow":
