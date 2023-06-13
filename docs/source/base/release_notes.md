@@ -16,6 +16,7 @@ Version 4.6.0: Changelog & Workflow Tree
     - Add changelog button in workflow builder, service and global RC menus.
       When a selection is active, the changelog entry will only display changelogs for
       the subset of services that are selected (similar to skip mechanism).
+    - Bind Ctrl + Z to Changelog Panel to undo changes
   - Add changelog button to all tables to display all changelogs about a specific
     type of object
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
