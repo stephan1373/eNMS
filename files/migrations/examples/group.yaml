@@ -31,7 +31,7 @@
   "description": "Admin User"
   "device_access": []
   "email": "admin@enms.io"
-  "force_read_access": !!bool "true"
+  "force_read_access": !!bool "false"
   "get_requests": []
   "link_access": []
   "menu": []
