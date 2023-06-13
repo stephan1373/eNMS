@@ -1301,6 +1301,16 @@
         "orderable": false
       },
       {
+        "data": "target_type",
+        "title": "Target Type",
+        "search": "text"
+      },
+      {
+        "data": "target_name",
+        "title": "Target Name",
+        "search": "text"
+      },
+      {
         "data": "content",
         "title": "Content",
         "search": "text",
