@@ -549,9 +549,9 @@
   "rbac_read":
   - "Admin User"
   "target_services":
+  - "Large Workflow (30 services)"
   - "[Skip in SxS with service targets and Run Once services] Run Once with Pool"
   - "Large Device Configuration and Operational Data"
-  - "Large Workflow (30 services)"
   "tasks": []
   "type": "pool"
 - "admin_only": !!bool "false"

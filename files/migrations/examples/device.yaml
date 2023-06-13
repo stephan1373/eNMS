@@ -1,4 +1,5 @@
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -67,7 +68,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -136,7 +138,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -205,7 +208,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -276,7 +280,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -345,7 +350,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -414,7 +420,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -483,7 +490,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -552,7 +560,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -621,7 +630,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -690,7 +700,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -759,7 +770,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -828,7 +840,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -897,7 +910,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -967,7 +981,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1036,7 +1051,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1105,7 +1121,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1174,7 +1191,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1243,7 +1261,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1312,7 +1331,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1381,7 +1401,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1450,7 +1471,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1519,7 +1541,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1588,7 +1611,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1657,7 +1681,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1726,7 +1751,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1795,7 +1821,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1864,7 +1891,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1927,7 +1955,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -1990,7 +2019,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2053,7 +2083,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2116,7 +2147,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2179,7 +2211,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2242,7 +2275,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2305,7 +2339,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2368,7 +2403,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2431,7 +2467,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2494,7 +2531,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2557,7 +2595,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2620,7 +2659,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2683,7 +2723,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2746,7 +2787,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2809,7 +2851,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2872,7 +2915,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2935,7 +2979,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -2998,7 +3043,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3061,7 +3107,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3124,7 +3171,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3187,7 +3235,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3250,7 +3299,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3313,7 +3363,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3376,7 +3427,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3439,7 +3491,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3502,7 +3555,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3565,7 +3619,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3628,7 +3683,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3691,7 +3747,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3754,7 +3811,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3817,7 +3875,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3880,7 +3939,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -3943,7 +4003,8 @@
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -4006,7 +4067,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Linux"
-- "creator": ""
+- "admin_only": !!bool "false"
+  "creator": ""
   "custom_json":
     "a": "c"
     "b":
@@ -4069,7 +4131,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4138,7 +4201,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4207,7 +4271,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4273,7 +4338,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4342,7 +4408,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4408,7 +4475,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4474,7 +4542,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
@@ -4540,7 +4609,8 @@
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4600,7 +4670,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4661,7 +4732,8 @@
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4722,7 +4794,8 @@
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4780,7 +4853,8 @@
   "subtype": ""
   "type": "router"
   "vendor": "Arista"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4840,7 +4914,8 @@
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4899,7 +4974,8 @@
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -4958,7 +5034,8 @@
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5018,7 +5095,8 @@
   "subtype": ""
   "type": "router"
   "vendor": "Arista"
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5078,7 +5156,8 @@
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5138,7 +5217,8 @@
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5199,7 +5279,8 @@
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5260,7 +5341,8 @@
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5320,7 +5402,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5381,7 +5464,8 @@
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5441,7 +5525,8 @@
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5501,7 +5586,8 @@
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5561,7 +5647,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5621,7 +5708,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5681,7 +5769,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5741,7 +5830,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
@@ -5800,7 +5890,8 @@
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "creator": "admin"
+- "admin_only": !!bool "false"
+  "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
