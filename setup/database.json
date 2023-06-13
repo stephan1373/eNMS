@@ -117,8 +117,24 @@
       "users",
       "logs"
     ],
-    "file": ["id", "filename", "folder_path", "full_path", "is_deleted", "status", "logs"],
-    "folder": ["id", "filename", "folder_path", "full_path", "is_deleted", "status", "logs"],
+    "file": [
+      "id",
+      "filename",
+      "folder_path",
+      "full_path",
+      "is_deleted",
+      "status",
+      "logs"
+    ],
+    "folder": [
+      "id",
+      "filename",
+      "folder_path",
+      "full_path",
+      "is_deleted",
+      "status",
+      "logs"
+    ],
     "link": [
       "id",
       "pools",
@@ -198,7 +214,14 @@
       "user_tasks",
       "logs"
     ],
-    "workflow_edge": ["id", "source_id", "destination_id", "workflow_id", "logs", "is_deleted"]
+    "workflow_edge": [
+      "id",
+      "source_id",
+      "destination_id",
+      "workflow_id",
+      "logs",
+      "is_deleted"
+    ]
   },
   "relationships": {
     "associations": {
