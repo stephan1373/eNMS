@@ -11,6 +11,7 @@ Version 4.6.0: Changelog & Workflow Tree
     - Standard properties (string, integer, list)
     - Scalar relationships
     - Many-to-many relationships
+    - Deletion (via soft deletion mixin and "do_orm_execute" event mechanism)
   - Add changelog support in workflow builder.
     - The changelog of a workflow includes
       - the changes to the worklfow itself
