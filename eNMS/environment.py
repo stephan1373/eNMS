@@ -274,7 +274,7 @@ class Environment:
                 log_kwargs = {
                     "target_name": instance.name,
                     "target_type": instance.class_type,
-                    f"{instance.class_type}_id": instance.id
+                    f"{instance.class_type}_id": instance.id,
                 }
             model = getattr(instance, "class_type", None)
             if model == "service":

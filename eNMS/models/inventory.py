@@ -334,7 +334,11 @@ class Pool(AbstractBase, db.soft_deletion):
                     back_populates="pools",
                 ),
             )
-            setattr(cls, f"{model}_number", db.Column(Integer, default=0, info={"log_change": False}))
+            setattr(
+                cls,
+                f"{model}_number",
+                db.Column(Integer, default=0, info={"log_change": False}),
+            )
         for property in vs.rbac["rbac_models"]["device"]:
             setattr(
                 cls,
