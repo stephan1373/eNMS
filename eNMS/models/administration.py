@@ -16,7 +16,7 @@ from eNMS.models.base import AbstractBase
 from eNMS.variables import vs
 
 
-class Server(AbstractBase):
+class Server(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "server"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -29,7 +29,7 @@ class Server(AbstractBase):
     logs = relationship("Changelog", back_populates="server")
 
 
-class User(AbstractBase, UserMixin):
+class User(AbstractBase, UserMixin, db.soft_deletion):
     __tablename__ = type = class_type = "user"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
