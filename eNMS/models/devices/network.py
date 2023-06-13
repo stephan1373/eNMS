@@ -13,7 +13,7 @@ from eNMS.fields import (
 from eNMS.models.inventory import Node
 
 
-class Network(Node):
+class Network(Node, db.soft_deletion):
     __tablename__ = class_type = "network"
     __mapper_args__ = {"polymorphic_identity": "network"}
     pretty_name = "Network"

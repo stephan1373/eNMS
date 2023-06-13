@@ -212,7 +212,7 @@ class Device(Node, db.soft_deletion):
         return f"{self.name} ({self.model})" if self.model else str(self.name)
 
 
-class Link(Object):
+class Link(Object, db.soft_deletion):
     __tablename__ = class_type = export_type = "link"
     __mapper_args__ = {"polymorphic_identity": "link"}
     pretty_name = "Link"
@@ -274,7 +274,7 @@ class Link(Object):
         super().update(**kwargs)
 
 
-class Pool(AbstractBase):
+class Pool(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "pool"
     models = ("device", "link")
     id = db.Column(Integer, primary_key=True)

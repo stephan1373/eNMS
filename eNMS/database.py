@@ -274,7 +274,10 @@ class Database:
                         change += f"{' / ' if deleted else ''}ADDED: {added}"
                 else:
                     if hist.deleted:
-                        history["properties"][attr.key] = hist.deleted[0]
+                        if hasattr(hist.deleted[0], "class_type"):
+                            history["scalars"][attr.key] = hist.deleted[0].base_properties
+                        else:
+                            history["properties"][attr.key] = hist.deleted[0]
                     change += (
                         f"'{hist.deleted[0] if hist.deleted else None}' => "
                         f"'{hist.added[0] if hist.added else None}'"
