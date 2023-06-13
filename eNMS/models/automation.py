@@ -452,7 +452,7 @@ class Run(AbstractBase):
         return self.service_run.results
 
 
-class Task(AbstractBase):
+class Task(AbstractBase, db.soft_deletion):
     __tablename__ = type = class_type = "task"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
