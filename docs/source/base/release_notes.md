@@ -7,6 +7,7 @@ Version 4.6.0: Changelog & Workflow Tree
 - Changelog feature:
   - Add changelog mechanism for credentials, devices, files, groups, links, networks, pools
     servers, services, tasks and users.
+  - Add "Target Type" and "Target Name" properties in changelog table
   - Add undo mechanism to revert the changes in a changelog. Supported revert action:
     - Standard properties (string, integer, list)
     - Scalar relationships
