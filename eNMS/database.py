@@ -255,14 +255,12 @@ class Database:
                     or not hist.has_changes()
                 ):
                     continue
-                change = f"{attr.key}: "
+                change, added, deleted = f"{attr.key}: ", hist.added, hist.deleted
                 property_type = type(getattr(target, attr.key))
                 if property_type in (InstrumentedList, MutableList):
                     if property_type == MutableList:
-                        added = [x for x in hist.added[0] if x not in hist.deleted[0]]
-                        deleted = [x for x in hist.deleted[0] if x not in hist.added[0]]
-                    else:
-                        added, deleted = hist.added, hist.deleted
+                        added = [x for x in added[0] if x not in deleted[0]]
+                        deleted = [x for x in deleted[0] if x not in added[0]]
                     history["lists"][attr.key] = {
                         "added": [x.id for x in added],
                         "deleted": [x.id for x in deleted],
@@ -273,14 +271,14 @@ class Database:
                     if added:
                         change += f"{' / ' if deleted else ''}ADDED: {added}"
                 else:
-                    if hist.deleted:
-                        if hasattr(hist.deleted[0], "class_type"):
-                            history["scalars"][attr.key] = hist.deleted[0].base_properties
+                    if deleted:
+                        if hasattr(deleted[0], "class_type"):
+                            history["scalars"][attr.key] = deleted[0].base_properties
                         else:
-                            history["properties"][attr.key] = hist.deleted[0]
+                            history["properties"][attr.key] = deleted[0]
                     change += (
-                        f"'{hist.deleted[0] if hist.deleted else None}' => "
-                        f"'{hist.added[0] if hist.added else None}'"
+                        f"'{deleted[0] if deleted else None}' => "
+                        f"'{added[0] if added else None}'"
                     )
                 changelog.append(change)
             if changelog:
