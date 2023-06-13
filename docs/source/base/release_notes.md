@@ -27,8 +27,9 @@ Version 4.6.0: Changelog & Workflow Tree
       - Case of two users working on the same workflow concurrently: it is not possible to revert
       the action of current user because the reverting process may be incompatible with actions done
       by the other users (e.g modify (user 1) -> delete (user 2)
-  - Add changelog button to all tables to display all changelogs about a specific
-    type of object
+  - Add changelog button to all tables to display:
+    - all changelogs about a specific type of object in table controls (e.g all device changelogs)
+    - all changes about a specific object via link to "Changelog" relation table in every row
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
