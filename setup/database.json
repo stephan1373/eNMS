@@ -100,7 +100,6 @@
     "device": [
       "id",
       "configuration",
-      "soft_deleted",
       "operational_data",
       "specialized_data",
       "services",
@@ -141,8 +140,7 @@
       "destination_name",
       "source_id",
       "source_name",
-      "logs",
-      "soft_deleted"
+      "logs"
     ],
     "pool": [
       "credential_devices",
@@ -174,7 +172,7 @@
       "service_changelogs",
       "soft_deleted"
     ],
-    "network": ["id", "path", "logs", "soft_deleted"],
+    "network": ["id", "path", "logs"],
     "task": [
       "id",
       "service_name",
