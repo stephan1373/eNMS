@@ -1446,6 +1446,7 @@
     }
   },
   "tables_additional": {
+    "changelog": ["history"],
     "pool": ["device_number", "link_number"],
     "run": ["path", "service_properties"],
     "service": ["path", "scoped_name", "mandatory_parametrization"],
