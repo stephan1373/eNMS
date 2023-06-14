@@ -100,7 +100,7 @@ class Workflow(Service):
         clone.labels = self.labels
         clone_services = {}
         db.session.commit()
-        for service in self.services:
+        for service in self.get_active("services"):
             if service.shared:
                 service_clone = service
                 if service not in clone.services:
@@ -113,7 +113,7 @@ class Workflow(Service):
             service_clone.skip[clone.name] = service.skip.get(self.name, False)
             clone_services[service.id] = service_clone
         db.session.commit()
-        for edge in self.edges:
+        for edge in self.get_active("edges"):
             clone.edges.append(
                 db.factory(
                     "workflow_edge",
@@ -134,14 +134,14 @@ class Workflow(Service):
     def deep_services(self):
         services = [
             service.deep_services if service.type == "workflow" else [service]
-            for service in self.services
+            for service in self.get_active("services")
         ]
         return [self] + sum(services, [])
 
     @property
     def deep_edges(self):
         edges = [
-            workflow.edges
+            list(workflow.get_active("edges"))
             for workflow in set(self.deep_services)
             if workflow.type == "workflow"
         ]
