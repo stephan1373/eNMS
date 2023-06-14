@@ -214,7 +214,6 @@ class AbstractBase(db.base):
                     for obj in value
                 ]
             else:
-                
                 if not value:
                     continue
                 properties[property] = (

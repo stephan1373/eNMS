@@ -652,7 +652,9 @@ class Controller:
         run_properties = vs.automation["workflow"]["state_properties"]["run"]
         service_properties = vs.automation["workflow"]["state_properties"]["service"]
         if service.type == "workflow":
-            serialized_service["edges"] = [edge.get_properties() for edge in service.exclude_soft_deleted("edges")]
+            serialized_service["edges"] = [
+                edge.get_properties() for edge in service.exclude_soft_deleted("edges")
+            ]
             serialized_service["services"] = []
             for subservice in service.exclude_soft_deleted("services"):
                 properties = subservice.get_properties(include=service_properties)
