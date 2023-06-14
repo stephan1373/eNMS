@@ -306,7 +306,9 @@ class Controller:
         names = defaultdict(list)
         for edge_id in selection["edges"]:
             if type == "workflow":
-                names["links"].append(db.delete("workflow_edge", id=edge_id)["name"])
+                edge = db.fetch("workflow_edge", id=edge_id)
+                edge.soft_deleted = True
+                names["links"].append(edge.name)
             else:
                 instance.links.remove(db.fetch("link", id=edge_id))
         for node_id in selection["nodes"]:
@@ -318,7 +320,7 @@ class Controller:
                 service = db.fetch("service", id=node_id)
                 names["services"].append(service.name)
                 if not service.shared:
-                    db.delete_instance(service)
+                    service.soft_deleted = True
                 else:
                     instance.services.remove(service)
         env.log("info", f"Removing '{names}' from '{instance}'", instance=instance)
