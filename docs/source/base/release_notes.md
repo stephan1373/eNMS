@@ -39,7 +39,7 @@ Version 4.6.0: Changelog & Workflow Tree
   - It applies to both the run table and the workflow builder
 - Add new user filtering mechanism (per user / all users) for tasks and services
 - Add new "start / end query monitoring" python snippet to analyze what SQL queries are sent
-  to the database and how long they take to execute.
+  to the database and how long they take to execute (only active in "debug" mode)
 - Connection Threshold:
   - Add number of connections for each library in the workflow builder
   - Add new connection threshold mechanism with the following parameters in automation.json:
