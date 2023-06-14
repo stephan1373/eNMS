@@ -1436,17 +1436,7 @@ class Controller:
             related_instance = db.fetch(values["type"], id=values["id"])
             setattr(target, property, related_instance)
         if "properties" in log.history:
-            if log.history["properties"].get("soft_deleted") is False:
-                target_id = getattr(log, f"{log.target_type}_id")
-                statement = (
-                    update(vs.models[log.target_type])
-                    .where(vs.models[log.target_type].id == target_id)
-                    .values(soft_deleted=False)
-                )
-                db.session.execute(statement, {"abort_execute_event": True})
-                db.session.commit()
-            elif target:
-                target.update(**log.history["properties"])
+            target.update(**log.history["properties"])
 
     def update(self, type, **kwargs):
         try:
