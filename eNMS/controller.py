@@ -651,7 +651,7 @@ class Controller:
         service_properties = vs.automation["workflow"]["state_properties"]["service"]
         if service.type == "workflow":
             serialized_service["services"] = []
-            for subservice in service.services:
+            for subservice in service.get_active("services"):
                 properties = subservice.get_properties(include=service_properties)
                 subservice_positions = subservice.positions.get(service.name, [0, 0])
                 properties["x"], properties["y"] = subservice_positions

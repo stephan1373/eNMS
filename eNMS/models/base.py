@@ -183,6 +183,11 @@ class AbstractBase(db.base):
         instance = db.factory(self.type, rbac=None, **{**properties, **kwargs})
         return instance
 
+    def get_active(self, property):
+        for instance in getattr(self, property):
+            if not getattr(instance, "is_deleted", False):
+                yield instance
+
     def to_dict(
         self,
         export=False,
@@ -200,16 +205,16 @@ class AbstractBase(db.base):
                 continue
             if export and property in no_migrate:
                 continue
-            value = getattr(self, property)
             if relation["list"]:
                 properties[property] = [
                     obj.name
                     if export or relation_names_only
                     else obj.get_properties(exclude=exclude)
-                    for obj in value
+                    for obj in self.get_active(property)
                 ]
             else:
-                if not value:
+                value = getattr(self, property)
+                if not value or value.is_deleted:
                     continue
                 properties[property] = (
                     value.name

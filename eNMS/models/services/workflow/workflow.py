@@ -209,6 +209,8 @@ class Workflow(Service):
                     continue
                 for edge in service.neighbors(self, edge_type):
                     successor = edge.destination
+                    if successor.is_deleted:
+                        continue
                     if tracking_bfs or device:
                         targets[successor.name] |= set(summary[edge_type])
                     heappush(services, ((1 / successor.priority, successor)))

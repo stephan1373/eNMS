@@ -213,7 +213,7 @@ class Service(AbstractBase, db.soft_deletion):
         self.name = f"{workflow}{name or self.scoped_name}"
 
     def neighbors(self, workflow, subtype):
-        for edge in self.destinations:
+        for edge in self.get_active("destinations"):
             if edge.subtype == subtype and edge.workflow.name == workflow.name:
                 yield edge
 
