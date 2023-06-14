@@ -18,7 +18,7 @@ from eNMS.runner import Runner
 from eNMS.variables import vs
 
 
-class Service(AbstractBase, db.soft_deletion):
+class Service(AbstractBase):
     __tablename__ = class_type = export_type = "service"
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "service", "polymorphic_on": type}
@@ -26,6 +26,7 @@ class Service(AbstractBase, db.soft_deletion):
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.TinyString, info={"log_change": False})
     creator = db.Column(db.SmallString)
+    is_deleted = db.Column(Boolean, default=False)
     shared = db.Column(Boolean, default=False)
     scoped_name = db.Column(db.SmallString, index=True)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
@@ -454,7 +455,7 @@ class Run(AbstractBase):
         return self.service_run.results
 
 
-class Task(AbstractBase, db.soft_deletion):
+class Task(AbstractBase):
     __tablename__ = type = class_type = "task"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)

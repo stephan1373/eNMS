@@ -321,10 +321,11 @@ class WorkflowForm(ServiceForm):
         )
 
 
-class WorkflowEdge(AbstractBase, db.soft_deletion):
+class WorkflowEdge(AbstractBase):
     __tablename__ = type = class_type = "workflow_edge"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    is_deleted = db.Column(Boolean, default=False)
     label = db.Column(db.SmallString)
     color = db.Column(db.SmallString)
     subtype = db.Column(db.SmallString)

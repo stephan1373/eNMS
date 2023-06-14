@@ -45,6 +45,7 @@ class Node(Object):
     parent_type = "object"
     id = db.Column(Integer, ForeignKey(Object.id), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    is_deleted = db.Column(Boolean, default=False)
     positions = db.Column(db.Dict, info={"log_change": False})
     latitude = db.Column(db.TinyString, default="0.0")
     longitude = db.Column(db.TinyString, default="0.0")
@@ -61,7 +62,7 @@ class Node(Object):
         super().update(**kwargs)
 
 
-class Device(Node, db.soft_deletion):
+class Device(Node):
     __tablename__ = class_type = export_type = "device"
     __mapper_args__ = {"polymorphic_identity": "device"}
     pretty_name = "Device"
@@ -212,13 +213,14 @@ class Device(Node, db.soft_deletion):
         return f"{self.name} ({self.model})" if self.model else str(self.name)
 
 
-class Link(Object, db.soft_deletion):
+class Link(Object):
     __tablename__ = class_type = export_type = "link"
     __mapper_args__ = {"polymorphic_identity": "link"}
     pretty_name = "Link"
     parent_type = "object"
     id = db.Column(Integer, ForeignKey("object.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    is_deleted = db.Column(Boolean, default=False)
     color = db.Column(db.TinyString, default="#000000")
     source_id = db.Column(Integer, ForeignKey("device.id"), info={"log_change": False})
     destination_id = db.Column(
@@ -274,7 +276,7 @@ class Link(Object, db.soft_deletion):
         super().update(**kwargs)
 
 
-class Pool(AbstractBase, db.soft_deletion):
+class Pool(AbstractBase):
     __tablename__ = type = class_type = "pool"
     models = ("device", "link")
     id = db.Column(Integer, primary_key=True)

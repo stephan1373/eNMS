@@ -63,10 +63,9 @@
     "workflow_edge": "WorkflowEdge"
   },
   "dont_migrate": {
-    "credential": ["id", "is_deleted", "logs"],
+    "credential": ["id", "logs"],
     "group": [
       "id",
-      "is_deleted",
       "credentials",
       "rbac_configuration_devices",
       "rbac_connect_devices",
@@ -122,7 +121,6 @@
       "filename",
       "folder_path",
       "full_path",
-      "is_deleted",
       "status",
       "logs"
     ],
@@ -131,7 +129,6 @@
       "filename",
       "folder_path",
       "full_path",
-      "is_deleted",
       "status",
       "logs"
     ],
@@ -157,8 +154,7 @@
       "services",
       "network_number",
       "user_number",
-      "logs",
-      "is_deleted"
+      "logs"
     ],
     "service": [
       "children",
@@ -187,15 +183,13 @@
       "is_active",
       "time_before_next_run",
       "status",
-      "logs",
-      "is_deleted"
+      "logs"
     ],
     "user": [
       "id",
       "devices",
       "pools",
       "groups",
-      "is_deleted",
       "last_login",
       "links",
       "menu",

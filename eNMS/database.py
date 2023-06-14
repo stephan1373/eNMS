@@ -54,7 +54,6 @@ class Database:
         self.dialect = self.database_url.split(":")[0]
         self.rbac_error = type("RbacError", (Exception,), {})
         self.configure_columns()
-        self.configure_mixins()
         self.engine = create_engine(
             self.database_url,
             **self.engine["common"],
@@ -125,12 +124,6 @@ class Database:
             parameters.banner_active = False
         self.session.commit()
         return first_init
-
-    def configure_mixins(self):
-        class SoftDelete:
-            is_deleted = self.Column(Boolean, default=False)
-
-        self.soft_deletion = SoftDelete
 
     def create_metabase(self):
         class SubDeclarativeMeta(DeclarativeMeta):
@@ -418,8 +411,6 @@ class Database:
         else:
             entity = [vs.models[model]]
         query = self.session.query(*entity)
-        if hasattr(vs.models[model], "is_deleted"):
-            query = query.filter(vs.models[model].is_deleted == false())
         if rbac:
             user = (
                 current_user
@@ -491,7 +482,7 @@ class Database:
                 return {"delete_aborted": True, **abort_delete}
         serialized_instance = instance.serialized
         if not abort_delete:
-            instance.is_deleted = True
+            self.session.delete(instance)
         return serialized_instance
 
     def delete_all(self, *models):

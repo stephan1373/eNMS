@@ -205,16 +205,17 @@ class AbstractBase(db.base):
                 continue
             if export and property in no_migrate:
                 continue
+            value = getattr(self, property)
             if relation["list"]:
                 properties[property] = [
                     obj.name
                     if export or relation_names_only
                     else obj.get_properties(exclude=exclude)
-                    for obj in self.get_active(property)
+                    for obj in value
                 ]
             else:
-                value = getattr(self, property)
-                if not value or value.is_deleted:
+                
+                if not value:
                     continue
                 properties[property] = (
                     value.name

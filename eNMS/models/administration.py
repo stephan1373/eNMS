@@ -16,7 +16,7 @@ from eNMS.models.base import AbstractBase
 from eNMS.variables import vs
 
 
-class Server(AbstractBase, db.soft_deletion):
+class Server(AbstractBase):
     __tablename__ = type = class_type = "server"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -29,7 +29,7 @@ class Server(AbstractBase, db.soft_deletion):
     logs = relationship("Changelog", back_populates="server")
 
 
-class User(AbstractBase, UserMixin, db.soft_deletion):
+class User(AbstractBase, UserMixin):
     __tablename__ = type = class_type = "user"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -81,7 +81,7 @@ class User(AbstractBase, UserMixin, db.soft_deletion):
             setattr(self, property, list(set(chain.from_iterable(group_value))))
 
 
-class Group(AbstractBase, db.soft_deletion):
+class Group(AbstractBase):
     __tablename__ = type = class_type = "group"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -131,7 +131,7 @@ class Group(AbstractBase, db.soft_deletion):
                 user.update_rbac()
 
 
-class Credential(AbstractBase, db.soft_deletion):
+class Credential(AbstractBase):
     __tablename__ = type = class_type = "credential"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
@@ -205,7 +205,7 @@ class Parameters(AbstractBase):
     banner_properties = db.Column(db.Dict)
 
 
-class File(AbstractBase, db.soft_deletion):
+class File(AbstractBase):
     __tablename__ = type = class_type = "file"
     log_change = vs.settings["files"]["log_events"]
     type = db.Column(db.SmallString)
