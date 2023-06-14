@@ -45,7 +45,7 @@ class Node(Object):
     parent_type = "object"
     id = db.Column(Integer, ForeignKey(Object.id), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    is_deleted = db.Column(Boolean, default=False)
+    soft_deleted = db.Column(Boolean, default=False)
     positions = db.Column(db.Dict, info={"log_change": False})
     latitude = db.Column(db.TinyString, default="0.0")
     longitude = db.Column(db.TinyString, default="0.0")
@@ -220,7 +220,7 @@ class Link(Object):
     parent_type = "object"
     id = db.Column(Integer, ForeignKey("object.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    is_deleted = db.Column(Boolean, default=False)
+    soft_deleted = db.Column(Boolean, default=False)
     color = db.Column(db.TinyString, default="#000000")
     source_id = db.Column(Integer, ForeignKey("device.id"), info={"log_change": False})
     destination_id = db.Column(

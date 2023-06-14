@@ -185,7 +185,7 @@ class AbstractBase(db.base):
 
     def get_active(self, property):
         for instance in getattr(self, property):
-            if not getattr(instance, "is_deleted", False):
+            if not getattr(instance, "soft_deleted", False):
                 yield instance
 
     def to_dict(

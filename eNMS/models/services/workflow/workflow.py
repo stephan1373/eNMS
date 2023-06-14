@@ -209,7 +209,7 @@ class Workflow(Service):
                     continue
                 for edge in service.neighbors(self, edge_type):
                     successor = edge.destination
-                    if successor.is_deleted:
+                    if successor.soft_deleted:
                         continue
                     if tracking_bfs or device:
                         targets[successor.name] |= set(summary[edge_type])
@@ -325,7 +325,7 @@ class WorkflowEdge(AbstractBase):
     __tablename__ = type = class_type = "workflow_edge"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    is_deleted = db.Column(Boolean, default=False)
+    soft_deleted = db.Column(Boolean, default=False)
     label = db.Column(db.SmallString)
     color = db.Column(db.SmallString)
     subtype = db.Column(db.SmallString)
