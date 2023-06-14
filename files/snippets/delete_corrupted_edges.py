@@ -16,6 +16,7 @@ for edge in list(edges):
         or not edge.workflow
         or edge.source not in services
         or edge.destination not in services
+        or edge.soft_deleted
     ):
         edges.remove(edge)
         db.session.delete(edge)
