@@ -183,7 +183,7 @@ class AbstractBase(db.base):
         instance = db.factory(self.type, rbac=None, **{**properties, **kwargs})
         return instance
 
-    def get_active(self, property):
+    def exclude_soft_deleted(self, property):
         for instance in getattr(self, property):
             if not getattr(instance, "soft_deleted", False):
                 yield instance

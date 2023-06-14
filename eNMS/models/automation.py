@@ -214,7 +214,7 @@ class Service(AbstractBase):
         self.name = f"{workflow}{name or self.scoped_name}"
 
     def neighbors(self, workflow, subtype):
-        for edge in self.get_active("destinations"):
+        for edge in self.exclude_soft_deleted("destinations"):
             if edge.subtype == subtype and edge.workflow.name == workflow.name:
                 yield edge
 

@@ -1091,9 +1091,9 @@ class Runner:
             change_log=False,
             logger="security",
         )
-        sock, gateways = None, device.get_active("gateways")
-        if gateways:
-            gateways = sorted(gateways, key=attrgetter("priority"), reverse=True)
+        sock = None
+        if device.gateways:
+            gateways = sorted(device.gateways, key=attrgetter("priority"), reverse=True)
             for gateway in gateways:
                 try:
                     credentials = self.get_credentials(gateway, add_secret=False)
