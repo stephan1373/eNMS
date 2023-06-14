@@ -1303,7 +1303,8 @@
       {
         "data": "target_type",
         "title": "Target Type",
-        "search": "text"
+        "search": "text",
+        "width": "80px"
       },
       {
         "data": "target_name",
