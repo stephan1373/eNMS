@@ -87,6 +87,7 @@ let placeholder;
 let isSuperworkflow;
 let startId;
 let endId;
+let workflowTreeData;
 let workflowTreeDisplayed;
 
 export function displayWorkflow(workflowData) {
@@ -826,6 +827,8 @@ function filterDevice() {
 }
 
 function drawTree(data) {
+  const noUpdate = workflowTreeData == JSON.stringify(data);
+  if (noUpdate) return;
   if ($("#workflow-tree-services").jstree(true)) {
     $("#workflow-tree-services").jstree(true).settings.core.data = data;
     $("#workflow-tree-services").jstree(true).refresh();
@@ -893,6 +896,7 @@ function drawTree(data) {
       }, 500);
     });
   }
+  workflowTreeData = JSON.stringify(data);
 }
 
 function toggleWorkflowTree() {

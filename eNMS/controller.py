@@ -909,6 +909,10 @@ class Controller:
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
                     instance = db.fetch(type, id=path_id[1])
+            if type == "network":
+                children = instance.nodes
+            else:
+                children = instance.exclude_soft_deleted("services")
             child_property = "nodes" if type == "network" else "services"
             color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
@@ -921,7 +925,7 @@ class Controller:
                         None,
                         [
                             rec(child, path)
-                            for child in getattr(instance, child_property)
+                            for child in children
                         ],
                     ),
                     key=lambda node: node["text"].lower(),
