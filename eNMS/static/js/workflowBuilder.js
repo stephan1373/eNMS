@@ -609,10 +609,13 @@ function displayWorkflowState(result, workflowSwitch) {
   if ($("#workflow-search").val()) return;
   resetWorkflowDisplay();
   updateRuntimes(result);
+  if (workflowSwitch) {
+    $("#workflow-tree-services").jstree("destroy").empty();
+    $(".hidden-scrollbar").scrollTop(0);
+  }
   if (currentRun && result.tree) {
     displayResultsTree(workflow, currentRun.runtime, true)
   } else {
-    if (workflowSwitch) $(".hidden-scrollbar").scrollTop(0);
     drawTree(result.tree);
   }
   if (!nodes || !edges || !result.state) return;
