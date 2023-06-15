@@ -30,8 +30,6 @@ import { refreshTable, tableInstances, tables } from "./table.js";
 import {
   currentRuntime,
   getServiceState,
-  invertWorkflowTree,
-  passiveTree,
   switchToWorkflow,
   workflow,
 } from "./workflowBuilder.js";
@@ -477,105 +475,94 @@ function displayLogs(service, runtime, change) {
   refreshLogs(service, runtime, editor, true);
 }
 
-export function updateWorkflowTree(service, runtime, data, isWorkflowTree) {
-  const treeId = isWorkflowTree
-    ? `#workflow-tree-services-${passiveTree}`
-    : `#result-tree-${service.id}`;
-  if (!isWorkflowTree)
-    $(treeId)
-      .jstree("destroy")
-      .empty();
-  if (!data) return notify("No results to display.", "error", 5);
-  let tree = $(treeId).jstree({
-    core: {
-      animation: 100,
-      themes: { stripes: true },
-      data: data,
-    },
-    plugins: ["html_row", "types", "wholerow"],
-    types: {
-      default: {
-        icon: "glyphicon glyphicon-file",
-      },
-      workflow: {
-        icon: "fa fa-sitemap",
-      },
-    },
-    html_row: {
-      default: function(el, node) {
-        if (!node) return;
-        const data = JSON.stringify(node.data.properties);
-        let progressSummary;
-        if (node.data.progress) {
-          progressSummary = `
-            <div style="position: absolute; top: 0px; right: 160px">
-              <span style="color: #32cd32">
-                ${node.data.progress.success || 0}${isWorkflowTree ? "P" : " passed"}
-              </span>
-              ${
-                node.data.progress.skipped > 0
-                  ? `<span style="color: #000000">-</span>
-                <span style="color: #7D7D7D">
-                ${node.data.progress.skipped || 0}${isWorkflowTree ? "S" : " skipped"}
-
-                </span>
-              `
-                  : ""
-              }
-              <span style="color: #000000">-</span>
-              <span style="color: #FF6666">
-                ${node.data.progress.failure || 0}${isWorkflowTree ? "F" : " failed"}
-              </span>
-            </div>
-          `;
-        } else {
-          progressSummary = "";
-        }
-        $(el)
-          .find("a")
-          .first().append(`
-          ${progressSummary}
-          <div style="position: absolute; top: 0px; right: 50px">
-            <button type="button"
-              class="btn btn-xs btn-primary"
-              onclick='eNMS.automation.showRuntimePanel(
-                "logs", ${data}, "${runtime}"
-              )'><span class="glyphicon glyphicon-list"></span>
-            </button>
-            <button type="button"
-              class="btn btn-xs btn-primary"
-              onclick='eNMS.automation.showRuntimePanel(
-                "report", ${data}, "${runtime}"
-              )'><span class="glyphicon glyphicon-modal-window"></span>
-            </button>
-            <button type="button"
-              class="btn btn-xs btn-primary"
-              onclick='eNMS.automation.showRuntimePanel(
-                "results", ${data}, "${runtime}", "result"
-              )'>
-              <span class="glyphicon glyphicon-list-alt"></span>
-            </button>
-          </div>
-        `);
-      },
-    },
-  });
-  tree.bind("loaded.jstree", function() {
-    tree.jstree("open_all");
-  });
-  tree.unbind("dblclick.jstree").bind("dblclick.jstree", function(event) {
-    const service = tree.jstree().get_node(event.target);
-    showRuntimePanel("results", service.data.properties, runtime, "result");
-  });
-  if (isWorkflowTree) invertWorkflowTree();
-}
-
 function displayResultsTree(service, runtime) {
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
-      updateWorkflowTree(service, runtime, data);
-    },
+      $(`#result-tree-${service.id}`).jstree("destroy").empty();
+      if (!data) return notify("No results to display.", "error", 5);
+      let tree = $(`#result-tree-${service.id}`).jstree({
+        core: {
+          animation: 100,
+          themes: { stripes: true },
+          data: data,
+        },
+        plugins: ["html_row", "types", "wholerow"],
+        types: {
+          default: {
+            icon: "glyphicon glyphicon-file",
+          },
+          workflow: {
+            icon: "fa fa-sitemap",
+          },
+        },
+        html_row: {
+          default: function(el, node) {
+            if (!node) return;
+            const data = JSON.stringify(node.data.properties);
+            let progressSummary;
+            if (node.data.progress) {
+              progressSummary = `
+                <div style="position: absolute; top: 0px; right: 160px">
+                  <span style="color: #32cd32">
+                    ${node.data.progress.success || 0} passed
+                  </span>
+                  ${
+                    node.data.progress.skipped > 0
+                      ? `<span style="color: #000000">-</span>
+                    <span style="color: #7D7D7D">
+                    ${node.data.progress.skipped || 0} skipped
+    
+                    </span>
+                  `
+                      : ""
+                  }
+                  <span style="color: #000000">-</span>
+                  <span style="color: #FF6666">
+                    ${node.data.progress.failure || 0} failed
+                  </span>
+                </div>
+              `;
+            } else {
+              progressSummary = "";
+            }
+            $(el)
+              .find("a")
+              .first().append(`
+              ${progressSummary}
+              <div style="position: absolute; top: 0px; right: 50px">
+                <button type="button"
+                  class="btn btn-xs btn-primary"
+                  onclick='eNMS.automation.showRuntimePanel(
+                    "logs", ${data}, "${runtime}"
+                  )'><span class="glyphicon glyphicon-list"></span>
+                </button>
+                <button type="button"
+                  class="btn btn-xs btn-primary"
+                  onclick='eNMS.automation.showRuntimePanel(
+                    "report", ${data}, "${runtime}"
+                  )'><span class="glyphicon glyphicon-modal-window"></span>
+                </button>
+                <button type="button"
+                  class="btn btn-xs btn-primary"
+                  onclick='eNMS.automation.showRuntimePanel(
+                    "results", ${data}, "${runtime}", "result"
+                  )'>
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                </button>
+              </div>
+            `);
+          },
+        },
+      });
+      tree.bind("loaded.jstree", function() {
+        tree.jstree("open_all");
+      });
+      tree.unbind("dblclick.jstree").bind("dblclick.jstree", function(event) {
+        const service = tree.jstree().get_node(event.target);
+        showRuntimePanel("results", service.data.properties, runtime, "result");
+      });
+    }
   });
 }
 

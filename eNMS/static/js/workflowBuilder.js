@@ -16,7 +16,6 @@ import {
   runLogic,
   runtimeDisplay,
   showRuntimePanel,
-  updateWorkflowTree,
 } from "./automation.js";
 import {
   call,
@@ -81,8 +80,6 @@ export let workflow = JSON.parse(localStorage.getItem("workflow"));
 export let currentRuntime = linkRuntime;
 export let graph;
 
-let activeTree = 1;
-export let passiveTree = 2;
 let currentRun;
 let currentPlaceholder;
 let placeholder;
@@ -613,9 +610,8 @@ function displayWorkflowState(result) {
   updateRuntimes(result);
   if (workflowTreeDisplayed) {
     if (currentRun && result.tree) {
-      updateWorkflowTree(workflow, currentRun.runtime, result.tree, true);
+
     } else {
-      
       drawTree(result.tree);
     }
   }
@@ -833,7 +829,7 @@ function filterDevice() {
 }
 
 function drawTree(data) {
-  $(`#workflow-tree-services-${passiveTree}`)
+  $("#workflow-tree-services")
     .bind("loaded.jstree", function(e, data) {
       createTooltips();
     })
@@ -890,25 +886,11 @@ function drawTree(data) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(function() {
       const searchValue = $(`#tree-search`).val();
-      $(`#workflow-tree-services-${passiveTree}`)
+      $("#workflow-tree-services")
         .jstree(true)
         .search(searchValue);
     }, 500);
   });
-  invertWorkflowTree();
-}
-
-export function invertWorkflowTree() {
-  setTimeout(() => {
-    const activeTreeId = `#workflow-tree-services-${activeTree}`;
-    const passiveTreeId = `#workflow-tree-services-${passiveTree}`;
-    $(`${passiveTreeId}`).show();
-    $(`${activeTreeId}`).hide();
-    $(activeTreeId)
-      .jstree("destroy")
-      .empty();
-    [activeTree, passiveTree] = [passiveTree, activeTree];
-  }, 300);
 }
 
 function toggleWorkflowTree() {
