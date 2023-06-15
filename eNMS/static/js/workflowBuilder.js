@@ -215,7 +215,11 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
   moveHistory(path, direction);
   call({
     url: `/get_service_state/${path}`,
-    data: { display: runtimeDisplay, runtime: runtime || "latest", workflow_tree: workflowTreeDisplayed },
+    data: {
+      display: runtimeDisplay,
+      runtime: runtime || "latest",
+      workflow_tree: workflowTreeDisplayed,
+    },
     callback: function(result) {
       workflow = result.service;
       currentRun = result.run;
@@ -899,9 +903,11 @@ export function invertWorkflowTree() {
   setTimeout(() => {
     const activeTreeId = `#workflow-tree-services-${activeTree}`;
     const passiveTreeId = `#workflow-tree-services-${passiveTree}`;
-    $(`${passiveTreeId}`).show()
-    $(`${activeTreeId}`).hide()
-    $(activeTreeId).jstree("destroy").empty();
+    $(`${passiveTreeId}`).show();
+    $(`${activeTreeId}`).hide();
+    $(activeTreeId)
+      .jstree("destroy")
+      .empty();
     [activeTree, passiveTree] = [passiveTree, activeTree];
   }, 50);
 }
@@ -910,7 +916,7 @@ function displayWorkflowTree() {
   call({
     url: `/get_instance_tree/workflow/${currentPath}`,
     callback: function(data) {
-      drawTree(data)
+      drawTree(data);
     },
   });
 }

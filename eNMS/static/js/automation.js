@@ -478,8 +478,13 @@ function displayLogs(service, runtime, change) {
 }
 
 export function updateWorkflowTree(service, runtime, data, isWorkflowTree) {
-  const treeId = isWorkflowTree ? `#workflow-tree-services-${passiveTree}` : `#result-tree-${service.id}`;
-  if (!isWorkflowTree) $(treeId).jstree("destroy").empty();
+  const treeId = isWorkflowTree
+    ? `#workflow-tree-services-${passiveTree}`
+    : `#result-tree-${service.id}`;
+  if (!isWorkflowTree)
+    $(treeId)
+      .jstree("destroy")
+      .empty();
   if (!data) return notify("No results to display.", "error", 5);
   let tree = $(treeId).jstree({
     core: {

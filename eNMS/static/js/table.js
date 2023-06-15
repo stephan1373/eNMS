@@ -1597,7 +1597,7 @@ tables.changelog = class ChangelogTable extends Table {
         <li>
           <button
             type="button"
-            class="btn btn-sm btn-${row.history ? 'danger' : 'dark'}"
+            class="btn btn-sm btn-${row.history ? "danger" : "dark"}"
             ${row.history ? "" : "disabled"}
             onclick="eNMS.administration.undoLog(${row.id})" data-tooltip="Undo Log"
             >
