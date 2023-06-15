@@ -649,7 +649,11 @@ class Controller:
                 )
             }
         if kwargs.get("workflow_tree"):
-            output["tree"] = self.get_workflow_results(path, run.runtime) if run else self.get_instance_tree("workflow", path)
+            output["tree"] = (
+                self.get_workflow_results(path, run.runtime)
+                if run
+                else self.get_instance_tree("workflow", path)
+            )
         serialized_service = service.to_dict(include=["superworkflow"])
         run_properties = vs.automation["workflow"]["state_properties"]["run"]
         service_properties = vs.automation["workflow"]["state_properties"]["service"]
