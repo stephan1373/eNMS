@@ -10,13 +10,13 @@ user: false
 */
 
 import {
-  displayResultsTree,
   field,
   flipRuntimeDisplay,
   runService,
   runLogic,
   runtimeDisplay,
   showRuntimePanel,
+  updateWorkflowTree,
 } from "./automation.js";
 import {
   call,
@@ -611,7 +611,7 @@ function displayWorkflowState(result) {
   if (currentRuntime == "normal") displayWorkflowTree();
   if (!nodes || !edges || !result.state) return;
   if (workflowTreeDisplayed) {
-    displayResultsTree(workflow, result.run.runtime, true);
+    updateWorkflowTree(workflow, result.run.runtime, result.tree, true);
   }
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {
@@ -734,6 +734,7 @@ export function getWorkflowState(periodic, first) {
         display: runtimeDisplay,
         runtime: runtime,
         device: $("#device-filter").val(),
+        workflow_tree: workflowTreeDisplayed,
       },
       callback: function(result) {
         if (!Object.keys(result).length || result.service.id != workflow.id) return;
@@ -878,7 +879,7 @@ function drawTree(data) {
       },
     });
   let timer = false;
-  $(`#tree-search`).keyup(function() {
+  $("#tree-search").keyup(function() {
     if (timer) clearTimeout(timer);
     timer = setTimeout(function() {
       const searchValue = $(`#tree-search`).val();
