@@ -1019,3 +1019,12 @@ ul.bar_tabs.right li {
   -o-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
   animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);
 }
+
+/* Used to hide the scrollbar of the Builder Tree */
+.hidden-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.hidden-scrollbar::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
