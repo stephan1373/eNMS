@@ -90,7 +90,7 @@ let endId;
 let workflowTreeData;
 let workflowTreeDisplayed;
 
-export function displayWorkflow(workflowData) {
+export function displayWorkflow(workflowData, workflowSwitch) {
   workflow = workflowData.service;
   placeholder = null;
   currentPlaceholder = workflowData.state?.[currentPath]?.placeholder;
@@ -124,7 +124,7 @@ export function displayWorkflow(workflowData) {
   });
   const exportLocation = `location.href='/export_service/${workflow.id}'`;
   $("#export-workflow-btn").attr("onclick", exportLocation);
-  displayWorkflowState(workflowData);
+  displayWorkflowState(workflowData, workflowSwitch);
 }
 
 function updateRuntimes(result) {
@@ -231,7 +231,7 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
       if (workflow) {
         localStorage.setItem("workflow", JSON.stringify(workflow));
       }
-      displayWorkflow(result);
+      displayWorkflow(result, true);
       if (selection) graph.setSelection(selection);
       switchMode(currentMode, true);
     },
@@ -605,13 +605,14 @@ export function getServiceState(id, first) {
   });
 }
 
-function displayWorkflowState(result) {
+function displayWorkflowState(result, workflowSwitch) {
   if ($("#workflow-search").val()) return;
   resetWorkflowDisplay();
   updateRuntimes(result);
   if (currentRun && result.tree) {
     displayResultsTree(workflow, currentRun.runtime, true)
   } else {
+    if (workflowSwitch) $(".hidden-scrollbar").scrollTop(0);
     drawTree(result.tree);
   }
   if (!nodes || !edges || !result.state) return;
