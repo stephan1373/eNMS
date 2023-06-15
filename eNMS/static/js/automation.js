@@ -475,93 +475,98 @@ function displayLogs(service, runtime, change) {
   refreshLogs(service, runtime, editor, true);
 }
 
-function displayResultsTree(service, runtime) {
+export function displayResultsTree(service, runtime, isWorkflowTree) {
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
-      $(`#result-tree-${service.id}`).jstree("destroy").empty();
-      if (!data) return notify("No results to display.", "error", 5);
-      let tree = $(`#result-tree-${service.id}`).jstree({
-        core: {
-          animation: 100,
-          themes: { stripes: true },
-          data: data,
-        },
-        plugins: ["html_row", "types", "wholerow"],
-        types: {
-          default: {
-            icon: "glyphicon glyphicon-file",
+      if (isWorkflowTree) {
+        $("#workflow-tree-services").jstree(true).settings.core.data = data;
+        $('#workflow-tree-services').jstree(true).refresh();
+      } else {
+        $(`#result-tree-${service.id}`).jstree("destroy").empty();
+        if (!data) return notify("No results to display.", "error", 5);
+        let tree = $(`#result-tree-${service.id}`).jstree({
+          core: {
+            animation: 100,
+            themes: { stripes: true },
+            data: data,
           },
-          workflow: {
-            icon: "fa fa-sitemap",
+          plugins: ["html_row", "types", "wholerow"],
+          types: {
+            default: {
+              icon: "glyphicon glyphicon-file",
+            },
+            workflow: {
+              icon: "fa fa-sitemap",
+            },
           },
-        },
-        html_row: {
-          default: function(el, node) {
-            if (!node) return;
-            const data = JSON.stringify(node.data.properties);
-            let progressSummary;
-            if (node.data.progress) {
-              progressSummary = `
-                <div style="position: absolute; top: 0px; right: 160px">
-                  <span style="color: #32cd32">
-                    ${node.data.progress.success || 0} passed
-                  </span>
-                  ${
-                    node.data.progress.skipped > 0
-                      ? `<span style="color: #000000">-</span>
-                    <span style="color: #7D7D7D">
-                    ${node.data.progress.skipped || 0} skipped
-    
+          html_row: {
+            default: function(el, node) {
+              if (!node) return;
+              const data = JSON.stringify(node.data.properties);
+              let progressSummary;
+              if (node.data.progress) {
+                progressSummary = `
+                  <div style="position: absolute; top: 0px; right: 160px">
+                    <span style="color: #32cd32">
+                      ${node.data.progress.success || 0} passed
                     </span>
-                  `
-                      : ""
-                  }
-                  <span style="color: #000000">-</span>
-                  <span style="color: #FF6666">
-                    ${node.data.progress.failure || 0} failed
-                  </span>
+                    ${
+                      node.data.progress.skipped > 0
+                        ? `<span style="color: #000000">-</span>
+                      <span style="color: #7D7D7D">
+                      ${node.data.progress.skipped || 0} skipped
+      
+                      </span>
+                    `
+                        : ""
+                    }
+                    <span style="color: #000000">-</span>
+                    <span style="color: #FF6666">
+                      ${node.data.progress.failure || 0} failed
+                    </span>
+                  </div>
+                `;
+              } else {
+                progressSummary = "";
+              }
+              $(el)
+                .find("a")
+                .first().append(`
+                ${progressSummary}
+                <div style="position: absolute; top: 0px; right: 50px">
+                  <button type="button"
+                    class="btn btn-xs btn-primary"
+                    onclick='eNMS.automation.showRuntimePanel(
+                      "logs", ${data}, "${runtime}"
+                    )'><span class="glyphicon glyphicon-list"></span>
+                  </button>
+                  <button type="button"
+                    class="btn btn-xs btn-primary"
+                    onclick='eNMS.automation.showRuntimePanel(
+                      "report", ${data}, "${runtime}"
+                    )'><span class="glyphicon glyphicon-modal-window"></span>
+                  </button>
+                  <button type="button"
+                    class="btn btn-xs btn-primary"
+                    onclick='eNMS.automation.showRuntimePanel(
+                      "results", ${data}, "${runtime}", "result"
+                    )'>
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                  </button>
                 </div>
-              `;
-            } else {
-              progressSummary = "";
-            }
-            $(el)
-              .find("a")
-              .first().append(`
-              ${progressSummary}
-              <div style="position: absolute; top: 0px; right: 50px">
-                <button type="button"
-                  class="btn btn-xs btn-primary"
-                  onclick='eNMS.automation.showRuntimePanel(
-                    "logs", ${data}, "${runtime}"
-                  )'><span class="glyphicon glyphicon-list"></span>
-                </button>
-                <button type="button"
-                  class="btn btn-xs btn-primary"
-                  onclick='eNMS.automation.showRuntimePanel(
-                    "report", ${data}, "${runtime}"
-                  )'><span class="glyphicon glyphicon-modal-window"></span>
-                </button>
-                <button type="button"
-                  class="btn btn-xs btn-primary"
-                  onclick='eNMS.automation.showRuntimePanel(
-                    "results", ${data}, "${runtime}", "result"
-                  )'>
-                  <span class="glyphicon glyphicon-list-alt"></span>
-                </button>
-              </div>
-            `);
+              `);
+            },
           },
-        },
-      });
-      tree.bind("loaded.jstree", function() {
-        tree.jstree("open_all");
-      });
-      tree.unbind("dblclick.jstree").bind("dblclick.jstree", function(event) {
-        const service = tree.jstree().get_node(event.target);
-        showRuntimePanel("results", service.data.properties, runtime, "result");
-      });
+        });
+        tree.bind("loaded.jstree", function() {
+          tree.jstree("open_all");
+        });
+        tree.unbind("dblclick.jstree").bind("dblclick.jstree", function(event) {
+          const service = tree.jstree().get_node(event.target);
+          showRuntimePanel("results", service.data.properties, runtime, "result");
+        });
+      }
     }
   });
 }

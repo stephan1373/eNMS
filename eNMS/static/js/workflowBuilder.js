@@ -10,6 +10,7 @@ user: false
 */
 
 import {
+  displayResultsTree,
   field,
   flipRuntimeDisplay,
   runService,
@@ -610,7 +611,7 @@ function displayWorkflowState(result) {
   updateRuntimes(result);
   if (workflowTreeDisplayed) {
     if (currentRun && result.tree) {
-
+      displayResultsTree(workflow, currentRun.runtime, true)
     } else {
       drawTree(result.tree);
     }
