@@ -215,7 +215,7 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
   moveHistory(path, direction);
   call({
     url: `/get_service_state/${path}`,
-    data: { display: runtimeDisplay, runtime: runtime || "latest" },
+    data: { display: runtimeDisplay, runtime: runtime || "latest", workflow_tree: workflowTreeDisplayed },
     callback: function(result) {
       workflow = result.service;
       currentRun = result.run;
@@ -230,7 +230,11 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
         localStorage.setItem("workflow", JSON.stringify(workflow));
       }
       displayWorkflow(result);
-      drawTree(result.tree)
+      if (currentRun && result.tree) {
+        updateWorkflowTree(workflow, currentRun.runtime, result.tree, true);
+      } else {
+        drawTree(result.tree);
+      }
       if (selection) graph.setSelection(selection);
       switchMode(currentMode, true);
     },
