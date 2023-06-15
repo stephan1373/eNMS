@@ -755,7 +755,7 @@ export function getWorkflowState(periodic, first) {
       },
     });
   }
-  if (periodic) setTimeout(() => getWorkflowState(true, false), 4000);
+  if (periodic) setTimeout(() => getWorkflowState(true, false), 5000);
 }
 
 function compareWorkflowResults() {
@@ -908,7 +908,7 @@ export function invertWorkflowTree() {
       .jstree("destroy")
       .empty();
     [activeTree, passiveTree] = [passiveTree, activeTree];
-  }, 20);
+  }, 300);
 }
 
 function toggleWorkflowTree() {
