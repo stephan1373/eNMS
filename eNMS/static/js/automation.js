@@ -481,7 +481,7 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
     callback: function(data) {
       if (isWorkflowTree) {
         $("#workflow-tree-services").jstree(true).settings.core.data = data;
-        $('#workflow-tree-services').jstree(true).refresh();
+        $("#workflow-tree-services").jstree(true).refresh();
       } else {
         $(`#result-tree-${service.id}`).jstree("destroy").empty();
         if (!data) return notify("No results to display.", "error", 5);
