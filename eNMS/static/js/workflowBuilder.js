@@ -234,11 +234,6 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
         localStorage.setItem("workflow", JSON.stringify(workflow));
       }
       displayWorkflow(result);
-      if (currentRun && result.tree) {
-        updateWorkflowTree(workflow, currentRun.runtime, result.tree, true);
-      } else {
-        drawTree(result.tree);
-      }
       if (selection) graph.setSelection(selection);
       switchMode(currentMode, true);
     },
@@ -616,11 +611,15 @@ function displayWorkflowState(result) {
   if ($("#workflow-search").val()) return;
   resetWorkflowDisplay();
   updateRuntimes(result);
-  if (currentRuntime == "normal") displayWorkflowTree();
-  if (!nodes || !edges || !result.state) return;
   if (workflowTreeDisplayed) {
-    updateWorkflowTree(workflow, result.run.runtime, result.tree, true);
+    if (currentRun && result.tree) {
+      updateWorkflowTree(workflow, currentRun.runtime, result.tree, true);
+    } else {
+      
+      drawTree(result.tree);
+    }
   }
+  if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {
       colorService(parseInt(serviceId), status ? "#32cd32" : "#FF6666");
@@ -909,16 +908,7 @@ export function invertWorkflowTree() {
       .jstree("destroy")
       .empty();
     [activeTree, passiveTree] = [passiveTree, activeTree];
-  }, 50);
-}
-
-function displayWorkflowTree() {
-  call({
-    url: `/get_instance_tree/workflow/${currentPath}`,
-    callback: function(data) {
-      drawTree(data);
-    },
-  });
+  }, 20);
 }
 
 function toggleWorkflowTree() {
@@ -936,7 +926,7 @@ function toggleWorkflowTree() {
           $("#run-navbar")
             .appendTo("#workflow-tree-control")
             .show();
-          displayWorkflowTree();
+          getWorkflowState();
         },
       }
     );
@@ -961,7 +951,6 @@ function toggleWorkflowTree() {
 
 configureNamespace("workflowBuilder", [
   addServicesToWorkflow,
-  displayWorkflowTree,
   filterDevice,
   getWorkflowState,
   restartWorkflow,
