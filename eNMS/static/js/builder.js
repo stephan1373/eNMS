@@ -530,7 +530,7 @@ export function initBuilder() {
     loadTypes("node");
     loadTypes("edge");
   } else {
-    $("#workflow-tree-search-mode").selectpicker();
+    $("#tree-search-mode").selectpicker();
     loadTypes("service");
     flipRuntimeDisplay(runtimeDisplay);
     document.addEventListener("keydown", function(event) {

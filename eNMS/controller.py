@@ -651,7 +651,7 @@ class Controller:
         output["tree"] = (
             self.get_workflow_results(path, run.runtime)
             if run
-            else self.get_instance_tree("workflow", path)
+            else self.get_instance_tree("workflow", path, **kwargs)
         )
         serialized_service = service.to_dict(include=["superworkflow"])
         run_properties = vs.automation["workflow"]["state_properties"]["run"]
@@ -899,20 +899,31 @@ class Controller:
                 key=itemgetter("text"),
             )
 
-    def get_instance_tree(self, type, full_path):
+    def get_instance_tree(self, type, full_path, **kwargs):
         path_id = full_path.split(">")
 
         def rec(instance, path=""):
             path += ">" * bool(path) + str(instance.id)
+            style = ""
             if type == "workflow":
+                if kwargs.get("search_value") and instance.type != "workflow":
+                    if kwargs["search_mode"] == "names":
+                        if kwargs["search_value"] not in instance.name:
+                            return
+                        else:
+                            style = "font-weight: bold;"
                 if instance.scoped_name in ("Start", "End"):
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
                     instance = db.fetch(type, id=path_id[1])
             if type == "network":
                 children = instance.nodes
-            else:
-                children = instance.exclude_soft_deleted("services")
+            children = False
+            if instance.type == type:
+                instances = instance.exclude_soft_deleted("services") if type == "workflow" else instance.nodes
+                children = sorted(filter(None, (rec(child, path) for child in instances)), key=lambda node: node["text"].lower())
+                if not children:
+                    return
             child_property = "nodes" if type == "network" else "services"
             color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
@@ -920,21 +931,10 @@ class Controller:
                 "id": instance.id,
                 "state": {"opened": full_path.startswith(path)},
                 "text": instance.scoped_name if type == "workflow" else instance.name,
-                "children": sorted(
-                    filter(
-                        None,
-                        [
-                            rec(child, path)
-                            for child in children
-                        ],
-                    ),
-                    key=lambda node: node["text"].lower(),
-                )
-                if instance.type == type
-                else False,
+                "children": children,
                 "a_attr": {
                     "class": "no_checkbox",
-                    "style": f"color: #{color}; width: 100%",
+                    "style": f"color: #{color}; width: 100%; {style}",
                 },
                 "type": instance.type,
             }

@@ -740,6 +740,8 @@ export function getWorkflowState(periodic, first) {
         display: runtimeDisplay,
         runtime: runtime,
         device: $("#device-filter").val(),
+        search_mode: $("#tree-search-mode").val(),
+        search_value: $("#tree-search").val(),
       },
       callback: function(result) {
         if (!Object.keys(result).length || result.service.id != workflow.id) return;
@@ -890,13 +892,11 @@ function drawTree(data) {
         },
       });
     let timer = false;
-    $("#tree-search").keyup(function() {
+    document.getElementById("tree-search").addEventListener('keyup', function() {
+      
       if (timer) clearTimeout(timer);
       timer = setTimeout(function() {
-        const searchValue = $(`#tree-search`).val();
-        $("#workflow-tree-services")
-          .jstree(true)
-          .search(searchValue);
+        getWorkflowState()
       }, 500);
     });
   }
