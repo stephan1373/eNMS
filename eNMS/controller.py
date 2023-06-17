@@ -912,6 +912,11 @@ class Controller:
                             return
                         else:
                             style = "font-weight: bold;"
+                    else:
+                        if kwargs["search_value"].lower() not in str(instance.get_properties().values()).lower():
+                            return
+                        else:
+                            style = "font-weight: bold;"
                 if instance.scoped_name in ("Start", "End"):
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
@@ -1331,14 +1336,6 @@ class Controller:
     def scheduler_action(self, mode, **kwargs):
         for task in self.filtering("task", properties=["id"], form=kwargs):
             self.task_action(mode, task.id)
-
-    def search_builder(self, type, id, text):
-        property = "nodes" if type == "network" else "services"
-        return [
-            node.id
-            for node in getattr(db.fetch(type, id=id), property)
-            if text.lower() in str(node.get_properties().values()).lower()
-        ]
 
     def search_workflow_services(self, **kwargs):
         service_alias = aliased(vs.models["service"])
