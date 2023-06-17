@@ -908,7 +908,7 @@ class Controller:
             if type == "workflow":
                 if kwargs.get("search_value") and instance.type != "workflow":
                     if kwargs["search_mode"] == "names":
-                        if kwargs["search_value"] not in instance.name:
+                        if kwargs["search_value"] not in instance.name.lower():
                             return
                         else:
                             style = "font-weight: bold;"
