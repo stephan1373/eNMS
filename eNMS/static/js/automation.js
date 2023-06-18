@@ -481,10 +481,16 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
     callback: function(data) {
       if (isWorkflowTree && $("#workflow-tree-services").jstree(true)) {
         $("#workflow-tree-services").jstree(true).settings.core.data = data;
-        $("#workflow-tree-services").jstree(true).refresh();
+        $("#workflow-tree-services")
+          .jstree(true)
+          .refresh();
       } else {
-        const treeId = isWorkflowTree ? "#workflow-tree-services" : `#result-tree-${service.id}`;
-        $(treeId).jstree("destroy").empty();
+        const treeId = isWorkflowTree
+          ? "#workflow-tree-services"
+          : `#result-tree-${service.id}`;
+        $(treeId)
+          .jstree("destroy")
+          .empty();
         if (!data) return notify("No results to display.", "error", 5);
         let tree = $(treeId).jstree({
           core: {
@@ -568,7 +574,7 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
           showRuntimePanel("results", service.data.properties, runtime, "result");
         });
       }
-    }
+    },
   });
 }
 

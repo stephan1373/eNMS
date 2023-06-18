@@ -610,11 +610,13 @@ function displayWorkflowState(result, workflowSwitch) {
   resetWorkflowDisplay();
   updateRuntimes(result);
   if (workflowSwitch) {
-    $("#workflow-tree-services").jstree("destroy").empty();
+    $("#workflow-tree-services")
+      .jstree("destroy")
+      .empty();
     $(".hidden-scrollbar").scrollTop(0);
   }
   if (currentRun && result.tree) {
-    displayResultsTree(workflow, currentRun.runtime, true)
+    displayResultsTree(workflow, currentRun.runtime, true);
   } else {
     drawTree(result.tree);
   }
@@ -840,7 +842,9 @@ function drawTree(data) {
   if (noUpdate) return;
   if ($("#workflow-tree-services").jstree(true)) {
     $("#workflow-tree-services").jstree(true).settings.core.data = data;
-    $("#workflow-tree-services").jstree(true).refresh();
+    $("#workflow-tree-services")
+      .jstree(true)
+      .refresh();
   } else {
     $("#workflow-tree-services")
       .bind("loaded.jstree", function(e, data) {
@@ -895,7 +899,7 @@ function drawTree(data) {
         },
       });
     let timer = false;
-    document.getElementById("tree-search").addEventListener('keyup', function() {
+    document.getElementById("tree-search").addEventListener("keyup", function() {
       if (timer) clearTimeout(timer);
       timer = setTimeout(getWorkflowState, 500);
     });

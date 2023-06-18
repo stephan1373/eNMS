@@ -578,8 +578,4 @@ export function initBuilder() {
   updateRightClickBindings();
 }
 
-configureNamespace("builder", [
-  createLabel,
-  highlightNode,
-  switchMode,
-]);
+configureNamespace("builder", [createLabel, highlightNode, switchMode]);
