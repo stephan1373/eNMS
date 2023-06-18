@@ -605,8 +605,6 @@ export function searchBuilderText() {
     url: `/search_builder/${type}/${instance.id}/${searchValue}`,
     callback: function(selectedNodes) {
       if (type == "workflow") {
-        resetWorkflowDisplay();
-        selectedNodes.forEach((node) => colorService(node, "#EFFD5F"));
       } else {
         resetNetworkDisplay();
         selectedNodes.forEach((nodeId) => {

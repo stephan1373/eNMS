@@ -618,6 +618,9 @@ function displayWorkflowState(result, workflowSwitch) {
   } else {
     drawTree(result.tree);
   }
+  if (result.highlight) {
+    result.highlight.forEach((node) => colorService(node, "#EFFD5F"));
+  }
   if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {

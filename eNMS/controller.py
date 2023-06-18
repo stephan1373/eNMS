@@ -648,11 +648,10 @@ class Controller:
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
             }
-        output["tree"] = (
-            self.get_workflow_results(path, run.runtime)
-            if run
-            else self.get_instance_tree("workflow", path, **kwargs)
-        )
+        if run:
+            output["tree"] = self.get_workflow_results(path, run.runtime)
+        else:
+            output.update(self.get_instance_tree("workflow", path, **kwargs))
         serialized_service = service.to_dict(include=["superworkflow"])
         run_properties = vs.automation["workflow"]["state_properties"]["run"]
         service_properties = vs.automation["workflow"]["state_properties"]["service"]
@@ -901,15 +900,19 @@ class Controller:
 
     def get_instance_tree(self, type, full_path, **kwargs):
         path_id = full_path.split(">")
+        highlight = []
 
         def match(instance, **kwargs):
-            return not (
+            is_match = not (
                 kwargs["search_mode"] == "names"
                 and kwargs["search_value"].lower() not in instance.scoped_name.lower()
                 or kwargs["search_mode"] == "properties"
                 and kwargs["search_value"].lower()
                 not in str(instance.get_properties().values()).lower()
             )
+            if is_match:
+                highlight.append(instance.id)
+            return is_match
 
         def rec(instance, path=""):
             path += ">" * bool(path) + str(instance.id)
@@ -958,7 +961,7 @@ class Controller:
                 "type": instance.type,
             }
 
-        return rec(db.fetch(type, id=path_id[0]))
+        return {"tree": rec(db.fetch(type, id=path_id[0])), "highlight": highlight}
 
     def load_debug_snippets(self):
         snippets = {}
