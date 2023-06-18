@@ -849,7 +849,7 @@ function drawTree(data) {
           themes: { stripes: true },
           data: data,
         },
-        plugins: ["html_row", "search", "types", "wholerow"],
+        plugins: ["html_row", "types", "wholerow"],
         html_row: {
           default: function(el, node) {
             if (!node) return;
