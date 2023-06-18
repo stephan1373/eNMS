@@ -417,21 +417,6 @@ export function createNewNode(mode) {
   }
 }
 
-function displayTextSearchField() {
-  $(`#${type}-search-div`).toggle();
-  if ($(`#${type}-search-div`).is(":visible")) {
-    $(`#${type}-search`).focus();
-  } else {
-    $(`#${type}-search`).val("");
-    if (type == "workflow") {
-      getWorkflowState();
-    } else {
-      resetNetworkDisplay();
-      getNetworkState();
-    }
-  }
-}
-
 function drawNode(node) {
   return type == "network" ? drawNetworkNode(node) : drawWorkflowNode(node);
 }
@@ -619,7 +604,6 @@ export function searchBuilderText() {
 
 configureNamespace("builder", [
   createLabel,
-  displayTextSearchField,
   highlightNode,
   switchMode,
 ]);
