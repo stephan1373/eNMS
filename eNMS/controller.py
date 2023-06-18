@@ -913,16 +913,14 @@ class Controller:
 
         def rec(instance, path=""):
             path += ">" * bool(path) + str(instance.id)
-            style = ""
-            active_search = kwargs.get("search_value")
-            is_match = match(instance, **kwargs) if active_search else True 
+            style, active_search = "", kwargs.get("search_value")
             if type == "workflow":
                 if instance.scoped_name in ("Start", "End"):
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
                     instance = db.fetch(type, id=path_id[1])
                 if active_search and instance.type != type:
-                    if is_match:
+                    if match(instance, **kwargs):
                         style = "font-weight: bold;"
                     else:
                         return
@@ -939,10 +937,12 @@ class Controller:
                     filter(None, (rec(child, path) for child in instances)),
                     key=lambda node: node["text"].lower(),
                 )
-                if not children and active_search and not is_match:
-                    return
-                elif active_search and is_match:
-                    style = "font-weight: bold;"
+                if active_search:
+                    is_match = match(instance, **kwargs)
+                    if not children and not is_match:
+                        return
+                    elif is_match:
+                        style = "font-weight: bold;"
             child_property = "nodes" if type == "network" else "services"
             color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
