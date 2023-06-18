@@ -907,16 +907,10 @@ class Controller:
             style = ""
             if type == "workflow":
                 if kwargs.get("search_value") and instance.type != "workflow":
-                    if kwargs["search_mode"] == "names":
-                        if kwargs["search_value"] not in instance.name.lower():
-                            return
-                        else:
-                            style = "font-weight: bold;"
+                    if kwargs["search_mode"] == "names" and kwargs["search_value"] not in instance.name.lower() or kwargs["search_mode"] == "properties" and kwargs["search_value"].lower() not in str(instance.get_properties().values()).lower():
+                        return
                     else:
-                        if kwargs["search_value"].lower() not in str(instance.get_properties().values()).lower():
-                            return
-                        else:
-                            style = "font-weight: bold;"
+                        style = "font-weight: bold;"
                 if instance.scoped_name in ("Start", "End"):
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
