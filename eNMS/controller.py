@@ -907,7 +907,13 @@ class Controller:
             style = ""
             if type == "workflow":
                 if kwargs.get("search_value") and instance.type != "workflow":
-                    if kwargs["search_mode"] == "names" and kwargs["search_value"] not in instance.name.lower() or kwargs["search_mode"] == "properties" and kwargs["search_value"].lower() not in str(instance.get_properties().values()).lower():
+                    if (
+                        kwargs["search_mode"] == "names"
+                        and kwargs["search_value"] not in instance.name.lower()
+                        or kwargs["search_mode"] == "properties"
+                        and kwargs["search_value"].lower()
+                        not in str(instance.get_properties().values()).lower()
+                    ):
                         return
                     else:
                         style = "font-weight: bold;"
@@ -919,8 +925,15 @@ class Controller:
                 children = instance.nodes
             children = False
             if instance.type == type:
-                instances = instance.exclude_soft_deleted("services") if type == "workflow" else instance.nodes
-                children = sorted(filter(None, (rec(child, path) for child in instances)), key=lambda node: node["text"].lower())
+                instances = (
+                    instance.exclude_soft_deleted("services")
+                    if type == "workflow"
+                    else instance.nodes
+                )
+                children = sorted(
+                    filter(None, (rec(child, path) for child in instances)),
+                    key=lambda node: node["text"].lower(),
+                )
                 if not children:
                     return
             child_property = "nodes" if type == "network" else "services"
