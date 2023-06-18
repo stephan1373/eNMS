@@ -902,6 +902,16 @@ class Controller:
     def get_instance_tree(self, type, full_path, **kwargs):
         path_id = full_path.split(">")
 
+        def match(instance, **kwargs):
+            if not kwargs.get("search_value"):
+                return True
+            return not (kwargs["search_mode"] == "names"
+                        and kwargs["search_value"].lower() not in instance.scoped_name.lower()
+                        or kwargs["search_mode"] == "properties"
+                        and kwargs["search_value"].lower()
+                        not in str(instance.get_properties().values()).lower())
+
+
         def rec(instance, path=""):
             path += ">" * bool(path) + str(instance.id)
             style = ""
@@ -910,17 +920,11 @@ class Controller:
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
                     instance = db.fetch(type, id=path_id[1])
-                if kwargs.get("search_value") and instance.type != "workflow":
-                    if (
-                        kwargs["search_mode"] == "names"
-                        and kwargs["search_value"] not in instance.name.lower()
-                        or kwargs["search_mode"] == "properties"
-                        and kwargs["search_value"].lower()
-                        not in str(instance.get_properties().values()).lower()
-                    ):
-                        return
-                    else:
+                if kwargs.get("search_value") and instance.type != type:
+                    if match(instance, **kwargs):
                         style = "font-weight: bold;"
+                    else:
+                        return
             if type == "network":
                 children = instance.nodes
             children = False
@@ -934,8 +938,10 @@ class Controller:
                     filter(None, (rec(child, path) for child in instances)),
                     key=lambda node: node["text"].lower(),
                 )
-                if not children:
+                if not children and not match(instance, **kwargs):
                     return
+                elif kwargs.get("search_value") and match(instance, **kwargs):
+                    style = "font-weight: bold;"
             child_property = "nodes" if type == "network" else "services"
             color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
