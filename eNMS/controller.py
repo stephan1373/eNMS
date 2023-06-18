@@ -906,6 +906,10 @@ class Controller:
             path += ">" * bool(path) + str(instance.id)
             style = ""
             if type == "workflow":
+                if instance.scoped_name in ("Start", "End"):
+                    return
+                elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
+                    instance = db.fetch(type, id=path_id[1])
                 if kwargs.get("search_value") and instance.type != "workflow":
                     if (
                         kwargs["search_mode"] == "names"
@@ -917,10 +921,6 @@ class Controller:
                         return
                     else:
                         style = "font-weight: bold;"
-                if instance.scoped_name in ("Start", "End"):
-                    return
-                elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
-                    instance = db.fetch(type, id=path_id[1])
             if type == "network":
                 children = instance.nodes
             children = False
