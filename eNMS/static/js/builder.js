@@ -561,11 +561,6 @@ export function initBuilder() {
         }
       }
       $(`#current-${type},#current-runtimes`).selectpicker({ liveSearch: true });
-      let searchTimer = false;
-      $(`#${type}-search`).keyup(function() {
-        if (searchTimer) clearTimeout(searchTimer);
-        searchTimer = setTimeout(searchBuilderText, 300);
-      });
       if (type == "workflow") {
         initSelect($(`#device-filter`), "device", null, true);
         $("#current-runtime,#device-filter").on("change", function() {
@@ -581,25 +576,6 @@ export function initBuilder() {
     if (!instance || this.value != instance.id) switchTo(this.value);
   });
   updateRightClickBindings();
-}
-
-export function searchBuilderText() {
-  const searchValue = $(`#${type}-search`).val();
-  if (!searchValue) return;
-  call({
-    url: `/search_builder/${type}/${instance.id}/${searchValue}`,
-    callback: function(selectedNodes) {
-      if (type == "workflow") {
-      } else {
-        resetNetworkDisplay();
-        selectedNodes.forEach((nodeId) => {
-          const icon = nodes.get(parseInt(nodeId)).icon;
-          const image = `/static/img/network/red/${icon}.gif`;
-          nodes.update({ id: parseInt(nodeId), image: image });
-        });
-      }
-    },
-  });
 }
 
 configureNamespace("builder", [
