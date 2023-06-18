@@ -894,9 +894,7 @@ function drawTree(data) {
     let timer = false;
     document.getElementById("tree-search").addEventListener('keyup', function() {
       if (timer) clearTimeout(timer);
-      timer = setTimeout(function() {
-        getWorkflowState()
-      }, 500);
+      timer = setTimeout(getWorkflowState, 500);
     });
   }
   workflowTreeData = JSON.stringify(data);
