@@ -107,6 +107,13 @@ class AbstractBase(db.base):
             for property in rbac_properties + model_rbac_properties:
                 kwargs.pop(property, None)
 
+    def get_changelog_kwargs(self):
+        return {
+            "target_name": self.name,
+            "target_type": self.class_type,
+            f"{self.class_type}_id": self.id,
+        }
+
     @classmethod
     def rbac_filter(cls, query, mode, user, join_class=None):
         model = join_class or getattr(cls, "class_type", None)

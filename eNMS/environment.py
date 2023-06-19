@@ -269,20 +269,6 @@ class Environment:
         if logger:
             getattr(getLogger(logger), severity)(content)
         if change_log or logger and logger_settings.get("change_log"):
-            log_kwargs = {}
-            if instance:
-                log_kwargs = {
-                    "target_name": instance.name,
-                    "target_type": instance.class_type,
-                    f"{instance.class_type}_id": instance.id,
-                }
-            model = getattr(instance, "class_type", None)
-            if model == "service":
-                log_kwargs["workflows"] = [wf.id for wf in instance.workflows]
-                if instance.type == "workflow":
-                    log_kwargs["workflows"].append(instance.id)
-            elif model == "workflow_edge":
-                log_kwargs["workflows"] = [instance.workflow.id]
             db.factory(
                 "changelog",
                 **{
@@ -290,7 +276,7 @@ class Environment:
                     "content": content,
                     "author": user or getattr(current_user, "name", ""),
                     "history": history,
-                    **log_kwargs,
+                    **(instance.get_changelog_kwargs() if instance else {}),
                 },
             )
         return logger_settings
