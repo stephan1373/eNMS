@@ -193,7 +193,7 @@ export function drawTree(data) {
         $(".menu-entry").hide();
         $(".node-selection").show();
         selectedObject = tree.get_node(event.target);
-        network.selectNodes([selectedObject.id]);
+        if (nodes.get(selectedObject.id)) network.selectNodes([selectedObject.id]);
       });
       $("#workflow-tree-services").contextMenu({
         menuSelector: "#contextMenu",
