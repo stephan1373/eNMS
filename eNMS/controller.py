@@ -740,17 +740,18 @@ class Controller:
         pools = db.query("pool").filter(or_(has_device, has_link)).all()
         return [pool.base_properties for pool in pools]
 
-    def get_builder_children(self, type, workflow_id):
-        workflow = db.fetch("workflow", id=workflow_id)
-        children = {workflow.name}
+    def get_builder_children(self, type, instance_id):
+        instance = db.fetch(type, id=instance_id)
+        children = {instance.name}
+        child_property = "services" if type == "workflow" else "nodes"
 
-        def rec(workflow):
-            for service in workflow.services:
-                if service.type == "workflow":
-                    children.add(service.name)
-                    rec(service)
+        def rec(instance):
+            for sub_instance in getattr(instance, child_property):
+                if sub_instance.type == type:
+                    children.add(sub_instance.name)
+                    rec(sub_instance)
 
-        rec(workflow)
+        rec(instance)
         return list(children)
 
     def get_workflow_results(self, path, runtime):
