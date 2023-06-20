@@ -169,7 +169,7 @@ export function showBuilderChangelogPanel(model, global) {
       },
     });
   } else {
-    const selection = graph
+    const selection = network
       .getSelectedNodes()
       .map((nodeId) => nodes.get(nodeId).full_name);
     const constraints = {
