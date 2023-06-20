@@ -496,13 +496,13 @@ function getWorkflowLink(includeRuntime) {
 export function updateWorkflowRightClickBindings() {
   updateBuilderBindings(action);
   Object.assign(action, {
-    Changelog: () => showWorkflowChangelogPanel(),
+    Changelog: () => showWorkflowChangelogPanel("workflow"),
     "Link to Workflow": () => getWorkflowLink(),
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
     "Restart Workflow from Here": showRestartWorkflowPanel,
-    "Workflow Changelog": () => showWorkflowChangelogPanel(true),
+    "Workflow Changelog": () => showWorkflowChangelogPanel("workflow", true),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
     "Workflow Result Table": () =>
       showRuntimePanel("results", workflow, null, "full_result", null, true),
@@ -809,7 +809,7 @@ function compareWorkflowResults() {
   });
 }
 
-export function showWorkflowChangelogPanel(global) {
+export function showWorkflowChangelogPanel(model, global) {
   if (global) {
     call({
       url: `/get_workflow_children/${workflow.id}`,

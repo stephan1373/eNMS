@@ -111,6 +111,14 @@ block stylesheets %} {{ super() }}
       </li>
       <li>
         <a
+          onclick="action['Network Changelog']()"
+          data-tooltip="Changelog"
+          style="cursor: pointer;"
+          ><span class="glyphicon glyphicon-wrench"></span
+        ></a>
+      </li>
+      <li>
+        <a
           onclick="action['Run Service']()"
           data-tooltip="Run Service"
           style="cursor: pointer;"
