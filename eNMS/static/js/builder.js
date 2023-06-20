@@ -168,10 +168,9 @@ export function showBuilderChangelogPanel(model, global) {
       },
     });
   } else {
-    const constraints = {
-      [`${model == "workflow" ? "service" : "node"}_id`]: network.getSelectedNodes()[0],
-    };
-    showChangelogPanel(instance.id, constraints);
+    const selectedNode = network.getSelectedNodes()[0];
+    const classType = model == "workflow" ? "service" : nodes.get(selectedNode).type;
+    showChangelogPanel(instance.id, { [`${classType}_id`]: selectedNode });
   }
 }
 
