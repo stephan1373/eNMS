@@ -156,11 +156,12 @@ export function savePositions() {
 }
 
 export function showBuilderChangelogPanel(model, global) {
+  const childProperty = model == "workflow" ? "service" : "node";
   if (global) {
     call({
       url: `/get_builder_children/${model}/${instance.id}`,
       callback: function(childrenId) {
-        const constraints = { workflows: childrenId, service_filter: "union" };
+        const constraints = { [`${model}s`]: childrenId, [`${childProperty}_filter`]: "union" };
         showChangelogPanel(instance.id, constraints);
       },
     });
@@ -168,7 +169,7 @@ export function showBuilderChangelogPanel(model, global) {
     const selection = graph
       .getSelectedNodes()
       .map((nodeId) => nodes.get(nodeId).full_name);
-    const constraints = { workflows: selection, service_filter: "union" };
+    const constraints = { [`${model}s`]: selection, [`${childProperty}_filter`]: "union" };
     showChangelogPanel(instance.id, constraints);
   }
 }
