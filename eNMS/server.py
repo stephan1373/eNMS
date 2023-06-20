@@ -98,7 +98,7 @@ class Server(Flask):
     def configure_context_processor(self):
         @self.context_processor
         def inject_properties():
-            return {
+            return {} if request.path.endswith("_form") else {
                 "user": current_user.get_properties()
                 if current_user.is_authenticated
                 else None,
