@@ -61,6 +61,8 @@ Version 4.6.0: Changelog & Workflow Tree
   - prevent non-admin users from changing the "Admin Only" value
   - extend "Admin Only" mechanism to all rbac models (plus the group model)
 - Add support for named credential in the web SSH connection to a device
+- Performance Improvements:
+  - Dont inject context processor variables for forms
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
