@@ -158,7 +158,7 @@ export function savePositions() {
 export function showBuilderChangelogPanel(model, global) {
   if (global) {
     call({
-      url: `/get_workflow_children/${instance.id}`,
+      url: `/get_builder_children/${model}/${instance.id}`,
       callback: function(childrenId) {
         const constraints = { workflows: childrenId, service_filter: "union" };
         showChangelogPanel(instance.id, constraints);

@@ -740,7 +740,7 @@ class Controller:
         pools = db.query("pool").filter(or_(has_device, has_link)).all()
         return [pool.base_properties for pool in pools]
 
-    def get_workflow_children(self, workflow_id):
+    def get_builder_children(self, type, workflow_id):
         workflow = db.fetch("workflow", id=workflow_id)
         children = {workflow.name}
 
