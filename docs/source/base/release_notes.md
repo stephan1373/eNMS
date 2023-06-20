@@ -19,6 +19,10 @@ Version 4.6.0: Changelog & Workflow Tree
       - the changes to any service in that workflow (including services in subworkflows, etc)
       - adding, editing and deleting labels
       - adding and removing services and workflow edges
+    - The changelog of a workflow does not include:
+      - changes made to the parent workflow (by design)
+      - changes made to the superworkflow when displaying changelogs of the top-level
+        workflow (not supported)
     - Add changelog button in workflow builder, service and global RC menus.
       When a selection is active, the changelog entry will only display changelogs for
       the subset of services that are selected (similar to skip mechanism).
@@ -31,6 +35,7 @@ Version 4.6.0: Changelog & Workflow Tree
   - Add changelog button to all tables to display:
     - all changelogs about a specific type of object in table controls (e.g all device changelogs)
     - all changes about a specific object via link to "Changelog" relation table in every row
+  - Add changelog support in network builder
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
