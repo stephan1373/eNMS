@@ -29,6 +29,7 @@ class Network(Node):
     links = relationship(
         "Link", secondary=db.link_network_table, back_populates="networks"
     )
+    logs = relationship("Changelog", back_populates="network")
     nodes_changelogs = relationship(
         "Changelog",
         secondary=db.changelog_network_table,

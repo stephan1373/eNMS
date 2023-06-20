@@ -50,10 +50,11 @@
   ],
   "changelog_models": {
     "credential": "Credential",
-    "node": "Node",
+    "device": "Device",
     "file": "File",
     "group": "Group",
     "link": "Link",
+    "network": "Network",
     "pool": "Pool",
     "server": "Server",
     "service": "Service",
