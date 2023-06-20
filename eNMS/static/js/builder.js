@@ -18,6 +18,7 @@ import {
   loadTypes,
   notify,
   openPanel,
+  showChangelogPanel,
   showConfirmationPanel,
   showInstancePanel,
 } from "./base.js";
@@ -37,7 +38,6 @@ import {
   ends,
   getWorkflowState,
   resetWorkflowDisplay,
-  showWorkflowChangelogPanel,
   switchToWorkflow,
   updateWorkflowRightClickBindings,
 } from "./workflowBuilder.js";
@@ -153,6 +153,24 @@ export function savePositions() {
       );
     },
   });
+}
+
+export function showBuilderChangelogPanel(model, global) {
+  if (global) {
+    call({
+      url: `/get_workflow_children/${instance.id}`,
+      callback: function(childrenId) {
+        const constraints = { workflows: childrenId, service_filter: "union" };
+        showChangelogPanel(instance.id, constraints);
+      },
+    });
+  } else {
+    const selection = graph
+      .getSelectedNodes()
+      .map((nodeId) => nodes.get(nodeId).full_name);
+    const constraints = { workflows: selection, service_filter: "union" };
+    showChangelogPanel(instance.id, constraints);
+  }
 }
 
 export function showLabelPanel({ label, usePosition }) {
@@ -309,7 +327,7 @@ export function updateBuilderBindings(action) {
         .join(">");
       if (parentPath) switchTo(parentPath);
     },
-    Changelog: () => showWorkflowChangelogPanel(type),
+    Changelog: () => showBuilderChangelogPanel(type),
   });
   $("#builder").contextMenu({
     menuSelector: "#contextMenu",
@@ -519,7 +537,7 @@ export function initBuilder() {
     loadTypes("service");
     flipRuntimeDisplay(runtimeDisplay);
     document.addEventListener("keydown", function(event) {
-      if (event.ctrlKey && event.key === "z") showWorkflowChangelogPanel(type, true);
+      if (event.ctrlKey && event.key === "z") showBuilderChangelogPanel(type, true);
     });
   }
   $("#left-arrow,#right-arrow").addClass("disabled");

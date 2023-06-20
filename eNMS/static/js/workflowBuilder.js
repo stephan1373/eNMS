@@ -41,6 +41,7 @@ import {
   instance,
   nodes,
   setPath,
+  showBuilderChangelogPanel,
   showLabelPanel,
   switchMode,
   updateBuilderBindings,
@@ -496,13 +497,13 @@ function getWorkflowLink(includeRuntime) {
 export function updateWorkflowRightClickBindings() {
   updateBuilderBindings(action);
   Object.assign(action, {
-    Changelog: () => showWorkflowChangelogPanel("workflow"),
+    Changelog: () => showBuilderChangelogPanel("workflow"),
     "Link to Workflow": () => getWorkflowLink(),
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
     "Restart Workflow from Here": showRestartWorkflowPanel,
-    "Workflow Changelog": () => showWorkflowChangelogPanel("workflow", true),
+    "Workflow Changelog": () => showBuilderChangelogPanel("workflow", true),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
     "Workflow Result Table": () =>
       showRuntimePanel("results", workflow, null, "full_result", null, true),
@@ -807,24 +808,6 @@ function compareWorkflowResults() {
       new tables["full_result"](mainId, constraints);
     },
   });
-}
-
-export function showWorkflowChangelogPanel(model, global) {
-  if (global) {
-    call({
-      url: `/get_workflow_children/${workflow.id}`,
-      callback: function(childrenId) {
-        const constraints = { workflows: childrenId, service_filter: "union" };
-        showChangelogPanel(workflow.id, constraints);
-      },
-    });
-  } else {
-    const selection = graph
-      .getSelectedNodes()
-      .map((nodeId) => nodes.get(nodeId).full_name);
-    const constraints = { workflows: selection, service_filter: "union" };
-    showChangelogPanel(workflow.id, constraints);
-  }
 }
 
 function filterDevice() {
