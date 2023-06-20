@@ -30,6 +30,12 @@ class Network(Node):
         "Link", secondary=db.link_network_table, back_populates="networks"
     )
     logs = relationship("Changelog", back_populates="network")
+    nodes_changelogs = relationship(
+        "Changelog",
+        secondary=db.changelog_network_table,
+        back_populates="networks",
+        info={"log_change": False},
+    )
 
     def duplicate(self, clone=None):
         for property in ("labels", "nodes", "links"):

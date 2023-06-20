@@ -25,6 +25,7 @@ import {
   nodes,
   setPath,
   savePositions,
+  showBuilderChangelogPanel,
   showLabelPanel,
   switchMode,
   updateBuilderBindings,
@@ -240,6 +241,7 @@ export function updateNetworkRightClickBindings() {
     "Automatic Layout": () => drawNetwork(),
     Connect: (node) => showConnectionPanel(node),
     Configuration: (node) => showDeviceData(node),
+    "Network Changelog": () => showBuilderChangelogPanel("network", true),
     Results: (node) => showDeviceResultsPanel(node),
     "Run Service": () => {
       if (!graph) return;

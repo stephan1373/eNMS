@@ -203,6 +203,16 @@
   },
   "relationships": {
     "associations": {
+      "changelog_network": {
+        "model1": {
+          "column": "changelog_id",
+          "foreign_key": "changelog"
+        },
+        "model2": {
+          "column": "network_id",
+          "foreign_key": "network"
+        }
+      },
       "changelog_workflow": {
         "model1": {
           "column": "changelog_id",

@@ -52,6 +52,12 @@ class Node(Object):
         "Network", secondary=db.node_network_table, back_populates="nodes"
     )
 
+    def get_changelog_kwargs(self):
+        kwargs = {"networks": [network.id for network in self.networks]}
+        if self.type == "network":
+            kwargs["networks"].append(self.id)
+        return {**kwargs, **super().get_changelog_kwargs()}
+
     def post_update(self):
         return self.to_dict(include=["networks", "nodes"])
 

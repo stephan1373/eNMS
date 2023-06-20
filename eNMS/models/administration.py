@@ -182,6 +182,11 @@ class Changelog(AbstractBase):
         secondary=db.changelog_workflow_table,
         back_populates="service_changelogs",
     )
+    networks = relationship(
+        "Network",
+        secondary=db.changelog_network_table,
+        back_populates="nodes_changelogs",
+    )
 
     @classmethod
     def database_init(cls):
