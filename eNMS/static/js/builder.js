@@ -156,25 +156,20 @@ export function savePositions() {
 }
 
 export function showBuilderChangelogPanel(model, global) {
-  const childProperty = model == "workflow" ? "service" : "node";
   if (global) {
     call({
       url: `/get_builder_children/${model}/${instance.id}`,
       callback: function(childrenId) {
         const constraints = {
           [`${model}s`]: childrenId,
-          [`${childProperty}_filter`]: "union",
+          [`${model}s_filter`]: "union",
         };
         showChangelogPanel(instance.id, constraints);
       },
     });
   } else {
-    const selection = network
-      .getSelectedNodes()
-      .map((nodeId) => nodes.get(nodeId).full_name);
     const constraints = {
-      [`${model}s`]: selection,
-      [`${childProperty}_filter`]: "union",
+      [`${model == "workflow" ? "service" : "node"}_id`]: network.getSelectedNodes()[0],
     };
     showChangelogPanel(instance.id, constraints);
   }

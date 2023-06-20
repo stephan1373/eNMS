@@ -51,6 +51,7 @@ class Node(Object):
     networks = relationship(
         "Network", secondary=db.node_network_table, back_populates="nodes"
     )
+    logs = relationship("Changelog", back_populates="node")
 
     def get_changelog_kwargs(self):
         kwargs = {"networks": [network.id for network in self.networks]}
@@ -105,7 +106,6 @@ class Device(Node):
     sessions = relationship(
         "Session", back_populates="device", cascade="all, delete-orphan"
     )
-    logs = relationship("Changelog", back_populates="device")
 
     @classmethod
     def database_init(cls):
