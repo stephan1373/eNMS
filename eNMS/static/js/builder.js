@@ -161,7 +161,10 @@ export function showBuilderChangelogPanel(model, global) {
     call({
       url: `/get_builder_children/${model}/${instance.id}`,
       callback: function(childrenId) {
-        const constraints = { [`${model}s`]: childrenId, [`${childProperty}_filter`]: "union" };
+        const constraints = {
+          [`${model}s`]: childrenId,
+          [`${childProperty}_filter`]: "union",
+        };
         showChangelogPanel(instance.id, constraints);
       },
     });
@@ -169,7 +172,10 @@ export function showBuilderChangelogPanel(model, global) {
     const selection = graph
       .getSelectedNodes()
       .map((nodeId) => nodes.get(nodeId).full_name);
-    const constraints = { [`${model}s`]: selection, [`${childProperty}_filter`]: "union" };
+    const constraints = {
+      [`${model}s`]: selection,
+      [`${childProperty}_filter`]: "union",
+    };
     showChangelogPanel(instance.id, constraints);
   }
 }
