@@ -105,5 +105,6 @@ body {
 }
 
 .workflow_tree_title {
-  color: #0a1734;
+  font-variant: small-caps;
+  color: #0275d8;
 }
