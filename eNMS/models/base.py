@@ -2,7 +2,6 @@ from collections import defaultdict
 from flask_login import current_user
 from sqlalchemy import Boolean, or_
 from sqlalchemy.ext.mutable import MutableDict, MutableList
-from sqlalchemy.orm import aliased
 from sqlalchemy.sql.expression import false
 
 from eNMS.database import db
@@ -196,14 +195,6 @@ class AbstractBase(db.base):
             if not getattr(instance, "soft_deleted", False):
                 yield instance
 
-    def get_relation_properties(self, relation, properties):
-        fields = [getattr(vs.models[vs.relationships[self.type][relation]["model"]], property) for property in properties]
-        joined_model = aliased(vs.models[self.type])
-        return (
-            db.session.query(*fields)
-            .join(getattr(joined_model, relation))
-            .filter(joined_model.id == self.id).all())
-
     def to_dict(
         self,
         export=False,
@@ -211,7 +202,6 @@ class AbstractBase(db.base):
         exclude=None,
         include=None,
         private_properties=False,
-        relation_properties=None
     ):
         properties = self.get_properties(
             export, exclude=exclude, private_properties=private_properties
@@ -222,32 +212,22 @@ class AbstractBase(db.base):
                 continue
             if export and property in no_migrate:
                 continue
-            if relation_properties:
-                value = self.get_relation_properties(property, relation_properties)
-                value = [obj[0] if len(relation_properties) == 1 else dict(zip(relation_properties, obj)) for obj in value]
-                if relation["list"]:
-                    properties[property] = value
-                elif value:
-                    properties[property] = value[0]
-                else:
-                    continue
+            value = getattr(self, property)
+            if relation["list"]:
+                properties[property] = [
+                    obj.name
+                    if export or relation_names_only
+                    else obj.get_properties(exclude=exclude)
+                    for obj in value
+                ]
             else:
-                value = getattr(self, property)
-                if relation["list"]:
-                    properties[property] = [
-                        obj.name
-                        if export or relation_names_only
-                        else obj.get_properties(exclude=exclude)
-                        for obj in value
-                    ]
-                else:
-                    if not value:
-                        continue
-                    properties[property] = (
-                        value.name
-                        if export or relation_names_only
-                        else value.get_properties(exclude=exclude)
-                    )
+                if not value:
+                    continue
+                properties[property] = (
+                    value.name
+                    if export or relation_names_only
+                    else value.get_properties(exclude=exclude)
+                )
         return properties
 
     @property
