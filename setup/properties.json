@@ -187,6 +187,7 @@
       },
       "pool": {
         "exclude": [
+          "logs",
           "credential_devices",
           "devices",
           "links",

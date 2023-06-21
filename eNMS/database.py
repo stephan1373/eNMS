@@ -441,7 +441,10 @@ class Database:
         if not query:
             return
         query = query.filter(
-            *(getattr(vs.models[instance_type], key) == value for key, value in kwargs.items())
+            *(
+                getattr(vs.models[instance_type], key) == value
+                for key, value in kwargs.items()
+            )
         )
         for index in range(self.retry_fetch_number):
             try:
