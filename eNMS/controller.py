@@ -482,9 +482,7 @@ class Controller:
         if not kwargs:
             kwargs = vs.properties["serialized"]["get"].get(model, {})
         func = "get_properties" if kwargs.pop("properties_only", None) else "to_dict"
-        return getattr(
-            db.fetch(model, id=id, joined_load_relations=kwargs.get("include")), func
-        )(**kwargs)
+        return getattr(db.fetch(model, id=id), func)(**kwargs)
 
     def get_cluster_status(self):
         return [server.status for server in db.fetch_all("server")]

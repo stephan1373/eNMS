@@ -195,10 +195,13 @@
         ]
       },
       "workflow": {
-        "exclude": ["services", "edges"]
+        "include": ["owners", "rbac_read", "rbac_edit", "rbac_run", "superworkflow", "target_devices", "target_pools", "workflows"]
       },
       "user": {
         "include": ["groups"]
+      },
+      "task": {
+        "include": ["devices", "pools", "service"]
       }
     }
   },
