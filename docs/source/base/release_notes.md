@@ -63,6 +63,8 @@ Version 4.6.0: Changelog & Workflow Tree
 - Add support for named credential in the web SSH connection to a device
 - Performance Improvements:
   - Dont inject context processor variables for forms
+  - Use flask_caching to cache the "*_form" endpoints as forms do not use
+  user data or parameters.
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
