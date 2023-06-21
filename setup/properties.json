@@ -167,7 +167,7 @@
   "serialized": {
     "get": {
       "device": {
-        "exclude": ["pools", "target_services", "tasks"]
+        "include": ["gateways", "owners", "rbac_read", "rbac_configuration", "rbac_edit", "rbac_connect", "rbac_target"]
       },
       "group": {
         "include": [
