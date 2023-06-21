@@ -441,15 +441,15 @@ class Database:
         query = self.query(instance_type, rbac, username=username)
         model = vs.models[instance_type]
         if joined_load_relations:
-            options = [joinedload(getattr(model, relation)) for relation in joined_load_relations]
+            options = [
+                joinedload(getattr(model, relation))
+                for relation in joined_load_relations
+            ]
             query = query.options(*options)
         if not query:
             return
         query = query.filter(
-            *(
-                getattr(model, key) == value
-                for key, value in kwargs.items()
-            )
+            *(getattr(model, key) == value for key, value in kwargs.items())
         )
         for index in range(self.retry_fetch_number):
             try:
