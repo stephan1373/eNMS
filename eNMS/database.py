@@ -31,6 +31,8 @@ from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
 from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy.orm import (
     configure_mappers,
+    joinedload,
+    load_only,
     relationship,
     scoped_session,
     sessionmaker,
@@ -433,14 +435,19 @@ class Database:
         all_matches=False,
         rbac="read",
         username=None,
+        joined_load_relations=None,
         **kwargs,
     ):
         query = self.query(instance_type, rbac, username=username)
+        model = vs.models[instance_type]
+        if joined_load_relations:
+            options = [joinedload(getattr(model, relation)) for relation in joined_load_relations]
+            query = query.options(*options)
         if not query:
             return
         query = query.filter(
             *(
-                getattr(vs.models[instance_type], key) == value
+                getattr(model, key) == value
                 for key, value in kwargs.items()
             )
         )
