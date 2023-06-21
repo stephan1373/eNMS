@@ -12,6 +12,7 @@ from flask import (
     url_for,
     session,
 )
+from flask_caching import Cache
 from flask_login import current_user, LoginManager, login_user, logout_user, login_url
 from flask_wtf.csrf import CSRFProtect
 from functools import wraps
@@ -85,6 +86,8 @@ class Server(Flask):
     def register_extensions(self):
         self.csrf = CSRFProtect()
         self.csrf.init_app(self)
+        self.cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
+        self.cache.init_app(self)
 
     def configure_login_manager(self):
         login_manager = LoginManager()
@@ -98,7 +101,7 @@ class Server(Flask):
     def configure_context_processor(self):
         @self.context_processor
         def inject_properties():
-            return {} if request.path.endswith("_form") else {
+            return vs.template_context if request.path.endswith("_form") else {
                 "user": current_user.get_properties()
                 if current_user.is_authenticated
                 else None,
@@ -274,6 +277,7 @@ class Server(Flask):
             return render_template(f"{endpoint}.html", endpoint=endpoint, **kwargs)
 
         @blueprint.route("/<form_type>_form")
+        @self.cache.cached(timeout=500)
         @self.process_requests
         def form(form_type):
             form = vs.form_class[form_type](request.form)
