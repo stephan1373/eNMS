@@ -158,7 +158,7 @@
       "service_changelogs",
       "soft_deleted"
     ],
-    "network": ["id", "path", "logs"],
+    "network": ["id", "path", "logs", "nodes_changelogs"],
     "task": [
       "id",
       "service_name",

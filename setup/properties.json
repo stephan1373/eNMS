@@ -183,7 +183,7 @@
         "exclude": ["pools"]
       },
       "network": {
-        "exclude": ["labels", "links", "nodes", "positions", "nodes_changelogs"]
+        "exclude": ["labels", "links", "nodes", "positions"]
       },
       "pool": {
         "exclude": [
