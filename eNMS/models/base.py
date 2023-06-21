@@ -2,6 +2,7 @@ from collections import defaultdict
 from flask_login import current_user
 from sqlalchemy import Boolean, or_
 from sqlalchemy.ext.mutable import MutableDict, MutableList
+from sqlalchemy.orm import aliased
 from sqlalchemy.sql.expression import false
 
 from eNMS.database import db
@@ -197,10 +198,11 @@ class AbstractBase(db.base):
 
     def get_relation_properties(self, relation, properties):
         fields = [getattr(vs.models[vs.relationships[self.type][relation]["model"]], property) for property in properties]
+        joined_model = aliased(vs.models[self.type])
         return (
             db.session.query(*fields)
-            .join(getattr(vs.models[self.type], relation))
-            .filter(vs.models[self.type].id == self.id).all())
+            .join(getattr(joined_model, relation))
+            .filter(joined_model.id == self.id).all())
 
     def to_dict(
         self,
