@@ -128,16 +128,16 @@ export function configureGraph(newInstance, graph, options) {
   return network;
 }
 
-export function drawTree(data, run) {
+export function drawTree(treeId, data, run, resultsPanel) {
   const noUpdate = builderTreeData == JSON.stringify(data);
-  if (noUpdate) return;
-  if ($("#workflow-tree-services").jstree(true)) {
-    $("#workflow-tree-services").jstree(true).settings.core.data = data;
-    $("#workflow-tree-services")
+  if (noUpdate && !resultsPanel) return;
+  if ($(treeId).jstree(true) && !resultsPanel) {
+    $(treeId).jstree(true).settings.core.data = data;
+    $(treeId)
       .jstree(true)
       .refresh();
   } else {
-    let tree = $("#workflow-tree-services")
+    let tree = $(treeId)
       .bind("loaded.jstree", function(e, data) {
         createTooltips();
       })
@@ -205,7 +205,7 @@ export function drawTree(data, run) {
         },
       })
     tree.on("contextmenu", ".jstree-anchor", function(event) {
-        const tree = $("#workflow-tree-services").jstree(true);
+        const tree = $(treeId).jstree(true);
         $(".menu-entry").hide();
         $(".node-selection").show();
         selectedObject = tree.get_node(event.target).data;
@@ -218,7 +218,7 @@ export function drawTree(data, run) {
     tree.bind("loaded.jstree", function() {
       if (run) tree.jstree("open_all");
     });
-    $("#workflow-tree-services").contextMenu({
+    $(treeId).contextMenu({
       menuSelector: "#contextMenu",
       menuSelected: function(selectedMenu) {
         const row = selectedMenu.text();

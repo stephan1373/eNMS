@@ -24,7 +24,7 @@ import {
   serializeForm,
   showInstancePanel,
 } from "./base.js";
-import { currentPath } from "./builder.js";
+import { currentPath, drawTree } from "./builder.js";
 import { network } from "./networkBuilder.js";
 import { refreshTable, tableInstances, tables } from "./table.js";
 import {
@@ -479,6 +479,8 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
+      drawTree(`#result-tree-${service.id}`, data, runtime, true);
+      /*
       if (isWorkflowTree && $("#workflow-tree-services").jstree(true)) {
         $("#workflow-tree-services").jstree(true).settings.core.data = data;
         $("#workflow-tree-services")
@@ -566,14 +568,8 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
             },
           },
         });
-        tree.bind("loaded.jstree", function() {
-          tree.jstree("open_all");
-        });
-        tree.unbind("dblclick.jstree").bind("dblclick.jstree", function(event) {
-          const service = tree.jstree().get_node(event.target);
-          showRuntimePanel("results", service.data.properties, runtime, "result");
-        });
-      }
+        */
+      
     },
   });
 }

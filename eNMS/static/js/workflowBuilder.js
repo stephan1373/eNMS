@@ -615,7 +615,7 @@ function displayWorkflowState(result, workflowSwitch) {
       .empty();
     $(".hidden-scrollbar").scrollTop(0);
   }
-  drawTree(result.tree, currentRun);
+  drawTree("#workflow-tree-services", result.tree, currentRun);
   if (result.highlight) {
     result.highlight.forEach((node) => colorService(node, "#EFFD5F"));
   }
