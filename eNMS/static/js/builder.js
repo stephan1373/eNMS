@@ -152,18 +152,21 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
           default: function(el, node) {
             if (!node) return;
             const nodeProperties = JSON.stringify(node.data.properties)
-            const progress = node.data.progress
-            const progressList = [
-              `<span style="color: #32CD32">${progress.success || 0} passed</span>`,
-              `<span style="color: #FF6666">${progress.failure|| 0} failed</span>`
-            ];
-            if (progress.skipped > 0) progressList.splice(1, 0, `
-              <span style="color: #7D7D7D">${progress.skipped} skipped</span>
-            `);
-            const progressSummary = `
-              <div style="position: absolute; top: 0px; right: 160px">
-                ${progressList.join(`<span style="color: #000000"> - </span>`)}
-              </div>`;
+            let progressSummary = "";
+            if (runtime) {
+              const progress = node.data.progress
+              const progressList = [
+                `<span style="color: #32CD32">${progress.success || 0} passed</span>`,
+                `<span style="color: #FF6666">${progress.failure|| 0} failed</span>`
+              ];
+              if (progress.skipped > 0) progressList.splice(1, 0, `
+                <span style="color: #7D7D7D">${progress.skipped} skipped</span>
+              `);
+              progressSummary = `
+                <div style="position: absolute; top: 0px; right: 160px">
+                  ${progressList.join(`<span style="color: #000000"> - </span>`)}
+                </div>`;
+            }
             const buttons = runtime
               ? `<button type="button"
                   class="btn btn-xs btn-primary"
