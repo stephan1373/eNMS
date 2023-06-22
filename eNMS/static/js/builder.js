@@ -137,7 +137,7 @@ export function drawTree(data, run) {
       .jstree(true)
       .refresh();
   } else {
-    $("#workflow-tree-services")
+    let tree = $("#workflow-tree-services")
       .bind("loaded.jstree", function(e, data) {
         createTooltips();
       })
@@ -204,7 +204,7 @@ export function drawTree(data, run) {
           },
         },
       })
-      .on("contextmenu", ".jstree-anchor", function(event) {
+    tree.on("contextmenu", ".jstree-anchor", function(event) {
         const tree = $("#workflow-tree-services").jstree(true);
         $(".menu-entry").hide();
         $(".node-selection").show();
@@ -215,6 +215,9 @@ export function drawTree(data, run) {
           network.selectNodes([]);
         }
       });
+    tree.bind("loaded.jstree", function() {
+      if (run) tree.jstree("open_all");
+    });
     $("#workflow-tree-services").contextMenu({
       menuSelector: "#contextMenu",
       menuSelected: function(selectedMenu) {
