@@ -151,30 +151,30 @@ export function drawTree(data, run) {
         html_row: {
           default: function(el, node) {
             if (!node) return;
-            const buttons = run ?
-              `<button type="button"
-                class="btn btn-xs btn-primary"
-                onclick='eNMS.automation.showRuntimePanel(
-                  "logs", ${data}, "${run.runtime}"
-                )'><span class="glyphicon glyphicon-list"></span>
-              </button>
-              <button type="button"
-                class="btn btn-xs btn-primary"
-                onclick='eNMS.automation.showRuntimePanel(
-                  "results", ${data}, "${run.runtime}", "result"
-                )'>
-                <span class="glyphicon glyphicon-list-alt"></span>
-              </button>` :
-              `<button
-                type="button"
-                class="btn btn-xs btn-primary"
-                data-tooltip="Edit"
-                onclick='eNMS.base.showInstancePanel(
-                  "${node.data.type}", ${node.data.id}
-                )'
-              >
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>`;
+            const buttons = run
+              ? `<button type="button"
+                  class="btn btn-xs btn-primary"
+                  onclick='eNMS.automation.showRuntimePanel(
+                    "logs", ${data}, "${run.runtime}"
+                  )'><span class="glyphicon glyphicon-list"></span>
+                </button>
+                <button type="button"
+                  class="btn btn-xs btn-primary"
+                  onclick='eNMS.automation.showRuntimePanel(
+                    "results", ${data}, "${run.runtime}", "result"
+                  )'>
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                </button>`
+              : `<button
+                  type="button"
+                  class="btn btn-xs btn-primary"
+                  data-tooltip="Edit"
+                  onclick='eNMS.base.showInstancePanel(
+                    "${node.data.type}", ${node.data.id}
+                  )'
+                >
+                  <span class="glyphicon glyphicon-edit"></span>
+                </button>`;
             $(el)
               .find("a")
               .first().append(`
@@ -203,8 +203,9 @@ export function drawTree(data, run) {
             icon: "fa fa-sitemap",
           },
         },
-      }).on('contextmenu', '.jstree-anchor', function (event) {
-        const tree = $('#workflow-tree-services').jstree(true);
+      })
+      .on("contextmenu", ".jstree-anchor", function(event) {
+        const tree = $("#workflow-tree-services").jstree(true);
         $(".menu-entry").hide();
         $(".node-selection").show();
         selectedObject = tree.get_node(event.target).data;
@@ -214,13 +215,13 @@ export function drawTree(data, run) {
           network.selectNodes([]);
         }
       });
-      $("#workflow-tree-services").contextMenu({
-        menuSelector: "#contextMenu",
-        menuSelected: function(selectedMenu) {
-          const row = selectedMenu.text();
-          action[row](selectedObject);
-        },
-      });
+    $("#workflow-tree-services").contextMenu({
+      menuSelector: "#contextMenu",
+      menuSelected: function(selectedMenu) {
+        const row = selectedMenu.text();
+        action[row](selectedObject);
+      },
+    });
     let timer = false;
     document.getElementById("tree-search").addEventListener("keyup", function() {
       if (timer) clearTimeout(timer);
