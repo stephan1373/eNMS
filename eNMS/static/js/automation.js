@@ -475,7 +475,7 @@ function displayLogs(service, runtime, change) {
   refreshLogs(service, runtime, editor, true);
 }
 
-export function displayResultsTree(service, runtime, isWorkflowTree) {
+export function displayResultsTree(service, runtime) {
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {

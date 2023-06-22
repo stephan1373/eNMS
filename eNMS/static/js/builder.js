@@ -128,7 +128,7 @@ export function configureGraph(newInstance, graph, options) {
   return network;
 }
 
-export function drawTree(treeId, data, run, resultsPanel) {
+export function drawTree(treeId, data, runtime, resultsPanel) {
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (noUpdate && !resultsPanel) return;
   if ($(treeId).jstree(true) && !resultsPanel) {
@@ -151,17 +151,18 @@ export function drawTree(treeId, data, run, resultsPanel) {
         html_row: {
           default: function(el, node) {
             if (!node) return;
-            const buttons = run
+            const nodeProperties = JSON.stringify(node.data.properties)
+            const buttons = runtime
               ? `<button type="button"
                   class="btn btn-xs btn-primary"
                   onclick='eNMS.automation.showRuntimePanel(
-                    "logs", ${data}, "${run.runtime}"
+                    "logs", ${nodeProperties}, "${runtime}"
                   )'><span class="glyphicon glyphicon-list"></span>
                 </button>
                 <button type="button"
                   class="btn btn-xs btn-primary"
                   onclick='eNMS.automation.showRuntimePanel(
-                    "results", ${data}, "${run.runtime}", "result"
+                    "results", ${nodeProperties}, "${runtime}", "result"
                   )'>
                   <span class="glyphicon glyphicon-list-alt"></span>
                 </button>`
@@ -216,7 +217,7 @@ export function drawTree(treeId, data, run, resultsPanel) {
         }
       });
     tree.bind("loaded.jstree", function() {
-      if (run) tree.jstree("open_all");
+      if (runtime) tree.jstree("open_all");
     });
     $(treeId).contextMenu({
       menuSelector: "#contextMenu",
