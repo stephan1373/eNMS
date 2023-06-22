@@ -153,8 +153,8 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
             if (!node) return;
             const nodeProperties = JSON.stringify(node.data.properties)
             let progressSummary = "";
-            if (runtime) {
-              const progress = node.data.progress
+            const progress = node.data.progress
+            if (progress) {
               const progressList = [
                 `<span style="color: #32CD32">${progress.success || 0} passed</span>`,
                 `<span style="color: #FF6666">${progress.failure|| 0} failed</span>`
