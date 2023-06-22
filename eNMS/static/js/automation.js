@@ -482,43 +482,6 @@ export function displayResultsTree(service, runtime) {
       $(`#result-tree-${service.id}`).jstree("destroy").empty();
       if (!data) return notify("No results to display.", "error", 5);
       drawTree(`#result-tree-${service.id}`, data, runtime, true);
-      /*
-        let tree = $(treeId).jstree({
-          html_row: {
-            default: function(el, node) {
-              if (!node) return;
-              const data = JSON.stringify(node.data.properties);
-              let progressSummary;
-              if (node.data.progress) {
-                progressSummary = `
-                  <div style="position: absolute; top: 0px; right: 160px">
-                    <span style="color: #32cd32">
-                      ${node.data.progress.success || 0} passed
-                    </span>
-                    ${
-                      node.data.progress.skipped > 0
-                        ? `<span style="color: #000000">-</span>
-                      <span style="color: #7D7D7D">
-                      ${node.data.progress.skipped || 0} skipped
-      
-                      </span>
-                    `
-                        : ""
-                    }
-                    <span style="color: #000000">-</span>
-                    <span style="color: #FF6666">
-                      ${node.data.progress.failure || 0} failed
-                    </span>
-                  </div>
-                `;
-              } else {
-                progressSummary = "";
-              }
-            },
-          },
-        });
-        */
-      
     },
   });
 }
