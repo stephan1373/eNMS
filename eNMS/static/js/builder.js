@@ -233,7 +233,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
         }
       });
     tree.bind("loaded.jstree", function() {
-      if (runtime) tree.jstree("open_all");
+      tree.jstree("open_all");
     });
     $(treeId).contextMenu({
       menuSelector: "#contextMenu",
