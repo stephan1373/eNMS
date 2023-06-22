@@ -10,7 +10,6 @@ user: false
 */
 
 import {
-  displayResultsTree,
   field,
   flipRuntimeDisplay,
   runService,
@@ -616,11 +615,7 @@ function displayWorkflowState(result, workflowSwitch) {
       .empty();
     $(".hidden-scrollbar").scrollTop(0);
   }
-  if (currentRun && result.tree) {
-    displayResultsTree(workflow, currentRun.runtime, true);
-  } else {
-    drawTree(result.tree);
-  }
+  drawTree(result.tree, currentRun);
   if (result.highlight) {
     result.highlight.forEach((node) => colorService(node, "#EFFD5F"));
   }

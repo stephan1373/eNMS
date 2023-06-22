@@ -128,7 +128,7 @@ export function configureGraph(newInstance, graph, options) {
   return network;
 }
 
-export function drawTree(data) {
+export function drawTree(data, run) {
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (noUpdate) return;
   if ($("#workflow-tree-services").jstree(true)) {
@@ -151,6 +151,30 @@ export function drawTree(data) {
         html_row: {
           default: function(el, node) {
             if (!node) return;
+            const buttons = run ?
+              `<button type="button"
+                class="btn btn-xs btn-primary"
+                onclick='eNMS.automation.showRuntimePanel(
+                  "logs", ${data}, "${run.runtime}"
+                )'><span class="glyphicon glyphicon-list"></span>
+              </button>
+              <button type="button"
+                class="btn btn-xs btn-primary"
+                onclick='eNMS.automation.showRuntimePanel(
+                  "results", ${data}, "${run.runtime}", "result"
+                )'>
+                <span class="glyphicon glyphicon-list-alt"></span>
+              </button>` :
+              `<button
+                type="button"
+                class="btn btn-xs btn-primary"
+                data-tooltip="Edit"
+                onclick='eNMS.base.showInstancePanel(
+                  "${node.data.type}", ${node.data.id}
+                )'
+              >
+                <span class="glyphicon glyphicon-edit"></span>
+              </button>`;
             $(el)
               .find("a")
               .first().append(`
@@ -163,16 +187,7 @@ export function drawTree(data) {
               >
                 <span class="glyphicon glyphicon-screenshot"></span>
               </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-primary"
-                data-tooltip="Edit"
-                onclick='eNMS.base.showInstancePanel(
-                  "${node.data.type}", ${node.data.id}
-                )'
-              >
-                <span class="glyphicon glyphicon-edit"></span>
-              </button>
+              ${buttons}
             </div>
           `);
           },
