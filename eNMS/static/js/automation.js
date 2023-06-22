@@ -479,6 +479,8 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
   call({
     url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
     callback: function(data) {
+      $(`#result-tree-${service.id}`).jstree("destroy").empty();
+      if (!data) return notify("No results to display.", "error", 5);
       drawTree(`#result-tree-${service.id}`, data, runtime, true);
       /*
       if (isWorkflowTree && $("#workflow-tree-services").jstree(true)) {
@@ -490,10 +492,8 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
         const treeId = isWorkflowTree
           ? "#workflow-tree-services"
           : `#result-tree-${service.id}`;
-        $(treeId)
-          .jstree("destroy")
-          .empty();
-        if (!data) return notify("No results to display.", "error", 5);
+        
+        
         let tree = $(treeId).jstree({
           core: {
             animation: 100,
