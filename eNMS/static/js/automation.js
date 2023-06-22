@@ -514,6 +514,32 @@ export function displayResultsTree(service, runtime) {
               } else {
                 progressSummary = "";
               }
+              $(el)
+                .find("a")
+                .first().append(`
+                ${progressSummary}
+                <div style="position: absolute; top: 0px; right: 50px">
+                  <button type="button"
+                    class="btn btn-xs btn-primary"
+                    onclick='eNMS.automation.showRuntimePanel(
+                      "logs", ${data}, "${runtime}"
+                    )'><span class="glyphicon glyphicon-list"></span>
+                  </button>
+                  <button type="button"
+                    class="btn btn-xs btn-primary"
+                    onclick='eNMS.automation.showRuntimePanel(
+                      "report", ${data}, "${runtime}"
+                    )'><span class="glyphicon glyphicon-modal-window"></span>
+                  </button>
+                  <button type="button"
+                    class="btn btn-xs btn-primary"
+                    onclick='eNMS.automation.showRuntimePanel(
+                      "results", ${data}, "${runtime}", "result"
+                    )'>
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                  </button>
+                </div>
+              `);
             },
           },
         });
