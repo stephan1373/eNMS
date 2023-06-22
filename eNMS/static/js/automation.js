@@ -483,32 +483,7 @@ export function displayResultsTree(service, runtime, isWorkflowTree) {
       if (!data) return notify("No results to display.", "error", 5);
       drawTree(`#result-tree-${service.id}`, data, runtime, true);
       /*
-      if (isWorkflowTree && $("#workflow-tree-services").jstree(true)) {
-        $("#workflow-tree-services").jstree(true).settings.core.data = data;
-        $("#workflow-tree-services")
-          .jstree(true)
-          .refresh();
-      } else {
-        const treeId = isWorkflowTree
-          ? "#workflow-tree-services"
-          : `#result-tree-${service.id}`;
-        
-        
         let tree = $(treeId).jstree({
-          core: {
-            animation: 100,
-            themes: { stripes: true },
-            data: data,
-          },
-          plugins: ["html_row", "types", "wholerow"],
-          types: {
-            default: {
-              icon: "glyphicon glyphicon-file",
-            },
-            workflow: {
-              icon: "fa fa-sitemap",
-            },
-          },
           html_row: {
             default: function(el, node) {
               if (!node) return;
