@@ -685,7 +685,7 @@ class ServiceForm(BaseForm):
     mail_recipient = StringField(
         "Mail Recipients (separated by comma)", substitution=True
     )
-    reply_to = StringField("Reply-to Email Address")
+    reply_to = StringField("Reply-to Email Address", substitution=True)
     number_of_retries = IntegerField(
         "Number of retries", default=0, help="common/number_of_retries"
     )
@@ -1068,7 +1068,7 @@ class UserProfileForm(BaseForm):
     action = "eNMS.administration.saveProfile"
     name = StringField("Name")
     email = StringField("Email")
-    landing_page = SelectField("Landing Page", validate_choice=False)
+    landing_page = SelectField("Landing Page", choices=[], validate_choice=False)
     theme = SelectField(
         "Theme",
         choices=[
@@ -1360,7 +1360,9 @@ class ScrapliForm(ConnectionForm):
 class UserForm(RbacForm):
     template = "object"
     form_type = HiddenField(default="user")
-    last_login = StringField("Last Login", render_kw={"readonly": True})
+    last_login = StringField(
+        "Last Login", render_kw={"readonly": True}, dont_duplicate=True
+    )
     groups = MultipleInstanceField("Groups", model="group")
     theme = SelectField(
         "Theme",

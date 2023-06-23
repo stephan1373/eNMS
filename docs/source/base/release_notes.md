@@ -77,7 +77,7 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 - Round result size to 1 decimal when the result size is higher than 50% the maximum
   allowed size
 - Don't allow saving a workflow if the run method is set to Service x Service and the
-  workflow has target devices or pools
+  workflow has target devices, pools, or a device query
 - Don't allow skipping services in a workflow if workflow edit is restricted to
   owners via RBAC access control
 - Remove all references to old "update_pools" mechanism (removed last release)
@@ -166,7 +166,6 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
     - allow both absolute and relative paths in generic and netmiko file transfer services
     - impact on migration: all paths in files must be truncated by removing the path
     to the "files" folder
-  - Don't scan the files folder when running the application for the first time
   - Prevent uploading the same file twice in the file upload panel (or another file
     with the same name)
   - Add trash mechanism for files. Two options:
@@ -186,13 +185,18 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
     deletion mechanism ("database deletion"), unix files are left untouched.
   - Detect missing files when running scan folder mechanism and mark them as "Not Found"
   - Drag-n-drop the same file multiple times in upload panel no longer possible
+  - Use scoped path for playbooks in ansible service (impact on migration files)
 - Fix log not sent when add_secret is False or device is None in the get_credentials function bug
 - Add new 'prepend_filepath' function in workflow builder namespace to add path to file folder before a string
+- Add support for string substitution for the email notification feature (service step 4)
 
 Migration:
 - in file.yaml, remove path to "files" folder for all paths
 - in service.yaml, compute and add new "read_timeout" property based on fast_cli,
   delay_factor and global_delay_factor
+- in service.yaml, ansible playbook services are now used the scoped path to the playbook
+  instead of the full path (path to playbook folder + scoped path). The path to the playbook
+  folder must be trimmed from all ansible services.
 
 Tests:
 - Everything about files is impacted and must be tested again
@@ -202,6 +206,7 @@ Tests:
 - Test runtimes displayed in WB and logs/results panel (get_runtimes function was refactored)
 - Test skip of run once services when all devices are skipped
 - Test new trash mechanism for files
+- Test ansible playbook service (scoped path instead of full path)
 
 Todo:
 - Add context help for custom parameterized form
