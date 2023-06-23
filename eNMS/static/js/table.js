@@ -964,6 +964,7 @@ tables.service = class ServiceTable extends Table {
     const relationFiltering = this.relation ? "false" : "true";
     const parentFiltering = $("#parent-filtering").val() || relationFiltering;
     return {
+      soft_deleted: "bool-false",
       workflows_filter: parentFiltering == "true" ? "empty" : "union",
       ...this.userDisplayConstraints,
     };
