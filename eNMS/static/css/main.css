@@ -162,7 +162,8 @@ body {
   padding: 2px 0 0 0;
   position: fixed;
   width: 230px;
-  background: #355575; }
+  background: #355575;
+  cursor: pointer; }
 
 .sidebar-footer a {
   padding: 7px 0 3px;
