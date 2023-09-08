@@ -153,6 +153,30 @@ body {
   color: #c4cfda;
 }
 
+/* Sidebar Footer */
+
+.sidebar-footer {
+  bottom: 0px;
+  clear: both;
+  display: block;
+  padding: 2px 0 0 0;
+  position: fixed;
+  width: 230px;
+  background: #355575; }
+
+.sidebar-footer a {
+  padding: 7px 0 3px;
+  text-align: center;
+  width: 25%;
+  font-size: 17px;
+  display: block;
+  float: left;
+  background: #172D44; }
+
+.sidebar-footer a:hover {
+  background: #425567; 
+}
+
 /* Display icon in minimized submenu */
 .nav.child_menu span.fa {
   display: block;
@@ -185,7 +209,7 @@ body {
 }
 
 .server-time {
-  bottom: 7px;
+  bottom: 45px;
   left: 5px;
   position: fixed;
   color: #b9b9b9;
