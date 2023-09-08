@@ -38,6 +38,7 @@ class MetaForm(FormMeta):
             vs.rbac["get_requests"][f"/{form_type}_form"] = "access"
         if hasattr(form, "form_init"):
             form.form_init()
+        cls.register_property_list(form, form_type)
         if not hasattr(form, "custom_properties"):
             form.custom_properties = {}
         form.custom_properties = {
@@ -120,6 +121,22 @@ class MetaForm(FormMeta):
                 form.service_fields.extend(vs.form_properties[base_form_type])
             vs.form_properties[form_type].update(vs.form_properties[base_form_type])
         return form
+
+    @classmethod
+    def register_property_list(cls, form, form_type):
+        if form_type not in vs.properties["property_list"]:
+            return
+        for property, values in vs.properties["property_list"][form_type].items():
+            if values:
+                vs.form_properties[form_type][property] = {"type": "list"}
+                setattr(
+                    form,
+                    property,
+                    SelectField(**values),
+                )
+            else:
+                vs.form_properties[form_type][property] = {"type": "str"}
+                setattr(form, property, StringField())
 
     def __setattr__(self, field, value):
         if hasattr(value, "field_class") and "multiselect" in value.field_class.type:
@@ -614,8 +631,34 @@ class ServerForm(BaseForm):
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
-    ip_address = StringField("IP address")
+    role = SelectField("Role", choices=(("primary", "Primary"), ("standby", "Standby")))
+    ip_address = StringField("IP address", render_kw={"readonly": True})
+    scheduler_address = StringField("Scheduler Address", render_kw={"readonly": True})
+    scheduler_active = BooleanField("Scheduler is Active", render_kw={"readonly": True})
+    location = StringField("Location")
+    version = StringField("Version", render_kw={"readonly": True})
+    commit_sha = StringField("Commit SHA", render_kw={"readonly": True})
+    last_restart = StringField("Last Restart", render_kw={"readonly": True})
     weight = IntegerField("Weight", default=1)
+    allowed_automation = SelectMultipleField(
+        "Allowed Automation",
+        choices=(
+            ("scheduler", "Scheduled Runs"),
+            ("rest_api", "ReST API Runs"),
+            ("application", "Application Runs"),
+        ),
+        no_search=True,
+    )
+
+
+class WorkerForm(BaseForm):
+    form_type = HiddenField(default="worker")
+    id = HiddenField()
+    name = StringField("Name", render_kw={"readonly": True})
+    description = StringField(widget=TextArea(), render_kw={"rows": 6})
+    subtype = StringField("Subtype", render_kw={"readonly": True})
+    last_update = StringField("Last Update", render_kw={"readonly": True})
+    current_runs = StringField("Current Runs", render_kw={"readonly": True})
 
 
 class ServiceForm(BaseForm):
@@ -719,18 +762,6 @@ class ServiceForm(BaseForm):
         help="common/skip_value",
         no_search=True,
     )
-    vendor = SelectField(
-        "Vendor",
-        choices=vs.dualize(vs.properties["property_list"]["service"]["vendor"]),
-        validate_choice=False,
-    )
-    operating_system = SelectField(
-        "Operating System",
-        choices=vs.dualize(
-            vs.properties["property_list"]["service"]["operating_system"]
-        ),
-        validate_choice=False,
-    )
     iteration_values = StringField(
         "Iteration Values", python=True, help="common/iteration_values"
     )
@@ -828,8 +859,8 @@ class ServiceForm(BaseForm):
     )
     group_properties = {
         "step1-1": [
-            "name",
             "scoped_name",
+            "name",
             "creator",
             "type",
             "disabled",
@@ -1152,23 +1183,6 @@ class DeviceForm(ObjectForm):
     )
     ip_address = StringField("IP address")
     port = IntegerField("Port", default=22)
-    vendor = SelectField(
-        "Vendor",
-        choices=vs.dualize(vs.properties["property_list"]["device"]["vendor"]),
-        validate_choice=False,
-    )
-    model = SelectField(
-        "Model",
-        choices=vs.dualize(vs.properties["property_list"]["device"]["model"]),
-        validate_choice=False,
-    )
-    operating_system = SelectField(
-        "Operating System",
-        choices=vs.dualize(
-            vs.properties["property_list"]["device"]["operating_system"]
-        ),
-        validate_choice=False,
-    )
     os_version = StringField("OS Version")
     latitude = StringField("Latitude", default=0.0)
     longitude = StringField("Longitude", default=0.0)
@@ -1189,16 +1203,6 @@ class DeviceForm(ObjectForm):
 
 class LinkForm(ObjectForm):
     form_type = HiddenField(default="link")
-    vendor = SelectField(
-        "Vendor",
-        choices=vs.dualize(vs.properties["property_list"]["link"]["vendor"]),
-        validate_choice=False,
-    )
-    model = SelectField(
-        "Model",
-        choices=vs.dualize(vs.properties["property_list"]["link"]["model"]),
-        validate_choice=False,
-    )
     source = InstanceField("Source", model="device")
     destination = InstanceField("Destination", model="device")
     color = StringField("Color")
@@ -1244,6 +1248,11 @@ class NetmikoForm(ConnectionForm):
         default=False,
     )
     read_timeout = FloatField(default=10.0)
+    conn_timeout = FloatField("Connection Timeout", default=10.0)
+    auth_timeout = FloatField("Authentication Timeout", default=0.0)
+    banner_timeout = FloatField("Banner Timeout", default=15.0)
+    fast_cli = BooleanField("Fast CLI")
+    global_delay_factor = FloatField("Global Delay Factor", default=1.0)
     jump_on_connect = BooleanField(
         "Jump to remote device on connect",
         default=False,
@@ -1296,6 +1305,16 @@ class NetmikoForm(ConnectionForm):
             "default": "expanded",
         },
         **ConnectionForm.groups,
+        "Netmiko Connection Parameters": {
+            "commands": [
+                "conn_timeout",
+                "auth_timeout",
+                "banner_timeout",
+                "fast_cli",
+                "global_delay_factor",
+            ],
+            "default": "hidden",
+        },
         "Jump on connect Parameters": {
             "commands": [
                 "jump_on_connect",

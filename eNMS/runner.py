@@ -65,7 +65,8 @@ class Runner:
         self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
-            self.main_run.services.append(self.service)
+            if self.service not in self.main_run.services:
+                self.main_run.services.append(self.service)
         creator = db.fetch("user", name=self.main_run.creator, rbac=None)
         self.is_admin_run = creator.is_admin
         self.creator_dict = {"name": creator.name, "email": creator.email}
@@ -243,7 +244,7 @@ class Runner:
                 self.log("error", error)
                 results.update({"success": False, "error": error})
             if self.update_pools_after_running:
-                for pool in db.fetch_all("pool"):
+                for pool in db.fetch_all("pool", username=self.creator, rbac="edit"):
                     pool.compute_pool()
             report = self.generate_report(results) if self.service.report else ""
             if self.get("send_notification"):
@@ -1049,6 +1050,7 @@ class Runner:
         return "".join(input.split())
 
     def update_netmiko_connection(self, connection):
+        setattr(connection, "global_delay_factor", self.service.global_delay_factor)
         try:
             if not hasattr(connection, "check_enable_mode"):
                 self.log("error", "Netmiko 'check_enable_mode' method is missing")
@@ -1115,8 +1117,13 @@ class Runner:
             device_type=driver,
             ip=device.ip_address,
             port=device.port,
+            timeout=self.conn_timeout,
+            conn_timeout=self.conn_timeout,
+            auth_timeout=self.auth_timeout or None,
+            banner_timeout=self.banner_timeout,
+            fast_cli=self.fast_cli,
+            global_delay_factor=self.global_delay_factor,
             session_log=BytesIO(),
-            global_cmd_verify=False,
             sock=sock,
             **self.get_credentials(device),
         )

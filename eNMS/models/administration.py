@@ -1,17 +1,19 @@
 from flask_login import current_user, UserMixin
 from datetime import datetime
 from itertools import chain
-from os import makedirs
+from os import kill, makedirs
 from os.path import exists, getmtime
 from passlib.hash import argon2
 from pathlib import Path
 from shutil import move, rmtree
+from signal import SIGTERM
 from sqlalchemy import Boolean, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import JSON
 from time import ctime
 
 from eNMS.database import db
+from eNMS.environment import env
 from eNMS.models.base import AbstractBase
 from eNMS.variables import vs
 
@@ -22,11 +24,55 @@ class Server(AbstractBase):
     name = db.Column(db.SmallString, unique=True)
     creator = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
+    role = db.Column(db.TinyString, default="primary")
     mac_address = db.Column(db.TinyString)
     ip_address = db.Column(db.TinyString)
+    scheduler_address = db.Column(db.TinyString)
+    scheduler_active = db.Column(Boolean, default=True)
+    location = db.Column(db.SmallString)
+    version = db.Column(db.TinyString)
+    commit_sha = db.Column(db.TinyString)
+    last_restart = db.Column(db.TinyString)
     weight = db.Column(Integer, default=1)
+    allowed_automation = db.Column(db.List)
     status = db.Column(db.TinyString, default="down")
     logs = relationship("Changelog", back_populates="server")
+    current_runs = db.Column(Integer, default=0)
+    runs = relationship("Run", back_populates="server")
+    workers = relationship("Worker", back_populates="server")
+
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        vs.server_data = self.serialized
+
+
+class Worker(AbstractBase):
+    __tablename__ = type = "worker"
+    id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.SmallString, unique=True)
+    description = db.Column(db.LargeString)
+    subtype = db.Column(db.TinyString)
+    last_update = db.Column(db.TinyString)
+    current_runs = db.Column(Integer, default=0)
+    runs = relationship("Run", back_populates="worker")
+    server_id = db.Column(Integer, ForeignKey("server.id"))
+    server = relationship("Server", back_populates="workers", lazy="joined")
+    model_properties = {"server_properties": "dict"}
+
+    def update(self, **kwargs):
+        self.last_update = vs.get_time()
+        super().update(**kwargs)
+
+    def delete(self):
+        try:
+            env.log("critical", f"Sending SIGTERM signal to process ID {self.name}")
+            kill(int(self.name), SIGTERM)
+        except Exception as exc:
+            return f"Failed to deleted process: {exc}"
+
+    @property
+    def server_properties(self):
+        return self.server.base_properties
 
 
 class User(AbstractBase, UserMixin):
@@ -59,7 +105,7 @@ class User(AbstractBase, UserMixin):
 
     def delete(self):
         if self.name == getattr(current_user, "name", False):
-            raise db.rbac_error("A user cannot be deleted while logged in.")
+            return {"log": "A user cannot be deleted while logged in."}
 
     def get_id(self):
         return self.name
@@ -253,7 +299,7 @@ class File(AbstractBase):
         if not exists(self.full_path) or not trash:
             return
         if self.full_path == trash:
-            return {"log_level": "error", "log": "Cannot delete the 'trash' folder."}
+            return {"log": "Cannot delete the 'trash' folder."}
         if trash in self.full_path:
             if self.type == "folder":
                 rmtree(self.full_path, ignore_errors=True)

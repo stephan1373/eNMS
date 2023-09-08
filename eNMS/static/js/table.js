@@ -27,7 +27,6 @@ import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
 export let tables = {};
 export let tableInstances = {};
-let displayPagination = false;
 export const models = {};
 let waitForSearch = false;
 
@@ -49,6 +48,7 @@ export class Table {
     this.userFiltering = localStorage.getItem(`userFiltering-${this.type}`) || "users";
     this.id = `${this.type}${id ? `-${id}` : ""}`;
     this.model = this.modelFiltering || this.type;
+    this.displayPagination = false;
     tableInstances[this.id] = this;
     // eslint-disable-next-line new-cap
     this.table = $(`#table-${this.id}`).DataTable({
@@ -62,7 +62,7 @@ export class Table {
         $(".paginate_button > a").on("focus", function() {
           $(this).blur();
         });
-        if (!displayPagination) self.setPagination();
+        if (!self.displayPagination) self.setPagination();
         createTooltips();
       },
       sDom: "tilp",
@@ -146,7 +146,7 @@ export class Table {
           Object.assign(data, {
             export: self.csvExport,
             clipboard: self.copyClipboard,
-            pagination: displayPagination,
+            pagination: self.displayPagination,
             ...this.getFilteringData(),
           });
           Object.assign(data, self.filteringData);
@@ -1126,6 +1126,16 @@ tables.run = class RunTable extends Table {
     row[`services`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'service', ${row.instance}, {parent: '${this.id}', from: 'runs',
       to: 'services'})">Services</a></b>`;
+    if (row.server_properties) {
+      row.server_link = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
+        'server', '${row.server_properties.id}')">${row.server_properties.name}
+        </a></b>`;
+    }
+    if (row.worker_properties) {
+      row.worker_link = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
+        'worker', '${row.worker_properties.id}')">${row.worker_properties.name}
+        </a></b>`;
+    }
     row.service = JSON.stringify(row.service_properties).replace(/"/g, "'");
     row.buttons = this.buttons(row);
     return row;
@@ -1534,6 +1544,12 @@ tables.server = class ServerTable extends Table {
     row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'changelog', ${row.instance}, {parent: '${this.id}', from: 'server',
       to: 'logs'})">Changelog</a></b>`;
+    row.runs = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'run', ${row.instance}, {parent: '${this.id}', from: 'server', to: 'runs'})">
+      Runs</a></b>`;
+    row.workers = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'worker', ${row.instance}, {parent: '${this.id}', from: 'server', to: 'workers'})">
+      Workers</a></b>`;
     return row;
   }
 
@@ -1780,8 +1796,8 @@ tables.file = class FileTable extends Table {
           ${this.editButton(row)}
           <li>
             <button type="button" class="btn btn-sm btn-primary"
-            onclick="eNMS.administration.editFile('${row.name}', '${row.path}')"
-            data-tooltip="File Content">
+            onclick="eNMS.administration.editFile(
+              '${row.id}', '${row.name}', '${row.path}')" data-tooltip="File Content">
               <span class="glyphicon glyphicon-list"></span>
             </button>
           </li>
@@ -1812,6 +1828,42 @@ tables.file = class FileTable extends Table {
         self.table.page(0).ajax.reload(null, false);
         $("#current-folder-path,.parent-filtering").toggle();
       });
+  }
+};
+
+tables.worker = class WorkerTable extends Table {
+  addRow(kwargs) {
+    let row = super.addRow(kwargs);
+    row.runs = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'run', ${row.instance}, {parent: '${this.id}', from: 'worker', to: 'runs'})">
+      Runs</a></b>`;
+    if (row.server_properties) {
+      row.server_link = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
+        'server', '${row.server_properties.id}')">${row.server_properties.name}
+        </a></b>`;
+    }
+    return row;
+  }
+
+  get controls() {
+    return [this.columnDisplay(), this.refreshTableButton(), this.clearSearchButton()];
+  }
+
+  buttons(row) {
+    return [
+      `
+      <ul class="pagination pagination-lg" style="margin: 0px;">
+        <li>
+          <button type="button" class="btn btn-sm btn-primary"
+          onclick="eNMS.base.showInstancePanel('worker', '${
+            row.id
+          }')" data-tooltip="Edit"
+            ><span class="glyphicon glyphicon-edit"></span
+          ></button>
+        </li>
+        ${this.deleteInstanceButton(row)}
+      </ul>`,
+    ];
   }
 };
 
@@ -1978,7 +2030,8 @@ function displayRelationTable(type, instance, relation) {
 }
 
 function togglePaginationDisplay(tableId) {
-  displayPagination = !displayPagination;
+  const table = tableInstances[tableId];
+  table.displayPagination = !table.displayPagination;
   refreshTable(tableId);
 }
 

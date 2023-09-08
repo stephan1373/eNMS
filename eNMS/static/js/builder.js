@@ -544,7 +544,7 @@ export const rectangleSelection = (container, graph, nodes) => {
 };
 
 export function setPath(path) {
-  currentPath = path;
+  currentPath = path.toString();
 }
 
 export function createNewNode(mode) {

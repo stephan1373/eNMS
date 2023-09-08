@@ -1,6 +1,7 @@
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
+from os import environ, getpid
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
 from sqlalchemy import Boolean, case, ForeignKey, Integer
@@ -133,7 +134,7 @@ class Service(AbstractBase):
 
     def delete(self):
         if self.name in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
-            raise db.rbac_error(f"It is not allowed to delete '{self.name}'.")
+            return {"log": f"It is not allowed to delete '{self.name}'."}
         self.check_restriction_to_owners("edit")
 
     def check_restriction_to_owners(self, mode):
@@ -342,7 +343,6 @@ class Run(AbstractBase):
     )
     start_services = db.Column(db.List)
     creator = db.Column(db.SmallString, default="")
-    server = db.Column(db.SmallString)
     properties = db.Column(db.Dict)
     payload = deferred(db.Column(db.Dict))
     success = db.Column(Boolean, default=False)
@@ -353,6 +353,11 @@ class Run(AbstractBase):
     trigger = db.Column(db.TinyString)
     path = db.Column(db.TinyString)
     parameterized_run = db.Column(Boolean, default=False)
+    server_id = db.Column(Integer, ForeignKey("server.id"))
+    server = relationship("Server", back_populates="runs")
+    server_name = association_proxy("server", "name")
+    server_version = db.Column(db.TinyString)
+    server_commit_sha = db.Column(db.TinyString)
     service_id = db.Column(Integer, ForeignKey("service.id", ondelete="cascade"))
     service = relationship("Service", foreign_keys="Run.service_id", lazy="joined")
     service_name = db.Column(db.SmallString)
@@ -372,13 +377,21 @@ class Run(AbstractBase):
     task_id = db.Column(Integer, ForeignKey("task.id", ondelete="SET NULL"))
     task = relationship("Task", foreign_keys="Run.task_id")
     task_name = association_proxy("task", "name")
+    worker_id = db.Column(Integer, ForeignKey("worker.id"))
+    worker = relationship("Worker", back_populates="runs")
     state = db.Column(db.Dict, info={"log_change": False})
     results = relationship("Result", back_populates="run", cascade="all, delete-orphan")
-    model_properties = {"progress": "str", "service_properties": "dict"}
+    model_properties = {
+        "progress": "str",
+        "server_properties": "dict",
+        "service_properties": "dict",
+        "worker_properties": "dict",
+    }
 
     def __init__(self, **kwargs):
         self.runtime = kwargs.get("runtime") or vs.get_time()
-        self.server = vs.server
+        for property in ("id", "version", "commit_sha"):
+            setattr(self, f"server_{property}", getattr(vs, f"server_{property}"))
         super().__init__(**kwargs)
         if not self.name:
             self.name = f"{self.runtime} ({self.creator})"
@@ -394,6 +407,14 @@ class Run(AbstractBase):
     @property
     def service_properties(self):
         return self.service.base_properties
+
+    @property
+    def server_properties(self):
+        return self.server.base_properties
+
+    @property
+    def worker_properties(self):
+        return self.worker.base_properties
 
     def get_state(self):
         if self.state:
@@ -428,7 +449,16 @@ class Run(AbstractBase):
             return "N/A"
 
     def run(self):
-        env.update_worker_job(self.service.name)
+        worker = db.factory(
+            "worker",
+            name=str(getpid()),
+            subtype=environ.get("_", "").split("/")[-1],
+            server_id=vs.server_id,
+        )
+        server = db.fetch("server", id=vs.server_id)
+        worker.current_runs = 1 if not worker.current_runs else worker.current_runs + 1
+        server.current_runs += 1
+        self.worker = worker
         vs.run_targets[self.runtime] = set(
             device.id
             for device in controller.filtering(
@@ -454,10 +484,11 @@ class Run(AbstractBase):
             trigger=self.trigger,
         )
         self.payload = self.service_run.payload
+        worker.current_runs -= 1
+        server.current_runs -= 1
         db.session.commit()
         vs.run_targets.pop(self.runtime)
         vs.run_services.pop(self.runtime)
-        env.update_worker_job(self.service.name, mode="decr")
         return self.service_run.results
 
 
@@ -497,7 +528,7 @@ class Task(AbstractBase):
             self.schedule(mode="schedule" if self.is_active else "pause")
 
     def delete(self):
-        post(f"{env.scheduler_address}/delete_job/{self.id}")
+        post(f"{vs.scheduler_address}/delete_job/{self.id}")
 
     @hybrid_property
     def status(self):
@@ -523,19 +554,19 @@ class Task(AbstractBase):
     @_catch_request_exceptions
     def next_run_time(self):
         return get(
-            f"{env.scheduler_address}/next_runtime/{self.id}", timeout=0.01
+            f"{vs.scheduler_address}/next_runtime/{self.id}", timeout=0.01
         ).json()
 
     @property
     @_catch_request_exceptions
     def time_before_next_run(self):
-        return get(f"{env.scheduler_address}/time_left/{self.id}", timeout=0.01).json()
+        return get(f"{vs.scheduler_address}/time_left/{self.id}", timeout=0.01).json()
 
     @_catch_request_exceptions
     def schedule(self, mode="schedule"):
         try:
             payload = {"mode": mode, "task": self.get_properties()}
-            result = post(f"{env.scheduler_address}/schedule", json=payload).json()
+            result = post(f"{vs.scheduler_address}/schedule", json=payload).json()
             self.last_scheduled_by = current_user.name
         except ConnectionError:
             return {"alert": "Scheduler Unreachable: the task cannot be scheduled."}

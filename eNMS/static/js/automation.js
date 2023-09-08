@@ -476,10 +476,14 @@ function displayLogs(service, runtime, change) {
 }
 
 export function displayResultsTree(service, runtime) {
+  const path =
+    currentPath && currentPath.endsWith(service.id) ? currentPath : service.id;
   call({
-    url: `/get_workflow_results/${currentPath || service.id}/${runtime}`,
+    url: `/get_workflow_results/${path}/${runtime}`,
     callback: function(data) {
-      $(`#result-tree-${service.id}`).jstree("destroy").empty();
+      $(`#result-tree-${service.id}`)
+        .jstree("destroy")
+        .empty();
       if (!data) return notify("No results to display.", "error", 5);
       drawTree(`#result-tree-${service.id}`, data, runtime, true);
     },

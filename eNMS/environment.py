@@ -53,7 +53,6 @@ from eNMS.variables import vs
 
 class Environment:
     def __init__(self):
-        self.scheduler_address = getenv("SCHEDULER_ADDR")
         self.init_authentication()
         self.init_encryption()
         self.use_vault = vs.settings["vault"]["use_vault"]
@@ -234,26 +233,7 @@ class Environment:
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
 
     def get_workers(self):
-        if not self.redis_queue:
-            return {"error": "This endpoint requires the use of a Redis queue."}
-        workers = defaultdict(lambda: {"jobs": {}, "info": {}})
-        keys = env.redis("keys", "workers/*")
-        if not keys:
-            return {"error": "No data available in the Redis queue."}
-        data = dict(zip(keys, env.redis("mget", *keys)))
-        for key, value in data.items():
-            if not value or value == "0":
-                continue
-            process_id, category, inner_key = key.split("/")[1:]
-            workers[process_id][category][inner_key] = value
-        return workers
-
-    def update_worker_job(self, job, mode="incr"):
-        if not self.redis_queue:
-            return
-        key = f"workers/{getpid()}"
-        self.redis("set", f"{key}/info/memory", f"{Process().memory_percent()}%")
-        self.redis(mode, f"{key}/jobs/{job}", 1)
+        return {worker.name: worker.to_dict() for worker in db.fetch_all("worker")}
 
     def log(
         self,

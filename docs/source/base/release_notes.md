@@ -1,7 +1,7 @@
 
 # Release Notes
 
-Version 4.6.0: Changelog & Workflow Tree
+Version 4.7.0: Changelog & Workflow Tree
 ----------------------------------------
 
 - Changelog feature:
@@ -66,6 +66,55 @@ Version 4.6.0: Changelog & Workflow Tree
   - Use flask_caching to cache the "*_form" endpoints as forms do not use
   user data or parameters.
 
+Version 4.6.0: Clustering
+-------------------------
+
+- Add new Clustering menu entry with "Server" and "Worker" pages
+- Add one-to-many relationship between Run and Server class
+- Add one-to-many relationship between Worker and Server class
+- Display server and worker in run table as hyperlink to the edit panel
+- In Server SQL table and Server table in the UI:
+  - Add "scheduler_address" and "scheduler_active" properties in Server table. These properties
+    are initialized with the SCHEDULER_ADDR and SCHEDULER_ACTIVE environment variable.
+  - Add "runs" and "workers" links in server table
+  - Add "version" and "commit SHA" properties
+  - Add "location" property, populated from SERVER_LOCATION environment variable
+  - Add "Last Restart" property in server table: updated every time the application starts.
+  - Add "Current runs" property in server table: counts number of runs currently running on server.
+  - Add "Role" property to distinguish between "primary" and "standby" in the cluster
+  - Add "Allowed Automation" property to control allowed automation:
+    - "scheduler": server can run jobs from scheduler via "run_task" REST endpoint
+    - "rest_api": server can run jobs from REST API via "run_server" REST endpoint
+    - "application": server can run jobs from the UI via "run_service" controller endpoint
+  - "Allowed Automation" can be configured from settings.json > "cluster" > "allowed_automation"
+- Rename 'import_version' key to 'version' in settings.json > app
+- Update both server version and commit SHA every time the application starts
+- Add server version and commit SHA at the time of the run in Run table as string properties:
+  - These properties are not updated when the server version / commit SHA is modified
+  - These properties are not erased if the server object of the run is deleted
+- Add new "Worker" table in database and UI (Administration menu)
+  - A worker is created or updated whenever a job starts running
+  - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq)
+  - Add "last_update" property to show when the worker was last used / updated
+  - Add "server" hyperlink to the edit panel of worker's server
+  - Add "current_runs" property to show how many jobs the worker is currently running
+  - Add "runs" property: one-to-many relationship between worker <-> runs, and button in
+    worker table to display all runs executed by the worker.
+- When loading the application, check whether the server's workers are running and if not,
+  delete them from the database
+- Workers are created when they are detected by the application, ie when a service is run
+  by the worker
+- Refactor get_workers REST endpoint to use workers in the database instead of storing
+  worker data in the redis queue
+- When a worker is deleted from the worker table, send SIGTERM signal to underlying process
+- Don't check for metadata version when doing migration import, only check for service import
+- Add mechanism to use a StringField for the properties in properties.json > "property_list":
+  - if the list is empty, will default to StringField instead of a SelectField.
+  - new format in case of a SelectField: must provide all wtforms keyword arguments
+
+Migration:
+- Update properties.json > "properly_list" with new format
+
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
 
@@ -91,14 +140,7 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 - Remove pin to 2.0.1 for itsdangerous in requirements
 - Remove pin to 1.4.46 for sqlalchemy in requirements (move to sqlalchemy v2)
 - Remove pin to 3.4 for netmiko (move to netmiko 4+)
-  - delay_factor, global_delay_factor and fast_cli have been replaced with read_timeout.
-  The value of read_timeout must be computed from these 3 properties and the migration
-  files updated accordingly.
-  - check code related to session_log (2583795ff31357c85115f72559676b6eac29bc88)
-  - relevant commits:
-    - 3819dd3633ecb5ce5af3d2690a663b2b2733ee84
-    - 88f0e9baad41a72349cd27f62e51976c2d99988f
-    - f651b5c2a1dc8920a878668d72a6fcb07e9d8761
+  - remove delay_factor and add read_timeout property.
 - Fix duplicated run name when running a service from the REST API bug
 - Order model drop down lists in the UI based on pretty name instead of tablename
 - Add user "last login" property (record time of latest login)
@@ -156,6 +198,8 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
   update "update" timestamp if the value hasn't changed
   - in the "update database configuration from git", dont update the database configuration
     if the "update" timestamp from git is the same as or older than the one stored in the database.
+  - Add "force_update" argument to "get git content" and "update database configuration
+  from git" functions (when the app runs for the first time, this argument is set to True)
 - Add parameterized form properties in dedicated accordion in service edit panel
 - Display header and link before results in email notification
 - Files Improvements:
@@ -189,6 +233,8 @@ Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 - Fix log not sent when add_secret is False or device is None in the get_credentials function bug
 - Add new 'prepend_filepath' function in workflow builder namespace to add path to file folder before a string
 - Add support for string substitution for the email notification feature (service step 4)
+- Limit update all pools mechanism (in pool table and as a service option) to the pools a user
+  has "edit" access to
 
 Migration:
 - in file.yaml, remove path to "files" folder for all paths

@@ -188,6 +188,15 @@ export function serializeForm(form, formDefault, bulkFilter) {
       result[property.name] = property.value;
     }
   });
+  if (bulkFilter) {
+    $(form)
+      .find("input:checkbox")
+      .each(function() {
+        if (propertiesToKeep.includes(this.name)) {
+          result[this.name] = $(this).is(":checked") ? "bool-true" : "bool-false";
+        }
+      });
+  }
   return result;
 }
 
@@ -994,7 +1003,7 @@ function processData(type, id) {
   }
   if (type == "folder" && !id) {
     const filename = $("#folder-filename").val();
-    $("#folder-path").val(`${folderPath.slice(6)}/${filename}`);
+    $("#folder-path").val(`${folderPath}/${filename}`);
   }
   call({
     url: `/update/${type}`,

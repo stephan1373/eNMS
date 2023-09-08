@@ -9,6 +9,7 @@ from json import loads
 from logging import error, info, warning
 from operator import attrgetter
 from os import getenv, getpid
+from os.path import exists
 from pathlib import Path
 from sqlalchemy import (
     Boolean,
@@ -103,8 +104,13 @@ class Database:
                 **{
                     "name": vs.server,
                     "description": vs.server,
+                    "role": vs.server_role,
                     "mac_address": str(getnode()),
                     "ip_address": vs.server_ip,
+                    "scheduler_address": vs.scheduler_address,
+                    "scheduler_active": vs.scheduler_active,
+                    "location": vs.server_location,
+                    "allowed_automation": vs.settings["cluster"]["allowed_automation"],
                     "status": "Up",
                 },
             )
@@ -116,6 +122,17 @@ class Database:
                 },
             )
         self.session.commit()
+        server = db.factory(
+            "server",
+            name=vs.server,
+            version=vs.server_version,
+            commit_sha=vs.server_commit_sha,
+            last_restart=vs.get_time(),
+        )
+        for worker in server.workers:
+            if not exists(f"/proc/{worker.name}"):
+                db.delete_instance(worker, call_delete=False)
+        vs.server_id = server.id
         for run in self.fetch(
             "run", all_matches=True, allow_none=True, status="Running"
         ):
@@ -481,7 +498,7 @@ class Database:
         if call_delete:
             abort_delete = instance.delete()
             if abort_delete:
-                return {"delete_aborted": True, **abort_delete}
+                return {"delete_aborted": True, "log_level": "error", **abort_delete}
         serialized_instance = instance.serialized
         if not abort_delete:
             self.session.delete(instance)

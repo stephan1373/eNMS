@@ -31,7 +31,7 @@ function run() {
   fi
   export SERVER_NAME="eNMS Server"
   export SERVER_ADDR="192.168.56.108:5000"
-  export SERVER_URL="http://192.168.56.108"
+  export SERVER_URL="http://192.168.56.108:5000"
   export SCHEDULER_ADDR="http://192.168.56.103:5000"
   export LDAP_ADDR="192.168.56.104"
   export TACACS_ADDR="192.168.56.104"
@@ -49,6 +49,8 @@ function run() {
   if [ "$reload" = true ]; then
     if [ "$database" = "mysql" ]; then
       sudo mysql -u root --password=password -e "DROP DATABASE enms;CREATE DATABASE enms;"
+      sudo mysql -u root --password=password -e "ALTER USER 'root'@'localhost'\
+        IDENTIFIED WITH mysql_native_password BY 'password';"
     elif [ "$database" = "pgsql" ]; then
       sudo -u postgres psql -c "DROP DATABASE enms"
       sudo -u postgres psql -c "CREATE DATABASE enms;"

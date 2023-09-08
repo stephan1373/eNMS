@@ -1,5 +1,6 @@
 from collections import defaultdict
 from datetime import datetime
+from git import Repo
 from json import load
 from logging import error
 from napalm._SUPPORTED_DRIVERS import SUPPORTED_DRIVERS
@@ -13,6 +14,7 @@ from traceback import format_exc
 from warnings import warn
 from wtforms.validators import __all__ as all_validators
 from wtforms.widgets.core import __all__ as all_widgets
+from textwrap import indent
 
 try:
     from scrapli import Scrapli
@@ -26,6 +28,7 @@ except ImportError as exc:
 class VariableStore:
     def __init__(self):
         self._set_setup_variables()
+        self._set_server_variables()
         self._set_automation_variables()
         self._set_general_variables()
         self._set_custom_variables()
@@ -38,15 +41,9 @@ class VariableStore:
 
     def _set_setup_variables(self):
         self.path = Path.cwd()
-        self.server = getenv("SERVER_NAME", "Localhost")
-        self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
-        self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
         for setup_file in Path(getenv("SETUP_DIR", self.path / "setup")).iterdir():
             with open(setup_file, "r") as file:
                 setattr(self, setup_file.stem, load(file))
-        self.server = getenv("SERVER_NAME", "Localhost")
-        self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
-        self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
         self.file_path = Path(
             self.settings["paths"]["files"] or str(self.path / "files")
         )
@@ -56,6 +53,17 @@ class VariableStore:
         self.migration_path = (
             self.settings["paths"]["migration"] or f"{self.file_path}/migrations"
         )
+
+    def _set_server_variables(self):
+        self.server = getenv("SERVER_NAME", "Localhost")
+        self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
+        self.server_role = getenv("SERVER_ROLE", "primary")
+        self.scheduler_address = getenv("SCHEDULER_ADDR", "0.0.0.0")
+        self.scheduler_active = getenv("SCHEDULER_ACTIVE", "1") == "1"
+        self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
+        self.server_location = getenv("SERVER_LOCATION")
+        self.server_version = self.settings["app"]["version"]
+        self.server_commit_sha = Repo(search_parent_directories=True).head.object.hexsha
 
     def _set_automation_variables(self):
         self.ssh_sessions = {}
@@ -232,7 +240,7 @@ class VariableStore:
                 result += f"\n{tab}{key}: {self.dict_to_string(value, depth + 1)}"
             return result
         else:
-            return str(input)
+            return f"\n{indent(str(input), tab)}" if "\n" in str(input) else str(input)
 
     def dictionary_recursive_merge(self, old, new):
         for key, value in new.items():
@@ -253,7 +261,8 @@ class VariableStore:
         return str(datetime.now())
 
     def str_to_date(self, value):
-        return datetime.strptime(value, "%Y-%m-%d %H:%M:%S.%f")
+        milliseconds = ".%f" if "." in value else ""
+        return datetime.strptime(value, f"%Y-%m-%d %H:%M:%S{milliseconds}")
 
     def strip_all(self, input):
         return input.translate(str.maketrans("", "", f"{punctuation} "))

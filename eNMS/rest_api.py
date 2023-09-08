@@ -84,10 +84,14 @@ class RestApi:
         return getattr(controller, f"migration_{direction}")(**kwargs)
 
     def query(self, instance_type, **kwargs):
-        results = db.fetch(instance_type, all_matches=True, **kwargs)
+        for arg in ("allow_none", "all_matches", "rbac", "username"):
+            kwargs.pop(arg, None)
+        results = db.fetch(instance_type, allow_none=True, all_matches=True, **kwargs)
         return [result.get_properties(exclude=["positions"]) for result in results]
 
     def run_service(self, **kwargs):
+        if "rest_api" not in vs.server_data["allowed_automation"]:
+            return {"error": "Runs from the REST API are not allowed on this server."}
         data = {"trigger": "REST API", "creator": current_user.name, **kwargs}
         errors, devices, pools = [], [], []
         service = db.fetch("service", name=data.pop("name"), rbac="run")
@@ -131,6 +135,8 @@ class RestApi:
             return {**controller.run(service.id, **data), "errors": errors}
 
     def run_task(self, task_id):
+        if "scheduler" not in vs.server_data["allowed_automation"]:
+            return {"error": "Scheduled runs are not allowed on this server."}
         task = db.fetch("task", rbac="edit", id=task_id)
         data = {
             "trigger": "Scheduler",
