@@ -164,68 +164,6 @@
     "task": ["status", "frequency", "frequency_unit", "crontab_expression"],
     "user": ["is_admin", "groups"]
   },
-  "serialized": {
-    "get": {
-      "device": {
-        "include": [
-          "gateways",
-          "owners",
-          "rbac_read",
-          "rbac_configuration",
-          "rbac_edit",
-          "rbac_connect",
-          "rbac_target"
-        ]
-      },
-      "group": {
-        "include": [
-          "users",
-          "rbac_pool_rbac_read",
-          "rbac_pool_rbac_configuration",
-          "rbac_pool_rbac_edit",
-          "rbac_pool_rbac_connect",
-          "rbac_pool_rbac_target"
-        ]
-      },
-      "link": {
-        "exclude": ["pools"]
-      },
-      "network": {
-        "exclude": ["labels", "links", "nodes", "positions"]
-      },
-      "pool": {
-        "exclude": [
-          "logs",
-          "credential_devices",
-          "devices",
-          "links",
-          "tasks",
-          "target_services"
-        ]
-      },
-      "workflow": {
-        "include": [
-          "owners",
-          "rbac_read",
-          "rbac_edit",
-          "rbac_run",
-          "superworkflow",
-          "target_devices",
-          "target_pools",
-          "workflows"
-        ]
-      },
-      "user": {
-        "include": ["groups"]
-      },
-      "task": {
-        "include": ["devices", "pools", "service"]
-      },
-      "service": {
-        "exclude": ["runs"]
-      }
-    }
-  },
   "tables": {
     "device": [
       {
