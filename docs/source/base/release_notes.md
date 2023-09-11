@@ -67,6 +67,8 @@ Version 4.7.0: Changelog & Workflow Tree
   user data or parameters.
 - Refactor "get" controller function to only use form properties when serializing object
 - Add lower menu bar to display profile, server, server time and logout
+- Add Workflow Tree mechanism
+  - New "tree" icon to display / hide the workflow tree
 
 Version 4.6.0: Clustering
 -------------------------
