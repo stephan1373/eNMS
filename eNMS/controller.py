@@ -628,6 +628,9 @@ class Controller:
         runtime, display = kwargs.get("runtime"), kwargs.get("display")
         output = {"runtime": runtime}
         service = db.fetch("service", id=path_id[-1], allow_none=True)
+        if len(path_id) == 1 and service.superworkflow:
+            path = f"{service.superworkflow.id}>{path}"
+            path_id = path.split(">")
         if not service:
             raise db.rbac_error
         runs = db.query("run", rbac=None).filter(
@@ -649,8 +652,6 @@ class Controller:
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
             }
-        if service.superworkflow and ">" not in path:
-            path = f"{service.superworkflow.id}>{path}"
         if run:
             output["tree"] = self.get_workflow_results(path, run.runtime)
         else:
