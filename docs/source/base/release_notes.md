@@ -65,6 +65,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Dont inject context processor variables for forms
   - Use flask_caching to cache the "*_form" endpoints as forms do not use
   user data or parameters.
+- Refactor "get" controller function to only use form properties when serializing object
 
 Version 4.6.0: Clustering
 -------------------------
