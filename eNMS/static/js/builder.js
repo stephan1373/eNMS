@@ -139,6 +139,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
   } else {
     let tree = $(treeId)
       .bind("loaded.jstree", function(e, data) {
+        tree.jstree("open_all");
         createTooltips();
       })
       .jstree({
@@ -151,17 +152,20 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
         html_row: {
           default: function(el, node) {
             if (!node) return;
-            const nodeProperties = JSON.stringify(node.data.properties)
+            const nodeProperties = JSON.stringify(node.data.properties);
             let progressSummary = "";
-            const progress = node.data.progress
+            const progress = node.data.progress;
             if (progress) {
               const progressList = [
                 `<span style="color: #32CD32">${progress.success || 0} passed</span>`,
-                `<span style="color: #FF6666">${progress.failure|| 0} failed</span>`
+                `<span style="color: #FF6666">${progress.failure || 0} failed</span>`,
               ];
-              if (progress.skipped > 0) progressList.splice(1, 0, `
-                <span style="color: #7D7D7D">${progress.skipped} skipped</span>
-              `);
+              if (progress.skipped > 0)
+                progressList.splice(
+                  1,
+                  0,
+                  `<span style="color: #7D7D7D">${progress.skipped} skipped</span>`
+                );
               progressSummary = `
                 <div style="position: absolute; top: 0px; right: 160px">
                   ${progressList.join(`<span style="color: #000000"> - </span>`)}
@@ -220,20 +224,17 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
             icon: "fa fa-sitemap",
           },
         },
-      })
-    tree.on("contextmenu", ".jstree-anchor", function(event) {
-        const tree = $(treeId).jstree(true);
-        $(".menu-entry").hide();
-        $(".node-selection").show();
-        selectedObject = tree.get_node(event.target).data;
-        if (nodes.get(selectedObject.id)) {
-          network.selectNodes([selectedObject.id]);
-        } else {
-          network.selectNodes([]);
-        }
       });
-    tree.bind("loaded.jstree", function() {
-      tree.jstree("open_all");
+    tree.on("contextmenu", ".jstree-anchor", function(event) {
+      const tree = $(treeId).jstree(true);
+      $(".menu-entry").hide();
+      $(".node-selection").show();
+      selectedObject = tree.get_node(event.target).data;
+      if (nodes.get(selectedObject.id)) {
+        network.selectNodes([selectedObject.id]);
+      } else {
+        network.selectNodes([]);
+      }
     });
     $(treeId).contextMenu({
       menuSelector: "#contextMenu",
