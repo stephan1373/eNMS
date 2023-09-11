@@ -47,7 +47,7 @@ class Server(AbstractBase):
 
 
 class Worker(AbstractBase):
-    __tablename__ = type = "worker"
+    __tablename__ = type= class_type = "worker"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     description = db.Column(db.LargeString)
