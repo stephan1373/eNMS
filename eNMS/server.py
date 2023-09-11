@@ -109,6 +109,7 @@ class Server(Flask):
                     if current_user.is_authenticated
                     else None,
                     "time": str(vs.get_time()),
+                    "server_id": vs.server_id,
                     "parameters": db.fetch("parameters").serialized,
                     **vs.template_context,
                 }
