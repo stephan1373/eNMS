@@ -649,6 +649,8 @@ class Controller:
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
             }
+        if service.superworkflow and ">" not in path:
+            path = f"{service.superworkflow.id}>{path}"
         if run:
             output["tree"] = self.get_workflow_results(path, run.runtime)
         else:
