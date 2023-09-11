@@ -216,7 +216,7 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
     url: `/get_service_state/${path}`,
     data: {
       display: runtimeDisplay,
-      runtime: runtime || "latest",
+      runtime: runtime || $("#current-runtime").val() || "latest",
     },
     callback: function(result) {
       workflow = result.service;
