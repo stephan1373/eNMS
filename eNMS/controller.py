@@ -955,7 +955,7 @@ class Controller:
             color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
                 "data": {"path": path, **instance.base_properties},
-                "id": instance.id,
+                "id": path,
                 "state": {"opened": full_path.startswith(path)},
                 "text": instance.scoped_name if type == "workflow" else instance.name,
                 "children": children,
