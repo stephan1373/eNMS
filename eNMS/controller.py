@@ -692,6 +692,9 @@ class Controller:
             },
         }
 
+    def get_time(self):
+        return vs.get_time()
+
     def get_top_level_instances(self, type):
         result = defaultdict(list)
         constraints = [~getattr(vs.models[type], f"{type}s").any()]

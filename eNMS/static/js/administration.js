@@ -381,6 +381,15 @@ export function showCredentialPanel(id) {
     .trigger("change");
 }
 
+function showServerTime() {
+  call({
+    url: "/get_time",
+    callback: function(time) {
+      $("#server-time").html(`Server Time: ${time}`);
+    },
+  });
+}
+
 function updateDeviceRbac() {
   notify("RBAC Update Initiated.", "success", 5, true);
   call({
@@ -409,6 +418,7 @@ configureNamespace("administration", [
   showFileUploadPanel,
   showMigrationPanel,
   showProfile,
+  showServerTime,
   undoLog,
   updateDeviceRbac,
 ]);

@@ -145,7 +145,6 @@
           </ul>
         </div>
       </div>
-      {% set font, left = (8, 5) if current_user.small_menu else (11, 10) %}
       <div
         id="server-time"
         style="font-size: 11px; left: 10px"
@@ -159,7 +158,7 @@
         <a onclick="eNMS.base.showInstancePanel('server', {{ server_id }})" title="Server">
           <span class="glyphicon glyphicon-cog"></span>
         </a>
-        <a title="Time">
+        <a onclick="eNMS.administration.showServerTime()" title="Time">
           <span class="glyphicon glyphicon-time"></span>
         </a>
         <a href="/logout" title="Log out">
