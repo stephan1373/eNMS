@@ -229,7 +229,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       const tree = $(treeId).jstree(true);
       $(".menu-entry").hide();
       $(".node-selection").show();
-      selectedObject = tree.get_node(event.target).data;
+      selectedObject = tree.get_node(event.target).data.properties;
       if (nodes.get(selectedObject.id)) {
         network.selectNodes([selectedObject.id]);
       } else {
