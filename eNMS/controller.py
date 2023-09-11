@@ -628,7 +628,7 @@ class Controller:
         runtime, display = kwargs.get("runtime"), kwargs.get("display")
         output = {"runtime": runtime}
         service = db.fetch("service", id=path_id[-1], allow_none=True)
-        if len(path_id) == 1 and service.superworkflow:
+        if len(path_id) == 1 and getattr(service, "superworkflow", None):
             path = f"{service.superworkflow.id}>{path}"
             path_id = path.split(">")
         if not service:
