@@ -66,6 +66,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Use flask_caching to cache the "*_form" endpoints as forms do not use
   user data or parameters.
 - Refactor "get" controller function to only use form properties when serializing object
+- Add lower menu bar to display profile, server, server time and logout
 
 Version 4.6.0: Clustering
 -------------------------
