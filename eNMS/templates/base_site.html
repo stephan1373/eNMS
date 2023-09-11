@@ -148,12 +148,10 @@
       {% set font, left = (8, 5) if current_user.small_menu else (11, 10) %}
       <div
         id="server-time"
-        style="font-size: {{ font }}px; left: {{ left }}px"
+        style="font-size: 11px; left: 10px"
         class="server-time"
       >
-        {% if not current_user.small_menu %} Server Time: {{ time }} {% else %} {% set
-        a, b = time.split(" ") %} {{ a }} <br />
-        {{ b }} {% endif %}
+        Server Time: {{ time }}
       </div>
       <div class="sidebar-footer hidden-small">
         <a onclick="eNMS.administration.showProfile()" title="Profile">
