@@ -1380,7 +1380,7 @@ function initSidebar() {
     menuIsToggled = !menuIsToggled;
     call({ url: `/switch_menu/${user.id}` });
     $("body").toggleClass("nav-md nav-sm");
-    $("#server-time").hide();
+    $("#server-time").toggle();
     switchMenu();
   });
 }

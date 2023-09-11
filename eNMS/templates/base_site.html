@@ -145,9 +145,10 @@
           </ul>
         </div>
       </div>
+      {% set display = "display: none" if current_user.small_menu else "" %}
       <div
         id="server-time"
-        style="font-size: 11px; left: 10px"
+        style="font-size: 11px; left: 10px; {{ display }}"
         class="server-time"
       >
       </div>
