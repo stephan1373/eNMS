@@ -846,45 +846,6 @@ class Controller:
 
         return {"tree": rec(db.fetch(type, id=path_id[-1]), full_path), "highlight": highlight}
 
-    def get_workflow_results(self, path, runtime):
-        run = db.fetch("run", runtime=runtime)
-        service = db.fetch("service", id=path.split(">")[-1])
-        state = run.state or run.get_state()
-        print("TTT"*100, path)
-        def rec(service, path):
-            if path not in state:
-                return
-            progress = state[path].get("progress")
-            track_progress = progress and progress["device"]["total"]
-            data = {"progress": progress["device"]} if track_progress else {}
-            if "success" in state[path]["result"]:
-                color = "32CD32" if state[path]["result"]["success"] else "FF6666"
-            else:
-                color = "25b6fa"
-            result = {
-                "runtime": state[path]["result"]["runtime"],
-                "data": {"path": path, "properties": service.base_properties, **data},
-                "text": service.scoped_name,
-                "a_attr": {"style": f"color: #{color};width: 100%"},
-            }
-            if service.type == "workflow":
-                children_results = []
-                for child in service.services:
-                    if child.scoped_name == "Placeholder":
-                        child = run.placeholder
-                    child_results = rec(child, f"{path}>{child.id}")
-                    if not child_results:
-                        continue
-                    children_results.append(child_results)
-                return {
-                    "children": sorted(children_results, key=itemgetter("runtime")),
-                    **result,
-                }
-            else:
-                return result
-
-        return rec(service, path)
-
     def get_workflow_services(self, id, node):
         parents = db.fetch("workflow", id=id).get_ancestors()
         if node == "all":
