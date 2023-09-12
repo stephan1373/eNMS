@@ -69,6 +69,7 @@ Version 4.7.0: Changelog & Workflow Tree
 - Add lower menu bar to display profile, server, server time and logout
 - Add Workflow Tree mechanism
   - New "tree" icon to display / hide the workflow tree
+  - Double-click on a tree node: teleport and highlight associated service
 
 Version 4.6.0: Clustering
 -------------------------
