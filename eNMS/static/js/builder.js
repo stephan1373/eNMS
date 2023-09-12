@@ -176,12 +176,12 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                     resultsPanel ? " skipped" : ""
                   }</span>`
                 );
-              const position = resultsPanel ? "160" : "110";
-              const separator = resultsPanel ? " - " : "/";
               progressSummary = `
-                <div style="position: absolute; top: 0px; right: ${position}px">
+                <div style="position: absolute; top: 0px; right: ${
+                  resultsPanel ? "160" : "110"
+                }px">
                   ${progressList.join(
-                    `<span style="color: #000000">${separator}</span>`
+                    `<span style="color: #000000">${resultsPanel ? " - " : "/"}</span>`
                   )}
                 </div>`;
             }
