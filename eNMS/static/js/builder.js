@@ -161,14 +161,20 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
             const progress = node.data.progress;
             if (progress) {
               const progressList = [
-                `<span style="color: #32CD32">${progress.success || 0} passed</span>`,
-                `<span style="color: #FF6666">${progress.failure || 0} failed</span>`,
+                `<span style="color: #32CD32">${progress.success || 0}${
+                  resultsPanel ? " passed" : "P"
+                }</span>`,
+                `<span style="color: #FF6666">${progress.failure || 0}${
+                  resultsPanel ? " failed" : "F"
+                }</span>`,
               ];
               if (progress.skipped > 0)
                 progressList.splice(
                   1,
                   0,
-                  `<span style="color: #7D7D7D">${progress.skipped} skipped</span>`
+                  `<span style="color: #7D7D7D">${progress.skipped}${
+                    resultsPanel ? " skipped" : "S"
+                  }</span>`
                 );
               progressSummary = `
                 <div style="position: absolute; top: 0px; right: 160px">
