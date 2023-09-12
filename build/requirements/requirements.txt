@@ -3,7 +3,6 @@ argon2-cffi
 dicttoxml
 dramatiq[redis, watch]
 flask
-flask_caching
 flask_login
 flask-socketio
 flask_wtf

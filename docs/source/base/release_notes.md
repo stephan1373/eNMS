@@ -63,9 +63,7 @@ Version 4.7.0: Changelog & Workflow Tree
 - Add support for named credential in the web SSH connection to a device
 - Performance Improvements:
   - Dont inject context processor variables for forms
-  - Use flask_caching to cache the "*_form" endpoints as forms do not use
-  user data or parameters.
-- Refactor "get" controller function to only use form properties when serializing object
+  - Refactor "get" controller function to only use form properties when serializing object
 - Add lower menu bar to display profile, server, server time and logout
 - Add Workflow Tree mechanism
   - New "tree" icon to display / hide the workflow tree
