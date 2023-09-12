@@ -8,6 +8,7 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formatdate
+from flask_caching import Cache
 from flask_login import current_user
 from importlib import import_module
 from json import load
@@ -65,6 +66,7 @@ class Environment:
         if vs.settings["automation"]["use_task_queue"]:
             self.init_dramatiq()
         self.init_connection_pools()
+        self.cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         main_thread = Thread(target=self.monitor_filesystem)
         main_thread.daemon = True
