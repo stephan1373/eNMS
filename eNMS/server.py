@@ -12,6 +12,7 @@ from flask import (
     url_for,
     session,
 )
+from flask_caching import Cache
 from flask_login import current_user, LoginManager, login_user, logout_user, login_url
 from flask_wtf.csrf import CSRFProtect
 from functools import wraps
@@ -85,6 +86,8 @@ class Server(Flask):
     def register_extensions(self):
         self.csrf = CSRFProtect()
         self.csrf.init_app(self)
+        self.cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
+        self.cache.init_app(self)
 
     def configure_login_manager(self):
         login_manager = LoginManager()
