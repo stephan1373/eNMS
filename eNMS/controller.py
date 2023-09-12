@@ -652,10 +652,8 @@ class Controller:
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
             }
-        if run:
-            output["tree"] = self.get_workflow_results(path, run.runtime)
-        else:
-            output.update(self.get_instance_tree("workflow", path, **kwargs))
+        kwargs["runtime"] = getattr(run, "runtime", None)
+        output.update(self.get_instance_tree("workflow", path, **kwargs))
         serialized_service = service.to_dict(include=["superworkflow"])
         run_properties = vs.automation["workflow"]["state_properties"]["run"]
         service_properties = vs.automation["workflow"]["state_properties"]["service"]
@@ -761,8 +759,10 @@ class Controller:
         rec(instance)
         return list(children)
 
-    def get_instance_tree(self, type, full_path, **kwargs):
+    def get_instance_tree(self, type, full_path, runtime=None, **kwargs):
         path_id = full_path.split(">")
+        run = db.fetch("run", runtime=runtime) if runtime else None
+        state = (run.state or run.get_state()) if run else {}
         highlight = []
 
         def match(instance, **kwargs):
@@ -777,8 +777,9 @@ class Controller:
                 highlight.append(instance.id)
             return is_match
 
-        def rec(instance, path=""):
-            path += ">" * bool(path) + str(instance.id)
+        def rec(instance, path):
+            if run and path not in state:
+                return
             style, active_search = "", kwargs.get("search_value")
             if type == "workflow":
                 if instance.scoped_name in ("Start", "End"):
@@ -799,9 +800,16 @@ class Controller:
                     if type == "workflow"
                     else instance.nodes
                 )
-                children = sorted(
-                    filter(None, (rec(child, path) for child in instances)),
-                    key=lambda node: node["text"].lower(),
+                children_results = []
+                for child in instances:
+                    if run and child.scoped_name == "Placeholder":
+                        child = run.placeholder
+                    child_results = rec(child, f"{path}>{child.id}")
+                    if run and not child_results:
+                        continue
+                    children_results.append(child_results)
+                children = sorted(filter(None, children_results),
+                    key=itemgetter("runtime") if run else lambda node: node["text"].lower(),
                 )
                 if active_search:
                     is_match = match(instance, **kwargs)
@@ -810,9 +818,21 @@ class Controller:
                     elif is_match:
                         style = "font-weight: bold;"
             child_property = "nodes" if type == "network" else "services"
-            color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
+            progress_data = {}
+            if run:
+                progress = state[path].get("progress")
+                if progress and progress["device"]["total"]:
+                    progress_data = {"progress": progress["device"]}
+            if run:
+                if "success" in state[path]["result"]:
+                    color = "32CD32" if state[path]["result"]["success"] else "FF6666"
+                else:
+                    color = "25b6fa"
+            else:
+                color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
-                "data": {"path": path, "properties": instance.base_properties},
+                "runtime": state[path]["result"]["runtime"] if state else None,
+                "data": {"path": path, "properties": instance.base_properties, **progress_data},
                 "id": path,
                 "state": {"opened": full_path.startswith(path)},
                 "text": instance.scoped_name if type == "workflow" else instance.name,
@@ -824,13 +844,13 @@ class Controller:
                 "type": instance.type,
             }
 
-        return {"tree": rec(db.fetch(type, id=path_id[0])), "highlight": highlight}
+        return {"tree": rec(db.fetch(type, id=path_id[-1]), full_path), "highlight": highlight}
 
     def get_workflow_results(self, path, runtime):
         run = db.fetch("run", runtime=runtime)
         service = db.fetch("service", id=path.split(">")[-1])
         state = run.state or run.get_state()
-
+        print("TTT"*100, path)
         def rec(service, path):
             if path not in state:
                 return

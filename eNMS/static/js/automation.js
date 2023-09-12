@@ -479,10 +479,10 @@ export function displayResultsTree(service, runtime) {
   const path =
     currentPath && currentPath.endsWith(service.id) ? currentPath : service.id;
   call({
-    url: `/get_workflow_results/${path}/${runtime}`,
+    url: `/get_instance_tree/workflow/${path}/${runtime}`,
     callback: function(data) {
       if (!data) return notify("No results to display.", "error", 5);
-      drawTree(`#result-tree-${service.id}`, data, runtime, true);
+      drawTree(`#result-tree-${service.id}`, data.tree, runtime, true);
     },
   });
 }
