@@ -204,7 +204,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                   class="btn btn-xs btn-primary"
                   data-tooltip="Edit"
                   onclick='eNMS.base.showInstancePanel(
-                    "${node.data.type}", ${node.data.id}
+                    "${node.data.properties.type}", ${node.data.properties.id}
                   )'
                 >
                   <span class="glyphicon glyphicon-edit"></span>
