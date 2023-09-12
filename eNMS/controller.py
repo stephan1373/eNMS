@@ -761,6 +761,71 @@ class Controller:
         rec(instance)
         return list(children)
 
+    def get_instance_tree(self, type, full_path, **kwargs):
+        path_id = full_path.split(">")
+        highlight = []
+
+        def match(instance, **kwargs):
+            is_match = not (
+                kwargs["search_mode"] == "names"
+                and kwargs["search_value"].lower() not in instance.scoped_name.lower()
+                or kwargs["search_mode"] == "properties"
+                and kwargs["search_value"].lower()
+                not in str(instance.get_properties().values()).lower()
+            )
+            if is_match:
+                highlight.append(instance.id)
+            return is_match
+
+        def rec(instance, path=""):
+            path += ">" * bool(path) + str(instance.id)
+            style, active_search = "", kwargs.get("search_value")
+            if type == "workflow":
+                if instance.scoped_name in ("Start", "End"):
+                    return
+                elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
+                    instance = db.fetch(type, id=path_id[1])
+                if active_search and instance.type != type:
+                    if match(instance, **kwargs):
+                        style = "font-weight: bold;"
+                    else:
+                        return
+            if type == "network":
+                children = instance.nodes
+            children = False
+            if instance.type == type:
+                instances = (
+                    instance.exclude_soft_deleted("services")
+                    if type == "workflow"
+                    else instance.nodes
+                )
+                children = sorted(
+                    filter(None, (rec(child, path) for child in instances)),
+                    key=lambda node: node["text"].lower(),
+                )
+                if active_search:
+                    is_match = match(instance, **kwargs)
+                    if not children and not is_match:
+                        return
+                    elif is_match:
+                        style = "font-weight: bold;"
+            child_property = "nodes" if type == "network" else "services"
+            color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
+            return {
+                "data": {"path": path, "properties": instance.base_properties},
+                "id": path,
+                "state": {"opened": full_path.startswith(path)},
+                "text": instance.scoped_name if type == "workflow" else instance.name,
+                "children": children,
+                "a_attr": {
+                    "class": "no_checkbox",
+                    "style": f"color: #{color}; width: 100%; {style}",
+                },
+                "type": instance.type,
+            }
+
+        return {"tree": rec(db.fetch(type, id=path_id[0])), "highlight": highlight}
+
     def get_workflow_results(self, path, runtime):
         run = db.fetch("run", runtime=runtime)
         service = db.fetch("service", id=path.split(">")[-1])
@@ -905,71 +970,6 @@ class Controller:
                 ),
                 key=itemgetter("text"),
             )
-
-    def get_instance_tree(self, type, full_path, **kwargs):
-        path_id = full_path.split(">")
-        highlight = []
-
-        def match(instance, **kwargs):
-            is_match = not (
-                kwargs["search_mode"] == "names"
-                and kwargs["search_value"].lower() not in instance.scoped_name.lower()
-                or kwargs["search_mode"] == "properties"
-                and kwargs["search_value"].lower()
-                not in str(instance.get_properties().values()).lower()
-            )
-            if is_match:
-                highlight.append(instance.id)
-            return is_match
-
-        def rec(instance, path=""):
-            path += ">" * bool(path) + str(instance.id)
-            style, active_search = "", kwargs.get("search_value")
-            if type == "workflow":
-                if instance.scoped_name in ("Start", "End"):
-                    return
-                elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
-                    instance = db.fetch(type, id=path_id[1])
-                if active_search and instance.type != type:
-                    if match(instance, **kwargs):
-                        style = "font-weight: bold;"
-                    else:
-                        return
-            if type == "network":
-                children = instance.nodes
-            children = False
-            if instance.type == type:
-                instances = (
-                    instance.exclude_soft_deleted("services")
-                    if type == "workflow"
-                    else instance.nodes
-                )
-                children = sorted(
-                    filter(None, (rec(child, path) for child in instances)),
-                    key=lambda node: node["text"].lower(),
-                )
-                if active_search:
-                    is_match = match(instance, **kwargs)
-                    if not children and not is_match:
-                        return
-                    elif is_match:
-                        style = "font-weight: bold;"
-            child_property = "nodes" if type == "network" else "services"
-            color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
-            return {
-                "data": {"path": path, "properties": instance.base_properties},
-                "id": path,
-                "state": {"opened": full_path.startswith(path)},
-                "text": instance.scoped_name if type == "workflow" else instance.name,
-                "children": children,
-                "a_attr": {
-                    "class": "no_checkbox",
-                    "style": f"color: #{color}; width: 100%; {style}",
-                },
-                "type": instance.type,
-            }
-
-        return {"tree": rec(db.fetch(type, id=path_id[0])), "highlight": highlight}
 
     def load_debug_snippets(self):
         snippets = {}
