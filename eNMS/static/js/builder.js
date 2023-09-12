@@ -162,10 +162,10 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
             if (progress) {
               const progressList = [
                 `<span style="color: #32CD32">${progress.success || 0}${
-                  resultsPanel ? " passed" : "P"
+                  resultsPanel ? " passed" : ""
                 }</span>`,
                 `<span style="color: #FF6666">${progress.failure || 0}${
-                  resultsPanel ? " failed" : "F"
+                  resultsPanel ? " failed" : ""
                 }</span>`,
               ];
               if (progress.skipped > 0)
@@ -173,12 +173,16 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                   1,
                   0,
                   `<span style="color: #7D7D7D">${progress.skipped}${
-                    resultsPanel ? " skipped" : "S"
+                    resultsPanel ? " skipped" : ""
                   }</span>`
                 );
+              const position = resultsPanel ? "160" : "110";
+              const separator = resultsPanel ? " - " : "/";
               progressSummary = `
-                <div style="position: absolute; top: 0px; right: 160px">
-                  ${progressList.join(`<span style="color: #000000"> - </span>`)}
+                <div style="position: absolute; top: 0px; right: ${position}px">
+                  ${progressList.join(
+                    `<span style="color: #000000">${separator}</span>`
+                  )}
                 </div>`;
             }
             const buttons = runtime
