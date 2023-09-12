@@ -65,6 +65,8 @@ Version 4.7.0: Changelog & Workflow Tree
   - Dont inject context processor variables for forms
   - Refactor "get" controller function to only use form properties when serializing object
   - Use flask_caching to cache parts of the Jinja2 templates with fragment caching
+    - Full caching for the forms with token post update
+    - Fragment caching for the base template (page content + JS variables)
 - Add lower menu bar to display profile, server, server time and logout
 - Add Workflow Tree mechanism
   - New "tree" icon to display / hide the workflow tree
