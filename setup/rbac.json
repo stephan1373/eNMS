@@ -228,7 +228,6 @@
     "/get_time": "access",
     "/get_top_level_instances": "access",
     "/get_visualization_pools": "access",
-    "/get_workflow_results": "access",
     "/get_workflow_services": "access",
     "/get_instance_tree": "access",
     "/import_services": "access",
