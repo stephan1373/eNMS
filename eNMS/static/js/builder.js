@@ -237,9 +237,11 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       }
     });
     tree.on("dblclick", function(event) {
-      const tree = $(treeId).jstree(true);
-      selectedObject = tree.get_node(event.target).data;
-      highlightNode(selectedObject);
+      highlightNode(
+        $(treeId)
+          .jstree(true)
+          .get_node(event.target).data
+      );
     });
     $(treeId).contextMenu({
       menuSelector: "#contextMenu",
