@@ -137,6 +137,10 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       .jstree(true)
       .refresh();
   } else {
+    $(treeId)
+      .jstree("destroy")
+      .off()
+      .empty();
     let tree = $(treeId)
       .bind("loaded.jstree", function(e, data) {
         tree.jstree("open_all");
