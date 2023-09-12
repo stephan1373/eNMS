@@ -778,7 +778,7 @@ class Controller:
                 color = "25b6fa"
             result = {
                 "runtime": state[path]["result"]["runtime"],
-                "data": {"properties": service.base_properties, **data},
+                "data": {"path": path, "properties": service.base_properties, **data},
                 "text": service.scoped_name,
                 "a_attr": {"style": f"color: #{color};width: 100%"},
             }
