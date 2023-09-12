@@ -481,9 +481,6 @@ export function displayResultsTree(service, runtime) {
   call({
     url: `/get_workflow_results/${path}/${runtime}`,
     callback: function(data) {
-      $(`#result-tree-${service.id}`)
-        .jstree("destroy")
-        .empty();
       if (!data) return notify("No results to display.", "error", 5);
       drawTree(`#result-tree-${service.id}`, data, runtime, true);
     },
