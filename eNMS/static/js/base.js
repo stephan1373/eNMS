@@ -543,6 +543,7 @@ export function preprocessForm(panel, id, type, duplicate) {
     });
     $(el).append(button);
   });
+  panel.querySelector('input[name="csrf_token"]').value = csrf_token;
 }
 
 export function initCodeMirror(id, mode) {

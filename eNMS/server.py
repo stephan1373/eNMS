@@ -282,6 +282,7 @@ class Server(Flask):
             return render_template(f"{endpoint}.html", endpoint=endpoint, **kwargs)
 
         @blueprint.route("/<form_type>_form")
+        @self.cache.cached(timeout=500)
         @self.process_requests
         def form(form_type):
             form = vs.form_class[form_type](request.form)
