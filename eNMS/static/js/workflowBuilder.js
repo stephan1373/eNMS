@@ -822,8 +822,8 @@ function toggleWorkflowTree() {
     if (!menuIsHidden) hideMenu();
     $("#workflow-tree").show();
     $("#run-navbar").hide();
-    $(".right_column").animate({ width: "-=500px" }, kwargs);
-    $("#workflow-tree").animate(
+    $(".left_frame").animate({ width: "-=500px" }, kwargs);
+    $(".right_frame").animate(
       { width: "500px" },
       {
         ...kwargs,
@@ -838,8 +838,8 @@ function toggleWorkflowTree() {
   } else {
     if (menuIsHidden) hideMenu();
     $("#run-navbar").hide();
-    $(".right_column").animate({ width: "+=500px" }, kwargs);
-    $("#workflow-tree").animate(
+    $(".left_frame").animate({ width: "+=500px" }, kwargs);
+    $(".right_frame").animate(
       { width: "-=500px" },
       {
         ...kwargs,

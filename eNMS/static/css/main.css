@@ -72,8 +72,19 @@ body {
 }
 
 .main_frame {
-  width: 100%;
-  padding: 10px 17px;
+  display: flex;
+}
+
+.left_frame {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-grow: 1;
+}
+
+.right_frame {
+  background: #e6ecf0;
+  width: 0px;
 }
 
 .header {
@@ -819,8 +830,8 @@ fieldset {
 }
 
 /* View
-We cannot use 100% because main_frame is not set to 100%
-80px = 60px (header) + 2*10px (main_frame vertical padding)
+We cannot use 100% because left_frame is not set to 100%
+80px = 60px (header) + 2*10px (left_frame vertical padding)
 */
 
 #map {
@@ -842,14 +853,9 @@ We cannot use 100% because main_frame is not set to 100%
 /* Cross-browser compatibility for width: fit-content needed 
 intrinsic (Safari) - moz (Firefox) - webkit (Chrome) */
 .controls {
-  z-index: 3;
-  top: 75px;
+  z-index: 1;
+  top: 10px;
   position: absolute;
-  width: intrinsic;
-  width: -moz-max-content;
-  width: -webkit-max-content;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .controls_mode {

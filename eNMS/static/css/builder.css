@@ -14,11 +14,5 @@ li.dropdown-header {
 }
 
 #workflow-tree {
-  background: #e6ecf0;
-  float: left;
-  height: 100%;
   border-left: solid;
-  right: 0px;
-  position: absolute;
-  width: 0px;
 }
