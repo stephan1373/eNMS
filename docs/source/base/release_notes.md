@@ -68,6 +68,7 @@ Version 4.7.0: Changelog & Workflow Tree
     - Full caching for the forms with token post update
     - Fragment caching for the base template (page content + JS variables)
 - Add lower menu bar to display profile, server, server time and logout
+- Add "Hide Menu" button in upper bar to hide the menu
 - Add Workflow Tree mechanism
   - New "tree" icon to display / hide the workflow tree
   - Double-click on a tree node: teleport and highlight associated service
