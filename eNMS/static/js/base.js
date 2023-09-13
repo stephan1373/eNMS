@@ -1391,17 +1391,11 @@ function initSidebar() {
 function hideMenu() {
   const kwargs = { duration: 200, queue: false };
   const width = menuIsToggled ? "70" : "230";
-  if (menuIsHidden) {
-    $(".left_column")
-      .toggle()
-      .animate({ width: `+=${width}` }, kwargs);
-    $(".right_column").animate({ left: `+=${width}`, width: `-=${width}` }, kwargs);
-  } else {
-    $(".left_column")
-      .toggle()
-      .animate({ width: `-=${width}` }, kwargs);
-    $(".right_column").animate({ left: `-=${width}`, width: `+=${width}` }, kwargs);
-  }
+  const [p, m] = menuIsHidden ? ["+", "-"] : ["-", "+"];
+  $(".left_column")
+    .toggle()
+    .animate({ width: `${p}=${width}` }, kwargs);
+  $(".right_column").animate({ left: `${p}=${width}`, width: `${m}=${width}` }, kwargs);
   menuIsHidden = !menuIsHidden;
 }
 
