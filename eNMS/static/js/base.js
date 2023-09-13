@@ -1389,6 +1389,7 @@ function initSidebar() {
 
 export function hideMenu() {
   $("body").toggleClass(`nav-hidden ${menuIsToggled ? "nav-sm" : "nav-md"}`);
+  $("#sidebar").toggle();
   $("#hide-menu-icon").toggleClass("glyphicon-step-backward glyphicon-step-forward");
   menuIsHidden = !menuIsHidden;
 }
