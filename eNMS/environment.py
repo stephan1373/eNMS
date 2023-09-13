@@ -66,7 +66,7 @@ class Environment:
         if vs.settings["automation"]["use_task_queue"]:
             self.init_dramatiq()
         self.init_connection_pools()
-        self.cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
+        self.cache = Cache(config=vs.settings["cache"]["config"])
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         main_thread = Thread(target=self.monitor_filesystem)
         main_thread.daemon = True
