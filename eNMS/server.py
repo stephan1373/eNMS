@@ -280,7 +280,7 @@ class Server(Flask):
             return render_template(f"{endpoint}.html", endpoint=endpoint, **kwargs)
 
         @blueprint.route("/<form_type>_form")
-        @env.cache.cached(timeout=500)
+        @env.cache.cached(timeout=vs.settings["cache"]["timeout"])
         @self.process_requests
         def form(form_type):
             form = vs.form_class[form_type](request.form)
