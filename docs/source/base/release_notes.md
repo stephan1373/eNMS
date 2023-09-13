@@ -67,6 +67,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Use flask_caching to cache parts of the Jinja2 templates with fragment caching
     - Full caching for the forms with token post update
     - Fragment caching for the base template (page content + JS variables)
+    - Cache configuration defined in settings.json > "cache"
 - Add lower menu bar to display profile, server, server time and logout
 - Add "Hide Menu" button in upper bar to hide the menu
 - Add Workflow Tree mechanism
