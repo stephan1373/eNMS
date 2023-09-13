@@ -355,7 +355,6 @@
       const filePath = {{ file_path|tojson|safe }};
       const linkPath = {{ link_path|d("")|tojson|safe }};
       const linkRuntime = {{ link_runtime|d("")|tojson|safe }};
-      const user = {{ user|tojson|safe }};
       const automation = {{ automation|tojson|safe }};
       const configurationProperties = {{ configuration_properties|tojson|safe }};
       const formProperties = {{ form_properties|tojson|safe }};
@@ -365,11 +364,10 @@
       const serverUrl = {{ server_url|tojson|safe }};
       const subtypes = {{ subtypes|tojson|safe }};
       const tableProperties = {{ table_properties|tojson|safe }};
-      const theme = {{ themes|tojson|safe }}.themes?.[user.theme];
       const visualization = {{ visualization|tojson|safe }};
       const rbac = {{ rbac|tojson|safe }};
-      let action = {};
       let settings = {{ settings|tojson|safe }};
+      let action = {};
     </script>
     <script src="{{ url_for('static', filename='lib/moment/moment.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/full_calendar/fullcalendar.min.js') }}"></script>
@@ -397,6 +395,8 @@
     {% endcache %}
     <script>
       const page = "{{ endpoint }}";
+      const user = {{ user|tojson|safe }};
+      const theme = {{ themes|tojson|safe }}.themes?.[user.theme];
       let csrf_token = "{{ csrf_token() }}";
     </script>
     <script type="module" src="{{ url_for('static', filename='js/base.js') }}"></script>
