@@ -33,6 +33,12 @@
     "max_process": 15,
     "use_task_queue": false
   },
+  "cache": {
+    "config": {
+      "CACHE_TYPE": "SimpleCache"
+    },
+    "timeout": 500
+  },
   "cluster": {
     "allowed_automation": ["scheduler", "rest_api", "application"],
     "active": false,
