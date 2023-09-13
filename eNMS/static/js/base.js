@@ -39,9 +39,8 @@ export let history = pageHistory.includes(page) ? [""] : [];
 export let historyPosition = page.includes("table") ? 0 : -1;
 export let jsonEditors = {};
 export let menuIsHidden = false;
-let menuIsToggled = user.small_menu;
 export let userIsActive = true;
-
+let menuIsToggled = user.small_menu;
 let currentTheme = user.theme;
 let topZ = 1000;
 let triggerMenu = true;
