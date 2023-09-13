@@ -74,6 +74,9 @@ Version 4.7.0: Changelog & Workflow Tree
   - Merge get_workflow_results and get_instance_tree function: displaying the workflow
   tree and displaying the results now calls the same function
 
+Tests:
+- Test that caching form properties doesn't affect the paramterized form display
+
 Version 4.6.0: Clustering
 -------------------------
 
