@@ -299,7 +299,7 @@
         </div>
       </div>
       {% endblock header %}
-      {% cache 500, endpoint %}
+      {% cache settings["cache"]["timeout"], endpoint %}
       <div class="main_frame">
         <div class="left_frame">
           {% block left_frame %} {% endblock left_frame %}
@@ -311,7 +311,7 @@
       {% endcache %}
     </div>
     {% endblock body %} {% block javascripts %}
-    {% cache 500 %}
+    {% cache settings["cache"]["timeout"] %}
     <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
     <script>
       window.eNMS = {};
