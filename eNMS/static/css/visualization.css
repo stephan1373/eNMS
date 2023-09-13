@@ -1,3 +1,7 @@
+.main_frame {
+  height: 100%;
+}
+
 #map {
   z-index: 1;
   height: 100%;
