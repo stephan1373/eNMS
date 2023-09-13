@@ -353,8 +353,6 @@
       window.eNMS = {};
       const applicationPath = {{ application_path|d("")|tojson|safe }};
       const filePath = {{ file_path|tojson|safe }};
-      const linkPath = {{ link_path|d("")|tojson|safe }};
-      const linkRuntime = {{ link_runtime|d("")|tojson|safe }};
       const automation = {{ automation|tojson|safe }};
       const configurationProperties = {{ configuration_properties|tojson|safe }};
       const formProperties = {{ form_properties|tojson|safe }};
@@ -397,6 +395,8 @@
       const page = "{{ endpoint }}";
       const user = {{ user|tojson|safe }};
       const theme = {{ themes|tojson|safe }}.themes?.[user.theme];
+      const linkPath = {{ link_path|d("")|tojson|safe }};
+      const linkRuntime = {{ link_runtime|d("")|tojson|safe }};
       let csrf_token = "{{ csrf_token() }}";
     </script>
     <script type="module" src="{{ url_for('static', filename='js/base.js') }}"></script>
