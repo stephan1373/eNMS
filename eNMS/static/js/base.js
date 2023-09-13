@@ -38,6 +38,7 @@ export let editors = {};
 export let history = pageHistory.includes(page) ? [""] : [];
 export let historyPosition = page.includes("table") ? 0 : -1;
 export let jsonEditors = {};
+let menuIsHidden = false;
 export let menuIsToggled = user.small_menu;
 export let userIsActive = true;
 
@@ -1387,6 +1388,22 @@ function initSidebar() {
   });
 }
 
+function hideMenu() {
+  const kwargs = { duration: 200, queue: false };
+  if (menuIsHidden) {
+    $(".left_column")
+      .toggle()
+      .animate({ width: "+=230px" }, kwargs);
+    $(".right_column").animate({ left: "+=230px", width: "-=230" }, kwargs);
+  } else {
+    $(".left_column")
+      .toggle()
+      .animate({ width: "-=230px" }, kwargs);
+    $(".right_column").animate({ left: "-=230px", width: "+=230" }, kwargs);
+  }
+  menuIsHidden = !menuIsHidden;
+}
+
 $(document).ready(function() {
   $("#eNMS").on("click", function(event) {
     if (!event.altKey || !event.shiftKey || !user.is_admin) return;
@@ -1428,6 +1445,7 @@ configureNamespace("base", [
   copyToClipboard,
   createAlerts,
   fullScreen,
+  hideMenu,
   loadScript,
   openPanel,
   processData,
