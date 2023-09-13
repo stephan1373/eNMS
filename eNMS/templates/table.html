@@ -1,5 +1,5 @@
 {% extends "base_site.html" %} {% block stylesheets %} {{ super() }} {% endblock
-stylesheets %} {% block content %}
+stylesheets %} {% block left_frame %}
 <form id="search-form-{{ type }}">
   <div id="tooltip-overlay" class="overlay"></div>
   <nav
@@ -15,4 +15,4 @@ stylesheets %} {% block content %}
     width="100%"
   ></table>
 </form>
-{% endblock content %} {% block javascripts %} {{ super() }} {% endblock javascripts %}
+{% endblock left_frame %} {% block javascripts %} {{ super() }} {% endblock javascripts %}

@@ -12,7 +12,7 @@
   href="{{ url_for('static', filename='css/visualization.css') }}"
   rel="stylesheet"
 />
-{% endblock stylesheets %} {% block content %}
+{% endblock stylesheets %} {% block left_frame %}
 <form id="search-form-device" class="overlay"></form>
 <form id="search-form-link" class="overlay"></form>
 <div id="map"></div>
@@ -140,7 +140,7 @@
     </ul>
   </nav>
 </div>
-{% endblock content %} {% block javascripts %} {{ super()}}
+{% endblock left_frame %} {% block javascripts %} {{ super()}}
 <script src="{{ url_for('static', filename='lib/leaflet/leaflet.min.js') }}"></script>
 <script src="{{ url_for('static', filename='lib/leaflet-markercluster/leaflet.markercluster.min.js') }}"></script>
 {% endblock javascripts %}
