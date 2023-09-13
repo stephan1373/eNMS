@@ -1,3 +1,7 @@
+.left_frame {
+  display: block;
+}
+
 .tile_count {
   padding-top: 10px;
   text-align: center;
