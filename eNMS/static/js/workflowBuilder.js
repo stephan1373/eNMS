@@ -23,7 +23,8 @@ import {
   copyToClipboard,
   createTooltips,
   editors,
-  menuIsToggled,
+  hideMenu,
+  menuIsHidden,
   moveHistory,
   notify,
   openPanel,
@@ -818,7 +819,7 @@ function filterDevice() {
 function toggleWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
-    if (!menuIsToggled) $("#menu_toggle").click();
+    if (!menuIsHidden) hideMenu();
     $("#workflow-tree").show();
     $("#run-navbar").hide();
     $(".right_column").animate({ width: "-=500px" }, kwargs);
@@ -835,6 +836,7 @@ function toggleWorkflowTree() {
       }
     );
   } else {
+    if (menuIsHidden) hideMenu();
     $("#run-navbar").hide();
     $(".right_column").animate({ width: "+=500px" }, kwargs);
     $("#workflow-tree").animate(
