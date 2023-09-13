@@ -55,7 +55,7 @@ body {
 
 .nav_menu {
   background: #ededed;
-  border-bottom: 1px solid #d9dee4;
+  border-bottom: 5px solid #e6e6e6;
 }
 
 .nav.side-menu > li > a:hover {
