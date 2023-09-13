@@ -1392,6 +1392,7 @@ function hideMenu() {
   const kwargs = { duration: 200, queue: false };
   const width = menuIsToggled ? "70" : "230";
   const [p, m] = menuIsHidden ? ["+", "-"] : ["-", "+"];
+  $("#hide-menu-icon").toggleClass("glyphicon-step-backward glyphicon-step-forward");
   $(".left_column")
     .toggle()
     .animate({ width: `${p}=${width}` }, kwargs);
