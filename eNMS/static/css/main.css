@@ -22,6 +22,10 @@ body {
   width: 70px;
 }
 
+.nav-hidden .left_column {
+  width: 0px;
+}
+
 .right_column {
   height: 100%;
   position: absolute;
@@ -39,6 +43,11 @@ body {
   width: calc(100% - 230px);
 }
 
+.nav-hidden .right_column {
+  left: 0px;
+  width: 100%;
+}
+
 /* Don't display menu under 800 px */
 @media (max-width: 1000px) {
   .left_column {
@@ -52,6 +61,11 @@ body {
   }
 
   .nav-md .right_column {
+    left: 0px;
+    width: 100%;
+  }
+
+  .nav-hidden .right_column {
     left: 0px;
     width: 100%;
   }

@@ -1389,14 +1389,8 @@ function initSidebar() {
 }
 
 function hideMenu() {
-  const kwargs = { duration: 200, queue: false };
-  const width = menuIsToggled ? "70" : "230";
-  const [p, m] = menuIsHidden ? ["+", "-"] : ["-", "+"];
+  $("body").toggleClass(`nav-hidden ${menuIsToggled ? "nav-sm" : "nav-md"}`);
   $("#hide-menu-icon").toggleClass("glyphicon-step-backward glyphicon-step-forward");
-  $(".left_column")
-    .toggle()
-    .animate({ width: `${p}=${width}` }, kwargs);
-  $(".right_column").animate({ left: `${p}=${width}`, width: `${m}=${width}` }, kwargs);
   menuIsHidden = !menuIsHidden;
 }
 
