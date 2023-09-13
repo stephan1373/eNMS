@@ -299,6 +299,7 @@
         </div>
       </div>
       {% endblock header %}
+      {% cache 500, endpoint %}
       <div class="main_frame">
         <div class="left_frame">
           {% block left_frame %} {% endblock left_frame %}
@@ -307,6 +308,7 @@
           {% block right_frame %} {% endblock right_frame %}
         </div>
       </div>
+      {% endcache %}
     </div>
     {% endblock body %} {% block javascripts %}
     {% cache 500 %}
