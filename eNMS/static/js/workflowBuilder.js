@@ -305,7 +305,7 @@ function stopWorkflow() {
 
 function skipServices() {
   const selectedNodes = graph.getSelectedNodes().filter((x) => {
-    const isDefault = ["Start", "End"].includes(nodes.get(x).name);
+    const isDefault = ["Start", "End", "Placeholder"].includes(nodes.get(x).name);
     return !isNaN(x) && !isDefault;
   });
   if (!selectedNodes.length) return;
