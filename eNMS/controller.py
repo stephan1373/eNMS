@@ -1382,7 +1382,10 @@ class Controller:
         workflow.check_restriction_to_owners("edit")
         skip = not all(service.skip.get(workflow.name) for service in services)
         for service in services:
-            service.skip[workflow.name] = skip
+            if skip:
+                service.skip[workflow.name] = skip
+            else:
+                service.skip.pop(workflow.name, None)
         workflow.update_last_modified_properties()
         return {
             "skip": "skip" if skip else "unskip",
