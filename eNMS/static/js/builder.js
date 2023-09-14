@@ -141,42 +141,37 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       .jstree("destroy")
       .off()
       .empty();
-    let tree = $(treeId)
-      .bind("loaded.jstree", function(e, data) {
-        tree.jstree("open_all");
-        createTooltips();
-      })
-      .jstree({
-        core: {
-          animation: 100,
-          themes: { stripes: true },
-          data: data,
-        },
-        plugins: ["html_row", "types", "wholerow"],
-        html_row: {
-          default: function(el, node) {
-            if (!node) return;
-            const nodeProperties = JSON.stringify(node.data.properties);
-            let progressSummary = "";
-            const progress = node.data.progress;
-            if (progress) {
-              const progressList = [
-                `<span style="color: #32CD32">${progress.success || 0}${
-                  resultsPanel ? " passed" : ""
-                }</span>`,
-                `<span style="color: #FF6666">${progress.failure || 0}${
-                  resultsPanel ? " failed" : ""
-                }</span>`,
-              ];
-              if (progress.skipped > 0)
-                progressList.splice(
-                  1,
-                  0,
-                  `<span style="color: #7D7D7D">${progress.skipped}${
-                    resultsPanel ? " skipped" : ""
-                  }</span>`
-                );
-              progressSummary = `
+    let tree = $(treeId).jstree({
+      core: {
+        animation: 100,
+        themes: { stripes: true },
+        data: data,
+      },
+      plugins: ["html_row", "types", "wholerow"],
+      html_row: {
+        default: function(el, node) {
+          if (!node) return;
+          const nodeProperties = JSON.stringify(node.data.properties);
+          let progressSummary = "";
+          const progress = node.data.progress;
+          if (progress) {
+            const progressList = [
+              `<span style="color: #32CD32">${progress.success || 0}${
+                resultsPanel ? " passed" : ""
+              }</span>`,
+              `<span style="color: #FF6666">${progress.failure || 0}${
+                resultsPanel ? " failed" : ""
+              }</span>`,
+            ];
+            if (progress.skipped > 0)
+              progressList.splice(
+                1,
+                0,
+                `<span style="color: #7D7D7D">${progress.skipped}${
+                  resultsPanel ? " skipped" : ""
+                }</span>`
+              );
+            progressSummary = `
                 <div style="position: absolute; top: 0px; right: ${
                   resultsPanel ? "160" : "110"
                 }px">
@@ -184,9 +179,9 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                     `<span style="color: #000000">${resultsPanel ? " - " : "/"}</span>`
                   )}
                 </div>`;
-            }
-            const buttons = runtime
-              ? `<button type="button"
+          }
+          const buttons = runtime
+            ? `<button type="button"
                   class="btn btn-xs btn-primary"
                   onclick='eNMS.automation.showRuntimePanel(
                     "logs", ${nodeProperties}, "${runtime}"
@@ -199,7 +194,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                   )'>
                   <span class="glyphicon glyphicon-list-alt"></span>
                 </button>`
-              : `<button
+            : `<button
                   type="button"
                   class="btn btn-xs btn-primary"
                   data-tooltip="Edit"
@@ -209,9 +204,9 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                 >
                   <span class="glyphicon glyphicon-edit"></span>
                 </button>`;
-            $(el)
-              .find("a")
-              .first().append(`
+          $(el)
+            .find("a")
+            .first().append(`
                 ${progressSummary}
                 <div style="position: absolute; top: 0px; right: 20px">
                   <button
@@ -225,20 +220,20 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                   ${buttons}
                 </div>
           `);
-          },
         },
-        search: {
-          show_only_matches: true,
+      },
+      search: {
+        show_only_matches: true,
+      },
+      types: {
+        default: {
+          icon: "glyphicon glyphicon-file",
         },
-        types: {
-          default: {
-            icon: "glyphicon glyphicon-file",
-          },
-          workflow: {
-            icon: "fa fa-sitemap",
-          },
+        workflow: {
+          icon: "fa fa-sitemap",
         },
-      });
+      },
+    });
     tree.on("contextmenu", ".jstree-anchor", function(event) {
       const tree = $(treeId).jstree(true);
       $(".menu-entry").hide();
@@ -256,6 +251,10 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
           .jstree(true)
           .get_node(event.target).data
       );
+    });
+    tree.bind("loaded.jstree", function(e, data) {
+      tree.jstree("open_all");
+      createTooltips();
     });
     $(treeId).contextMenu({
       menuSelector: "#contextMenu",
