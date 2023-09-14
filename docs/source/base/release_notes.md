@@ -75,6 +75,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Double-click on a tree node: teleport and highlight associated service
   - Merge get_workflow_results and get_instance_tree function: displaying the workflow
   tree and displaying the results now calls the same function
+  - The tree is only refreshed when it is being displayed
 - Skip mechanism improvement:
   - Don't allow skipping Start, End, and Placeholder services
   - When unskipping a service, pop from service.skip dictionary instead of setting to False
