@@ -217,6 +217,7 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
     url: `/get_service_state/${path}`,
     data: {
       display: runtimeDisplay,
+      get_tree: workflowTreeDisplayed,
       runtime: runtime || $("#current-runtime").val() || "latest",
     },
     callback: function(result) {
@@ -743,6 +744,7 @@ export function getWorkflowState(periodic, first) {
       url: `/get_service_state/${currentPath}`,
       data: {
         display: runtimeDisplay,
+        get_tree: workflowTreeDisplayed,
         runtime: runtime,
         device: $("#device-filter").val(),
         search_mode: $("#tree-search-mode").val(),
