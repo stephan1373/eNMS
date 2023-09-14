@@ -77,6 +77,8 @@ Version 4.7.0: Changelog & Workflow Tree
   tree and displaying the results now calls the same function
 - Skip mechanism improvement:
   - Don't allow skipping Start, End, and Placeholder services
+  - When unskipping a service, pop from service.skip dictionary instead of setting to False
+    to avoid storing unused data.
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
