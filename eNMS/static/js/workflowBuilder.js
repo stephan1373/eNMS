@@ -852,6 +852,7 @@ function toggleWorkflowTree() {
       }
     );
   }
+  $("#workflow-tree-btn").toggleClass("active");
   workflowTreeDisplayed = !workflowTreeDisplayed;
 }
 
