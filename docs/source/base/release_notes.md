@@ -77,7 +77,7 @@ Version 4.7.0: Changelog & Workflow Tree
   tree and displaying the results now calls the same function
 
 Tests:
-- Test that caching form properties doesn't affect the paramterized form display
+- Test that caching form properties doesn't affect the parameterized form display
 - Test that the workflow tree is scalable and has no memory leaks
 
 Version 4.6.0: Clustering
