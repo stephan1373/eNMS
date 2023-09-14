@@ -150,13 +150,15 @@
         id="server-time"
         style="font-size: 11px; left: 10px; {{ display }}"
         class="server-time"
-      >
-      </div>
+      ></div>
       <div class="sidebar-footer hidden-small">
         <a onclick="eNMS.administration.showProfile()" title="Profile">
           <span class="glyphicon glyphicon-user"></span>
         </a>
-        <a onclick="eNMS.base.showInstancePanel('server', {{ server_id }})" title="Server">
+        <a
+          onclick="eNMS.base.showInstancePanel('server', {{ server_id }})"
+          title="Server"
+        >
           <span class="glyphicon glyphicon-cog"></span>
         </a>
         <a onclick="eNMS.administration.showServerTime()" title="Time">
@@ -298,8 +300,7 @@
           </div>
         </div>
       </div>
-      {% endblock header %}
-      {% cache settings["cache"]["timeout"], endpoint %}
+      {% endblock header %} {% cache settings["cache"]["timeout"], endpoint %}
       <div class="main_frame">
         <div class="left_frame">
           {% block left_frame %} {% endblock left_frame %}
@@ -310,8 +311,7 @@
       </div>
       {% endcache %}
     </div>
-    {% endblock body %} {% block javascripts %}
-    {% cache settings["cache"]["timeout"] %}
+    {% endblock body %} {% block javascripts %} {% cache settings["cache"]["timeout"] %}
     <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
     <script>
       window.eNMS = {};
