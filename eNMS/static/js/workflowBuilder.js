@@ -304,7 +304,10 @@ function stopWorkflow() {
 }
 
 function skipServices() {
-  const selectedNodes = graph.getSelectedNodes().filter((x) => !isNaN(x));
+  const selectedNodes = graph.getSelectedNodes().filter((x) => {
+    const isDefault = ["Start", "End"].includes(nodes.get(x).name);
+    return !isNaN(x) && !isDefault;
+  });
   if (!selectedNodes.length) return;
   call({
     url: `/skip_services/${workflow.id}/${selectedNodes.join("-")}`,
