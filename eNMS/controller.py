@@ -349,7 +349,7 @@ class Controller:
         )
         exclude = ("target_devices", "target_pools", "pools", "events")
         services = [
-            service.to_dict(export=True, private_properties=True, exclude=exclude)
+            service.to_dict(export=True, private_properties=True, exclude_relations=exclude)
             for service in services
         ]
         with open(path / "service.yaml", "w") as file:
@@ -655,7 +655,7 @@ class Controller:
         kwargs["runtime"] = getattr(run, "runtime", None)
         if kwargs.get("get_tree"):
             output.update(self.get_instance_tree("workflow", path, **kwargs))
-        serialized_service = service.to_dict(include=["superworkflow"])
+        serialized_service = service.to_dict(include_relations=["superworkflow"])
         run_properties = vs.automation["workflow"]["state_properties"]["run"]
         service_properties = vs.automation["workflow"]["state_properties"]["service"]
         if service.type == "workflow":
@@ -686,7 +686,7 @@ class Controller:
         if not network:
             raise db.rbac_error
         return {
-            "network": network.to_dict(include=["nodes", "links"]),
+            "network": network.to_dict(include_relations=["nodes", "links"]),
             "device_results": {
                 result.device_id: result.success
                 for result in db.fetch_all("result", parent_runtime=runtime)

@@ -59,7 +59,7 @@ class Node(Object):
         return {**kwargs, **super().get_changelog_kwargs()}
 
     def post_update(self):
-        return self.to_dict(include=["networks", "nodes"])
+        return self.to_dict(include_relations=["networks", "nodes"])
 
     def update(self, **kwargs):
         if self.positions and "positions" in kwargs:

@@ -161,7 +161,7 @@ class Service(AbstractBase):
         else:
             self.path = str(self.id)
         self.set_name()
-        return self.to_dict(include=["services", "workflows"])
+        return self.to_dict(include_relations=["services", "workflows"])
 
     def update(self, **kwargs):
         old_disabled_status = self.disabled

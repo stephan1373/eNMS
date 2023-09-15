@@ -201,16 +201,20 @@ class AbstractBase(db.base):
         self,
         export=False,
         exclude=None,
+        exclude_relations=None,
         include=None,
+        include_relations=None,
         private_properties=False,
         relation_properties=None,
     ):
         properties = self.get_properties(
-            export, exclude=exclude, private_properties=private_properties
+            export, exclude=exclude, include=include, private_properties=private_properties
         )
         no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
         for property, relation in vs.relationships[self.type].items():
-            if include and property not in include or exclude and property in exclude:
+            if include_relations and property not in include_relations:
+                continue
+            if exclude_relations and property in exclude_relations:
                 continue
             if export and property in no_migrate:
                 continue
