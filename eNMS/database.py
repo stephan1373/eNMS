@@ -277,14 +277,16 @@ class Database:
                             continue
                         added, deleted = (
                             [x for x in added[0] if x not in deleted[0]],
-                            [x for x in deleted[0] if x not in added[0]]
+                            [x for x in deleted[0] if x not in added[0]],
                         )
                     if not added and not deleted:
                         continue
                     history["lists"][attr.key] = {
                         "added": [getattr(x, "id", x) for x in added],
                         "deleted": [getattr(x, "id", x) for x in deleted],
-                        "type": getattr((added[0] if added else deleted[0]), "class_type", "str"),
+                        "type": getattr(
+                            (added[0] if added else deleted[0]), "class_type", "str"
+                        ),
                     }
                     if deleted:
                         change += f"REMOVED: {deleted}"

@@ -809,8 +809,11 @@ class Controller:
                     if run and not child_results:
                         continue
                     children_results.append(child_results)
-                children = sorted(filter(None, children_results),
-                    key=itemgetter("runtime") if run else lambda node: node["text"].lower(),
+                children = sorted(
+                    filter(None, children_results),
+                    key=itemgetter("runtime")
+                    if run
+                    else lambda node: node["text"].lower(),
                 )
                 if active_search:
                     is_match = match(instance, **kwargs)
@@ -833,7 +836,11 @@ class Controller:
                 color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             return {
                 "runtime": state[path]["result"]["runtime"] if state else None,
-                "data": {"path": path, "properties": instance.base_properties, **progress_data},
+                "data": {
+                    "path": path,
+                    "properties": instance.base_properties,
+                    **progress_data,
+                },
                 "id": path,
                 "state": {"opened": full_path.startswith(path)},
                 "text": instance.scoped_name if type == "workflow" else instance.name,
@@ -845,7 +852,10 @@ class Controller:
                 "type": instance.type,
             }
 
-        return {"tree": rec(db.fetch(type, id=path_id[-1]), full_path), "highlight": highlight}
+        return {
+            "tree": rec(db.fetch(type, id=path_id[-1]), full_path),
+            "highlight": highlight,
+        }
 
     def get_workflow_services(self, id, node):
         parents = db.fetch("workflow", id=id).get_ancestors()
@@ -1464,11 +1474,19 @@ class Controller:
         for relationship, history in log.history.get("lists", {}).items():
             target_value = getattr(target, relationship)
             for value in history["deleted"]:
-                instance = (value if history["type"] == "str" else db.fetch(history["type"], id=value, allow_none=True))
+                instance = (
+                    value
+                    if history["type"] == "str"
+                    else db.fetch(history["type"], id=value, allow_none=True)
+                )
                 if instance and instance not in target_value:
                     target_value.append(instance)
             for value in history["added"]:
-                instance = (value if history["type"] == "str" else db.fetch(history["type"], id=value, allow_none=True))
+                instance = (
+                    value
+                    if history["type"] == "str"
+                    else db.fetch(history["type"], id=value, allow_none=True)
+                )
                 if instance and instance in target_value:
                     target_value.remove(instance)
         for property, values in log.history.get("scalars", {}).items():
