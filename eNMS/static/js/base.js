@@ -1089,7 +1089,7 @@ export function setTriggerMenu(value) {
           .css({
             position: "absolute",
             left: getMenuPosition(e.clientX, "width", "scrollLeft"),
-            top: getMenuPosition(e.clientY, "height", "scrollTop") + 60,
+            top: getMenuPosition(e.clientY, "height", "scrollTop"),
           })
           .off("click")
           .on("click", "a", function(e) {
