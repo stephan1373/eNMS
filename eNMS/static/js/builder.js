@@ -246,7 +246,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
         network.selectNodes([]);
       }
     });
-    tree.on("dblclick", function(event) {
+    tree.unbind("dblclick").on("dblclick", function(event) {
       highlightNode(
         $(treeId)
           .jstree(true)
