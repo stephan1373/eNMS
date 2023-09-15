@@ -42,6 +42,7 @@ Version 4.7.0: Changelog & Workflow Tree
 - Add runtime display mechanism (Personal or All Runtimes) to results table.
   - Display value is stored in localStorage
   - It applies to both the run table and the workflow builder
+  - Add Search field to the runtime list to allow per user runtime search
 - Add new user filtering mechanism (per user / all users) for tasks and services
 - Add new "start / end query monitoring" python snippet to analyze what SQL queries are sent
   to the database and how long they take to execute (only active in "debug" mode)
