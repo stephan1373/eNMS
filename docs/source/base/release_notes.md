@@ -77,6 +77,9 @@ Version 4.7.0: Changelog & Workflow Tree
   - Merge get_workflow_results and get_instance_tree function: displaying the workflow
   tree and displaying the results now calls the same function
   - The tree is only refreshed when it is being displayed
+  - When double-clicking on a service in the workflow tree:
+    - If the service is in another workflow, automatically switch to that workflow
+    - Automatically select and focus the view on that service
 - Skip mechanism improvement:
   - Don't allow skipping Start, End, and Placeholder services
   - When unskipping a service, pop from service.skip dictionary instead of setting to False
