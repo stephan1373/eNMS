@@ -198,10 +198,10 @@ class AbstractBase(db.base):
     def to_dict(
         self,
         export=False,
-        relation_names_only=False,
         exclude=None,
         include=None,
         private_properties=False,
+        relation_properties=None,
     ):
         properties = self.get_properties(
             export, exclude=exclude, private_properties=private_properties
@@ -216,8 +216,8 @@ class AbstractBase(db.base):
             if relation["list"]:
                 properties[property] = [
                     obj.name
-                    if export or relation_names_only
-                    else obj.get_properties(exclude=exclude)
+                    if export
+                    else obj.get_properties(include=relation_properties)
                     for obj in value
                 ]
             else:
@@ -225,8 +225,8 @@ class AbstractBase(db.base):
                     continue
                 properties[property] = (
                     value.name
-                    if export or relation_names_only
-                    else value.get_properties(exclude=exclude)
+                    if export
+                    else value.get_properties(include=relation_properties)
                 )
         return properties
 

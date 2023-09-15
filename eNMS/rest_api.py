@@ -54,7 +54,7 @@ class RestApi:
 
     def get_instance(self, instance_type, name, **_):
         return db.fetch(instance_type, name=name).to_dict(
-            relation_names_only=True, exclude=["positions"]
+            relation_properties=["name"], exclude=["positions"]
         )
 
     def get_result(self, name, runtime, **_):

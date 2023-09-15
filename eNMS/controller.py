@@ -480,9 +480,9 @@ class Controller:
         return table_result
 
     def get(self, model, id, **kwargs):
-        if not kwargs:
-            kwargs = {"include": list(vs.form_properties[model])}
         func = "get_properties" if kwargs.pop("properties_only", None) else "to_dict"
+        if func == "to_dict":
+            kwargs = {"include": list(vs.form_properties[model])}
         return getattr(db.fetch(model, id=id), func)(**kwargs)
 
     def get_cluster_status(self):
