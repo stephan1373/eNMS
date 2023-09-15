@@ -698,7 +698,7 @@ class ServiceForm(BaseForm):
         "Time to Wait before next service is started (in seconds)", default=0
     )
     priority = IntegerField("Priority", default=10, help="common/priority")
-    report_template = SelectField("Report Template", choices=(vs.dualize(vs.reports)))
+    report_template = SelectField("Report Template", choices=vs.reports)
     report = StringField(widget=TextArea(), render_kw={"rows": 8}, substitution=True)
     report_format = SelectField(
         "Report Display Format",
@@ -1354,7 +1354,7 @@ class ScrapliForm(ConnectionForm):
         choices=[("device", "Use Device Driver"), *vs.scrapli_drivers],
     )
     is_configuration = BooleanField()
-    transport = SelectField(choices=vs.dualize(("system", "paramiko", "ssh2")))
+    transport = SelectField(choices=("system", "paramiko", "ssh2"))
     timeout_socket = FloatField("Socket Timeout", default=15.0)
     timeout_transport = FloatField("Transport Timeout", default=30.0)
     timeout_ops = FloatField("Ops Timeout", default=30.0)

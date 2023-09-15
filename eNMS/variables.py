@@ -224,9 +224,6 @@ class VariableStore:
                 error(f"Could not load plugin settings '{path.stem}':\n{format_exc()}")
                 continue
 
-    def dualize(self, iterable):
-        return [(element, element) for element in iterable]
-
     def dict_to_string(self, input, depth=0):
         tab = "\t" * depth
         if isinstance(input, list):
