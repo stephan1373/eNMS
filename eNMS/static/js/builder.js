@@ -236,9 +236,10 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
     });
     tree.on("contextmenu", ".jstree-anchor", function(event) {
       const tree = $(treeId).jstree(true);
-      $(".menu-entry").hide();
-      $(".node-selection").show();
       selectedObject = tree.get_node(event.target).data.properties;
+      $(".menu-entry,.workflow-selection").hide();
+      $(".node-selection").show();
+      if (selectedObject.type !== "workflow") $(".workflow-selection").hide();
       if (nodes.get(selectedObject.id)) {
         network.selectNodes([selectedObject.id]);
       } else {
