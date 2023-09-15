@@ -148,7 +148,9 @@ class AbstractBase(db.base):
     ):
         result = {}
         no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
-        properties = list(vs.model_properties[self.type])
+        properties = set(vs.model_properties[self.type])
+        if include:
+            properties &= set(include)
         for property in properties:
             if not private_properties and property in vs.private_properties_set:
                 continue
@@ -156,7 +158,7 @@ class AbstractBase(db.base):
                 continue
             if export and property in getattr(self, "model_properties", {}):
                 continue
-            if include and property not in include or exclude and property in exclude:
+            if exclude and property in exclude:
                 continue
             if export and property in no_migrate:
                 continue
