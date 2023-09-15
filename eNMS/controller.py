@@ -1463,12 +1463,12 @@ class Controller:
         target = getattr(log, log.target_type)
         for relationship, history in log.history.get("lists", {}).items():
             target_value = getattr(target, relationship)
-            for instance_id in history["deleted"]:
-                instance = db.fetch(history["type"], id=instance_id, allow_none=True)
+            for value in history["deleted"]:
+                instance = (value if history["type"] == "str" else db.fetch(history["type"], id=value, allow_none=True))
                 if instance and instance not in target_value:
                     target_value.append(instance)
-            for instance_id in history["added"]:
-                instance = db.fetch(history["type"], id=instance_id, allow_none=True)
+            for value in history["added"]:
+                instance = (value if history["type"] == "str" else db.fetch(history["type"], id=value, allow_none=True))
                 if instance and instance in target_value:
                     target_value.remove(instance)
         for property, values in log.history.get("scalars", {}).items():
@@ -1476,6 +1476,8 @@ class Controller:
             setattr(target, property, related_instance)
         if "properties" in log.history:
             target.update(**log.history["properties"])
+        env.log("info", f"Undoing {log}", change_log=True, instance=target)
+        db.session.commit()
 
     def update(self, type, **kwargs):
         try:

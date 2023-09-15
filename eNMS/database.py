@@ -271,12 +271,20 @@ class Database:
                 property_type = type(getattr(target, attr.key))
                 if property_type in (InstrumentedList, MutableList):
                     if property_type == MutableList:
-                        added = [x for x in added[0] if x not in deleted[0]]
-                        deleted = [x for x in deleted[0] if x not in added[0]]
+                        # when undoing a changelog for a db.List property,
+                        # hist.deleted is improperly set as a tuple
+                        if isinstance(added, tuple) or isinstance(deleted, tuple):
+                            continue
+                        added, deleted = (
+                            [x for x in added[0] if x not in deleted[0]],
+                            [x for x in deleted[0] if x not in added[0]]
+                        )
+                    if not added and not deleted:
+                        continue
                     history["lists"][attr.key] = {
-                        "added": [x.id for x in added],
-                        "deleted": [x.id for x in deleted],
-                        "type": (added[0] if added else deleted[0]).class_type,
+                        "added": [getattr(x, "id", x) for x in added],
+                        "deleted": [getattr(x, "id", x) for x in deleted],
+                        "type": getattr((added[0] if added else deleted[0]), "class_type", "str"),
                     }
                     if deleted:
                         change += f"REMOVED: {deleted}"
