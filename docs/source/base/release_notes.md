@@ -86,6 +86,8 @@ Version 4.7.0: Changelog & Workflow Tree
     to avoid storing unused data.
 - Remvoe internal "dualize" function as wtforms now accepts a list of values as SelectField
   or SelectMultipleField choices.
+- Refactor internal "to_dict" function from the Base model: add include_relations,
+  exclude_relations, and use include for get_properties instead
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
