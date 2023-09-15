@@ -724,7 +724,7 @@ export function initBuilder() {
           notify(`No ${type} has been created yet.`, "error", 5);
         }
       }
-      $(`#current-${type},#current-runtimes`).selectpicker({ liveSearch: true });
+      $(`#current-${type},#current-runtime`).selectpicker({ liveSearch: true });
       if (type == "workflow") {
         initSelect($(`#device-filter`), "device", null, true);
         $("#current-runtime,#device-filter").on("change", function() {
