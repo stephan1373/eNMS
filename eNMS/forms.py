@@ -231,8 +231,8 @@ class FormFactory:
             admin_only = BooleanField("Admin Only", default=False)
             force_read_access = BooleanField("Always set 'Read' access", default=False)
             users = MultipleInstanceField("Users", model="user")
-            menu = SelectMultipleField("Menu", choices=vs.dualize(vs.rbac["menus"]))
-            pages = SelectMultipleField("Pages", choices=vs.dualize(vs.rbac["pages"]))
+            menu = SelectMultipleField("Menu", choices=vs.rbac["menus"])
+            pages = SelectMultipleField("Pages", choices=vs.rbac["pages"])
             get_requests = SelectMultipleField(
                 "GET Requests",
                 choices=[
@@ -386,9 +386,8 @@ class CredentialForm(BaseForm):
 class DatabaseDeletionForm(BaseForm):
     action = "eNMS.administration.databaseDeletion"
     form_type = HiddenField(default="database_deletion")
-    deletion_choices = vs.dualize(db.import_export_models)
     deletion_types = SelectMultipleField(
-        "Instances to delete", choices=deletion_choices
+        "Instances to delete", choices=db.import_export_models
     )
 
 
@@ -403,9 +402,8 @@ class DatabaseMigrationsForm(BaseForm):
     export_private_properties = BooleanField(
         "Include private properties", default="checked"
     )
-    export_choices = vs.dualize(db.import_export_models)
     import_export_types = SelectMultipleField(
-        "Instances to migrate", choices=export_choices
+        "Instances to migrate", choices=db.import_export_models
     )
 
 

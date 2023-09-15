@@ -67,10 +67,10 @@ class VariableStore:
 
     def _set_automation_variables(self):
         self.ssh_sessions = {}
-        self.netmiko_drivers = sorted(self.dualize(CLASS_MAPPER))
-        self.napalm_drivers = sorted(self.dualize(SUPPORTED_DRIVERS[1:]))
-        self.netconf_drivers = sorted(self.dualize(supported_devices_cfg))
-        self.scrapli_drivers = sorted(self.dualize(CORE_PLATFORM_MAP))
+        self.netmiko_drivers = sorted(CLASS_MAPPER)
+        self.napalm_drivers = sorted(SUPPORTED_DRIVERS[1:])
+        self.netconf_drivers = sorted(supported_devices_cfg)
+        self.scrapli_drivers = sorted(CORE_PLATFORM_MAP)
         self.timestamps = ("status", "update", "failure", "runtime", "duration")
         self.configuration_properties = {
             "configuration": "Configuration",
