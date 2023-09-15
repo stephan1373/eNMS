@@ -269,7 +269,7 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       timer = setTimeout(getWorkflowState, 500);
     });
   }
-  builderTreeData = JSON.stringify(data);
+  if (!resultsPanel) builderTreeData = JSON.stringify(data);
 }
 
 function highlightNode(node) {
