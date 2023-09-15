@@ -87,6 +87,7 @@ body {
 .right_frame {
   background: #e6ecf0;
   width: 0px;
+  height: calc(100vh - 60px);
 }
 
 .header {
