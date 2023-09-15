@@ -273,14 +273,18 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
   if (!resultsPanel) builderTreeData = JSON.stringify(data);
 }
 
-function highlightNode(node) {
+export function highlightNode(node) {
   const nodePath = node.path.split(">");
   const [containerId, nodeId] = nodePath.slice(-2);
   const selection = { nodes: [parseInt(nodeId)], edges: [] };
   if (containerId != instance.id) {
-    switchTo(nodePath.slice(0, -1).join(">"), null, null, selection);
+    switchTo(nodePath.slice(0, -1).join(">"), null, null, node);
   } else if (nodeId) {
     network.setSelection(selection);
+    network.focus(nodeId, {
+      scale: 1,
+      animation: true,
+    });
   }
 }
 

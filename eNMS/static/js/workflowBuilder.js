@@ -39,6 +39,7 @@ import {
   currentPath,
   drawTree,
   edges,
+  highlightNode,
   instance,
   nodes,
   setPath,
@@ -234,7 +235,7 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
         localStorage.setItem("workflow", JSON.stringify(workflow));
       }
       displayWorkflow(result, true);
-      if (selection) graph.setSelection(selection);
+      if (selection) highlightNode(selection);
       switchMode(currentMode, true);
     },
   });
