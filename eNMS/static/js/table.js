@@ -1048,7 +1048,7 @@ tables.service = class ServiceTable extends Table {
       >
         <input
           id="serialized-search"
-          name="serialized-search"
+          name="serialized"
           type="text"
           placeholder="&#xF002; Search accross all properties"
           class="form-control"
