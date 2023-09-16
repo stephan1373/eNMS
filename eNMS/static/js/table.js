@@ -1055,6 +1055,19 @@ tables.service = class ServiceTable extends Table {
           style="font-family:Arial, FontAwesome;
           height: 30px; margin-top: 5px"
         >
+        <span class="input-group-btn" style="width: 10px">
+          <button
+            id="service_serialized-search"
+            class="btn btn-default pull-right"
+            type="button"
+            style="height: 30px; margin-top: 5px">
+              <span
+                class="glyphicon glyphicon-center glyphicon-menu-down"
+                aria-hidden="true"
+                style="font-size: 10px">
+              </span>
+          </button>
+        </span>
       </div>
       `,
     ];
