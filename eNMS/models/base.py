@@ -208,7 +208,10 @@ class AbstractBase(db.base):
         relation_properties=None,
     ):
         properties = self.get_properties(
-            export, exclude=exclude, include=include, private_properties=private_properties
+            export,
+            exclude=exclude,
+            include=include,
+            private_properties=private_properties,
         )
         no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
         for property, relation in vs.relationships[self.type].items():

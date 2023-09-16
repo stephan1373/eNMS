@@ -349,7 +349,9 @@ class Controller:
         )
         exclude = ("target_devices", "target_pools", "pools", "events")
         services = [
-            service.to_dict(export=True, private_properties=True, exclude_relations=exclude)
+            service.to_dict(
+                export=True, private_properties=True, exclude_relations=exclude
+            )
             for service in services
         ]
         with open(path / "service.yaml", "w") as file:
