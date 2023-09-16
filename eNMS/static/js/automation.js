@@ -185,6 +185,8 @@ function serializedSearch() {
   if (!$("#serialized-search-div").is(":visible")) {
     $("#serialized-search").val("");
     refreshTable("service");
+  } else {
+    $("#serialized-search").focus();
   }
 }
 
