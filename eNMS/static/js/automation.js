@@ -183,7 +183,7 @@ export function flipRuntimeDisplay(display) {
 function serializedSearch() {
   $("#serialized-search-div").toggle();
   if (!$("#serialized-search-div").is(":visible")) {
-    $("#serialized-search").empty();
+    $("#serialized-search").val("");
     refreshTable("service");
   }
 }
