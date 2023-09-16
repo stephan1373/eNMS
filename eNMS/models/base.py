@@ -154,7 +154,7 @@ class AbstractBase(db.base):
         for property in properties:
             if not private_properties and property in vs.private_properties_set:
                 continue
-            if property in db.dont_serialize.get(self.type, []):
+            if property in db.dont_serialize.get(self.class_type, []):
                 continue
             if export and property in getattr(self, "model_properties", {}):
                 continue

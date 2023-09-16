@@ -211,7 +211,7 @@ class Credential(AbstractBase):
 
 
 class Changelog(AbstractBase):
-    __tablename__ = "changelog"
+    __tablename__ = class_type = "changelog"
     log_change = False
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "changelog", "polymorphic_on": type}
@@ -249,7 +249,7 @@ class Changelog(AbstractBase):
 
 
 class Parameters(AbstractBase):
-    __tablename__ = type = "parameters"
+    __tablename__ = type = class_type = "parameters"
     id = db.Column(Integer, primary_key=True)
     banner_active = db.Column(Boolean)
     banner_deactivate_on_restart = db.Column(Boolean)

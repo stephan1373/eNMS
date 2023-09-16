@@ -246,7 +246,7 @@ class ConnectionService(Service):
 
 
 class Result(AbstractBase):
-    __tablename__ = type = "result"
+    __tablename__ = type = class_type = "result"
     private = True
     log_change = False
     id = db.Column(Integer, primary_key=True)
@@ -337,7 +337,7 @@ class ServiceReport(AbstractBase):
 
 
 class Run(AbstractBase):
-    __tablename__ = type = "run"
+    __tablename__ = type = class_type = "run"
     log_change = False
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
