@@ -1040,6 +1040,23 @@ tables.service = class ServiceTable extends Table {
       this.bulkEditButton(),
       this.exportTableButton(),
       this.bulkDeletionButton(),
+      `
+      <div
+        id="serialized-search-div"
+        class="input-group table-search"
+        style="width: 100%; padding: 3px 5px 3px 5px; display: none;"
+      >
+        <input
+          id="serialized-search"
+          name="serialized-search"
+          type="text"
+          placeholder="&#xF002; Search accross all properties"
+          class="form-control"
+          style="font-family:Arial, FontAwesome;
+          height: 30px; margin-top: 5px"
+        >
+      </div>
+      `,
     ];
   }
 
