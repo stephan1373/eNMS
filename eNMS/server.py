@@ -108,7 +108,7 @@ class Server(Flask):
                     else None,
                     "time": str(vs.get_time()),
                     "server_id": vs.server_id,
-                    "parameters": db.fetch("parameters").serialized,
+                    "parameters": db.fetch("parameters").to_dict(),
                     **vs.template_context,
                 }
             )

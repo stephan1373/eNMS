@@ -111,7 +111,7 @@ class Controller:
         for node in nodes:
             if not node or node in network.nodes or node == network:
                 continue
-            result["nodes"].append(node.serialized)
+            result["nodes"].append(node.to_dict())
             network.nodes.append(node)
         for link in links:
             if link in network.links:
@@ -121,7 +121,7 @@ class Controller:
                 or link.destination not in network.nodes
             ):
                 continue
-            result["links"].append(link.serialized)
+            result["links"].append(link.to_dict())
             network.links.append(link)
         return result
 
@@ -243,7 +243,7 @@ class Controller:
         workflow.update_last_modified_properties()
         db.session.commit()
         return {
-            "services": [service.serialized for service in services],
+            "services": [service.to_dict() for service in services],
             "update_time": workflow.last_modified,
         }
 
@@ -1302,7 +1302,7 @@ class Controller:
         else:
             service.run(runtime=runtime)
         return {
-            "service": service.serialized,
+            "service": service.to_dict(),
             "runtime": runtime,
             "restart": "restart_runtime" in kwargs,
             "user": current_user.name,
@@ -1460,7 +1460,7 @@ class Controller:
                     func = db.field_conversion[property_type]
                     values[property] = func(sheet.row_values(row_index)[index])
                 try:
-                    db.factory(obj_type, **values).serialized
+                    db.factory(obj_type, **values).to_dict()
                 except Exception as exc:
                     info(f"{str(values)} could not be imported ({str(exc)})")
                     status = "Partial import (see logs)."

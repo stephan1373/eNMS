@@ -238,7 +238,3 @@ class AbstractBase(db.base):
                     else value.get_properties(include=relation_properties)
                 )
         return properties
-
-    @property
-    def serialized(self):
-        return self.to_dict()

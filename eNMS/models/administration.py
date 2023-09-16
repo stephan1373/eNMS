@@ -43,7 +43,7 @@ class Server(AbstractBase):
 
     def update(self, **kwargs):
         super().update(**kwargs)
-        vs.server_data = self.serialized
+        vs.server_data = self.to_dict()
 
 
 class Worker(AbstractBase):

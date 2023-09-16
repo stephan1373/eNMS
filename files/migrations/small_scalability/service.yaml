@@ -15650,7 +15650,7 @@
   skip_query: ''
   skip_value: success
   source_code: "new_device = factory(\"device\", name=f\"New-{device.id}\")\r\nresults[\"\
-    success\"] = True\r\nresults[\"result\"] = new_device.serialized"
+    success\"] = True\r\nresults[\"result\"] = new_device.to_dict()"
   target_devices: []
   target_pools: []
   time_between_retries: 10
