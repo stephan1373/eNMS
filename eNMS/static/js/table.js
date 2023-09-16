@@ -1061,7 +1061,7 @@ tables.service = class ServiceTable extends Table {
         >
         <span class="input-group-btn" style="width: 10px">
           <button
-            id="service_serialized-search"
+            id="service_filtering-serialized-search"
             class="btn btn-default pull-right"
             type="button"
             style="height: 30px; margin-top: 5px">
@@ -1143,6 +1143,7 @@ tables.service = class ServiceTable extends Table {
         .val("false")
         .selectpicker("refresh");
     }
+    this.createfilteringTooltip("serialized");
     super.postProcessing(...args);
     loadTypes("service");
     $("#parent-filtering")
