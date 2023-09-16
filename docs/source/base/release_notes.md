@@ -84,10 +84,12 @@ Version 4.7.0: Changelog & Workflow Tree
   - Don't allow skipping Start, End, and Placeholder services
   - When unskipping a service, pop from service.skip dictionary instead of setting to False
     to avoid storing unused data.
-- Remvoe internal "dualize" function as wtforms now accepts a list of values as SelectField
+- Internal Refactoring:
+  - Remove internal "dualize" function as wtforms now accepts a list of values as SelectField
   or SelectMultipleField choices.
-- Refactor internal "to_dict" function from the Base model: add include_relations,
+  - Refactor internal "to_dict" function from the Base model: add include_relations,
   exclude_relations, and use include for get_properties instead
+  - Remove "serialized" @property in base class and make explicit calls to_dict instead
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
