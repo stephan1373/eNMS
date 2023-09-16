@@ -773,8 +773,7 @@ class Controller:
                 kwargs["search_mode"] == "names"
                 and kwargs["search_value"].lower() not in instance.scoped_name.lower()
                 or kwargs["search_mode"] == "properties"
-                and kwargs["search_value"].lower()
-                not in str(instance.get_properties().values()).lower()
+                and kwargs["search_value"].lower() not in instance.serialized
             )
             if is_match:
                 highlight.append(instance.id)
