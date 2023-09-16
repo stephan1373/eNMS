@@ -94,6 +94,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Refactor internal "to_dict" function from the Base model: add include_relations,
   exclude_relations, and use include for get_properties instead
   - Remove "serialized" @property in base class and make explicit calls to_dict instead
+  - Use "class_type" instead of "type" to ignore "dont_serialized" properties in get_properties
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
