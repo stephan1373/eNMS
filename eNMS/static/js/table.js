@@ -999,6 +999,15 @@ tables.service = class ServiceTable extends Table {
       >
         <span class="glyphicon glyphicon-refresh"></span>
       </button>`,
+      `
+      <button
+        class="btn btn-info"
+        onclick="eNMS.automation.serializedSearch()"
+        data-tooltip="Search accross all properties"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-filter"></span>
+      </button>`,
       this.bulkFilteringButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
