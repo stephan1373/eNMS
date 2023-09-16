@@ -688,7 +688,9 @@ export function initBuilder() {
     loadTypes("service");
     flipRuntimeDisplay(runtimeDisplay);
     document.addEventListener("keydown", function(event) {
-      if (event.ctrlKey && event.key === "z") showBuilderChangelogPanel(type, true);
+      if (event.ctrlKey && event.key === "z") {
+        if (!$(".jsPanel").length) showBuilderChangelogPanel(type, true);
+      }
     });
   }
   $("#left-arrow,#right-arrow").addClass("disabled");
