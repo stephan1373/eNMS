@@ -1048,7 +1048,7 @@ tables.service = class ServiceTable extends Table {
       <div
         id="serialized-search-div"
         class="input-group table-search"
-        style="width: 100%; padding: 3px 5px 3px 5px; display: none;"
+        style="width: 100%; padding: 3px 15px 3px 15px; display: none;"
       >
         <input
           id="serialized-search"
