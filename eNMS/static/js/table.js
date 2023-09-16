@@ -271,55 +271,59 @@ export class Table {
       .show();
   }
 
+  createfilteringTooltip(property) {
+    const elementId = `${this.type}_filtering-${property}`;
+    createTooltip({
+      persistent: true,
+      name: elementId,
+      target: `#${elementId}-search`,
+      container: `#tooltip-overlay`,
+      position: {
+        my: "center-top",
+        at: "center-bottom",
+      },
+      content: `
+      <div class="modal-body">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+          Filter
+        </label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <select
+            id="${property}_filter"
+            name="${property}_filter"
+            class="form-control search-select-${this.id}"
+            style="width: 100%; height: 30px"
+          >
+            <option value="inclusion">Inclusion</option>
+            <option value="equality">Equality</option>
+            <option value="regex">Regular Expression</option>
+            <option value="empty">Empty</option>
+          </select>
+        </div>
+        <br /><br />
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+          Invert
+        </label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <center>
+            <input
+              class="collapsed form-control-bool add-id"
+              id="${property}_invert"
+              name="${property}_invert"
+              type="checkbox" 
+              value="y"
+            >
+          </center>
+        </div>
+        <br />
+      </div>`,
+    });
+  }
+
   createfilteringTooltips() {
     this.columns.forEach((column) => {
       if (column.search != "text") return;
-      const elementId = `${this.type}_filtering-${column.data}`;
-      createTooltip({
-        persistent: true,
-        name: elementId,
-        target: `#${elementId}-search`,
-        container: `#tooltip-overlay`,
-        position: {
-          my: "center-top",
-          at: "center-bottom",
-        },
-        content: `
-        <div class="modal-body">
-          <label class="control-label col-md-3 col-sm-3 col-xs-12">
-            Filter
-          </label>
-          <div class="col-md-9 col-sm-9 col-xs-12">
-            <select
-              id="${column.data}_filter"
-              name="${column.data}_filter"
-              class="form-control search-select-${this.id}"
-              style="width: 100%; height: 30px"
-            >
-              <option value="inclusion">Inclusion</option>
-              <option value="equality">Equality</option>
-              <option value="regex">Regular Expression</option>
-              <option value="empty">Empty</option>
-            </select>
-          </div>
-          <br /><br />
-          <label class="control-label col-md-3 col-sm-3 col-xs-12">
-            Invert
-          </label>
-          <div class="col-md-9 col-sm-9 col-xs-12">
-            <center>
-              <input
-                class="collapsed form-control-bool add-id"
-                id="${column.data}_invert"
-                name="${column.data}_invert"
-                type="checkbox" 
-                value="y"
-              >
-            </center>
-          </div>
-          <br />
-        </div>`,
-      });
+      this.createfilteringTooltip(column.data);
     });
   }
 
