@@ -231,7 +231,7 @@ class Changelog(AbstractBase):
     networks = relationship(
         "Network",
         secondary=db.changelog_network_table,
-        back_populates="nodes_changelogs",
+        back_populates="device_changelogs",
     )
 
     @classmethod

@@ -30,7 +30,7 @@ class Network(Device):
         "Link", secondary=db.link_network_table, back_populates="networks"
     )
     logs = relationship("Changelog", back_populates="network")
-    nodes_changelogs = relationship(
+    device_changelogs = relationship(
         "Changelog",
         secondary=db.changelog_network_table,
         back_populates="networks",
