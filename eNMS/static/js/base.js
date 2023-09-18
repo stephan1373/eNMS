@@ -29,7 +29,11 @@ import { creationMode, initBuilder, instance, processBuilderData } from "./build
 import { initDashboard } from "./inventory.js";
 import { refreshTable, tables, tableInstances } from "./table.js";
 import { initVisualization } from "./visualization.js";
-import { showLinkPanel, showNodePanel, updateNetworkPanel } from "./networkBuilder.js";
+import {
+  showLinkPanel,
+  showDevicePanel,
+  updateNetworkPanel,
+} from "./networkBuilder.js";
 import { showServicePanel } from "./workflowBuilder.js";
 
 const currentUrl = `${location.origin}/${page}`;
@@ -743,10 +747,10 @@ export function showInstancePanel(type, id, mode, tableId, edge) {
       </div>`,
     callback: function(panel) {
       const isService = type == "service" || type in subtypes.service;
-      const isNode = type in subtypes.node;
+      const isDevice = type in subtypes.device;
       const isLink = type in subtypes.link;
       if (isService) showServicePanel(type, id, mode, tableId);
-      if (isNode) showNodePanel(type, id, mode, tableId);
+      if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
       if (type == "folder") showFolderPanel(id);

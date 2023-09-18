@@ -182,7 +182,7 @@ export function showLinkPanel(type, id, edge) {
   }
 }
 
-export function showNodePanel(type, id, mode) {
+export function showDevicePanel(type, id, mode) {
   $(id ? `#${type}-type-${id}` : `#${type}-type`)
     .val(type)
     .prop("disabled", true);
