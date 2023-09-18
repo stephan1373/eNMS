@@ -3,12 +3,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Jackson"
   "down": !!bool "false"
@@ -46,23 +46,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "621"
-    - !!int "908"
+      - !!int "621"
+      - !!int "908"
     "Network 9: Large Network Display":
-    - !!int "621"
-    - !!int "908"
+      - !!int "621"
+      - !!int "908"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -73,12 +73,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "PaloAlto"
   "down": !!bool "false"
@@ -116,23 +116,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-387"
-    - !!int "104"
+      - !!int "-387"
+      - !!int "104"
     "Network 9: Large Network Display":
-    - !!int "-387"
-    - !!int "104"
+      - !!int "-387"
+      - !!int "104"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -143,12 +143,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Austin"
   "down": !!bool "false"
@@ -186,23 +186,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "253"
-    - !!int "413"
+      - !!int "253"
+      - !!int "413"
     "Network 9: Large Network Display":
-    - !!int "253"
-    - !!int "413"
+      - !!int "253"
+      - !!int "413"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -213,12 +213,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Washington"
   "down": !!bool "false"
@@ -256,25 +256,25 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-47"
-    - !!int "331"
+      - !!int "-47"
+      - !!int "331"
     "Network 9: Large Network Display":
-    - !!int "-47"
-    - !!int "331"
+      - !!int "-47"
+      - !!int "331"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
-  - "ny Group"
+    - "Full UI Read + Edit Access"
+    - "ny Group"
   "rbac_target":
-  - "Full UI Read + Edit Access"
-  - "ny Group"
+    - "Full UI Read + Edit Access"
+    - "ny Group"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -285,12 +285,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Chicago"
   "down": !!bool "false"
@@ -328,23 +328,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-1073"
-    - !!int "540"
+      - !!int "-1073"
+      - !!int "540"
     "Network 9: Large Network Display":
-    - !!int "-1073"
-    - !!int "540"
+      - !!int "-1073"
+      - !!int "540"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -355,12 +355,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "SanJose"
   "down": !!bool "false"
@@ -398,23 +398,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-92"
-    - !!int "-121"
+      - !!int "-92"
+      - !!int "-121"
     "Network 9: Large Network Display":
-    - !!int "-92"
-    - !!int "-121"
+      - !!int "-92"
+      - !!int "-121"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -425,12 +425,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "SanDiego"
   "down": !!bool "false"
@@ -468,23 +468,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "333"
-    - !!int "-657"
+      - !!int "333"
+      - !!int "-657"
     "Network 9: Large Network Display":
-    - !!int "333"
-    - !!int "-657"
+      - !!int "333"
+      - !!int "-657"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -495,12 +495,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Dallas"
   "down": !!bool "false"
@@ -538,23 +538,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "562"
-    - !!int "157"
+      - !!int "562"
+      - !!int "157"
     "Network 9: Large Network Display":
-    - !!int "562"
-    - !!int "157"
+      - !!int "562"
+      - !!int "157"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -565,12 +565,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Philadelphia"
   "down": !!bool "false"
@@ -608,23 +608,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-686"
-    - !!int "820"
+      - !!int "-686"
+      - !!int "820"
     "Network 9: Large Network Display":
-    - !!int "-686"
-    - !!int "820"
+      - !!int "-686"
+      - !!int "820"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -635,12 +635,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "LosAngeles"
   "down": !!bool "false"
@@ -678,23 +678,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "351"
-    - !!int "-244"
+      - !!int "351"
+      - !!int "-244"
     "Network 9: Large Network Display":
-    - !!int "351"
-    - !!int "-244"
+      - !!int "351"
+      - !!int "-244"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -705,12 +705,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Detroit"
   "down": !!bool "false"
@@ -748,23 +748,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-1351"
-    - !!int "-44"
+      - !!int "-1351"
+      - !!int "-44"
     "Network 9: Large Network Display":
-    - !!int "-1351"
-    - !!int "-44"
+      - !!int "-1351"
+      - !!int "-44"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -775,12 +775,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Richmond"
   "down": !!bool "false"
@@ -818,23 +818,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "93"
-    - !!int "-32"
+      - !!int "93"
+      - !!int "-32"
     "Network 9: Large Network Display":
-    - !!int "93"
-    - !!int "-32"
+      - !!int "93"
+      - !!int "-32"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -845,12 +845,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Atlanta"
   "down": !!bool "false"
@@ -888,23 +888,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "427"
-    - !!int "535"
+      - !!int "427"
+      - !!int "535"
     "Network 9: Large Network Display":
-    - !!int "427"
-    - !!int "535"
+      - !!int "427"
+      - !!int "535"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -915,12 +915,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Boston"
   "down": !!bool "false"
@@ -958,24 +958,24 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-1213"
-    - !!int "935"
+      - !!int "-1213"
+      - !!int "935"
     "Network 9: Large Network Display":
-    - !!int "-1213"
-    - !!int "935"
+      - !!int "-1213"
+      - !!int "935"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
-  - "ny Group"
+    - "Full UI Read + Edit Access"
+    - "ny Group"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -986,12 +986,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Houston"
   "down": !!bool "false"
@@ -1029,23 +1029,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "951"
-    - !!int "21"
+      - !!int "951"
+      - !!int "21"
     "Network 9: Large Network Display":
-    - !!int "951"
-    - !!int "21"
+      - !!int "951"
+      - !!int "21"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1056,12 +1056,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Baltimore"
   "down": !!bool "false"
@@ -1099,23 +1099,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "289"
-    - !!int "127"
+      - !!int "289"
+      - !!int "127"
     "Network 9: Large Network Display":
-    - !!int "289"
-    - !!int "127"
+      - !!int "289"
+      - !!int "127"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1126,12 +1126,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Cleveland"
   "down": !!bool "false"
@@ -1169,23 +1169,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-993"
-    - !!int "184"
+      - !!int "-993"
+      - !!int "184"
     "Network 9: Large Network Display":
-    - !!int "-993"
-    - !!int "184"
+      - !!int "-993"
+      - !!int "184"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1196,12 +1196,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Columbus"
   "down": !!bool "false"
@@ -1239,23 +1239,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-1099"
-    - !!int "-216"
+      - !!int "-1099"
+      - !!int "-216"
     "Network 9: Large Network Display":
-    - !!int "-1099"
-    - !!int "-216"
+      - !!int "-1099"
+      - !!int "-216"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1266,12 +1266,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Cincinnati"
   "down": !!bool "false"
@@ -1309,23 +1309,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-1404"
-    - !!int "258"
+      - !!int "-1404"
+      - !!int "258"
     "Network 9: Large Network Display":
-    - !!int "-1404"
-    - !!int "258"
+      - !!int "-1404"
+      - !!int "258"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1336,12 +1336,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Cambridge"
   "down": !!bool "false"
@@ -1379,23 +1379,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-367"
-    - !!int "811"
+      - !!int "-367"
+      - !!int "811"
     "Network 9: Large Network Display":
-    - !!int "-367"
-    - !!int "811"
+      - !!int "-367"
+      - !!int "811"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1406,12 +1406,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Minneapolis"
   "down": !!bool "false"
@@ -1449,23 +1449,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-1467"
-    - !!int "680"
+      - !!int "-1467"
+      - !!int "680"
     "Network 9: Large Network Display":
-    - !!int "-1467"
-    - !!int "680"
+      - !!int "-1467"
+      - !!int "680"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1476,12 +1476,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "NewYork"
   "down": !!bool "false"
@@ -1519,23 +1519,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-537"
-    - !!int "433"
+      - !!int "-537"
+      - !!int "433"
     "Network 9: Large Network Display":
-    - !!int "-537"
-    - !!int "433"
+      - !!int "-537"
+      - !!int "433"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1546,12 +1546,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Sacramento"
   "down": !!bool "false"
@@ -1589,23 +1589,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-382"
-    - !!int "-610"
+      - !!int "-382"
+      - !!int "-610"
     "Network 9: Large Network Display":
-    - !!int "-382"
-    - !!int "-610"
+      - !!int "-382"
+      - !!int "-610"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1616,12 +1616,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "SanFrancisco"
   "down": !!bool "false"
@@ -1659,23 +1659,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-740"
-    - !!int "-568"
+      - !!int "-740"
+      - !!int "-568"
     "Network 9: Large Network Display":
-    - !!int "-740"
-    - !!int "-568"
+      - !!int "-740"
+      - !!int "-568"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1686,12 +1686,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Orange"
   "down": !!bool "false"
@@ -1729,23 +1729,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "686"
-    - !!int "-483"
+      - !!int "686"
+      - !!int "-483"
     "Network 9: Large Network Display":
-    - !!int "686"
-    - !!int "-483"
+      - !!int "686"
+      - !!int "-483"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1756,12 +1756,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Oakland"
   "down": !!bool "false"
@@ -1799,23 +1799,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-519"
-    - !!int "-222"
+      - !!int "-519"
+      - !!int "-222"
     "Network 9: Large Network Display":
-    - !!int "-519"
-    - !!int "-222"
+      - !!int "-519"
+      - !!int "-222"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1826,12 +1826,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Denver"
   "down": !!bool "false"
@@ -1869,23 +1869,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "-770"
-    - !!int "169"
+      - !!int "-770"
+      - !!int "169"
     "Network 9: Large Network Display":
-    - !!int "-770"
-    - !!int "169"
+      - !!int "-770"
+      - !!int "169"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -1896,12 +1896,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -1943,13 +1943,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -1960,12 +1960,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2007,13 +2007,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2024,12 +2024,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2071,13 +2071,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2088,12 +2088,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2135,13 +2135,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2152,12 +2152,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2199,13 +2199,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2216,12 +2216,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2263,13 +2263,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2280,12 +2280,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2327,13 +2327,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2344,12 +2344,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2391,13 +2391,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2408,12 +2408,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2455,13 +2455,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2472,12 +2472,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2519,13 +2519,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2536,12 +2536,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2583,13 +2583,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2600,12 +2600,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2647,13 +2647,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2664,12 +2664,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -2711,13 +2711,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2728,12 +2728,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2775,13 +2775,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2792,12 +2792,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2839,13 +2839,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2856,12 +2856,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2903,13 +2903,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2920,12 +2920,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -2967,13 +2967,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -2984,12 +2984,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -3031,13 +3031,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3048,12 +3048,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -3095,13 +3095,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3112,12 +3112,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -3159,13 +3159,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3176,12 +3176,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -3223,13 +3223,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3240,12 +3240,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -3287,13 +3287,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3304,12 +3304,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "france"
   "down": !!bool "false"
@@ -3351,13 +3351,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3368,12 +3368,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3415,13 +3415,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3432,12 +3432,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3479,13 +3479,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3496,12 +3496,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3543,13 +3543,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3560,12 +3560,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3607,13 +3607,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3624,12 +3624,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3671,13 +3671,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3688,12 +3688,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3735,13 +3735,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3752,12 +3752,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "eastern europe"
   "down": !!bool "false"
@@ -3799,13 +3799,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3816,12 +3816,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3863,13 +3863,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3880,12 +3880,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3927,13 +3927,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -3944,12 +3944,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "spain"
   "down": !!bool "false"
@@ -3991,13 +3991,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
@@ -4008,12 +4008,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Washington"
   "down": !!bool "false"
@@ -4055,13 +4055,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4072,12 +4072,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Denver"
   "down": !!bool "false"
@@ -4119,13 +4119,13 @@
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4136,12 +4136,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Dallas"
   "down": !!bool "false"
@@ -4179,23 +4179,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "285"
-    - !!int "905"
+      - !!int "285"
+      - !!int "905"
     "Network 9: Large Network Display":
-    - !!int "285"
-    - !!int "905"
+      - !!int "285"
+      - !!int "905"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4206,12 +4206,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Dallas"
   "down": !!bool "false"
@@ -4249,23 +4249,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "851"
-    - !!int "631"
+      - !!int "851"
+      - !!int "631"
     "Network 9: Large Network Display":
-    - !!int "851"
-    - !!int "631"
+      - !!int "851"
+      - !!int "631"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4276,12 +4276,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Dallas"
   "down": !!bool "false"
@@ -4319,20 +4319,20 @@
   "port": !!int "22"
   "positions":
     "Network 9: Large Network Display":
-    - !!int "1505"
-    - !!int "-2076"
+      - !!int "1505"
+      - !!int "-2076"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4343,12 +4343,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Austin"
   "down": !!bool "false"
@@ -4386,23 +4386,23 @@
   "port": !!int "22"
   "positions":
     "Large Network Display":
-    - !!int "1231"
-    - !!int "770"
+      - !!int "1231"
+      - !!int "770"
     "Network 9: Large Network Display":
-    - !!int "1231"
-    - !!int "770"
+      - !!int "1231"
+      - !!int "770"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4413,12 +4413,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Austin"
   "down": !!bool "false"
@@ -4456,20 +4456,20 @@
   "port": !!int "22"
   "positions":
     "Network 9: Large Network Display":
-    - !!int "272"
-    - !!int "2538"
+      - !!int "272"
+      - !!int "2538"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4480,12 +4480,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Jackson"
   "down": !!bool "false"
@@ -4523,20 +4523,20 @@
   "port": !!int "22"
   "positions":
     "Network 9: Large Network Display":
-    - !!int "2753"
-    - !!int "-63"
+      - !!int "2753"
+      - !!int "-63"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4547,12 +4547,12 @@
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
-    - "3"
+      - !!int "1"
+      - !!int "2"
+      - "3"
   "custom_multiselect":
-  - "a"
-  - "c"
+    - "a"
+    - "c"
   "custom_select": "b"
   "description": "Oakland"
   "down": !!bool "false"
@@ -4590,20 +4590,20 @@
   "port": !!int "22"
   "positions":
     "Network 9: Large Network Display":
-    - !!int "-1288"
-    - !!int "1977"
+      - !!int "-1288"
+      - !!int "1977"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
@@ -4650,21 +4650,21 @@
   "port": !!int "22"
   "positions":
     "Network 1: Top-level Devices and Links": &id001
-    - !!int "-314"
-    - !!int "42"
+      - !!int "-314"
+      - !!int "42"
     "Top-level Devices and Links": *id001
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -4711,21 +4711,21 @@
   "port": !!int "22"
   "positions":
     "Network 1: Top-level Devices and Links": &id002
-    - !!int "-59"
-    - !!int "267"
+      - !!int "-59"
+      - !!int "267"
     "Top-level Devices and Links": *id002
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
@@ -4773,21 +4773,21 @@
   "port": !!int "22"
   "positions":
     "Network 1: Top-level Devices and Links": &id003
-    - !!int "310"
-    - !!int "56"
+      - !!int "310"
+      - !!int "56"
     "Top-level Devices and Links": *id003
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
@@ -4802,7 +4802,7 @@
   "description": ""
   "down": !!bool "false"
   "gateways":
-  - "Gateway 1"
+    - "Gateway 1"
   "icon": "antenna"
   "ip_address": "192.168.56.50"
   "last_configuration_duration": "4.447091s"
@@ -4840,13 +4840,13 @@
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "serial_number": ""
@@ -4860,8 +4860,8 @@
   "custom_select": "b"
   "description": ""
   "devices":
-  - "Router behind Gateway 1"
-  - "Router behind Gateway 1, 2 and 3"
+    - "Router behind Gateway 1"
+    - "Router behind Gateway 1, 2 and 3"
   "down": !!bool "false"
   "gateways": []
   "icon": "antenna"
@@ -4902,13 +4902,13 @@
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -4921,7 +4921,7 @@
   "custom_select": "b"
   "description": ""
   "devices":
-  - "Router behind Gateway 1, 2 and 3"
+    - "Router behind Gateway 1, 2 and 3"
   "down": !!bool "false"
   "gateways": []
   "icon": "antenna"
@@ -4962,13 +4962,13 @@
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -4981,7 +4981,7 @@
   "custom_select": "b"
   "description": ""
   "devices":
-  - "Router behind Gateway 1, 2 and 3"
+    - "Router behind Gateway 1, 2 and 3"
   "down": !!bool "false"
   "gateways": []
   "icon": "antenna"
@@ -5022,13 +5022,13 @@
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5042,9 +5042,9 @@
   "description": ""
   "down": !!bool "false"
   "gateways":
-  - "Gateway 1"
-  - "Gateway 2"
-  - "Gateway 3"
+    - "Gateway 1"
+    - "Gateway 2"
+    - "Gateway 3"
   "icon": "antenna"
   "ip_address": "192.168.56.50\t"
   "last_configuration_duration": "9.071588s"
@@ -5082,13 +5082,13 @@
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "arista_eos"
   "serial_number": ""
@@ -5136,20 +5136,20 @@
   "port": !!int "22"
   "positions":
     "Subnetwork 1":
-    - !!int "-284"
-    - !!int "-105"
+      - !!int "-284"
+      - !!int "-105"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
@@ -5197,20 +5197,20 @@
   "port": !!int "22"
   "positions":
     "Subnetwork 1":
-    - !!int "298"
-    - !!int "-122"
+      - !!int "298"
+      - !!int "-122"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
@@ -5259,21 +5259,21 @@
   "port": !!int "22"
   "positions":
     "Subnetwork 2":
-    - !!int "-213"
-    - !!int "-57"
+      - !!int "-213"
+      - !!int "-57"
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5321,21 +5321,21 @@
   "port": !!int "22"
   "positions":
     "Subnetwork 2":
-    - !!int "202"
-    - !!int "-63"
+      - !!int "202"
+      - !!int "-63"
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5382,21 +5382,21 @@
   "port": !!int "22"
   "positions":
     "Duplication of Devices, Subnetworks and Top-level Networks": &id004
-    - !!int "-356"
-    - !!int "0"
+      - !!int "-356"
+      - !!int "0"
     "Network 4: Duplication of Devices, Subnetworks and Top-level Networks": *id004
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5444,21 +5444,21 @@
   "port": !!int "22"
   "positions":
     "Duplicate me 2":
-    - !!int "-127"
-    - !!int "-54"
+      - !!int "-127"
+      - !!int "-54"
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5505,20 +5505,20 @@
   "port": !!int "22"
   "positions":
     "Duplicate me 2":
-    - !!int "127"
-    - !!int "87"
+      - !!int "127"
+      - !!int "87"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
@@ -5566,20 +5566,20 @@
   "port": !!int "22"
   "positions":
     "Subnetwork 1":
-    - !!int "-8"
-    - !!int "136"
+      - !!int "-8"
+      - !!int "136"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
@@ -5627,21 +5627,21 @@
   "port": !!int "22"
   "positions":
     "Loopback and Parallel Links": &id005
-    - !!int "-765"
-    - !!int "312"
+      - !!int "-765"
+      - !!int "312"
     "Network 5: Loopback and Parallel Links": *id005
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5688,21 +5688,21 @@
   "port": !!int "22"
   "positions":
     "Loopback and Parallel Links": &id006
-    - !!int "-345"
-    - !!int "194"
+      - !!int "-345"
+      - !!int "194"
     "Network 5: Loopback and Parallel Links": *id006
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5749,21 +5749,21 @@
   "port": !!int "22"
   "positions":
     "Loopback and Parallel Links": &id007
-    - !!int "-325"
-    - !!int "426"
+      - !!int "-325"
+      - !!int "426"
     "Network 5: Loopback and Parallel Links": *id007
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5810,21 +5810,21 @@
   "port": !!int "22"
   "positions":
     "Loopback and Parallel Links": &id008
-    - !!int "243"
-    - !!int "271"
+      - !!int "243"
+      - !!int "271"
     "Network 5: Loopback and Parallel Links": *id008
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5871,20 +5871,20 @@
   "port": !!int "22"
   "positions":
     "L3 Network":
-    - !!int "-181"
-    - !!int "-10"
+      - !!int "-181"
+      - !!int "-10"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
@@ -5931,20 +5931,20 @@
   "port": !!int "22"
   "positions":
     "L3 Network":
-    - !!int "170"
-    - !!int "-14"
+      - !!int "170"
+      - !!int "-14"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
   "rbac_configuration": []
   "rbac_connect":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_edit":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_read":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "rbac_target":
-  - "Full UI Read + Edit Access"
+    - "Full UI Read + Edit Access"
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""

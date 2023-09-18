@@ -42,7 +42,6 @@
     "file",
     "link",
     "service",
-    "network",
     "workflow_edge",
     "task",
     "credential",
