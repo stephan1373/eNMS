@@ -73,10 +73,9 @@ export function switchToNetwork(path, direction) {
   $("#automatic-layout-btn").removeClass("active");
   const [networkId] = currentPath.split(">").slice(-1);
   call({
-    url: `/get/network/${networkId}`,
-    data: { include: ["nodes", "networks", "links"] },
-    callback: function(newNetwork) {
-      network = newNetwork;
+    url: `/get_network_state/${networkId}`,
+    callback: function(result) {
+      network = result.network;
       localStorage.setItem("network_path", path);
       if (network) localStorage.setItem("network", JSON.stringify(network));
       displayNetwork(network);
