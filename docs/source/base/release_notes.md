@@ -97,6 +97,8 @@ Version 4.7.0: Changelog & Workflow Tree
   exclude_relations, and use include for get_properties instead
   - Remove "serialized" @property in base class and make explicit calls to_dict instead
   - Use "class_type" instead of "type" to ignore "dont_serialized" properties in get_properties
+  - Remove the "Node" class and merge it with the "Device" class instead. The "Network"
+    class now inherits from "Device" the same way "Workflow" inherits from "Service".
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
