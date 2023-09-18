@@ -99,6 +99,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Use "class_type" instead of "type" to ignore "dont_serialized" properties in get_properties
   - Remove the "Node" class and merge it with the "Device" class instead. The "Network"
     class now inherits from "Device" the same way "Workflow" inherits from "Service".
+    Related issue: #400
 
 Migration:
 - network.yaml must be merge into device.yaml:
