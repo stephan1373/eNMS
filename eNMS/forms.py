@@ -318,10 +318,10 @@ class AddServiceForm(BaseForm):
 class AddToNetworkForm(BaseForm):
     action = "eNMS.networkBuilder.addObjectsToNetwork"
     form_type = HiddenField(default="add_to_network")
-    nodes = MultipleInstanceField("Nodes", model="node")
+    devices = MultipleInstanceField("Devices", model="device")
     add_connected_links = BooleanField("Add connected links", default=False)
     links = MultipleInstanceField("Links", model="link")
-    add_connected_nodes = BooleanField("Add connected nodes", default=False)
+    add_connected_devices = BooleanField("Add connected devices", default=False)
     pools = MultipleInstanceField("Pools", model="pool")
 
 

@@ -85,14 +85,14 @@ export function switchToNetwork(path, direction) {
 }
 
 export function displayNetwork(network) {
-  if (network.nodes.length > visualization["Network Builder"].max_allowed_nodes) {
+  if (network.devices.length > visualization["Network Builder"].max_allowed_nodes) {
     return notify("The network contains too many nodes to be displayed.", "error", 5);
   }
   parallelLinks = {};
   graph = configureGraph(
     network,
     {
-      nodes: network.nodes.map(drawNetworkNode),
+      nodes: network.devices.map(drawNetworkNode),
       edges: network.links.map(drawNetworkEdge),
       inactive: new Set(),
     },
@@ -216,7 +216,7 @@ function addObjectsToNetwork() {
     form: "add_to_network-form",
     callback: function(result) {
       document.body.style.cursor = "progress";
-      result.nodes.map((node) => nodes.update(drawNetworkNode(node)));
+      result.devices.map((node) => nodes.update(drawNetworkNode(node)));
       result.links.map((link) => edges.update(drawNetworkEdge(link)));
       document.body.style.cursor = "default";
       $("#add_to_network").remove();
@@ -297,14 +297,14 @@ export function drawNetworkEdge(link) {
 }
 
 export function resetNetworkDisplay() {
-  let nodeUpdates = [];
-  network.nodes.forEach((node) => {
-    nodeUpdates.push({
-      id: node.id,
-      image: `/static/img/network/default/${node.icon}.gif`,
+  let deviceUpdates = [];
+  network.devices.forEach((device) => {
+    deviceUpdates.push({
+      id: device.id,
+      image: `/static/img/network/default/${device.icon}.gif`,
     });
   });
-  if (nodes) nodes.update(nodeUpdates);
+  if (nodes) nodes.update(deviceUpdates);
 }
 
 configureNamespace("networkBuilder", [addObjectsToNetwork, filterNetworkTable]);

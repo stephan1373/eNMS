@@ -625,7 +625,7 @@ tables.device = class DeviceTable extends Table {
 
   postProcessing(...args) {
     super.postProcessing(...args);
-    loadTypes("node");
+    loadTypes("device");
   }
 };
 

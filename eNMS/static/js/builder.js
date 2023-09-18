@@ -681,7 +681,7 @@ export function initBuilder() {
       switchMode(this.value);
     });
   if (type == "network") {
-    loadTypes("node");
+    loadTypes("device");
     loadTypes("edge");
   } else {
     $("#tree-search-mode").selectpicker();

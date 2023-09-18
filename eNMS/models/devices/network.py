@@ -10,21 +10,21 @@ from eNMS.fields import (
     SelectField,
     StringField,
 )
-from eNMS.models.inventory import Node
+from eNMS.models.inventory import Device
 
 
-class Network(Node):
+class Network(Device):
     __tablename__ = class_type = "network"
     __mapper_args__ = {"polymorphic_identity": "network"}
     pretty_name = "Network"
-    parent_type = "node"
+    parent_type = "device"
     category = db.Column(db.SmallString)
     icon = db.Column(db.TinyString, default="network")
-    id = db.Column(Integer, ForeignKey(Node.id), primary_key=True)
+    id = db.Column(Integer, ForeignKey(Device.id), primary_key=True)
     path = db.Column(db.TinyString)
     labels = db.Column(db.Dict, info={"log_change": False})
-    nodes = relationship(
-        "Node", secondary=db.node_network_table, back_populates="networks"
+    devices = relationship(
+        "Device", secondary=db.device_network_table, back_populates="networks"
     )
     links = relationship(
         "Link", secondary=db.link_network_table, back_populates="networks"
@@ -38,10 +38,10 @@ class Network(Node):
     )
 
     def duplicate(self, clone=None):
-        for property in ("labels", "nodes", "links"):
+        for property in ("labels", "devices", "links"):
             setattr(clone, property, getattr(self, property))
-        for node in self.nodes:
-            node.positions[clone.name] = node.positions.get(self.name, (0, 0))
+        for device in self.devices:
+            device.positions[clone.name] = device.positions.get(self.name, (0, 0))
         db.session.commit()
         return clone
 
@@ -50,17 +50,17 @@ class Network(Node):
             self.path = f"{self.networks[0].path}>{self.id}"
         else:
             self.path = str(self.id)
-        return self.to_dict(include_relations=["networks", "nodes"])
+        return self.to_dict(include_relations=["networks", "devices"])
 
     def update(self, **kwargs):
         old_name = self.name
         super().update(**kwargs)
         if self.name == old_name:
             return
-        for node in self.nodes:
-            if old_name not in node.positions:
+        for device in self.devices:
+            if old_name not in device.positions:
                 continue
-            node.positions[self.name] = node.positions[old_name]
+            device.positions[self.name] = device.positions[old_name]
 
 
 class NetworkForm(BaseForm):

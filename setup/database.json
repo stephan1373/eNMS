@@ -243,10 +243,10 @@
           "foreign_key": "network"
         }
       },
-      "node_network": {
+      "device_network": {
         "model1": {
-          "column": "node_id",
-          "foreign_key": "node"
+          "column": "device_id",
+          "foreign_key": "device"
         },
         "model2": {
           "column": "network_id",

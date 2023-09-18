@@ -96,29 +96,29 @@ class Controller:
 
     def add_objects_to_network(self, network_id, **kwargs):
         network = db.fetch("network", id=network_id)
-        result = {"nodes": [], "links": []}
-        nodes = set(db.objectify("node", kwargs["nodes"]))
+        result = {"devices": [], "links": []}
+        devices = set(db.objectify("device", kwargs["devices"]))
         links = set(db.objectify("link", kwargs["links"]))
         for pool in db.objectify("pool", kwargs["pools"]):
-            nodes |= set(pool.devices)
+            devices |= set(pool.devices)
             links |= set(pool.links)
-        if kwargs["add_connected_nodes"]:
+        if kwargs["add_connected_devices"]:
             for link in links:
-                nodes |= {link.source, link.destination}
+                devices |= {link.source, link.destination}
         if kwargs["add_connected_links"]:
-            for node in nodes:
-                links |= set(node.get_neighbors("link"))
-        for node in nodes:
-            if not node or node in network.nodes or node == network:
+            for device in devices:
+                links |= set(device.get_neighbors("link"))
+        for device in devices:
+            if not device or device in network.devices or device == network:
                 continue
-            result["nodes"].append(node.to_dict())
-            network.nodes.append(node)
+            result["devices"].append(device.to_dict())
+            network.devices.append(device)
         for link in links:
             if link in network.links:
                 continue
             if (
-                link.source not in network.nodes
-                or link.destination not in network.nodes
+                link.source not in network.devices
+                or link.destination not in network.devices
             ):
                 continue
             result["links"].append(link.to_dict())
@@ -316,7 +316,7 @@ class Controller:
             if isinstance(node_id, str):
                 names["labels"].append(instance.labels.pop(node_id)["content"])
             elif type == "network":
-                instance.nodes.remove(db.fetch("node", id=node_id))
+                instance.devices.remove(db.fetch("device", id=node_id))
             else:
                 service = db.fetch("service", rbac="edit", id=node_id)
                 names["services"].append(service.name)
@@ -688,7 +688,7 @@ class Controller:
         if not network:
             raise db.rbac_error
         return {
-            "network": network.to_dict(include_relations=["nodes", "links"]),
+            "network": network.to_dict(include_relations=["devices", "links"]),
             "device_results": {
                 result.device_id: result.success
                 for result in db.fetch_all("result", parent_runtime=runtime)
@@ -751,7 +751,7 @@ class Controller:
     def get_builder_children(self, type, instance_id):
         instance = db.fetch(type, id=instance_id)
         children = {instance.name}
-        child_property = "services" if type == "workflow" else "nodes"
+        child_property = "services" if type == "workflow" else "devices"
 
         def rec(instance):
             for sub_instance in getattr(instance, child_property):
@@ -794,13 +794,13 @@ class Controller:
                     else:
                         return
             if type == "network":
-                children = instance.nodes
+                children = instance.devices
             children = False
             if instance.type == type:
                 instances = (
                     instance.exclude_soft_deleted("services")
                     if type == "workflow"
-                    else instance.nodes
+                    else instance.devices
                 )
                 children_results = []
                 for child in instances:
@@ -822,7 +822,7 @@ class Controller:
                         return
                     elif is_match:
                         style = "font-weight: bold;"
-            child_property = "nodes" if type == "network" else "services"
+            child_property = "devices" if type == "network" else "services"
             progress_data = {}
             if run:
                 progress = state[path].get("progress")
@@ -1054,8 +1054,6 @@ class Controller:
                         )
                         store[model][instance.name] = instance
                         store[type][instance.name] = store[model][instance.name]
-                        if model in ("device", "network"):
-                            store["node"][instance.name] = store[model][instance.name]
                     if service_import:
                         if instance.type == "workflow":
                             instance.edges = []
@@ -1326,7 +1324,7 @@ class Controller:
         instance = db.fetch(type, allow_none=True, id=id, rbac="edit")
         if not instance:
             return
-        relation_type = "node" if type == "network" else "service"
+        relation_type = "device" if type == "network" else "service"
         for id, position in kwargs.items():
             new_position = [position["x"], position["y"]]
             if "-" not in id:

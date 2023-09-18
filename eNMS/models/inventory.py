@@ -39,40 +39,16 @@ class Object(AbstractBase):
             setattr(pool, number, getattr(pool, number) - 1)
 
 
-class Node(Object):
-    __tablename__ = "node"
-    __mapper_args__ = {"polymorphic_identity": "node"}
+class Device(Object):
+    __tablename__ = class_type = export_type = "device"
+    __mapper_args__ = {"polymorphic_identity": "device"}
+    pretty_name = "Device"
     parent_type = "object"
     id = db.Column(Integer, ForeignKey(Object.id), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     positions = db.Column(db.Dict, info={"log_change": False})
     latitude = db.Column(db.TinyString, default="0.0")
     longitude = db.Column(db.TinyString, default="0.0")
-    networks = relationship(
-        "Network", secondary=db.node_network_table, back_populates="nodes"
-    )
-
-    def get_changelog_kwargs(self):
-        kwargs = {"networks": [network.id for network in self.networks]}
-        if self.type == "network":
-            kwargs["networks"].append(self.id)
-        return {**kwargs, **super().get_changelog_kwargs()}
-
-    def post_update(self):
-        return self.to_dict(include_relations=["networks", "nodes"])
-
-    def update(self, **kwargs):
-        if self.positions and "positions" in kwargs:
-            kwargs["positions"] = {**self.positions, **kwargs["positions"]}
-        super().update(**kwargs)
-
-
-class Device(Node):
-    __tablename__ = class_type = export_type = "device"
-    __mapper_args__ = {"polymorphic_identity": "device"}
-    pretty_name = "Device"
-    parent_type = "node"
-    id = db.Column(Integer, ForeignKey(Node.id), primary_key=True)
     icon = db.Column(db.TinyString, default="router")
     operating_system = db.Column(db.SmallString)
     os_version = db.Column(db.SmallString)
@@ -87,6 +63,9 @@ class Device(Node):
     specialized_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
     gateways = relationship(
         "Gateway", secondary=db.device_gateway_table, back_populates="devices"
+    )
+    networks = relationship(
+        "Network", secondary=db.device_network_table, back_populates="devices"
     )
     target_services = relationship(
         "Service",
@@ -106,6 +85,20 @@ class Device(Node):
         "Session", back_populates="device", cascade="all, delete-orphan"
     )
     logs = relationship("Changelog", back_populates="device")
+
+    def update(self, **kwargs):
+        if self.positions and "positions" in kwargs:
+            kwargs["positions"] = {**self.positions, **kwargs["positions"]}
+        super().update(**kwargs)
+
+    def get_changelog_kwargs(self):
+        kwargs = {"networks": [network.id for network in self.networks]}
+        if self.type == "network":
+            kwargs["networks"].append(self.id)
+        return {**kwargs, **super().get_changelog_kwargs()}
+
+    def post_update(self):
+        return self.to_dict(include_relations=["networks"])
 
     @classmethod
     def database_init(cls):
