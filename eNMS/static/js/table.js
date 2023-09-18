@@ -556,7 +556,7 @@ tables.device = class DeviceTable extends Table {
         color:transparent; width: 200px;"
         type="button"
       >
-        <select id="node-type-dd-list" class="form-control"></select>
+        <select id="device-type-dd-list" class="form-control"></select>
       </button>`,
       this.bulkEditButton(),
       this.exportTableButton(),
