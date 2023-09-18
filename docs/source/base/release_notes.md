@@ -100,6 +100,12 @@ Version 4.7.0: Changelog & Workflow Tree
   - Remove the "Node" class and merge it with the "Device" class instead. The "Network"
     class now inherits from "Device" the same way "Workflow" inherits from "Service".
 
+Migration:
+- network.yaml must be merge into device.yaml:
+  - replace "nodes" with "devices"
+  - remove all the "positions" key
+  - copy/paste the content of network.yaml in device.yaml
+
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
 - Test that the workflow tree works, is scalable and has no memory leaks
