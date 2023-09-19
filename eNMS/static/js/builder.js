@@ -44,7 +44,7 @@ import {
 
 const container = document.getElementById("builder");
 const type = page.includes("network") ? "network" : "workflow";
-const nodeType = type == "network" ? "node" : "service";
+const nodeType = type == "network" ? "device" : "service";
 const savedPath = linkPath || localStorage.getItem(`${type}_path`);
 let currentLabel;
 let mousePosition;
