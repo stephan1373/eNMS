@@ -100,6 +100,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Remove the "Node" class and merge it with the "Device" class instead. The "Network"
     class now inherits from "Device" the same way "Workflow" inherits from "Service".
     Related issue: #400
+  - Networks being devices, they can now be part of pools.
 
 Migration:
 - network.yaml must be merge into device.yaml:
