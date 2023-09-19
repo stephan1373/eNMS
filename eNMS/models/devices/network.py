@@ -66,5 +66,4 @@ class Network(Device):
 class NetworkForm(DeviceForm):
     form_type = HiddenField(default="network")
     category = SelectField("Category")
-    networks = MultipleInstanceField("Networks", model="network")
-    properties = ["category", "networks"]
+    properties = ["category"]
