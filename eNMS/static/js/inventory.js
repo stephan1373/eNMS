@@ -284,8 +284,7 @@ function displayNetworkData({ type, name, id, result, datetime }) {
 }
 
 function openObjectPanel(model) {
-  const panelType = model == "device" ? "node" : "link";
-  showInstancePanel($(`#${panelType}-type-dd-list`).val());
+  showInstancePanel($(`#${model}-type-dd-list`).val());
 }
 
 export const showDeviceData = function(device) {
