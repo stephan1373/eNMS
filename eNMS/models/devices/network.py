@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from wtforms.widgets import TextArea
 
 from eNMS.database import db, vs
-from eNMS.forms import BaseForm
+from eNMS.forms import DeviceForm
 from eNMS.fields import (
     HiddenField,
     MultipleInstanceField,
@@ -63,14 +63,8 @@ class Network(Device):
             device.positions[self.name] = device.positions[old_name]
 
 
-class NetworkForm(BaseForm):
-    template = "object"
+class NetworkForm(DeviceForm):
     form_type = HiddenField(default="network")
-    id = HiddenField()
-    name = StringField("Name")
-    creator = StringField(render_kw={"readonly": True})
     category = SelectField("Category")
-    latitude = StringField("Latitude", default=0.0)
-    longitude = StringField("Longitude", default=0.0)
     networks = MultipleInstanceField("Networks", model="network")
-    description = StringField(widget=TextArea(), render_kw={"rows": 6})
+    properties = ["category", "networks"]
