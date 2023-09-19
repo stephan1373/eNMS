@@ -1003,7 +1003,7 @@ export function processInstance(type, instance) {
 }
 
 function processData(type, id) {
-  if (type in subtypes.service || type in subtypes.node || type in subtypes.link) {
+  if (type in subtypes.service || type in subtypes.device || type in subtypes.link) {
     const relation = type in subtypes.service ? "workflow" : "network";
     const property = id ? `#${type}-${relation}s-${id}` : `#${type}-${relation}s`;
     $(property).prop("disabled", false);
