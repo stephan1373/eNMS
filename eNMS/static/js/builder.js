@@ -641,10 +641,10 @@ export function processBuilderData(newInstance) {
     network.addEdgeMode();
   } else if (
     (type == "workflow" && newInstance.type in subtypes.service) ||
-    (type == "network" && newInstance.type in subtypes.node)
+    (type == "network" && newInstance.type in subtypes.device)
   ) {
     if (!newInstance[`${type}s`].some((w) => w.id == instance.id)) return;
-    const property = type == "network" ? "nodes" : "services";
+    const property = type == "network" ? "devices" : "services";
     let index = instance[property].findIndex((s) => s.id == newInstance.id);
     nodes.update(drawNode(newInstance));
     if (index == -1) {
