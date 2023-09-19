@@ -139,7 +139,7 @@ export function drawNetworkNode(node) {
 }
 
 export function updateNetworkPanel(type) {
-  if (currentMode == "motion" && creationMode == "create_node") {
+  if (currentMode == "motion" && creationMode == "create_device") {
     $(`#${type}-networks`).append(new Option(network.name, network.name));
     $(`#${type}-networks`)
       .val(network.name)
