@@ -447,6 +447,7 @@ class Controller:
             total_records = query.with_entities(table.id).count()
         constraints = self.filtering_base_constraints(model, **kwargs)
         constraints.extend(table.filtering_constraints(**kwargs))
+        constraints.extend(kwargs.get("sql_contraints", []))
         query = self.filtering_relationship_constraints(query, model, **kwargs)
         query = query.filter(and_(*constraints))
         if bulk or properties:
