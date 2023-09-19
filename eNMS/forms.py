@@ -529,6 +529,7 @@ class PoolForm(BaseForm):
     manually_defined = BooleanField(
         ui_name="Manually defined (will not be automatically updated)"
     )
+    include_networks = BooleanField("Include Networks")
 
     @classmethod
     def form_init(cls):
