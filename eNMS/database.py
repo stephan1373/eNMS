@@ -128,7 +128,7 @@ class Database:
                 db.delete_instance(worker, call_delete=False)
         vs.server_id = server.id
         for run in self.fetch(
-            "run", all_matches=True, allow_none=True, status="Running"
+            "run", all_matches=True, allow_none=True, status="Running", server_id=server.id
         ):
             run.status = "Aborted (RELOAD)"
             run.service.status = "Idle"
