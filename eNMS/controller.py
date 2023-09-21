@@ -199,7 +199,10 @@ class Controller:
             db.session.delete(result)
 
     def compare(self, type, id, v1, v2, context_lines):
-        if type in ("result", "device_result"):
+        if id == "none":
+            first = getattr(db.fetch("device", id=v1), type)
+            second = getattr(db.fetch("device", id=v2), type)
+        elif type in ("result", "device_result"):
             first = vs.dict_to_string(getattr(db.fetch("result", id=v1), "result"))
             second = vs.dict_to_string(getattr(db.fetch("result", id=v2), "result"))
         else:

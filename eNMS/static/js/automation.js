@@ -42,9 +42,15 @@ function openServicePanel(tableId, bulkMode) {
 }
 
 export function displayDiff(type, instanceId) {
-  const objectType = type.includes("result") ? "result" : type;
-  const v1 = $(`input[name=v1-${type}-${instanceId}]:checked`).val();
-  const v2 = $(`input[name=v2-${type}-${instanceId}]:checked`).val();
+  const objectType =
+    instanceId == "none"
+      ? $("#configuration-property-diff").val()
+      : type.includes("result")
+      ? "result"
+      : type;
+  const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
+  const v1 = $(`input[name=v1${postfix}]:checked`).val();
+  const v2 = $(`input[name=v2${postfix}]:checked`).val();
   if (!v1 || !v2) {
     notify("Select two versions to compare first.", "error", 5);
   } else if (v1 == v2) {
