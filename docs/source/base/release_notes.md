@@ -53,6 +53,12 @@ Version 4.6.0: Clustering
 Migration:
 - Update properties.json > "properly_list" with new format
 
+Test:
+- Test that the new configuration properties diff mechanism hasn't impacted the
+  existing diff:
+  - Diff between different commits of a configuration property
+  - Diff between two results
+
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
 
