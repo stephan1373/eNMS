@@ -46,6 +46,9 @@ Version 4.6.0: Clustering
 - Add mechanism to use a StringField for the properties in properties.json > "property_list":
   - if the list is empty, will default to StringField instead of a SelectField.
   - new format in case of a SelectField: must provide all wtforms keyword arguments
+- Add mechanism to compare configuration properties between two devices:
+  - New drop-down list in configuration table to choose configuration property
+  - New "v1" and "v2" column to choose which devices to compare
 
 Migration:
 - Update properties.json > "properly_list" with new format
