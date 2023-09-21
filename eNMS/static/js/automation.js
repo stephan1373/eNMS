@@ -104,6 +104,10 @@ export function displayDiff(type, instanceId) {
             call({
               url: `/compare/${objectType}/${instanceId}/${v1}/${v2}/${value}`,
               callback: (result) => {
+                if (!result) {
+                  $(`#content-${cantorId}`).text("No difference found.");
+                  return;
+                }
                 let diff2htmlUi = new Diff2HtmlUI({ diff: result });
                 $(`#diff-type-${cantorId}`)
                   .on("change", function() {
