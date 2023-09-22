@@ -1,10 +1,8 @@
+from dramatiq import actor, get_broker, get_logger, Middleware
 from os import getppid, kill
 from signal import SIGHUP
 from threading import Lock
 from time import sleep
-
-import dramatiq
-from dramatiq import actor, get_broker, get_logger, Middleware
 
 class MaxJobs(Middleware):
     def __init__(self, max_tasks=100):
