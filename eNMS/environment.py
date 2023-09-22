@@ -199,7 +199,7 @@ class Environment:
         class MaxJobs(Middleware):
             def __init__(self):
                 self.lock = Lock()
-                self.kill_counter = vs.settings["redis"]["max_jobs_before_restart"]
+                self.kill_counter = vs.settings["automation"]["max_jobs_before_restart"]
                 self.job_counter = 0
                 self.signaled = False
                 self.logger = get_logger("max_jobs.app", MaxJobs)
