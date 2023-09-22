@@ -4,6 +4,7 @@ from signal import SIGHUP
 from threading import Lock
 from time import sleep
 
+
 class MaxJobs(Middleware):
     def __init__(self, max_tasks=100):
         self.lock = Lock()
