@@ -3,7 +3,7 @@ from click import get_current_context
 from collections import defaultdict
 from cryptography.fernet import Fernet
 from dramatiq.brokers.redis import RedisBroker
-from dramatiq import set_broker
+from dramatiq import get_logger, Middleware, set_broker
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -13,7 +13,7 @@ from importlib import import_module
 from json import load
 from logging.config import dictConfig
 from logging import getLogger, info
-from os import getenv, getpid
+from os import getenv, getpid, getppid, kill
 from passlib.hash import argon2
 from pathlib import Path
 from psutil import Process
@@ -22,11 +22,12 @@ from redis.exceptions import ConnectionError, TimeoutError
 from requests import Session as RequestSession
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
+from signal import SIGHUP
 from smtplib import SMTP
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
 from sys import path as sys_path
-from threading import Thread
+from threading import Lock, Thread
 from traceback import format_exc
 from warnings import warn
 from watchdog.observers.polling import PollingObserver
@@ -186,16 +187,46 @@ class Environment:
             )
 
     def init_dramatiq(self):
-        set_broker(
-            RedisBroker(
-                host=getenv("REDIS_ADDR"),
-                **{
-                    key: value
-                    for key, value in vs.settings["redis"]["config"].items()
-                    if key != "decode_responses"
-                },
-            )
+        broker = RedisBroker(
+            host=getenv("REDIS_ADDR"),
+            **{
+                key: value
+                for key, value in vs.settings["redis"]["config"].items()
+                if key != "decode_responses"
+            },
         )
+
+        class MaxJobs(Middleware):
+            def __init__(self):
+                self.lock = Lock()
+                self.kill_counter = vs.settings["redis"]["max_jobs_before_restart"]
+                self.job_counter = 0
+                self.signaled = False
+                self.logger = get_logger("max_jobs.app", MaxJobs)
+
+            def before_process_message(self, *_):
+                with self.lock:
+                    self.job_counter += 1
+
+            def after_process_message(self, *_, **__):
+                with self.lock:
+                    self.job_counter -= 1
+                    self.kill_counter -= 1
+                    self.logger.info(
+                        f"Active Jobs: {self.job_counter} - "
+                        f"Kill Counter: {self.kill_counter}"
+                    )
+                    if (
+                        self.job_counter <= 0
+                        and self.kill_counter <= 0
+                        and not self.signaled
+                    ):
+                        self.logger.warning(f"Killing process {getppid()}")
+                        kill(getppid(), SIGHUP)
+                        self.signaled = True
+
+        broker.add_middleware(MaxJobs())
+        set_broker(broker)
 
     def init_encryption(self):
         self.fernet_encryption = getenv("FERNET_KEY")

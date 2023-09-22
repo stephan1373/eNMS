@@ -125,6 +125,7 @@
       "port": 6379,
       "socket_timeout": 0.1
     },
+    "max_jobs_before_restart": 5,
     "flush_on_restart": true
   },
   "requests": {
