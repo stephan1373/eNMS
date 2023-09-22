@@ -62,6 +62,7 @@ Test:
   existing diff:
   - Diff between different commits of a configuration property
   - Diff between two results
+- Test dramatiq process kill mechanism
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
