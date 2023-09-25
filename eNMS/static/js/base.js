@@ -56,7 +56,7 @@ export function detectUserInactivity() {
   window.onmousedown = resetTimer;
   window.ontouchstart = resetTimer;
   window.onclick = resetTimer;
-  window.onkeypress = resetTimer;
+  window.addEventListener("keypress", resetTimer);
   window.addEventListener("scroll", resetTimer, true);
 
   function setUserInactive() {
