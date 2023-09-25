@@ -12,7 +12,7 @@
 
     <p>
       Example
-      <textarea class="help-snippet" style="height: fit-content;">
+      <textarea class="help-snippet" style="height: fit-content">
   acceptance_data = get_result("preacceptance", device=device.name)["result"]
   version_info = get_result("get version", device=device.name)["result"]
   version = version_info["version"]
@@ -39,7 +39,7 @@
     some other user configured logger in settings
     <p>
       Workflow Example:
-      <textarea class="help-snippet" style="height: fit-content;">
+      <textarea class="help-snippet" style="height: fit-content">
  log("info", f"Log test on device={device.name}"
   f"with ip={device.ip_address}")</textarea
       >
@@ -48,7 +48,7 @@
 
   <div>
     <h3>Retrieving previous results get_result</h3>
-    <textarea class="help-snippet" style="height: fit-content;">
+    <textarea class="help-snippet" style="height: fit-content">
 r = get_result("previous_service", device=device.name)
 r = get_result("run_once_service")</textarea
     >
@@ -57,7 +57,7 @@ r = get_result("run_once_service")</textarea
     <h3>Retrieving variables via get_var</h3>
     See also: Saving and Retrieving Values in a Workflow: get_var(),set_var() in the
     Automation->Workflows documentation section.
-    <textarea class="help-snippet" style="height: fit-content;">
+    <textarea class="help-snippet" style="height: fit-content">
 # get a general variable
 hostname = get_var("hostname")
 # get device-specific variable
@@ -70,7 +70,7 @@ config_data = get_var("config_element", section="config")</textarea
     <h3>Setting variables via set_var</h3>
     See also: Saving and Retrieving Values in a Workflow: get_var(),set_var() in the
     Automation->Workflows documentation section.
-    <textarea class="help-snippet" style="height: fit-content;">
+    <textarea class="help-snippet" style="height: fit-content">
 set_var("test_hostname", "hostname");
 set_var("ip_addresses", ["127.0.0.1", "192.168.0.1" ],
   device=device.name)</textarea
