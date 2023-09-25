@@ -14,7 +14,7 @@
     <p>
       <a
         href="/docs/automation/service_python_code/#substitution-fields"
-        style="text-decoration: underline;"
+        style="text-decoration: underline"
         >Variable substitution</a
       >
       can be performed in this block.
@@ -23,7 +23,7 @@
     <p>
       Example, run only for Cisco Transport devices (choose the match, then negate it to
       skip those devices that do NOT match).
-      <textarea class="help-snippet" style="height: fit-content;">
+      <textarea class="help-snippet" style="height: fit-content">
 not ("TRANSPORT" in device.subtype.upper()
 and "IOS-XE" == device.operating_system.strip().upper()
 and "CISCO" == device.vendor.strip().upper())</textarea
@@ -32,7 +32,7 @@ and "CISCO" == device.vendor.strip().upper())</textarea
 
     <p>
       Example using get_var:
-      <textarea class="help-snippet" style="height: fit-content;">
+      <textarea class="help-snippet" style="height: fit-content">
 not get_var("upgrade_needed", device=device.name)
       </textarea>
     </p>

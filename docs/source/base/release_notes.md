@@ -159,9 +159,23 @@ Version 4.6.0: Clustering
 - Add mechanism to use a StringField for the properties in properties.json > "property_list":
   - if the list is empty, will default to StringField instead of a SelectField.
   - new format in case of a SelectField: must provide all wtforms keyword arguments
+- Add mechanism to compare configuration properties between two devices:
+  - New drop-down list in configuration table to choose configuration property
+  - New "v1" and "v2" column to choose which devices to compare
+- Add mechanism to restart dramatiq worker threads when no job running
+  - Add new key "max_jobs_before_restart" in settings.json > "automation": after
+    "max_jobs_before_restart" processed by a dramatiq process, and if there are
+    no jobs currently running, the process is killed.
 
 Migration:
 - Update properties.json > "properly_list" with new format
+
+Test:
+- Test that the new configuration properties diff mechanism hasn't impacted the
+  existing diff:
+  - Diff between different commits of a configuration property
+  - Diff between two results
+- Test dramatiq process kill mechanism
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------

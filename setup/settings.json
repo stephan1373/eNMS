@@ -31,7 +31,8 @@
   },
   "automation": {
     "max_process": 15,
-    "use_task_queue": false
+    "use_task_queue": false,
+    "max_jobs_before_restart": 5
   },
   "cache": {
     "config": {

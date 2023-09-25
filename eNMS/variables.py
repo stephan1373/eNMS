@@ -109,7 +109,7 @@ class VariableStore:
         for property, title in self.configuration_properties.items():
             self.properties["filtering"]["device"].append(property)
             self.properties["tables"]["configuration"].insert(
-                -1,
+                -3,
                 {
                     "data": property,
                     "title": title,

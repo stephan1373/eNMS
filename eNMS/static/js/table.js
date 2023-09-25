@@ -726,6 +726,8 @@ tables.configuration = class ConfigurationTable extends Table {
       if (value.toLowerCase() == "failure") row[key] = `${failureBtn}Failure</button>`;
       if (value.toLowerCase() == "success") row[key] = `${successBtn}Success</button>`;
     }
+    row.v1 = `<input type="radio" name="v1" value="${row.id}">`;
+    row.v2 = `<input type="radio" name="v2" value="${row.id}">`;
     return row;
   }
 
@@ -739,6 +741,7 @@ tables.configuration = class ConfigurationTable extends Table {
 
   postProcessing(...args) {
     super.postProcessing(...args);
+    $("#configuration-property-diff").selectpicker("refresh");
     $("#slider")
       .bootstrapSlider({
         value: 0,
@@ -764,6 +767,28 @@ tables.configuration = class ConfigurationTable extends Table {
       this.bulkFilteringButton("device"),
       this.clearSearchButton(),
       this.copyTableButton(),
+      ` <button
+        class="btn btn-info"
+        onclick="eNMS.automation.displayDiff('configuration', 'none')"
+        data-tooltip="Compare"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-adjust"></span>
+      </button>
+      <button
+        style="background:transparent; border:none; 
+        color:transparent; width: 200px;"
+        type="button"
+      >
+        <select
+          id="configuration-property-diff"
+          class="form-control"
+        >
+          ${Object.entries(configurationProperties).map(
+            ([value, name]) => `<option value="${value}">${name}</option>`
+          )}
+        </select>
+      </button>`,
       this.bulkEditButton(),
       this.exportTableButton(),
       this.bulkDeletionButton(),

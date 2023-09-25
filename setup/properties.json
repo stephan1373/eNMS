@@ -338,6 +338,16 @@
         "visible": false
       },
       {
+        "data": "v1",
+        "title": "V1",
+        "orderable": false
+      },
+      {
+        "data": "v2",
+        "title": "V2",
+        "orderable": false
+      },
+      {
         "data": "buttons",
         "width": "130px",
         "orderable": false,
