@@ -1,5 +1,5 @@
 from dramatiq import actor, get_broker, get_logger, Middleware
-from os import _exit, getppid, kill
+from os import getpid, getppid, kill
 from signal import SIGHUP
 from threading import Lock
 from time import sleep
@@ -27,7 +27,7 @@ class MaxJobs(Middleware):
             )
             if self.job_counter <= 0 and self.kill_counter <= 0 and not self.signaled:
                 self.logger.warning(f"Killing process {getpid()}")
-                _exit(42)
+                kill(getppid(), SIGHUP)
                 self.signaled = True
 
 
