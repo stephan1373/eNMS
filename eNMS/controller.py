@@ -1192,7 +1192,15 @@ class Controller:
             "run", service=service.id, commit=True, rbac=None, **run_kwargs
         )
         run.properties, run.payload = kwargs, {**initial_payload, **kwargs}
-        return run.run()
+        try:
+            return run.run()
+        except Exception:
+            db.session.rollback()
+            env.log("critical", format_exc())
+            if run.status == "Running":
+                run.status = "Failed"
+            db.session.commit()
+            return {"success": False, "result": format_exc()}
 
     def run_debug_code(self, **kwargs):
         result = StringIO()
