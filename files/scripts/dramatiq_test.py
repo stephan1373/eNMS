@@ -31,7 +31,7 @@ class MaxJobs(Middleware):
             )
             if self.job_counter <= 0 and self.kill_counter <= 0 and not self.signaled:
                 self.logger.warning(f"Killing process {getpid()}")
-                kill(getppid(), SIGHUP)
+                kill(getpid(), SIGHUP)
                 self.signaled = True
 
 
