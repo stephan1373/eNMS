@@ -1,3 +1,7 @@
+# To test dramatiq:
+# - Start the workers with "dramatiq dramatiq_test -p 2 -t 4"
+# - Send the tasks with "python dramatiq_test.py"
+
 from dramatiq import actor, get_broker, get_logger, Middleware
 from os import getpid, getppid, kill
 from signal import SIGHUP
