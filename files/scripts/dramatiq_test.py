@@ -1,12 +1,12 @@
 from dramatiq import actor, get_broker, get_logger, Middleware
-from os import getppid, kill
+from os import _exit, getppid, kill
 from signal import SIGHUP
 from threading import Lock
 from time import sleep
 
 
 class MaxJobs(Middleware):
-    def __init__(self, max_tasks=100):
+    def __init__(self, max_tasks=10):
         self.lock = Lock()
         self.kill_counter = max_tasks
         self.job_counter = 0
@@ -26,8 +26,8 @@ class MaxJobs(Middleware):
                 f"Kill Counter: {self.kill_counter}"
             )
             if self.job_counter <= 0 and self.kill_counter <= 0 and not self.signaled:
-                self.logger.warning(f"Killing process {getppid()}")
-                kill(getppid(), SIGHUP)
+                self.logger.warning(f"Killing process {getpid()}")
+                _exit(42)
                 self.signaled = True
 
 
@@ -37,9 +37,14 @@ broker.add_middleware(MaxJobs())
 
 @actor
 def example(index):
-    sleep(0.5)
+    sleep(0.1)
 
+@actor
+def example2(index):
+    sleep(0.1)
 
 if __name__ == "__main__":
-    for index in range(40):
+    for index in range(250):
         example.send(index)
+    for index in range(250):
+        example2.send(index)
