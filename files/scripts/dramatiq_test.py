@@ -44,7 +44,7 @@ def example2(index):
     sleep(0.1)
 
 if __name__ == "__main__":
-    for index in range(250):
+    for index in range(10):
         example.send(index)
-    for index in range(250):
+    for index in range(10):
         example2.send(index)
