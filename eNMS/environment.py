@@ -196,36 +196,12 @@ class Environment:
             },
         )
 
-        class MaxJobs(Middleware):
-            def __init__(self):
-                self.lock = Lock()
-                self.kill_counter = vs.settings["automation"]["max_jobs_before_restart"]
-                self.job_counter = 0
-                self.signaled = False
-                self.logger = get_logger("max_jobs.app", MaxJobs)
+        try:
+            from dramatiq.middleware import ProcessReloader
+            broker.add_middleware(ProcessReloader(reload_counter=10))
+        except ImportError:
+            warn("Use eNMS fork of dramatiq to use the Process Reloader middleware")
 
-            def before_process_message(self, *_):
-                with self.lock:
-                    self.job_counter += 1
-
-            def after_process_message(self, *_, **__):
-                with self.lock:
-                    self.job_counter -= 1
-                    self.kill_counter -= 1
-                    self.logger.info(
-                        f"Active Jobs: {self.job_counter} - "
-                        f"Kill Counter: {self.kill_counter}"
-                    )
-                    if (
-                        self.job_counter <= 0
-                        and self.kill_counter <= 0
-                        and not self.signaled
-                    ):
-                        self.logger.warning(f"Killing process {getppid()}")
-                        kill(getppid(), SIGHUP)
-                        self.signaled = True
-
-        broker.add_middleware(MaxJobs())
         set_broker(broker)
 
     def init_encryption(self):
