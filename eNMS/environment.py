@@ -200,7 +200,7 @@ class Environment:
             from dramatiq.middleware import ProcessReloader
             broker.add_middleware(ProcessReloader(reload_counter=10))
         except ImportError:
-            warn("Use eNMS fork of dramatiq to use the Process Reloader middleware")
+            warn("Use eNMS fork of dramatiq for the Process Reloader mechanism")
 
         set_broker(broker)
 
