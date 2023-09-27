@@ -2,41 +2,14 @@
 # - Start the workers with "dramatiq dramatiq_test -p 2 -t 4"
 # - Send the tasks with "python dramatiq_test.py"
 
-from dramatiq import actor, get_broker, get_logger, Middleware
-from os import getpid, getppid, kill
-from signal import SIGHUP
-from threading import Lock
+from dramatiq import actor, get_broker
+from dramatiq.middleware import ProcessReloader
+
 from time import sleep
 
 
-class MaxJobs(Middleware):
-    def __init__(self, max_tasks=10):
-        self.lock = Lock()
-        self.kill_counter = max_tasks
-        self.job_counter = 0
-        self.signaled = False
-        self.logger = get_logger("max_jobs.app", MaxJobs)
-
-    def before_process_message(self, *_):
-        with self.lock:
-            self.job_counter += 1
-
-    def after_process_message(self, *_, **__):
-        with self.lock:
-            self.job_counter -= 1
-            self.kill_counter -= 1
-            self.logger.info(
-                f"Active Jobs: {self.job_counter} - "
-                f"Kill Counter: {self.kill_counter}"
-            )
-            if self.job_counter <= 0 and self.kill_counter <= 0 and not self.signaled:
-                self.logger.warning(f"Killing process {getpid()}")
-                kill(getpid(), SIGHUP)
-                self.signaled = True
-
-
 broker = get_broker()
-broker.add_middleware(MaxJobs())
+broker.add_middleware(ProcessReloader(reload_counter=10))
 
 
 @actor
