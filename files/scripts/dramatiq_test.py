@@ -16,9 +16,11 @@ broker.add_middleware(ProcessReloader(reload_counter=10))
 def example(index):
     sleep(0.1)
 
+
 @actor
 def example2(index):
     sleep(0.1)
+
 
 if __name__ == "__main__":
     for index in range(10):

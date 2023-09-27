@@ -198,7 +198,12 @@ class Environment:
 
         try:
             from dramatiq.middleware import ProcessReloader
-            broker.add_middleware(ProcessReloader(reload_counter=vs.settings["automation"]["max_jobs_before_restart"]))
+
+            broker.add_middleware(
+                ProcessReloader(
+                    reload_counter=vs.settings["automation"]["max_jobs_before_restart"]
+                )
+            )
         except ImportError:
             warn("Use eNMS fork of dramatiq for the Process Reloader mechanism")
 
