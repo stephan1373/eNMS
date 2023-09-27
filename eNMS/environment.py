@@ -2,8 +2,8 @@ from base64 import b64decode, b64encode
 from click import get_current_context
 from collections import defaultdict
 from cryptography.fernet import Fernet
-from dramatiq.brokers.redis import RedisBroker
 from dramatiq import get_logger, Middleware, set_broker
+from dramatiq.brokers.redis import RedisBroker
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
