@@ -1,4 +1,5 @@
 ansible
+dramatiq[redis, watch] @ git+https://github.com/eNMS-automation/dramatiq.git
 hvac
 ldap3
 pynetbox
