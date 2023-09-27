@@ -32,7 +32,7 @@
   "automation": {
     "max_process": 15,
     "use_task_queue": false,
-    "max_jobs_before_restart": 5
+    "max_runs_before_reload": 5
   },
   "cluster": {
     "allowed_automation": ["scheduler", "rest_api", "application"],

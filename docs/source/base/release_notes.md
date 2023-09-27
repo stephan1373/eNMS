@@ -50,8 +50,8 @@ Version 4.6.0: Clustering
   - New drop-down list in configuration table to choose configuration property
   - New "v1" and "v2" column to choose which devices to compare
 - Add mechanism to restart dramatiq worker threads when no job running
-  - Add new key "max_jobs_before_restart" in settings.json > "automation": after
-    "max_jobs_before_restart" processed by a dramatiq process, and if there are
+  - Add new key "max_runs_before_reload" in settings.json > "automation": after
+    "max_runs_before_reload" processed by a dramatiq process, and if there are
     no jobs currently running, the process is killed.
 
 Migration:

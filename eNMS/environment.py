@@ -201,7 +201,7 @@ class Environment:
 
             broker.add_middleware(
                 ProcessReloader(
-                    reload_counter=vs.settings["automation"]["max_jobs_before_restart"]
+                    reload_counter=vs.settings["automation"]["max_runs_before_reload"]
                 )
             )
         except ImportError:
