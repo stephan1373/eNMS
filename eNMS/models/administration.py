@@ -223,6 +223,7 @@ class Changelog(AbstractBase):
 class Parameters(AbstractBase):
     __tablename__ = type = "parameters"
     id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.SmallString, unique=True)
     banner_active = db.Column(Boolean)
     banner_deactivate_on_restart = db.Column(Boolean)
     banner_properties = db.Column(db.Dict)
