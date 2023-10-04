@@ -67,9 +67,10 @@ class Environment:
             self.init_dramatiq()
         self.init_connection_pools()
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
-        main_thread = Thread(target=self.monitor_filesystem)
-        main_thread.daemon = True
-        main_thread.start()
+        if vs.settings["files"]["monitor_filesystem"]:
+            main_thread = Thread(target=self.monitor_filesystem)
+            main_thread.daemon = True
+            main_thread.start()
         self.ssh_port = -1
 
     def monitor_filesystem(self):
