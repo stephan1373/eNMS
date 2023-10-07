@@ -1021,7 +1021,7 @@ class Controller:
             store["user"][current_user.name] = current_user
         for service_name in ("Start", "End", "Placeholder"):
             service = db.fetch(
-                "service", name=f"[Shared] {service_name}", allow_none=True
+                "service", name=f"[Shared] {service_name}", allow_none=True, rbac=None
             )
             if service:
                 store["swiss_army_knife_service"][service.name] = service
@@ -1051,6 +1051,7 @@ class Controller:
                     else:
                         instance = db.factory(
                             type,
+                            rbac=None,
                             migration_import=True,
                             no_fetch=empty_database,
                             import_mechanism=True,
@@ -1224,7 +1225,7 @@ class Controller:
     @staticmethod
     @actor(max_retries=0, time_limit=float("inf"))
     def run(service, **kwargs):
-        current_thread().name = kwargs["runtime"]
+        current_thread().name, username = kwargs["runtime"], kwargs["creator"]
         if "path" not in kwargs:
             kwargs["path"] = str(service)
         keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1232,14 +1233,14 @@ class Controller:
         for property in ("name", "labels"):
             if property in kwargs.get("form", {}):
                 run_kwargs[property] = kwargs["form"][property]
-        service = db.fetch("service", id=service, rbac="run")
+        service = db.fetch("service", id=service, rbac="run", username=username)
         service.status = "Running"
         initial_payload = {
             **service.initial_payload,
             **kwargs.get("form", {}).get("initial_payload", {}),
         }
         restart_runtime = kwargs.get("restart_runtime")
-        restart_run = db.fetch("run", allow_none=True, runtime=restart_runtime)
+        restart_run = db.fetch("run", allow_none=True, runtime=restart_runtime, username=username)
         if service.type == "workflow" and service.superworkflow and not restart_run:
             run_kwargs["placeholder"] = run_kwargs["start_service"] = service.id
             run_kwargs["path"] = str(service.superworkflow.id)

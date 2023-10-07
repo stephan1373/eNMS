@@ -92,7 +92,7 @@ class Database:
         self.configure_model_events(env)
         if env.detect_cli():
             return
-        first_init = not self.fetch("user", allow_none=True, name="admin")
+        first_init = not self.fetch("user", allow_none=True, rbac=None, name="admin")
         if first_init:
             admin_user = vs.models["user"](name="admin", is_admin=True)
             self.session.add(admin_user)
@@ -101,6 +101,7 @@ class Database:
                 admin_user.update(password="admin")
             self.factory(
                 "server",
+                rbac=None,
                 **{
                     "name": vs.server,
                     "description": vs.server,
@@ -124,6 +125,7 @@ class Database:
         self.session.commit()
         server = db.factory(
             "server",
+            rbac=None,
             name=vs.server,
             version=vs.server_version,
             commit_sha=vs.server_commit_sha,
@@ -135,6 +137,7 @@ class Database:
         vs.server_id = server.id
         for run in self.fetch(
             "run",
+            rbac=None,
             all_matches=True,
             allow_none=True,
             status="Running",
@@ -142,7 +145,7 @@ class Database:
         ):
             run.status = "Aborted (RELOAD)"
             run.service.status = "Idle"
-        parameters = self.fetch("parameters")
+        parameters = self.fetch("parameters", rbac=None)
         if parameters.banner_deactivate_on_restart:
             parameters.banner_active = False
         self.session.commit()
@@ -445,10 +448,12 @@ class Database:
             entity = [vs.models[model]]
         query = self.session.query(*entity)
         if rbac:
+            if not current_user and not username:
+                raise self.rbac_error
             user = (
                 current_user
                 or self.session.query(vs.models["user"])
-                .filter_by(name=username or "admin")
+                .filter_by(name=username)
                 .first()
             )
             if not user:

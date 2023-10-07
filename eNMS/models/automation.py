@@ -458,8 +458,9 @@ class Run(AbstractBase):
             name=str(getpid()),
             subtype=environ.get("_", "").split("/")[-1],
             server_id=vs.server_id,
+            rbac=None,
         )
-        server = db.fetch("server", id=vs.server_id)
+        server = db.fetch("server", id=vs.server_id, rbac=None)
         worker.current_runs = 1 if not worker.current_runs else worker.current_runs + 1
         server.current_runs += 1
         self.worker = worker
