@@ -130,6 +130,14 @@ export function configureGraph(newInstance, graph, options) {
 
 export function drawTree(treeId, data, runtime, resultsPanel) {
   const noUpdate = builderTreeData == JSON.stringify(data);
+  if (!data) {
+    builderTreeData = null;
+    return $(treeId)
+      .jstree("destroy")
+      .off()
+      .empty()
+      .text("No Results Found.");
+  }
   if (noUpdate && !resultsPanel) return;
   if ($(treeId).jstree(true) && !resultsPanel) {
     $(treeId).jstree(true).settings.core.data = data;
