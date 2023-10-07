@@ -103,6 +103,8 @@ Version 4.7.0: Changelog & Workflow Tree
   - Networks being devices, they can now be part of pools.
 - Add new "Include Networks" property to pools to decide whether the devices of a pool
   should consider networks.
+- Raise RBAC error when no current_user available, "rbac" is not set to "None" and no
+  "username" is passed to the function.
 
 Migration:
 - network.yaml must be merge into device.yaml:
