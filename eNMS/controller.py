@@ -1240,7 +1240,9 @@ class Controller:
             **kwargs.get("form", {}).get("initial_payload", {}),
         }
         restart_runtime = kwargs.get("restart_runtime")
-        restart_run = db.fetch("run", allow_none=True, runtime=restart_runtime, username=username)
+        restart_run = db.fetch(
+            "run", allow_none=True, runtime=restart_runtime, username=username
+        )
         if service.type == "workflow" and service.superworkflow and not restart_run:
             run_kwargs["placeholder"] = run_kwargs["start_service"] = service.id
             run_kwargs["path"] = str(service.superworkflow.id)

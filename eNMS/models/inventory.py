@@ -378,7 +378,9 @@ class Pool(AbstractBase):
                     )
                 if kwargs["form"]:
                     if model == "device" and not self.include_networks:
-                        kwargs["sql_contraints"] = [vs.models["device"].type != "network"]
+                        kwargs["sql_contraints"] = [
+                            vs.models["device"].type != "network"
+                        ]
                     instances = controller.filtering(model, properties=["id"], **kwargs)
                 else:
                     instances = []

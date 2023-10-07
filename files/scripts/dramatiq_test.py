@@ -39,9 +39,11 @@ broker.add_middleware(MaxJobs())
 def example(index):
     sleep(0.1)
 
+
 @actor
 def example2(index):
     sleep(0.1)
+
 
 if __name__ == "__main__":
     for index in range(250):
