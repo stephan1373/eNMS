@@ -85,7 +85,7 @@ class Environment:
                 ):
                     return
                 filetype = "folder" if event.is_directory else "file"
-                file = db.fetch(filetype, path=src_path, allow_none=True)
+                file = db.fetch(filetype, path=src_path, allow_none=True, rbac=None)
                 if event.event_type == "moved" and file:
                     file.update(
                         path=event.dest_path.replace(str(vs.file_path), ""),
