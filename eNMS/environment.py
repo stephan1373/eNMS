@@ -2,8 +2,8 @@ from base64 import b64decode, b64encode
 from click import get_current_context
 from collections import defaultdict
 from cryptography.fernet import Fernet
-from dramatiq.brokers.redis import RedisBroker
 from dramatiq import get_logger, Middleware, set_broker
+from dramatiq.brokers.redis import RedisBroker
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -69,9 +69,10 @@ class Environment:
         self.init_connection_pools()
         self.cache = Cache(config=vs.settings["cache"]["config"])
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
-        main_thread = Thread(target=self.monitor_filesystem)
-        main_thread.daemon = True
-        main_thread.start()
+        if vs.settings["files"]["monitor_filesystem"]:
+            main_thread = Thread(target=self.monitor_filesystem)
+            main_thread.daemon = True
+            main_thread.start()
         self.ssh_port = -1
 
     def monitor_filesystem(self):
@@ -198,36 +199,17 @@ class Environment:
             },
         )
 
-        class MaxJobs(Middleware):
-            def __init__(self):
-                self.lock = Lock()
-                self.kill_counter = vs.settings["automation"]["max_jobs_before_restart"]
-                self.job_counter = 0
-                self.signaled = False
-                self.logger = get_logger("max_jobs.app", MaxJobs)
+        try:
+            from dramatiq.middleware import ProcessReloader
 
-            def before_process_message(self, *_):
-                with self.lock:
-                    self.job_counter += 1
+            broker.add_middleware(
+                ProcessReloader(
+                    reload_counter=vs.settings["automation"]["max_runs_before_reload"]
+                )
+            )
+        except ImportError:
+            warn("Use eNMS fork of dramatiq for the Process Reloader mechanism")
 
-            def after_process_message(self, *_, **__):
-                with self.lock:
-                    self.job_counter -= 1
-                    self.kill_counter -= 1
-                    self.logger.info(
-                        f"Active Jobs: {self.job_counter} - "
-                        f"Kill Counter: {self.kill_counter}"
-                    )
-                    if (
-                        self.job_counter <= 0
-                        and self.kill_counter <= 0
-                        and not self.signaled
-                    ):
-                        self.logger.warning(f"Killing process {getppid()}")
-                        kill(getppid(), SIGHUP)
-                        self.signaled = True
-
-        broker.add_middleware(MaxJobs())
         set_broker(broker)
 
     def init_encryption(self):

@@ -32,7 +32,7 @@
   "automation": {
     "max_process": 15,
     "use_task_queue": false,
-    "max_jobs_before_restart": 5
+    "max_runs_before_reload": 5
   },
   "cache": {
     "config": {
@@ -84,6 +84,7 @@
     "workflow_builder": "automation/workflow_builder/"
   },
   "files": {
+    "monitor_filesystem": true,
     "ignored_types": [".swp", ".tgz"],
     "upload_timeout": 600000,
     "log_events": true,

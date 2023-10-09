@@ -85,6 +85,7 @@ class NetmikoValidationService(ConnectionService):
                 result = "\n".join(map(str, result))
             run.exit_remote_device(netmiko_connection, prompt, device)
         except Exception:
+            run.log("error", format_exc(), device)
             result = (
                 netmiko_connection.session_log.session_log.getvalue()
                 .decode()
