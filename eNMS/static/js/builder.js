@@ -330,7 +330,7 @@ export function showBuilderChangelogPanel(model, global) {
 function showBuilderSearchPanel() {
   openPanel({
     name: "search",
-    size: "500 150",
+    size: "500 250",
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <div style="margin-bottom: 5px">
@@ -348,7 +348,10 @@ function showBuilderSearchPanel() {
           style="font-family: Arial, FontAwesome;"
         />
         <div style="width: 100%; margin-bottom: 5px; margin-top: 5px;">
-          <select id="device-filter" name="device-filter" style="width: 100%;"></select>
+          <fieldset class="custom-fieldset">
+            <legend class="custom-legend">Device Filtering</legend>
+            <select id="device-filter" name="device-filter" style="width: 100%;"></select>
+          </fieldset>
         </div>
       </form>`,
     id: instance.id,

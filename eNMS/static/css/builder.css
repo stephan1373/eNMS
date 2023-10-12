@@ -14,6 +14,19 @@ li.dropdown-header {
   font-weight: 550;
 }
 
+.custom-fieldset {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.custom-legend {
+  font-size: 1.2em;
+  border-bottom: none ;
+  width: auto;
+  margin: 0;
+  padding: 0 5px;
+}
+
 #workflow-tree {
   border-left: solid;
   height: 100%;
