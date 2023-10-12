@@ -332,6 +332,18 @@ export function showBuilderChangelogPanel(model, global) {
   }
 }
 
+export function showBuilderSearchPanel() {
+  openPanel({
+    name: "search",
+    size: "500 300",
+    content: `
+      <form id="search-form-${instance.id}" style="margin: 15px">
+      </form>`,
+    id: instance.id,
+    title: "Search",
+  });
+}
+
 export function showLabelPanel({ label, usePosition }) {
   if (!usePosition) mousePosition = null;
   openPanel({
@@ -698,6 +710,9 @@ export function initBuilder() {
     document.addEventListener("keydown", function(event) {
       if (event.ctrlKey && event.key === "z") {
         if (!$(".jsPanel").length) showBuilderChangelogPanel(type, true);
+      } else if (event.ctrlKey && event.key === "f") {
+        event.preventDefault();
+        if (!$(`#search-form-${instance.id}`).length) showBuilderSearchPanel();
       }
     });
   }
