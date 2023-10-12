@@ -327,7 +327,7 @@ export function showBuilderChangelogPanel(model, global) {
   }
 }
 
-export function showBuilderSearchPanel() {
+function showBuilderSearchPanel() {
   openPanel({
     name: "search",
     size: "500 150",
@@ -800,4 +800,9 @@ export function initBuilder() {
   updateRightClickBindings();
 }
 
-configureNamespace("builder", [createLabel, highlightNode, switchMode]);
+configureNamespace("builder", [
+  createLabel,
+  highlightNode,
+  showBuilderSearchPanel,
+  switchMode,
+]);

@@ -135,6 +135,14 @@
       </li>
       <li>
         <a
+          onclick="eNMS.builder.showBuilderSearchPanel()"
+          data-tooltip="Search"
+          style="cursor: pointer;"
+          ><span class="glyphicon glyphicon-search"></span
+        ></a>
+      </li>
+      <li>
+        <a
           id="export-workflow-btn"
           onclick="action['Export']()"
           data-tooltip="Export Workflow"
@@ -192,14 +200,6 @@
           data-tooltip="Personal or All Runtimes"
           style="cursor: pointer;"
           ><span id="user-filtering-icon-run" class="fa fa-user"></span
-        ></a>
-      </li>
-      <li>
-        <a
-          onclick="eNMS.workflowBuilder.filterDevice()"
-          data-tooltip="Search"
-          style="cursor: pointer;"
-          ><span class="glyphicon glyphicon-search"></span
         ></a>
       </li>
       <li>
