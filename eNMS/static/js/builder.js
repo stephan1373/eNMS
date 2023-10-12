@@ -709,7 +709,9 @@ export function initBuilder() {
     flipRuntimeDisplay(runtimeDisplay);
     document.addEventListener("keydown", function(event) {
       if (event.ctrlKey && event.key === "z") {
-        if (!$(".jsPanel").length) showBuilderChangelogPanel(type, true);
+        if (!$(`#changelog-${instance.id}`).length) {
+          showBuilderChangelogPanel(type, true);
+        }
       } else if (event.ctrlKey && event.key === "f") {
         event.preventDefault();
         if (!$(`#search-form-${instance.id}`).length) showBuilderSearchPanel();
