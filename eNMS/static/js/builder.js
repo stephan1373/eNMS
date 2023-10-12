@@ -330,7 +330,7 @@ export function showBuilderChangelogPanel(model, global) {
 export function showBuilderSearchPanel() {
   openPanel({
     name: "search",
-    size: "500 125",
+    size: "500 150",
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <div style="margin-bottom: 5px">
@@ -347,10 +347,21 @@ export function showBuilderSearchPanel() {
           class="form-control"
           style="font-family: Arial, FontAwesome;"
         />
+        <div
+          id="device-filter-div"
+          class="input-group table-search"
+          style="width: 100%; margin-bottom: 5px; margin-top: 3px;"
+        >
+          <select id="device-filter" name="device-filter" style="width: 100%;"></select>
+        </div>
       </form>`,
     id: instance.id,
     title: "Search",
     callback: () => {
+      initSelect($(`#device-filter`), "device", null, true);
+      $("#device-filter").on("change", function() {
+        getWorkflowState();
+      });
       $("#tree-search-mode").selectpicker();
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function() {
