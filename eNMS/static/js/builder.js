@@ -347,10 +347,7 @@ function showBuilderSearchPanel() {
           class="form-control"
           style="font-family: Arial, FontAwesome;"
         />
-        <div
-          class="input-group table-search"
-          style="width: 100%; margin-bottom: 5px; margin-top: 3px;"
-        >
+        <div style="width: 100%; margin-bottom: 5px; margin-top: 5px;">
           <select id="device-filter" name="device-filter" style="width: 100%;"></select>
         </div>
       </form>`,
