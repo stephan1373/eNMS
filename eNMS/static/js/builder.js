@@ -330,7 +330,7 @@ export function showBuilderChangelogPanel(model, global) {
 export function showBuilderSearchPanel() {
   openPanel({
     name: "search",
-    size: "500 300",
+    size: "500 125",
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <div style="margin-bottom: 5px">
