@@ -338,9 +338,26 @@ export function showBuilderSearchPanel() {
     size: "500 300",
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
+        <div style="margin-bottom: 5px">
+          <select data-width="100%" id="tree-search-mode" name="search_mode">
+            <option value="properties">Search accross all properties</option>
+            <option value="names">Search by names</option>
+          </select>
+        </div>
+        <input
+          type="text"
+          id="tree-search"
+          name="search_value"
+          placeholder="&#xF002;"
+          class="form-control"
+          style="font-family: Arial, FontAwesome;"
+        />
       </form>`,
     id: instance.id,
     title: "Search",
+    callback: () => {
+      $("#tree-search-mode").selectpicker();
+    },
   });
 }
 
@@ -704,7 +721,6 @@ export function initBuilder() {
     loadTypes("device");
     loadTypes("edge");
   } else {
-    $("#tree-search-mode").selectpicker();
     loadTypes("service");
     flipRuntimeDisplay(runtimeDisplay);
     document.addEventListener("keydown", function(event) {
