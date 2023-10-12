@@ -784,8 +784,7 @@ export function initBuilder() {
       }
       $(`#current-${type},#current-runtime`).selectpicker({ liveSearch: true });
       if (type == "workflow") {
-        initSelect($(`#device-filter`), "device", null, true);
-        $("#current-runtime,#device-filter").on("change", function() {
+        $("#current-runtime").on("change", function() {
           getWorkflowState();
         });
         getWorkflowState(true, true);
