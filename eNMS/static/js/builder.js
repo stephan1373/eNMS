@@ -340,7 +340,7 @@ export function showBuilderSearchPanel() {
       <form id="search-form-${instance.id}" style="margin: 15px">
         <div style="margin-bottom: 5px">
           <select data-width="100%" id="tree-search-mode" name="search_mode">
-            <option value="properties">Search accross all properties</option>
+            <option value="properties">Search across all properties</option>
             <option value="names">Search by names</option>
           </select>
         </div>

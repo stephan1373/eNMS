@@ -1032,7 +1032,7 @@ tables.service = class ServiceTable extends Table {
       <button
         class="btn btn-info"
         onclick="eNMS.automation.serializedSearch()"
-        data-tooltip="Search accross all properties"
+        data-tooltip="Search across all properties"
         type="button"
       >
         <span class="glyphicon glyphicon-filter"></span>
@@ -1079,7 +1079,7 @@ tables.service = class ServiceTable extends Table {
           id="serialized-search"
           name="serialized"
           type="text"
-          placeholder="&#xF002; Search accross all properties"
+          placeholder="&#xF002; Search across all properties"
           class="form-control"
           style="font-family:Arial, FontAwesome;
           height: 30px; margin-top: 5px"
