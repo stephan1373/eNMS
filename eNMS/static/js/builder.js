@@ -348,7 +348,6 @@ export function showBuilderSearchPanel() {
           style="font-family: Arial, FontAwesome;"
         />
         <div
-          id="device-filter-div"
           class="input-group table-search"
           style="width: 100%; margin-bottom: 5px; margin-top: 3px;"
         >

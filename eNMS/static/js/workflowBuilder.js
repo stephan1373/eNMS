@@ -812,16 +812,6 @@ function compareWorkflowResults() {
   });
 }
 
-function filterDevice() {
-  $("#device-filter-div").toggle();
-  if (!$("#device-filter-div").is(":visible")) {
-    $("#device-filter")
-      .val(null)
-      .trigger("change");
-    getWorkflowState();
-  }
-}
-
 function toggleWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
@@ -864,7 +854,6 @@ function toggleWorkflowTree() {
 
 configureNamespace("workflowBuilder", [
   addServicesToWorkflow,
-  filterDevice,
   getWorkflowState,
   restartWorkflow,
   stopWorkflow,
