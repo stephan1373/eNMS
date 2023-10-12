@@ -272,11 +272,6 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
         action[row](selectedObject);
       },
     });
-    let timer = false;
-    document.getElementById("tree-search").addEventListener("keyup", function() {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(getWorkflowState, 500);
-    });
   }
   if (!resultsPanel) builderTreeData = JSON.stringify(data);
 }
@@ -357,6 +352,11 @@ export function showBuilderSearchPanel() {
     title: "Search",
     callback: () => {
       $("#tree-search-mode").selectpicker();
+      let timer = false;
+      document.getElementById("tree-search").addEventListener("keyup", function() {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(getWorkflowState, 500);
+      });
     },
   });
 }
