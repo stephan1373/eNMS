@@ -308,8 +308,8 @@ class Runner:
     @staticmethod
     def get_device_result(args):
         device_id, runtime, results = args
-        device = db.fetch("device", id=device_id)
         run = vs.run_instances[runtime]
+        device = db.fetch("device", id=device_id, rbac=None)
         results.append(run.get_results(device))
 
     def device_iteration(self, device):
