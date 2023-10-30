@@ -38,6 +38,7 @@ Version 4.7.0: Changelog & Workflow Tree
     - all changelogs about a specific type of object in table controls (e.g all device changelogs)
     - all changes about a specific object via link to "Changelog" relation table in every row
   - Add changelog support in network builder
+  - Add script (snippet) to permanently delete all soft-deleted edges and services
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
