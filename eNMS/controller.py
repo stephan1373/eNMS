@@ -224,7 +224,7 @@ class Controller:
         )
 
     def copy_service_in_workflow(self, workflow_id, **kwargs):
-        service_sets = list(set(kwargs["services"].split(",")))
+        service_sets = list(set(kwargs["services-to-copy"].split(",")))
         service_instances = db.objectify("service", service_sets)
         workflow = db.fetch("workflow", id=workflow_id, rbac="edit")
         services, errors, shallow_copy = [], [], kwargs["mode"] == "shallow"

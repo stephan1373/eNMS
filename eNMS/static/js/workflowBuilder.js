@@ -251,7 +251,7 @@ function updateWorkflowService(service) {
 function addServicesToWorkflow() {
   const selection = $("#service-tree").jstree("get_checked", true);
   if (!selection.length) notify("Nothing selected.", "error", 5);
-  $("#services").val(selection.map((n) => n.data.id));
+  $("#services-to-copy").val(selection.map((n) => n.data.id));
   call({
     url: `/copy_service_in_workflow/${workflow.id}`,
     form: "add-services-form",
