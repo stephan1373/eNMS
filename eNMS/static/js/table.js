@@ -1171,6 +1171,13 @@ tables.service = class ServiceTable extends Table {
     this.createfilteringTooltip("serialized");
     super.postProcessing(...args);
     loadTypes("service");
+    let timer = false;
+    document.getElementById("serialized-search").addEventListener("keyup", function() {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        self.table.page(0).ajax.reload(null, false);
+      }, 500);
+    });
     $("#parent-filtering")
       .selectpicker()
       .on("change", function() {
