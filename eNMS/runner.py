@@ -150,7 +150,7 @@ class Runner:
             if isinstance(value, vs.models["device"]):
                 device = value
             else:
-                device = db.fetch("device", allow_none=True, **{property: value})
+                device = db.fetch("device", allow_none=True, username=_self.main_run.creator, **{property: value})
             if device:
                 devices.add(device)
             else:
