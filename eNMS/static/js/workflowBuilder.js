@@ -518,6 +518,7 @@ export function updateWorkflowRightClickBindings() {
     "Add to Workflow": addServicePanel,
     "Stop Workflow": () => stopWorkflow(),
     "Runtimes Display": flipRuntimeDisplay,
+    "Resize Tree": resizeTree,
     "Service Name": (service) => copyToClipboard({ text: service.name }),
     "Top-level Result": getResultLink,
     "Per-device Result": (node) => getResultLink(node, true),
@@ -812,11 +813,15 @@ function compareWorkflowResults() {
   });
 }
 
+function resizeTree() {
+  console.log("test");
+}
+
 function toggleWorkflowTree() {
   const kwargs = { duration: 200, queue: false };
   if (!workflowTreeDisplayed) {
     if (!menuIsHidden) hideMenu();
-    $("#workflow-tree").show();
+    $("#workflow-tree,#resize-tree-li").show();
     $("#run-navbar").hide();
     $(".left_frame").animate({ width: "-=500px" }, kwargs);
     $(".right_frame").animate(
@@ -833,7 +838,7 @@ function toggleWorkflowTree() {
     );
   } else {
     if (menuIsHidden) hideMenu();
-    $("#run-navbar").hide();
+    $("#run-navbar,#resize-tree-li").hide();
     $(".left_frame").animate({ width: "+=500px" }, kwargs);
     $(".right_frame").animate(
       { width: "-=500px" },
