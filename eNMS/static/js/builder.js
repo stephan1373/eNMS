@@ -363,7 +363,9 @@ function showBuilderSearchPanel() {
       $("#device-filter").on("change", function() {
         getWorkflowState();
       });
-      $("#tree-search-mode").selectpicker();
+      $("#tree-search-mode")
+        .selectpicker()
+        .on("change", getWorkflowState);
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function() {
         if (timer) clearTimeout(timer);
