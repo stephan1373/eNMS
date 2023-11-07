@@ -818,6 +818,7 @@ function resizeTree() {
   resizeTreeMode = resizeTreeMode == "collapsed" ? "expanded" : "collapsed";
   const action = resizeTreeMode == "collapsed" ? "close_all" : "open_all";
   $("#workflow-tree-services").jstree(action);
+  $("#resize-tree-icon").toggleClass("glyphicon-resize-small glyphicon-resize-full");
 }
 
 function toggleWorkflowTree() {
