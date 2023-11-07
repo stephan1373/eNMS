@@ -91,6 +91,7 @@ let isSuperworkflow;
 let startId;
 let endId;
 let workflowTreeDisplayed;
+let resizeTreeMode = "expanded";
 
 export function displayWorkflow(workflowData, workflowSwitch) {
   workflow = workflowData.service;
@@ -814,7 +815,13 @@ function compareWorkflowResults() {
 }
 
 function resizeTree() {
-  console.log("test");
+  if (resizeTreeMode == "expanded") {
+    $("#workflow-tree-services").jstree("close_all");
+    resizeTreeMode = "collapsed";
+  } else {
+    $("#workflow-tree-services").jstree("open_all");
+    resizeTreeMode = "expanded";
+  }
 }
 
 function toggleWorkflowTree() {
