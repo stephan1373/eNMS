@@ -815,13 +815,9 @@ function compareWorkflowResults() {
 }
 
 function resizeTree() {
-  if (resizeTreeMode == "expanded") {
-    $("#workflow-tree-services").jstree("close_all");
-    resizeTreeMode = "collapsed";
-  } else {
-    $("#workflow-tree-services").jstree("open_all");
-    resizeTreeMode = "expanded";
-  }
+  resizeTreeMode = resizeTreeMode == "collapsed" ? "expanded" : "collapsed";
+  const action = resizeTreeMode == "collapsed" ? "close_all" : "open_all";
+  $("#workflow-tree-services").jstree(action);
 }
 
 function toggleWorkflowTree() {
