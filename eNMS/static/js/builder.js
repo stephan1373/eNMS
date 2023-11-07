@@ -180,38 +180,38 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
                 }</span>`
               );
             progressSummary = `
-                <div style="position: absolute; top: 0px; right: ${
-                  resultsPanel ? "160" : "110"
-                }px">
+                <div style="position: absolute; top: 0px; right: 160px">
                   ${progressList.join(
-                    `<span style="color: #000000">${resultsPanel ? " - " : "/"}</span>`
+                    `<span style="color: #000000">${
+                      resultsPanel ? " - " : " / "
+                    }</span>`
                   )}
                 </div>`;
           }
-          const buttons = runtime
-            ? `<button type="button"
-                  class="btn btn-xs btn-primary"
-                  onclick='eNMS.automation.showRuntimePanel(
-                    "logs", ${nodeProperties}, "${runtime}"
-                  )'><span class="glyphicon glyphicon-list"></span>
-                </button>
-                <button type="button"
-                  class="btn btn-xs btn-primary"
-                  onclick='eNMS.automation.showRuntimePanel(
-                    "results", ${nodeProperties}, "${runtime}", "result"
-                  )'>
-                  <span class="glyphicon glyphicon-list-alt"></span>
-                </button>`
-            : `<button
-                  type="button"
-                  class="btn btn-xs btn-primary"
-                  data-tooltip="Edit"
-                  onclick='eNMS.base.showInstancePanel(
-                    "${node.data.properties.type}", ${node.data.properties.id}
-                  )'
-                >
-                  <span class="glyphicon glyphicon-edit"></span>
-                </button>`;
+          const buttons = `
+            <button type="button"
+              class="btn btn-xs btn-primary"
+              onclick='eNMS.automation.showRuntimePanel(
+                "logs", ${nodeProperties}, "${runtime}"
+              )'><span class="glyphicon glyphicon-list"></span>
+            </button>
+            <button type="button"
+              class="btn btn-xs btn-primary"
+              onclick='eNMS.automation.showRuntimePanel(
+                "results", ${nodeProperties}, "${runtime}", "result"
+              )'>
+              <span class="glyphicon glyphicon-list-alt"></span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-xs btn-primary"
+              data-tooltip="Edit"
+              onclick='eNMS.base.showInstancePanel(
+                "${node.data.properties.type}", ${node.data.properties.id}
+              )'
+            >
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>`;
           $(el)
             .find("a")
             .first().append(`

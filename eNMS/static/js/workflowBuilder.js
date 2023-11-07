@@ -827,14 +827,15 @@ function toggleWorkflowTree() {
     if (!menuIsHidden) hideMenu();
     $("#workflow-tree,#resize-tree-li").show();
     $("#run-navbar").hide();
-    $(".left_frame").animate({ width: "-=500px" }, kwargs);
+    $(".left_frame").animate({ width: "-=600px" }, kwargs);
     $(".right_frame").animate(
-      { width: "500px" },
+      { width: "600px" },
       {
         ...kwargs,
         complete: () => {
           $("#run-navbar")
             .appendTo("#workflow-tree-control")
+            .css({ left: "60px" })
             .show();
           getWorkflowState();
         },
@@ -843,14 +844,15 @@ function toggleWorkflowTree() {
   } else {
     if (menuIsHidden) hideMenu();
     $("#run-navbar,#resize-tree-li").hide();
-    $(".left_frame").animate({ width: "+=500px" }, kwargs);
+    $(".left_frame").animate({ width: "+=600px" }, kwargs);
     $(".right_frame").animate(
-      { width: "-=500px" },
+      { width: "-=600px" },
       {
         ...kwargs,
         complete: () => {
           $("#run-navbar")
             .appendTo("#workflow-controls")
+            .css({ left: "0px" })
             .show();
           $("#workflow-tree").hide();
         },
