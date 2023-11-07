@@ -255,11 +255,10 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       }
     });
     tree.unbind("dblclick").on("dblclick", function(event) {
-      highlightNode(
-        $(treeId)
-          .jstree(true)
-          .get_node(event.target).data
-      );
+      const node = $(treeId)
+        .jstree(true)
+        .get_node(event.target).data.properties;
+      showInstancePanel(node.type, node.id);
     });
     tree.bind("loaded.jstree", function(e, data) {
       tree.jstree("open_all");
