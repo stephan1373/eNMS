@@ -945,6 +945,7 @@ class Controller:
                 key=itemgetter("text"),
             )
         else:
+            services = db.fetch("workflow", id=node).exclude_soft_deleted("services")
             return sorted(
                 (
                     {
@@ -961,7 +962,7 @@ class Controller:
                             ),
                         },
                     }
-                    for service in db.fetch("workflow", id=node).services
+                    for service in services
                     if service.scoped_name not in ("Start", "End")
                 ),
                 key=itemgetter("text"),
