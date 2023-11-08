@@ -32,6 +32,7 @@ import {
 } from "./networkBuilder.js";
 import {
   colorService,
+  currentRuntime,
   drawIterationEdge,
   drawWorkflowEdge,
   drawWorkflowNode,
@@ -192,13 +193,13 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
             <button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.automation.showRuntimePanel(
-                "logs", ${nodeProperties}, "${runtime}"
+                "logs", ${nodeProperties}, "${currentRuntime}"
               )'><span class="glyphicon glyphicon-list"></span>
             </button>
             <button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.automation.showRuntimePanel(
-                "results", ${nodeProperties}, "${runtime}", "result"
+                "results", ${nodeProperties}, "${currentRuntime}", "result"
               )'>
               <span class="glyphicon glyphicon-list-alt"></span>
             </button>
