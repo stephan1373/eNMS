@@ -826,7 +826,6 @@ class Controller:
                         return
                     elif is_match:
                         style = "font-weight: bold;"
-            child_property = "devices" if type == "network" else "services"
             progress_data = {}
             if run:
                 progress = state[path].get("progress")
