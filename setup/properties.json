@@ -1235,16 +1235,16 @@
         "search": "text"
       },
       {
-        "data": "changelog",
-        "title": "Changelog",
-        "width": "80px",
-        "visible": false
-      },
-      {
         "data": "current_runs",
         "title": "Current Runs",
         "search": "text",
         "width": "140px"
+      },
+      {
+        "data": "changelog",
+        "title": "Changelog",
+        "width": "80px",
+        "visible": false
       },
       {
         "data": "workers",
