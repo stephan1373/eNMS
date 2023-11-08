@@ -156,7 +156,7 @@ class Runner:
                     "device",
                     allow_none=True,
                     username=_self.creator,
-                    **{property: value}
+                    **{property: value},
                 )
             if device:
                 devices.add(device)
