@@ -106,6 +106,8 @@ Version 4.7.0: Changelog & Workflow Tree
   should consider networks.
 - Raise RBAC error when no current_user available, "rbac" is not set to "None" and no
   "username" is passed to the function.
+- Don't raise an exception in a git service configured to "git add and commit" if there isn't
+  anything to commit (add log explaining that there was nothing to commit)
 
 Migration:
 - network.yaml must be merge into device.yaml:
