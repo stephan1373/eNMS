@@ -32,7 +32,6 @@ import {
 } from "./networkBuilder.js";
 import {
   colorService,
-  currentRuntime,
   drawIterationEdge,
   drawWorkflowEdge,
   drawWorkflowNode,
@@ -129,7 +128,8 @@ export function configureGraph(newInstance, graph, options) {
   return network;
 }
 
-export function drawTree(treeId, data, runtime, resultsPanel) {
+export function drawTree(service, data, runtime, resultsPanel) {
+  const treeId = service ? `#result-tree-${service}` : "#workflow-tree-services";
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (!data) {
     builderTreeData = null;
@@ -160,6 +160,9 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
       html_row: {
         default: function(el, node) {
           if (!node) return;
+          const runtime = $(
+            service ? `#runtimes-tree-${service}` : "#current-runtime"
+          ).val();
           const nodeProperties = JSON.stringify(node.data.properties);
           let progressSummary = "";
           const progress = node.data.progress;
@@ -193,13 +196,13 @@ export function drawTree(treeId, data, runtime, resultsPanel) {
             <button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.automation.showRuntimePanel(
-                "logs", ${nodeProperties}, "${currentRuntime}"
+                "logs", ${nodeProperties}, "${runtime}"
               )'><span class="glyphicon glyphicon-list"></span>
             </button>
             <button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.automation.showRuntimePanel(
-                "results", ${nodeProperties}, "${currentRuntime}", "result"
+                "results", ${nodeProperties}, "${runtime}", "result"
               )'>
               <span class="glyphicon glyphicon-list-alt"></span>
             </button>

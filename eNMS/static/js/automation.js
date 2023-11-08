@@ -502,7 +502,7 @@ export function displayResultsTree(service, runtime) {
     url: `/get_instance_tree/workflow/${path}/${runtime}`,
     callback: function(data) {
       if (!data) return notify("No results to display.", "error", 5);
-      drawTree(`#result-tree-${service.id}`, data.tree, runtime, true);
+      drawTree(service.id, data.tree, runtime, true);
     },
   });
 }
