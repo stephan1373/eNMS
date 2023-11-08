@@ -128,7 +128,7 @@ export function configureGraph(newInstance, graph, options) {
   return network;
 }
 
-export function drawTree(service, data, runtime, resultsPanel) {
+export function drawTree(service, data, resultsPanel) {
   const treeId = service ? `#result-tree-${service}` : "#workflow-tree-services";
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (!data) {
