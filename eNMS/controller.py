@@ -838,6 +838,7 @@ class Controller:
                     color = "25b6fa"
             else:
                 color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
+            text = instance.scoped_name if type == "workflow" else instance.name
             return {
                 "runtime": state[path]["result"]["runtime"] if state else None,
                 "data": {
@@ -847,7 +848,7 @@ class Controller:
                 },
                 "id": path,
                 "state": {"opened": full_path.startswith(path)},
-                "text": instance.scoped_name if type == "workflow" else instance.name,
+                "text": text if len(text) < 45 else f"{text[:45]}...",
                 "children": children,
                 "a_attr": {
                     "class": "no_checkbox",
