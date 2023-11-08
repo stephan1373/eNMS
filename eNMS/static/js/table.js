@@ -362,6 +362,7 @@ export class Table {
   }
 
   createNewButton() {
+    if (this.relation && this.addRelationDisabled) return "";
     const onClick = this.relation
       ? `eNMS.base.showAddInstancePanel(
           '${this.id}', '${this.type}', ${this.relationString}
@@ -1668,6 +1669,8 @@ tables.server = class ServerTable extends Table {
 };
 
 tables.changelog = class ChangelogTable extends Table {
+  addRelationDisabled = true;
+
   get controls() {
     return [
       this.columnDisplay(),
