@@ -119,6 +119,8 @@ Tests:
 - Test that caching form properties doesn't affect the parameterized form display
 - Test that the workflow tree works, is scalable and has no memory leaks
 - Test that the workflow traversal algorithm ignores soft deleted workflow edges / services
+- Test that the git service "git add and commit" option still works fine, both when there is
+  something to commit and when there isn't
 
 Version 4.6.0: Clustering
 -------------------------
