@@ -35,7 +35,10 @@ class GitService(Service):
             repo = Repo(local_path)
         if "add_commit" in self.actions:
             repo.git.add(A=True)
-            repo.git.commit(m=f'"{self.commit_message}"')
+            if repo.head.commit.diff():
+                repo.git.commit(m=f'"{self.commit_message}"')
+            else:
+                run.log("info", "Commit was aborted: nothing to commit", device)
         if "pull" in self.actions:
             repo.remotes.origin.pull()
         if "push" in self.actions:
