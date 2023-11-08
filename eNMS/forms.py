@@ -204,7 +204,7 @@ class FormFactory:
             type(f"{model}FilteringForm", (model_form,), relation_form)
 
     def generate_instance_insertion_forms(self):
-        for model in ("device", "link", "user", "service"):
+        for model in ("device", "link", "user", "service", "group", "task"):
             vs.relationships[f"add_{model}s"]["instances"] = {
                 "type": "object-list",
                 "model": model,

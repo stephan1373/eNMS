@@ -887,6 +887,8 @@ tables.link = class LinkTable extends Table {
 };
 
 tables.pool = class PoolTable extends Table {
+  addRelationDisabled = true;
+
   addRow(properties) {
     let row = super.addRow(properties);
     row.objectNumber = "";
