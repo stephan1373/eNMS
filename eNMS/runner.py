@@ -103,7 +103,9 @@ class Runner:
                 return None
             if self.payload["targets"] == "Manually defined":
                 model = "pool" if property == "target_pools" else "device"
-                return db.objectify(model, self.payload[f"restart_{model}s"], username=self.creator)
+                return db.objectify(
+                    model, self.payload[f"restart_{model}s"], username=self.creator
+                )
             elif self.payload["targets"] == "Restart run":
                 return getattr(self.restart_run, property)
         elif self.parameterized_run and property in self.payload["form"]:
@@ -150,7 +152,12 @@ class Runner:
             if isinstance(value, vs.models["device"]):
                 device = value
             else:
-                device = db.fetch("device", allow_none=True, username=_self.main_run.creator, **{property: value})
+                device = db.fetch(
+                    "device",
+                    allow_none=True,
+                    username=_self.main_run.creator,
+                    **{property: value},
+                )
             if device:
                 devices.add(device)
             else:
