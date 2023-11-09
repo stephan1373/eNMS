@@ -948,6 +948,7 @@ class ServiceForm(BaseForm):
             "include_device_results",
             "include_link_in_summary",
             "mail_recipient",
+            "mail_bcc",
             "reply_to",
             "display_only_failed_nodes",
         ],
