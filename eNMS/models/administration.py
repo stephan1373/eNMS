@@ -321,3 +321,8 @@ class Secret(AbstractBase):
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     description = db.Column(db.LargeString)
     value = db.Column(db.LargeString)
+
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        if not kwargs.get("migration_import"):
+            self.update_last_modified_properties()
