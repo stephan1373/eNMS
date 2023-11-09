@@ -56,6 +56,9 @@ Version 4.6.0: Clustering
 - Add setting to control whether or not to monitor changes tystem in
   settings.json > "files" > "monitor_filesystem"
 - Add new "name" field to the "Parameters" class so it can be updated from the REST API
+- Add support for BCC in the send email mechanism (service step 4 and email notification service)
+- Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
+  RBAC which users can view, edit and use them in a workflow.
 
 Migration:
 - Update properties.json > "properly_list" with new format
