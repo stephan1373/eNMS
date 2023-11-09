@@ -917,7 +917,7 @@ class Runner:
         return self.payload_helper(*args, operation="get", **kwargs)
 
     def get_secret(self, name):
-        return db.fetch("secret", name=name, rbac="use").value
+        return db.fetch("secret", name=name, username=self.creator, rbac="use").value
 
     def get_result(self, service_name, device=None, workflow=None, all_matches=False):
         def filter_run(query, property):
