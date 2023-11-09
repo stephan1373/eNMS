@@ -310,3 +310,14 @@ class Folder(File):
         if not exists(full_path) and not kwargs.get("migration_import"):
             makedirs(full_path)
         self.update(**kwargs)
+
+
+class Secret(AbstractBase):
+    __tablename__ = type = class_type = "secret"
+    id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.SmallString, unique=True)
+    creator = db.Column(db.SmallString)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
+    description = db.Column(db.LargeString)
+    value = db.Column(db.LargeString)

@@ -624,6 +624,15 @@ class RunServiceForm(BaseForm):
     service = InstanceField("Services", model="service")
 
 
+class SecretForm(BaseForm):
+    template = "object"
+    form_type = HiddenField(default="secret")
+    id = HiddenField()
+    name = StringField("Name", [InputRequired()])
+    description = StringField(widget=TextArea(), render_kw={"rows": 3})
+    value = StringField("Value", widget=TextArea(), render_kw={"rows": 6})
+
+
 class ServerForm(BaseForm):
     form_type = HiddenField(default="server")
     id = HiddenField()

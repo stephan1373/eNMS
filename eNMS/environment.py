@@ -291,6 +291,7 @@ class Environment:
         self,
         subject,
         content,
+        bcc="",
         recipients="",
         reply_to=None,
         sender=None,
@@ -316,7 +317,9 @@ class Environment:
                 server.starttls()
                 password = getenv("MAIL_PASSWORD", "")
                 server.login(vs.settings["mail"]["username"], password)
-            server.sendmail(sender, recipients.split(","), message.as_string())
+            all_recipients = recipients.split(",") if recipients else []
+            all_recipients += bcc.split(",") if bcc else []
+            server.sendmail(sender, all_recipients, message.as_string())
 
 
 env = Environment()

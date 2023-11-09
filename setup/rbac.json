@@ -58,6 +58,10 @@
         "Credentials": {
           "endpoint": "/credential_table",
           "rbac": "admin"
+        },
+        "Secrets": {
+          "endpoint": "/secret_table",
+          "rbac": "access"
         }
       }
     },
@@ -176,6 +180,7 @@
     "/task_table": "access",
     "/terminal": "access",
     "/tree_form": "access",
+    "/secret_table": "access",
     "/user_table": "admin",
     "/view_service_results": "access",
     "/workflow_builder": "access",
@@ -304,6 +309,11 @@
     "pool": {
       "rbac_read": "Read",
       "rbac_edit": "Edit"
+    },
+    "secret": {
+      "rbac_read": "Read",
+      "rbac_edit": "Edit",
+      "rbac_use": "Use"
     },
     "service": {
       "rbac_read": "Read",
