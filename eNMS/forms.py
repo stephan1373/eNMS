@@ -737,6 +737,7 @@ class ServiceForm(BaseForm):
         "Mail Recipients (separated by comma)", substitution=True
     )
     reply_to = StringField("Reply-to Email Address", substitution=True)
+    mail_bcc = StringField("Hidden Recipients (Blind Carbon Copy)", substitution=True)
     number_of_retries = IntegerField(
         "Number of retries", default=0, help="common/number_of_retries"
     )
