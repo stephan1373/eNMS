@@ -38,6 +38,7 @@ class MailNotificationForm(ServiceForm):
     title = StringField(substitution=True)
     sender = StringField(substitution=True)
     recipients = StringField(substitution=True)
+    bcc = StringField(substitution=True)
     replier = StringField("Reply-to Address", substitution=True)
     body = StringField(widget=TextArea(), render_kw={"rows": 5}, substitution=True)
 
