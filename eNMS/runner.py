@@ -916,6 +916,9 @@ class Runner:
     def get_var(self, *args, **kwargs):
         return self.payload_helper(*args, operation="get", **kwargs)
 
+    def get_secret(self, name):
+        return db.fetch("secret", name=name, rbac="use").value
+
     def get_result(self, service_name, device=None, workflow=None, all_matches=False):
         def filter_run(query, property):
             query = query.filter(
@@ -1001,6 +1004,7 @@ class Runner:
                 "get_connection": _self.get_connection,
                 "get_result": _self.get_result,
                 "get_var": _self.get_var,
+                "get_secret": _self.get_secret,
                 "log": _self.log,
                 "parent_device": _self.parent_device or device,
                 "payload": _self.payload,
