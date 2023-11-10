@@ -80,7 +80,8 @@ Version 4.7.0: Changelog & Workflow Tree
     workflow builder
 - Add Workflow Tree mechanism
   - New "tree" icon to display / hide the workflow tree
-  - Double-click on a tree node: teleport and highlight associated service
+  - Double-click on a tree node: open edit panel for that service
+  - Add teleport / move to mechanism for each service in the tree
   - Merge get_workflow_results and get_instance_tree function: displaying the workflow
   tree and displaying the results now calls the same function
   - The tree is only refreshed when it is being displayed
