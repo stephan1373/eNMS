@@ -4,6 +4,21 @@
 Version 4.7.0: Changelog & Workflow Tree
 ----------------------------------------
 
+feedback:
+- make sure you have edit access to be able to undo change
+- some properties shouldn't be reversible: status, current_runs, config properties timestamps etc
+- indicate in UPDATE changelog whether it was initiated by undo action (remove "undoing..." changelog)
+- when a shared service is added to a workflow, the changelog will be displayed for all workflows using this shared service because the many-to-many relationship is updated
+- remove ctrz Z in workflow builder
+- update changelog button tooltip in table menu
+- give option to hard delete a service so the name can be reused
+- make sure soft deleted services are not exported
+- when creating a new service and a soft deleted service with the same name already exists, delete the soft deleted service
+- when deleting an edge and recreating it, it says an edge with the same name already exists
+- make credential type come from automation.json instead of hardcoding it in the form (see any comes last note)
+- when mvoing to a subworkflow, keep the whole tree
+- make device filtering work on the tree too
+
 - Changelog feature:
   - Add changelog mechanism for credentials, devices, files, groups, links, networks, pools
     servers, services, tasks and users.
