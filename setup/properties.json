@@ -1352,12 +1352,14 @@
         "data": "target_type",
         "title": "Target Type",
         "search": "text",
-        "width": "80px"
+        "width": "80px",
+        "visible": false
       },
       {
         "data": "target_name",
         "title": "Target Name",
-        "search": "text"
+        "search": "text",
+        "visible": false
       },
       {
         "data": "content",
