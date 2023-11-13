@@ -18,6 +18,13 @@ feedback:
 - make credential type come from automation.json instead of hardcoding it in the form (see any comes last note)
 - when mvoing to a subworkflow, keep the whole tree
 - make device filtering work on the tree too
+- pre an post services run once:
+  - no need for pre-start and post-end
+  - dotted line to make it clear it's special
+  - success and failure edge are still respected
+- reduce space on the left side of the tree to be the same as the space on the right side
+- make it so the left right menu is automatically expanded when hovering over a 5px band on the left side, and collapsed when hovering out of it
+- rename undo to revert
 
 - Changelog feature:
   - Add changelog mechanism for credentials, devices, files, groups, links, networks, pools

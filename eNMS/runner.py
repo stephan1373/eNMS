@@ -1068,7 +1068,7 @@ class Runner:
             elif self.enable_mode and not mode:
                 connection.enable()
         except Exception as exc:
-            self.log("error", f"Failed to honor the enable mode {exc}")
+            self.log("error", f"Failed to honor the enable mode ({exc})", device)
         try:
             if not hasattr(connection, "check_config_mode"):
                 self.log("error", "Netmiko 'check_config_mode' method is missing")
@@ -1082,7 +1082,7 @@ class Runner:
                     kwargs["config_command"] = self.config_mode_command
                 connection.config_mode(**kwargs)
         except Exception as exc:
-            self.log("error", f"Failed to honor the config mode {exc}")
+            self.log("error", f"Failed to honor the config mode ({exc})", device)
         return connection
 
     def netmiko_connection(self, device):
