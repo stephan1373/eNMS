@@ -188,27 +188,14 @@ class Environment:
             )
 
     def init_dramatiq(self):
-        broker = RedisBroker(
+        set_broker(RedisBroker(
             host=getenv("REDIS_ADDR"),
             **{
                 key: value
                 for key, value in vs.settings["redis"]["config"].items()
                 if key != "decode_responses"
             },
-        )
-
-        try:
-            from dramatiq.middleware import ProcessReloader
-
-            broker.add_middleware(
-                ProcessReloader(
-                    reload_counter=vs.settings["automation"]["max_runs_before_reload"]
-                )
-            )
-        except ImportError:
-            warn("Use eNMS fork of dramatiq for the Process Reloader mechanism")
-
-        set_broker(broker)
+        ))
 
     def init_encryption(self):
         self.fernet_encryption = getenv("FERNET_KEY")
