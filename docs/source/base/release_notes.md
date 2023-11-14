@@ -123,6 +123,7 @@ Tests:
 - Test that the workflow traversal algorithm ignores soft deleted workflow edges / services
 - Test that the git service "git add and commit" option still works fine, both when there is
   something to commit and when there isn't
+- Test that undoing a change requires edit access to the associated object
 
 Version 4.6.0: Clustering
 -------------------------
