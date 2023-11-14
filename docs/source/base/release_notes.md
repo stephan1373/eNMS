@@ -114,6 +114,8 @@ Version 4.7.0: Changelog & Workflow Tree
 Post-demo additions:
 - Add new "source" property to trace the origin of a change: 'REST API', 'Edit Panel',
   or 'Change Reverted'
+- Rename the "Undo" mechanism to "Revert" mechanism (given that we're not keeping track of
+  a timeline of changes)
 
 Migration:
 - network.yaml must be merge into device.yaml:
