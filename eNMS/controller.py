@@ -1483,7 +1483,7 @@ class Controller:
         env.log("info", status)
         return status
 
-    def revert_changelog(self, log_id):
+    def revert_change(self, log_id):
         log = db.fetch("changelog", id=log_id)
         target = db.fetch(
             log.target_type, name=log.target_name, rbac="edit", allow_none=True
