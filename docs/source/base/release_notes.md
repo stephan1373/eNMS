@@ -111,6 +111,9 @@ Version 4.7.0: Changelog & Workflow Tree
 - Don't raise an exception in a git service configured to "git add and commit" if there isn't
   anything to commit (add log explaining that there was nothing to commit)
 
+Post-demo additions:
+- Add new "source" property to trace the origin of a change: REST API or UI
+
 Migration:
 - network.yaml must be merge into device.yaml:
   - replace "nodes" with "devices"
