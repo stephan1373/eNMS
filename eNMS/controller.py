@@ -1514,7 +1514,7 @@ class Controller:
         if "properties" in log.history:
             target.update(**log.history["properties"])
         key = f"update_{target.type}_{target.name}"
-        db.session.connection().info[key] = "Changelog Reversal"
+        db.session.connection().info[key] = "Change Reverted"
         db.session.commit()
 
     def update(self, type, **kwargs):
