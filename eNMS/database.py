@@ -316,7 +316,7 @@ class Database:
                     " | ".join(changelog),
                 )
                 log_content = f"UPDATE: {target.type} '{name}': ({changes})"
-                env.log("info", log_content, instance=target, history=history)
+                env.log("info", log_content, instance=target, history=history, source=connection.info.pop(f"update_{target.type}_{target.name}", None))
 
         for model in vs.models.values():
             if "configure_events" in vars(model):
@@ -553,6 +553,9 @@ class Database:
             else:
                 instance = vs.models[_class](rbac=rbac, **kwargs)
                 self.session.add(instance)
+            if "update_source" in kwargs:
+                key = f"update_{instance.type}_{instance.name}"
+                db.session.connection().info[key] = kwargs["update_source"]
             return instance
 
         if not commit:

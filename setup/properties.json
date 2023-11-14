@@ -1362,6 +1362,12 @@
         "visible": false
       },
       {
+        "data": "source",
+        "title": "Source",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "content",
         "title": "Content",
         "search": "text",

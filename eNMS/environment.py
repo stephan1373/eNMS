@@ -248,6 +248,7 @@ class Environment:
         logger="root",
         instance=None,
         history=None,
+        source=None,
     ):
         logger_settings = vs.logging["loggers"].get(logger, {})
         if logger:
@@ -260,6 +261,7 @@ class Environment:
                     "content": content,
                     "author": user or getattr(current_user, "name", ""),
                     "history": history,
+                    "source": source,
                     **(instance.get_changelog_kwargs() if instance else {}),
                 },
             )

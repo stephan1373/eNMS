@@ -221,6 +221,7 @@ class Changelog(AbstractBase):
     severity = db.Column(db.TinyString, default="debug")
     author = db.Column(db.SmallString)
     history = db.Column(JSON, default={})
+    source = db.Column(db.SmallString)
     target_type = db.Column(db.SmallString)
     target_name = db.Column(db.SmallString)
     workflows = relationship(
