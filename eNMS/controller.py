@@ -1513,7 +1513,8 @@ class Controller:
             setattr(target, property, related_instance)
         if "properties" in log.history:
             target.update(**log.history["properties"])
-        env.log("info", f"Undoing {log}", change_log=True, instance=target)
+        key = f"update_{target.type}_{target.name}"
+        db.session.connection().info[key] = "Changelog Reversal"
         db.session.commit()
 
     def update(self, type, **kwargs):
