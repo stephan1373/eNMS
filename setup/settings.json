@@ -31,8 +31,7 @@
   },
   "automation": {
     "max_process": 15,
-    "use_task_queue": false,
-    "max_runs_before_reload": 5
+    "use_task_queue": false
   },
   "cache": {
     "config": {

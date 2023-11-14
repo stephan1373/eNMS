@@ -171,13 +171,12 @@ Version 4.6.0: Clustering
 - Add mechanism to compare configuration properties between two devices:
   - New drop-down list in configuration table to choose configuration property
   - New "v1" and "v2" column to choose which devices to compare
-- Add mechanism to restart dramatiq worker threads when no job running
-  - Add new key "max_runs_before_reload" in settings.json > "automation": after
-    "max_runs_before_reload" processed by a dramatiq process, and if there are
-    no jobs currently running, the process is killed.
 - Add setting to control whether or not to monitor changes tystem in
   settings.json > "files" > "monitor_filesystem"
 - Add new "name" field to the "Parameters" class so it can be updated from the REST API
+- Add support for BCC in the send email mechanism (service step 4 and email notification service)
+- Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
+  RBAC which users can view, edit and use them in a workflow.
 
 Migration:
 - Update properties.json > "properly_list" with new format

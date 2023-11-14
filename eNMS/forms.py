@@ -624,6 +624,15 @@ class RunServiceForm(BaseForm):
     service = InstanceField("Services", model="service")
 
 
+class SecretForm(BaseForm):
+    template = "object"
+    form_type = HiddenField(default="secret")
+    id = HiddenField()
+    name = StringField("Name", [InputRequired()])
+    description = StringField(widget=TextArea(), render_kw={"rows": 3})
+    value = StringField("Value", widget=TextArea(), render_kw={"rows": 6})
+
+
 class ServerForm(BaseForm):
     form_type = HiddenField(default="server")
     id = HiddenField()
@@ -728,6 +737,7 @@ class ServiceForm(BaseForm):
         "Mail Recipients (separated by comma)", substitution=True
     )
     reply_to = StringField("Reply-to Email Address", substitution=True)
+    mail_bcc = StringField("Hidden Recipients (Blind Carbon Copy)", substitution=True)
     number_of_retries = IntegerField(
         "Number of retries", default=0, help="common/number_of_retries"
     )
@@ -937,6 +947,7 @@ class ServiceForm(BaseForm):
             "include_device_results",
             "include_link_in_summary",
             "mail_recipient",
+            "mail_bcc",
             "reply_to",
             "display_only_failed_nodes",
         ],

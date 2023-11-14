@@ -15,6 +15,7 @@ class MailNotificationService(Service):
     title = db.Column(db.SmallString)
     sender = db.Column(db.SmallString)
     recipients = db.Column(db.SmallString)
+    bcc = db.Column(db.SmallString)
     replier = db.Column(db.SmallString, default="")
     body = db.Column(db.LargeString)
 
@@ -27,6 +28,7 @@ class MailNotificationService(Service):
             sender=run.sub(run.sender, locals()),
             recipients=run.sub(run.recipients, locals()),
             reply_to=run.sub(run.replier, locals()),
+            bcc=run.sub(run.bcc, locals()),
         )
         return {"success": True, "result": {}}
 
@@ -36,6 +38,7 @@ class MailNotificationForm(ServiceForm):
     title = StringField(substitution=True)
     sender = StringField(substitution=True)
     recipients = StringField(substitution=True)
+    bcc = StringField(substitution=True)
     replier = StringField("Reply-to Address", substitution=True)
     body = StringField(widget=TextArea(), render_kw={"rows": 5}, substitution=True)
 

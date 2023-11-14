@@ -190,27 +190,16 @@ class Environment:
             )
 
     def init_dramatiq(self):
-        broker = RedisBroker(
-            host=getenv("REDIS_ADDR"),
-            **{
-                key: value
-                for key, value in vs.settings["redis"]["config"].items()
-                if key != "decode_responses"
-            },
-        )
-
-        try:
-            from dramatiq.middleware import ProcessReloader
-
-            broker.add_middleware(
-                ProcessReloader(
-                    reload_counter=vs.settings["automation"]["max_runs_before_reload"]
-                )
+        set_broker(
+            RedisBroker(
+                host=getenv("REDIS_ADDR"),
+                **{
+                    key: value
+                    for key, value in vs.settings["redis"]["config"].items()
+                    if key != "decode_responses"
+                },
             )
-        except ImportError:
-            warn("Use eNMS fork of dramatiq for the Process Reloader mechanism")
-
-        set_broker(broker)
+        )
 
     def init_encryption(self):
         self.fernet_encryption = getenv("FERNET_KEY")
@@ -304,6 +293,7 @@ class Environment:
         self,
         subject,
         content,
+        bcc="",
         recipients="",
         reply_to=None,
         sender=None,
@@ -329,7 +319,9 @@ class Environment:
                 server.starttls()
                 password = getenv("MAIL_PASSWORD", "")
                 server.login(vs.settings["mail"]["username"], password)
-            server.sendmail(sender, recipients.split(","), message.as_string())
+            all_recipients = recipients.split(",") if recipients else []
+            all_recipients += bcc.split(",") if bcc else []
+            server.sendmail(sender, all_recipients, message.as_string())
 
 
 env = Environment()
