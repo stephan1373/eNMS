@@ -189,7 +189,9 @@ class RestApi:
             try:
                 new_name = instance.pop("new_name", None)
                 object_data = controller.objectify(instance_type, instance)
-                instance = db.factory(instance_type, update_source="ReST API", **object_data)
+                instance = db.factory(
+                    instance_type, update_source="ReST API", **object_data
+                )
                 if new_name:
                     instance.name = new_name
                 result["success"].append(instance.name)

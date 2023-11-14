@@ -316,7 +316,15 @@ class Database:
                     " | ".join(changelog),
                 )
                 log_content = f"UPDATE: {target.type} '{name}': ({changes})"
-                env.log("info", log_content, instance=target, history=history, source=connection.info.pop(f"update_{target.type}_{target.name}", None))
+                env.log(
+                    "info",
+                    log_content,
+                    instance=target,
+                    history=history,
+                    source=connection.info.pop(
+                        f"update_{target.type}_{target.name}", None
+                    ),
+                )
 
         for model in vs.models.values():
             if "configure_events" in vars(model):
