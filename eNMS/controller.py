@@ -1485,7 +1485,7 @@ class Controller:
 
     def undo_log(self, log_id):
         log = db.fetch("changelog", id=log_id)
-        target = getattr(log, log.target_type)
+        target = db.fetch(log.target_type, name=log.target_name, rbac="edit", allow_none=True)
         if target is None:
             return {"alert": "The target object no longer exists."}
         for relationship, history in log.history.get("lists", {}).items():
