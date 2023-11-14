@@ -188,14 +188,16 @@ class Environment:
             )
 
     def init_dramatiq(self):
-        set_broker(RedisBroker(
-            host=getenv("REDIS_ADDR"),
-            **{
-                key: value
-                for key, value in vs.settings["redis"]["config"].items()
-                if key != "decode_responses"
-            },
-        ))
+        set_broker(
+            RedisBroker(
+                host=getenv("REDIS_ADDR"),
+                **{
+                    key: value
+                    for key, value in vs.settings["redis"]["config"].items()
+                    if key != "decode_responses"
+                },
+            )
+        )
 
     def init_encryption(self):
         self.fernet_encryption = getenv("FERNET_KEY")
