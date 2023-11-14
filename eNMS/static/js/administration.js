@@ -179,7 +179,7 @@ function showMigrationPanel() {
 
 function undoLog(id) {
   call({
-    url: `/undo_log/${id}`,
+    url: `/revert_changelog/${id}`,
     callback: function() {
       notify("Changes undone.", "success", 5, true);
     },

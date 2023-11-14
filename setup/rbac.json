@@ -274,7 +274,7 @@
     "/scheduler_action": "access",
     "/task_action": "access",
     "/topology_import": "access",
-    "/undo_log": "access",
+    "/revert_changelog": "access",
     "/update": "access",
     "/update_pool": "access",
     "/update_all_pools": "access",
