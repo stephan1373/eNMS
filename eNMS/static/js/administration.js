@@ -177,11 +177,11 @@ function showMigrationPanel() {
   });
 }
 
-function undoLog(id) {
+function revertChangelog(id) {
   call({
     url: `/revert_changelog/${id}`,
     callback: function() {
-      notify("Changes undone.", "success", 5, true);
+      notify("Changes reverted.", "success", 5, true);
     },
   });
 }
@@ -419,6 +419,6 @@ configureNamespace("administration", [
   showMigrationPanel,
   showProfile,
   showServerTime,
-  undoLog,
+  revertChangelog,
   updateDeviceRbac,
 ]);

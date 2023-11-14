@@ -278,7 +278,7 @@ class Database:
                 property_type = type(getattr(target, attr.key))
                 if property_type in (InstrumentedList, MutableList):
                     if property_type == MutableList:
-                        # when undoing a changelog for a db.List property,
+                        # when reverting a changelog for a db.List property,
                         # hist.deleted is improperly set as a tuple
                         if isinstance(added, tuple) or isinstance(deleted, tuple):
                             continue

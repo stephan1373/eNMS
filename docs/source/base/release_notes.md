@@ -8,7 +8,7 @@ Version 4.7.0: Changelog & Workflow Tree
   - Add changelog mechanism for credentials, devices, files, groups, links, networks, pools
     servers, services, tasks and users.
   - Add "Target Type" and "Target Name" properties in changelog table
-  - Add undo mechanism to revert the changes in a changelog. Supported revert action:
+  - Add revert mechanism to undo the changes in a changelog. Supported revert action:
     - Standard properties (string, integer, list)
     - Scalar relationships
     - Many-to-many relationships
@@ -39,7 +39,7 @@ Version 4.7.0: Changelog & Workflow Tree
     - all changes about a specific object via link to "Changelog" relation table in every row
   - Add changelog support in network builder
   - Add script (snippet) to permanently delete all soft-deleted edges and services
-  - Require "edit" access for a user to be able to undo a change to an object
+  - Require "edit" access for a user to be able to revert a change to an object
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
@@ -126,7 +126,7 @@ Tests:
 - Test that the workflow traversal algorithm ignores soft deleted workflow edges / services
 - Test that the git service "git add and commit" option still works fine, both when there is
   something to commit and when there isn't
-- Test that undoing a change requires edit access to the associated object
+- Test that reverting a change requires edit access to the associated object
 
 Version 4.6.0: Clustering
 -------------------------
