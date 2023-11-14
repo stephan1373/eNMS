@@ -112,7 +112,7 @@ Version 4.7.0: Changelog & Workflow Tree
   anything to commit (add log explaining that there was nothing to commit)
 
 Post-demo additions:
-- Add new "source" property to trace the origin of a change: REST API or UI
+- Add new "source" property to trace the origin of a change: REST API, Edit Panel, or Changelog Reversal
 
 Migration:
 - network.yaml must be merge into device.yaml:
