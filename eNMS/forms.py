@@ -679,7 +679,7 @@ class ServiceForm(BaseForm):
     type = StringField("Service Type")
     shared = BooleanField("Shared", help="common/shared")
     scoped_name = StringField("Scoped Name", [InputRequired()], ui_name="Name")
-    description = StringField("Description")
+    description = StringField(widget=TextArea(), render_kw={"rows": 6})
     device_query = StringField(
         "Device Query",
         python=True,
