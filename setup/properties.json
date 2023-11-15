@@ -605,6 +605,12 @@
         "visible": false
       },
       {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "vendor",
         "title": "Vendor",
         "search": "text",
