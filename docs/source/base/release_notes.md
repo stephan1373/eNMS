@@ -26,14 +26,6 @@ Version 4.7.0: Changelog & Workflow Tree
     - Add changelog button in workflow builder, service and global RC menus.
       When a selection is active, the changelog entry will only display changelogs for
       the subset of services that are selected (similar to skip mechanism).
-    - Bind Ctrl + Z to Changelog Panel to undo changes. Why Ctrl + Z doesn't automatically revert
-    a change:
-      - The user doesn't know what changes is about to be reverted
-      - Case of two users working on the same workflow concurrently: it is not possible to revert
-      the action of current user because the reverting process may be incompatible with actions done
-      by the other users (e.g modify (user 1) -> delete (user 2)
-    - Ctrl + Z shortcut only active when no active jspanel so that it doesn't intefere with e.g a
-      service edit panel Ctrl + Z on text
   - Add changelog button to all tables to display:
     - all changelogs about a specific type of object in table controls (e.g all device changelogs)
     - all changes about a specific object via link to "Changelog" relation table in every row
