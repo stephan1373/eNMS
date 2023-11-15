@@ -190,15 +190,23 @@ export function drawTree(service, data, resultsPanel) {
             )'><span class="glyphicon glyphicon-list"></span>
           </button>`
               : "";
-          const buttons = `
-            ${logButton}
-            <button type="button"
+          const resultButton =
+            type == "workflow"
+              ? `<button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.automation.showRuntimePanel(
                 "results", ${nodeProperties}, "${runtime}", "result"
               )'>
               <span class="glyphicon glyphicon-list-alt"></span>
-            </button>
+            </button>`
+            : `<button type="button"
+              class="btn btn-xs btn-primary"
+              onclick='eNMS.inventory.showDeviceResultsPanel(${nodeProperties})'>
+              <span class="glyphicon glyphicon-list-alt"></span>
+            </button>`;
+          const buttons = `
+            ${logButton}
+            ${resultButton}
             <button
               type="button"
               class="btn btn-xs btn-primary"
