@@ -28,7 +28,9 @@ import {
   showBuilderChangelogPanel,
   showLabelPanel,
   switchMode,
+  treeIsDisplayed,
   updateBuilderBindings,
+  drawTree,
 } from "./builder.js";
 import {
   showConnectionPanel,
@@ -74,26 +76,28 @@ export function switchToNetwork(path, direction) {
   const [networkId] = currentPath.split(">").slice(-1);
   call({
     url: `/get_network_state/${networkId}`,
+    data: { get_tree: treeIsDisplayed },
     callback: function(result) {
       network = result.network;
       localStorage.setItem("network_path", path);
       if (network) localStorage.setItem("network", JSON.stringify(network));
-      displayNetwork(network);
+      displayNetwork(result);
       switchMode(currentMode, true);
     },
   });
 }
 
-export function displayNetwork(network) {
-  if (network.devices.length > visualization["Network Builder"].max_allowed_nodes) {
+export function displayNetwork(result) {
+  if (result.network.devices.length > visualization["Network Builder"].max_allowed_nodes) {
     return notify("The network contains too many nodes to be displayed.", "error", 5);
   }
+  drawTree(null, result.tree);
   parallelLinks = {};
   graph = configureGraph(
-    network,
+    result.network,
     {
-      nodes: network.devices.map(drawNetworkNode),
-      edges: network.links.map(drawNetworkEdge),
+      nodes: result.network.devices.map(drawNetworkNode),
+      edges: result.network.links.map(drawNetworkEdge),
       inactive: new Set(),
     },
     options
@@ -265,11 +269,11 @@ export function getNetworkState(periodic, first) {
   if (userIsActive && network?.id && !first) {
     call({
       url: `/get_network_state/${currentPath}`,
-      data: { runtime: network.runtime },
+      data: { runtime: network.runtime, get_tree: treeIsDisplayed },
       callback: function(result) {
         if (result.network.last_modified > instance.last_modified) {
           instance.last_modified = result.network.last_modified;
-          displayNetwork(result.network);
+          displayNetwork(result);
         }
         if (result.device_results) displayNetworkState(result.device_results);
       },

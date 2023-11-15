@@ -687,11 +687,11 @@ class Controller:
     def get_session_log(self, session_id):
         return db.fetch("session", id=session_id).content
 
-    def get_network_state(self, path, runtime=None):
+    def get_network_state(self, path, runtime=None, get_tree=None):
         network = db.fetch("network", id=path.split(">")[-1], allow_none=True)
         if not network:
             raise db.rbac_error
-        return {
+        output = {
             "network": network.to_dict(include_relations=["devices", "links"]),
             "device_results": {
                 result.device_id: result.success
@@ -699,6 +699,9 @@ class Controller:
                 if result.device_id
             },
         }
+        if get_tree:
+            output.update(self.get_instance_tree("network", path))
+        return output
 
     def get_time(self):
         return vs.get_time()
@@ -797,8 +800,6 @@ class Controller:
                         style = "font-weight: bold;"
                     else:
                         return
-            if type == "network":
-                children = instance.devices
             children = False
             if instance.type == type:
                 instances = (
