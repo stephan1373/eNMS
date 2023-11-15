@@ -820,7 +820,7 @@ function toggleTree() {
             .appendTo(`#${type}-tree-control`)
             .css({ left: "60px" })
             .show();
-          getWorkflowState();
+          (type == "workflow" ? getWorkflowState : getNetworkState)();
         },
       }
     );

@@ -254,7 +254,8 @@ export function updateNetworkRightClickBindings() {
   });
 }
 
-function displayNetworkState(results) {
+function displayNetworkState(results, tree) {
+  drawTree(null, tree);
   nodes.update(
     Object.entries(results).map(([nodeId, success]) => {
       const color = success ? "green" : "red";
@@ -262,7 +263,7 @@ function displayNetworkState(results) {
       const image = `/static/img/network/${color}/${icon}.gif`;
       return { id: parseInt(nodeId), image: image };
     })
-  );
+  );  
 }
 
 export function getNetworkState(periodic, first) {
@@ -274,8 +275,9 @@ export function getNetworkState(periodic, first) {
         if (result.network.last_modified > instance.last_modified) {
           instance.last_modified = result.network.last_modified;
           displayNetwork(result);
+        } else {
+          displayNetworkState(result.device_results, result.tree);
         }
-        if (result.device_results) displayNetworkState(result.device_results);
       },
     });
   }
