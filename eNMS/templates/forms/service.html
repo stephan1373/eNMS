@@ -225,7 +225,7 @@
                 class="panel-collapse collapse in"
                 role="tabpanel"
               >
-                <div class="panel-body" style="background-color: #fafafa;">
+                <div class="panel-body" style="background-color: #fafafa">
                   {{ block_field(form, "owners") }} {{ block_field(form, "admin_only")
                   }} {% for property in form.rbac_properties %} {{ block_field(form,
                   property) }} {% endfor %} {{ block_field(form, "restrict_to_owners")

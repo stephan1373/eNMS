@@ -63,13 +63,11 @@
     </div>
     {% endif %} {% if settings["ssh"]["credentials"]["named"] %}
     <br />
-    <div id="named-credentials-fields" class="add-id" style="display: none;">
-      <div class="form-group">
-        {{ form.named_credential(class="form-control") }}
-      </div>
+    <div id="named-credentials-fields" class="add-id" style="display: none">
+      <div class="form-group">{{ form.named_credential(class="form-control") }}</div>
     </div>
     {% endif %} {% if settings["ssh"]["credentials"]["custom"] %}
-    <div id="custom-credentials-fields" class="add-id" style="display: none;">
+    <div id="custom-credentials-fields" class="add-id" style="display: none">
       <div class="form-group">
         {{ form.username(class="form-control", placeholder="Username") }}
       </div>

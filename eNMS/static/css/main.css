@@ -191,7 +191,8 @@ body {
   position: fixed;
   width: 230px;
   background: #355575;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .sidebar-footer a {
   padding: 7px 0 3px;
@@ -200,10 +201,11 @@ body {
   font-size: 17px;
   display: block;
   float: left;
-  background: #172D44; }
+  background: #172d44;
+}
 
 .sidebar-footer a:hover {
-  background: #425567; 
+  background: #425567;
 }
 
 /* Display icon in minimized submenu */

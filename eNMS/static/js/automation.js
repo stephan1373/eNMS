@@ -100,7 +100,7 @@ export function displayDiff(type, instanceId) {
             formatter: (value) => `Lines of context: ${valueToLabel[value]}`,
             tooltip: "always",
           })
-          .change(function() {
+          .change(function () {
             let value = valueToLabel[this.value];
             if (value == "All") value = 999999;
             call({
@@ -112,7 +112,7 @@ export function displayDiff(type, instanceId) {
                 }
                 let diff2htmlUi = new Diff2HtmlUI({ diff: result });
                 $(`#diff-type-${cantorId}`)
-                  .on("change", function() {
+                  .on("change", function () {
                     diff2htmlUi.draw(`#content-${cantorId}`, {
                       matching: "lines",
                       drawFileList: true,
@@ -250,18 +250,18 @@ function showResult(id) {
       <div id="content-${id}" style="height:95%"></div>`,
     title: "Result",
     id: id,
-    callback: function() {
+    callback: function () {
       call({
         url: `/get_result/${id}`,
         callback: (result) => {
           const jsonResult = result;
-          $(`#download-result-${id}`).on("click", function() {
+          $(`#download-result-${id}`).on("click", function () {
             downloadFile(`result-${id}`, JSON.stringify(result), "json");
           });
           const options = {
             mode: "view",
             modes: ["code", "view"],
-            onModeChange: function(newMode) {
+            onModeChange: function (newMode) {
               editor.set(newMode == "code" ? result : jsonResult);
               document.querySelectorAll(".jsoneditor-string").forEach((el) => {
                 el.innerText = el.innerText.replace(/(?:\\n)/g, "\n");
@@ -277,7 +277,7 @@ function showResult(id) {
             },
           };
           const content = document.getElementById(`content-${id}`);
-          observeMutations(content, ".jsoneditor-string", function(element) {
+          observeMutations(content, ".jsoneditor-string", function (element) {
             if (!element.mutated) {
               element.innerText = element.innerText
                 .replace(/ /g, "\u00a0")
@@ -292,7 +292,7 @@ function showResult(id) {
   });
 }
 
-export const showRuntimePanel = function(
+export const showRuntimePanel = function (
   type,
   service,
   runtime,
@@ -432,22 +432,18 @@ export const showRuntimePanel = function(
         title: `${type} - ${service.name}`,
         id: service.id,
         tableId: panelType == "table" ? `result-${service.id}` : null,
-        callback: function() {
+        callback: function () {
           $(`#runtimes-${panelId}`).empty();
           runtimes.forEach((runtime) => {
             $(`#runtimes-${panelId}`).append(
-              $("<option></option>")
-                .attr("value", runtime[0])
-                .text(runtime[1])
+              $("<option></option>").attr("value", runtime[0]).text(runtime[1])
             );
           });
           if (!runtime || ["normal", "latest"].includes(runtime)) {
             runtime = runtimes[0][0];
           }
-          $(`#runtimes-${panelId}`)
-            .val(runtime)
-            .selectpicker("refresh");
-          $(`#runtimes-${panelId}`).on("change", function() {
+          $(`#runtimes-${panelId}`).val(runtime).selectpicker("refresh");
+          $(`#runtimes-${panelId}`).on("change", function () {
             displayFunction(service, this.value, true, table, true, fullResult);
           });
           displayFunction(service, runtime, null, table, false, fullResult);
@@ -470,7 +466,7 @@ function displayReport(service, runtime, change) {
   }
   call({
     url: `/get_report/${service.id}/${runtime}`,
-    callback: function(report) {
+    callback: function (report) {
       if (service.report_format == "text") {
         editor.setValue(report);
         editor.refresh();
@@ -489,7 +485,7 @@ function displayLogs(service, runtime, change) {
   } else {
     editor = initCodeMirror(`service-logs-${service.id}`, "logs");
   }
-  $(`#runtimes-logs-${service.id}`).on("change", function() {
+  $(`#runtimes-logs-${service.id}`).on("change", function () {
     refreshLogs(service, this.value, editor, true);
   });
   refreshLogs(service, runtime, editor, true);
@@ -500,7 +496,7 @@ export function displayResultsTree(service, runtime) {
     currentPath && currentPath.endsWith(service.id) ? currentPath : service.id;
   call({
     url: `/get_instance_tree/workflow/${path}/${runtime}`,
-    callback: function(data) {
+    callback: function (data) {
       if (!data) return notify("No results to display.", "error", 5);
       drawTree(service.id, data.tree, true);
     },
@@ -531,7 +527,7 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line) {
   call({
     url: `/get_service_logs/${service.id}/${runtime}`,
     data: { line: line || 0, device: $("#device-filter").val() },
-    callback: function(result) {
+    callback: function (result) {
       if (!first && result.refresh && result.logs.length) {
         // eslint-disable-next-line new-cap
         editor.replaceRange(`\n${result.logs}`, CodeMirror.Pos(editor.lineCount()));
@@ -573,7 +569,7 @@ function submitInitialForm(serviceId) {
   });
 }
 
-export const runService = function({ id, path, type, parametrization }) {
+export const runService = function ({ id, path, type, parametrization }) {
   if (parametrization) {
     openPanel({
       name: "parameterized_form",
@@ -582,10 +578,10 @@ export const runService = function({ id, path, type, parametrization }) {
       title: "Parameterized Form",
       size: "1100px auto",
       checkRbac: false,
-      callback: function() {
+      callback: function () {
         call({
           url: `/get_form_properties/${id}`,
-          callback: function(properties) {
+          callback: function (properties) {
             formProperties[`initial-${id}`] = properties;
             configureForm(`initial-${id}`, id);
             $(`#parameterized_form-${id} script`).each((_, s) => eval(s.innerHTML));
@@ -597,7 +593,7 @@ export const runService = function({ id, path, type, parametrization }) {
     call({
       url: `/run_service/${path || id}`,
       form: type ? `${type}-form-${id}` : null,
-      callback: function(result) {
+      callback: function (result) {
         if (type) $(`#${type}-${id}`).remove();
         runLogic(result);
       },
@@ -619,10 +615,7 @@ export function runLogic(result) {
       getServiceState(result.service.id, true);
     } else {
       const option = `<option value='${result.runtime}'>${result.runtime}</option>`;
-      $("#current-runtime")
-        .append(option)
-        .val(result.runtime)
-        .selectpicker("refresh");
+      $("#current-runtime").append(option).val(result.runtime).selectpicker("refresh");
     }
   } else if (page == "network_builder") {
     network.runtime = result.runtime;
@@ -643,7 +636,7 @@ export function exportServices(tableId) {
 function pauseTask(id) {
   call({
     url: `/task_action/pause/${id}`,
-    callback: function() {
+    callback: function () {
       $(`#pause-resume-${id}`)
         .attr("onclick", `eNMS.automation.resumeTask('${id}')`)
         .text("Resume");
@@ -656,7 +649,7 @@ function pauseTask(id) {
 function resumeTask(id) {
   call({
     url: `/task_action/resume/${id}`,
-    callback: function() {
+    callback: function () {
       $(`#pause-resume-${id}`)
         .attr("onclick", `eNMS.automation.pauseTask('${id}')`)
         .text("Pause");
@@ -683,7 +676,7 @@ function displayCalendar(calendarType) {
     callback: () => {
       call({
         url: `/calendar_init/${calendarType}`,
-        callback: function(tasks) {
+        callback: function (tasks) {
           let events = [];
           for (const [name, properties] of Object.entries(tasks)) {
             events.push({
@@ -704,7 +697,7 @@ function displayCalendar(calendarType) {
             },
             selectable: true,
             selectHelper: true,
-            eventClick: function(e) {
+            eventClick: function (e) {
               if (calendarType == "task") {
                 showInstancePanel("task", e.id);
               } else {
@@ -724,7 +717,7 @@ function schedulerAction(action) {
   call({
     url: `/scheduler_action/${action}`,
     form: "search-form-task",
-    callback: function() {
+    callback: function () {
       refreshTable("task");
       notify(`All tasks have been ${action}d.`, "success", 5, true);
     },
@@ -759,7 +752,7 @@ export function showRunServicePanel({ instance, tableId, targets, type }) {
     title: `Run service on ${title}`,
     size: "900px 300px",
     id: panelId,
-    callback: function() {
+    callback: function () {
       $(`#run_service-type-${panelId}`).val(targetType);
       if (type && !targets) {
         let form = serializeForm(`#search-form-${panelId}`, `${type}_filtering`);
@@ -767,7 +760,7 @@ export function showRunServicePanel({ instance, tableId, targets, type }) {
         call({
           url: `/filtering/${type}`,
           data: { form: form, bulk: "id" },
-          callback: function(instances) {
+          callback: function (instances) {
             $(`#run_service-targets-${panelId}`).val(instances.join("-"));
           },
         });
@@ -784,7 +777,7 @@ function runServicesOnTargets(id) {
   call({
     url: "/run_service_on_targets",
     form: `run_service-form-${id}`,
-    callback: function(result) {
+    callback: function (result) {
       runLogic(result);
       $(`#run_service-${id}`).remove();
     },
@@ -800,21 +793,21 @@ function showImportServicesPanel() {
       new Dropzone(document.getElementById(`dropzone-services`), {
         url: "/import_services",
         timeout: automation.service_import.timeout,
-        init: function() {
-          this.on("sending", function(file, xhr) {
-            xhr.ontimeout = function() {
+        init: function () {
+          this.on("sending", function (file, xhr) {
+            xhr.ontimeout = function () {
               notify(`Upload of File "${file.name}" timed out.`, "error", 5, true);
               file.previewElement.classList.add("dz-error");
             };
           });
         },
-        error: function(file, message) {
+        error: function (file, message) {
           const error = typeof message == "string" ? message : message.alert;
           const log = `File ${file.name} was not uploaded - ${error}`;
           notify(log, "error", 5, true);
           file.previewElement.classList.add("dz-error");
         },
-        success: function(file, message) {
+        success: function (file, message) {
           if (message.alert) {
             notify(`File upload failed (${message.alert}).`, "error", 5, true);
           } else {
@@ -822,7 +815,7 @@ function showImportServicesPanel() {
           }
           file.previewElement.classList.add(message.alert ? "dz-success" : "dz-error");
         },
-        accept: function(file, done) {
+        accept: function (file, done) {
           if (!file.name.toLowerCase().endsWith(".tgz")) {
             done("The file must be a .tgz archive");
           } else {

@@ -5,10 +5,10 @@
 {% endblock stylesheets %} {% block left_frame %}
 <div id="workflow-controls" class="controls">
   <div class="controls_mode navbar navbar-default navbar-color">
-    <table class="table" cellspacing="0" style="margin: 0px;" width="100%">
+    <table class="table" cellspacing="0" style="margin: 0px" width="100%">
       <tbody>
         <tr>
-          <td style="text-align: center; vertical-align: middle;">
+          <td style="text-align: center; vertical-align: middle">
             <button
               type="button"
               class="btn btn-primary"
@@ -18,7 +18,7 @@
               <span class="glyphicon glyphicon-plus"></span>
             </button>
           </td>
-          <td style="min-width: 200px;">
+          <td style="min-width: 200px">
             <select
               id="service-type-dd-list"
               class="form-control"
@@ -28,7 +28,7 @@
           </td>
         </tr>
         <tr>
-          <td style="text-align: center;">
+          <td style="text-align: center">
             <button
               type="button"
               class="btn btn-primary"
@@ -38,7 +38,7 @@
               <span id="mode-icon" class="glyphicon glyphicon-move"></span>
             </button>
           </td>
-          <td style="min-width: 200px;">
+          <td style="min-width: 200px">
             <select id="edge-type-dd-list" class="form-control">
               <option value="success">Success</option>
               <option value="failure">Failure</option>
@@ -50,10 +50,10 @@
   </div>
   <nav
     class="navbar navbar-default navbar-custom navbar-color"
-    style="padding-bottom: 2px;"
+    style="padding-bottom: 2px"
     role="navigation"
   >
-    <div style="width: 100%; margin: 0px;">
+    <div style="width: 100%; margin: 0px">
       <select
         id="current-workflow"
         class="form-control"
@@ -61,12 +61,12 @@
         data-size="20"
       ></select>
     </div>
-    <ul class="pagination" style="margin: 0px; padding-top: 10px;">
+    <ul class="pagination" style="margin: 0px; padding-top: 10px">
       <li>
         <a
           onclick="action['Edit workflow']()"
           data-tooltip="Edit Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-edit cursor"></span
         ></a>
       </li>
@@ -74,7 +74,7 @@
         <a
           onclick="action['Duplicate workflow']()"
           data-tooltip="Duplicate Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-duplicate"></span
         ></a>
       </li>
@@ -82,7 +82,7 @@
         <a
           onclick="action['Create workflow']()"
           data-tooltip="Create Top Level Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-plus"></span
         ></a>
       </li>
@@ -90,7 +90,7 @@
         <a
           onclick="action['Add to Workflow']()"
           data-tooltip="Add to Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-book"></span
         ></a>
       </li>
@@ -98,17 +98,17 @@
         <a
           onclick="action['Create Label Button']()"
           data-tooltip="Create Label"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-font"></span
         ></a>
       </li>
       <li>
-        <a onclick="action['Skip']()" data-tooltip="Skip" style="cursor: pointer;"
+        <a onclick="action['Skip']()" data-tooltip="Skip" style="cursor: pointer"
           ><span class="glyphicon glyphicon-ban-circle"></span
         ></a>
       </li>
       <li>
-        <a onclick="action['Delete']()" data-tooltip="Delete" style="cursor: pointer;"
+        <a onclick="action['Delete']()" data-tooltip="Delete" style="cursor: pointer"
           ><span class="glyphicon glyphicon-trash"></span
         ></a>
       </li>
@@ -116,12 +116,12 @@
         <a
           onclick="action['Workflow Changelog']()"
           data-tooltip="Changelog"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-wrench"></span
         ></a>
       </li>
       <li>
-        <a onclick="action['Zoom In']()" data-tooltip="Zoom In" style="cursor: pointer;"
+        <a onclick="action['Zoom In']()" data-tooltip="Zoom In" style="cursor: pointer"
           ><span class="glyphicon glyphicon-zoom-in"></span
         ></a>
       </li>
@@ -129,7 +129,7 @@
         <a
           onclick="action['Zoom Out']()"
           data-tooltip="Zoom Out"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-zoom-out"></span
         ></a>
       </li>
@@ -137,7 +137,7 @@
         <a
           onclick="eNMS.builder.showBuilderSearchPanel()"
           data-tooltip="Search"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-search"></span
         ></a>
       </li>
@@ -146,7 +146,7 @@
           id="export-workflow-btn"
           onclick="action['Export']()"
           data-tooltip="Export Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-export"></span
         ></a>
       </li>
@@ -154,7 +154,7 @@
         <a
           onclick="action['Backward']()"
           data-tooltip="Previous Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-chevron-left"></span
         ></a>
       </li>
@@ -162,7 +162,7 @@
         <a
           onclick="action['Upward']()"
           data-tooltip="Switch to Parent Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-chevron-up"></span
         ></a>
       </li>
@@ -170,7 +170,7 @@
         <a
           onclick="action['Forward']()"
           data-tooltip="Next Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-chevron-right"></span
         ></a>
       </li>
@@ -179,22 +179,22 @@
   <nav
     id="run-navbar"
     class="navbar navbar-default navbar-custom navbar-color"
-    style="padding-bottom: 2px; margin-left: 10px;"
+    style="padding-bottom: 2px; margin-left: 10px"
     role="navigation"
   >
-    <div style="width: 100%;">
+    <div style="width: 100%">
       <select id="current-runtime" class="form-control" data-size="20"></select>
     </div>
-    <ul class="pagination" style="margin: 0px; padding-top: 10px;">
+    <ul class="pagination" style="margin: 0px; padding-top: 10px">
       <li id="workflow-tree-btn">
         <a
           onclick="eNMS.builder.toggleTree()"
           data-tooltip="Workflow Tree"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-tree-conifer"></span
         ></a>
       </li>
-      <li id="resize-tree-li" style="display:none">
+      <li id="resize-tree-li" style="display: none">
         <a
           onclick="action['Resize Tree']()"
           data-tooltip="Expand / Collapse Tree"
@@ -206,7 +206,7 @@
         <a
           onclick="action['Runtimes Display']()"
           data-tooltip="Personal or All Runtimes"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span id="user-filtering-icon-run" class="fa fa-user"></span
         ></a>
       </li>
@@ -214,7 +214,7 @@
         <a
           onclick="action['Workflow Logs']()"
           data-tooltip="Logs"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-list"></span
         ></a>
       </li>
@@ -222,7 +222,7 @@
         <a
           onclick="action['Workflow Report']()"
           data-tooltip="Report"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-modal-window"></span
         ></a>
       </li>
@@ -230,7 +230,7 @@
         <a
           onclick="action['Workflow Result Tree']()"
           data-tooltip="Results"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-list-alt"></span
         ></a>
       </li>
@@ -238,7 +238,7 @@
         <a
           onclick="action['Workflow Result Comparison']()"
           data-tooltip="Result Comparison"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="fa fa-adjust"></span
         ></a>
       </li>
@@ -246,7 +246,7 @@
         <a
           onclick="action['Run Workflow']()"
           data-tooltip="Run Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-play"></span
         ></a>
       </li>
@@ -254,7 +254,7 @@
         <a
           onclick="action['Parameterized Workflow Run']()"
           data-tooltip="Parameterized Run"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-play-circle"></span
         ></a>
       </li>
@@ -262,7 +262,7 @@
         <a
           onclick="action['Stop Workflow']()"
           data-tooltip="Stop Workflow"
-          style="cursor: pointer;"
+          style="cursor: pointer"
           ><span class="glyphicon glyphicon-stop"></span
         ></a>
       </li>
@@ -270,7 +270,7 @@
   </nav>
 </div>
 <div id="builder"></div>
-<div id="connections-div" style="position: absolute; bottom: 0px; display: none;"></div>
+<div id="connections-div" style="position: absolute; bottom: 0px; display: none"></div>
 <ul id="contextMenu" oncontextmenu="return false;" class="dropdown-menu" role="menu">
   <li class="menu-entry node-selection">
     <a tabindex="-1" href="#">Edit</a>
@@ -385,16 +385,16 @@
 </ul>
 {% endblock left_frame %} {% block right_frame %}
 <div id="workflow-tree" style="display: none">
-  <div style="display:flex; flex-direction: column">
+  <div style="display: flex; flex-direction: column">
     <div id="workflow-tree-control" style="margin-top: 10px; margin-left: 30px"></div>
     <div
       class="hidden-scrollbar"
-      style="padding: 20px 20px; overflow: auto; height: 70vh;"
+      style="padding: 20px 20px; overflow: auto; height: 70vh"
     >
-      <div style="height: 10000px;">
+      <div style="height: 10000px">
         <div
           id="workflow-tree-services"
-          style="padding-left: 10px; padding-right: 10px;"
+          style="padding-left: 10px; padding-right: 10px"
         ></div>
       </div>
     </div>

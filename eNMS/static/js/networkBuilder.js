@@ -53,11 +53,11 @@ const options = {
   },
   manipulation: {
     enabled: false,
-    addNode: function(data, callback) {},
-    addEdge: function(data, callback) {
+    addNode: function (data, callback) {},
+    addEdge: function (data, callback) {
       saveLink(data);
     },
-    deleteNode: function(data, callback) {
+    deleteNode: function (data, callback) {
       callback(data);
     },
   },
@@ -77,7 +77,7 @@ export function switchToNetwork(path, direction) {
   call({
     url: `/get_network_state/${networkId}`,
     data: { get_tree: treeIsDisplayed },
-    callback: function(result) {
+    callback: function (result) {
       network = result.network;
       localStorage.setItem("network_path", path);
       if (network) localStorage.setItem("network", JSON.stringify(network));
@@ -88,7 +88,9 @@ export function switchToNetwork(path, direction) {
 }
 
 export function displayNetwork(result) {
-  if (result.network.devices.length > visualization["Network Builder"].max_allowed_nodes) {
+  if (
+    result.network.devices.length > visualization["Network Builder"].max_allowed_nodes
+  ) {
     return notify("The network contains too many nodes to be displayed.", "error", 5);
   }
   drawTree(null, result.tree);
@@ -102,7 +104,7 @@ export function displayNetwork(result) {
     },
     options
   );
-  graph.on("doubleClick", function(event) {
+  graph.on("doubleClick", function (event) {
     event.event.preventDefault();
     const node = nodes.get(this.getNodeAt(event.pointer.DOM));
     const linkId = this.getEdgeAt(event.pointer.DOM);
@@ -145,9 +147,7 @@ export function drawNetworkNode(node) {
 export function updateNetworkPanel(type) {
   if (currentMode == "motion" && creationMode == "create_device") {
     $(`#${type}-networks`).append(new Option(network.name, network.name));
-    $(`#${type}-networks`)
-      .val(network.name)
-      .trigger("change");
+    $(`#${type}-networks`).val(network.name).trigger("change");
   }
 }
 
@@ -218,7 +218,7 @@ function addObjectsToNetwork() {
   call({
     url: `/add_objects_to_network/${network.id}`,
     form: "add_to_network-form",
-    callback: function(result) {
+    callback: function (result) {
       document.body.style.cursor = "progress";
       result.devices.map((node) => nodes.update(drawNetworkNode(node)));
       result.links.map((link) => edges.update(drawNetworkEdge(link)));
@@ -263,7 +263,7 @@ function displayNetworkState(results, tree) {
       const image = `/static/img/network/${color}/${icon}.gif`;
       return { id: parseInt(nodeId), image: image };
     })
-  );  
+  );
 }
 
 export function getNetworkState(periodic, first) {
@@ -271,7 +271,7 @@ export function getNetworkState(periodic, first) {
     call({
       url: `/get_network_state/${currentPath}`,
       data: { runtime: network.runtime, get_tree: treeIsDisplayed },
-      callback: function(result) {
+      callback: function (result) {
         if (result.network.last_modified > instance.last_modified) {
           instance.last_modified = result.network.last_modified;
           displayNetwork(result);

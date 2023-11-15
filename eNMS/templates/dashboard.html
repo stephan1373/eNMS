@@ -33,19 +33,17 @@ stylesheets %} {{ super() }}
 {% for type, type_properties in properties.items() %}
 <div class="col-md-6 col-sm-6 col-xs-12">
   <fieldset class="section">
-    <legend align="center" class="section">
-      {{ type|capitalize }}s
-    </legend>
-    <div class="form-group" style="width: 60%; display: block; margin: 0 auto;">
+    <legend align="center" class="section">{{ type|capitalize }}s</legend>
+    <div class="form-group" style="width: 60%; display: block; margin: 0 auto">
       <select id="{{ type }}-properties" class="form-control">
         {% for property in type_properties %}
-        <option value="{{ property }}"
-          >{{ names.get(property, property.replace("_", " ").capitalize() ) }}</option
-        >
+        <option value="{{ property }}">
+          {{ names.get(property, property.replace("_", " ").capitalize() ) }}
+        </option>
         {% endfor %}
       </select>
     </div>
-    <div id="{{ type }}" style="height: 550px;"></div>
+    <div id="{{ type }}" style="height: 550px"></div>
   </fieldset>
 </div>
 {% endfor %} {% endblock left_frame %} {% block javascripts %} {{ super() }}

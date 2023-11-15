@@ -52,7 +52,7 @@ form[field_name].render_kw or {} %}
   </fieldset>
   {% elif form[field_name].type == "FieldList" %} {% for entry in form[field_name] %}
   <fieldset>
-    <legend style="font-weight: bold;">
+    <legend style="font-weight: bold">
       {{ field_name | capitalize() }} {{ loop.index }}
     </legend>
     {% for subfield in entry %} {% if subfield.widget.input_type != 'hidden' %}

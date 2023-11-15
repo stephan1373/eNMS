@@ -24,9 +24,7 @@
           {{ login_form.csrf_token }}
           <h1>eNMS</h1>
           <label>Authentication</label>
-          <div>
-            {{ login_form.authentication_method(class="form-control") }}
-          </div>
+          <div>{{ login_form.authentication_method(class="form-control") }}</div>
           <br />
           <div>
             {{ login_form.username(class="form-control required", placeholder="Name") }}

@@ -99,7 +99,7 @@
         <img
           id="img-enms"
           src="{{ url_for('static', filename='img/logo.png') }}"
-          style="width: 30px; display: none;"
+          style="width: 30px; display: none"
         />
         {% set version_size = "15" if current_user.small_menu else "20" %}
         <h3
@@ -238,7 +238,7 @@
                   <a
                     onclick="eNMS.base.createAlerts()"
                     class="dropdown-toggle info-number"
-                    style="cursor: pointer;"
+                    style="cursor: pointer"
                     data-toggle="dropdown"
                     aria-expanded="false"
                   >
@@ -268,7 +268,7 @@
                 <li class="nav-item">
                   <a
                     onclick="eNMS.administration.displayFiles()"
-                    style="cursor: pointer;"
+                    style="cursor: pointer"
                   >
                     <img
                       src="{{ url_for('static', filename='img/files.png') }}"
@@ -284,7 +284,7 @@
                     onclick="eNMS.base.openPanel({
                       name: 'administration', title: 'Administration Panel', size: 'auto'
                       })"
-                    style="cursor: pointer;"
+                    style="cursor: pointer"
                   >
                     <img
                       src="{{ url_for('static', filename='img/administration.png') }}"
@@ -302,9 +302,7 @@
       </div>
       {% endblock header %} {% cache settings["cache"]["timeout"], endpoint %}
       <div class="main_frame">
-        <div class="left_frame">
-          {% block left_frame %} {% endblock left_frame %}
-        </div>
+        <div class="left_frame">{% block left_frame %} {% endblock left_frame %}</div>
         <div class="right_frame">
           {% block right_frame %} {% endblock right_frame %}
         </div>
