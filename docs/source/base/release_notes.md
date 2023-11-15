@@ -116,6 +116,7 @@ Post-demo additions:
   or 'Change Reverted'
 - Rename the "Undo" mechanism to "Revert" mechanism (given that we're not keeping track of
   a timeline of changes)
+- Make device, link and service form "description" field a multiline field
 
 Migration:
 - network.yaml must be merge into device.yaml:
