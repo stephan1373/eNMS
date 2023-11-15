@@ -22,7 +22,7 @@ import {
   userIsActive,
 } from "./base.js";
 import { displayFolderPath, folderPath } from "./administration.js";
-import { exportServices, runtimeDisplay } from "./automation.js";
+import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
 export let tables = {};

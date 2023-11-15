@@ -21,13 +21,11 @@ import {
   call,
   configureNamespace,
   copyToClipboard,
-  createTooltips,
   editors,
   moveHistory,
   notify,
   openPanel,
   showInstancePanel,
-  showChangelogPanel,
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
