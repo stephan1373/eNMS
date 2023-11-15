@@ -199,7 +199,7 @@ export function drawTree(service, data, resultsPanel) {
               )'>
               <span class="glyphicon glyphicon-list-alt"></span>
             </button>`
-            : `<button type="button"
+              : `<button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.inventory.showDeviceResultsPanel(${nodeProperties})'>
               <span class="glyphicon glyphicon-list-alt"></span>
