@@ -192,13 +192,17 @@ export function drawTree(service, data, resultsPanel) {
                   )}
                 </div>`;
           }
+          const logButton =
+            type == "workflow"
+            ? `<button type="button"
+            class="btn btn-xs btn-primary"
+            onclick='eNMS.automation.showRuntimePanel(
+              "logs", ${nodeProperties}, "${runtime}"
+            )'><span class="glyphicon glyphicon-list"></span>
+          </button>`
+            : "";
           const buttons = `
-            <button type="button"
-              class="btn btn-xs btn-primary"
-              onclick='eNMS.automation.showRuntimePanel(
-                "logs", ${nodeProperties}, "${runtime}"
-              )'><span class="glyphicon glyphicon-list"></span>
-            </button>
+            ${logButton}
             <button type="button"
               class="btn btn-xs btn-primary"
               onclick='eNMS.automation.showRuntimePanel(
