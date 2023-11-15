@@ -424,7 +424,7 @@ export class Table {
       <button
         class="btn btn-info"
         onclick="eNMS.table.showTableChangelogPanel('${this.id}')"
-        data-tooltip="Refresh"
+        data-tooltip="Changelog"
         type="button"
       >
         <span class="glyphicon glyphicon-wrench"></span>
