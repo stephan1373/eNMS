@@ -12,10 +12,12 @@ import {
   call,
   configureNamespace,
   createTooltips,
+  hideMenu,
   history,
   historyPosition,
   initSelect,
   loadTypes,
+  menuIsHidden,
   notify,
   openPanel,
   showChangelogPanel,
@@ -57,6 +59,7 @@ export let currentPath = page.includes("builder") && savedPath;
 export let instance;
 export let edges;
 export let nodes;
+export let treeIsDisplayed;
 export let triggerMenu;
 
 export function configureGraph(newInstance, graph, options) {
@@ -808,9 +811,52 @@ export function initBuilder() {
   updateRightClickBindings();
 }
 
+function toggleTree() {
+  const kwargs = { duration: 200, queue: false };
+  if (!treeIsDisplayed) {
+    if (!menuIsHidden) hideMenu();
+    $("#workflow-tree,#resize-tree-li").show();
+    $("#run-navbar").hide();
+    $(".left_frame").animate({ width: "-=600px" }, kwargs);
+    $(".right_frame").animate(
+      { width: "600px" },
+      {
+        ...kwargs,
+        complete: () => {
+          $("#run-navbar")
+            .appendTo("#workflow-tree-control")
+            .css({ left: "60px" })
+            .show();
+          getWorkflowState();
+        },
+      }
+    );
+  } else {
+    if (menuIsHidden) hideMenu();
+    $("#run-navbar,#resize-tree-li").hide();
+    $(".left_frame").animate({ width: "+=600px" }, kwargs);
+    $(".right_frame").animate(
+      { width: "-=600px" },
+      {
+        ...kwargs,
+        complete: () => {
+          $("#run-navbar")
+            .appendTo("#workflow-controls")
+            .css({ left: "0px" })
+            .show();
+          $("#workflow-tree").hide();
+        },
+      }
+    );
+  }
+  $("#workflow-tree-btn").toggleClass("active");
+  treeIsDisplayed = !treeIsDisplayed;
+}
+
 configureNamespace("builder", [
   createLabel,
   highlightNode,
   showBuilderSearchPanel,
   switchMode,
+  toggleTree,
 ]);

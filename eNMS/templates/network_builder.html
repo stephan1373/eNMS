@@ -125,6 +125,14 @@ block stylesheets %} {{ super() }}
           ><span class="glyphicon glyphicon-play"></span
         ></a>
       </li>
+      <li id="workflow-tree-btn">
+        <a
+          onclick="eNMS.builder.toggleTree()"
+          data-tooltip="Workflow Tree"
+          style="cursor: pointer;"
+          ><span class="glyphicon glyphicon-tree-conifer"></span
+        ></a>
+      </li>
       <li>
         <a onclick="action['Zoom In']()" data-tooltip="Zoom In" style="cursor: pointer;"
           ><span class="glyphicon glyphicon-zoom-in"></span

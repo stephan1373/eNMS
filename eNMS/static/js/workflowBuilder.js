@@ -23,8 +23,6 @@ import {
   copyToClipboard,
   createTooltips,
   editors,
-  hideMenu,
-  menuIsHidden,
   moveHistory,
   notify,
   openPanel,
@@ -46,6 +44,7 @@ import {
   showBuilderChangelogPanel,
   showLabelPanel,
   switchMode,
+  treeIsDisplayed,
   updateBuilderBindings,
 } from "./builder.js";
 import { tables } from "./table.js";
@@ -90,7 +89,6 @@ let placeholder;
 let isSuperworkflow;
 let startId;
 let endId;
-let workflowTreeDisplayed;
 let resizeTreeMode = "expanded";
 
 export function displayWorkflow(workflowData, workflowSwitch) {
@@ -219,7 +217,7 @@ export const switchToWorkflow = function(path, direction, runtime, selection) {
     url: `/get_service_state/${path}`,
     data: {
       display: runtimeDisplay,
-      get_tree: workflowTreeDisplayed,
+      get_tree: treeIsDisplayed,
       runtime: runtime || $("#current-runtime").val() || "latest",
     },
     callback: function(result) {
@@ -747,7 +745,7 @@ export function getWorkflowState(periodic, first) {
       url: `/get_service_state/${currentPath}`,
       data: {
         display: runtimeDisplay,
-        get_tree: workflowTreeDisplayed,
+        get_tree: treeIsDisplayed,
         runtime: runtime,
         device: $("#device-filter").val(),
         search_mode: $("#tree-search-mode").val(),
@@ -821,53 +819,10 @@ function resizeTree() {
   $("#resize-tree-icon").toggleClass("glyphicon-resize-small glyphicon-resize-full");
 }
 
-function toggleWorkflowTree() {
-  const kwargs = { duration: 200, queue: false };
-  if (!workflowTreeDisplayed) {
-    if (!menuIsHidden) hideMenu();
-    $("#workflow-tree,#resize-tree-li").show();
-    $("#run-navbar").hide();
-    $(".left_frame").animate({ width: "-=600px" }, kwargs);
-    $(".right_frame").animate(
-      { width: "600px" },
-      {
-        ...kwargs,
-        complete: () => {
-          $("#run-navbar")
-            .appendTo("#workflow-tree-control")
-            .css({ left: "60px" })
-            .show();
-          getWorkflowState();
-        },
-      }
-    );
-  } else {
-    if (menuIsHidden) hideMenu();
-    $("#run-navbar,#resize-tree-li").hide();
-    $(".left_frame").animate({ width: "+=600px" }, kwargs);
-    $(".right_frame").animate(
-      { width: "-=600px" },
-      {
-        ...kwargs,
-        complete: () => {
-          $("#run-navbar")
-            .appendTo("#workflow-controls")
-            .css({ left: "0px" })
-            .show();
-          $("#workflow-tree").hide();
-        },
-      }
-    );
-  }
-  $("#workflow-tree-btn").toggleClass("active");
-  workflowTreeDisplayed = !workflowTreeDisplayed;
-}
-
 configureNamespace("workflowBuilder", [
   addServicesToWorkflow,
   getWorkflowState,
   restartWorkflow,
   stopWorkflow,
   switchToWorkflow,
-  toggleWorkflowTree,
 ]);
