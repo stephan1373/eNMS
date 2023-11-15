@@ -513,7 +513,7 @@ class ObjectForm(BaseForm):
     name = StringField("Name")
     creator = StringField(render_kw={"readonly": True})
     type = StringField("Type")
-    description = StringField("Description")
+    description = StringField(widget=TextArea(), render_kw={"rows": 3})
     subtype = StringField("Subtype")
     location = StringField("Location")
 
