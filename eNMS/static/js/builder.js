@@ -132,7 +132,7 @@ export function configureGraph(newInstance, graph, options) {
 }
 
 export function drawTree(service, data, resultsPanel) {
-  const treeId = service ? `#result-tree-${service}` : "#workflow-tree-services";
+  const treeId = service ? `#result-tree-${service}` : `#${type}-tree-${nodeType}s`;
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (!data) {
     builderTreeData = null;
@@ -252,9 +252,9 @@ export function drawTree(service, data, resultsPanel) {
     tree.on("contextmenu", ".jstree-anchor", function(event) {
       const tree = $(treeId).jstree(true);
       selectedObject = tree.get_node(event.target).data.properties;
-      $(".menu-entry,.workflow-selection").hide();
+      $(`.menu-entry,.${type}-selection`).hide();
       $(".node-selection").show();
-      if (selectedObject.type !== "workflow") $(".workflow-selection").hide();
+      if (selectedObject.type !== type) $(`.${type}-selection`).hide();
       if (nodes.get(selectedObject.id)) {
         network.selectNodes([selectedObject.id]);
       } else {
@@ -815,7 +815,7 @@ function toggleTree() {
   const kwargs = { duration: 200, queue: false };
   if (!treeIsDisplayed) {
     if (!menuIsHidden) hideMenu();
-    $("#workflow-tree,#resize-tree-li").show();
+    $(`#${type}-tree,#resize-tree-li`).show();
     $("#run-navbar").hide();
     $(".left_frame").animate({ width: "-=600px" }, kwargs);
     $(".right_frame").animate(
@@ -824,7 +824,7 @@ function toggleTree() {
         ...kwargs,
         complete: () => {
           $("#run-navbar")
-            .appendTo("#workflow-tree-control")
+            .appendTo(`#${type}-tree-control`)
             .css({ left: "60px" })
             .show();
           getWorkflowState();
@@ -841,15 +841,15 @@ function toggleTree() {
         ...kwargs,
         complete: () => {
           $("#run-navbar")
-            .appendTo("#workflow-controls")
+            .appendTo(`#${type}-controls`)
             .css({ left: "0px" })
             .show();
-          $("#workflow-tree").hide();
+          $(`#${type}-tree`).hide();
         },
       }
     );
   }
-  $("#workflow-tree-btn").toggleClass("active");
+  $(`#${type}-tree-btn`).toggleClass("active");
   treeIsDisplayed = !treeIsDisplayed;
 }
 
