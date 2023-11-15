@@ -125,10 +125,10 @@ block stylesheets %} {{ super() }}
           ><span class="glyphicon glyphicon-play"></span
         ></a>
       </li>
-      <li id="workflow-tree-btn">
+      <li id="network-tree-btn">
         <a
           onclick="eNMS.builder.toggleTree()"
-          data-tooltip="Workflow Tree"
+          data-tooltip="Network Tree"
           style="cursor: pointer;"
           ><span class="glyphicon glyphicon-tree-conifer"></span
         ></a>
@@ -224,6 +224,24 @@ block stylesheets %} {{ super() }}
     <a tabindex="-1" href="#">Create Label</a>
   </li>
 </ul>
-{% endblock left_frame %} {% block javascripts %} {{ super()}}
+{% endblock left_frame %} {% block right_frame %}
+<div id="network-tree" style="display: none">
+  <div style="display:flex; flex-direction: column">
+    <div id="network-tree-control" style="margin-top: 10px; margin-left: 30px"></div>
+    <div
+      class="hidden-scrollbar"
+      style="padding: 20px 20px; overflow: auto; height: 70vh;"
+    >
+      <div style="height: 10000px;">
+        <div
+          id="network-tree-devices"
+          style="padding-left: 10px; padding-right: 10px;"
+        ></div>
+      </div>
+    </div>
+    <input type="hidden" name="devices" id="devices" />
+  </div>
+</div>
+{% endblock right_frame %} {% block javascripts %} {{ super()}}
 <script src="{{ url_for('static', filename='lib/vis/vis.min.js') }}"></script>
 {% endblock javascripts %}
