@@ -541,6 +541,15 @@ tables.device = class DeviceTable extends Table {
       this.columnDisplay(),
       this.displayChangelogButton(),
       this.refreshTableButton(),
+      `
+      <button
+        class="btn btn-info"
+        onclick="eNMS.table.serializedSearch('device')"
+        data-tooltip="Search across all properties"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-filter"></span>
+      </button>`,
       this.bulkFilteringButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
@@ -566,6 +575,36 @@ tables.device = class DeviceTable extends Table {
         <span class="glyphicon glyphicon-play"></span>
       </button>`,
       this.bulkDeletionButton(),
+      `
+      <div
+        id="serialized-search-div"
+        class="input-group table-search"
+        style="width: 100%; padding: 3px 15px 3px 15px; display: none;"
+      >
+        <input
+          id="serialized-search"
+          name="serialized"
+          type="text"
+          placeholder="&#xF002; Search across all properties"
+          class="form-control"
+          style="font-family:Arial, FontAwesome;
+          height: 30px; margin-top: 5px"
+        >
+        <span class="input-group-btn" style="width: 10px">
+          <button
+            id="device_filtering-serialized-search"
+            class="btn btn-default pull-right"
+            type="button"
+            style="height: 30px; margin-top: 5px">
+              <span
+                class="glyphicon glyphicon-center glyphicon-menu-down"
+                aria-hidden="true"
+                style="font-size: 10px">
+              </span>
+          </button>
+        </span>
+      </div>
+      `,
     ];
   }
 
@@ -619,7 +658,15 @@ tables.device = class DeviceTable extends Table {
   }
 
   postProcessing(...args) {
+    let self = this;
     super.postProcessing(...args);
+    let timer = false;
+    document.getElementById("serialized-search").addEventListener("keyup", function () {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        self.table.page(0).ajax.reload(null, false);
+      }, 500);
+    });
     loadTypes("device");
   }
 };
@@ -1028,7 +1075,7 @@ tables.service = class ServiceTable extends Table {
       `
       <button
         class="btn btn-info"
-        onclick="eNMS.automation.serializedSearch()"
+        onclick="eNMS.table.serializedSearch('service')"
         data-tooltip="Search across all properties"
         type="button"
       >
@@ -2134,6 +2181,16 @@ function displayRelationTable(type, instance, relation) {
   });
 }
 
+function serializedSearch(type) {
+  $("#serialized-search-div").toggle();
+  if (!$("#serialized-search-div").is(":visible")) {
+    $("#serialized-search").val("");
+    refreshTable(type);
+  } else {
+    $("#serialized-search").focus();
+  }
+}
+
 function togglePaginationDisplay(tableId) {
   const table = tableInstances[tableId];
   table.displayPagination = !table.displayPagination;
@@ -2153,6 +2210,7 @@ configureNamespace("table", [
   displayRelationTable,
   exportTable,
   refreshTable,
+  serializedSearch,
   showBulkDeletionPanel,
   showBulkEditPanel,
   showBulkServiceExportPanel,

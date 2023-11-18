@@ -190,16 +190,6 @@ export function flipRuntimeDisplay(display) {
   if (!display) switchToWorkflow(currentPath);
 }
 
-function serializedSearch() {
-  $("#serialized-search-div").toggle();
-  if (!$("#serialized-search-div").is(":visible")) {
-    $("#serialized-search").val("");
-    refreshTable("service");
-  } else {
-    $("#serialized-search").focus();
-  }
-}
-
 function stopRun(runtime) {
   call({
     url: `/stop_run/${runtime}`,
@@ -841,7 +831,6 @@ configureNamespace("automation", [
   runService,
   runServicesOnTargets,
   schedulerAction,
-  serializedSearch,
   showImportServicesPanel,
   showResult,
   showRunServicePanel,
