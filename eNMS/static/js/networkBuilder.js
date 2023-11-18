@@ -274,7 +274,7 @@ export function getNetworkState(periodic, first) {
         runtime: network.runtime,
         get_tree: treeIsDisplayed,
         search_mode: $("#tree-search-mode").val(),
-        search_value: $("#tree-search").val()
+        search_value: $("#tree-search").val(),
       },
       callback: function (result) {
         if (result.network.last_modified > instance.last_modified) {

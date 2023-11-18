@@ -131,9 +131,9 @@ export function drawTree(service, data, resultsPanel) {
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (!data) {
     builderTreeData = null;
-    $(treeId).jstree("destroy").off().empty()
+    $(treeId).jstree("destroy").off().empty();
     if (!noUpdate) $(treeId).text("No Results Found.");
-    return 
+    return;
   }
   if (noUpdate && !resultsPanel) return;
   if ($(treeId).jstree(true) && !resultsPanel) {
@@ -329,14 +329,15 @@ export function showBuilderChangelogPanel(model, global) {
 }
 
 function showBuilderSearchPanel() {
-  const bottomField = type == "workflow"
-    ? `<div style="width: 100%; margin-bottom: 5px; margin-top: 5px;">
+  const bottomField =
+    type == "workflow"
+      ? `<div style="width: 100%; margin-bottom: 5px; margin-top: 5px;">
         <fieldset class="custom-fieldset">
           <legend class="custom-legend">Device Filtering</legend>
           <select id="device-filter" name="device-filter" style="width: 100%;"></select>
         </fieldset>
       </div>`
-    : "";
+      : "";
   openPanel({
     name: "search",
     size: `500 ${type == "workflow" ? "240" : "160"}`,
