@@ -364,15 +364,14 @@ function showBuilderSearchPanel() {
     id: instance.id,
     title: "Search",
     callback: () => {
+      const func = type == "workflow" ? getWorkflowState : getNetworkState;
       initSelect($(`#device-filter`), "device", null, true);
-      $("#device-filter").on("change", function () {
-        getWorkflowState();
-      });
-      $("#tree-search-mode").selectpicker().on("change", getWorkflowState);
+      $("#device-filter").on("change", func);
+      $("#tree-search-mode").selectpicker().on("change", func);
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function () {
         if (timer) clearTimeout(timer);
-        timer = setTimeout(getWorkflowState, 500);
+        timer = setTimeout(func, 500);
       });
     },
   });
