@@ -687,20 +687,21 @@ class Controller:
     def get_session_log(self, session_id):
         return db.fetch("session", id=session_id).content
 
-    def get_network_state(self, path, runtime=None, get_tree=None):
+    def get_network_state(self, path, **kwargs):
         network = db.fetch("network", id=path.split(">")[-1], allow_none=True)
         if not network:
             raise db.rbac_error
+        results = db.fetch_all("result", parent_runtime=kwargs.get("runtime"))
         output = {
             "network": network.to_dict(include_relations=["devices", "links"]),
             "device_results": {
                 result.device_id: result.success
-                for result in db.fetch_all("result", parent_runtime=runtime)
+                for result in results
                 if result.device_id
             },
         }
-        if get_tree:
-            output.update(self.get_instance_tree("network", path))
+        if kwargs.get("get_tree"):
+            output.update(self.get_instance_tree("network", path, **kwargs))
         return output
 
     def get_time(self):
@@ -795,11 +796,11 @@ class Controller:
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
                     instance = db.fetch(type, id=path_id[1])
-                if active_search and instance.type != type:
-                    if match(instance, **kwargs):
-                        style = "font-weight: bold;"
-                    else:
-                        return
+            if active_search and instance.type != type:
+                if match(instance, **kwargs):
+                    style = "font-weight: bold;"
+                else:
+                    return
             children = False
             if instance.type == type:
                 instances = (

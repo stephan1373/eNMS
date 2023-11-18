@@ -270,7 +270,12 @@ export function getNetworkState(periodic, first) {
   if (userIsActive && network?.id && !first) {
     call({
       url: `/get_network_state/${currentPath}`,
-      data: { runtime: network.runtime, get_tree: treeIsDisplayed },
+      data: {
+        runtime: network.runtime,
+        get_tree: treeIsDisplayed,
+        search_mode: $("#tree-search-mode").val(),
+        search_value: $("#tree-search").val()
+      },
       callback: function (result) {
         if (result.network.last_modified > instance.last_modified) {
           instance.last_modified = result.network.last_modified;
