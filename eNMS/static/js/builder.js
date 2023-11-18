@@ -329,9 +329,17 @@ export function showBuilderChangelogPanel(model, global) {
 }
 
 function showBuilderSearchPanel() {
+  const bottomField = type == "workflow"
+    ? `<div style="width: 100%; margin-bottom: 5px; margin-top: 5px;">
+        <fieldset class="custom-fieldset">
+          <legend class="custom-legend">Device Filtering</legend>
+          <select id="device-filter" name="device-filter" style="width: 100%;"></select>
+        </fieldset>
+      </div>`
+    : "";
   openPanel({
     name: "search",
-    size: "500 240",
+    size: `500 ${type == "workflow" ? "240" : "160"}`,
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <fieldset class="custom-fieldset">
@@ -351,12 +359,7 @@ function showBuilderSearchPanel() {
               style="font-family: Arial, FontAwesome;"
             />
         </fieldset>
-        <div style="width: 100%; margin-bottom: 5px; margin-top: 5px;">
-          <fieldset class="custom-fieldset">
-            <legend class="custom-legend">Device Filtering</legend>
-            <select id="device-filter" name="device-filter" style="width: 100%;"></select>
-          </fieldset>
-        </div>
+        ${bottomField}
       </form>`,
     id: instance.id,
     title: "Search",
