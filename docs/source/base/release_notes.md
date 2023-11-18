@@ -111,9 +111,9 @@ Post-demo additions:
 - Make device, link and service form "description" field a multiline field
 - Add "description" field to the service table (hidden by default)
 - Remove Ctrl + Z shortcut from the workflow builder to not interfere with default Ctrl + Z
-- Extend new "Global Search" mechanism to devices
 - Add new "Search" button in the Network Builder: similar to the Workflow Builder search
   without the canvas highlight and per-device filtering
+- Extend new "Global Search" mechanism to devices for table and Network Builder search
 
 Migration:
 - network.yaml must be merge into device.yaml:
