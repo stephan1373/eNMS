@@ -392,6 +392,7 @@ class Runner:
         self.target_devices = non_skipped_targets
         if self.run_method != "per_device":
             if all_skipped:
+                summary[self.skip_value] = skipped_targets
                 return {"success": self.skip_value == "success", "summary": summary}
             results = self.get_results()
             if "summary" not in results:
