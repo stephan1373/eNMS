@@ -543,7 +543,7 @@ class Database:
             for instance in self.fetch_all(model)
         ]
 
-    def factory(self, _class, commit=False, no_fetch=False, rbac="edit", **kwargs):
+    def factory(self, _class, commit=False, no_fetch=False, rbac="edit", username=None, **kwargs):
         def transaction(_class, **kwargs):
             property = "path" if _class in ("file", "folder") else "name"
             characters = set(kwargs.get("name", "") + kwargs.get("scoped_name", ""))
@@ -551,10 +551,10 @@ class Database:
                 raise Exception("Names cannot contain a slash or a quote.")
             instance, instance_id = None, kwargs.pop("id", 0)
             if instance_id:
-                instance = self.fetch(_class, id=instance_id, rbac=rbac)
+                instance = self.fetch(_class, id=instance_id, rbac=rbac, username=username)
             elif property in kwargs and not no_fetch:
                 instance = self.fetch(
-                    _class, allow_none=True, rbac=rbac, **{property: kwargs[property]}
+                    _class, allow_none=True, rbac=rbac, username=username, **{property: kwargs[property]}
                 )
             if instance and not kwargs.get("must_be_new"):
                 instance.update(rbac=rbac, **kwargs)
