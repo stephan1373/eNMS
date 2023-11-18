@@ -61,6 +61,7 @@ class Device(Object):
     configuration = deferred(db.Column(db.LargeString, info={"log_change": False}))
     operational_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
     specialized_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
+    serialized = db.Column(db.LargeString, info={"log_change": False})
     gateways = relationship(
         "Gateway", secondary=db.device_gateway_table, back_populates="devices"
     )
@@ -90,6 +91,7 @@ class Device(Object):
         if self.positions and "positions" in kwargs:
             kwargs["positions"] = {**self.positions, **kwargs["positions"]}
         super().update(**kwargs)
+        self.serialized = str(self.get_properties()).lower()
 
     def get_changelog_kwargs(self):
         kwargs = {"networks": [network.id for network in self.networks]}

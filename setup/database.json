@@ -421,7 +421,7 @@
     "user": ["password"]
   },
   "dont_serialize": {
-    "device": ["configuration", "operational_data", "specialized_data"],
+    "device": ["configuration", "operational_data", "serialized", "specialized_data"],
     "service": ["serialized"]
   }
 }
