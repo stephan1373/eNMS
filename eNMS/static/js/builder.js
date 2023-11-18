@@ -131,7 +131,9 @@ export function drawTree(service, data, resultsPanel) {
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (!data) {
     builderTreeData = null;
-    return $(treeId).jstree("destroy").off().empty().text("No Results Found.");
+    $(treeId).jstree("destroy").off().empty()
+    if (!noUpdate) $(treeId).text("No Results Found.");
+    return 
   }
   if (noUpdate && !resultsPanel) return;
   if ($(treeId).jstree(true) && !resultsPanel) {
