@@ -497,6 +497,38 @@ export class Table {
       </button>`;
   }
 
+  serializedSearchField() {
+    return `
+      <div
+        id="serialized-search-div"
+        class="input-group table-search"
+        style="width: 100%; padding: 3px 15px 3px 15px; display: none;"
+      >
+        <input
+          id="serialized-search"
+          name="serialized"
+          type="text"
+          placeholder="&#xF002; Search across all properties"
+          class="form-control"
+          style="font-family:Arial, FontAwesome;
+          height: 30px; margin-top: 5px"
+        >
+        <span class="input-group-btn" style="width: 10px">
+          <button
+            id="${this.type}_filtering-serialized-search"
+            class="btn btn-default pull-right"
+            type="button"
+            style="height: 30px; margin-top: 5px">
+              <span
+                class="glyphicon glyphicon-center glyphicon-menu-down"
+                aria-hidden="true"
+                style="font-size: 10px">
+              </span>
+          </button>
+        </span>
+      </div>`;
+  }
+
   get userDisplayConstraints() {
     return this.userFiltering == "user"
       ? { creator: user.name, creator_filter: "equality" }
@@ -575,36 +607,7 @@ tables.device = class DeviceTable extends Table {
         <span class="glyphicon glyphicon-play"></span>
       </button>`,
       this.bulkDeletionButton(),
-      `
-      <div
-        id="serialized-search-div"
-        class="input-group table-search"
-        style="width: 100%; padding: 3px 15px 3px 15px; display: none;"
-      >
-        <input
-          id="serialized-search"
-          name="serialized"
-          type="text"
-          placeholder="&#xF002; Search across all properties"
-          class="form-control"
-          style="font-family:Arial, FontAwesome;
-          height: 30px; margin-top: 5px"
-        >
-        <span class="input-group-btn" style="width: 10px">
-          <button
-            id="device_filtering-serialized-search"
-            class="btn btn-default pull-right"
-            type="button"
-            style="height: 30px; margin-top: 5px">
-              <span
-                class="glyphicon glyphicon-center glyphicon-menu-down"
-                aria-hidden="true"
-                style="font-size: 10px">
-              </span>
-          </button>
-        </span>
-      </div>
-      `,
+      this.serializedSearchField(),
     ];
   }
 
@@ -1113,36 +1116,7 @@ tables.service = class ServiceTable extends Table {
       this.bulkEditButton(),
       this.exportTableButton(),
       this.bulkDeletionButton(),
-      `
-      <div
-        id="serialized-search-div"
-        class="input-group table-search"
-        style="width: 100%; padding: 3px 15px 3px 15px; display: none;"
-      >
-        <input
-          id="serialized-search"
-          name="serialized"
-          type="text"
-          placeholder="&#xF002; Search across all properties"
-          class="form-control"
-          style="font-family:Arial, FontAwesome;
-          height: 30px; margin-top: 5px"
-        >
-        <span class="input-group-btn" style="width: 10px">
-          <button
-            id="service_filtering-serialized-search"
-            class="btn btn-default pull-right"
-            type="button"
-            style="height: 30px; margin-top: 5px">
-              <span
-                class="glyphicon glyphicon-center glyphicon-menu-down"
-                aria-hidden="true"
-                style="font-size: 10px">
-              </span>
-          </button>
-        </span>
-      </div>
-      `,
+      this.serializedSearchField(),
     ];
   }
 
