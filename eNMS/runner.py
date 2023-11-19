@@ -977,8 +977,8 @@ class Runner:
     def database_function(self, func, model, **kwargs):
         if model not in vs.automation["workflow"]["allowed_models"][func]:
             raise db.rbac_error(f"Use of '{func}' not allowed on {model}s.")
-        kwargs["rbac"] = "edit"
-        return getattr(db, func)(model, username=self.creator, **kwargs)
+        kwargs.update({"rbac": "edit", "username": self.creator})
+        return getattr(db, func)(model, **kwargs)
 
     def prepend_filepath(self, value):
         return f"{vs.file_path}{value}"
