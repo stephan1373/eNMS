@@ -114,6 +114,7 @@ Post-demo additions:
 - Add new "Search" button in the Network Builder: similar to the Workflow Builder search
   without the canvas highlight and per-device filtering
 - Extend new "Global Search" mechanism to devices for table and Network Builder search
+- Add "is_async" property to the Run class (+ associated column in Results table)
 
 Migration:
 - network.yaml must be merge into device.yaml:
