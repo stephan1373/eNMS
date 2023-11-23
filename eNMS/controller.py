@@ -1550,6 +1550,21 @@ class Controller:
         except Exception as exc:
             db.session.rollback()
             if isinstance(exc, IntegrityError):
+                if instance.class_type == "service":
+                    old = db.fetch("service", name=instance.name, allow_none=True)
+                elif instance.class_type == "workflow_edge":
+                    old = db.fetch(
+                        "workflow_edge",
+                        subtype=instance.subtype,
+                        source_id=instance.source_id,
+                        destination_id=instance.destination_id,
+                        workflow_id=instance.workflow_id,
+                        allow_none=True
+                    )
+                if getattr(old, "soft_deleted", False):
+                    db.delete_instance(old)
+                    db.session.commit()
+                    return self.update(type, **kwargs)
                 alert = (
                     f"There is already a {instance.class_type} "
                     "with the same parameters."
