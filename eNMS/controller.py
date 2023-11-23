@@ -775,6 +775,9 @@ class Controller:
         run = db.fetch("run", runtime=runtime) if runtime else None
         state = (run.state or run.get_state()) if run else {}
         highlight = []
+        # to prevent infinite recursion in the network builder in case of a
+        # network that contains one of its parents
+        visited = set()
 
         def match(instance, **kwargs):
             is_match = not (
@@ -810,6 +813,9 @@ class Controller:
                 )
                 children_results = []
                 for child in instances:
+                    if child in visited:
+                        continue
+                    visited.add(child)
                     if run and child.scoped_name == "Placeholder":
                         child = run.placeholder
                     child_results = rec(child, f"{path}>{child.id}")
