@@ -115,6 +115,9 @@ Post-demo additions:
   without the canvas highlight and per-device filtering
 - Extend new "Global Search" mechanism to devices for table and Network Builder search
 - Add "is_async" property to the Run class (+ associated column in Results table)
+- Add mechanism to automatically hard delete a soft deleted objects when creating
+  a new one with the same parameters
+
 
 Migration:
 - network.yaml must be merge into device.yaml:
