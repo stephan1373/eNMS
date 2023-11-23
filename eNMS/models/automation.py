@@ -347,6 +347,7 @@ class Run(AbstractBase):
         "Run", remote_side=[id], foreign_keys="Run.restart_run_id"
     )
     start_services = db.Column(db.List)
+    is_async = db.Column(Boolean, default=False)
     creator = db.Column(db.SmallString, default="")
     properties = db.Column(db.Dict)
     payload = deferred(db.Column(db.Dict))

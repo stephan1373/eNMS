@@ -756,6 +756,13 @@
         "visible": false
       },
       {
+        "data": "is_async",
+        "title": "Async",
+        "search": "bool",
+        "width": "100px",
+        "visible": false
+      },
+      {
         "data": "labels",
         "title": "Labels",
         "search": "text",

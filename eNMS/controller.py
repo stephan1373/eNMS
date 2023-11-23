@@ -1233,6 +1233,7 @@ class Controller:
             kwargs["path"] = str(service)
         keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
         run_kwargs = {key: kwargs.pop(key) for key in keys if kwargs.get(key)}
+        run_kwargs["is_async"] = kwargs.get("async", True)
         for property in ("name", "labels"):
             if property in kwargs.get("form", {}):
                 run_kwargs[property] = kwargs["form"][property]
