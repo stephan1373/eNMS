@@ -46,7 +46,8 @@
     "workflow_edge",
     "task",
     "credential",
-    "pool"
+    "pool",
+    "secret"
   ],
   "dont_migrate": {
     "credential": ["id"],
