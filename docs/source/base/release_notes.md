@@ -137,6 +137,8 @@ Tests:
 - Test that the git service "git add and commit" option still works fine, both when there is
   something to commit and when there isn't
 - Test that reverting a change requires edit access to the associated object
+- Make sure soft deleted objects are not exported (as part of the migration mechanism or
+  the export of a workflow)
 
 Version 4.6.0: Clustering
 -------------------------
