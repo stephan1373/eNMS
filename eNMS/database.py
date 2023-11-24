@@ -538,9 +538,12 @@ class Database:
             self.session.commit()
 
     def export(self, model, private_properties=False):
+        kwargs = {}
+        if model in ("service", "workflow_edge"):
+            kwargs = {"soft_deleted": False}
         return [
             instance.to_dict(export=True, private_properties=private_properties)
-            for instance in self.fetch_all(model)
+            for instance in self.fetch_all(model, **kwargs)
         ]
 
     def factory(
