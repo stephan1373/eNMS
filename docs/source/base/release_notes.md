@@ -119,6 +119,10 @@ Post-demo additions:
   a new one with the same parameters
 - Add new locking mechanism for the workflow tree when moving to subworkflows to keep the
   locked workflow displayed
+  - Can only be used inside the same top-level workflow (moving to another top-level workflow
+  will reset it to "unlocked")
+  - Can be used both to lock a parent workflow or a subworkflow
+- Make non shared services in the service table a link to the workflow that contains them
 
 Migration:
 - network.yaml must be merge into device.yaml:
