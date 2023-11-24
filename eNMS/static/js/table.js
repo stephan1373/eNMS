@@ -1020,6 +1020,11 @@ tables.service = class ServiceTable extends Table {
     let row = super.addRow(kwargs);
     if (row.type == "workflow") {
       row.name = `<b><a href="/workflow_builder/${row.path}">${row.name}</a></b>`;
+    } else if (!row.shared) {
+      row.name = row.name.replace(
+        row.scoped_name,
+        `<b><a href="/workflow_builder/${row.workflow_path}">${row.scoped_name}</a></b>`
+      );
     }
     for (const model of ["device", "pool"]) {
       row[`${model}s`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(

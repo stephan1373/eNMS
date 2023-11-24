@@ -134,6 +134,10 @@ class Service(AbstractBase):
     def base_properties(self):
         return {**super().base_properties, "report_format": self.report_format}
 
+    def table_properties(self, **kwargs):
+        workflow_path = self.workflows[0].path if len(self.workflows) == 1 else None
+        return {"workflow_path": workflow_path, **super().table_properties(**kwargs)}
+
     def delete(self):
         if self.name in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
             return {"log": f"It is not allowed to delete '{self.name}'."}
