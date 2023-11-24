@@ -117,7 +117,8 @@ Post-demo additions:
 - Add "is_async" property to the Run class (+ associated column in Results table)
 - Add mechanism to automatically hard delete a soft deleted objects when creating
   a new one with the same parameters
-
+- Add new locking mechanism for the workflow tree when moving to subworkflows to keep the
+  locked workflow displayed
 
 Migration:
 - network.yaml must be merge into device.yaml:
