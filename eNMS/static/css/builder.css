@@ -27,7 +27,7 @@ li.dropdown-header {
   padding: 0 5px;
 }
 
-#workflow-tree {
+#workflow-tree,#network-tree {
   border-left: solid;
   height: 100%;
 }
