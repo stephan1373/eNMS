@@ -62,6 +62,7 @@
       "rbac_edit_links",
       "rbac_edit_networks",
       "rbac_edit_pools",
+      "rbac_edit_secrets",
       "rbac_edit_services",
       "rbac_edit_tasks",
       "rbac_pool_rbac_configuration",
@@ -75,13 +76,15 @@
       "rbac_read_links",
       "rbac_read_networks",
       "rbac_read_pools",
+      "rbac_read_secrets",
       "rbac_read_services",
       "rbac_read_tasks",
       "rbac_run_services",
       "rbac_schedule_services",
       "rbac_schedule_tasks",
       "rbac_target_devices",
-      "rbac_use_files"
+      "rbac_use_files",
+      "rbac_use_secrets"
     ],
     "device": [
       "id",
@@ -167,6 +170,7 @@
       "user_links",
       "user_networks",
       "user_pools",
+      "user_secrets",
       "user_services",
       "user_tasks"
     ],
