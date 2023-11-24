@@ -33,6 +33,7 @@ import {
   configureGraph,
   currentMode,
   currentPath,
+  treePath,
   drawTree,
   edges,
   highlightNode,
@@ -210,6 +211,7 @@ export const switchToWorkflow = function (path, direction, runtime, selection) {
     data: {
       display: runtimeDisplay,
       get_tree: treeIsDisplayed,
+      tree_path: treePath,
       runtime: runtime || $("#current-runtime").val() || "latest",
     },
     callback: function (result) {
@@ -730,6 +732,7 @@ export function getWorkflowState(periodic, first) {
       data: {
         display: runtimeDisplay,
         get_tree: treeIsDisplayed,
+        tree_path: treePath,
         runtime: runtime,
         device: $("#device-filter").val(),
         search_mode: $("#tree-search-mode").val(),

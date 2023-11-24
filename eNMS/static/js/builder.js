@@ -53,6 +53,7 @@ let builderTreeData;
 export let creationMode;
 export let currentMode = "motion";
 export let currentPath = page.includes("builder") && savedPath;
+export let treePath;
 export let instance;
 export let edges;
 export let nodes;
@@ -135,7 +136,7 @@ export function drawTree(service, data, resultsPanel) {
     if (!noUpdate) $(treeId).text("No Results Found.");
     return;
   }
-  if (noUpdate && !resultsPanel) return;
+  if (noUpdate && !resultsPanel && $(treeId).children().length > 0) return;
   if ($(treeId).jstree(true) && !resultsPanel) {
     $(treeId).jstree(true).settings.core.data = data;
     $(treeId).jstree(true).refresh();
@@ -620,6 +621,10 @@ export const rectangleSelection = (container, graph, nodes) => {
 
 export function setPath(path) {
   currentPath = path.toString();
+  if (treePath && !currentPath.includes(treePath) && !treePath.includes(currentPath)) {
+    treePath = null;
+    $("#lock-tree-icon").toggleClass("fa-lock fa-unlock");
+  }
 }
 
 export function createNewNode(mode) {
@@ -795,7 +800,7 @@ function toggleTree() {
   const kwargs = { duration: 200, queue: false };
   if (!treeIsDisplayed) {
     if (!menuIsHidden) hideMenu();
-    $(`#${type}-tree,#resize-tree-li`).show();
+    $(`#${type}-tree,#resize-tree-li,#lock-tree-li`).show();
     $("#run-navbar").hide();
     $(".left_frame").animate({ width: "-=600px" }, kwargs);
     $(".right_frame").animate(
@@ -813,7 +818,7 @@ function toggleTree() {
     );
   } else {
     if (menuIsHidden) hideMenu();
-    $("#run-navbar,#resize-tree-li").hide();
+    $("#run-navbar,#resize-tree-li,#lock-tree-li").hide();
     $(".left_frame").animate({ width: "+=600px" }, kwargs);
     $(".right_frame").animate(
       { width: "-=600px" },
@@ -830,9 +835,15 @@ function toggleTree() {
   treeIsDisplayed = !treeIsDisplayed;
 }
 
+function lockTree() {
+  treePath = treePath ? null : currentPath;
+  $("#lock-tree-icon").toggleClass("fa-lock fa-unlock");
+}
+
 configureNamespace("builder", [
   createLabel,
   highlightNode,
+  lockTree,
   showBuilderSearchPanel,
   switchMode,
   toggleTree,
