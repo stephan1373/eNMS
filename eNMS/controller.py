@@ -1097,7 +1097,7 @@ class Controller:
                         for name in value:
                             if name not in store[relation["model"]]:
                                 related_instance = db.fetch(
-                                    relation["model"], name=name, allow_none=True
+                                    relation["model"], name=name, allow_none=True, rbac=None
                                 )
                                 if related_instance:
                                     store[relation["model"]][name] = related_instance
@@ -1106,7 +1106,7 @@ class Controller:
                     else:
                         if value not in store[relation["model"]]:
                             related_instance = db.fetch(
-                                relation["model"], name=value, allow_none=True
+                                relation["model"], name=value, allow_none=True, rbac=None
                             )
                             if related_instance:
                                 store[relation["model"]][value] = related_instance
