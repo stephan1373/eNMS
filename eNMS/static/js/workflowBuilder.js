@@ -115,6 +115,8 @@ export function displayWorkflow(workflowData, workflowSwitch) {
     if (["Placeholder", "Start", "End"].includes(node.name)) node = currentPlaceholder;
     if (!node || !node.id) {
       return;
+    } else if (node.type == "note") {
+      notify("Notes cannot be edited.", "error", 5);
     } else if (node.type == "label") {
       showLabelPanel({ label: node, usePosition: true });
     } else if (node.type == "workflow") {
