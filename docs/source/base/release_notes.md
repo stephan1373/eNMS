@@ -126,6 +126,12 @@ Post-demo additions:
 - Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property
 - Make credential type in service form (any, read-only or read-write) come from automation.json,
   under "credential_type" key
+- Add new runtime notes mechanism in the workflow builder
+  - New "add_note" and "remote_note" global function taking the positions "x", "y" and the
+  content of the label as arguments
+  - New entry in the right-click menu "Reference" > "Position"
+  - A note that is not deleted will be displayed in the workflow builder when the runtime is
+  selected, even after the workflow completes
 
 Migration:
 - network.yaml must be merge into device.yaml:
