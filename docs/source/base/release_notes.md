@@ -124,6 +124,8 @@ Post-demo additions:
   - Can be used both to lock a parent workflow or a subworkflow
 - Make non shared services in the service table a link to the workflow that contains them
 - Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property
+- Make credential type in service form (any, read-only or read-write) come from automation.json,
+  under "credential_type" key
 
 Migration:
 - network.yaml must be merge into device.yaml:
