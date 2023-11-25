@@ -691,7 +691,7 @@ function displayWorkflowState(result, workflowSwitch) {
       color: "#FFFFFF",
       x: x,
       y: y,
-    })
+    });
   }
   nodes.update(nodeUpdates);
   const state = result.state[currentPath];
@@ -736,7 +736,7 @@ export function resetWorkflowDisplay() {
     });
     edges.update(edgeUpdates);
   }
-  nodes.remove(nodes.getIds({ filter: item => item.type === "note"}));
+  nodes.remove(nodes.getIds({ filter: (item) => item.type === "note" }));
 }
 
 export function getWorkflowState(periodic, first) {

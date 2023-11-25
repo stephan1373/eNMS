@@ -803,7 +803,7 @@ function showImportServicesPanel() {
           } else {
             notify(`File uploaded (${message}).`, "success", 5, true);
           }
-          file.previewElement.classList.add(message.alert ? "dz-error": "dz-success");
+          file.previewElement.classList.add(message.alert ? "dz-error" : "dz-success");
         },
         accept: function (file, done) {
           if (!file.name.toLowerCase().endsWith(".tgz")) {
