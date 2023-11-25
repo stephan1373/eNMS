@@ -239,7 +239,7 @@ class Runner:
     def set_note(self, x, y, content):
         self.write_state(f"notes/{x}_{y}", content, service=False)
 
-    def remove_note(self, x, y, content):
+    def remove_note(self, x, y):
         self.write_state(f"notes/{x}_{y}", "", service=False, method="delete")
 
     def start_run(self):
