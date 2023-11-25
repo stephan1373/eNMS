@@ -679,6 +679,18 @@ function displayWorkflowState(result, workflowSwitch) {
       label: label,
     });
   }
+  for (const [name, content] of Object.entries(result.state.notes || {})) {
+    const [x, y] = name.split("-");
+    nodeUpdates.push({
+      id: name,
+      type: "note",
+      label: content,
+      borderWidth: 0,
+      color: "#FFFFFF",
+      x: x,
+      y: y,
+    })
+  }
   nodes.update(nodeUpdates);
   const state = result.state[currentPath];
   if (state?.edges) {
@@ -722,6 +734,7 @@ export function resetWorkflowDisplay() {
     });
     edges.update(edgeUpdates);
   }
+  nodes.remove(nodes.getIds({ filter: item => item.type === "note"}));
 }
 
 export function getWorkflowState(periodic, first) {

@@ -212,7 +212,7 @@ class Runner:
             if isinstance(value, bool):
                 value = str(value)
             env.redis(
-                {None: "set", "append": "lpush", "increment": "incr"}[method],
+                {None: "set", "append": "lpush", "increment": "incr", "delete": "delete"}[method],
                 f"{self.parent_runtime}/state{parent_path}/{path}",
                 value,
             )
@@ -226,8 +226,16 @@ class Runner:
             elif method == "increment":
                 store.setdefault(last, 0)
                 store[last] += value
+            elif method == "delete":
+                store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
+
+    def set_note(self, x, y, content):
+        self.write_state(f"notes/{x}-{y}", content, service=False)
+
+    def remove_note(self, x, y, content):
+        self.write_state(f"notes/{x}-{y}", "", service=False, method="delete")
 
     def start_run(self):
         self.init_state()
@@ -1020,12 +1028,14 @@ class Runner:
                 "payload": _self.payload,
                 "placeholder": _self.main_run.placeholder,
                 "prepend_filepath": _self.prepend_filepath,
+                "remove_note": _self.remove_note,
                 "send_email": env.send_email,
                 "server": {
                     "ip_address": vs.server_ip,
                     "name": vs.server,
                     "url": vs.server_url,
                 },
+                "set_note": _self.set_note,
                 "set_var": _self.payload_helper,
                 "user": _self.creator_dict,
                 "workflow": _self.workflow,
