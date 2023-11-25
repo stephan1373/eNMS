@@ -559,6 +559,9 @@
     "Regression workflow P: large workflow (scalability)": *id012
     "Restart From Feature and Superworkflow Interaction": *id059
     "Restart Mechanism, payload + results recursive conservation": *id060
+    "Runtime Notes Mechanism":
+    - !!int "-172"
+    - !!int "-79"
     "Scalability Test (large workflow)": *id012
     "Scrapli Netconf Service": *id061
     "Scrapli Service": *id035
@@ -1371,6 +1374,9 @@
     "Regression workflow P: large workflow (scalability)": *id103
     "Restart From Feature and Superworkflow Interaction": *id150
     "Restart Mechanism, payload + results recursive conservation": *id151
+    "Runtime Notes Mechanism":
+    - !!int "556"
+    - !!int "142"
     "Scalability Test (large workflow)": *id103
     "Scrapli Netconf Service": *id152
     "Scrapli Service": *id126
@@ -42598,6 +42604,298 @@
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "workflow"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "category": "Global Variables"
+  "close_connection": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "custom_property": "Default Value"
+  "default_uuid": "8398df01-feed-4d59-9428-0e0b7b60fa55"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "labels": {}
+  "last_modified": "2023-11-25 18:56:08.738135"
+  "last_modified_by": "admin"
+  "last_run": "2023-11-25 18:55:29.174356"
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "man_minutes": !!int "0"
+  "man_minutes_total": !!int "0"
+  "man_minutes_type": "workflow"
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "Runtime Notes Mechanism"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions": {}
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Runtime Notes Mechanism"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "services":
+  - "[Shared] Start"
+  - "[Shared] End"
+  - "[Runtime Notes Mechanism] Set note1 and note2"
+  - "[Runtime Notes Mechanism] Remote note2"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices":
+  - "Washington"
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "workflow"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "4282dd5c-1e18-4605-ad16-020eaccaec83"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2023-11-25 18:55:27.132519"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Runtime Notes Mechanism] Set note1 and note2"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Runtime Notes Mechanism":
+    - !!int "38"
+    - !!int "-84"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Set note1 and note2"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "set_note(-10.2469482421875, 22.5, \"note1\")\r\nset_note(273.7530517578125,\
+    \ 22.5, \"note2\")\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"\
+    result\"] = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "6"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "4282dd5c-1e18-4605-ad16-020eaccaec83"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2023-11-25 18:56:08.738135"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Runtime Notes Mechanism] Remote note2"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Runtime Notes Mechanism":
+    - !!int "323"
+    - !!int "-85"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Remote note2"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "set_note(-10.2469482421875, 22.5, \"note1\")\r\nremove_note(273.7530517578125,\
+    \ 22.5, \"\")\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"\
+    result\"] = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "python_snippet_service"
   "update_pools_after_running": !!bool "false"
   "update_target_pools": !!bool "false"
   "validation_condition": "none"
