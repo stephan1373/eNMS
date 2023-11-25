@@ -745,11 +745,7 @@ class ServiceForm(BaseForm):
     max_number_of_retries = IntegerField("Maximum number of retries", default=100)
     credential_type = SelectField(
         "Type of Credentials",
-        choices=(
-            ("read-write", "Read Write"),
-            ("read-only", "Read Only"),
-            ("any", "Any"),
-        ),
+        choices=vs.automation["credential_type"],
         help="common/type_of_credentials",
         no_search=True,
     )
