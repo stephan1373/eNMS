@@ -38,6 +38,7 @@ import {
   edges,
   highlightNode,
   instance,
+  mousePosition,
   nodes,
   setPath,
   showBuilderChangelogPanel,
@@ -498,6 +499,7 @@ export function updateWorkflowRightClickBindings() {
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
+    Position: () => copyToClipboard({ text: `${mousePosition.x}, ${mousePosition.y}` }),
     "Restart Workflow from Here": showRestartWorkflowPanel,
     "Workflow Changelog": () => showBuilderChangelogPanel("workflow", true),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
@@ -680,7 +682,7 @@ function displayWorkflowState(result, workflowSwitch) {
     });
   }
   for (const [name, content] of Object.entries(result.state.notes || {})) {
-    const [x, y] = name.split("-");
+    const [x, y] = name.split("_");
     nodeUpdates.push({
       id: name,
       type: "note",

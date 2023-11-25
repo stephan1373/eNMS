@@ -232,10 +232,10 @@ class Runner:
                 store.setdefault(last, []).append(value)
 
     def set_note(self, x, y, content):
-        self.write_state(f"notes/{x}-{y}", content, service=False)
+        self.write_state(f"notes/{x}_{y}", content, service=False)
 
     def remove_note(self, x, y, content):
-        self.write_state(f"notes/{x}-{y}", "", service=False, method="delete")
+        self.write_state(f"notes/{x}_{y}", "", service=False, method="delete")
 
     def start_run(self):
         self.init_state()
