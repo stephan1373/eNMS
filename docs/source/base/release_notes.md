@@ -123,6 +123,8 @@ Post-demo additions:
   will reset it to "unlocked")
   - Can be used both to lock a parent workflow or a subworkflow
 - Make non shared services in the service table a link to the workflow that contains them
+- Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property
+
 
 Migration:
 - network.yaml must be merge into device.yaml:
