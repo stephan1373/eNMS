@@ -473,7 +473,7 @@ class Run(AbstractBase):
         vs.run_targets[self.runtime] = set(
             device.id
             for device in controller.filtering(
-                "device", properties=["id"], rbac="target", username=self.creator
+                "device", properties=["id"], rbac="target", user=self.creator
             )
         )
         if not self.trigger:

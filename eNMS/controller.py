@@ -441,10 +441,10 @@ class Controller:
         return query
 
     def filtering(
-        self, model, bulk=False, rbac="read", username=None, properties=None, **kwargs
+        self, model, bulk=False, rbac="read", user=None, properties=None, **kwargs
     ):
         table, pagination = vs.models[model], kwargs.get("pagination")
-        query = db.query(model, rbac, username, properties=properties)
+        query = db.query(model, rbac, user, properties=properties)
         total_records, filtered_records = (10**6,) * 2
         if pagination and not bulk and not properties:
             total_records = query.with_entities(table.id).count()
@@ -1235,7 +1235,7 @@ class Controller:
     @staticmethod
     @actor(max_retries=0, time_limit=float("inf"))
     def run(service, **kwargs):
-        current_thread().name, username = kwargs["runtime"], kwargs["creator"]
+        current_thread().name, user = kwargs["runtime"], kwargs["creator"]
         if "path" not in kwargs:
             kwargs["path"] = str(service)
         keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1244,7 +1244,7 @@ class Controller:
         for property in ("name", "labels"):
             if property in kwargs.get("form", {}):
                 run_kwargs[property] = kwargs["form"][property]
-        service = db.fetch("service", id=service, rbac="run", username=username)
+        service = db.fetch("service", id=service, rbac="run", user=user)
         service.status = "Running"
         initial_payload = {
             **service.initial_payload,
@@ -1252,7 +1252,7 @@ class Controller:
         }
         restart_runtime = kwargs.get("restart_runtime")
         restart_run = db.fetch(
-            "run", allow_none=True, runtime=restart_runtime, username=username
+            "run", allow_none=True, runtime=restart_runtime, user=user
         )
         if service.type == "workflow" and service.superworkflow and not restart_run:
             run_kwargs["placeholder"] = run_kwargs["start_service"] = service.id

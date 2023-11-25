@@ -449,19 +449,19 @@ class Database:
                 ),
             )
 
-    def query(self, model, rbac="read", username=None, properties=None):
+    def query(self, model, rbac="read", user=None, properties=None):
         if properties:
             entity = [getattr(vs.models[model], property) for property in properties]
         else:
             entity = [vs.models[model]]
         query = self.session.query(*entity)
         if rbac:
-            if not current_user and not username:
+            if not current_user and not user:
                 raise self.rbac_error
             user = (
                 current_user
                 or self.session.query(vs.models["user"])
-                .filter_by(name=username)
+                .filter_by(name=user)
                 .first()
             )
             if not user:
@@ -478,10 +478,10 @@ class Database:
         allow_none=False,
         all_matches=False,
         rbac="read",
-        username=None,
+        user=None,
         **kwargs,
     ):
-        query = self.query(instance_type, rbac, username=username)
+        query = self.query(instance_type, rbac, user=user)
         if not query:
             return
         query = query.filter(
@@ -547,7 +547,7 @@ class Database:
         ]
 
     def factory(
-        self, _class, commit=False, no_fetch=False, rbac="edit", username=None, **kwargs
+        self, _class, commit=False, no_fetch=False, rbac="edit", user=None, **kwargs
     ):
         def transaction(_class, **kwargs):
             property = "path" if _class in ("file", "folder") else "name"
@@ -557,14 +557,14 @@ class Database:
             instance, instance_id = None, kwargs.pop("id", 0)
             if instance_id:
                 instance = self.fetch(
-                    _class, id=instance_id, rbac=rbac, username=username
+                    _class, id=instance_id, rbac=rbac, user=user
                 )
             elif property in kwargs and not no_fetch:
                 instance = self.fetch(
                     _class,
                     allow_none=True,
                     rbac=rbac,
-                    username=username,
+                    user=user,
                     **{property: kwargs[property]},
                 )
             if instance and not kwargs.get("must_be_new"):

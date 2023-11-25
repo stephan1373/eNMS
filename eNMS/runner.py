@@ -104,7 +104,7 @@ class Runner:
             if self.payload["targets"] == "Manually defined":
                 model = "pool" if property == "target_pools" else "device"
                 return db.objectify(
-                    model, self.payload[f"restart_{model}s"], username=self.creator
+                    model, self.payload[f"restart_{model}s"], user=self.creator
                 )
             elif self.payload["targets"] == "Restart run":
                 return getattr(self.restart_run, property)
@@ -112,7 +112,7 @@ class Runner:
             value = self.payload["form"][property]
             if property in ("target_devices", "target_pools"):
                 model = "pool" if property == "target_pools" else "device"
-                value = db.objectify(model, value, username=self.creator)
+                value = db.objectify(model, value, user=self.creator)
             return value
         elif self.is_main_run and (
             self.main_run.target_devices or self.main_run.target_pools
@@ -155,7 +155,7 @@ class Runner:
                 device = db.fetch(
                     "device",
                     allow_none=True,
-                    username=_self.creator,
+                    user=_self.creator,
                     **{property: value},
                 )
             if device:
@@ -251,7 +251,7 @@ class Runner:
                 self.log("error", error)
                 results.update({"success": False, "error": error})
             if self.update_pools_after_running:
-                for pool in db.fetch_all("pool", username=self.creator, rbac="edit"):
+                for pool in db.fetch_all("pool", user=self.creator, rbac="edit"):
                     pool.compute_pool()
             report = self.generate_report(results) if self.service.report else ""
             if self.get("send_notification"):
@@ -927,7 +927,7 @@ class Runner:
         return self.payload_helper(*args, operation="get", **kwargs)
 
     def get_secret(self, name):
-        return db.fetch("secret", name=name, username=self.creator, rbac="use").value
+        return db.fetch("secret", name=name, user=self.creator, rbac="use").value
 
     def get_result(self, service_name, device=None, workflow=None, all_matches=False):
         def filter_run(query, property):
@@ -977,7 +977,7 @@ class Runner:
     def database_function(self, func, model, **kwargs):
         if model not in vs.automation["workflow"]["allowed_models"][func]:
             raise db.rbac_error(f"Use of '{func}' not allowed on {model}s.")
-        kwargs.update({"rbac": "edit", "username": self.creator})
+        kwargs.update({"rbac": "edit", "user": self.creator})
         return getattr(db, func)(model, **kwargs)
 
     def prepend_filepath(self, value):
