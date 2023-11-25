@@ -212,7 +212,12 @@ class Runner:
             if isinstance(value, bool):
                 value = str(value)
             env.redis(
-                {None: "set", "append": "lpush", "increment": "incr", "delete": "delete"}[method],
+                {
+                    None: "set",
+                    "append": "lpush",
+                    "increment": "incr",
+                    "delete": "delete",
+                }[method],
                 f"{self.parent_runtime}/state{parent_path}/{path}",
                 value,
             )

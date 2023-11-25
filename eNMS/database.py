@@ -460,9 +460,7 @@ class Database:
                 raise self.rbac_error
             user = (
                 current_user
-                or self.session.query(vs.models["user"])
-                .filter_by(name=user)
-                .first()
+                or self.session.query(vs.models["user"]).filter_by(name=user).first()
             )
             if not user:
                 return
@@ -556,9 +554,7 @@ class Database:
                 raise Exception("Names cannot contain a slash or a quote.")
             instance, instance_id = None, kwargs.pop("id", 0)
             if instance_id:
-                instance = self.fetch(
-                    _class, id=instance_id, rbac=rbac, user=user
-                )
+                instance = self.fetch(_class, id=instance_id, rbac=rbac, user=user)
             elif property in kwargs and not no_fetch:
                 instance = self.fetch(
                     _class,
