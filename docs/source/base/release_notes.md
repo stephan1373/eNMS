@@ -125,7 +125,6 @@ Post-demo additions:
 - Make non shared services in the service table a link to the workflow that contains them
 - Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property
 
-
 Migration:
 - network.yaml must be merge into device.yaml:
   - replace "nodes" with "devices"
