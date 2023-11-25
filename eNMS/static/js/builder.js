@@ -267,7 +267,7 @@ export function drawTree(service, data, resultsPanel) {
       tree.jstree("open_all");
       createTooltips();
     });
-    $(treeId).contextMenu({
+    $(`#builder,${treeId}`).contextMenu({
       menuSelector: "#contextMenu",
       menuSelected: function (selectedMenu) {
         const row = selectedMenu.text();
