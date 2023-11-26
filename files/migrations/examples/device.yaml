@@ -6029,28 +6029,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'display', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'22ddf544-3151-4361-940b-7516b78c179a':\
-    \ {'alignment': 'left', 'content': 'basic site with three devices: router 1 is\
-    \ of type \"device\" and the other two are \"router\".\\r\\nall three links are\
-    \ ethernet links.\\r\\nrouter 1 should be displayed as a router, router 2 as a\
-    \ host and router 3 as an optical switch.\\r\\nthe icon of a device is decoupled\
-    \ from its type.', 'positions': [19, -70]}}, 'operating_system': none, 'netconf_driver':\
-    \ none, 'last_operational_data_status': none, 'serialized': none, 'type': 'network',\
-    \ 'last_specialized_data_status': none, 'scrapli_driver': none, 'ip_address':\
-    \ none, 'last_modified_by': '', 'id': none, 'os_version': none, 'last_configuration_status':\
-    \ none, 'last_configuration_update': none, 'positions': {}, 'subtype': '', 'name':\
-    \ 'top-level devices and links', 'last_specialized_data_failure': none, 'last_specialized_data_duration':\
-    \ none, 'model': '', 'down': none, 'custom_json': none, 'creator': 'admin', 'latitude':\
-    \ '0.0', 'last_configuration_failure': none, 'custom_select': none, 'property3':\
-    \ none, 'last_operational_data_duration': none, 'icon': 'network', 'reachable':\
-    \ none, 'longitude': '1.0', 'custom_multiselect': none, 'property1': none, 'property2':\
-    \ none, 'last_modified': '2022-01-13 14:58:18.207435', 'napalm_driver': none,\
-    \ 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6132,31 +6110,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'subnetwork', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'ebac22df-1242-4dcd-90b0-fbeeee517991':\
-    \ {'alignment': 'left', 'content': '- enter subnetwork 1 and subnetwork 2 and\
-    \ make sure all of them have the expected content.\\r\\n- test the backward, forward\
-    \ and upward navigation buttons.\\r\\n- test the network tree to select any node,\
-    \ including a node that is in a different network:\\r\\nthe view should immediately\
-    \ switch to the network of the selected node.\\r\\n- test using network as a teleport:\
-    \ subnetwork 1 contains subnetwork 2 and vice-versa,\\r\\nto switch from one to\
-    \ the other and back.', 'positions': [-310, -212]}}, 'operating_system': none,\
-    \ 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': {}, 'subtype': '', 'name': 'subnetwork and teleport mechanism',\
-    \ 'last_specialized_data_failure': none, 'last_specialized_data_duration': none,\
-    \ 'model': '', 'down': none, 'custom_json': none, 'creator': 'admin', 'latitude':\
-    \ '0.0', 'last_configuration_failure': none, 'custom_select': none, 'property3':\
-    \ none, 'last_operational_data_duration': none, 'icon': 'network', 'reachable':\
-    \ none, 'longitude': '0.0', 'custom_multiselect': none, 'property1': none, 'property2':\
-    \ none, 'last_modified': '2022-01-13 14:59:24.690428', 'napalm_driver': none,\
-    \ 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6239,26 +6192,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': '', 'netmiko_driver': none, 'configuration': none, 'location':\
-    \ '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'6eb6d97f-31c8-4a2a-8142-8c1427cea64d':\
-    \ {'alignment': 'left', 'content': 'this subnetwork should contain\\r\\n- three\
-    \ routers, \"subnetwork 1 - r1-3\"\\r\\n- three links between each pair of routers,\
-    \ \"subnetwork 1 - l1-3\"', 'positions': [51, -231]}}, 'operating_system': none,\
-    \ 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': none, 'subtype': '', 'name': 'subnetwork 1', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-03 12:55:19.074280',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6344,36 +6277,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'editing', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'6bc3e996-eb39-4d52-9294-15cdd7d10f92':\
-    \ {'alignment': 'left', 'content': 'tests the creation, editing and deletion of\
-    \ networks and the nodes inside it.\\r\\n- create three devices: 1 device, 1 router\
-    \ and 1 gateway. the default icon for the device and router should be a router,\\\
-    r\\nbut it should a host (computer) for the gateway.\\r\\n- create links between\
-    \ them, including ethernet link and link.\\r\\n- edit the name of a node and the\
-    \ name of a link: the name must be instantly\\r\\nupdated.\\r\\n- edit the name\
-    \ of the network and refresh: check that the positions are the same (the \"update\"\
-    \ position of the network class is replacing old with new positions).\\r\\n- delete\
-    \ a device: check that the two connected links are also deleted from the network.\\\
-    r\\ncheck that these objects still exist in the inventory: deleting from a network\
-    \ should not delete the original objects.\\r\\n- use the right-click multiple\
-    \ selection rectangle to delete the remaining objects.\\r\\n- delete the network\
-    \ itself from the network table.', 'positions': [227, -507]}}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': {}, 'subtype': '', 'name': 'creation, edit and deletion', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-13 14:59:33.685691',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6452,26 +6355,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': '', 'netmiko_driver': none, 'configuration': none, 'location':\
-    \ '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'56c77f3e-481c-476d-a045-1120b3cb0cc2':\
-    \ {'alignment': 'left', 'content': 'this subnetwork should contain\\r\\n- two\
-    \ gateways, \"subnetwork 2 - g1-2\"\\r\\n- one link between them, \"subnetwork\
-    \ 2 - l1\"', 'positions': [4, -181]}}, 'operating_system': none, 'netconf_driver':\
-    \ none, 'last_operational_data_status': none, 'serialized': none, 'type': 'network',\
-    \ 'last_specialized_data_status': none, 'scrapli_driver': none, 'ip_address':\
-    \ none, 'last_modified_by': '', 'id': none, 'os_version': none, 'last_configuration_status':\
-    \ none, 'last_configuration_update': none, 'positions': none, 'subtype': '', 'name':\
-    \ 'subnetwork 2', 'last_specialized_data_failure': none, 'last_specialized_data_duration':\
-    \ none, 'model': '', 'down': none, 'custom_json': none, 'creator': 'admin', 'latitude':\
-    \ '0.0', 'last_configuration_failure': none, 'custom_select': none, 'property3':\
-    \ none, 'last_operational_data_duration': none, 'icon': 'network', 'reachable':\
-    \ none, 'longitude': '0.0', 'custom_multiselect': none, 'property1': none, 'property2':\
-    \ none, 'last_modified': '2022-01-03 12:55:37.570662', 'napalm_driver': none,\
-    \ 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6557,34 +6440,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'editing', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'0a8dc15c-8f31-4fe2-b84d-1b2e9680876e':\
-    \ {'alignment': 'left', 'content': 'tests the duplication of devices, subnetworks\
-    \ and top-level networks.\\r\\n- duplicate \"duplicate me 1\": the duplicated\
-    \ device should be immediately added to the network.\\r\\nrefresh and check that\
-    \ it is still displayed at the same position.\\r\\n- duplicate \"duplicate me\
-    \ 2\": the duplicate subnetwork should be immediately added to the network.\\\
-    r\\ndouble-click on it to check that the content is the same as \"duplicate me\
-    \ 2\".\\r\\n- create a link between the two devices.\\r\\n- duplicate the top-level\
-    \ network: check that it contains the two devices and the link between them,\\\
-    r\\nas well as the two subnetworks,\\r\\ncheck that the content of the subnetworks\
-    \ is the same as that of the original top-level network.', 'positions': [-47,\
-    \ -187]}}, 'operating_system': none, 'netconf_driver': none, 'last_operational_data_status':\
-    \ none, 'serialized': none, 'type': 'network', 'last_specialized_data_status':\
-    \ none, 'scrapli_driver': none, 'ip_address': none, 'last_modified_by': '', 'id':\
-    \ none, 'os_version': none, 'last_configuration_status': none, 'last_configuration_update':\
-    \ none, 'positions': {}, 'subtype': '', 'name': 'duplication of devices, subnetworks\
-    \ and top-level networks', 'last_specialized_data_failure': none, 'last_specialized_data_duration':\
-    \ none, 'model': '', 'down': none, 'custom_json': none, 'creator': 'admin', 'latitude':\
-    \ '0.0', 'last_configuration_failure': none, 'custom_select': none, 'property3':\
-    \ none, 'last_operational_data_duration': none, 'icon': 'network', 'reachable':\
-    \ none, 'longitude': '0.0', 'custom_multiselect': none, 'property1': none, 'property2':\
-    \ none, 'last_modified': '2022-01-13 14:59:46.234188', 'napalm_driver': none,\
-    \ 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6655,23 +6510,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': '', 'netmiko_driver': none, 'configuration': none, 'location':\
-    \ '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': none, 'subtype': '', 'name': 'duplicate me 2', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-01 11:55:14.172281',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6780,30 +6618,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'display', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'65702104-28b9-4392-9472-727f6f3bf273':\
-    \ {'alignment': 'left', 'content': 'tests the display of loopback and parallel\
-    \ links:\\r\\n- one loopback link for each device.\\r\\n- odd number (3) of same\
-    \ direction links between r1 and r2\\r\\n- even number (4) of different direction\
-    \ links (3 / 1) between r1 and r3\\r\\n- odd number (3) of different direction\
-    \ links (2 / 1) between r2 and r4\\r\\n- even number (8) of different direction\
-    \ links (4 / 4) between r3 and r4\\r\\n- one link between r1 and r4', 'positions':\
-    \ [-499, 98]}}, 'operating_system': none, 'netconf_driver': none, 'last_operational_data_status':\
-    \ none, 'serialized': none, 'type': 'network', 'last_specialized_data_status':\
-    \ none, 'scrapli_driver': none, 'ip_address': none, 'last_modified_by': '', 'id':\
-    \ none, 'os_version': none, 'last_configuration_status': none, 'last_configuration_update':\
-    \ none, 'positions': {}, 'subtype': '', 'name': 'loopback and parallel links',\
-    \ 'last_specialized_data_failure': none, 'last_specialized_data_duration': none,\
-    \ 'model': '', 'down': none, 'custom_json': none, 'creator': 'admin', 'latitude':\
-    \ '0.0', 'last_configuration_failure': none, 'custom_select': none, 'property3':\
-    \ none, 'last_operational_data_duration': none, 'icon': 'network', 'reachable':\
-    \ none, 'longitude': '0.0', 'custom_multiselect': none, 'property1': none, 'property2':\
-    \ none, 'last_modified': '2022-01-13 14:59:54.526299', 'napalm_driver': none,\
-    \ 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6880,27 +6694,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'subnetwork', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'df3da1e5-33a3-46e4-baed-ee59a432c773':\
-    \ {'alignment': 'left', 'content': 'tests multiple levels of nested subnetworks,\
-    \ in particular:\\r\\n- the upward navigation button\\r\\n- the tree view to switch\
-    \ between levels\\r\\n- the duplication: all subnetworks down to the last should\
-    \ be duplicated.', 'positions': [40, -173]}}, 'operating_system': none, 'netconf_driver':\
-    \ none, 'last_operational_data_status': none, 'serialized': none, 'type': 'network',\
-    \ 'last_specialized_data_status': none, 'scrapli_driver': none, 'ip_address':\
-    \ none, 'last_modified_by': '', 'id': none, 'os_version': none, 'last_configuration_status':\
-    \ none, 'last_configuration_update': none, 'positions': {}, 'subtype': '', 'name':\
-    \ 'subsubnetwork and subsubsubnetwork', 'last_specialized_data_failure': none,\
-    \ 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-13 15:00:11.686882',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -6969,23 +6762,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': '', 'netmiko_driver': none, 'configuration': none, 'location':\
-    \ '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': none, 'subtype': '', 'name': 'l1 network', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-02 12:46:03.753457',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -7054,23 +6830,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': '', 'netmiko_driver': none, 'configuration': none, 'location':\
-    \ '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': {}, 'subtype': '', 'name': 'l2 network', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-02 12:46:14.439473',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -7141,23 +6900,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': '', 'netmiko_driver': none, 'configuration': none, 'location':\
-    \ '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': {}, 'subtype': '', 'name': 'l3 network', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-02 12:47:02.746851',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -7234,27 +6976,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'display', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'40db70f9-22d1-4497-8834-52ef5b1bf369':\
-    \ {'alignment': 'left', 'content': '- import the pool \"all routers in europe\"\
-    \ with the option \"add connected links\"\\r\\n- click on the \"automatic layout\"\
-    \ button: the network should be displayed in a near-optimal layout almost instantly.\\\
-    r\\n- select everything and delete it.', 'positions': [63, -168]}}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': {}, 'subtype': '', 'name': 'layout of large graph', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-01-13 15:01:16.843061',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -7343,39 +7064,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'editing', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {'9d96833e-cf92-45e4-8c54-f2b145b5e542':\
-    \ {'alignment': 'left', 'content': '- add nodes \"dallas\" and \"atlanta\" without\
-    \ option: the nodes should be added without any links.\\r\\n- delete them\\r\\\
-    n- add \"washington\" and \"austin\" with the \"add connected links\" option:\
-    \ no link should be created.\\r\\n- add \"dallas\" and \"atlanta\" with the \"\
-    add connected links\" option:\\r\\nit should create one link between \"washington\"\
-    \ and \"atlanta\" (link16),\\r\\none link between \"dallas\" and \"austin\" (link13),\\\
-    r\\nand three links between \"dallas\" and \"atlanta\" (link25, 25-2 and 25-3)\\\
-    r\\n- add \"dallas-2\" with the \"add connected links\" option:\\r\\nit should\
-    \ add \"dallas-2\" along with two links:\\r\\n\"link25-reversed\" and \"link25-dallas2\"\
-    \\r\\n- delete everything\\r\\n- add \"link25\" with no option: nothing should\
-    \ be added (missing end nodes).\\r\\n- add \"link25\" with the \"add connected\
-    \ nodes\" option: \"dallas\" and \"atlanta\" should be added along with \"link25\"\
-    .\\r\\n- add \"link25-2\" with the \"add connected nodes\" option: the link should\
-    \ be added but the two ends are already here.\\r\\n- add \"link25-3\" without\
-    \ any option: the link should be added between \"dallas\" and \"atlanta\".', 'positions':\
-    \ [110, -18]}}, 'operating_system': none, 'netconf_driver': none, 'last_operational_data_status':\
-    \ none, 'serialized': none, 'type': 'network', 'last_specialized_data_status':\
-    \ none, 'scrapli_driver': none, 'ip_address': none, 'last_modified_by': '', 'id':\
-    \ none, 'os_version': none, 'last_configuration_status': none, 'last_configuration_update':\
-    \ none, 'positions': {}, 'subtype': '', 'name': 'import with add connected nodes\
-    \ and links', 'last_specialized_data_failure': none, 'last_specialized_data_duration':\
-    \ none, 'model': '', 'down': none, 'custom_json': none, 'creator': 'admin', 'latitude':\
-    \ '0.0', 'last_configuration_failure': none, 'custom_select': none, 'property3':\
-    \ none, 'last_operational_data_duration': none, 'icon': 'network', 'reachable':\
-    \ none, 'longitude': '0.0', 'custom_multiselect': none, 'property1': none, 'property2':\
-    \ none, 'last_modified': '2022-01-13 15:00:20.775721', 'napalm_driver': none,\
-    \ 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""
@@ -7507,23 +7195,6 @@
   "rbac_target": []
   "reachable": !!bool "true"
   "scrapli_driver": "cisco_iosxe"
-  "serialized": "{'last_operational_data_update': none, 'last_operational_data_runtime':\
-    \ none, 'last_operational_data_failure': none, 'port': none, 'last_specialized_data_update':\
-    \ none, 'category': 'display', 'netmiko_driver': none, 'configuration': none,\
-    \ 'location': '', 'last_configuration_duration': none, 'path': none, 'last_configuration_runtime':\
-    \ none, 'operational_data': none, 'admin_only': false, 'specialized_data': none,\
-    \ 'last_specialized_data_runtime': none, 'description': '', 'labels': {}, 'operating_system':\
-    \ none, 'netconf_driver': none, 'last_operational_data_status': none, 'serialized':\
-    \ none, 'type': 'network', 'last_specialized_data_status': none, 'scrapli_driver':\
-    \ none, 'ip_address': none, 'last_modified_by': '', 'id': none, 'os_version':\
-    \ none, 'last_configuration_status': none, 'last_configuration_update': none,\
-    \ 'positions': {}, 'subtype': '', 'name': 'large network display', 'last_specialized_data_failure':\
-    \ none, 'last_specialized_data_duration': none, 'model': '', 'down': none, 'custom_json':\
-    \ none, 'creator': 'admin', 'latitude': '0.0', 'last_configuration_failure': none,\
-    \ 'custom_select': none, 'property3': none, 'last_operational_data_duration':\
-    \ none, 'icon': 'network', 'reachable': none, 'longitude': '0.0', 'custom_multiselect':\
-    \ none, 'property1': none, 'property2': none, 'last_modified': '2022-05-23 11:06:26.816309',\
-    \ 'napalm_driver': none, 'vendor': ''}"
   "subtype": ""
   "type": "network"
   "vendor": ""

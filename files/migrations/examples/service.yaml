@@ -1375,8 +1375,8 @@
     "Restart From Feature and Superworkflow Interaction": *id150
     "Restart Mechanism, payload + results recursive conservation": *id151
     "Runtime Notes Mechanism":
-    - !!int "-258"
-    - !!int "218"
+    - !!int "-337"
+    - !!int "238"
     "Scalability Test (large workflow)": *id103
     "Scrapli Netconf Service": *id152
     "Scrapli Service": *id126
@@ -42642,8 +42642,22 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
-  "last_modified": "2023-11-25 19:01:51.151385"
+  "labels":
+    "b494ef7f-cad9-478b-80a2-a5d03604ad4c":
+      "alignment": "left"
+      "content": "This workflow tests the \"Runtime Notes\" mechanism, and the \"\
+        add_note\"\r\nand \"remote_note\" global functions to create and delete nodes.\r\
+        \n- The first service will create two notes \"note1\" and \"note2\"\r\n- The\
+        \ second service removes \"note2\" with the \"remove_note\" function\r\n-\
+        \ The third service updates \"note1\" and tests creating a new note at the\r\
+        \nold position of \"note2\"\r\n- The last service removes \"note1\". Since\
+        \ \"note3\" has never been removed,\r\nit will be displayed when that specific\
+        \ runtime is selected in the\r\nworkflow builder."
+      "positions":
+      - !!int "81"
+      - !!int "125"
+      "size": !!int "14"
+  "last_modified": "2023-11-25 19:16:11.585122"
   "last_modified_by": "admin"
   "last_run": "2023-11-25 19:01:21.151971"
   "log_level": !!int "1"
@@ -42696,7 +42710,7 @@
   - "[Shared] Start"
   - "[Shared] End"
   - "[Runtime Notes Mechanism] Set note1 and note2"
-  - "[Runtime Notes Mechanism] Remote note2"
+  - "[Runtime Notes Mechanism] Remove note2"
   - "[Runtime Notes Mechanism] Update note1 and add note3"
   - "[Runtime Notes Mechanism] Remove note1"
   "shared": !!bool "false"
@@ -42838,7 +42852,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2023-11-25 19:01:51.151385"
+  "last_modified": "2023-11-25 19:16:11.585122"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -42850,7 +42864,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "[Runtime Notes Mechanism] Remote note2"
+  "name": "[Runtime Notes Mechanism] Remove note2"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -42884,7 +42898,7 @@
   "reserved": !!bool "false"
   "restrict_to_owners": []
   "run_method": "per_device"
-  "scoped_name": "Remote note2"
+  "scoped_name": "Remove note2"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "shared": !!bool "false"
@@ -42963,8 +42977,8 @@
   "parameterized_form_template": ""
   "positions":
     "Runtime Notes Mechanism":
-    - !!int "463"
-    - !!int "221"
+    - !!int "506"
+    - !!int "264"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -43058,8 +43072,8 @@
   "parameterized_form_template": ""
   "positions":
     "Runtime Notes Mechanism":
-    - !!int "-24"
-    - !!int "190"
+    - !!int "-40"
+    - !!int "271"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
