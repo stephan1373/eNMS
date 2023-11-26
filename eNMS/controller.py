@@ -652,7 +652,7 @@ class Controller:
                 run = db.fetch("run", allow_none=True, runtime=runtime)
             state = run.get_state() if run else None
         if kwargs.get("device") and run:
-            output["device_state"] = {
+            output["device_state"] = kwargs["device_state"] = {
                 result.service_id: result.success
                 for result in db.fetch_all(
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
@@ -794,6 +794,8 @@ class Controller:
         def rec(instance, path):
             if run and path not in state:
                 return
+            if "device_state" in kwargs and instance.id not in kwargs["device_state"]:
+                return
             style, active_search = "", kwargs.get("search_value")
             if type == "workflow":
                 if instance.scoped_name in ("Start", "End"):
@@ -840,11 +842,13 @@ class Controller:
                 progress = state[path].get("progress")
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
-            if run:
+            if "device_state" in kwargs:
+                color = "32CD32" if kwargs["device_state"][instance.id] else "FF6666"
+            elif run:
                 if "success" in state[path]["result"]:
                     color = "32CD32" if state[path]["result"]["success"] else "FF6666"
                 else:
-                    color = "25b6fa"
+                    color = "25B6FA"
             else:
                 color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             text = instance.scoped_name if type == "workflow" else instance.name
