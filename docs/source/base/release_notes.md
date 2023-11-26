@@ -132,6 +132,7 @@ Post-demo additions:
   - New entry in the right-click menu "Reference" > "Position"
   - A note that is not deleted will be displayed in the workflow builder when the runtime is
   selected, even after the workflow completes
+- Extend the per-device filtering mechanism in the workflow builder to also apply to the tree
 
 Migration:
 - network.yaml must be merge into device.yaml:
