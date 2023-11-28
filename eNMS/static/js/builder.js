@@ -734,12 +734,6 @@ export function initBuilder() {
   } else {
     loadTypes("service");
     flipRuntimeDisplay(runtimeDisplay);
-    document.addEventListener("keydown", function (event) {
-      if (event.ctrlKey && event.key === "f") {
-        event.preventDefault();
-        if (!$(`#search-form-${instance.id}`).length) showBuilderSearchPanel();
-      }
-    });
   }
   $("#left-arrow,#right-arrow").addClass("disabled");
   call({
