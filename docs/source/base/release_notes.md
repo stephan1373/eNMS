@@ -55,6 +55,7 @@ Version 4.6.0: Clustering
 - Add support for BCC in the send email mechanism (service step 4 and email notification service)
 - Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
   RBAC which users can view, edit and use them in a workflow.
+- Make 'runtime' property of Run class unique at database level ("unique = True")
 
 Migration:
 - Update properties.json > "properly_list" with new format
