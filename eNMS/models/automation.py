@@ -340,7 +340,7 @@ class Run(AbstractBase):
     success = db.Column(Boolean, default=False)
     labels = db.Column(db.LargeString)
     status = db.Column(db.TinyString, default="Running")
-    runtime = db.Column(db.TinyString, index=True)
+    runtime = db.Column(db.TinyString, index=True, unique=True)
     duration = db.Column(db.TinyString)
     trigger = db.Column(db.TinyString)
     path = db.Column(db.TinyString)
