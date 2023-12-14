@@ -735,6 +735,7 @@ class ServiceForm(BaseForm):
     mail_recipient = StringField(
         "Mail Recipients (separated by comma)", substitution=True
     )
+    sender = StringField("Sender", substitution=True)
     reply_to = StringField("Reply-to Email Address", substitution=True)
     mail_bcc = StringField("Hidden Recipients (Blind Carbon Copy)", substitution=True)
     number_of_retries = IntegerField(
@@ -947,6 +948,7 @@ class ServiceForm(BaseForm):
             "include_device_results",
             "include_link_in_summary",
             "mail_recipient",
+            "sender",
             "mail_bcc",
             "reply_to",
             "display_only_failed_nodes",
