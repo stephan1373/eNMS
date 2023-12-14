@@ -126,6 +126,9 @@
       "network_number",
       "user_number"
     ],
+    "server": [
+      "current_runs"
+    ],
     "service": [
       "children",
       "id",

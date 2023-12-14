@@ -35,13 +35,17 @@ class Server(AbstractBase):
     weight = db.Column(Integer, default=1)
     allowed_automation = db.Column(db.List)
     status = db.Column(db.TinyString, default="down")
-    current_runs = db.Column(Integer, default=0)
     runs = relationship("Run", back_populates="server")
     workers = relationship("Worker", back_populates="server")
+    model_properties = {"current_runs": "str"}
 
     def update(self, **kwargs):
         super().update(**kwargs)
         vs.server_data = self.serialized
+
+    @property
+    def current_runs(self):
+        return db.query("run", properties=["id"]).filter_by(server_id=self.id, status="Running").count()
 
 
 class Worker(AbstractBase):
