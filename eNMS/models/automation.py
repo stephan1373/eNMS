@@ -448,7 +448,6 @@ class Run(AbstractBase):
             server_id=vs.server_id,
         )
         server = db.fetch("server", id=vs.server_id)
-        worker.current_runs = 1 if not worker.current_runs else worker.current_runs + 1
         self.worker = worker
         vs.run_targets[self.runtime] = set(
             device.id
@@ -475,7 +474,6 @@ class Run(AbstractBase):
             trigger=self.trigger,
         )
         self.payload = self.service_run.payload
-        worker.current_runs -= 1
         db.session.commit()
         vs.run_targets.pop(self.runtime)
         vs.run_services.pop(self.runtime)

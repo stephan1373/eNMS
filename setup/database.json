@@ -177,6 +177,9 @@
       "user_services",
       "user_tasks"
     ],
+    "worker": [
+      "current_runs"
+    ],
     "workflow_edge": ["id", "source_id", "destination_id", "workflow_id"]
   },
   "relationships": {
