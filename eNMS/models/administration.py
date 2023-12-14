@@ -45,7 +45,11 @@ class Server(AbstractBase):
 
     @property
     def current_runs(self):
-        return db.query("run", properties=["id"]).filter_by(server_id=self.id, status="Running").count()
+        return (
+            db.query("run", properties=["id"])
+            .filter_by(server_id=self.id, status="Running")
+            .count()
+        )
 
 
 class Worker(AbstractBase):
@@ -77,7 +81,11 @@ class Worker(AbstractBase):
 
     @property
     def current_runs(self):
-        return db.query("run", properties=["id"]).filter_by(server_id=self.id, status="Running").count()
+        return (
+            db.query("run", properties=["id"])
+            .filter_by(server_id=self.id, status="Running")
+            .count()
+        )
 
 
 class User(AbstractBase, UserMixin):
