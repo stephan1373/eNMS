@@ -56,6 +56,7 @@ Version 4.6.0: Clustering
 - Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
   RBAC which users can view, edit and use them in a workflow.
 - Make 'runtime' property of Run class unique at database level ("unique = True")
+- Add new "Sender" field for the email notification mechanism (service Step 4)
 
 Migration:
 - Update properties.json > "properly_list" with new format
