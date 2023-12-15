@@ -57,6 +57,7 @@ Version 4.6.0: Clustering
   RBAC which users can view, edit and use them in a workflow.
 - Make 'runtime' property of Run class unique at database level ("unique = True")
 - Add new "Sender" field for the email notification mechanism (service Step 4)
+- Add new snippet to delete corrupted services ("delete_corrupted_services.py")
 
 Migration:
 - Update properties.json > "properly_list" with new format
