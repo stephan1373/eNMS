@@ -83,7 +83,7 @@ class Worker(AbstractBase):
     def current_runs(self):
         return (
             db.query("run", properties=["id"])
-            .filter_by(server_id=self.id, status="Running")
+            .filter_by(worker_id=self.id, status="Running")
             .count()
         )
 
