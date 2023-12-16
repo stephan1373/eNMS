@@ -46,7 +46,7 @@ class Server(AbstractBase):
     @property
     def current_runs(self):
         return (
-            db.query("run", properties=["id"])
+            db.query("run", rbac=None, properties=["id"])
             .filter_by(server_id=self.id, status="Running")
             .count()
         )
@@ -82,7 +82,7 @@ class Worker(AbstractBase):
     @property
     def current_runs(self):
         return (
-            db.query("run", properties=["id"])
+            db.query("run", rbac=None, properties=["id"])
             .filter_by(worker_id=self.id, status="Running")
             .count()
         )
