@@ -31,15 +31,15 @@
     },
     "Clustering": {
       "icon": "server",
-      "rbac": "admin",
+      "rbac": "access",
       "pages": {
         "Servers": {
           "endpoint": "/server_table",
-          "rbac": "admin"
+          "rbac": "access"
         },
         "Workers": {
           "endpoint": "/worker_table",
-          "rbac": "admin"
+          "rbac": "access"
         }
       }
     },
@@ -185,7 +185,7 @@
     "/view_service_results": "access",
     "/workflow_builder": "access",
     "/instance_tree_form": "access",
-    "/worker_table": "admin"
+    "/worker_table": "access"
   },
   "post_requests": {
     "/add_edge": "access",
@@ -283,8 +283,8 @@
     "/web_connection": "access"
   },
   "admin_models": {
-    "read": ["session", "server", "worker"],
-    "edit": ["group", "user", "session"]
+    "read": ["session"],
+    "edit": ["group", "server", "session", "user", "worker"]
   },
   "rbac_models": {
     "credential": {
@@ -315,6 +315,9 @@
       "rbac_edit": "Edit",
       "rbac_use": "Use"
     },
+    "server": {
+      "rbac_read": "Read"
+    },
     "service": {
       "rbac_read": "Read",
       "rbac_edit": "Edit",
@@ -323,6 +326,9 @@
     "task": {
       "rbac_read": "Read",
       "rbac_edit": "Edit"
+    },
+    "worker": {
+      "rbac_read": "Read"
     }
   }
 }
