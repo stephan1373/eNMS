@@ -634,6 +634,7 @@ class SecretForm(BaseForm):
 
 
 class ServerForm(BaseForm):
+    template = "object"
     form_type = HiddenField(default="server")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
@@ -660,6 +661,7 @@ class ServerForm(BaseForm):
 
 
 class WorkerForm(BaseForm):
+    template = "object"
     form_type = HiddenField(default="worker")
     id = HiddenField()
     name = StringField("Name", render_kw={"readonly": True})
