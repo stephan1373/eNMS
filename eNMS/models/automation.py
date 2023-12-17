@@ -372,6 +372,7 @@ class Run(AbstractBase):
     task_name = association_proxy("task", "name")
     worker_id = db.Column(Integer, ForeignKey("worker.id"))
     worker = relationship("Worker", back_populates="runs")
+    worker_name = association_proxy("worker", "name")
     state = db.Column(db.Dict, info={"log_change": False})
     results = relationship("Result", back_populates="run", cascade="all, delete-orphan")
     model_properties = {

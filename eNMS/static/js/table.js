@@ -1094,7 +1094,7 @@ tables.run = class RunTable extends Table {
         </a></b>`;
     }
     if (row.worker_properties) {
-      row.worker_link = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
+      row.worker_name = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
         'worker', '${row.worker_properties.id}')">${row.worker_properties.name}
         </a></b>`;
     }

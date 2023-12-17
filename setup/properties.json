@@ -801,7 +801,7 @@
         "visible": false
       },
       {
-        "data": "worker_link",
+        "data": "worker_name",
         "title": "Worker",
         "search": "text",
         "visible": false,
