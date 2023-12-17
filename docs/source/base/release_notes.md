@@ -58,6 +58,8 @@ Version 4.6.0: Clustering
 - Make 'runtime' property of Run class unique at database level ("unique = True")
 - Add new "Sender" field for the email notification mechanism (service Step 4)
 - Add new snippet to delete corrupted services ("delete_corrupted_services.py")
+- Make pool 'fast compute' mechanism optional via new "pool" > "fast_compute" boolean
+  property in settings.json (default: true)
 
 Migration:
 - Update properties.json > "properly_list" with new format
