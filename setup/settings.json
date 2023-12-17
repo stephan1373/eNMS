@@ -175,5 +175,8 @@
   "vault": {
     "unseal_vault": false,
     "use_vault": false
+  },
+  "pool": {
+    "fast_compute": true
   }
 }
