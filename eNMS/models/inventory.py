@@ -386,7 +386,7 @@ class Pool(AbstractBase):
 
 
 class Session(AbstractBase):
-    __tablename__ = type = "session"
+    __tablename__ = type = class_type = "session"
     private = True
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
