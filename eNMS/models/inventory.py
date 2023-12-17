@@ -368,18 +368,24 @@ class Pool(AbstractBase):
                             f"{property}_invert": invert_type,
                         }
                     )
+                fast_compute = vs.settings["pool"]["fast_compute"]
                 if kwargs["form"]:
-                    instances = controller.filtering(model, properties=["id"], **kwargs)
+                    if fast_compute:
+                        kwargs["properties"] = ["id"]
+                    instances = controller.filtering(model, **kwargs)
                 else:
                     instances = []
-                table = getattr(db, f"pool_{model}_table")
-                db.session.execute(table.delete().where(table.c.pool_id == self.id))
-                if instances:
-                    values = [
-                        {"pool_id": self.id, f"{model}_id": instance.id}
-                        for instance in instances
-                    ]
-                    db.session.execute(table.insert().values(values))
+                if fast_compute:
+                    table = getattr(db, f"pool_{model}_table")
+                    db.session.execute(table.delete().where(table.c.pool_id == self.id))
+                    if instances:
+                        values = [
+                            {"pool_id": self.id, f"{model}_id": instance.id}
+                            for instance in instances
+                        ]
+                        db.session.execute(table.insert().values(values))
+                else:
+                    setattr(self, f"{model}s", instances)
             else:
                 instances = getattr(self, f"{model}s")
             setattr(self, f"{model}_number", len(instances))
