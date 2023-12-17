@@ -782,7 +782,7 @@
         "visible": false
       },
       {
-        "data": "server_link",
+        "data": "server_name",
         "title": "Server",
         "search": "text",
         "visible": false,
@@ -1475,7 +1475,7 @@
         "width": "200px"
       },
       {
-        "data": "server_link",
+        "data": "server_name",
         "title": "Server",
         "search": "text",
         "width": "120px"

@@ -8,6 +8,7 @@ from pathlib import Path
 from shutil import move, rmtree
 from signal import SIGTERM
 from sqlalchemy import Boolean, ForeignKey, Integer, Float
+from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import relationship
 from time import ctime
 
@@ -62,6 +63,7 @@ class Worker(AbstractBase):
     runs = relationship("Run", back_populates="worker")
     server_id = db.Column(Integer, ForeignKey("server.id"))
     server = relationship("Server", back_populates="workers", lazy="joined")
+    server_name = association_proxy("server", "name")
     model_properties = {"current_runs": "str", "server_properties": "dict"}
 
     def update(self, **kwargs):

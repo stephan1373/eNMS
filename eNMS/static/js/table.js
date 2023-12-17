@@ -1089,7 +1089,7 @@ tables.run = class RunTable extends Table {
       'service', ${row.instance}, {parent: '${this.id}', from: 'runs',
       to: 'services'})">Services</a></b>`;
     if (row.server_properties) {
-      row.server_link = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
+      row.server_name = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
         'server', '${row.server_properties.id}')">${row.server_properties.name}
         </a></b>`;
     }
@@ -1777,7 +1777,7 @@ tables.worker = class WorkerTable extends Table {
       'run', ${row.instance}, {parent: '${this.id}', from: 'worker', to: 'runs'})">
       Runs</a></b>`;
     if (row.server_properties) {
-      row.server_link = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
+      row.server_name = `<b><a href="#" onclick="eNMS.base.showInstancePanel(
         'server', '${row.server_properties.id}')">${row.server_properties.name}
         </a></b>`;
     }
