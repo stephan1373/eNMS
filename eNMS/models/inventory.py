@@ -378,29 +378,35 @@ class Pool(AbstractBase):
                             f"{property}_invert": invert_type,
                         }
                     )
+                fast_compute = vs.settings["pool"]["fast_compute"]
                 if kwargs["form"]:
                     if model == "device" and not self.include_networks:
                         kwargs["sql_contraints"] = [
                             vs.models["device"].type != "network"
                         ]
-                    instances = controller.filtering(model, properties=["id"], **kwargs)
+                    if fast_compute:
+                        kwargs["properties"] = ["id"]
+                    instances = controller.filtering(model, **kwargs)
                 else:
                     instances = []
-                table = getattr(db, f"pool_{model}_table")
-                db.session.execute(table.delete().where(table.c.pool_id == self.id))
-                if instances:
-                    values = [
-                        {"pool_id": self.id, f"{model}_id": instance.id}
-                        for instance in instances
-                    ]
-                    db.session.execute(table.insert().values(values))
+                if fast_compute:
+                    table = getattr(db, f"pool_{model}_table")
+                    db.session.execute(table.delete().where(table.c.pool_id == self.id))
+                    if instances:
+                        values = [
+                            {"pool_id": self.id, f"{model}_id": instance.id}
+                            for instance in instances
+                        ]
+                        db.session.execute(table.insert().values(values))
+                else:
+                    setattr(self, f"{model}s", instances)
             else:
                 instances = getattr(self, f"{model}s")
             setattr(self, f"{model}_number", len(instances))
 
 
 class Session(AbstractBase):
-    __tablename__ = type = "session"
+    __tablename__ = type = class_type = "session"
     private = True
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)

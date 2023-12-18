@@ -97,7 +97,7 @@ class Scheduler(Flask):
     def schedule_task(self, task):
         if task["scheduling_mode"] == "cron":
             crontab = task["crontab_expression"].split()
-            crontab[-1] = ",".join(self.days[day] for day in crontab[-1].split(","))
+            crontab[-1] = "".join(self.days.get(day, day) for day in crontab[-1])
             trigger = {"trigger": CronTrigger.from_crontab(" ".join(crontab))}
         elif task["frequency"]:
             trigger = {

@@ -634,6 +634,7 @@ class SecretForm(BaseForm):
 
 
 class ServerForm(BaseForm):
+    template = "object"
     form_type = HiddenField(default="server")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
@@ -660,13 +661,13 @@ class ServerForm(BaseForm):
 
 
 class WorkerForm(BaseForm):
+    template = "object"
     form_type = HiddenField(default="worker")
     id = HiddenField()
     name = StringField("Name", render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     subtype = StringField("Subtype", render_kw={"readonly": True})
     last_update = StringField("Last Update", render_kw={"readonly": True})
-    current_runs = StringField("Current Runs", render_kw={"readonly": True})
 
 
 class ServiceForm(BaseForm):
@@ -736,6 +737,7 @@ class ServiceForm(BaseForm):
     mail_recipient = StringField(
         "Mail Recipients (separated by comma)", substitution=True
     )
+    sender = StringField("Sender", substitution=True)
     reply_to = StringField("Reply-to Email Address", substitution=True)
     mail_bcc = StringField("Hidden Recipients (Blind Carbon Copy)", substitution=True)
     number_of_retries = IntegerField(
@@ -943,6 +945,7 @@ class ServiceForm(BaseForm):
             "include_device_results",
             "include_link_in_summary",
             "mail_recipient",
+            "sender",
             "mail_bcc",
             "reply_to",
             "display_only_failed_nodes",

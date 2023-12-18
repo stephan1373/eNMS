@@ -78,6 +78,7 @@ class Service(AbstractBase):
     include_device_results = db.Column(Boolean, default=True)
     include_link_in_summary = db.Column(Boolean, default=True)
     mail_recipient = db.Column(db.SmallString)
+    sender = db.Column(db.SmallString)
     mail_bcc = db.Column(db.SmallString)
     reply_to = db.Column(db.SmallString)
     initial_payload = db.Column(db.Dict)
@@ -358,7 +359,7 @@ class Run(AbstractBase):
     success = db.Column(Boolean, default=False)
     labels = db.Column(db.LargeString)
     status = db.Column(db.TinyString, default="Running")
-    runtime = db.Column(db.TinyString, index=True)
+    runtime = db.Column(db.TinyString, index=True, unique=True)
     duration = db.Column(db.TinyString)
     trigger = db.Column(db.TinyString)
     path = db.Column(db.TinyString)
@@ -389,6 +390,7 @@ class Run(AbstractBase):
     task_name = association_proxy("task", "name")
     worker_id = db.Column(Integer, ForeignKey("worker.id"))
     worker = relationship("Worker", back_populates="runs")
+    worker_name = association_proxy("worker", "name")
     state = db.Column(db.Dict, info={"log_change": False})
     results = relationship("Result", back_populates="run", cascade="all, delete-orphan")
     model_properties = {
@@ -466,9 +468,6 @@ class Run(AbstractBase):
             server_id=vs.server_id,
             rbac=None,
         )
-        server = db.fetch("server", id=vs.server_id, rbac=None)
-        worker.current_runs = 1 if not worker.current_runs else worker.current_runs + 1
-        server.current_runs += 1
         self.worker = worker
         vs.run_targets[self.runtime] = set(
             device.id
@@ -495,8 +494,6 @@ class Run(AbstractBase):
             trigger=self.trigger,
         )
         self.payload = self.service_run.payload
-        worker.current_runs -= 1
-        server.current_runs -= 1
         db.session.commit()
         vs.run_targets.pop(self.runtime)
         vs.run_services.pop(self.runtime)

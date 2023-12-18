@@ -8,6 +8,7 @@ from pathlib import Path
 from shutil import move, rmtree
 from signal import SIGTERM
 from sqlalchemy import Boolean, ForeignKey, Integer, Float
+from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import JSON
 from time import ctime
@@ -37,13 +38,21 @@ class Server(AbstractBase):
     allowed_automation = db.Column(db.List)
     status = db.Column(db.TinyString, default="down")
     logs = relationship("Changelog", back_populates="server")
-    current_runs = db.Column(Integer, default=0)
     runs = relationship("Run", back_populates="server")
     workers = relationship("Worker", back_populates="server")
+    model_properties = {"current_runs": "str"}
 
     def update(self, **kwargs):
         super().update(**kwargs)
         vs.server_data = self.to_dict()
+
+    @property
+    def current_runs(self):
+        return (
+            db.query("run", rbac=None, properties=["id"])
+            .filter_by(server_id=self.id, status="Running")
+            .count()
+        )
 
 
 class Worker(AbstractBase):
@@ -53,11 +62,11 @@ class Worker(AbstractBase):
     description = db.Column(db.LargeString)
     subtype = db.Column(db.TinyString)
     last_update = db.Column(db.TinyString)
-    current_runs = db.Column(Integer, default=0)
     runs = relationship("Run", back_populates="worker")
     server_id = db.Column(Integer, ForeignKey("server.id"))
     server = relationship("Server", back_populates="workers", lazy="joined")
-    model_properties = {"server_properties": "dict"}
+    server_name = association_proxy("server", "name")
+    model_properties = {"current_runs": "str", "server_properties": "dict"}
 
     def update(self, **kwargs):
         self.last_update = vs.get_time()
@@ -73,6 +82,14 @@ class Worker(AbstractBase):
     @property
     def server_properties(self):
         return self.server.base_properties
+
+    @property
+    def current_runs(self):
+        return (
+            db.query("run", rbac=None, properties=["id"])
+            .filter_by(worker_id=self.id, status="Running")
+            .count()
+        )
 
 
 class User(AbstractBase, UserMixin):

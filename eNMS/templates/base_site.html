@@ -68,6 +68,10 @@
       rel="stylesheet"
     />
     <link
+      href="{{ url_for('static', filename='lib/codemirror/foldgutter.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
       href="{{ url_for('static', filename='lib/select2/select2.min.css') }}"
       rel="stylesheet"
     />
@@ -349,6 +353,9 @@
     <script src="{{ url_for('static', filename='lib/jsoneditor/jsoneditor.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/codemirror/codemirror.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/codemirror/logsMode.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/codemirror/foldcode.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/codemirror/foldgutter.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/codemirror/foldindent.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/select2/select2.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/jstree/jstree.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/dropzone/dropzone.min.js') }}"></script>

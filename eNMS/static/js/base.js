@@ -646,6 +646,8 @@ export function configureForm(form, id, panelId) {
         lineNumbers: true,
         extraKeys: { "Ctrl-F": "findPersistent" },
         matchBrackets: true,
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         mode: "python",
       });
       editor.on("change", () => editor.save());

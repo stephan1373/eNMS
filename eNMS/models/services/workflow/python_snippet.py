@@ -21,7 +21,7 @@ class PythonSnippetService(Service):
         try:
             code_object = compile(run.source_code, "user_python_code", "exec")
         except Exception as exc:
-            run.log("info", f"Compile error: {str(exc)}")
+            run.log("error", f"Compile error: {str(exc)}")
             return {"success": False, "result": {"step": "compile", "error": str(exc)}}
         results = {}
 
@@ -42,7 +42,7 @@ class PythonSnippetService(Service):
             pass
         except Exception as exc:
             line_number = extract_tb(exc.__traceback__)[-1][1]
-            run.log("info", f"Execution error(line {line_number}): {str(exc)}")
+            run.log("error", f"Execution error(line {line_number}): {str(exc)}")
             return {
                 "success": False,
                 "result": {
