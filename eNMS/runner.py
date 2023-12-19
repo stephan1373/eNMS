@@ -755,7 +755,7 @@ class Runner:
                 f"{status}: {self.service.name}",
                 content,
                 recipients=self.sub(self.get("mail_recipient"), locals()),
-                sender=self.sub(self.get("sender"), locals()),
+                sender=self.sub(self.get("mail_sender"), locals()),
                 reply_to=self.sub(self.get("reply_to"), locals()),
                 bcc=self.sub(self.get("mail_bcc"), locals()),
                 filename=f"results-{filename}.{'html' if html_report else 'txt'}",
