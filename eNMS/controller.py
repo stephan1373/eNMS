@@ -1637,6 +1637,7 @@ class Controller:
                     .all()
                 )
                 setattr(group, f"{property}_devices", devices)
+                db.session.commit()
 
     def upload_files(self, **kwargs):
         path = f"{vs.file_path}/{kwargs['folder']}/{kwargs['file'].filename}"
