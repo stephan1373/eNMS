@@ -66,5 +66,8 @@
         "iteration_variable_name"
       ]
     }
+  },
+  "advanced": {
+    "always_commit_result": false
   }
 }
