@@ -489,6 +489,22 @@ class Database:
             for instance in self.fetch_all(model)
         ]
 
+    def try_commit(self, transaction, *args, **kwargs):
+        for index in range(self.retry_commit_number):
+            try:
+                result = transaction(*args, **kwargs)
+                self.session.commit()
+                break
+            except Exception as exc:
+                self.session.rollback()
+                if index == self.retry_commit_number - 1:
+                    error(f"Commit n°{index} failed ({format_exc()})")
+                    raise exc
+                else:
+                    warning(f"Commit n°{index} failed ({str(exc)})")
+                sleep(self.retry_commit_time * (index + 1))
+        return result
+
     def factory(self, _class, commit=False, no_fetch=False, rbac="edit", **kwargs):
         def transaction(_class, **kwargs):
             property = "path" if _class in ("file", "folder") else "name"
@@ -512,19 +528,7 @@ class Database:
         if not commit:
             instance = transaction(_class, **kwargs)
         else:
-            for index in range(self.retry_commit_number):
-                try:
-                    instance = transaction(_class, **kwargs)
-                    self.session.commit()
-                    break
-                except Exception as exc:
-                    self.session.rollback()
-                    if index == self.retry_commit_number - 1:
-                        error(f"Commit n°{index} failed ({format_exc()})")
-                        raise exc
-                    else:
-                        warning(f"Commit n°{index} failed ({str(exc)})")
-                    sleep(self.retry_commit_time * (index + 1))
+            instance = self.try_commit(transaction, _class, **kwargs)
         return instance
 
     def get_credential(
