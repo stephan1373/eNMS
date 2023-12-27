@@ -511,7 +511,11 @@ class Runner:
             self.has_result = True
             try:
                 db.factory(
-                    "result", result=results, commit=vs.automation["advanced"]["always_commit_result"] or commit, rbac=None, **result_kw
+                    "result",
+                    result=results,
+                    commit=vs.automation["advanced"]["always_commit_result"] or commit,
+                    rbac=None,
+                    **result_kw,
                 )
             except Exception:
                 self.log("critical", f"Failed to commit result:\n{format_exc()}")
