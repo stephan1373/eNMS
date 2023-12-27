@@ -60,6 +60,7 @@ Version 4.6.0: Clustering
 - Add new snippet to delete corrupted services ("delete_corrupted_services.py")
 - Make pool 'fast compute' mechanism optional via new "pool" > "fast_compute" boolean
   property in settings.json (default: true)
+- Add new try_set function to retry updating a property in case of deadlock
 
 Migration:
 - Update properties.json > "properly_list" with new format
