@@ -1171,7 +1171,6 @@ class Controller:
                 if property in kwargs.get("form", {}):
                     run_kwargs[property] = kwargs["form"][property]
             service = db.fetch("service", id=service, rbac="run")
-            service.status = "Running"
             initial_payload = {
                 **service.initial_payload,
                 **kwargs.get("form", {}).get("initial_payload", {}),
@@ -1189,7 +1188,8 @@ class Controller:
                 run_kwargs["restart_run"] = restart_run.id
                 initial_payload = restart_run.payload
             run_kwargs["services"] = [service.id]
-            service.last_run = vs.get_time()
+            db.try_set(service, "status", "Running")
+            db.try_set(service, "last_run", vs.get_time())
             run_object = db.factory(
                 "run", service=service.id, commit=True, rbac=None, **run_kwargs
             )

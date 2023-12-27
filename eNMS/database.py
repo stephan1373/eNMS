@@ -505,6 +505,12 @@ class Database:
                 sleep(self.retry_commit_time * (index + 1))
         return result
 
+    def try_set(self, instance, property, value):
+        def transaction():
+            setattr(instance, property, value)
+
+        self.try_commit(transaction)
+
     def factory(self, _class, commit=False, no_fetch=False, rbac="edit", **kwargs):
         def transaction(_class, **kwargs):
             property = "path" if _class in ("file", "folder") else "name"
