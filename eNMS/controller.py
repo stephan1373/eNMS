@@ -1035,6 +1035,9 @@ class Controller:
                             )
                             if related_instance:
                                 store[relation["model"]][value] = related_instance
+                            else:
+                                info(f"Skipping association of {value}")
+                                continue
                         sql_value = store[relation["model"]][value]
                     try:
                         setattr(store[model].get(instance_name), property, sql_value)
