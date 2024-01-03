@@ -267,6 +267,12 @@ class Runner:
                 self.main_run.status = state["status"] = status
                 self.success = results["success"]
                 self.close_remaining_connections()
+                if self.man_minutes:
+                    self.main_run.service.man_minutes_total += (
+                        len(results["summary"]["success"]) * self.man_minutes
+                        if self.man_minutes_type == "device"
+                        else self.man_minutes * results["success"]
+                    )
             if self.main_run.task and not (
                 self.main_run.task.frequency or self.main_run.task.crontab_expression
             ):
