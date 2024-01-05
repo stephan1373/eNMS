@@ -9,7 +9,7 @@ from git import Repo
 from io import BytesIO, StringIO
 from ipaddress import IPv4Network
 from json import dump, load
-from logging import info
+from logging import info, error
 from operator import attrgetter, itemgetter
 from os import getenv, listdir, makedirs, scandir
 from os.path import exists
@@ -1035,6 +1035,9 @@ class Controller:
                             )
                             if related_instance:
                                 store[relation["model"]][value] = related_instance
+                            else:
+                                error(f"Skipping association of {value}")
+                                continue
                         sql_value = store[relation["model"]][value]
                     try:
                         setattr(store[model].get(instance_name), property, sql_value)
