@@ -68,6 +68,7 @@
     }
   },
   "advanced": {
-    "always_commit_result": false
+    "always_commit_result": false,
+    "run_jitter": 5
   }
 }

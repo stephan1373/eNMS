@@ -8,8 +8,10 @@ from ncclient.devices import supported_devices_cfg
 from netmiko.ssh_dispatcher import CLASS_MAPPER
 from os import getenv
 from pathlib import Path
+from random import uniform
 from string import punctuation
 from sys import modules
+from time import sleep
 from traceback import format_exc
 from warnings import warn
 from wtforms.validators import __all__ as all_validators
@@ -257,7 +259,9 @@ class VariableStore:
 
         return old
 
-    def get_time(self):
+    def get_time(self, jitter=False):
+        if jitter:
+            sleep(uniform(0, self.automation["advanced"]["run_jitter"]))
         return str(datetime.now())
 
     def str_to_date(self, value):
