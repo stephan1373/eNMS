@@ -498,10 +498,10 @@ class Database:
             except Exception as exc:
                 self.session.rollback()
                 if index == self.retry_commit_number - 1:
-                    error(f"Commit n°{index} failed ({format_exc()})")
+                    error(f"Commit n°{index + 1} failed ({format_exc()})")
                     raise exc
                 else:
-                    warning(f"Commit n°{index} failed ({str(exc)})")
+                    warning(f"Commit n°{index + 1} failed ({str(exc)})")
                 sleep(self.retry_commit_time * (index + 1))
         return result
 
