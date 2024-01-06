@@ -65,6 +65,8 @@ Version 4.6.0: Clustering
   If set to True, results are always committed as soon as they are created to avoid deadlocks.
 - Add new jitter parameter to delay rest-triggered runs, and add a corresponding key
   in automation.json: "advanced" > "run_jitter" to specify jitter value.
+- Refactor "service run count" mechanism to work with the redis queue and correctly update
+  the service status ("Idle" / "Running") at the end of the run
 
 Migration:
 - Update properties.json > "properly_list" with new format
