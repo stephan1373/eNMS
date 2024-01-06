@@ -80,27 +80,25 @@ class NetmikoBackupService(ConnectionService):
                 result = sub(
                     replacement["pattern"], replacement["replace_with"], result, flags=M
                 )
-            device_with_deferred_data = (
+            deferred_device = (
                 db.query("device")
                 .options(load_only(getattr(vs.models["device"], self.property)))
                 .filter_by(id=device.id)
                 .one()
             )
-            setattr(device, f"last_{self.property}_status", "Success")
-            duration = f"{(datetime.now() - runtime).total_seconds()}s"
-            setattr(device, f"last_{self.property}_duration", duration)
-            if getattr(device_with_deferred_data, self.property) != result:
-                setattr(device_with_deferred_data, self.property, result)
+            if getattr(deferred_device, self.property) != result:
                 with open(path / self.property, "w") as file:
                     file.write(result)
-                setattr(device, f"last_{self.property}_update", str(runtime))
+            kwargs = {"deferred_device": deferred_device, "success": True}
         except Exception as exc:
-            setattr(device, f"last_{self.property}_status", "Failure")
-            setattr(device, f"last_{self.property}_failure", str(runtime))
-            return {"success": False, "result": str(exc)}
-        run.update_configuration_properties(path, self.property, device)
-        return {"success": True}
-
+            result, kwargs = str(exc), {"success": False}
+        kwargs.update({"result": result, "runtime": runtime})
+        db.try_commit(run.configuration_transaction, self.property, device, **kwargs)
+        if kwargs["success"]:
+            run.update_configuration_properties(path, self.property, device)
+            return {"success": True}
+        else:
+            return {key: kwargs[key] for key in ("success", "result")}
 
 class NetmikoBackupForm(NetmikoForm):
     form_type = HiddenField(default="netmiko_backup_service")
