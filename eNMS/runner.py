@@ -260,23 +260,9 @@ class Runner:
             results["duration"] = str(now - start)
             self.write_state("result/success", results["success"])
             if self.is_main_run:
-                state = self.main_run.get_state()
-                status = "Aborted" if self.stop else "Completed"
-                self.main_run.state = state
-                self.main_run.duration = results["duration"]
-                self.main_run.status = state["status"] = status
-                self.success = results["success"]
                 self.close_remaining_connections()
-                if self.man_minutes:
-                    self.main_run.service.man_minutes_total += (
-                        len(results["summary"]["success"]) * self.man_minutes
-                        if self.man_minutes_type == "device"
-                        else self.man_minutes * results["success"]
-                    )
-            if self.main_run.task and not (
-                self.main_run.task.frequency or self.main_run.task.crontab_expression
-            ):
-                self.main_run.task.is_active = False
+                self.success = results["success"]
+                db.try_commit(self.end_of_run_transaction, results)
             results["properties"] = self.service.get_properties(exclude=["positions"])
             results["trigger"] = self.main_run.trigger
             must_have_results = not self.has_result and not self.iteration_devices
@@ -288,6 +274,23 @@ class Runner:
             vs.custom.run_post_processing(self, results)
 
         self.results = results
+
+    def end_of_run_transaction(self, results):
+        state = self.main_run.get_state()
+        status = "Aborted" if self.stop else "Completed"
+        self.main_run.state = state
+        self.main_run.duration = results["duration"]
+        self.main_run.status = state["status"] = status
+        if self.man_minutes:
+            self.main_run.service.man_minutes_total += (
+                len(results["summary"]["success"]) * self.man_minutes
+                if self.man_minutes_type == "device"
+                else self.man_minutes * results["success"]
+            )
+        if self.main_run.task and not (
+            self.main_run.task.frequency or self.main_run.task.crontab_expression
+        ):
+            self.main_run.task.is_active = False
 
     def make_json_compliant(self, input):
         def rec(value):
