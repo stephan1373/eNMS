@@ -100,6 +100,7 @@ class NetmikoBackupService(ConnectionService):
         else:
             return {key: kwargs[key] for key in ("success", "result")}
 
+
 class NetmikoBackupForm(NetmikoForm):
     form_type = HiddenField(default="netmiko_backup_service")
     property = SelectField(
