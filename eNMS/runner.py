@@ -123,6 +123,19 @@ class Runner:
         else:
             return getattr(self.main_run.placeholder or self.service, property)
 
+    def update_service_count(self, count):
+        if env.redis_queue:
+            env.redis("incr", f"services/{self.service.id}/runs", count)
+        else:
+            vs.service_run_count[self.service.id] += count
+
+    @property
+    def service_is_running(self):
+        if env.redis_queue:
+            return bool(int(env.redis("get", f"services/{self.service.id}/runs")))
+        else:
+            return bool(vs.service_run_count[self.service.id])
+
     @property
     def stop(self):
         if env.redis_queue:
@@ -227,8 +240,9 @@ class Runner:
         start = datetime.now().replace(microsecond=0)
         results = {"runtime": self.runtime, "success": True}
         self.write_state("result/runtime", self.runtime)
+        if self.is_main_run:
+            self.update_service_count(1)
         try:
-            vs.service_run_count[self.service.id] += 1
             results.update(self.device_run())
         except Exception:
             result = "\n".join(format_exc().splitlines())
@@ -253,15 +267,13 @@ class Runner:
                     error = "\n".join(format_exc().splitlines())
                     self.log("error", f"Notification error: {error}")
                     results["notification"] = {"success": False, "error": error}
-            vs.service_run_count[self.service.id] -= 1
-            if not vs.service_run_count[self.id]:
-                self.service.status = "Idle"
             now = datetime.now().replace(microsecond=0)
             results["duration"] = str(now - start)
             self.write_state("result/success", results["success"])
             if self.is_main_run:
                 self.close_remaining_connections()
                 self.success = results["success"]
+                self.update_service_count(-1)
                 db.try_commit(self.end_of_run_transaction, results)
             results["properties"] = self.service.get_properties(exclude=["positions"])
             results["trigger"] = self.main_run.trigger
@@ -291,6 +303,8 @@ class Runner:
             self.main_run.task.frequency or self.main_run.task.crontab_expression
         ):
             self.main_run.task.is_active = False
+        if not self.service_is_running:
+            self.service.status = "Idle"
 
     def make_json_compliant(self, input):
         def rec(value):
