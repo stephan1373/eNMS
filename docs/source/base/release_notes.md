@@ -67,8 +67,8 @@ Version 4.6.0: Clustering
   in automation.json: "advanced" > "run_jitter" to specify jitter value.
 - Refactor "service run count" mechanism to work with the redis queue and correctly update
   the service status ("Idle" / "Running") at the end of the run
-- Refactor netmiko backup service to retry the configuration update transaction in case
-  of deadlocks
+- Refactor netmiko backup service and scrapli backup service to retry the configuration
+  update transaction in case of deadlocks
 
 Migration:
 - Update properties.json > "properly_list" with new format
