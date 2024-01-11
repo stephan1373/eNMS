@@ -119,6 +119,7 @@ class VariableStore:
                     "width": "70%",
                     "visible": property == "configuration",
                     "orderable": False,
+                    "html": True,
                 },
             )
             for timestamp in self.timestamps:
@@ -129,6 +130,7 @@ class VariableStore:
                         "title": f"Last {title} {timestamp.capitalize()}",
                         "search": "text",
                         "visible": False,
+                        "html": timestamp == "status",
                     },
                 )
 
