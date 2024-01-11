@@ -449,7 +449,6 @@ class Run(AbstractBase):
             subtype=environ.get("_", "").split("/")[-1],
             server_id=vs.server_id,
         )
-        server = db.fetch("server", id=vs.server_id)
         self.worker = worker
         vs.run_targets[self.runtime] = set(
             device.id

@@ -49,7 +49,7 @@ class VariableStore:
         self.file_path = Path(
             self.settings["paths"]["files"] or str(self.path / "files")
         )
-        self.playbook_path = path = (
+        self.playbook_path = (
             self.settings["paths"]["playbooks"] or f"{self.file_path}/playbooks"
         )
         self.migration_path = (

@@ -91,7 +91,7 @@ class NetmikoBackupService(ConnectionService):
                 with open(path / self.property, "w") as file:
                     file.write(result)
             kwargs = {"deferred_device": deferred_device, "success": True}
-        except Exception as exc:
+        except Exception:
             result, kwargs = format_exc(), {"success": False}
         kwargs.update({"result": result, "runtime": runtime})
         db.try_commit(run.configuration_transaction, self.property, device, **kwargs)
