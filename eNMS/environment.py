@@ -1,8 +1,7 @@
 from base64 import b64decode, b64encode
 from click import get_current_context
-from collections import defaultdict
 from cryptography.fernet import Fernet
-from dramatiq import get_logger, Middleware, set_broker
+from dramatiq import set_broker
 from dramatiq.brokers.redis import RedisBroker
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -13,21 +12,19 @@ from importlib import import_module
 from json import load
 from logging.config import dictConfig
 from logging import getLogger, info
-from os import getenv, getpid, getppid, kill
+from os import getenv
 from passlib.hash import argon2
 from pathlib import Path
-from psutil import Process
 from redis import Redis
 from redis.exceptions import ConnectionError, TimeoutError
 from requests import Session as RequestSession
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
-from signal import SIGHUP
 from smtplib import SMTP
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
 from sys import path as sys_path
-from threading import Lock, Thread
+from threading import Thread
 from traceback import format_exc
 from warnings import warn
 from watchdog.observers.polling import PollingObserver

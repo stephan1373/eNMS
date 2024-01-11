@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from wtforms.widgets import TextArea
 
-from eNMS.database import db, vs
+from eNMS.database import db
 from eNMS.forms import BaseForm
 from eNMS.fields import (
     HiddenField,
