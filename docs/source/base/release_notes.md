@@ -69,6 +69,12 @@ Version 4.6.0: Clustering
   the service status ("Idle" / "Running") at the end of the run
 - Refactor netmiko backup service and scrapli backup service to retry the configuration
   update transaction in case of deadlocks
+- Forbid redirecting outside of the base URL in the login redirection mechanism
+- Prevent active HTML / JavaScript in the cells of a table by default, and add the `html`
+  keyword in properties.json to allow it wherever necessary.
+- Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table
+- Validate that the path of a file is inside the "files" folder when renaming a file object
+  or uploading a file.
 
 Migration:
 - Update properties.json > "properly_list" with new format
