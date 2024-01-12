@@ -268,8 +268,10 @@ class File(AbstractBase):
 
     def update(self, move_file=True, **kwargs):
         old_path = self.full_path
+        self.full_path = f"{vs.file_path}{kwargs['path']}"
+        if not str(Path(self.full_path).resolve()).startswith(str(vs.file_path)):
+            raise Exception("The path resolves outside of the files folder.")
         super().update(**kwargs)
-        self.full_path = f"{vs.file_path}{self.path}"
         if exists(str(old_path)) and not exists(self.full_path) and move_file:
             move(old_path, self.full_path)
         self.name = self.path.replace("/", ">")
@@ -324,9 +326,9 @@ class Folder(File):
 
     def __init__(self, **kwargs):
         full_path = f"{vs.file_path}{kwargs['path']}"
+        self.update(**kwargs)
         if not exists(full_path) and not kwargs.get("migration_import"):
             makedirs(full_path)
-        self.update(**kwargs)
 
 
 class Secret(AbstractBase):
