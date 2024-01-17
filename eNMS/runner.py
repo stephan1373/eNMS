@@ -293,7 +293,7 @@ class Runner:
         self.main_run.state = state
         self.main_run.duration = results["duration"]
         self.main_run.status = state["status"] = status
-        if self.man_minutes:
+        if self.man_minutes and "summary" in results:
             self.main_run.service.man_minutes_total += (
                 len(results["summary"]["success"]) * self.man_minutes
                 if self.man_minutes_type == "device"
