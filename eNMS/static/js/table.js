@@ -1348,7 +1348,6 @@ tables.group = class GroupTable extends Table {
     return [
       this.columnDisplay(),
       this.refreshTableButton(),
-      this.bulkFilteringButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),

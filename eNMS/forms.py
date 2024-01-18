@@ -176,9 +176,9 @@ class BaseForm(FlaskForm, metaclass=MetaForm):
 class FormFactory:
     def _initialize(self):
         self.generate_instance_insertion_forms()
-        self.generate_rbac_forms()
         self.generate_service_forms()
         self.generate_filtering_forms()
+        self.generate_rbac_forms()
 
     def generate_filtering_forms(self):
         for model in vs.properties["filtering"]:
