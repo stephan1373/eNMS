@@ -1164,7 +1164,7 @@ class Controller:
     @actor(max_retries=0, time_limit=float("inf"))
     def run(service, **kwargs):
         try:
-            run_object = None
+            run_object, username = None, kwargs["creator"]
             current_thread().name = kwargs["runtime"]
             if "path" not in kwargs:
                 kwargs["path"] = str(service)
@@ -1173,7 +1173,7 @@ class Controller:
             for property in ("name", "labels"):
                 if property in kwargs.get("form", {}):
                     run_kwargs[property] = kwargs["form"][property]
-            service = db.fetch("service", id=service, rbac="run")
+            service = db.fetch("service", id=service, rbac="run", username=username)
             initial_payload = {
                 **service.initial_payload,
                 **kwargs.get("form", {}).get("initial_payload", {}),

@@ -448,6 +448,7 @@ class Run(AbstractBase):
             name=str(getpid()),
             subtype=environ.get("_", "").split("/")[-1],
             server_id=vs.server_id,
+            rbac=None,
         )
         self.worker = worker
         vs.run_targets[self.runtime] = set(
