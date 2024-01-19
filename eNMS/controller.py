@@ -1438,10 +1438,9 @@ class Controller:
                         continue
                     builder_id = kwargs[f"{builder_type}s"][0]
                     db.fetch(builder_type, id=builder_id, rbac="edit")
-            instance = db.factory(type, **kwargs)
+            instance = db.factory(type, commit=True, **kwargs)
             if kwargs.get("copy"):
                 db.fetch(type, id=kwargs["copy"]).duplicate(clone=instance)
-            db.session.flush()
             return instance.post_update()
         except db.rbac_error:
             return {"alert": "Error 403 - Not Authorized."}
