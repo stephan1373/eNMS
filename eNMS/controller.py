@@ -1201,7 +1201,7 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            env.log("critical", format_exc())
+            env.log("critical", f"(runtime: {kwargs['runtime']}) - {format_exc()}")
             if run_object and run_object.status == "Running":
                 run_object.status = "Failed"
             db.session.commit()
