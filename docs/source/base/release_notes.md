@@ -75,6 +75,8 @@ Version 4.6.0: Clustering
 - Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table
 - Validate that the path of a file is inside the "files" folder when renaming a file object
   or uploading a file.
+- Move v1/v2 in config table after the configuration properties columns
+- Add runtime in traceback when a run fails in controller.run function
 
 Migration:
 - Update properties.json > "properly_list" with new format
