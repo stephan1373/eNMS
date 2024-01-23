@@ -76,6 +76,7 @@ Version 4.6.0: Clustering
 - Validate that the path of a file is inside the "files" folder when renaming a file object
   or uploading a file.
 - Move v1/v2 in config table after the configuration properties columns
+- Move v1/v2 in all results table before the table buttons
 - Add runtime in traceback when a run fails in controller.run function
 
 Migration:
