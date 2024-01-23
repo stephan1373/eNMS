@@ -448,11 +448,6 @@
         "html": true
       },
       {
-        "data": "buttons",
-        "orderable": false,
-        "export": false
-      },
-      {
         "data": "v1",
         "title": "V1",
         "orderable": false,
@@ -463,6 +458,11 @@
         "title": "V2",
         "orderable": false,
         "html": true
+      },
+      {
+        "data": "buttons",
+        "orderable": false,
+        "export": false
       }
     ],
     "link": [
@@ -937,11 +937,6 @@
         "html": true
       },
       {
-        "data": "buttons",
-        "orderable": false,
-        "export": false
-      },
-      {
         "data": "v1",
         "title": "V1",
         "orderable": false,
@@ -952,6 +947,11 @@
         "title": "V2",
         "orderable": false,
         "html": true
+      },
+      {
+        "data": "buttons",
+        "orderable": false,
+        "export": false
       }
     ],
     "device_result": [
@@ -999,11 +999,6 @@
         "html": true
       },
       {
-        "data": "buttons",
-        "orderable": false,
-        "export": false
-      },
-      {
         "data": "v1",
         "title": "V1",
         "orderable": false,
@@ -1014,6 +1009,11 @@
         "title": "V2",
         "orderable": false,
         "html": true
+      },
+      {
+        "data": "buttons",
+        "orderable": false,
+        "export": false
       }
     ],
     "group": [
