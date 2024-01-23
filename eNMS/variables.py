@@ -124,7 +124,7 @@ class VariableStore:
             )
             for timestamp in self.timestamps:
                 self.properties["tables"]["configuration"].insert(
-                    -1,
+                    -3,
                     {
                         "data": f"last_{property}_{timestamp}",
                         "title": f"Last {title} {timestamp.capitalize()}",
