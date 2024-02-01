@@ -29,6 +29,9 @@ Version 4.6.0: Clustering
   - These properties are not erased if the server object of the run is deleted
 - Add new "Worker" table in database and UI (Administration menu)
   - A worker is created or updated whenever a job starts running
+  - The worker name is built as server name + process ID to guarantee that it is unique
+    across servers
+  - Add "process_id" property (populated with getpid())
   - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq)
   - Add "last_update" property to show when the worker was last used / updated
   - Add "server" hyperlink to the edit panel of worker's server
