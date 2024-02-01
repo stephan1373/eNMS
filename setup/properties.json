@@ -1496,6 +1496,11 @@
     "worker": [
       {
         "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "process_id",
         "title": "Process ID",
         "search": "text"
       },

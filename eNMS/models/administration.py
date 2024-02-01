@@ -57,6 +57,7 @@ class Worker(AbstractBase):
     __tablename__ = type = class_type = "worker"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    process_id = db.Column(Integer)
     description = db.Column(db.LargeString)
     subtype = db.Column(db.TinyString)
     last_update = db.Column(db.TinyString)
