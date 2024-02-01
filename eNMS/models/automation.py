@@ -445,7 +445,7 @@ class Run(AbstractBase):
     def run(self):
         worker = db.factory(
             "worker",
-            name=str(getpid()),
+            name=f"{vs.server} - {getpid()}",
             subtype=environ.get("_", "").split("/")[-1],
             server_id=vs.server_id,
             rbac=None,
