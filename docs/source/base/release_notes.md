@@ -102,6 +102,7 @@ Version 4.7.0: Changelog & Workflow Tree
   "username" is passed to the function.
 - Don't raise an exception in a git service configured to "git add and commit" if there isn't
   anything to commit (add log explaining that there was nothing to commit)
+- Export "server" model in migration files
 
 Post-demo additions:
 - Add new "source" property to trace the origin of a change: 'REST API', 'Edit Panel',
