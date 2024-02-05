@@ -43722,14 +43722,15 @@
         \n- Netmiko Commands (results = list of commands)\r\n- Netmiko Prompts (results\
         \ = list of 4 commands)\r\n- Netmiko Configuration (results = configuration\
         \ to send)\r\n- Netmiko File Transfer (results = source and destination path)\r\
-        \nThe workflow runs on \"Router 1\", a device that has no IP address configured,\r\
+        \n\r\nThe workflow runs on \"Router 1\", a device that has no IP address configured,\r\
         \nbut it should still run to completion because all services have \"Dry Run\"\
-        \ enabled. "
+        \ enabled. \r\n\r\nA number of global variables are initialized with set_var\
+        \ in the\r\npreprocessing field of the workflow."
       "positions":
-      - !!int "159"
-      - !!int "-6"
+      - !!int "170"
+      - !!int "-35"
       "size": !!int "14"
-  "last_modified": "2024-02-05 13:50:06.549794"
+  "last_modified": "2024-02-05 14:11:05.641626"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -43764,7 +43765,8 @@
   "positions": {}
   "postprocessing": ""
   "postprocessing_mode": "success"
-  "preprocessing": ""
+  "preprocessing": "set_var(\"variable1\", \"value1\")\r\nset_var(\"variable2\", \"\
+    value2\")\r\nset_var(\"integer_variable\", 300)"
   "priority": !!int "10"
   "rbac_edit": []
   "rbac_read": []
@@ -43784,6 +43786,8 @@
   - "[Shared] End"
   - "[Dry Run Netmiko] Netmiko Commands"
   - "[Dry Run Netmiko] Netmiko Prompts"
+  - "[Dry Run Netmiko] Netmiko Configuration"
+  - "[Dry Run Netmiko] File Transfer"
   "shared": !!bool "false"
   "skip": {}
   "skip_query": ""
@@ -43930,7 +43934,7 @@
   "auth_timeout": !!float "0.0"
   "banner_timeout": !!float "15.0"
   "close_connection": !!bool "false"
-  "command": ""
+  "command": "test command1 {{ variable 1 }}"
   "completion_time": !!int "1"
   "config_mode": !!bool "false"
   "confirmation1": ""
@@ -43980,7 +43984,7 @@
   "jump_on_connect": !!bool "false"
   "jump_password": ""
   "jump_username": ""
-  "last_modified": "2024-02-05 13:49:58.598259"
+  "last_modified": "2024-02-05 14:09:55.970747"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -44026,7 +44030,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "response1": ""
+  "response1": "test command2 response {{ variable 2 }}"
   "response2": ""
   "response3": ""
   "restrict_to_owners": []
@@ -44043,6 +44047,234 @@
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "netmiko_prompts_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "auth_timeout": !!float "0.0"
+  "banner_timeout": !!float "15.0"
+  "close_connection": !!bool "false"
+  "commit_configuration": !!bool "false"
+  "completion_time": !!int "1"
+  "config_mode": !!bool "true"
+  "config_mode_command": ""
+  "conn_timeout": !!float "10.0"
+  "connection_name": "default"
+  "content": ""
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "75d2c078-75ee-4f4b-b22b-233dd1cd841b"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "driver": "device"
+  "email_report": !!bool "false"
+  "enable_mode": !!bool "true"
+  "exit_config_mode": !!bool "true"
+  "fast_cli": !!bool "false"
+  "global_delay_factor": !!float "1.0"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-05 14:10:18.122601"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run Netmiko] Netmiko Configuration"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run Netmiko":
+    - !!int "277"
+    - !!int "145"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "read_timeout": !!float "10.0"
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Netmiko Configuration"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "start_new_connection": !!bool "false"
+  "strip_command": !!bool "false"
+  "strip_prompt": !!bool "false"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "netmiko_configuration_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "auth_timeout": !!float "0.0"
+  "banner_timeout": !!float "15.0"
+  "close_connection": !!bool "false"
+  "completion_time": !!int "1"
+  "config_mode": !!bool "false"
+  "conn_timeout": !!float "10.0"
+  "connection_name": "default"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "a74ed405-0cf1-4db9-ad5f-5e0a15d1a857"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "destination_file": "path/to/destination/{{ integer_variable }}/{{ variable 2 }}"
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "direction": "put"
+  "disable_md5": !!bool "false"
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "driver": "device"
+  "email_report": !!bool "false"
+  "enable_mode": !!bool "true"
+  "fast_cli": !!bool "false"
+  "file_system": ""
+  "global_delay_factor": !!float "1.0"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "inline_transfer": !!bool "false"
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-05 14:10:59.672538"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run Netmiko] File Transfer"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "overwrite_file": !!bool "false"
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run Netmiko":
+    - !!int "545"
+    - !!int "138"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "File Transfer"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_file": "path/to/source/{{ variable1 }}"
+  "start_new_connection": !!bool "false"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "netmiko_file_transfer_service"
   "update_pools_after_running": !!bool "false"
   "update_target_pools": !!bool "false"
   "validation_condition": "none"
