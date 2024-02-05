@@ -125,6 +125,19 @@ class Runner:
         else:
             return getattr(self.main_run.placeholder or self.service, property)
 
+    def update_service_count(self, count):
+        if env.redis_queue:
+            env.redis("incr", f"services/{self.service.id}/runs", count)
+        else:
+            vs.service_run_count[self.service.id] += count
+
+    @property
+    def service_is_running(self):
+        if env.redis_queue:
+            return bool(int(env.redis("get", f"services/{self.service.id}/runs")))
+        else:
+            return bool(vs.service_run_count[self.service.id])
+
     @property
     def stop(self):
         if env.redis_queue:
@@ -248,8 +261,9 @@ class Runner:
         start = datetime.now().replace(microsecond=0)
         results = {"runtime": self.runtime, "success": True}
         self.write_state("result/runtime", self.runtime)
+        if self.is_main_run:
+            self.update_service_count(1)
         try:
-            vs.service_run_count[self.service.id] += 1
             results.update(self.device_run())
         except Exception:
             result = "\n".join(format_exc().splitlines())
@@ -274,24 +288,14 @@ class Runner:
                     error = "\n".join(format_exc().splitlines())
                     self.log("error", f"Notification error: {error}")
                     results["notification"] = {"success": False, "error": error}
-            vs.service_run_count[self.service.id] -= 1
-            if not vs.service_run_count[self.id]:
-                self.service.status = "Idle"
             now = datetime.now().replace(microsecond=0)
             results["duration"] = str(now - start)
             self.write_state("result/success", results["success"])
             if self.is_main_run:
-                state = self.main_run.get_state()
-                status = "Aborted" if self.stop else "Completed"
-                self.main_run.state = state
-                self.main_run.duration = results["duration"]
-                self.main_run.status = state["status"] = status
-                self.success = results["success"]
                 self.close_remaining_connections()
-            if self.main_run.task and not (
-                self.main_run.task.frequency or self.main_run.task.crontab_expression
-            ):
-                self.main_run.task.is_active = False
+                self.success = results["success"]
+                self.update_service_count(-1)
+                db.try_commit(self.end_of_run_transaction, results)
             results["properties"] = self.service.get_properties(exclude=["positions"])
             results["trigger"] = self.main_run.trigger
             must_have_results = not self.has_result and not self.iteration_devices
@@ -303,6 +307,25 @@ class Runner:
             vs.custom.run_post_processing(self, results)
 
         self.results = results
+
+    def end_of_run_transaction(self, results):
+        state = self.main_run.get_state()
+        status = "Aborted" if self.stop else "Completed"
+        self.main_run.state = state
+        self.main_run.duration = results["duration"]
+        self.main_run.status = state["status"] = status
+        if getattr(self, "man_minutes", None) and "summary" in results:
+            self.main_run.service.man_minutes_total += (
+                len(results["summary"]["success"]) * self.man_minutes
+                if self.man_minutes_type == "device"
+                else self.man_minutes * results["success"]
+            )
+        if self.main_run.task and not (
+            self.main_run.task.frequency or self.main_run.task.crontab_expression
+        ):
+            self.main_run.task.is_active = False
+        if not self.service_is_running:
+            self.service.status = "Idle"
 
     def make_json_compliant(self, input):
         def rec(value):
@@ -532,7 +555,11 @@ class Runner:
             self.has_result = True
             try:
                 db.factory(
-                    "result", result=results, commit=commit, rbac=None, **result_kw
+                    "result",
+                    result=results,
+                    commit=vs.automation["advanced"]["always_commit_result"] or commit,
+                    rbac=None,
+                    **result_kw,
                 )
             except Exception:
                 self.log("critical", f"Failed to commit result:\n{format_exc()}")
@@ -1421,3 +1448,15 @@ class Runner:
         }
         with open(path / "timestamps.json", "w") as file:
             dump(data, file, indent=4)
+
+    def configuration_transaction(self, property, device, **kwargs):
+        if kwargs["success"]:
+            setattr(device, f"last_{property}_status", "Success")
+            duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"
+            setattr(device, f"last_{property}_duration", duration)
+            if getattr(kwargs["deferred_device"], property) != kwargs["result"]:
+                setattr(kwargs["deferred_device"], property, kwargs["result"])
+                setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
+        else:
+            setattr(device, f"last_{property}_status", "Failure")
+            setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))

@@ -124,7 +124,7 @@ class RestApi:
             return {"errors": errors}
         if devices or pools:
             data.update({"target_devices": devices, "target_pools": pools})
-        data["runtime"] = runtime = vs.get_time()
+        data["runtime"] = runtime = vs.get_time(jitter=True)
         if handle_asynchronously:
             if vs.settings["automation"]["use_task_queue"]:
                 controller.run.send(service.id, **data)
@@ -141,7 +141,7 @@ class RestApi:
         data = {
             "trigger": "Scheduler",
             "creator": task.last_scheduled_by,
-            "runtime": vs.get_time(),
+            "runtime": vs.get_time(jitter=True),
             "task": task.id,
             **task.initial_payload,
         }

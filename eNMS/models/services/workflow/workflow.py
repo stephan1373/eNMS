@@ -227,12 +227,6 @@ class Workflow(Service):
         else:
             results = {"success": end in visited}
         run.restart_run = restart_run
-        if run.is_main_run and self.man_minutes:
-            self.man_minutes_total += (
-                len(summary["success"]) * self.man_minutes
-                if self.man_minutes_type == "device"
-                else self.man_minutes * results["success"]
-            )
         return results
 
 

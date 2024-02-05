@@ -8,8 +8,10 @@ from ncclient.devices import supported_devices_cfg
 from netmiko.ssh_dispatcher import CLASS_MAPPER
 from os import getenv
 from pathlib import Path
+from random import uniform
 from string import punctuation
 from sys import modules
+from time import sleep
 from traceback import format_exc
 from warnings import warn
 from wtforms.validators import __all__ as all_validators
@@ -47,7 +49,7 @@ class VariableStore:
         self.file_path = Path(
             self.settings["paths"]["files"] or str(self.path / "files")
         )
-        self.playbook_path = path = (
+        self.playbook_path = (
             self.settings["paths"]["playbooks"] or f"{self.file_path}/playbooks"
         )
         self.migration_path = (
@@ -117,16 +119,18 @@ class VariableStore:
                     "width": "70%",
                     "visible": property == "configuration",
                     "orderable": False,
+                    "html": True,
                 },
             )
             for timestamp in self.timestamps:
                 self.properties["tables"]["configuration"].insert(
-                    -1,
+                    -3,
                     {
                         "data": f"last_{property}_{timestamp}",
                         "title": f"Last {title} {timestamp.capitalize()}",
                         "search": "text",
                         "visible": False,
+                        "html": timestamp == "status",
                     },
                 )
 
@@ -254,7 +258,9 @@ class VariableStore:
 
         return old
 
-    def get_time(self):
+    def get_time(self, jitter=False):
+        if jitter:
+            sleep(uniform(0, self.automation["advanced"]["run_jitter"]))
         return str(datetime.now())
 
     def str_to_date(self, value):

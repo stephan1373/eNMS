@@ -9,7 +9,7 @@ from git import Repo
 from io import BytesIO, StringIO
 from ipaddress import IPv4Network
 from json import dump, load
-from logging import info
+from logging import info, error
 from operator import attrgetter, itemgetter
 from os import getenv, listdir, makedirs, scandir
 from os.path import exists
@@ -1120,6 +1120,9 @@ class Controller:
                             )
                             if related_instance:
                                 store[relation["model"]][value] = related_instance
+                            else:
+                                error(f"Skipping association of {value}")
+                                continue
                         sql_value = store[relation["model"]][value]
                     try:
                         setattr(store[model].get(instance_name), property, sql_value)
@@ -1277,7 +1280,8 @@ class Controller:
                 run_kwargs["restart_run"] = restart_run.id
                 initial_payload = restart_run.payload
             run_kwargs["services"] = [service.id]
-            service.last_run = vs.get_time()
+            db.try_set(service, "status", "Running")
+            db.try_set(service, "last_run", vs.get_time())
             run_object = db.factory(
                 "run", service=service.id, commit=True, rbac=None, **run_kwargs
             )
@@ -1286,7 +1290,7 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            env.log("critical", format_exc())
+            env.log("critical", f"(runtime: {kwargs['runtime']}) - {format_exc()}")
             if run_object and run_object.status == "Running":
                 run_object.status = "Failed"
             db.session.commit()
@@ -1553,10 +1557,9 @@ class Controller:
                         continue
                     builder_id = kwargs[f"{builder_type}s"][0]
                     db.fetch(builder_type, id=builder_id, rbac="edit")
-            instance = db.factory(type, **kwargs)
+            instance = db.factory(type, commit=True, **kwargs)
             if kwargs.get("copy"):
                 db.fetch(type, id=kwargs["copy"]).duplicate(clone=instance)
-            db.session.flush()
             return instance.post_update()
         except db.rbac_error:
             return {"alert": "Error 403 - Not Authorized."}
@@ -1641,6 +1644,8 @@ class Controller:
 
     def upload_files(self, **kwargs):
         path = f"{vs.file_path}/{kwargs['folder']}/{kwargs['file'].filename}"
+        if not str(Path(path).resolve()).startswith(f"{vs.file_path}/"):
+            return {"error": "The path resolves outside of the files folder."}
         kwargs["file"].save(path)
 
     def update_pool(self, pool_id):

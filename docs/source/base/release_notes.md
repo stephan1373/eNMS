@@ -178,6 +178,9 @@ Version 4.6.0: Clustering
   - These properties are not erased if the server object of the run is deleted
 - Add new "Worker" table in database and UI (Administration menu)
   - A worker is created or updated whenever a job starts running
+  - The worker name is built as server name + process ID to guarantee that it is unique
+    across servers
+  - Add "process_id" property (populated with getpid())
   - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq)
   - Add "last_update" property to show when the worker was last used / updated
   - Add "server" hyperlink to the edit panel of worker's server
@@ -209,6 +212,24 @@ Version 4.6.0: Clustering
 - Add new snippet to delete corrupted services ("delete_corrupted_services.py")
 - Make pool 'fast compute' mechanism optional via new "pool" > "fast_compute" boolean
   property in settings.json (default: true)
+- Add new try_set function to retry updating a property in case of deadlock
+- Add new key in automation.json: "advanced" > "always_commit_result" set to False by default.
+  If set to True, results are always committed as soon as they are created to avoid deadlocks.
+- Add new jitter parameter to delay rest-triggered runs, and add a corresponding key
+  in automation.json: "advanced" > "run_jitter" to specify jitter value.
+- Refactor "service run count" mechanism to work with the redis queue and correctly update
+  the service status ("Idle" / "Running") at the end of the run
+- Refactor netmiko backup service and scrapli backup service to retry the configuration
+  update transaction in case of deadlocks
+- Forbid redirecting outside of the base URL in the login redirection mechanism
+- Prevent active HTML / JavaScript in the cells of a table by default, and add the `html`
+  keyword in properties.json to allow it wherever necessary.
+- Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table
+- Validate that the path of a file is inside the "files" folder when renaming a file object
+  or uploading a file.
+- Move v1/v2 in config table after the configuration properties columns
+- Move v1/v2 in all results table before the table buttons
+- Add runtime in traceback when a run fails in controller.run function
 
 Migration:
 - Update properties.json > "properly_list" with new format

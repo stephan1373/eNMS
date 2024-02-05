@@ -3,6 +3,7 @@ from pathlib import Path
 from re import M, sub
 from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from sqlalchemy.orm import load_only
+from traceback import format_exc
 from wtforms import FormField
 
 from eNMS.database import db
@@ -80,26 +81,25 @@ class NetmikoBackupService(ConnectionService):
                 result = sub(
                     replacement["pattern"], replacement["replace_with"], result, flags=M
                 )
-            device_with_deferred_data = (
+            deferred_device = (
                 db.query("device")
                 .options(load_only(getattr(vs.models["device"], self.property)))
                 .filter_by(id=device.id)
                 .one()
             )
-            setattr(device, f"last_{self.property}_status", "Success")
-            duration = f"{(datetime.now() - runtime).total_seconds()}s"
-            setattr(device, f"last_{self.property}_duration", duration)
-            if getattr(device_with_deferred_data, self.property) != result:
-                setattr(device_with_deferred_data, self.property, result)
+            if getattr(deferred_device, self.property) != result:
                 with open(path / self.property, "w") as file:
                     file.write(result)
-                setattr(device, f"last_{self.property}_update", str(runtime))
-        except Exception as exc:
-            setattr(device, f"last_{self.property}_status", "Failure")
-            setattr(device, f"last_{self.property}_failure", str(runtime))
-            return {"success": False, "result": str(exc)}
-        run.update_configuration_properties(path, self.property, device)
-        return {"success": True}
+            kwargs = {"deferred_device": deferred_device, "success": True}
+        except Exception:
+            result, kwargs = format_exc(), {"success": False}
+        kwargs.update({"result": result, "runtime": runtime})
+        db.try_commit(run.configuration_transaction, self.property, device, **kwargs)
+        if kwargs["success"]:
+            run.update_configuration_properties(path, self.property, device)
+            return {"success": True}
+        else:
+            return {key: kwargs[key] for key in ("success", "result")}
 
 
 class NetmikoBackupForm(NetmikoForm):

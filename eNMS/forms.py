@@ -4,6 +4,7 @@ from flask_login import current_user
 from flask_wtf import FlaskForm
 from importlib.util import module_from_spec, spec_from_file_location
 from os.path import exists
+from pathlib import Path
 from traceback import format_exc
 from wtforms.fields.core import UnboundField
 from wtforms.form import FormMeta
@@ -176,9 +177,9 @@ class BaseForm(FlaskForm, metaclass=MetaForm):
 class FormFactory:
     def _initialize(self):
         self.generate_instance_insertion_forms()
-        self.generate_rbac_forms()
         self.generate_service_forms()
         self.generate_filtering_forms()
+        self.generate_rbac_forms()
 
     def generate_filtering_forms(self):
         for model in vs.properties["filtering"]:
@@ -471,7 +472,11 @@ class FileForm(BaseForm):
         path_already_used = (not current_file or change_of_path) and path_taken
         if path_already_used:
             self.path.errors.append("There is already a file at the specified path.")
-        return valid_form and not path_already_used
+        resolved_path = str(Path(f"{vs.file_path}{self.path.data}").resolve())
+        invalid_path = not resolved_path.startswith(str(vs.file_path))
+        if invalid_path:
+            self.path.errors.append("The path resolves outside of the files folder.")
+        return valid_form and not invalid_path and not path_already_used
 
 
 class FolderForm(FileForm):
@@ -665,6 +670,7 @@ class WorkerForm(BaseForm):
     form_type = HiddenField(default="worker")
     id = HiddenField()
     name = StringField("Name", render_kw={"readonly": True})
+    process_id = IntegerField("Process ID", render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     subtype = StringField("Subtype", render_kw={"readonly": True})
     last_update = StringField("Last Update", render_kw={"readonly": True})
