@@ -41,6 +41,7 @@
     "device",
     "file",
     "link",
+    "server",
     "service",
     "workflow_edge",
     "task",
@@ -148,7 +149,12 @@
       "logs"
     ],
     "server": [
-      "current_runs"
+      "id",
+      "current_runs",
+      "logs",
+      "runs",
+      "status",
+      "workers"
     ],
     "service": [
       "children",
