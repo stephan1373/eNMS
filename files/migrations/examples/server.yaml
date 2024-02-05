@@ -1,0 +1,21 @@
+- "admin_only": !!bool "false"
+  "allowed_automation":
+  - "scheduler"
+  - "rest_api"
+  - "application"
+  "commit_sha": "a8b0c9a336e885191d2c1328fb210f1d48b4a83c"
+  "creator": ""
+  "description": "eNMS Server"
+  "ip_address": "192.168.56.108:5000"
+  "last_restart": "2024-02-05 05:00:02.127005"
+  "location": ""
+  "mac_address": "50548062756104"
+  "name": "eNMS Server"
+  "owners": []
+  "rbac_read": []
+  "role": "primary"
+  "scheduler_active": !!bool "true"
+  "scheduler_address": "http://192.168.56.103:5000"
+  "type": "server"
+  "version": "4.6"
+  "weight": !!int "3"

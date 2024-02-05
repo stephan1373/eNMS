@@ -16,6 +16,7 @@
   "pool_access": []
   "post_requests": []
   "secret_access": []
+  "server_access": []
   "service_access": []
   "task_access": []
   "type": "group"
@@ -42,6 +43,7 @@
   "pool_access": []
   "post_requests": []
   "secret_access": []
+  "server_access": []
   "service_access": []
   "task_access": []
   "type": "group"
@@ -297,6 +299,7 @@
   - "/view_filtering"
   - "/web_connection"
   "secret_access": []
+  "server_access": []
   "service_access": []
   "task_access": []
   "type": "group"
@@ -551,6 +554,7 @@
   - "/view_filtering"
   - "/web_connection"
   "secret_access": []
+  "server_access": []
   "service_access": []
   "task_access": []
   "type": "group"
