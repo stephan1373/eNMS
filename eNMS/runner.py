@@ -1070,6 +1070,7 @@ class Runner:
                 },
                 "set_note": _self.set_note,
                 "set_var": _self.payload_helper,
+                "trigger": _self.main_run.trigger,
                 "user": _self.creator_dict,
                 "workflow": _self.workflow,
             }
