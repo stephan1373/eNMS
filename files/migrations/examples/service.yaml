@@ -225,8 +225,8 @@
     - !!int "-228"
     - !!int "7"
     "Global Variables: trigger and user":
-    - !!int "0"
-    - !!int "0"
+    - !!int "-98"
+    - !!int "74"
     "Global get_credential Function and Log Obfuscation": *id009
     "Global variables: get_result and get_var":
     - !!int "-335"
@@ -1044,8 +1044,8 @@
     - !!int "749"
     - !!int "100"
     "Global Variables: trigger and user":
-    - !!int "500"
-    - !!int "0"
+    - !!int "574"
+    - !!int "60"
     "Global get_credential Function and Log Obfuscation": *id100
     "Global variables: get_result and get_var":
     - !!int "697"
@@ -43502,10 +43502,20 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
+  "labels":
+    "6383dc82-b9d7-4d57-82dd-944d1324171e":
+      "alignment": "left"
+      "content": "This workflow tests that global variables are available in the global\r\
+        \nnamespace, specifically:\r\n- the \"trigger\" variable (how was the workflow\
+        \ triggered: REST, task, etc)\r\n- the \"user\" variable (a dictionary with\
+        \ username and email)"
+      "positions":
+      - !!int "267"
+      - !!int "-86"
+      "size": !!int "14"
   "last_modified": "2024-02-05 06:22:29.282736"
   "last_modified_by": "admin"
-  "last_run": "2024-02-05 06:22:31.604329"
+  "last_run": "2024-02-05 06:30:58.080257"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -43632,8 +43642,8 @@
   "parameterized_form_template": ""
   "positions":
     "Global Variables: trigger and user":
-    - !!int "250"
-    - !!int "-82"
+    - !!int "226"
+    - !!int "46"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
