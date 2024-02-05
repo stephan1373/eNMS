@@ -91,14 +91,17 @@
       "rbac_read_networks",
       "rbac_read_pools",
       "rbac_read_secrets",
+      "rbac_read_servers",
       "rbac_read_services",
       "rbac_read_tasks",
+      "rbac_read_workers",
       "rbac_run_services",
       "rbac_schedule_services",
       "rbac_schedule_tasks",
       "rbac_target_devices",
       "rbac_use_files",
-      "rbac_use_secrets"
+      "rbac_use_secrets",
+      "worker_access"
     ],
     "device": [
       "id",
@@ -197,8 +200,10 @@
       "user_networks",
       "user_pools",
       "user_secrets",
+      "user_servers",
       "user_services",
       "user_tasks",
+      "user_workers",
       "logs"
     ],
     "worker": [
