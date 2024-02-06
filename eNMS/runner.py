@@ -1047,6 +1047,8 @@ class Runner:
                     "url": vs.server_url,
                 },
                 "set_var": _self.payload_helper,
+                "try_commit": db.try_commit,
+                "try_set": db.try_set,
                 "user": _self.creator_dict,
                 "workflow": _self.workflow,
             }
