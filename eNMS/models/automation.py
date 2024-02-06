@@ -240,6 +240,7 @@ class ConnectionService(Service):
     __tablename__ = "connection_service"
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     parent_type = "service"
+    dry_run = db.Column(Boolean, default=False)
     credentials = db.Column(db.SmallString, default="device")
     named_credential_id = db.Column(Integer, ForeignKey("credential.id"))
     named_credential = relationship("Credential")

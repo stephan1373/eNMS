@@ -1161,6 +1161,7 @@ class ConnectionForm(ServiceForm):
     form_type = HiddenField(default="connection")
     get_request_allowed = False
     abstract_service = True
+    dry_run = BooleanField("Dry Run")
     credentials = SelectField(
         "Credentials",
         choices=(
@@ -1178,6 +1179,7 @@ class ConnectionForm(ServiceForm):
     groups = {
         "Connection Parameters": {
             "commands": [
+                "dry_run",
                 "credentials",
                 "named_credential",
                 "custom_username",
