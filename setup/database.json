@@ -175,7 +175,27 @@
       "service_changelogs",
       "soft_deleted"
     ],
-    "network": ["id", "path", "logs", "device_changelogs"],
+    "network": [
+      "id",
+      "device_changelogs",
+      "configuration",
+      "operational_data",
+      "specialized_data",
+      "services",
+      "source_id",
+      "source",
+      "destination",
+      "destination_id",
+      "path",
+      "pools",
+      "networks",
+      "serialized",
+      "runs",
+      "target_services",
+      "tasks",
+      "users",
+      "logs"
+    ],
     "task": [
       "id",
       "service_name",
