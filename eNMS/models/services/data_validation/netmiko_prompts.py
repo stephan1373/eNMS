@@ -41,11 +41,15 @@ class NetmikoPromptsService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "netmiko_prompts_service"}
 
     def job(self, run, device):
-        netmiko_connection = run.netmiko_connection(device)
-        netmiko_connection.session_log.session_log.truncate(0)
         send_strings = (run.command, run.response1, run.response2, run.response3)
         expect_strings = (run.confirmation1, run.confirmation2, run.confirmation3, None)
         commands, confirmation, result = [], None, "No command sent"
+        if run.dry_run:
+            send = [run.sub(command, locals()) for command in send_strings]
+            expect = [run.sub(command, locals()) for command in expect_strings]
+            return {"success": True, "send_strings": send, "expect_strings": expect}
+        netmiko_connection = run.netmiko_connection(device)
+        netmiko_connection.session_log.session_log.truncate(0)
         results = {"commands": commands}
         try:
             prompt = run.enter_remote_device(netmiko_connection, device)
