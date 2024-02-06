@@ -4618,13 +4618,13 @@
   "down": !!bool "false"
   "gateways": []
   "icon": "router"
-  "ip_address": ""
+  "ip_address": "192.168.87.189"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
   "last_configuration_status": "Never"
   "last_configuration_update": "Never"
-  "last_modified": "2023-05-12 10:56:15.226529"
+  "last_modified": "2024-02-06 01:11:32.851168"
   "last_modified_by": "admin"
   "last_operational_data_duration": "Never"
   "last_operational_data_failure": "Never"
@@ -4860,8 +4860,8 @@
   "custom_select": "b"
   "description": ""
   "devices":
-  - "Router behind Gateway 1, 2 and 3"
   - "Router behind Gateway 1"
+  - "Router behind Gateway 1, 2 and 3"
   "down": !!bool "false"
   "gateways": []
   "icon": "antenna"
@@ -5964,7 +5964,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Router 1"
   - "Router 2"
@@ -6015,7 +6014,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "92"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6046,7 +6044,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2"
@@ -6096,7 +6093,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "93"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6127,7 +6123,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Subnetwork 2"
   - "Subnetwork 1 - R1"
@@ -6178,7 +6173,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "94"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6209,7 +6203,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices": []
   "down": !!bool "false"
   "gateways": []
@@ -6263,7 +6256,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "95"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6294,7 +6286,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2 - G1"
@@ -6341,7 +6332,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "96"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6372,7 +6362,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Duplicate me 2"
   - "Duplicate me 1"
@@ -6426,7 +6415,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "97"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6457,7 +6445,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Duplication - G1"
   - "Duplication - R1"
@@ -6496,7 +6483,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "97>98"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6527,7 +6513,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "S5 R1"
   - "S5 R2"
@@ -6604,7 +6589,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "99"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6635,7 +6619,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "L1 Network"
   "down": !!bool "false"
@@ -6680,7 +6663,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "100"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6711,7 +6693,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "L2 Network"
   "down": !!bool "false"
@@ -6748,7 +6729,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "100>101"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6779,7 +6759,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "L3 Network"
   "down": !!bool "false"
@@ -6816,7 +6795,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "100>101>102"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6847,7 +6825,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "S6 L3 R1"
   - "S6 L3 R2"
@@ -6886,7 +6863,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "100>101>102>103"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6917,7 +6893,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices": []
   "down": !!bool "false"
   "gateways": []
@@ -6962,7 +6937,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "104"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6993,7 +6967,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices": []
   "down": !!bool "false"
   "gateways": []
@@ -7050,7 +7023,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "105"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -7081,7 +7053,6 @@
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Oakland"
   - "Columbus"
@@ -7181,7 +7152,6 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "path": "106"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
