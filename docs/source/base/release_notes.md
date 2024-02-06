@@ -81,6 +81,7 @@ Version 4.6.0: Clustering
 - Move v1/v2 in config table after the configuration properties columns
 - Move v1/v2 in all results table before the table buttons
 - Add runtime in traceback when a run fails in controller.run function
+- Add try_set and try_commit to run global variables
 
 Migration:
 - Update properties.json > "properly_list" with new format
