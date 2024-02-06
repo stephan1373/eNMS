@@ -195,8 +195,8 @@
     - !!int "-121"
     "Dictionary as Iteration Target Variable": *id006
     "Dry Run Netmiko":
-    - !!int "-211"
-    - !!int "-146"
+    - !!int "-273"
+    - !!int "-81"
     "DxD and SxS Run Methods": &id032
     - !!int "-404"
     - !!int "147"
@@ -1017,8 +1017,8 @@
     - !!int "-155"
     "Dictionary as Iteration Target Variable": *id097
     "Dry Run Netmiko":
-    - !!int "611"
-    - !!int "-130"
+    - !!int "558"
+    - !!int "-99"
     "DxD and SxS Run Methods": &id123
     - !!int "638"
     - !!int "130"
@@ -43727,10 +43727,10 @@
         \ enabled. \r\n\r\nA number of global variables are initialized with set_var\
         \ in the\r\npreprocessing field of the workflow."
       "positions":
-      - !!int "170"
-      - !!int "-35"
+      - !!int "174"
+      - !!int "-26"
       "size": !!int "14"
-  "last_modified": "2024-02-05 14:11:05.641626"
+  "last_modified": "2024-02-05 14:36:54.465957"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -43784,9 +43784,9 @@
   "services":
   - "[Shared] Start"
   - "[Shared] End"
-  - "[Dry Run Netmiko] Netmiko Commands"
-  - "[Dry Run Netmiko] Netmiko Prompts"
-  - "[Dry Run Netmiko] Netmiko Configuration"
+  - "[Dry Run Netmiko] Commands"
+  - "[Dry Run Netmiko] Prompts"
+  - "[Dry Run Netmiko] Configuration"
   - "[Dry Run Netmiko] File Transfer"
   "shared": !!bool "false"
   "skip": {}
@@ -43858,7 +43858,7 @@
   "jump_on_connect": !!bool "false"
   "jump_password": ""
   "jump_username": ""
-  "last_modified": "2024-02-05 13:49:30.992704"
+  "last_modified": "2024-02-05 14:36:22.072554"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -43871,7 +43871,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "[Dry Run Netmiko] Netmiko Commands"
+  "name": "[Dry Run Netmiko] Commands"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -43907,7 +43907,7 @@
   "restrict_to_owners": []
   "results_as_list": !!bool "false"
   "run_method": "per_device"
-  "scoped_name": "Netmiko Commands"
+  "scoped_name": "Commands"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "shared": !!bool "false"
@@ -43984,7 +43984,7 @@
   "jump_on_connect": !!bool "false"
   "jump_password": ""
   "jump_username": ""
-  "last_modified": "2024-02-05 14:09:55.970747"
+  "last_modified": "2024-02-05 14:36:50.486456"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -43997,7 +43997,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "[Dry Run Netmiko] Netmiko Prompts"
+  "name": "[Dry Run Netmiko] Prompts"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -44035,7 +44035,7 @@
   "response3": ""
   "restrict_to_owners": []
   "run_method": "per_device"
-  "scoped_name": "Netmiko Prompts"
+  "scoped_name": "Prompts"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "shared": !!bool "false"
@@ -44064,7 +44064,8 @@
   "config_mode_command": ""
   "conn_timeout": !!float "10.0"
   "connection_name": "default"
-  "content": ""
+  "content": "ip address {{ server[\"ip_address\"] }}\r\nrouter url {{ server[\"url\"\
+    ] }}"
   "content_match": ""
   "content_match_regex": !!bool "false"
   "conversion_method": "none"
@@ -44099,7 +44100,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-05 14:10:18.122601"
+  "last_modified": "2024-02-05 14:36:54.465957"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -44112,7 +44113,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "[Dry Run Netmiko] Netmiko Configuration"
+  "name": "[Dry Run Netmiko] Configuration"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -44130,8 +44131,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run Netmiko":
-    - !!int "277"
-    - !!int "145"
+    - !!int "265"
+    - !!int "167"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -44147,7 +44148,7 @@
   "reserved": !!bool "false"
   "restrict_to_owners": []
   "run_method": "per_device"
-  "scoped_name": "Netmiko Configuration"
+  "scoped_name": "Configuration"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "shared": !!bool "false"
