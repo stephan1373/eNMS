@@ -20,6 +20,8 @@ class NapalmGettersService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "napalm_getters_service"}
 
     def job(self, run, device):
+        if run.dry_run:
+            return {"success": True}
         napalm_connection, result = run.napalm_connection(device), {}
         run.log(
             "info",
