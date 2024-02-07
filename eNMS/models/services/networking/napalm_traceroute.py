@@ -23,9 +23,11 @@ class NapalmTracerouteService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "napalm_traceroute_service"}
 
     def job(self, run, device):
-        napalm_connection = run.napalm_connection(device)
-        destination = run.sub(run.destination_ip, locals())
         source = run.sub(run.source_ip, locals())
+        destination = run.sub(run.destination_ip, locals())
+        if run.dry_run:
+            return {"success": True, "source": source, "destination": destination}
+        napalm_connection = run.napalm_connection(device)
         run.log("info", f"NAPALM TRACEROUTE : {source} -> {destination}", device)
         traceroute = napalm_connection.traceroute(
             destination=destination,
