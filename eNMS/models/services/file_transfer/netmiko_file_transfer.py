@@ -33,13 +33,15 @@ class NetmikoFileTransferService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "netmiko_file_transfer_service"}
 
     def job(self, run, device):
-        netmiko_connection = run.netmiko_connection(device)
         source = run.sub(run.source_file, locals())
         destination = run.sub(run.destination_file, locals())
         if run.direction == "put" and str(vs.file_path) not in source:
             source = f"{vs.file_path}{source}"
         if run.direction == "get" and str(vs.file_path) not in destination:
             destination = f"{vs.file_path}{destination}"
+        if run.dry_run:
+            return {"success": True, "source": source, "destination": destination}
+        netmiko_connection = run.netmiko_connection(device)
         run.log("info", f"Transferring file {source}", device)
         netmiko_connection.password = run.get_credentials(device).get("password")
         transfer_dict = file_transfer(
