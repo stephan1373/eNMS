@@ -200,6 +200,9 @@
     "Dry Run Netmiko":
     - !!int "-273"
     - !!int "-81"
+    "Dry Run Scrapli":
+    - !!int "-190"
+    - !!int "10"
     "DxD and SxS Run Methods": &id032
     - !!int "-404"
     - !!int "147"
@@ -1025,6 +1028,9 @@
     "Dry Run Netmiko":
     - !!int "518"
     - !!int "-90"
+    "Dry Run Scrapli":
+    - !!int "634"
+    - !!int "16"
     "DxD and SxS Run Methods": &id123
     - !!int "638"
     - !!int "130"
@@ -43819,8 +43825,8 @@
         \ enabled. \r\n\r\nA number of global variables are initialized with set_var\
         \ in the\r\npreprocessing field of the workflow."
       "positions":
-      - !!int "198"
-      - !!int "-19"
+      - !!int "148"
+      - !!int "5"
       "size": !!int "14"
   "last_modified": "2024-02-07 15:24:44.690460"
   "last_modified_by": "admin"
@@ -44584,7 +44590,7 @@
   "labels":
     "9e7dadfd-62c6-4781-925e-c2705abb1e9a":
       "alignment": "left"
-      "content": "This workflow tests the dry run features on all Netmiko services:\r\
+      "content": "This workflow tests the dry run features on all Napalm services:\r\
         \n- Napalm Configuration (result = configuration)\r\n- Napalm Backup (result\
         \ = local path)\r\n- Napalm Getters (empty result)\r\n- Napalm Ping (result\
         \ = source, destination)\r\n- Napalm Rollback (empty result)\r\n- Napalm Traceroute\
@@ -44594,8 +44600,8 @@
         \ variables are initialized with set_var in the\r\npreprocessing field of\
         \ the workflow."
       "positions":
-      - !!int "254"
-      - !!int "32"
+      - !!int "255"
+      - !!int "35"
       "size": !!int "14"
   "last_modified": "2024-02-07 15:24:38.896637"
   "last_modified_by": "admin"
@@ -45315,4 +45321,386 @@
   "validation_section": "results['result']"
   "vendor": ""
   "vrf": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "category": "Dry Run"
+  "close_connection": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "custom_property": "Default Value"
+  "default_uuid": "64b69410-037d-4f9d-9912-ac763b76dc0b"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "labels":
+    "5878ed05-472c-4977-a537-deffbccb43bb":
+      "alignment": "left"
+      "content": "This workflow tests the dry run features on all Scrapli services:\r\
+        \n\r\nThe workflow runs on \"Router 1\", a device with a wrong IP address,\r\
+        \nbut it should still run to completion because all services have \"Dry Run\"\
+        \ enabled. \r\n\r\nA number of global variables are initialized with set_var\
+        \ in the\r\npreprocessing field of the workflow."
+      "positions":
+      - !!int "247"
+      - !!int "-22"
+      "size": !!int "14"
+  "last_modified": "2024-02-07 15:33:38.285674"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "man_minutes": !!int "0"
+  "man_minutes_total": !!int "0"
+  "man_minutes_type": "workflow"
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "Dry Run Scrapli"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions": {}
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Dry Run Scrapli"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "services":
+  - "[Shared] Start"
+  - "[Shared] End"
+  - "[Dry Run Scrapli] Commands"
+  - "[Dry Run Scrapli] Backup"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices":
+  - "Router 1"
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "workflow"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "close_connection": !!bool "false"
+  "commands": ""
+  "completion_time": !!int "1"
+  "connection_name": "default"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "d83e977c-3d82-46a2-9488-a65341211c4c"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "driver": "device"
+  "dry_run": !!bool "true"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "is_configuration": !!bool "false"
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "jinja2_template": !!bool "false"
+  "last_modified": "2024-02-07 15:33:38.285674"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run Scrapli] Commands"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run Scrapli":
+    - !!int "37"
+    - !!int "148"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "results_as_list": !!bool "false"
+  "run_method": "per_device"
+  "scoped_name": "Commands"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "start_new_connection": !!bool "false"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "timeout_ops": !!float "30.0"
+  "timeout_socket": !!float "15.0"
+  "timeout_transport": !!float "30.0"
+  "transport": "system"
+  "type": "scrapli_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "add_header": !!bool "true"
+  "admin_only": !!bool "false"
+  "close_connection": !!bool "false"
+  "commands":
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  - "prefix": ""
+    "value": ""
+  "completion_time": !!int "1"
+  "connection_name": "default"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "57a92baf-07ba-4a48-8900-9397545f14f2"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "driver": "device"
+  "dry_run": !!bool "true"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "is_configuration": !!bool "false"
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-07 15:33:26.354573"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "local_path": "network_data"
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run Scrapli] Backup"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run Scrapli":
+    - !!int "321"
+    - !!int "152"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "property": "configuration"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "replacements":
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  - "pattern": ""
+    "replace_with": ""
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Backup"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "start_new_connection": !!bool "false"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "timeout_ops": !!float "30.0"
+  "timeout_socket": !!float "15.0"
+  "timeout_transport": !!float "30.0"
+  "transport": "system"
+  "type": "scrapli_backup_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
   "waiting_time": !!int "0"
