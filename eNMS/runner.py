@@ -1071,6 +1071,8 @@ class Runner:
                 "set_note": _self.set_note,
                 "set_var": _self.payload_helper,
                 "trigger": _self.main_run.trigger,
+                "try_commit": db.try_commit,
+                "try_set": db.try_set,
                 "user": _self.creator_dict,
                 "workflow": _self.workflow,
             }
@@ -1368,7 +1370,7 @@ class Runner:
                     thread.start()
                     threads.append(thread)
         for thread in threads:
-            thread.join()
+            thread.join(timeout=vs.automation["advanced"]["disconnect_thread_timeout"])
         for library in ("netmiko", "napalm", "scrapli", "ncclient"):
             vs.connections_cache[library].pop(self.parent_runtime)
 

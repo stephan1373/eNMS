@@ -232,6 +232,9 @@ Version 4.6.0: Clustering
 - Move v1/v2 in config table after the configuration properties columns
 - Move v1/v2 in all results table before the table buttons
 - Add runtime in traceback when a run fails in controller.run function
+- Add try_set and try_commit to run global variables
+- Add new timeout when trying to close connection with multithreading. Timeout is configured
+  under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) 
 
 Migration:
 - Update properties.json > "properly_list" with new format
