@@ -1326,7 +1326,7 @@ class Runner:
                     thread.start()
                     threads.append(thread)
         for thread in threads:
-            thread.join()
+            thread.join(timeout=vs.automation["advanced"]["disconnect_thread_timeout"])
         for library in ("netmiko", "napalm", "scrapli", "ncclient"):
             vs.connections_cache[library].pop(self.parent_runtime)
 
