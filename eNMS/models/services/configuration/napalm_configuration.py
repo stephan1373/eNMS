@@ -21,6 +21,9 @@ class NapalmConfigurationService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "napalm_configuration_service"}
 
     def job(self, run, device):
+        config = "\n".join(run.sub(run.content, locals()).splitlines())
+        if run.dry_run:
+            return {"success": True, "configuration": config}
         napalm_connection = run.napalm_connection(device)
         run.log(
             "info",
@@ -28,7 +31,6 @@ class NapalmConfigurationService(ConnectionService):
             device,
             logger="security",
         )
-        config = "\n".join(run.sub(run.content, locals()).splitlines())
         getattr(napalm_connection, run.action)(config=config)
         napalm_connection.commit_config()
         return {"success": True, "result": f"Config push ({config})"}
