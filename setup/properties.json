@@ -1704,6 +1704,7 @@
       "category": {
         "choices": [
           ["Basics", "Basics"],
+          ["Dry Run", "Dry Run"],
           ["Global Variables", "Global Variables"],
           ["Iteration Mechanism", "Iteration Mechanism"],
           ["Notification Mechanism", "Notification Mechanism"],
