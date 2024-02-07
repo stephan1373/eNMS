@@ -98,12 +98,6 @@ Version 4.7.0: Changelog & Workflow Tree
   - Networks being devices, they can now be part of pools.
 - Add new "Include Networks" property to pools to decide whether the devices of a pool
   should consider networks.
-- Raise RBAC error when no current_user available, "rbac" is not set to "None" and no
-  "username" is passed to the function.
-- Don't raise an exception in a git service configured to "git add and commit" if there isn't
-  anything to commit (add log explaining that there was nothing to commit)
-- Export "server" model in migration files
-- Add "trigger" variable to the global variables of a run
 
 Post-demo additions:
 - Add new "source" property to trace the origin of a change: 'REST API', 'Edit Panel',
@@ -135,6 +129,12 @@ Post-demo additions:
   - A note that is not deleted will be displayed in the workflow builder when the runtime is
   selected, even after the workflow completes
 - Extend the per-device filtering mechanism in the workflow builder to also apply to the tree
+- Raise RBAC error when no current_user available, "rbac" is not set to "None" and no
+  "username" is passed to the function.
+- Don't raise an exception in a git service configured to "git add and commit" if there isn't
+  anything to commit (add log explaining that there was nothing to commit)
+- Export "server" model in migration files
+- Add "trigger" variable to the global variables of a run
 
 Migration:
 - network.yaml must be merge into device.yaml:
