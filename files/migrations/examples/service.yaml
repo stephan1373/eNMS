@@ -44581,8 +44581,20 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
-  "last_modified": "2024-02-07 07:02:23.515918"
+  "labels":
+    "9e7dadfd-62c6-4781-925e-c2705abb1e9a":
+      "alignment": "left"
+      "content": "This workflow tests the dry run features on all Netmiko services:\r\
+        \n- Napalm Configuration (result = configuration)\r\n\r\nThe workflow runs\
+        \ on \"Router 1\", a device with a wrong IP address,\r\nbut it should still\
+        \ run to completion because all services have \"Dry Run\" enabled. \r\n\r\n\
+        A number of global variables are initialized with set_var in the\r\npreprocessing\
+        \ field of the workflow."
+      "positions":
+      - !!int "262"
+      - !!int "-4"
+      "size": !!int "14"
+  "last_modified": "2024-02-07 08:22:36.480699"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -44617,7 +44629,8 @@
   "positions": {}
   "postprocessing": ""
   "postprocessing_mode": "success"
-  "preprocessing": ""
+  "preprocessing": "set_var(\"variable3\", \"value3\")\r\nset_var(\"variable4\", \"\
+    value4\")\r\nset_var(\"integer_variable2\", 500)"
   "priority": !!int "10"
   "rbac_edit": []
   "rbac_read": []
@@ -44645,7 +44658,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "target_devices": []
+  "target_devices":
+  - "Router 1"
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "workflow"
