@@ -195,8 +195,8 @@
     - !!int "-121"
     "Dictionary as Iteration Target Variable": *id006
     "Dry Run Napalm":
-    - !!int "-178"
-    - !!int "-98"
+    - !!int "-181"
+    - !!int "-63"
     "Dry Run Netmiko":
     - !!int "-273"
     - !!int "-81"
@@ -44585,16 +44585,19 @@
     "9e7dadfd-62c6-4781-925e-c2705abb1e9a":
       "alignment": "left"
       "content": "This workflow tests the dry run features on all Netmiko services:\r\
-        \n- Napalm Configuration (result = configuration)\r\n\r\nThe workflow runs\
-        \ on \"Router 1\", a device with a wrong IP address,\r\nbut it should still\
-        \ run to completion because all services have \"Dry Run\" enabled. \r\n\r\n\
-        A number of global variables are initialized with set_var in the\r\npreprocessing\
-        \ field of the workflow."
+        \n- Napalm Configuration (result = configuration)\r\n- Napalm Backup (result\
+        \ = local path)\r\n- Napalm Getters (empty result)\r\n- Napalm Ping (result\
+        \ = source, destination)\r\n- Napalm Rollback (empty result)\r\n- Napalm Traceroute\
+        \ (result = source, destination)\r\n\r\nThe workflow runs on \"Router 1\"\
+        , a device with a wrong IP address,\r\nbut it should still run to completion\
+        \ because all services have \"Dry Run\" enabled. \r\n\r\nA number of global\
+        \ variables are initialized with set_var in the\r\npreprocessing field of\
+        \ the workflow."
       "positions":
-      - !!int "262"
-      - !!int "-4"
+      - !!int "254"
+      - !!int "32"
       "size": !!int "14"
-  "last_modified": "2024-02-07 08:41:35.708365"
+  "last_modified": "2024-02-07 15:19:39.061440"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -44675,7 +44678,8 @@
   "close_connection": !!bool "false"
   "completion_time": !!int "1"
   "connection_name": "default"
-  "content": ""
+  "content": "config line 1: {{ variable3 }}\r\nconfig line 2: {{ variable4 }}\r\n\
+    config line 3: {{ integer_variable2 }}"
   "content_match": ""
   "content_match_regex": !!bool "false"
   "conversion_method": "none"
@@ -44707,7 +44711,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-07 08:40:35.228343"
+  "last_modified": "2024-02-07 15:18:38.955909"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -44739,8 +44743,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run Napalm":
-    - !!int "-166"
-    - !!int "24"
+    - !!int "-221"
+    - !!int "97"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -44844,8 +44848,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run Napalm":
-    - !!int "-112"
-    - !!int "224"
+    - !!int "-151"
+    - !!int "288"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -44956,8 +44960,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run Napalm":
-    - !!int "79"
-    - !!int "148"
+    - !!int "75"
+    - !!int "194"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45009,7 +45013,7 @@
   "definition": "Definition"
   "delete_spaces_before_matching": !!bool "false"
   "description": ""
-  "destination_ip": ""
+  "destination_ip": "1.2.3.{{ integer_variable2 }}"
   "device_query": ""
   "device_query_property": "name"
   "dict_match": {}
@@ -45029,7 +45033,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-07 08:40:50.162197"
+  "last_modified": "2024-02-07 15:19:39.061440"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -45063,8 +45067,8 @@
   "ping_timeout": !!int "2"
   "positions":
     "Dry Run Napalm":
-    - !!int "259"
-    - !!int "254"
+    - !!int "265"
+    - !!int "311"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45086,7 +45090,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_ip": ""
+  "source_ip": "{{ integer_variable2 }}.2.3.4"
   "start_new_connection": !!bool "false"
   "target_devices": []
   "target_pools": []
@@ -45169,8 +45173,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run Napalm":
-    - !!int "414"
-    - !!int "143"
+    - !!int "448"
+    - !!int "195"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45221,7 +45225,7 @@
   "definition": "Definition"
   "delete_spaces_before_matching": !!bool "false"
   "description": ""
-  "destination_ip": ""
+  "destination_ip": "1.2.3.{{ integer_variable2 }}"
   "device_query": ""
   "device_query_property": "name"
   "dict_match": {}
@@ -45241,7 +45245,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-07 08:41:35.708365"
+  "last_modified": "2024-02-07 15:19:38.426678"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -45273,8 +45277,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run Napalm":
-    - !!int "554"
-    - !!int "237"
+    - !!int "669"
+    - !!int "301"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45296,7 +45300,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_ip": ""
+  "source_ip": "{{ integer_variable2 }}.2.3.4"
   "start_new_connection": !!bool "false"
   "target_devices": []
   "target_pools": []
