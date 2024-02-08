@@ -264,7 +264,7 @@ class VariableStore:
     def get_time(self, randomize=False):
         current_time = str(datetime.now())
         if randomize:
-            current_time += f"{randint(1, 999):03}"
+            current_time += f"{randint(1, 99999):05}"
         return current_time
 
     def str_to_date(self, value):
