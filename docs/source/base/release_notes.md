@@ -82,6 +82,8 @@ Version 4.6.0: Clustering
 - Add try_set and try_commit to run global variables
 - Add new timeout when trying to close connection with multithreading. Timeout is configured
   under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) 
+- Append 3-digits postfix to all runtimes to prevent name and runtime collisions for
+  runs that start at the same time (replaces jitter mechanism)
 
 Migration:
 - Update properties.json > "properly_list" with new format
