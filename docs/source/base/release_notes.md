@@ -217,8 +217,6 @@ Version 4.6.0: Clustering
 - Add new try_set function to retry updating a property in case of deadlock
 - Add new key in automation.json: "advanced" > "always_commit_result" set to False by default.
   If set to True, results are always committed as soon as they are created to avoid deadlocks.
-- Add new jitter parameter to delay rest-triggered runs, and add a corresponding key
-  in automation.json: "advanced" > "run_jitter" to specify jitter value.
 - Refactor "service run count" mechanism to work with the redis queue and correctly update
   the service status ("Idle" / "Running") at the end of the run
 - Refactor netmiko backup service and scrapli backup service to retry the configuration
@@ -235,6 +233,8 @@ Version 4.6.0: Clustering
 - Add try_set and try_commit to run global variables
 - Add new timeout when trying to close connection with multithreading. Timeout is configured
   under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) 
+- Append 3-digits postfix to all runtimes to prevent name and runtime collisions for
+  runs that start at the same time (replaces jitter mechanism)
 
 Migration:
 - Update properties.json > "properly_list" with new format

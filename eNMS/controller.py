@@ -1329,7 +1329,7 @@ class Controller:
         if service.disabled:
             return {"error": "The workflow is disabled."}
         service.check_restriction_to_owners("run")
-        kwargs["runtime"] = runtime = vs.get_time()
+        kwargs["runtime"] = runtime = vs.get_time(randomize=True)
         run_name = kwargs.get("form", {}).get("name")
         if run_name and db.fetch("run", name=run_name, allow_none=True, rbac=None):
             return {"error": "There is already a run with the same name."}
