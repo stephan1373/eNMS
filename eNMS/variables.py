@@ -8,7 +8,7 @@ from ncclient.devices import supported_devices_cfg
 from netmiko.ssh_dispatcher import CLASS_MAPPER
 from os import getenv
 from pathlib import Path
-from random import uniform
+from random import randint, uniform
 from string import punctuation
 from sys import modules
 from time import sleep
@@ -261,10 +261,11 @@ class VariableStore:
 
         return old
 
-    def get_time(self, jitter=False):
-        if jitter:
-            sleep(uniform(0, self.automation["advanced"]["run_jitter"]))
-        return str(datetime.now())
+    def get_time(self, randomize=False):
+        current_time = str(datetime.now())
+        if randomize:
+            current_time += f"{randint(1, 999):03}"
+        return current_time
 
     def str_to_date(self, value):
         milliseconds = ".%f" if "." in value else ""
