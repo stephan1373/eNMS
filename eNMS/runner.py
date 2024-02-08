@@ -309,7 +309,7 @@ class Runner:
     def make_json_compliant(self, input):
         def rec(value):
             if isinstance(value, dict):
-                return {key: rec(value[key]) for key in list(value)}
+                return {rec(key): rec(value[key]) for key in list(value)}
             elif isinstance(value, list):
                 return list(map(rec, value))
             elif not isinstance(
