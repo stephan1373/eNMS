@@ -77,8 +77,8 @@
     - !!int "-308"
     - !!int "-231"
     "(R) Dry Run with results modified in postprocessing":
-    - !!int "-136"
-    - !!int "19"
+    - !!int "-214"
+    - !!int "-7"
     "(R) Fork based on Success Value": &id007
     - !!int "-327"
     - !!int "-20"
@@ -908,8 +908,8 @@
     - !!int "596"
     - !!int "-221"
     "(R) Dry Run with results modified in postprocessing":
-    - !!int "557"
-    - !!int "27"
+    - !!int "684"
+    - !!int "16"
     "(R) Fork based on Success Value": &id098
     - !!int "553"
     - !!int "357"
@@ -45748,15 +45748,39 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels":
+    "1f72a9fa-2c2a-4e89-97f7-dde9b94f5386":
+      "alignment": "left"
+      "content": "The \"success\" value is computed with the \r\nfollowing check:\r\
+        \n\"boot system flash\" in previous_result"
+      "positions":
+      - !!int "490"
+      - !!int "372"
+      "size": !!int "14"
+    "356d7962-969b-463b-9579-ca54dbbe8c1e":
+      "alignment": "left"
+      "content": "Send \"show run\" command.\r\n\"Dry Run\" is checked by default.\r\
+        \nFor the second test, it must be unchecked."
+      "positions":
+      - !!int "-23"
+      - !!int "379"
+      "size": !!int "14"
     "cdec1722-5f82-4f64-8ffc-c6701773bb61":
       "alignment": "left"
-      "content": "This workflow should work both with a real and fake router,\r\n\
-        because in the case of a dry run, the \"results\" are modified to\r\ninclude\
-        \ the output of the \"show configuration\" command as if\r\nit had successfully\
-        \ connected to the device."
+      "content": "This workflow should be run both with router on and off. \r\nIt\
+        \ has two targets: \"Washington\" (real router) and \"Router1\" (fake router).\r\
+        \n\r\n- In the case of a dry run, the \"results\" of \"Show Configuration\"\
+        \ are modified to\r\ninclude the output of the \"show configuration\" command\
+        \ as if it had successfully\r\nconnected to the device. The \"result\" key\
+        \ should then contain the configuration,\r\nand it will be used by the python\
+        \ snippet service that comes next to very that the\r\nstring \"\"boot system\
+        \ flash\" is present in the configuration. The \"success\" value of\r\nthat\
+        \ service depends on that check.\r\nBoth routers should pass.\r\n\r\n- In\
+        \ the case of a real run (the \"Dry Run\" checkbox of the first service must\
+        \ be\r\nunchecked), \"Router 1\" should fail at the first service (no connection\
+        \ can be\r\nestablished), and \"Washington\" should pass both services."
       "positions":
-      - !!int "214"
-      - !!int "-40"
+      - !!int "265"
+      - !!int "109"
       "size": !!int "14"
   "last_modified": "2024-02-13 06:40:37.257896"
   "last_modified_by": "admin"
@@ -45916,8 +45940,8 @@
   "parameterized_form_template": ""
   "positions":
     "(R) Dry Run with results modified in postprocessing":
-    - !!int "68"
-    - !!int "143"
+    - !!int "-51"
+    - !!int "282"
     "Dry Run with results modified in postprocessing":
     - !!int "41"
     - !!int "138"
@@ -46033,8 +46057,8 @@
   "parameterized_form_template": ""
   "positions":
     "(R) Dry Run with results modified in postprocessing":
-    - !!int "319"
-    - !!int "146"
+    - !!int "476"
+    - !!int "291"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
