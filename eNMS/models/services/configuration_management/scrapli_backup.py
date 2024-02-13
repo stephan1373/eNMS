@@ -35,13 +35,15 @@ class ScrapliBackupService(ConnectionService):
 
     def job(self, run, device):
         local_path = run.sub(run.local_path, locals())
+        commands = run.sub(self.commands, locals())
+        if run.dry_run:
+            return {"success": True, "local_path": local_path, "commands": commands}
         path = Path.cwd() / local_path / device.name
         path.mkdir(parents=True, exist_ok=True)
         try:
             runtime = datetime.now()
             setattr(device, f"last_{self.property}_runtime", str(runtime))
             scrapli_connection = run.scrapli_connection(device)
-            commands = run.sub(self.commands, locals())
             result = []
             for command in commands:
                 if not command["value"]:
