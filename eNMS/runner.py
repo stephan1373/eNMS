@@ -1047,6 +1047,7 @@ class Runner:
                 "delete": partial(_self.database_function, "delete"),
                 "devices": _self.target_devices,
                 "dict_to_string": vs.dict_to_string,
+                "dry_run": _self.dry_run,
                 "encrypt": env.encrypt_password,
                 "factory": partial(_self.database_function, "factory"),
                 "fetch": partial(_self.database_function, "fetch"),
