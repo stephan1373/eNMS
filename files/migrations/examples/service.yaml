@@ -45755,12 +45755,12 @@
         \ the output of the \"show configuration\" command as if\r\nit had successfully\
         \ connected to the device."
       "positions":
-      - !!int "228"
-      - !!int "-69"
+      - !!int "214"
+      - !!int "-40"
       "size": !!int "14"
-  "last_modified": "2024-02-13 06:23:59.242649"
+  "last_modified": "2024-02-13 06:36:27.284581"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-02-13 06:36:28.751507"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -45812,11 +45812,13 @@
   - "[Shared] Start"
   - "[Shared] End"
   - "[(R) Dry Run with results modified in postprocessing] Show Configuration"
+  - "[(R) Dry Run with results modified in postprocessing] Check Configuration"
   "shared": !!bool "false"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
   "target_devices":
+  - "Washington"
   - "Router 1"
   "target_pools": []
   "time_between_retries": !!int "10"
@@ -45833,7 +45835,7 @@
   "auto_find_prompt": !!bool "true"
   "banner_timeout": !!float "15.0"
   "close_connection": !!bool "false"
-  "commands": "show configuration"
+  "commands": "show run"
   "completion_time": !!int "1"
   "config_mode": !!bool "false"
   "config_mode_command": ""
@@ -45883,7 +45885,7 @@
   "jump_on_connect": !!bool "false"
   "jump_password": ""
   "jump_username": ""
-  "last_modified": "2024-02-13 06:23:59.242649"
+  "last_modified": "2024-02-13 06:34:00.679239"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -45953,6 +45955,102 @@
   "update_target_pools": !!bool "false"
   "use_genie": !!bool "false"
   "use_textfsm": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "a98ddb6a-9dd7-419c-9ffd-9654c2760aae"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-13 06:36:27.284581"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[(R) Dry Run with results modified in postprocessing] Check Configuration"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "(R) Dry Run with results modified in postprocessing":
+    - !!int "319"
+    - !!int "146"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Check Configuration"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "previous_result = get_result(\"Show Configuration\", device=device.name)[\"\
+    result\"]\r\nresult = {}\r\nresults[\"success\"] = \"boot system flash\" in previous_result\r\
+    \nresults[\"result\"] = previous_result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
   "validation_condition": "none"
   "validation_method": "text"
   "validation_section": "results['result']"
