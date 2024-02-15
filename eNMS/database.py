@@ -127,15 +127,6 @@ class Database:
             if not exists(f"/proc/{worker.name}"):
                 db.delete_instance(worker, call_delete=False)
         vs.server_id = server.id
-        for run in self.fetch(
-            "run",
-            all_matches=True,
-            allow_none=True,
-            status="Running",
-            server_id=server.id,
-        ):
-            run.status = "Aborted (RELOAD)"
-            run.service.status = "Idle"
         parameters = self.fetch("parameters")
         if parameters.banner_deactivate_on_restart:
             parameters.banner_active = False

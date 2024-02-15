@@ -74,6 +74,36 @@ class Runner:
             self.path = f"{run.path}>{self.service.id}"
         db.session.commit()
 
+    @staticmethod
+    def _initialize():
+        for run in db.fetch(
+            "run",
+            all_matches=True,
+            allow_none=True,
+            status="Running",
+            server_id=vs.server_id,
+        ):
+            run.status = "Aborted (RELOAD)"
+            run.service.status = "Idle"
+            runner_object = Runner(
+                run,
+                payload={},
+                service=run.service,
+                is_main_run=True,
+                parent_runtime=run.runtime,
+                path=run.path,
+            )
+            results = {
+                "success": False,
+                "result": "Interrupted by application reloading",
+                "duration": "Unknown",
+                "runtime": run.runtime,
+            }
+            db.try_commit(runner_object.end_of_run_transaction, results, status=run.status)
+            runner_object.create_result(results, run_result=True)
+        if vs.settings["redis"]["flush_on_restart"]:
+            self.redis_queue.flushdb()
+
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
 
@@ -130,7 +160,8 @@ class Runner:
     @property
     def service_is_running(self):
         if env.redis_queue:
-            return bool(int(env.redis("get", f"services/{self.service.id}/runs")))
+            number_of_runs = env.redis("get", f"services/{self.service.id}/runs")
+            return bool(int(number_of_runs) if isinstance(number_of_runs, int) else 0)
         else:
             return bool(vs.service_run_count[self.service.id])
 
@@ -286,9 +317,10 @@ class Runner:
         self.results = results
         vs.run_instances.pop(self.runtime)
 
-    def end_of_run_transaction(self, results):
+    def end_of_run_transaction(self, results, status=None):
         state = self.main_run.get_state()
-        status = "Aborted" if self.stop else "Completed"
+        if not status:
+            status = "Aborted" if self.stop else "Completed"
         self.main_run.state = state
         self.main_run.duration = results["duration"]
         self.main_run.status = state["status"] = status
