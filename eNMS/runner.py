@@ -293,6 +293,7 @@ class Runner:
         self.main_run.state = state
         self.main_run.duration = results["duration"]
         self.main_run.status = state["status"] = status
+        self.create_logs()
         if getattr(self, "man_minutes", None) and "summary" in results:
             self.main_run.service.man_minutes_total += (
                 len(results["summary"]["success"]) * self.man_minutes
@@ -487,6 +488,20 @@ class Runner:
             if size_percentage > 50:
                 self.log("warning", log)
 
+    def create_logs(self):
+        services = list(vs.run_logs.get(self.parent_runtime, []))
+        for service_id in services:
+            logs = env.log_queue(self.parent_runtime, service_id, mode="get")
+            content = "\n".join(logs or [])
+            self.check_size_before_commit(content, "log")
+            db.factory(
+                "service_log",
+                runtime=self.parent_runtime,
+                service=service_id,
+                content=content,
+                rbac=None,
+            )
+
     def create_result(self, results, device=None, commit=True, run_result=False):
         self.success = results["success"]
         result_kw = {
@@ -507,18 +522,6 @@ class Runner:
         if self.is_main_run and not device:
             self.payload = self.make_json_compliant(self.payload)
             results["payload"] = self.payload
-            services = list(vs.run_logs.get(self.parent_runtime, []))
-            for service_id in services:
-                logs = env.log_queue(self.parent_runtime, service_id, mode="get")
-                content = "\n".join(logs or [])
-                self.check_size_before_commit(content, "log")
-                db.factory(
-                    "service_log",
-                    runtime=self.parent_runtime,
-                    service=service_id,
-                    content=content,
-                    rbac=None,
-                )
             if self.main_run.trigger == "REST API":
                 results["devices"] = {}
                 for result in self.main_run.results:
