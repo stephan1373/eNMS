@@ -73,8 +73,6 @@ class Runner:
         if not self.is_main_run:
             self.path = f"{run.path}>{self.service.id}"
         db.session.commit()
-        self.start_run()
-        vs.run_instances.pop(self.runtime)
 
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
@@ -286,6 +284,7 @@ class Runner:
             vs.custom.run_post_processing(self, results)
 
         self.results = results
+        vs.run_instances.pop(self.runtime)
 
     def end_of_run_transaction(self, results):
         state = self.main_run.get_state()
@@ -341,7 +340,7 @@ class Runner:
             self.service.iteration_devices_property,
             **locals(),
         )
-        return Runner(
+        service_run = Runner(
             self.run,
             iteration_run=True,
             payload=self.payload,
@@ -352,7 +351,9 @@ class Runner:
             restart_run=self.restart_run,
             parent=self,
             parent_runtime=self.parent_runtime,
-        ).results["success"]
+        )
+        service_run.start_run()
+        return service_run.results["success"]
 
     def device_run(self):
         self.target_devices = self.compute_devices()

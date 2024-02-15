@@ -477,6 +477,7 @@ class Run(AbstractBase):
             task=self.task,
             trigger=self.trigger,
         )
+        self.service_run.start_run()
         self.payload = self.service_run.payload
         db.session.commit()
         vs.run_targets.pop(self.runtime)

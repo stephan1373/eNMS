@@ -1204,6 +1204,7 @@ class Controller:
             env.log("critical", f"(runtime: {runtime}) - {format_exc()}")
             if run_object and run_object.status == "Running":
                 run_object.status = "Failed"
+                run_object.service_run.create_logs()
             db.session.commit()
             return {"success": False, "result": format_exc()}
 
