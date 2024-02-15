@@ -1165,7 +1165,7 @@ class Controller:
     def run(service, **kwargs):
         try:
             run_object, username = None, kwargs["creator"]
-            current_thread().name = kwargs["runtime"]
+            current_thread().name = runtime = kwargs["runtime"]
             if "path" not in kwargs:
                 kwargs["path"] = str(service)
             keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1201,7 +1201,7 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            env.log("critical", f"(runtime: {kwargs['runtime']}) - {format_exc()}")
+            env.log("critical", f"(runtime: {runtime}) - {format_exc()}")
             if run_object and run_object.status == "Running":
                 run_object.status = "Failed"
             db.session.commit()
