@@ -1215,6 +1215,7 @@ class Controller:
                 db.try_commit(run_object.service_run.end_of_run_transaction, results)
                 run_object.service_run.create_result(results, run_result=True)
                 run_object.service_run.end_of_run_cleanup()
+                run_object.service_run.close_remaining_connections()
             db.session.commit()
             return {"success": False, "result": format_exc()}
 
