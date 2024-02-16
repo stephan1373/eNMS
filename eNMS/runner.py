@@ -102,7 +102,7 @@ class Runner:
             db.try_commit(runner_object.end_of_run_transaction, results, status=run.status)
             runner_object.create_result(results, run_result=True)
         if vs.settings["redis"]["flush_on_restart"]:
-            self.redis_queue.flushdb()
+            env.redis_queue.flushdb()
 
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
