@@ -528,7 +528,7 @@ class Runner:
                 self.log("warning", log)
 
     def create_logs(self):
-        services = list(vs.run_logs.get(self.parent_runtime, []))
+        services = {service.id for service in self.main_run.services}
         for service_id in services:
             logs = env.log_queue(self.parent_runtime, service_id, mode="get")
             content = "\n".join(logs or [])
