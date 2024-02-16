@@ -235,6 +235,11 @@ Version 4.6.0: Clustering
   under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) 
 - Append 3-digits postfix to all runtimes to prevent name and runtime collisions for
   runs that start at the same time (replaces jitter mechanism)
+- Refactor the end of run transaction and cleanup mechanism after a run is interrupted by
+  a critical exception or application reload:
+  - Trigger end of run transaction to have results and logs available
+  - Remove the run data from the redis queue (if a redis queue is used)
+  - Close connections to device (in case of an interruption by critical exception)
 
 Migration:
 - Update properties.json > "properly_list" with new format
@@ -244,7 +249,7 @@ Test:
   existing diff:
   - Diff between different commits of a configuration property
   - Diff between two results
-- Test dramatiq process kill mechanism
+- Test that logs and results are always available when a run is interrupted
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------

@@ -73,8 +73,40 @@ class Runner:
         if not self.is_main_run:
             self.path = f"{run.path}>{self.service.id}"
         db.session.commit()
-        self.start_run()
-        vs.run_instances.pop(self.runtime)
+
+    @staticmethod
+    def _initialize():
+        for run in db.fetch(
+            "run",
+            all_matches=True,
+            allow_none=True,
+            status="Running",
+            server_id=vs.server_id,
+            rbac=None,
+        ):
+            db.try_set(run, "status", "Aborted (RELOAD)")
+            db.try_set(run.service, "status", "Idle")
+            if not env.redis_queue:
+                continue
+            runner_object = Runner(
+                run,
+                payload={},
+                service=run.service,
+                is_main_run=True,
+                parent_runtime=run.runtime,
+                path=run.path,
+            )
+            results = {
+                "success": False,
+                "result": "Interrupted by application reloading",
+                "duration": "Unknown",
+                "runtime": run.runtime,
+            }
+            db.try_commit(runner_object.end_of_run_transaction, results, status=run.status)
+            runner_object.create_result(results, run_result=True)
+            runner_object.end_of_run_cleanup()
+        if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
+            env.redis_queue.flushdb()
 
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
@@ -134,7 +166,8 @@ class Runner:
     @property
     def service_is_running(self):
         if env.redis_queue:
-            return bool(int(env.redis("get", f"services/{self.service.id}/runs")))
+            number_of_runs = env.redis("get", f"services/{self.service.id}/runs")
+            return bool(int(number_of_runs) if isinstance(number_of_runs, int) else 0)
         else:
             return bool(vs.service_run_count[self.service.id])
 
@@ -301,19 +334,25 @@ class Runner:
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
-            if env.redis_queue and self.is_main_run:
-                runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
-                env.redis("delete", *runtime_keys)
+            self.end_of_run_cleanup()
             vs.custom.run_post_processing(self, results)
 
         self.results = results
+        vs.run_instances.pop(self.runtime)
 
-    def end_of_run_transaction(self, results):
+    def end_of_run_cleanup(self):
+        if env.redis_queue and self.is_main_run:
+            runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
+            env.redis("delete", *runtime_keys)
+
+    def end_of_run_transaction(self, results, status=None):
         state = self.main_run.get_state()
-        status = "Aborted" if self.stop else "Completed"
+        if not status:
+            status = "Aborted" if self.stop else "Completed"
         self.main_run.state = state
         self.main_run.duration = results["duration"]
         self.main_run.status = state["status"] = status
+        self.create_logs()
         if getattr(self, "man_minutes", None) and "summary" in results:
             self.main_run.service.man_minutes_total += (
                 len(results["summary"]["success"]) * self.man_minutes
@@ -361,7 +400,7 @@ class Runner:
             self.service.iteration_devices_property,
             **locals(),
         )
-        return Runner(
+        service_run = Runner(
             self.run,
             iteration_run=True,
             payload=self.payload,
@@ -372,7 +411,9 @@ class Runner:
             restart_run=self.restart_run,
             parent=self,
             parent_runtime=self.parent_runtime,
-        ).results["success"]
+        )
+        service_run.start_run()
+        return service_run.results["success"]
 
     def device_run(self):
         self.target_devices = self.compute_devices()
@@ -508,6 +549,20 @@ class Runner:
             if size_percentage > 50:
                 self.log("warning", log)
 
+    def create_logs(self):
+        services = {service.id for service in self.main_run.services}
+        for service_id in services:
+            logs = env.log_queue(self.parent_runtime, service_id, mode="get")
+            content = "\n".join(logs or [])
+            self.check_size_before_commit(content, "log")
+            db.factory(
+                "service_log",
+                runtime=self.parent_runtime,
+                service=service_id,
+                content=content,
+                rbac=None,
+            )
+
     def create_result(self, results, device=None, commit=True, run_result=False):
         self.success = results["success"]
         result_kw = {
@@ -528,18 +583,6 @@ class Runner:
         if self.is_main_run and not device:
             self.payload = self.make_json_compliant(self.payload)
             results["payload"] = self.payload
-            services = list(vs.run_logs.get(self.parent_runtime, []))
-            for service_id in services:
-                logs = env.log_queue(self.parent_runtime, service_id, mode="get")
-                content = "\n".join(logs or [])
-                self.check_size_before_commit(content, "log")
-                db.factory(
-                    "service_log",
-                    runtime=self.parent_runtime,
-                    service=service_id,
-                    content=content,
-                    rbac=None,
-                )
             if self.main_run.trigger == "REST API":
                 results["devices"] = {}
                 for result in self.main_run.results:

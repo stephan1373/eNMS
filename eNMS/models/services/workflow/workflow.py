@@ -195,7 +195,9 @@ class Workflow(Service):
                         kwargs["target_devices"].append(device_store[name])
                 if run.parent_device:
                     kwargs["parent_device"] = run.parent_device
-                results = Runner(run, payload=run.payload, **kwargs).results
+                service_run = Runner(run, payload=run.payload, **kwargs)
+                service_run.start_run()
+                results = service_run.results
                 if not results:
                     continue
             status = "success" if results["success"] else "failure"
