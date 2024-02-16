@@ -101,7 +101,8 @@ class Runner:
             }
             db.try_commit(runner_object.end_of_run_transaction, results, status=run.status)
             runner_object.create_result(results, run_result=True)
-        if vs.settings["redis"]["flush_on_restart"]:
+            runner_object.end_of_run_cleanup()
+        if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
             env.redis_queue.flushdb()
 
     def __repr__(self):
@@ -309,13 +310,16 @@ class Runner:
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
-            if env.redis_queue and self.is_main_run:
-                runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
-                env.redis("delete", *runtime_keys)
+            self.end_of_run_cleanup()
             vs.custom.run_post_processing(self, results)
 
         self.results = results
         vs.run_instances.pop(self.runtime)
+
+    def end_of_run_cleanup(self):
+        if env.redis_queue and self.is_main_run:
+            runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
+            env.redis("delete", *runtime_keys)
 
     def end_of_run_transaction(self, results, status=None):
         state = self.main_run.get_state()
