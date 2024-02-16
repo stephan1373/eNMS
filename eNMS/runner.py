@@ -85,6 +85,8 @@ class Runner:
         ):
             run.status = "Aborted (RELOAD)"
             run.service.status = "Idle"
+            if not env.redis_queue:
+                continue
             runner_object = Runner(
                 run,
                 payload={},
