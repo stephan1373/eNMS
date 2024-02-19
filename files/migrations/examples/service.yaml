@@ -45377,9 +45377,9 @@
       - !!int "247"
       - !!int "-22"
       "size": !!int "14"
-  "last_modified": "2024-02-07 15:33:38.285674"
+  "last_modified": "2024-02-19 06:06:06.107345"
   "last_modified_by": "admin"
-  "last_run": "2024-02-19 06:02:01.951824"
+  "last_run": "2024-02-19 06:06:07.567904"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -45412,7 +45412,8 @@
   "positions": {}
   "postprocessing": ""
   "postprocessing_mode": "success"
-  "preprocessing": ""
+  "preprocessing": "set_var(\"variable1\", \"value1\")\r\nset_var(\"variable2\", \"\
+    value2\")\r\nset_var(\"integer_variable\", 300)"
   "priority": !!int "10"
   "rbac_edit": []
   "rbac_read": []
@@ -45450,7 +45451,7 @@
   "waiting_time": !!int "0"
 - "admin_only": !!bool "false"
   "close_connection": !!bool "false"
-  "commands": ""
+  "commands": "test command {{ variable1 }}\r\ntest trigger {{ variable2 }}"
   "completion_time": !!int "1"
   "connection_name": "default"
   "content_match": ""
@@ -45486,7 +45487,7 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "jinja2_template": !!bool "false"
-  "last_modified": "2024-02-07 15:33:38.285674"
+  "last_modified": "2024-02-19 06:06:06.107345"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -45562,7 +45563,7 @@
   "close_connection": !!bool "false"
   "commands":
   - "prefix": ""
-    "value": ""
+    "value": "show vrf {{ integer_variable }}"
   - "prefix": ""
     "value": ""
   - "prefix": ""
@@ -45619,7 +45620,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-07 15:33:26.354573"
+  "last_modified": "2024-02-19 06:05:47.242605"
   "last_modified_by": "admin"
   "last_run": ""
   "local_path": "network_data"
