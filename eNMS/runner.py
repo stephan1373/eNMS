@@ -741,7 +741,7 @@ class Runner:
         log,
         device=None,
         change_log=False,
-        logger=None,
+        logger="root",
         service_log=True,
         allow_disable=True,
     ):
