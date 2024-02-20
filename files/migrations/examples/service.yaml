@@ -46177,7 +46177,7 @@
       - !!int "125"
       - !!int "197"
       "size": !!int "14"
-  "last_modified": "2024-02-20 09:39:26.958578"
+  "last_modified": "2024-02-20 09:45:58.411389"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -46212,7 +46212,8 @@
   "positions": {}
   "postprocessing": ""
   "postprocessing_mode": "success"
-  "preprocessing": ""
+  "preprocessing": "set_var(\"variable1\", \"value1\")\r\nset_var(\"variable2\", \"\
+    value2\")\r\nset_var(\"integer_variable\", 300)"
   "priority": !!int "10"
   "rbac_edit": []
   "rbac_read": []
@@ -46264,7 +46265,7 @@
   "definition": "Definition"
   "delete_spaces_before_matching": !!bool "false"
   "description": ""
-  "destination_file": "b"
+  "destination_file": "path/to/destination/{{ integer_variable }}/{{ variable2 }}"
   "device_query": ""
   "device_query_property": "name"
   "dict_match": {}
@@ -46283,7 +46284,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-19 06:59:15.257237"
+  "last_modified": "2024-02-20 09:44:45.402055"
   "last_modified_by": "admin"
   "last_run": ""
   "load_known_host_keys": !!bool "false"
@@ -46344,7 +46345,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_file": "a"
+  "source_file": "path/to/source/{{ variable1 }}"
   "source_file_includes_globbing": !!bool "false"
   "target_devices": []
   "target_pools": []
@@ -46360,7 +46361,7 @@
   "waiting_time": !!int "0"
   "window_size": !!int "1073741824"
 - "admin_only": !!bool "false"
-  "arguments": ""
+  "arguments": "-arg1 {{ variable1 }} -arg2 {{ variable 2 }}"
   "completion_time": !!int "1"
   "content_match": ""
   "content_match_regex": !!bool "false"
@@ -46389,7 +46390,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-19 06:59:23.773763"
+  "last_modified": "2024-02-20 09:44:26.957909"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -46407,7 +46408,9 @@
   "notification_header": ""
   "number_of_retries": !!int "0"
   "operating_system": ""
-  "options": {}
+  "options":
+    "var1": "{{ variable1 }}"
+    "var2": "test{{ integer_variable }}"
   "owners":
   - "admin"
   "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
@@ -46460,7 +46463,8 @@
   "validation_section": "results['result']"
   "vendor": ""
   "waiting_time": !!int "0"
-- "actions": []
+- "actions":
+  - "pull"
   "admin_only": !!bool "false"
   "commit_message": ""
   "completion_time": !!int "1"
@@ -46490,10 +46494,10 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-19 06:59:35.485752"
+  "last_modified": "2024-02-20 09:44:49.187765"
   "last_modified_by": "admin"
   "last_run": ""
-  "local_repository": ""
+  "local_repository": "path/to/source/{{ variable1 }}"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -46535,7 +46539,7 @@
   "rbac_read": []
   "rbac_run": []
   "relative_path": !!bool "false"
-  "remote_repository": ""
+  "remote_repository": "path/to/destination/{{ integer_variable }}/{{ variable2 }}"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -46594,7 +46598,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-19 07:00:11.440021"
+  "last_modified": "2024-02-20 09:45:58.411389"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -46624,7 +46628,9 @@
     \ default=15)"
   "parameterized_form_template": ""
   "params": {}
-  "payload": {}
+  "payload":
+    "integer": "{{ integer_variable }}"
+    "var1": "{{ variable1 }}"
   "positions":
     "Dry Run: File Transfer, Ansible, Git and REST Services":
     - !!int "485"
@@ -46644,7 +46650,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": ""
+  "rest_url": "http://test.com/{{ variable2 }}/{{ integer_variable }}"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "REST Call"
