@@ -48,13 +48,15 @@ class RestCallService(Service):
             for parameter in ("headers", "params", "timeout")
         }
         kwargs["verify"] = run.verify_ssl_certificate
+        if run.call_type in ("POST", "PUT", "PATCH"):
+            kwargs["json"] = run.sub(self.payload, local_variables)
+        if run.dry_run:
+            return {"success": True, "url": log_url, "kwargs": kwargs}
         credentials = run.get_credentials(device)
         if self.credentials != "custom" or credentials["username"]:
             kwargs["auth"] = HTTPBasicAuth(
                 credentials["username"], credentials["password"]
             )
-        if run.call_type in ("POST", "PUT", "PATCH"):
-            kwargs["json"] = run.sub(self.payload, local_variables)
         call = getattr(env.request_session, run.call_type.lower())
         response = call(rest_url, **kwargs)
         result = {
