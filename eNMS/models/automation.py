@@ -45,6 +45,7 @@ class Service(AbstractBase):
     tasks = relationship("Task", back_populates="service", cascade="all,delete")
     vendor = db.Column(db.SmallString)
     operating_system = db.Column(db.SmallString)
+    dry_run = db.Column(Boolean, default=False)
     waiting_time = db.Column(Integer, default=0)
     workflows = relationship(
         "Workflow", secondary=db.service_workflow_table, back_populates="services"
@@ -240,7 +241,6 @@ class ConnectionService(Service):
     __tablename__ = "connection_service"
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     parent_type = "service"
-    dry_run = db.Column(Boolean, default=False)
     credentials = db.Column(db.SmallString, default="device")
     named_credential_id = db.Column(Integer, ForeignKey("credential.id"))
     named_credential = relationship("Credential")

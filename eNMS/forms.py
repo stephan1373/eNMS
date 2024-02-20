@@ -702,6 +702,7 @@ class ServiceForm(BaseForm):
     )
     disabled = BooleanField("Disabled")
     disabled_info = StringField("Disabled Time & User", render_kw={"readonly": True})
+    dry_run = BooleanField("Dry Run")
     restrict_to_owners = SelectMultipleField(
         "Restrict to Owners", choices=(("edit", "Edit"), ("run", "Run")), no_search=True
     )
@@ -883,6 +884,7 @@ class ServiceForm(BaseForm):
             "description",
             "vendor",
             "operating_system",
+            "dry_run",
             "initial_payload",
             "priority",
             "number_of_retries",
@@ -1161,7 +1163,6 @@ class ConnectionForm(ServiceForm):
     form_type = HiddenField(default="connection")
     get_request_allowed = False
     abstract_service = True
-    dry_run = BooleanField("Dry Run")
     credentials = SelectField(
         "Credentials",
         choices=(
@@ -1179,7 +1180,6 @@ class ConnectionForm(ServiceForm):
     groups = {
         "Connection Parameters": {
             "commands": [
-                "dry_run",
                 "credentials",
                 "named_credential",
                 "custom_username",
