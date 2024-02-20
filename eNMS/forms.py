@@ -884,7 +884,6 @@ class ServiceForm(BaseForm):
             "description",
             "vendor",
             "operating_system",
-            "dry_run",
             "initial_payload",
             "priority",
             "number_of_retries",
@@ -901,6 +900,7 @@ class ServiceForm(BaseForm):
             "parameterized_form_template",
         ],
         "step1-3": [
+            "dry_run",
             "preprocessing",
             "skip_query",
             "skip_value",
