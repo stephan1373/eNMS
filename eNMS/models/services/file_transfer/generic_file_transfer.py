@@ -56,6 +56,8 @@ class GenericFileTransferService(Service):
             source = f"{vs.file_path}{source}"
         if run.direction == "get" and str(vs.file_path) not in destination:
             destination = f"{vs.file_path}{destination}"
+        if run.dry_run:
+            return {"success": True, "source": source, "destination": destination}
         credentials = run.get_credentials(device, add_secret=False)
         ssh_client.connect(device.ip_address, look_for_keys=False, **credentials)
         if run.source_file_includes_globbing:
