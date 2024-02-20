@@ -210,6 +210,12 @@
     "Dry Run with results modified in postprocessing":
     - !!int "-136"
     - !!int "19"
+    "Dry Run: File Transfer, Ansible, Git and REST Services":
+    - !!int "-256"
+    - !!int "-19"
+    "Dry Run: File Transfer, Ansible, Git and ReST Services":
+    - !!int "-256"
+    - !!int "-19"
     "Dry Run: Napalm Services": *id008
     "Dry Run: Netmiko Services": *id009
     "Dry Run: Scrapli Services": *id010
@@ -1048,9 +1054,12 @@
     "Dry Run with results modified in postprocessing":
     - !!int "557"
     - !!int "27"
-    "Dry Run: File Transfer, Ansible, Git and ReST Services": !!python/tuple
-    - !!int "500"
-    - !!int "0"
+    "Dry Run: File Transfer, Ansible, Git and REST Services":
+    - !!int "593"
+    - !!int "-21"
+    "Dry Run: File Transfer, Ansible, Git and ReST Services":
+    - !!int "593"
+    - !!int "-21"
     "Dry Run: Napalm Services": *id103
     "Dry Run: Netmiko Services": *id104
     "Dry Run: Scrapli Services": *id105
@@ -46155,7 +46164,7 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels": {}
-  "last_modified": "2024-02-19 06:11:39.299640"
+  "last_modified": "2024-02-19 07:00:28.869769"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -46171,7 +46180,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "Dry Run: File Transfer, Ansible, Git and ReST Services"
+  "name": "Dry Run: File Transfer, Ansible, Git and REST Services"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -46202,12 +46211,16 @@
   "reserved": !!bool "false"
   "restrict_to_owners": []
   "run_method": "per_device"
-  "scoped_name": "Dry Run: File Transfer, Ansible, Git and ReST Services"
+  "scoped_name": "Dry Run: File Transfer, Ansible, Git and REST Services"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "services":
   - "[Shared] Start"
   - "[Shared] End"
+  - "[Dry Run: File Transfer, Ansible, Git and REST Services] File Transfer"
+  - "[Dry Run: File Transfer, Ansible, Git and REST Services] Ansible"
+  - "[Dry Run: File Transfer, Ansible, Git and REST Services] Git"
+  - "[Dry Run: File Transfer, Ansible, Git and REST Services] REST Call"
   "shared": !!bool "false"
   "skip": {}
   "skip_query": ""
@@ -46222,4 +46235,421 @@
   "validation_method": "text"
   "validation_section": "results['result']"
   "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "02a8698e-be5a-4358-b3f3-4b3f2cfddf7f"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "destination_file": "b"
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "direction": "get"
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-19 06:59:15.257237"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "load_known_host_keys": !!bool "false"
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "max_transfer_size": !!int "1073741824"
+  "maximum_runs": !!int "1"
+  "missing_host_key_policy": !!bool "false"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: File Transfer, Ansible, Git and REST Services] File Transfer"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run: File Transfer, Ansible, Git and REST Services":
+    - !!int "-206"
+    - !!int "185"
+    "Dry Run: File Transfer, Ansible, Git and ReST Services":
+    - !!int "-254"
+    - !!int "195"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "protocol": "scp"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "File Transfer"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_file": "a"
+  "source_file_includes_globbing": !!bool "false"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "timeout": !!float "10.0"
+  "type": "generic_file_transfer_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+  "window_size": !!int "1073741824"
+- "admin_only": !!bool "false"
+  "arguments": ""
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "default_uuid": "9fff42d0-567f-4eac-88d2-f02208a2b0c4"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-19 06:59:23.773763"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: File Transfer, Ansible, Git and REST Services] Ansible"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "options": {}
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "pass_device_properties": !!bool "false"
+  "playbook_path": "/arista_show_running_config.yml"
+  "positions":
+    "Dry Run: File Transfer, Ansible, Git and REST Services":
+    - !!int "51"
+    - !!int "112"
+    "Dry Run: File Transfer, Ansible, Git and ReST Services":
+    - !!int "-4"
+    - !!int "112"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Ansible"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "ansible_playbook_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "actions": []
+  "admin_only": !!bool "false"
+  "commit_message": ""
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "0edd0c83-5413-495c-98b2-672676a0ae3c"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-19 06:59:35.485752"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "local_repository": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: File Transfer, Ansible, Git and REST Services] Git"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run: File Transfer, Ansible, Git and REST Services":
+    - !!int "268"
+    - !!int "202"
+    "Dry Run: File Transfer, Ansible, Git and ReST Services":
+    - !!int "197"
+    - !!int "205"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "relative_path": !!bool "false"
+  "remote_repository": ""
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Git"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "git_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "call_type": "GET"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "2e9bcaa7-4826-4904-9715-addd073d169f"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "email_report": !!bool "false"
+  "headers": {}
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-19 07:00:11.440021"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: File Transfer, Ansible, Git and REST Services] REST Call"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "params": {}
+  "payload": {}
+  "positions":
+    "Dry Run: File Transfer, Ansible, Git and REST Services":
+    - !!int "480"
+    - !!int "116"
+    "Dry Run: File Transfer, Ansible, Git and ReST Services":
+    - !!int "400"
+    - !!int "112"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "rest_url": ""
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "REST Call"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "timeout": !!int "15"
+  "type": "rest_call_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "verify_ssl_certificate": !!bool "false"
   "waiting_time": !!int "0"
