@@ -135,6 +135,14 @@ Post-demo additions:
   anything to commit (add log explaining that there was nothing to commit)
 - Export "server" model in migration files
 - Add "trigger" variable to the global variables of a run
+- Add Dry Run Mechanism:
+  - The "Dry Run" is a property of a service (any service, not just the connection services)
+  available in Step 1 - part 3.
+  - The results of a service in Dry Run mode contains the properties of the service that
+  are affected by the substitution mechanism
+  - The global variables contain a new "dry_run" property in order to determine in python
+  (e.g preprocessing, post-processing, python snippet service) whether the service is
+  currently running in Dry Run mode or not.
 
 Migration:
 - network.yaml must be merge into device.yaml:
