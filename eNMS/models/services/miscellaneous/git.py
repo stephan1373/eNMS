@@ -24,7 +24,7 @@ class GitService(Service):
         local_path = run.sub(run.local_repository, locals())
         remote_path = run.sub(run.remote_repository, locals())
         if run.dry_run:
-            return {"success": True, "local": local_path, "remote", remote_path}
+            return {"success": True, "local": local_path, "remote": remote_path}
         if self.relative_path:
             local_path = Path.cwd() / local_path
         if set(self.actions) & {"clone", "shallow_clone"}:
