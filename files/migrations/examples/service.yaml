@@ -46456,9 +46456,9 @@
       - !!int "125"
       - !!int "197"
       "size": !!int "14"
-  "last_modified": "2024-02-20 10:57:16.576891"
+  "last_modified": "2024-02-21 04:19:38.412643"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-02-21 04:19:42.365976"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -46881,7 +46881,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-20 10:57:16.576891"
+  "last_modified": "2024-02-21 04:19:38.412643"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -46910,7 +46910,9 @@
     \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
     \ default=15)"
   "parameterized_form_template": ""
-  "params": {}
+  "params":
+    "test": "{{ variable1 }}"
+    "test2": "{{ integer_variable }}"
   "payload":
     "integer": "{{ integer_variable }}"
     "var1": "{{ variable1 }}"
