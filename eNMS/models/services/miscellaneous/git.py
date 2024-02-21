@@ -22,10 +22,13 @@ class GitService(Service):
 
     def job(self, run, device=None):
         local_path = run.sub(run.local_repository, locals())
+        remote_path = run.sub(run.remote_repository, locals())
+        if run.dry_run:
+            return {"success": True, "local": local_path, "remote", remote_path}
         if self.relative_path:
             local_path = Path.cwd() / local_path
         if set(self.actions) & {"clone", "shallow_clone"}:
-            remote_path, kwargs = run.sub(run.remote_repository, locals()), {}
+            kwargs = {}
             if "shallow_clone" in self.actions:
                 kwargs.update(
                     {"filter": "blob:none", "depth": 1, "single-branch": True}
