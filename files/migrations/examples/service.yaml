@@ -44157,7 +44157,7 @@
       "size": !!int "14"
   "last_modified": "2024-02-19 06:11:56.453971"
   "last_modified_by": "admin"
-  "last_run": "2024-02-07 06:18:14.814143"
+  "last_run": "2024-02-28 14:00:12.563533"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -45719,7 +45719,7 @@
       "size": !!int "14"
   "last_modified": "2024-02-28 13:39:50.047106"
   "last_modified_by": "admin"
-  "last_run": "2024-02-28 13:41:31.788326"
+  "last_run": "2024-02-28 13:43:52.664065"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -47028,10 +47028,23 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
-  "last_modified": "2024-02-28 13:28:35.486716"
+  "labels":
+    "ab503f44-e9e1-41d3-ba74-2708b0ee6123":
+      "alignment": "left"
+      "content": "This workflow tests the dry run features on the following services:\r\
+        \n- Topology Import\r\n- Netconf (result = xml_filter)\r\n- Ping (result =\
+        \ IP address)\r\n\r\nThe workflow runs on \"Router 1\", a device with a wrong\
+        \ IP address,\r\nbut it should still run to completion because all services\
+        \ have \"Dry Run\" enabled.\r\nThe first service (Topology Import) runs in\
+        \ \"Run Once\" mode.\r\n\r\nA number of global variables are initialized with\
+        \ set_var in the\r\npreprocessing field of the workflow."
+      "positions":
+      - !!int "185"
+      - !!int "232"
+      "size": !!int "14"
+  "last_modified": "2024-02-28 14:01:53.867015"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-02-28 14:01:54.904720"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -47075,7 +47088,7 @@
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
   "restrict_to_owners": []
-  "run_method": "per_device"
+  "run_method": "per_service_with_workflow_targets"
   "scoped_name": "Dry Run: Topology Import, Netconf, and Ping Services"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
@@ -47131,7 +47144,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-28 13:25:45.198169"
+  "last_modified": "2024-02-28 14:01:53.867015"
   "last_modified_by": "admin"
   "last_run": ""
   "librenms_address": "http://librenms.example.com"
@@ -47173,8 +47186,8 @@
     - !!int "-120"
     - !!int "202"
     "Dry Run: Topology Import, Netconf, and Ping Services":
-    - !!int "-127"
-    - !!int "269"
+    - !!int "-227"
+    - !!int "394"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -47188,7 +47201,7 @@
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
   "restrict_to_owners": []
-  "run_method": "per_device"
+  "run_method": "once"
   "scoped_name": "Topology Import"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
@@ -47283,8 +47296,8 @@
     - !!int "35"
     - !!int "42"
     "Dry Run: Topology Import, Netconf, and Ping Services":
-    - !!int "172"
-    - !!int "257"
+    - !!int "154"
+    - !!int "431"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -47391,8 +47404,8 @@
     - !!int "335"
     - !!int "205"
     "Dry Run: Topology Import, Netconf, and Ping Services":
-    - !!int "470"
-    - !!int "258"
+    - !!int "521"
+    - !!int "427"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
