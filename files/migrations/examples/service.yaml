@@ -212,8 +212,8 @@
     - !!int "-136"
     - !!int "19"
     "Dry Run: Email, Mattermost and Slack Notification Services":
-    - !!int "-205"
-    - !!int "-66"
+    - !!int "-256"
+    - !!int "-27"
     "Dry Run: File Transfer, Ansible, Git and REST Services":
     - !!int "-243"
     - !!int "143"
@@ -1070,8 +1070,8 @@
     - !!int "557"
     - !!int "27"
     "Dry Run: Email, Mattermost and Slack Notification Services":
-    - !!int "656"
-    - !!int "-62"
+    - !!int "668"
+    - !!int "12"
     "Dry Run: File Transfer, Ansible, Git and REST Services":
     - !!int "488"
     - !!int "125"
@@ -47590,18 +47590,20 @@
     "2b669c0a-141a-4fad-b588-72a109c4c34e":
       "alignment": "left"
       "content": "This workflow tests the dry run features on all Notification services:\r\
-        \n- Email Notification\r\n- Mattermost Notification\r\n- Slack Notification\r\
-        \n\r\nThe workflow runs on \"Router 1\", a device with a wrong IP address,\r\
-        \nbut it should still run to completion because all services have \"Dry Run\"\
-        \ enabled. \r\n\r\nA number of global variables are initialized with set_var\
-        \ in the\r\npreprocessing field of the workflow."
+        \n- Email Notification (results = title, body, bcc, recipients, reply-to and\
+        \ sender)\r\n- Mattermost Notification (results = message, channel)\r\n- Slack\
+        \ Notification (results = message, channel)\r\n\r\nThe workflow runs on \"\
+        Router 1\", a device with a wrong IP address,\r\nbut it should still run to\
+        \ completion because all services have \"Dry Run\" enabled. \r\n\r\nA number\
+        \ of global variables are initialized with set_var in the\r\npreprocessing\
+        \ field of the workflow."
       "positions":
       - !!int "225"
-      - !!int "-27"
+      - !!int "54"
       "size": !!int "14"
   "last_modified": "2024-02-28 18:08:34.929681"
   "last_modified_by": "admin"
-  "last_run": "2024-02-28 18:08:36.279113"
+  "last_run": "2024-02-28 18:10:29.290950"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -47736,8 +47738,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Email, Mattermost and Slack Notification Services":
-    - !!int "-86"
-    - !!int "161"
+    - !!int "-186"
+    - !!int "252"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -47836,8 +47838,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Email, Mattermost and Slack Notification Services":
-    - !!int "180"
-    - !!int "166"
+    - !!int "192"
+    - !!int "253"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -47932,8 +47934,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Email, Mattermost and Slack Notification Services":
-    - !!int "447"
-    - !!int "146"
+    - !!int "553"
+    - !!int "250"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
