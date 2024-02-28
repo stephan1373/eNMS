@@ -22,14 +22,16 @@ class MailNotificationService(Service):
     __mapper_args__ = {"polymorphic_identity": "mail_notification_service"}
 
     def job(self, run, device=None):
-        env.send_email(
-            run.sub(run.title, locals()),
-            run.sub(run.body, locals()),
-            sender=run.sub(run.sender, locals()),
-            recipients=run.sub(run.recipients, locals()),
-            reply_to=run.sub(run.replier, locals()),
-            bcc=run.sub(run.bcc, locals()),
-        )
+        title, body = run.sub(run.title, locals()), run.sub(run.body, locals())
+        kwargs = {
+            "sender": run.sub(run.sender, locals()),
+            "recipients": run.sub(run.recipients, locals()),
+            "reply_to": run.sub(run.replier, locals()),
+            "bcc": run.sub(run.bcc, locals()),
+        }
+        if run.dry_run:
+            return {"success": True, "title": title, "body": body, **kwargs}
+        env.send_email(title, body, **kwargs)
         return {"success": True, "result": {}}
 
 
