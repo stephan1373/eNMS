@@ -221,8 +221,11 @@
     "Dry Run: Netmiko Services": *id009
     "Dry Run: Scrapli Services": *id010
     "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services":
-    - !!int "-78"
-    - !!int "5"
+    - !!int "-177"
+    - !!int "4"
+    "Dry Run: Topology Import, Netconf, and Ping Services":
+    - !!int "-272"
+    - !!int "153"
     "DxD and SxS Run Methods": &id036
     - !!int "-404"
     - !!int "147"
@@ -1071,6 +1074,9 @@
     "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services":
     - !!int "566"
     - !!int "-3"
+    "Dry Run: Topology Import, Netconf, and Ping Services":
+    - !!int "619"
+    - !!int "136"
     "DxD and SxS Run Methods": &id131
     - !!int "638"
     - !!int "130"
@@ -46997,7 +47003,7 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels": {}
-  "last_modified": "2024-02-28 13:23:50.061743"
+  "last_modified": "2024-02-28 13:28:35.486716"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -47013,7 +47019,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services"
+  "name": "Dry Run: Topology Import, Netconf, and Ping Services"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -47044,12 +47050,15 @@
   "reserved": !!bool "false"
   "restrict_to_owners": []
   "run_method": "per_device"
-  "scoped_name": "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services"
+  "scoped_name": "Dry Run: Topology Import, Netconf, and Ping Services"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "services":
   - "[Shared] Start"
   - "[Shared] End"
+  - "[Dry Run: Topology Import, Netconf, and Ping Services] Topology Import"
+  - "[Dry Run: Topology Import, Netconf, and Ping Services] Netconf"
+  - "[Dry Run: Topology Import, Netconf, and Ping Services] Ping"
   "shared": !!bool "false"
   "skip": {}
   "skip_query": ""
@@ -47059,6 +47068,333 @@
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "workflow"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "2290d46b-c9e0-42b2-95d7-1a9e348e396b"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "import_type": "librenms"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-28 13:25:45.198169"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "librenms_address": "http://librenms.example.com"
+  "librenms_token": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: Topology Import, Netconf, and Ping Services] Topology Import"
+  "negative_logic": !!bool "false"
+  "netbox_address": "http://0.0.0.0:8000"
+  "netbox_token": ""
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "opennms_address": ""
+  "opennms_devices": ""
+  "opennms_login": ""
+  "opennms_password": ""
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services":
+    - !!int "-120"
+    - !!int "202"
+    "Dry Run: Topology Import, Netconf, and Ping Services":
+    - !!int "-127"
+    - !!int "269"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Topology Import"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "topology_import_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "close_connection": !!bool "false"
+  "commit_conf": !!bool "false"
+  "completion_time": !!int "1"
+  "connection_name": "default"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "copy_destination": "running"
+  "copy_source": "running"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_operation": "merge"
+  "default_uuid": "4562296c-8628-4dce-897f-98b6146a3ba6"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "destination_url": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "error_option": "stop-on-error"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-28 13:25:56.264106"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "lock": !!bool "false"
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: Topology Import, Netconf, and Ping Services] Netconf"
+  "nc_type": "get_config"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services":
+    - !!int "35"
+    - !!int "42"
+    "Dry Run: Topology Import, Netconf, and Ping Services":
+    - !!int "172"
+    - !!int "257"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Netconf"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_url": ""
+  "start_new_connection": !!bool "false"
+  "target": "running"
+  "target_devices": []
+  "target_pools": []
+  "test_option": "test-then-set"
+  "time_between_retries": !!int "10"
+  "type": "netconf_service"
+  "unlock": !!bool "false"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+  "xml_conversion": !!bool "true"
+  "xml_filter": ""
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "count": !!int "5"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "f410eb60-5d54-47bb-9ab3-fbd805cd5d95"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "ip_address": ""
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-02-28 13:28:17.865357"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Dry Run: Topology Import, Netconf, and Ping Services] Ping"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "packet_size": !!int "56"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "ports": "22"
+  "positions":
+    "Dry Run: Topology Import, Netconf, Scrapli Netconf, and Ping Services":
+    - !!int "335"
+    - !!int "205"
+    "Dry Run: Topology Import, Netconf, and Ping Services":
+    - !!int "470"
+    - !!int "258"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "protocol": "ICMP"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Ping"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "timeout": !!int "2"
+  "ttl": !!int "60"
+  "type": "ping_service"
   "update_pools_after_running": !!bool "false"
   "update_target_pools": !!bool "false"
   "validation_condition": "none"
