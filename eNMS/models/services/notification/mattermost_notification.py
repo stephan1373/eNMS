@@ -20,11 +20,14 @@ class MattermostNotificationService(Service):
 
     def job(self, run, device=None):
         channel = run.sub(run.channel, locals()) or vs.settings["mattermost"]["channel"]
+        message = run.sub(run.body, locals())
         run.log("info", f"Sending MATTERMOST notification on {channel}", device)
+        if run.dry_run:
+            return {"success": True, "channel": channel, "message": message}
         result = post(
             vs.settings["mattermost"]["url"],
             verify=vs.settings["mattermost"]["verify_certificate"],
-            json={"channel": channel, "text": run.sub(run.body, locals())},
+            json={"channel": channel, "text": message},
         )
         return {"success": True, "result": str(result)}
 
