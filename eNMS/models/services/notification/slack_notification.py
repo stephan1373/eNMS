@@ -27,10 +27,12 @@ class SlackNotificationService(Service):
     __mapper_args__ = {"polymorphic_identity": "slack_notification_service"}
 
     def job(self, run, device=None):
-        client = WebClient(token=run.token or getenv("SLACK_TOKEN"))
         channel = run.sub(run.channel, locals()) or vs.settings["slack"]["channel"]
         message = run.sub(run.body, locals())
         run.log("info", f"Sending SLACK notification on {channel}", device)
+        if run.dry_run:
+            return {"success": True, "channel": channel, "message": message}
+        client = WebClient(token=run.token or getenv("SLACK_TOKEN"))
         try:
             result = client.chat_postMessage(channel=f"#{channel}", text=message)
             return {"success": True, "result": str(result)}
