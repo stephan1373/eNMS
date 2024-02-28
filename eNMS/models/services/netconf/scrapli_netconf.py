@@ -22,6 +22,8 @@ class ScrapliNetconfService(ConnectionService):
 
     def job(self, run, device):
         content, kwargs = run.sub(run.content, locals()), {}
+        if run.dry_run:
+            return {"success": True, "content": content}
         if "lock" in run.command or "config" in run.command:
             parameter = "source" if run.command == "get_config" else "target"
             kwargs[parameter] = run.target
