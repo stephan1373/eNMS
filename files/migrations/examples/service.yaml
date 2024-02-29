@@ -48022,9 +48022,9 @@
       - !!int "165"
       - !!int "139"
       "size": !!int "14"
-  "last_modified": "2024-02-29 05:06:32.388064"
+  "last_modified": "2024-02-29 05:17:56.960004"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-02-29 05:18:00.719751"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -48124,7 +48124,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-29 05:06:16.237351"
+  "last_modified": "2024-02-29 05:17:56.960004"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48179,8 +48179,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "if dry_run:\r\n  return {\"success\": True, \"result\": \"dry_run\"\
-    }\r\nelse:\r\n  return {\"success\": False, \"result\": \"dry_run not set\"}"
+  "source_code": "if dry_run:\r\n    results[\"success\"] = True\r\n    results[\"\
+    result\"] = variable1\r\nelse:\r\n    results[\"success\"] = False"
   "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
