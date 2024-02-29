@@ -234,7 +234,7 @@
     - !!int "-272"
     - !!int "153"
     "Dry Run: Unix Command, Unix Shell and Python Snippet Services":
-    - !!int "-194"
+    - !!int "-273"
     - !!int "28"
     "DxD and SxS Run Methods": &id034
     - !!int "-404"
@@ -1095,7 +1095,7 @@
     - !!int "619"
     - !!int "136"
     "Dry Run: Unix Command, Unix Shell and Python Snippet Services":
-    - !!int "545"
+    - !!int "601"
     - !!int "9"
     "DxD and SxS Run Methods": &id127
     - !!int "638"
@@ -48007,8 +48007,22 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
-  "last_modified": "2024-02-29 04:53:40.040164"
+  "labels":
+    "70355135-0644-4e4c-b9a7-9224534767f2":
+      "alignment": "left"
+      "content": "This workflow tests the dry run features on all Netmiko services:\r\
+        \n- Python Snippet Service: we test that the \"dry_run\" global variable is\r\
+        \navailable and can be used to run specific code in dry run mode.\r\n- Unix\
+        \ Command (results = command)\r\n- Unix Shell (results = source code)\r\n\r\
+        \nThe workflow runs on \"Router 1\", a device with a wrong IP address,\r\n\
+        but it should still run to completion because all services have \"Dry Run\"\
+        \ enabled. \r\n\r\nA number of global variables are initialized with set_var\
+        \ in the\r\npreprocessing field of the workflow."
+      "positions":
+      - !!int "165"
+      - !!int "139"
+      "size": !!int "14"
+  "last_modified": "2024-02-29 05:00:15.319835"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48043,7 +48057,8 @@
   "positions": {}
   "postprocessing": ""
   "postprocessing_mode": "success"
-  "preprocessing": ""
+  "preprocessing": "set_var(\"variable1\", \"value1\")\r\nset_var(\"variable2\", \"\
+    value2\")\r\nset_var(\"integer_variable\", 300)"
   "priority": !!int "10"
   "rbac_edit": []
   "rbac_read": []
@@ -48141,8 +48156,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Unix Command, Unix Shell and Python Snippet Services":
-    - !!int "-112"
-    - !!int "229"
+    - !!int "-174"
+    - !!int "323"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48179,7 +48194,7 @@
   "waiting_time": !!int "0"
 - "admin_only": !!bool "false"
   "approved_by_admin": !!bool "false"
-  "command": ""
+  "command": "cmd var1 {{ variable1 }} var2 {{ variable2 }} "
   "completion_time": !!int "1"
   "content_match": ""
   "content_match_regex": !!bool "false"
@@ -48208,7 +48223,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-29 04:53:20.344592"
+  "last_modified": "2024-02-29 04:59:40.003722"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48239,8 +48254,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Unix Command, Unix Shell and Python Snippet Services":
-    - !!int "140"
-    - !!int "237"
+    - !!int "142"
+    - !!int "320"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48317,7 +48332,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-29 04:53:30.632395"
+  "last_modified": "2024-02-29 05:00:15.319835"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48348,8 +48363,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Unix Command, Unix Shell and Python Snippet Services":
-    - !!int "405"
-    - !!int "239"
+    - !!int "486"
+    - !!int "321"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48371,11 +48386,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "#!/bin/bash\r\n# The following example shell script returns 0 for\
-    \ success; non-zero for failure\r\ndirectory_contents=`ls -al /root`  # Needs\
-    \ privileged mode\r\nreturn_code=$?\r\nif [ $return_code -ne 0 ]; then\r\n   \
-    \ exit $return_code  # Indicating Failure\r\nelse\r\n    echo -e \"$directory_contents\"\
-    \r\n    exit 0  # Indicating Success\r\nfi\r\n"
+  "source_code": "#!/bin/bash\r\nif [ $return_code -ne {{ integer_variable ]; then\r\
+    \n    cmd var1 {{ variable1 }} var2 {{ variable2 }} \r\nfi\r\n"
   "start_new_connection": !!bool "false"
   "strip_command": !!bool "true"
   "strip_prompt": !!bool "true"
