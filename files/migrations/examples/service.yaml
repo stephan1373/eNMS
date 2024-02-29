@@ -48022,7 +48022,7 @@
       - !!int "165"
       - !!int "139"
       "size": !!int "14"
-  "last_modified": "2024-02-29 05:00:15.319835"
+  "last_modified": "2024-02-29 05:06:32.388064"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48124,7 +48124,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-29 04:53:03.642291"
+  "last_modified": "2024-02-29 05:06:16.237351"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48179,8 +48179,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "\r\n# Click on \"i\" to right of \"Source Code\" for examples.\r\
-    \n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
+  "source_code": "if dry_run:\r\n  return {\"success\": True, \"result\": \"dry_run\"\
+    }\r\nelse:\r\n  return {\"success\": False, \"result\": \"dry_run not set\"}"
   "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
@@ -48318,7 +48318,7 @@
   "display_only_failed_nodes": !!bool "false"
   "display_report": !!bool "false"
   "driver": "device"
-  "dry_run": !!bool "false"
+  "dry_run": !!bool "true"
   "email_report": !!bool "false"
   "enable_mode": !!bool "false"
   "expect_string": ""
@@ -48332,7 +48332,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-02-29 05:00:15.319835"
+  "last_modified": "2024-02-29 05:06:32.388064"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
