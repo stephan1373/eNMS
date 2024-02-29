@@ -18,11 +18,13 @@ class UnixCommandService(Service):
     __mapper_args__ = {"polymorphic_identity": "unix_command_service"}
 
     def job(self, run, device=None):
+        command = run.sub(run.command, locals())
+        if run.dry_run:
+            return {"success": True, "command": command}
         if not self.approved_by_admin:
             log = "The service has not been approved by an admin user."
             run.log("error", log, device)
             return {"success": False, "result": log}
-        command = run.sub(run.command, locals())
         run.log("info", f"Running UNIX command: {command}", device)
         result = sub_run(command, shell=True, capture_output=True, text=True)
         return {
