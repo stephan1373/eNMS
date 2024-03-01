@@ -462,6 +462,7 @@
       "password"
     ],
     "credential": ["enable_password", "password", "private_key"],
+    "secret": ["secret_value"],
     "user": ["password"]
   },
   "dont_serialize": {

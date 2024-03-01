@@ -1514,12 +1514,6 @@
         "orderable": false
       },
       {
-        "data": "value",
-        "title": "Value",
-        "search": "text",
-        "orderable": false
-      },
-      {
         "data": "buttons",
         "width": "130px",
         "orderable": false,

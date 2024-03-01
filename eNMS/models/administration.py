@@ -372,7 +372,7 @@ class Secret(AbstractBase):
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     description = db.Column(db.LargeString)
-    value = db.Column(db.LargeString)
+    secret_value = db.Column(db.LargeString)
 
     def update(self, **kwargs):
         super().update(**kwargs)

@@ -635,7 +635,7 @@ class SecretForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     description = StringField(widget=TextArea(), render_kw={"rows": 3})
-    value = StringField("Value", widget=TextArea(), render_kw={"rows": 6})
+    secret_value = PasswordField("Value", widget=TextArea(), render_kw={"rows": 6})
 
 
 class ServerForm(BaseForm):
