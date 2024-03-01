@@ -196,6 +196,7 @@
       "users",
       "logs"
     ],
+    "secret": ["id"],
     "task": [
       "id",
       "service_name",
