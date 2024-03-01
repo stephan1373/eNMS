@@ -48453,7 +48453,7 @@
       - !!int "112"
       - !!int "95"
       "size": !!int "14"
-  "last_modified": "2024-03-01 08:13:12.978856"
+  "last_modified": "2024-03-01 08:36:59.270788"
   "last_modified_by": "admin"
   "last_run": "2024-03-01 08:10:02.130014"
   "log_level": !!int "1"
@@ -48747,7 +48747,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-03-01 08:13:03.877530"
+  "last_modified": "2024-03-01 08:36:59.270788"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48780,7 +48780,7 @@
     "Global Variables: try_set, try_commit, and get_secret":
     - !!int "481"
     - !!int "297"
-  "postprocessing": ""
+  "postprocessing": "results[\"result\"] == \"Correct123!:)$@\""
   "postprocessing_mode": "success"
   "preprocessing": ""
   "priority": !!int "10"
@@ -48801,8 +48801,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "\r\n# Click on \"i\" to right of \"Source Code\" for examples.\r\
-    \n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
+  "source_code": "\r\nresult = get_secret(\"Secret 1\")\r\nresults[\"success\"] =\
+    \ True\r\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
