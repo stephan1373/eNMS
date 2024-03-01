@@ -48485,7 +48485,7 @@
       - !!int "158"
       - !!int "467"
       "size": !!int "14"
-  "last_modified": "2024-03-01 08:44:30.824513"
+  "last_modified": "2024-03-01 08:46:06.935649"
   "last_modified_by": "admin"
   "last_run": "2024-03-01 08:40:20.151609"
   "log_level": !!int "1"
@@ -48523,8 +48523,10 @@
   "preprocessing": ""
   "priority": !!int "10"
   "rbac_edit": []
-  "rbac_read": []
-  "rbac_run": []
+  "rbac_read":
+  - "All users"
+  "rbac_run":
+  - "All users"
   "reply_to": ""
   "report": ""
   "report_format": "text"
