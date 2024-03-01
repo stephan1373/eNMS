@@ -89,6 +89,7 @@ Version 4.6.0: Clustering
   - Trigger end of run transaction to have results and logs available
   - Remove the run data from the redis queue (if a redis queue is used)
   - Close connections to device (in case of an interruption by critical exception)
+- Make the value of a Secret a private property
 
 Migration:
 - Update properties.json > "properly_list" with new format
