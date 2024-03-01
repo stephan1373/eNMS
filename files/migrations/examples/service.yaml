@@ -270,8 +270,8 @@
     - !!int "-98"
     - !!int "74"
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "-280"
-    - !!int "75"
+    - !!int "-348"
+    - !!int "99"
     "Global get_credential Function and Log Obfuscation": *id011
     "Global variables: get_result and get_var":
     - !!int "-335"
@@ -1134,8 +1134,8 @@
     - !!int "574"
     - !!int "60"
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "562"
-    - !!int "33"
+    - !!int "622"
+    - !!int "93"
     "Global get_credential Function and Log Obfuscation": *id104
     "Global variables: get_result and get_var":
     - !!int "697"
@@ -48441,6 +48441,15 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels":
+    "17baf751-45f4-4ffc-ba58-b894477f841f":
+      "alignment": "left"
+      "content": "In Step 2: try_set(device, \"operating_system\", \"TEST\")\r\nThen\
+        \ check in postprocessing that the value was set:\r\nresults[\"success\"]\
+        \ = device.operating_system == \"TEST\""
+      "positions":
+      - !!int "-243"
+      - !!int "464"
+      "size": !!int "14"
     "67c325f3-39fe-4c08-bdde-41cc1f1dafcc":
       "alignment": "left"
       "content": "This workflow tests 3 global variables:\r\n- \"try_set\": used to\
@@ -48448,14 +48457,37 @@
         \n- \"try_commit\": takes a transaction function as input along with its parameters\r\
         \n  (*args, **kwargs), and try to commit (with retries)\r\n- \"get_secret\"\
         : used to get the value of a Secret object. The user running the\r\n  workflow\
-        \ must have \"Use\" acccess to the Secret object to obtain the value."
+        \ must have \"Use\" acccess to the Secret object to obtain the value.\r\n\r\
+        \nThe workflow should be run by two users:\r\n- admin: runs to completion\r\
+        \n- nadmin: fails at the last service, because while nadmin does have Read\
+        \ and\r\nEdit access to \"Secret 1\", it does not have the \"Use\" access\
+        \ to obtain the value."
       "positions":
-      - !!int "112"
-      - !!int "95"
+      - !!int "161"
+      - !!int "193"
       "size": !!int "14"
-  "last_modified": "2024-03-01 08:36:59.270788"
+    "9714b1cb-69e7-412c-a4b7-87370f86423e":
+      "alignment": "left"
+      "content": "In Step 2:\r\nresult = get_secret(\"Secret 1\")\r\nresults[\"result\"\
+        ] = result\r\n\r\nThen check in postprocessing that the value was set:\r\n\
+        results[\"result\"] == \"Correct123!:)$@\""
+      "positions":
+      - !!int "564"
+      - !!int "472"
+      "size": !!int "14"
+    "d292439f-35b7-4c11-8a77-a3c5d3cfcac0":
+      "alignment": "left"
+      "content": "In Step 2:\r\ndef transaction(device):\r\n    device.operating_system\
+        \ = \"\"\r\ntry_commit(transaction, device)\r\n\r\nThen check in postprocessing\
+        \ that the value was set:\r\nresults[\"success\"] = device.operating_system\
+        \ == \"\""
+      "positions":
+      - !!int "158"
+      - !!int "467"
+      "size": !!int "14"
+  "last_modified": "2024-03-01 08:44:30.824513"
   "last_modified_by": "admin"
-  "last_run": "2024-03-01 08:10:02.130014"
+  "last_run": "2024-03-01 08:40:20.151609"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -48585,8 +48617,8 @@
   "parameterized_form_template": ""
   "positions":
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "-136"
-    - !!int "326"
+    - !!int "-259"
+    - !!int "344"
   "postprocessing": "results[\"success\"] = device.operating_system == \"TEST\""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48681,8 +48713,8 @@
   "parameterized_form_template": ""
   "positions":
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "185"
-    - !!int "340"
+    - !!int "109"
+    - !!int "349"
   "postprocessing": "results[\"success\"] = device.operating_system == \"\""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48778,8 +48810,8 @@
   "parameterized_form_template": ""
   "positions":
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "481"
-    - !!int "297"
+    - !!int "496"
+    - !!int "356"
   "postprocessing": "results[\"result\"] == \"Correct123!:)$@\""
   "postprocessing_mode": "success"
   "preprocessing": ""
