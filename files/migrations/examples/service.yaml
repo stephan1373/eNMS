@@ -270,8 +270,8 @@
     - !!int "-98"
     - !!int "74"
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "-132"
-    - !!int "39"
+    - !!int "-234"
+    - !!int "63"
     "Global get_credential Function and Log Obfuscation": *id011
     "Global variables: get_result and get_var":
     - !!int "-335"
@@ -48441,9 +48441,9 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels": {}
-  "last_modified": "2024-03-01 08:03:35.387418"
+  "last_modified": "2024-03-01 08:08:58.099450"
   "last_modified_by": "admin"
-  "last_run": "2024-03-01 08:03:51.681173"
+  "last_run": "2024-03-01 08:08:58.932822"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -48495,6 +48495,7 @@
   - "[Shared] Start"
   - "[Shared] End"
   - "[Global Variables: try_set, try_commit, and get_secret] Try Set"
+  - "[Global Variables: try_set, try_commit, and get_secret] Try Commit"
   "shared": !!bool "false"
   "skip": {}
   "skip_query": ""
@@ -48540,7 +48541,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-03-01 08:03:21.454727"
+  "last_modified": "2024-03-01 08:08:58.099450"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -48571,9 +48572,9 @@
   "parameterized_form_template": ""
   "positions":
     "Global Variables: try_set, try_commit, and get_secret":
-    - !!int "19"
-    - !!int "49"
-  "postprocessing": ""
+    - !!int "-59"
+    - !!int "234"
+  "postprocessing": "results[\"success\"] = device.operating_system == \"TEST\""
   "postprocessing_mode": "success"
   "preprocessing": ""
   "priority": !!int "10"
@@ -48594,9 +48595,105 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "try_set(device, \"operating_system\", \"TEST\")\r\n# Click on \"\
-    i\" to right of \"Source Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"\
-    success\"] = True\r\nresults[\"result\"] = result"
+  "source_code": "try_set(device, \"operating_system\", \"TEST\")\r\nresult = {}\r\
+    \nresults[\"success\"] = True\r\nresults[\"result\"] = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "f154f615-7de5-452f-9fb7-577b2d809d4e"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-03-01 08:08:52.355384"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Global Variables: try_set, try_commit, and get_secret] Try Commit"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload\
+    \ = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\
+    \ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query\
+    \ = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows':\
+    \ 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name',\
+    \ 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing',\
+    \ default=False)\r\nmax_processes = IntegerField('Maximum number of processes',\
+    \ default=15)"
+  "parameterized_form_template": ""
+  "positions":
+    "Global Variables: try_set, try_commit, and get_secret":
+    - !!int "172"
+    - !!int "233"
+  "postprocessing": "results[\"success\"] = device.operating_system == \"\""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Try Commit"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "def transaction(device):\r\n    device.operating_system = \"\"\r\
+    \n\r\ntry_commit(transaction, device)\r\nresult = {}\r\nresults[\"success\"] =\
+    \ True\r\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
