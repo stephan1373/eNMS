@@ -145,6 +145,7 @@
       "edges"
     ],
     "network": ["id", "path"],
+    "secret": ["id"],
     "task": [
       "id",
       "service_name",
