@@ -20,14 +20,14 @@ function run() {
   if [[ -n "$path" ]]; then cd $path; fi
   if [ "$scheduler" = true ]; then
     cd scheduler
-    export ENMS_ADDR="http://192.168.56.102"
+    export ENMS_ADDR="http://192.168.56.108:5000"
     export ENMS_USER="admin"
     export ENMS_PASSWORD="admin"
     gunicorn --config gunicorn.py scheduler:scheduler
     exit 0
   fi
   if [ "$redis" = true ]; then
-    export REDIS_ADDR="192.168.56.103"
+    export REDIS_ADDR="127.0.0.1"
   fi
   export SERVER_NAME="eNMS Server"
   export SERVER_ADDR="192.168.56.108"
