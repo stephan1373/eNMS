@@ -90,6 +90,7 @@ Version 4.6.0: Clustering
   - Remove the run data from the redis queue (if a redis queue is used)
   - Close connections to device (in case of an interruption by critical exception)
 - Make the value of a Secret a private property
+- Add support for multiprocessing capable logging handler (stuck workflow with dramatiq processes > 2)
 
 Migration:
 - Update properties.json > "properly_list" with new format
