@@ -11,7 +11,8 @@ from flask_login import current_user
 from importlib import import_module
 from json import load
 from logging.config import dictConfig
-from logging import getLogger, info
+from logging import getLogger, Handler, info
+from multiprocessing import Queue
 from os import getenv
 from passlib.hash import argon2
 from pathlib import Path
@@ -23,9 +24,9 @@ from requests.packages.urllib3.util.retry import Retry
 from smtplib import SMTP
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
-from sys import path as sys_path
+from sys import path as sys_path, stderr
 from threading import Thread
-from traceback import format_exc
+from traceback import format_exc, print_exc
 from warnings import warn
 from watchdog.observers.polling import PollingObserver
 from watchdog.events import FileSystemEventHandler
@@ -204,11 +205,67 @@ class Environment:
         else:
             self.encrypt, self.decrypt = b64encode, b64decode
 
+    def build_multiprocessing_logging_handler(self, logging_config):
+        class MultiProcessingLoggingHandler(Handler):
+            def __init__(self, handler_type, **kwargs):
+                super().__init__()
+                module_name, class_name = handler_type.rsplit('.', 1)
+                module = __import__(module_name, fromlist=[class_name])
+                self.handler = getattr(module, class_name)(**kwargs)
+                self.queue, thread = Queue(-1), Thread(target=self.receive)
+                thread.daemon = True
+                thread.start()
+
+            def setFormatter(self, formatter):
+                super().setFormatter(formatter)
+                self.handler.setFormatter(formatter)
+
+            def receive(self):
+                while True:
+                    try:
+                        record = self.queue.get()
+                        self.handler.emit(record)
+                    except (KeyboardInterrupt, SystemExit):
+                        raise
+                    except EOFError:
+                        break
+                    except:
+                        print_exc(file=stderr)
+
+            def send(self, record):
+                self.queue.put_nowait(record)
+
+            def format_record(self, record):
+                if record.args:
+                    record.msg = record.msg % record.args
+                    record.args = None
+                if record.exc_info:
+                    dummy = self.format(record)
+                    record.exc_info = None
+                return record
+
+            def emit(self, record):
+                try:
+                    formatted_record = self.format_record(record)
+                    self.send(formatted_record)
+                except (KeyboardInterrupt, SystemExit):
+                    raise
+                except:
+                    self.handleError(record)
+
+            def close(self):
+                self.handler.close()
+                super().close()
+
+        for handler_dict in logging_config["handlers"].values():
+            handler_dict["()"] = MultiProcessingLoggingHandler
+
     def init_logs(self):
         folder = vs.path / "logs"
         folder.mkdir(parents=True, exist_ok=True)
         with open(vs.path / "setup" / "logging.json", "r") as logging_config:
             logging_config = load(logging_config)
+        self.build_multiprocessing_logging_handler(logging_config)
         dictConfig(logging_config)
         for logger, log_level in logging_config["external_loggers"].items():
             info(f"Changing {logger} log level to '{log_level}'")
