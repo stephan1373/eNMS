@@ -320,9 +320,11 @@ class Controller:
 
     def edit_file(self, filepath):
         scoped_path = filepath.replace(">", "/")
+        full_path = f"{vs.file_path}{scoped_path}"
+        if not str(Path(full_path).resolve()).startswith(f"{vs.file_path}/"):
+            return {"error": "The path resolves outside of the files folder."}
         try:
-            with open(f"{vs.file_path}{scoped_path}") as file:
-                return file.read()
+            with open(full_path) as file:
         except FileNotFoundError:
             file = db.fetch("file", path=scoped_path, allow_none=True)
             if file:
@@ -691,6 +693,8 @@ class Controller:
         path = f"{vs.file_path}{path.replace('>', '/')}"
         if not exists(path):
             return {"alert": "This folder does not exist on the filesystem."}
+        elif not str(Path(path).resolve()).startswith(f"{vs.file_path}/"):
+            return {"error": "The path resolves outside of the files folder."}
         folders = {Path(path)}
         files_set = {
             file
