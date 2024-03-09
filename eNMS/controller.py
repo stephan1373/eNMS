@@ -325,6 +325,7 @@ class Controller:
             return {"error": "The path resolves outside of the files folder."}
         try:
             with open(full_path) as file:
+                return file.read()
         except FileNotFoundError:
             file = db.fetch("file", path=scoped_path, allow_none=True)
             if file:
