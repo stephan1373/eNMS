@@ -265,7 +265,8 @@ class Environment:
         folder.mkdir(parents=True, exist_ok=True)
         with open(vs.path / "setup" / "logging.json", "r") as logging_config:
             logging_config = load(logging_config)
-        self.build_multiprocessing_logging_handler(logging_config)
+        if vs.logging["use_multiprocessing_handlers"]:
+            self.build_multiprocessing_logging_handler(logging_config)
         dictConfig(logging_config)
         for logger, log_level in logging_config["external_loggers"].items():
             info(f"Changing {logger} log level to '{log_level}'")
