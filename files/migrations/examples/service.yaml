@@ -49393,7 +49393,7 @@
   "vendor": ""
   "waiting_time": !!int "0"
 - "admin_only": !!bool "false"
-  "category": "Other"
+  "category": "Dry Run"
   "close_connection": !!bool "false"
   "completion_time": !!int "1"
   "content_match": ""
@@ -49425,9 +49425,9 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels": {}
-  "last_modified": "2024-03-11 08:03:17.461644"
+  "last_modified": "2024-03-11 08:06:12.249665"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-03-11 08:05:24.294574"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -49486,7 +49486,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "target_devices": []
+  "target_devices":
+  - "Router 1"
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "workflow"
