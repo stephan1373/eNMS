@@ -60,7 +60,7 @@ class Runner:
         for key, value in kwargs.items():
             setattr(self, key, value)
         self.in_process = False if self.is_main_run else run.in_process
-        self.dry_run = getattr(run, "dry_run", False) or self.service.dry_run
+        self.dry_run = getattr(run, "dry_run", False) or self.get("dry_run")
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
         self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
