@@ -1,7 +1,7 @@
 {
   "version": 1,
   "disable_existing_loggers": false,
-  "use_multiprocessing_handlers": false,
+  "use_multiprocessing_handlers": true,
   "formatters": {
     "standard": {
       "format": "[%(threadName)s] %(asctime)s %(name)s %(levelname)-8s %(message)s"
