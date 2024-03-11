@@ -3,13 +3,11 @@
 # - Send the tasks with "python dramatiq_test.py"
 
 from dramatiq import actor, get_broker
-from dramatiq.middleware import ProcessReloader
 
 from time import sleep
 
 
 broker = get_broker()
-broker.add_middleware(ProcessReloader(reload_counter=10))
 
 
 @actor
