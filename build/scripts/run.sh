@@ -27,7 +27,7 @@ function run() {
     exit 0
   fi
   if [ "$redis" = true ]; then
-    export REDIS_ADDR="192.168.56.103"
+    export REDIS_ADDR="127.0.0.1"
   fi
   export SERVER_NAME="eNMS Server"
   export SERVER_ADDR="192.168.56.108:5000"
