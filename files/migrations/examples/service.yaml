@@ -1104,8 +1104,8 @@
     - !!int "634"
     - !!int "16"
     "Dry Run: Subservice and Subworkflow level Dry Run":
-    - !!int "766"
-    - !!int "38"
+    - !!int "796"
+    - !!int "75"
     "Dry Run: Top-level Workflow Dry Run": &id173
     - !!int "634"
     - !!int "16"
@@ -49424,7 +49424,18 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
+  "labels":
+    "9d9e7225-55a6-482e-8ddc-c4a189774e42":
+      "alignment": "left"
+      "content": "This workflow tests the Dry Run feature for subservices and subworkflows.\r\
+        \n- The first Scrapli service is not in Dry Run mode: it should fail\r\n-\
+        \ The second Scrapli service is in Dry Run mode: it should pass\r\n- The first\
+        \ workflow is not in Dry Run mode: it should fail at the first service\r\n\
+        - The second workflow is in Dry Run mode: it should pass"
+      "positions":
+      - !!int "215"
+      - !!int "10"
+      "size": !!int "14"
   "last_modified": "2024-03-11 08:06:12.249665"
   "last_modified_by": "admin"
   "last_run": "2024-03-11 08:05:24.294574"
@@ -49567,8 +49578,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Subservice and Subworkflow level Dry Run":
-    - !!int "-170"
-    - !!int "-110"
+    - !!int "-152"
+    - !!int "-36"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -49676,8 +49687,8 @@
   "parameterized_form_template": ""
   "positions":
     "Dry Run: Subservice and Subworkflow level Dry Run":
-    - !!int "-189"
-    - !!int "224"
+    - !!int "-166"
+    - !!int "198"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -49794,7 +49805,7 @@
   "positions":
     "Dry Run: Subservice and Subworkflow level Dry Run":
     - !!int "617"
-    - !!int "-84"
+    - !!int "-44"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": "set_var(\"variable1\", \"value1\")\r\nset_var(\"variable2\", \"\
