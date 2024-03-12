@@ -1,7 +1,7 @@
 
 # Release Notes
 
-Version 4.6.0: Clustering
+Version 5.0: Clustering
 -------------------------
 
 - Add new Clustering menu entry with "Server" and "Worker" pages
