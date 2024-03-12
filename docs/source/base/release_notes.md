@@ -143,6 +143,8 @@ Post-demo additions:
   - The global variables contain a new "dry_run" property in order to determine in python
   (e.g preprocessing, post-processing, python snippet service) whether the service is
   currently running in Dry Run mode or not.
+  - A workflow also has a "Dry Run" property: when turned on, everything inside the workflow (including subworkflows) will be considered as running in dry run mode.
+- Activate multiprocessing logging handlers
 
 Migration:
 - network.yaml must be merge into device.yaml:
