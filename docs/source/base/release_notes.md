@@ -145,6 +145,9 @@ Post-demo additions:
   currently running in Dry Run mode or not
   - A workflow also has a "Dry Run" property: when turned on, everything inside the workflow (including subworkflows) will be considered as running in dry run mode
   - Add support for using "Dry Run" mode from the parameterized form
+  - Add special color for services in "Dry Run" mode:
+    - In "Normal display": whether the "Dry Run" mode is enabled for a service
+    - In "Runtime display": whether the "Dry Run" mode was enabled when it ran
 - Activate multiprocessing logging handlers
 
 Migration:
