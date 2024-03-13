@@ -643,7 +643,7 @@ function displayWorkflowState(result, workflowSwitch) {
     const id = parseInt(path.split(">").slice(-1)[0]);
     if (ends.has(id) || !serviceIds.includes(id)) continue;
     let label = `<b>${nodes.get(id).name}</b>\n`;
-    colorService(id, state.success ? "#32cd32" : "#FF6666");
+    colorService(id, state.dry_run ? "#9CE69C" : state.success ? "#32cd32" : "#FF6666");
     let first = true;
     for (const progressKey of ["device", "iteration_device"]) {
       if (state.progress?.[progressKey]) {
@@ -657,6 +657,8 @@ function displayWorkflowState(result, workflowSwitch) {
             ? "#D3D3D3"
             : success + failure + skipped < total
             ? "#89CFF0"
+            : state.dry_run
+            ? "#9CE69C"
             : state.success === false || failure > 0
             ? "#FF6666"
             : state.success === true

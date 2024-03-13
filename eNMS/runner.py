@@ -639,6 +639,9 @@ class Runner:
                 results = self.convert_result(results)
                 if "success" not in results:
                     results["success"] = True
+                if self.dry_run:
+                    self.write_state("dry_run", True)
+                    results["dry_run"] = True
                 if self.service.postprocessing:
                     if (
                         self.postprocessing_mode == "always"
