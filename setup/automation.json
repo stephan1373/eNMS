@@ -66,6 +66,7 @@
     "state_properties": {
       "run": ["id", "creator", "runtime", "status"],
       "service": [
+        "dry_run",
         "id",
         "name",
         "scoped_name",
