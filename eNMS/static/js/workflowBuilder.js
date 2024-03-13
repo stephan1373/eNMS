@@ -620,7 +620,7 @@ function displayWorkflowState(result, workflowSwitch) {
   if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
     for (const [serviceId, status] of Object.entries(result.device_state)) {
-      colorService(parseInt(serviceId), status ? "#32cd32" : "#FF6666");
+      colorService(parseInt(serviceId), status ? "#32CD32" : "#FF6666");
     }
     return;
   }
@@ -643,7 +643,7 @@ function displayWorkflowState(result, workflowSwitch) {
     const id = parseInt(path.split(">").slice(-1)[0]);
     if (ends.has(id) || !serviceIds.includes(id)) continue;
     let label = `<b>${nodes.get(id).name}</b>\n`;
-    colorService(id, state.dry_run ? "#9CE69C" : state.success ? "#32cd32" : "#FF6666");
+    colorService(id, state.dry_run ? "#9CE69C" : state.success ? "#32CD32" : "#FF6666");
     let first = true;
     for (const progressKey of ["device", "iteration_device"]) {
       if (state.progress?.[progressKey]) {
@@ -662,7 +662,7 @@ function displayWorkflowState(result, workflowSwitch) {
             : state.success === false || failure > 0
             ? "#FF6666"
             : state.success === true
-            ? "#32cd32"
+            ? "#32CD32"
             : "#00CCFF"
         );
         if (total) {
