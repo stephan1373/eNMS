@@ -1,7 +1,7 @@
 
 # Release Notes
 
-Version 4.7.0: Changelog & Workflow Tree
+Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
 
 - Changelog feature:
@@ -166,8 +166,8 @@ Tests:
 - Make sure soft deleted objects are not exported (as part of the migration mechanism or
   the export of a workflow)
 
-Version 4.6.0: Clustering
--------------------------
+Version 5.0: Clustering
+-----------------------
 
 - Add new Clustering menu entry with "Server" and "Worker" pages
 - Add one-to-many relationship between Run and Server class
