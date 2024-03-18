@@ -575,14 +575,8 @@
         "html": true
       },
       {
-        "data": "changelog",
-        "title": "Changelog",
-        "width": "80px",
-        "visible": false
-      },
-      {
         "data": "buttons",
-        "width": "200px",
+        "width": "230px",
         "orderable": false,
         "export": false,
         "html": true
