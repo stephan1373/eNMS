@@ -486,6 +486,8 @@ class Database:
                 result = transaction(*args, **kwargs)
                 self.session.commit()
                 break
+            except ValueError:
+                raise
             except Exception as exc:
                 self.session.rollback()
                 if index == self.retry_commit_number - 1:
@@ -507,7 +509,7 @@ class Database:
             property = "path" if _class in ("file", "folder") else "name"
             characters = set(kwargs.get("name", "") + kwargs.get("scoped_name", ""))
             if set("/\\'" + '"') & characters:
-                raise Exception("Names cannot contain a slash or a quote.")
+                raise ValueError("Names cannot contain a slash or a quote.")
             instance, instance_id = None, kwargs.pop("id", 0)
             if instance_id:
                 instance = self.fetch(_class, id=instance_id, rbac=rbac)
