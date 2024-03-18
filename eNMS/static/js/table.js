@@ -1467,7 +1467,8 @@ tables.task = class TaskTable extends Table {
   buttons(row) {
     const state = row.is_active ? ["disabled", "active"] : ["active", "disabled"];
     return [
-      `<ul class="pagination pagination-lg" style="margin: 0px; width: 200px">
+      `<ul class="pagination pagination-lg" style="margin: 0px; width: 230px">
+        ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('task', '${row.id}')" data-tooltip="Edit"
