@@ -749,7 +749,8 @@ tables.network = class NetworkTable extends Table {
 
   buttons(row) {
     return `
-      <ul class="pagination pagination-lg" style="margin: 0px; width: 120px">
+      <ul class="pagination pagination-lg" style="margin: 0px; width: 150px">
+        ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
