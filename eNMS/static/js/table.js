@@ -357,6 +357,19 @@ export class Table {
       </button>`;
   }
 
+  changelogButton(row) {
+    return `
+      <li>
+        <button type="button" class="btn btn-sm btn-info"
+        onclick="eNMS.table.displayRelationTable(
+          'changelog', ${row.instance},
+          {parent: '${this.type}', from: '${this.type}', to: 'logs'})"
+          data-tooltip="Edit"
+          ><span class="glyphicon glyphicon-wrench"></span
+        ></button>
+      </li>`;
+  }
+
   createNewButton() {
     if (this.relation && this.addRelationDisabled) return "";
     const onClick = this.relation
@@ -1907,6 +1920,7 @@ tables.file = class FileTable extends Table {
       return [
         `
         <ul class="pagination pagination-lg" style="margin: 0px;">
+          ${this.changelogButton(row)}
           ${this.copyClipboardButton(row)}
           ${this.downloadButton(row)}
           <button type="button"

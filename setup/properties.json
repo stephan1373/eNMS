@@ -1471,14 +1471,8 @@
         "search": "text"
       },
       {
-        "data": "changelog",
-        "title": "Changelog",
-        "width": "80px",
-        "visible": false
-      },
-      {
         "data": "buttons",
-        "width": "200px",
+        "width": "240px",
         "orderable": false,
         "export": false
       }
