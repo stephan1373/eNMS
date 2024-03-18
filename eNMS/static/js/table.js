@@ -1531,6 +1531,7 @@ tables.group = class GroupTable extends Table {
     return [
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
+        ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('group', '${
