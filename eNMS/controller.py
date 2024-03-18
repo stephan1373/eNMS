@@ -690,7 +690,7 @@ class Controller:
         path = f"{vs.file_path}{path.replace('>', '/')}"
         if not exists(path):
             return {"alert": "This folder does not exist on the filesystem."}
-        elif not str(Path(path).resolve()).startswith(f"{vs.file_path}/"):
+        elif not str(Path(path).resolve()).startswith(f"{vs.file_path}"):
             return {"error": "The path resolves outside of the files folder."}
         folders = {Path(path)}
         files_set = {
@@ -713,8 +713,7 @@ class Controller:
                 elif file.is_dir():
                     folders.add(file)
                 scoped_path = str(file).replace(str(vs.file_path), "")
-                db.factory("folder" if file.is_dir() else "file", path=scoped_path)
-            db.session.commit()
+                db.factory("folder" if file.is_dir() else "file", commit=True, path=scoped_path)
         env.log("info", "Scan of Files Successful")
 
     def get_visualization_pools(self, view):
