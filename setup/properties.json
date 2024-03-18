@@ -1293,12 +1293,6 @@
         "width": "140px"
       },
       {
-        "data": "changelog",
-        "title": "Changelog",
-        "width": "80px",
-        "visible": false
-      },
-      {
         "data": "workers",
         "title": "Workers",
         "width": "80px",
@@ -1312,7 +1306,7 @@
       },
       {
         "data": "buttons",
-        "width": "130px",
+        "width": "160px",
         "orderable": false,
         "export": false
       }
