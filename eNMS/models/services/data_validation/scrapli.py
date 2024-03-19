@@ -28,7 +28,7 @@ class ScrapliService(ConnectionService):
     def job(self, run, device):
         if self.jinja2_template:
             commands = Template(run.commands, undefined=StrictUndefined).render(
-                {**locals(), **run.global_variables()}
+                {**locals(), **run.global_variables(**local_variables)}
             )
         else:
             commands = run.sub(run.commands, locals())

@@ -205,12 +205,12 @@ class Runner:
                     "device",
                     allow_none=True,
                     user=_self.creator,
-                    **{property: value},
+                    **{property: str(value)},
                 )
             if device:
                 devices.add(device)
             else:
-                not_found.append(value)
+                not_found.append(str(value))
         if not_found:
             raise Exception(f"Device query invalid targets: {', '.join(not_found)}")
         return devices

@@ -48,7 +48,7 @@ class NetmikoValidationService(ConnectionService):
         local_variables = locals()
         if self.jinja2_template:
             commands = Template(run.commands, undefined=StrictUndefined).render(
-                {**local_variables, **run.global_variables()}
+                {**local_variables, **run.global_variables(**local_variables)}
             )
         else:
             commands = run.sub(run.commands, local_variables)
