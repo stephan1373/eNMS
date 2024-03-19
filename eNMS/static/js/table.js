@@ -1039,9 +1039,15 @@ tables.service = class ServiceTable extends Table {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
     if (row.type == "workflow") {
-      row.name = `<b><a href="/workflow_builder/${row.path}">${sanitize(row.name)}</a></b>`;
+      row.name = `<b><a href="/workflow_builder/${row.path}">${sanitize(
+        row.name
+      )}</a></b>`;
     } else if (!row.shared) {
-      row.name = row.name.substring(0, row.name.lastIndexOf(row.scoped_name)) + `<b><a href="/workflow_builder/${row.workflow_path}">${sanitize(row.scoped_name)}</a></b>`;
+      row.name =
+        row.name.substring(0, row.name.lastIndexOf(row.scoped_name)) +
+        `<b><a href="/workflow_builder/${row.workflow_path}">${sanitize(
+          row.scoped_name
+        )}</a></b>`;
     }
     for (const model of ["device", "pool"]) {
       row[`${model}s`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(

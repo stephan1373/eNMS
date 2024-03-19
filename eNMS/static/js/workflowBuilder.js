@@ -361,7 +361,13 @@ export function drawWorkflowNode(service) {
   return {
     id: service.id,
     shape: service.type == "workflow" ? "ellipse" : defaultService ? "circle" : "box",
-    color: defaultService ? "pink" : isPlaceholder ? "#E6ADD8" : service.dry_run ? "#9CE69C" : "#D2E5FF",
+    color: defaultService
+      ? "pink"
+      : isPlaceholder
+      ? "#E6ADD8"
+      : service.dry_run
+      ? "#9CE69C"
+      : "#D2E5FF",
     font: {
       size: 15,
       multi: "html",
@@ -481,7 +487,9 @@ function addServicePanel() {
 }
 
 function copyCanvasPosition() {
-  copyToClipboard({ text: `${mousePosition.x.toFixed(2)}, ${mousePosition.y.toFixed(2)}` });
+  copyToClipboard({
+    text: `${mousePosition.x.toFixed(2)}, ${mousePosition.y.toFixed(2)}`,
+  });
 }
 
 function getResultLink(service, device) {
@@ -733,7 +741,11 @@ export function resetWorkflowDisplay() {
       nodeUpdates.push({
         id: service.id,
         label: getServiceLabel(service),
-        color: service.skip[workflow.name] ? "#D3D3D3" : service.dry_run ? "#9CE69C" : "#D2E5FF",
+        color: service.skip[workflow.name]
+          ? "#D3D3D3"
+          : service.dry_run
+          ? "#9CE69C"
+          : "#D2E5FF",
       });
     }
   });

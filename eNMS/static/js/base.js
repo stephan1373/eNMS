@@ -106,14 +106,14 @@ function loadScript(url, id) {
 
 export function sanitize(input) {
   const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;',
-      "/": '&#x2F;',
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#x27;",
+    "/": "&#x2F;",
   };
-  return input.replace(/[&<>"'/]/ig, (match) => (map[match]));
+  return input.replace(/[&<>"'/]/gi, (match) => map[match]);
 }
 
 export function openUrl(url) {

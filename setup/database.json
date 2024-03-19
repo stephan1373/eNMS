@@ -150,14 +150,7 @@
       "user_number",
       "logs"
     ],
-    "server": [
-      "id",
-      "current_runs",
-      "logs",
-      "runs",
-      "status",
-      "workers"
-    ],
+    "server": ["id", "current_runs", "logs", "runs", "status", "workers"],
     "service": [
       "children",
       "id",
@@ -235,9 +228,7 @@
       "user_workers",
       "logs"
     ],
-    "worker": [
-      "current_runs"
-    ],
+    "worker": ["current_runs"],
     "workflow_edge": [
       "id",
       "source_id",
