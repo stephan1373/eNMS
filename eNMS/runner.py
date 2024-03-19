@@ -103,7 +103,9 @@ class Runner:
                 "duration": "Unknown",
                 "runtime": run.runtime,
             }
-            db.try_commit(runner_object.end_of_run_transaction, results, status=run.status)
+            db.try_commit(
+                runner_object.end_of_run_transaction, results, status=run.status
+            )
             runner_object.create_result(results, run_result=True)
             runner_object.end_of_run_cleanup()
         if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:

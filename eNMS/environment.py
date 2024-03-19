@@ -211,7 +211,7 @@ class Environment:
         class MultiProcessingLoggingHandler(Handler):
             def __init__(self, handler_type, **kwargs):
                 super().__init__()
-                module_name, class_name = handler_type.rsplit('.', 1)
+                module_name, class_name = handler_type.rsplit(".", 1)
                 module = __import__(module_name, fromlist=[class_name])
                 self.handler = getattr(module, class_name)(**kwargs)
                 self.queue, thread = Queue(-1), Thread(target=self.receive)

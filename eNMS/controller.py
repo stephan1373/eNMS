@@ -748,7 +748,8 @@ class Controller:
                 elif file.is_dir():
                     folders.add(file)
                 scoped_path = str(file).replace(str(vs.file_path), "")
-                db.factory("folder" if file.is_dir() else "file", commit=True, path=scoped_path)
+                filetype = "folder" if file.is_dir() else "file"
+                db.factory(filetype, commit=True, path=scoped_path)
         env.log("info", "Scan of Files Successful")
 
     def get_visualization_pools(self, view):
@@ -1282,7 +1283,12 @@ class Controller:
                 initial_payload = restart_run.payload
             run_kwargs["services"] = [service.id]
             run_object = db.factory(
-                "run", service=service.id, commit=True, must_be_new=True, rbac=None, **run_kwargs
+                "run",
+                service=service.id,
+                commit=True,
+                must_be_new=True,
+                rbac=None,
+                **run_kwargs,
             )
             db.try_set(service, "status", "Running")
             db.try_set(service, "last_run", vs.get_time())
