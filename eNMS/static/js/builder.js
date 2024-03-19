@@ -340,13 +340,14 @@ function showBuilderSearchPanel() {
         </fieldset>
       </div>`
       : "";
+  const filteringType = type == "workflow" ? "Service" : "Device";
   openPanel({
     name: "search",
     size: `500 ${type == "workflow" ? "240" : "160"}`,
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <fieldset class="custom-fieldset">
-          <legend class="custom-legend">Service Filtering</legend>
+          <legend class="custom-legend">${filteringType} Filtering</legend>
             <div style="margin-bottom: 5px">
               <select data-width="100%" id="tree-search-mode" name="search_mode">
                 <option value="properties">Search across all properties</option>
