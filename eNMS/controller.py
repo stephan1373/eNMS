@@ -764,8 +764,8 @@ class Controller:
 
         def rec(instance):
             for sub_instance in getattr(instance, child_property):
+                children.add(sub_instance.name)
                 if sub_instance.type == type:
-                    children.add(sub_instance.name)
                     rec(sub_instance)
 
         rec(instance)

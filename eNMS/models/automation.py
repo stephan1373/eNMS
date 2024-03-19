@@ -157,12 +157,6 @@ class Service(AbstractBase):
         ):
             raise db.rbac_error("Not Authorized (restricted to owners).")
 
-    def get_changelog_kwargs(self):
-        kwargs = {"workflows": [workflow.id for workflow in self.workflows]}
-        if self.type == "workflow":
-            kwargs["workflows"].append(self.id)
-        return {**kwargs, **super().get_changelog_kwargs()}
-
     def post_update(self):
         if len(self.workflows) == 1 and not self.shared:
             self.path = f"{self.workflows[0].path}>{self.id}"

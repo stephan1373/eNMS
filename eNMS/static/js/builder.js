@@ -314,10 +314,11 @@ export function showBuilderChangelogPanel(model, global) {
   if (global) {
     call({
       url: `/get_builder_children/${model}/${instance.id}`,
-      callback: function (childrenId) {
+      callback: function (children) {
+        const subModel = model == "workflow" ? "service" : "device";
         const constraints = {
-          [`${model}s`]: childrenId,
-          [`${model}s_filter`]: "union",
+          [`${subModel}`]: children,
+          [`${subModel}_filter`]: "union",
         };
         showChangelogPanel(instance.id, constraints);
       },

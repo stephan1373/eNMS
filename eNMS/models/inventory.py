@@ -93,12 +93,6 @@ class Device(Object):
         super().update(**kwargs)
         self.serialized = str(self.get_properties()).lower()
 
-    def get_changelog_kwargs(self):
-        kwargs = {"networks": [network.id for network in self.networks]}
-        if self.type == "network":
-            kwargs["networks"].append(self.id)
-        return {**kwargs, **super().get_changelog_kwargs()}
-
     def post_update(self):
         return self.to_dict(include_relations=["networks"])
 

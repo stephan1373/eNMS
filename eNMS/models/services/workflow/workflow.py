@@ -357,9 +357,6 @@ class WorkflowEdge(AbstractBase):
         self.color = "green" if kwargs["subtype"] == "success" else "red"
         super().__init__(**kwargs)
 
-    def get_changelog_kwargs(self):
-        return {"workflows": [self.workflow_id], **super().get_changelog_kwargs()}
-
     def update(self, **kwargs):
         super().update(**kwargs)
         self.set_name(kwargs.get("name"))
