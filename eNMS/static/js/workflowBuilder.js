@@ -480,6 +480,10 @@ function addServicePanel() {
   });
 }
 
+function copyCanvasPosition() {
+  copyToClipboard({ text: `${mousePosition.x.toFixed(2)}, ${mousePosition.y.toFixed(2)}` });
+}
+
 function getResultLink(service, device) {
   const link = `get_result("${service.name}"${device ? ", device=device.name" : ""})`;
   copyToClipboard({ text: link });
@@ -501,7 +505,7 @@ export function updateWorkflowRightClickBindings() {
     "Link to Runtime": () => getWorkflowLink(true),
     "Run Workflow": () => runWorkflow(),
     "Parameterized Workflow Run": () => runWorkflow(true),
-    Position: () => copyToClipboard({ text: `${mousePosition.x}, ${mousePosition.y}` }),
+    Position: copyCanvasPosition,
     "Restart Workflow from Here": showRestartWorkflowPanel,
     "Workflow Changelog": () => showBuilderChangelogPanel("workflow", true),
     "Workflow Result Tree": () => showRuntimePanel("results", workflow),
