@@ -2191,6 +2191,7 @@ function serializedSearch(type) {
   } else {
     $("#serialized-search").focus();
   }
+  tableInstances[type].createfilteringTooltip("serialized");
 }
 
 function togglePaginationDisplay(tableId) {
