@@ -1293,13 +1293,13 @@ function fullScreen() {
 
 function switchTheme(theme) {
   $(`link[href="/static/css/themes/${currentTheme}.css"]`).remove();
-  currentTheme = theme;
+  currentTheme = theme || (currentTheme == "dark" ? "default" : "dark");
   let cssLink = document.createElement("link");
   cssLink.rel = "stylesheet";
   cssLink.type = "text/css";
-  cssLink.href = `/static/css/themes/${theme}.css`;
+  cssLink.href = `/static/css/themes/${currentTheme}.css`;
   document.getElementsByTagName("head")[0].appendChild(cssLink);
-  call({ url: `/switch_theme/${user.id}/${theme}` });
+  call({ url: `/switch_theme/${user.id}/${currentTheme}` });
 }
 
 function initSidebar() {
