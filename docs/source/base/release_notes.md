@@ -143,6 +143,7 @@ Version 5.1.0: Changelog & Workflow Tree
     - In "Normal display": whether the "Dry Run" mode is enabled for a service
     - In "Runtime display": whether the "Dry Run" mode was enabled when it ran
 - Activate multiprocessing logging handlers
+- Add default / dark theme button switch in upper menu
 
 Migration:
 - network.yaml must be merge into device.yaml:
