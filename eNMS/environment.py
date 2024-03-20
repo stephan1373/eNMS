@@ -218,9 +218,9 @@ class Environment:
                 thread.daemon = True
                 thread.start()
 
-            def setFormatter(self, formatter):
+            def set_formatter(self, formatter):
                 super().setFormatter(formatter)
-                self.handler.setFormatter(formatter)
+                self.handler.set_formatter(formatter)
 
             def receive(self):
                 while True:
@@ -231,7 +231,7 @@ class Environment:
                         raise
                     except EOFError:
                         break
-                    except:
+                    except Exception:
                         print_exc(file=stderr)
 
             def send(self, record):
@@ -242,7 +242,7 @@ class Environment:
                     record.msg = record.msg % record.args
                     record.args = None
                 if record.exc_info:
-                    dummy = self.format(record)
+                    self.format(record)
                     record.exc_info = None
                 return record
 
@@ -252,7 +252,7 @@ class Environment:
                     self.send(formatted_record)
                 except (KeyboardInterrupt, SystemExit):
                     raise
-                except:
+                except Exception:
                     self.handleError(record)
 
             def close(self):
