@@ -98,8 +98,6 @@ Version 5.1.0: Changelog & Workflow Tree
   - Networks being devices, they can now be part of pools.
 - Add new "Include Networks" property to pools to decide whether the devices of a pool
   should consider networks.
-
-Post-demo additions:
 - Add new "source" property to trace the origin of a change: 'REST API', 'Edit Panel',
   or 'Change Reverted'
 - Rename the "Undo" mechanism to "Revert" mechanism (given that we're not keeping track of
