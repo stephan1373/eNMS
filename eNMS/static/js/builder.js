@@ -52,7 +52,6 @@ let builderTreeData;
 export let creationMode;
 export let currentMode = "motion";
 export let currentPath = page.includes("builder") && savedPath;
-export let treePath;
 export let instance;
 export let edges;
 export let mousePosition;
@@ -623,10 +622,6 @@ export const rectangleSelection = (container, graph, nodes) => {
 
 export function setPath(path) {
   currentPath = path.toString();
-  if (treePath && !currentPath.includes(treePath) && !treePath.includes(currentPath)) {
-    treePath = null;
-    $("#lock-tree-icon").toggleClass("fa-lock fa-unlock");
-  }
 }
 
 export function createNewNode(mode) {
@@ -796,7 +791,7 @@ function toggleTree() {
   const kwargs = { duration: 200, queue: false };
   if (!treeIsDisplayed) {
     if (!menuIsHidden) hideMenu();
-    $(`#${type}-tree,#resize-tree-li,#lock-tree-li`).show();
+    $(`#${type}-tree,#resize-tree-li`).show();
     $("#run-navbar").hide();
     $(".left_frame").animate({ width: "-=600px" }, kwargs);
     $(".right_frame").animate(
@@ -814,7 +809,7 @@ function toggleTree() {
     );
   } else {
     if (menuIsHidden) hideMenu();
-    $("#run-navbar,#resize-tree-li,#lock-tree-li").hide();
+    $("#run-navbar,#resize-tree-li").hide();
     $(".left_frame").animate({ width: "+=600px" }, kwargs);
     $(".right_frame").animate(
       { width: "-=600px" },
@@ -831,15 +826,9 @@ function toggleTree() {
   treeIsDisplayed = !treeIsDisplayed;
 }
 
-function lockTree() {
-  treePath = treePath ? null : currentPath;
-  $("#lock-tree-icon").toggleClass("fa-lock fa-unlock");
-}
-
 configureNamespace("builder", [
   createLabel,
   highlightNode,
-  lockTree,
   showBuilderSearchPanel,
   switchMode,
   toggleTree,
