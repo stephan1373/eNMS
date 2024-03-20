@@ -26,11 +26,12 @@ class ScrapliService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "scrapli_service"}
 
     def job(self, run, device):
+        local_variables = locals()
         if self.jinja2_template:
-            variables = {**locals(), **run.global_variables(**local_variables)}
+            variables = {**local_variables, **run.global_variables(**local_variables)}
             commands = Template(run.commands).render(variables)
         else:
-            commands = run.sub(run.commands, locals())
+            commands = run.sub(run.commands, local_variables)
         commands = commands.splitlines()
         function = "send_configs" if run.is_configuration else "send_commands"
         run.log(
