@@ -1,5 +1,6 @@
 /*
 global
+action: true
 linkPath: false
 page: false
 subtypes: false
@@ -166,7 +167,7 @@ export function drawTree(service, data, resultsPanel) {
                 resultsPanel ? " failed" : ""
               }</span>`,
             ];
-            if (progress.skipped > 0)
+            if (progress.skipped > 0) {
               progressList.splice(
                 1,
                 0,
@@ -174,6 +175,7 @@ export function drawTree(service, data, resultsPanel) {
                   resultsPanel ? " skipped" : ""
                 }</span>`
               );
+            }
             progressSummary = `
                 <div style="position: absolute; top: 0px; right: 160px">
                   ${progressList.join(

@@ -3,7 +3,7 @@ global
 alertify: false
 CodeMirror: false
 settings: true
-csrf_token: false
+csrfToken: false
 eNMS: true
 formProperties: false
 job: false
@@ -80,7 +80,7 @@ const panelThemes = {
 $.ajaxSetup({
   beforeSend: function (xhr, settings) {
     if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-      xhr.setRequestHeader("X-CSRFToken", csrf_token);
+      xhr.setRequestHeader("X-CSRFToken", csrfToken);
     }
     if (!settings.url.includes("filtering")) {
       document.body.style.cursor = "progress";
@@ -557,8 +557,8 @@ export function preprocessForm(panel, id, type, duplicate) {
     });
     $(el).append(button);
   });
-  let csrfField = panel.querySelector('input[name="csrf_token"]');
-  if (csrfField) csrfField.value = csrf_token;
+  let csrfField = panel.querySelector(`input[name="csrf_token"]`);
+  if (csrfField) csrfField.value = csrfToken;
 }
 
 export function initCodeMirror(id, mode) {
@@ -734,6 +734,7 @@ export function showChangelogPanel(id, constraints) {
     tableId: `changelog-${id}`,
     title: "Changelog",
     callback: function () {
+      // eslint-disable-next-line new-cap
       new tables["changelog"](id, constraints);
     },
   });
