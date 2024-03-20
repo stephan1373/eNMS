@@ -1,14 +1,11 @@
 from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import relationship
-from wtforms.widgets import TextArea
 
 from eNMS.database import db
 from eNMS.forms import DeviceForm
 from eNMS.fields import (
     HiddenField,
-    MultipleInstanceField,
-    SelectField,
-    StringField,
+    SelectField
 )
 from eNMS.models.inventory import Device
 
