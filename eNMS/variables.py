@@ -8,10 +8,9 @@ from ncclient.devices import supported_devices_cfg
 from netmiko.ssh_dispatcher import CLASS_MAPPER
 from os import getenv
 from pathlib import Path
-from random import randint, uniform
+from random import randint
 from string import punctuation
 from sys import modules
-from time import sleep
 from traceback import format_exc
 from warnings import warn
 from wtforms.validators import __all__ as all_validators

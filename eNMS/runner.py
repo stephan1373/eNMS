@@ -1159,7 +1159,7 @@ class Runner:
     def space_deleter(self, input):
         return "".join(input.split())
 
-    def update_netmiko_connection(self, connection):
+    def update_netmiko_connection(self, connection, device):
         setattr(connection, "global_delay_factor", self.service.global_delay_factor)
         try:
             if not hasattr(connection, "check_enable_mode"):
@@ -1193,7 +1193,7 @@ class Runner:
         connection_name = f"Netmiko Connection '{self.connection_name}'"
         if connection:
             self.log("info", f"Using cached {connection_name}", device)
-            return self.update_netmiko_connection(connection)
+            return self.update_netmiko_connection(connection, device)
         self.check_connection_numbers()
         driver = device.netmiko_driver if self.driver == "device" else self.driver
         self.log(
@@ -1393,7 +1393,6 @@ class Runner:
     def check_connection_numbers(self):
         if not vs.automation["connections"]["enforce_threshold"]:
             return
-        state = self.main_run.get_state()
         total_connections = sum(
             len(vs.connections_cache[library].get(self.parent_runtime, {}))
             for library in ("netmiko", "scrapli", "napalm")
