@@ -3,10 +3,7 @@ from sqlalchemy.orm import relationship
 
 from eNMS.database import db
 from eNMS.forms import DeviceForm
-from eNMS.fields import (
-    HiddenField,
-    SelectField
-)
+from eNMS.fields import HiddenField, SelectField
 from eNMS.models.inventory import Device
 
 
