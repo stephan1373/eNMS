@@ -852,6 +852,7 @@ class Controller:
             else:
                 color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
             text = instance.scoped_name if type == "workflow" else instance.name
+            attr_class = "jstree-wholerow-clicked" if full_path == path else ""
             return {
                 "runtime": state[path]["result"]["runtime"] if state else None,
                 "data": {
@@ -864,7 +865,7 @@ class Controller:
                 "text": text if len(text) < 45 else f"{text[:45]}...",
                 "children": children,
                 "a_attr": {
-                    "class": "no_checkbox",
+                    "class": f"no_checkbox {attr_class}", 
                     "style": f"color: #{color}; width: 100%; {style}",
                 },
                 "type": instance.type,
