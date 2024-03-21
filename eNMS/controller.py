@@ -871,7 +871,7 @@ class Controller:
             }
 
         return {
-            "tree": rec(db.fetch(type, id=path_id[0]), full_path),
+            "tree": rec(db.fetch(type, id=path_id[0]), str(path_id[0])),
             "highlight": highlight,
         }
 
