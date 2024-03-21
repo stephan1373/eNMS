@@ -265,7 +265,6 @@ export function drawTree(service, data, resultsPanel) {
       highlightNode($(treeId).jstree(true).get_node(event.target).data);
     });
     tree.bind("loaded.jstree", function (e, data) {
-      tree.jstree("open_all");
       createTooltips();
     });
     $(`#builder,${treeId}`).contextMenu({
