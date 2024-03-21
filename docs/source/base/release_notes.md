@@ -82,6 +82,9 @@ Version 5.1.0: Changelog & Workflow Tree
     - If the service is in another workflow, automatically switch to that workflow
     - Automatically select and focus the view on that service
   - When a workflow has a superworkflow, display the superworkflow as part of the tree
+  - Track the workflow currently being displayed:
+    - Only the tree node on the path of the displayed workflow are open by default
+    - The workflow currently displayed is highlighted in blue in the tree
 - Skip mechanism improvement:
   - Don't allow skipping Start, End, and Placeholder services
   - When unskipping a service, pop from service.skip dictionary instead of setting to False
