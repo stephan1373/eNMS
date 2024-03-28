@@ -16,7 +16,7 @@ from os.path import exists
 from pathlib import Path
 from re import search, sub
 from requests import get as http_get
-from ruamel import yaml
+from ruamel.yaml import YAML
 from shutil import rmtree
 from sqlalchemy import and_, cast, or_, String
 from sqlalchemy.exc import IntegrityError, OperationalError
@@ -948,7 +948,7 @@ class Controller:
             else vs.file_path / folder / kwargs["name"]
         )
         with open(folder_path / "metadata.yaml", "r") as metadata_file:
-            metadata = yaml.load(metadata_file, Loader=yaml.SafeLoader)
+            metadata = YAML(typ="unsafe").load(metadata_file)
         if service_import and metadata["version"] != vs.server_version:
             return {"alert": "Import from an older version is not allowed"}
         if current_user:
@@ -967,7 +967,7 @@ class Controller:
                     raise Exception("Invalid archive provided in service import.")
                 continue
             with open(path, "r") as migration_file:
-                instances = yaml.load(migration_file, Loader=yaml.CLoader)
+                instances = YAML(typ="unsafe").load(migration_file)
             before_time = datetime.now()
             env.log("info", f"Creating {model}s")
             for instance in instances:
