@@ -1,9 +1,12 @@
 from pathlib import Path
-from ruamel import yaml
+from ruamel.yaml import YAML
 
 
 FILENAME = "examples"
 PATH = Path.cwd().parent.parent.parent / "eNMS-prod" / "files" / "migrations"
+
+yaml = YAML()
+yaml.default_style = "'"
 
 
 def migrate_from_4_to_4_2():

@@ -1,6 +1,6 @@
 from pathlib import Path
 from random import choice, randrange
-from ruamel import yaml
+from ruamel.yaml import YAML
 
 service_type = [
     "swiss_army_knife_service",
@@ -16,6 +16,9 @@ PATH = (
     / "migrations"
     / "model_scalability"
 )
+
+yaml = YAML()
+yaml.default_style = "'"
 
 
 def generate_services():
