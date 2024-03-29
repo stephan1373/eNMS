@@ -342,12 +342,14 @@ class Controller:
             service.to_dict(export=True, private_properties=True, exclude=exclude)
             for service in services
         ]
+        yaml = YAML()
+        yaml.default_style = "'"
         with open(path / "service.yaml", "w") as file:
-            yaml.dump(services, file, default_style='"')
+            yaml.dump(services, file)
         if service.type == "workflow":
             edges = [edge.to_dict(export=True) for edge in service.deep_edges]
             with open(path / "workflow_edge.yaml", "w") as file:
-                yaml.dump(edges, file, default_style='"')
+                yaml.dump(edges, file)
         with open(path / "metadata.yaml", "w") as file:
             metadata = {
                 "version": vs.server_version,
@@ -910,6 +912,8 @@ class Controller:
         return snippets
 
     def migration_export(self, **kwargs):
+        yaml = YAML()
+        yaml.default_style='"'
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
@@ -921,7 +925,6 @@ class Controller:
                         private_properties=kwargs["export_private_properties"],
                     ),
                     migration_file,
-                    default_style='"',
                 )
         with open(path / "metadata.yaml", "w") as file:
             yaml.dump(
