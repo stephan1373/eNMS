@@ -69,6 +69,7 @@
   },
   "advanced": {
     "always_commit_result": false,
-    "disconnect_thread_timeout": 10
+    "disconnect_thread_timeout": 10,
+    "task_jitter": 0
   }
 }

@@ -1,6 +1,8 @@
 from collections import defaultdict
 from flask_login import current_user
+from random import uniform
 from threading import Thread
+from time import sleep
 from traceback import format_exc
 from uuid import getnode
 
@@ -135,6 +137,7 @@ class RestApi:
     def run_task(self, task_id):
         if "scheduler" not in vs.server_data["allowed_automation"]:
             return {"error": "Scheduled runs are not allowed on this server."}
+        sleep(uniform(0, self.automation["advanced"]["task_jitter"]))
         task = db.fetch("task", rbac="edit", id=task_id)
         data = {
             "trigger": "Scheduler",
@@ -147,7 +150,6 @@ class RestApi:
             data["target_devices"] = [device.id for device in task.devices]
         if task.pools:
             data["target_pools"] = [pool.id for pool in task.pools]
-
         if vs.settings["automation"]["use_task_queue"]:
             controller.run.send(task.service.id, **data)
         else:
