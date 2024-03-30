@@ -131,7 +131,7 @@ class Server(Flask):
             if rest_request:
                 user = None
                 if request.authorization:
-                    user = env.authenticate_user(**request.authorization)
+                    user = env.authenticate_user(**request.authorization.parameters)
                 if user:
                     login_user(user)
             username = getattr(current_user, "name", "Unknown")

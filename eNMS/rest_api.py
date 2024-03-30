@@ -137,7 +137,7 @@ class RestApi:
     def run_task(self, task_id):
         if "scheduler" not in vs.server_data["allowed_automation"]:
             return {"error": "Scheduled runs are not allowed on this server."}
-        sleep(uniform(0, self.automation["advanced"]["task_jitter"]))
+        sleep(uniform(0, vs.automation["advanced"]["task_jitter"]))
         task = db.fetch("task", rbac="edit", id=task_id)
         data = {
             "trigger": "Scheduler",
