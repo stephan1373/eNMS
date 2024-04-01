@@ -149,6 +149,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add default / dark theme button switch in upper menu
 - Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt
 - Add new MediumString column type and make service name a MediumString to allow for longer service (full) names
+- Update Show Git History button tooltip from "Historic" to "Historical"
 
 Migration:
 - network.yaml must be merge into device.yaml:
