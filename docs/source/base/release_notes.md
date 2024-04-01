@@ -147,6 +147,7 @@ Version 5.1.0: Changelog & Workflow Tree
     - In "Runtime display": whether the "Dry Run" mode was enabled when it ran
 - Activate multiprocessing logging handlers
 - Add default / dark theme button switch in upper menu
+- Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt
 
 Migration:
 - network.yaml must be merge into device.yaml:
