@@ -120,7 +120,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 2.515258s
   last_configuration_failure: '2023-03-03 04:12:48.838021'
   last_configuration_runtime: '2023-03-03 04:14:16.953989'
@@ -176,7 +176,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 2.52262s
   last_configuration_failure: '2023-03-03 04:13:00.391006'
   last_configuration_runtime: '2023-03-03 04:14:25.120503'
@@ -232,7 +232,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 3.185638s
   last_configuration_failure: '2023-03-03 04:12:55.223237'
   last_configuration_runtime: '2023-03-03 04:14:01.214348'
@@ -344,7 +344,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 2.459159s
   last_configuration_failure: '2023-03-03 04:12:45.728820'
   last_configuration_runtime: '2023-03-03 04:14:19.511973'
@@ -400,7 +400,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 2.397755s
   last_configuration_failure: '2023-03-03 04:12:39.505636'
   last_configuration_runtime: '2023-03-03 04:14:04.442988'
@@ -456,7 +456,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -512,7 +512,7 @@
   down: false
   gateways: []
   icon: optical_switch
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 1.974735s
   last_configuration_failure: Never
   last_configuration_runtime: '2022-04-18 09:22:21.472097'
@@ -680,7 +680,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -736,7 +736,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -848,7 +848,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 2.06051s
   last_configuration_failure: Never
   last_configuration_runtime: '2022-01-21 05:28:07.900073'
@@ -904,7 +904,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -960,7 +960,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -1016,7 +1016,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -1072,7 +1072,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 2.025575s
   last_configuration_failure: Never
   last_configuration_runtime: '2022-04-18 09:21:50.573740'
@@ -3577,7 +3577,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: 3.541619s
   last_configuration_failure: '2022-04-18 09:22:23.564784'
   last_configuration_runtime: '2022-04-18 09:27:48.294962'
@@ -3633,7 +3633,7 @@
   down: false
   gateways: []
   icon: router
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -3960,7 +3960,7 @@
   down: false
   gateways: [Gateway 1]
   icon: antenna
-  ip_address: 192.168.56.50
+  ip_address: 192.168.56.51
   last_configuration_duration: Never
   last_configuration_failure: Never
   last_configuration_runtime: Never
@@ -4175,7 +4175,7 @@
   down: false
   gateways: [Gateway 1, Gateway 2, Gateway 3]
   icon: antenna
-  ip_address: "192.168.56.50\t"
+  ip_address: "192.168.56.51\t"
   last_configuration_duration: 3.561001s
   last_configuration_failure: Never
   last_configuration_runtime: '2022-04-18 09:27:56.805455'

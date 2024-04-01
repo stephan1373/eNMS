@@ -3733,7 +3733,7 @@
   "skip_value": "success"
   "source_code": "set_var(\"variable1\", 999, device=device.name)\r\nset_var(\"variable2\"\
     , \"1000\", device=device.name, section=\"variables\")\r\nset_var(\"iteration_simple\"\
-    , \"192.168.56.50\")\r\ndevices = [\"Boston\", \"Cincinnati\"] if device.name\
+    , \"192.168.56.51\")\r\ndevices = [\"Boston\", \"Cincinnati\"] if device.name\
     \ == \"Chicago\" else [\"Cleveland\", \"Washington\"]\r\nset_var(\"iteration_device\"\
     , devices, device=device.name)\r\nsave_result(success=True, result={})"
   "target_devices":
@@ -28626,7 +28626,7 @@
   "query1": "get_result(\"Getters Workflow: Interface IP\", device=device.name)[\"\
     success\"]"
   "query2": "get_result(\"Getters Workflow: Interface IP\", device=device.name)[\"\
-    validation\"][\"match\"][\"192.168.56.50\"][\"prefix_length\"]"
+    validation\"][\"match\"][\"192.168.56.51\"][\"prefix_length\"]"
   "query3": "get_result(\"Getters Workflow: Interface IP\", device=device.name)[\"\
     result\"][\"get_interfaces_ip\"][\"Loopback1\"]"
   "rbac_edit":
@@ -33018,7 +33018,7 @@
       "alignment": "left"
       "content": "Search for the [\"name\",\"configuration\",\"ip_address\"] of the\r\
         \n5 first devices ordered alphabetically.\r\nUses post-processing to check,\
-        \  for all 5 devices, that the\r\nIP address is set to 192.168.56.50 and the\
+        \  for all 5 devices, that the\r\nIP address is set to 192.168.56.51 and the\
         \ configuration\r\ncontains \"Command: show running-config\"."
       "positions":
       - !!int "-82"
@@ -33198,7 +33198,7 @@
     "REST API: POST Endpoint search": *id452
     "REST API: POST Endpoints update and search": *id452
   "postprocessing": "results[\"success\"] = (\r\n  len(results[\"result\"]) == 5\r\
-    \n  and all(\r\n    device[\"ip_address\"] == \"192.168.56.50\"\r\n    and \"\
+    \n  and all(\r\n    device[\"ip_address\"] == \"192.168.56.51\"\r\n    and \"\
     Command: show running-config\" in device[\"configuration\"]\r\n    for device\
     \ in results[\"result\"]\r\n))"
   "postprocessing_mode": "success"
@@ -46360,7 +46360,7 @@
     \ Loopback1\\n   ip address 1.1.1.1/32\\n!\\ninterface Loopback2\\n   ip address\
     \ 2.2.2.2/32\\n!\\ninterface Loopback3\\n   ip address 3.3.3.3/32\\n!\\ninterface\
     \ Loopback4\\n!\\ninterface Loopback5\\n!\\ninterface Management1\\n   ip address\
-    \ 192.168.56.50/24\\n!\\nno ip routing\\nno ip routing vrf napalm\\nno ip routing\
+    \ 192.168.56.51/24\\n!\\nno ip routing\\nno ip routing vrf napalm\\nno ip routing\
     \ vrf test\\n!\\nmanagement api http-commands\\n   no shutdown\\n!\\nmanagement\
     \ api netconf\\n   transport ssh def\\n!\\nmanagement telnet\\n   no shutdown\\\
     n!\\nend\""
