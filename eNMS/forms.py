@@ -686,6 +686,7 @@ class ServiceForm(BaseForm):
     type = StringField("Service Type")
     shared = BooleanField("Shared", help="common/shared")
     scoped_name = StringField("Scoped Name", [InputRequired()], ui_name="Name")
+    version = StringField("Version")
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     device_query = StringField(
         "Device Query",
@@ -881,6 +882,7 @@ class ServiceForm(BaseForm):
             "disabled_info",
             "shared",
             "workflows",
+            "version",
             "description",
             "vendor",
             "operating_system",

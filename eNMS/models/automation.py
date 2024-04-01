@@ -33,6 +33,7 @@ class Service(AbstractBase):
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     last_run = db.Column(db.SmallString, info={"log_change": False})
+    version = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
     priority = db.Column(Integer, default=10)
     number_of_retries = db.Column(Integer, default=0)
