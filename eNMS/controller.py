@@ -994,7 +994,7 @@ class Controller:
 
     def migration_export(self, **kwargs):
         yaml = YAML()
-        yaml.default_style='"'
+        yaml.default_style = '"'
 
         def representer(dumper, data):
             style = "|" if "\n" in data else None
