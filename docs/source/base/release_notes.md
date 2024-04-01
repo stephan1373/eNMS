@@ -153,6 +153,7 @@ Migration:
   - replace "nodes" with "devices"
   - remove all the "positions" key
   - copy/paste the content of network.yaml in device.yaml
+- Add quotes around all values in metadata.yaml
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
