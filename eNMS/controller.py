@@ -16,7 +16,7 @@ from os.path import exists
 from pathlib import Path
 from re import search, sub
 from requests import get as http_get
-from ruamel import yaml
+from ruamel.yaml import YAML
 from shutil import rmtree
 from sqlalchemy import and_, cast, or_, String
 from sqlalchemy.exc import IntegrityError, OperationalError
@@ -356,12 +356,14 @@ class Controller:
             )
             for service in services
         ]
+        yaml = YAML()
+        yaml.default_style = "'"
         with open(path / "service.yaml", "w") as file:
-            yaml.dump(services, file, default_style='"')
+            yaml.dump(services, file)
         if service.type == "workflow":
             edges = [edge.to_dict(export=True) for edge in service.deep_edges]
             with open(path / "workflow_edge.yaml", "w") as file:
-                yaml.dump(edges, file, default_style='"')
+                yaml.dump(edges, file)
         with open(path / "metadata.yaml", "w") as file:
             metadata = {
                 "version": vs.server_version,
@@ -991,6 +993,8 @@ class Controller:
         return snippets
 
     def migration_export(self, **kwargs):
+        yaml = YAML()
+        yaml.default_style='"'
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
@@ -1002,7 +1006,6 @@ class Controller:
                         private_properties=kwargs["export_private_properties"],
                     ),
                     migration_file,
-                    default_style='"',
                 )
         with open(path / "metadata.yaml", "w") as file:
             yaml.dump(
@@ -1029,7 +1032,7 @@ class Controller:
             else vs.file_path / folder / kwargs["name"]
         )
         with open(folder_path / "metadata.yaml", "r") as metadata_file:
-            metadata = yaml.load(metadata_file, Loader=yaml.SafeLoader)
+            metadata = YAML(typ="unsafe").load(metadata_file)
         if service_import and metadata["version"] != vs.server_version:
             return {"alert": "Import from an older version is not allowed"}
         if current_user:
@@ -1048,7 +1051,7 @@ class Controller:
                     raise Exception("Invalid archive provided in service import.")
                 continue
             with open(path, "r") as migration_file:
-                instances = yaml.load(migration_file, Loader=yaml.CLoader)
+                instances = YAML(typ="unsafe").load(migration_file)
             before_time = datetime.now()
             env.log("info", f"Creating {model}s")
             for instance in instances:

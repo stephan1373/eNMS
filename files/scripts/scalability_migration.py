@@ -1,5 +1,5 @@
 from pathlib import Path
-from ruamel import yaml
+from ruamel.yaml import YAML
 
 
 FILENAME = "scalability"
@@ -12,6 +12,8 @@ PROPERTIES = {
 
 
 def update_migration_files():
+    yaml = YAML()
+    yaml.default_style = "'"
     for model, properties in PROPERTIES.items():
         with open(PATH / FILENAME / f"{model}.yaml", "r") as migration_file:
             instances = yaml.load(migration_file)
