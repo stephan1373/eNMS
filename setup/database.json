@@ -21,6 +21,7 @@
     "length": {
       "tiny_string": 64,
       "small_string": 255,
+      "medium_string": 65535,
       "large_string": 4294967295,
       "pickletype": 16777215
     }
