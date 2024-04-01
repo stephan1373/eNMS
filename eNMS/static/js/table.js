@@ -871,7 +871,7 @@ tables.configuration = class ConfigurationTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-info"
           onclick="eNMS.inventory.showGitHistory(${row.instance})"
-          data-tooltip="Historic"
+          data-tooltip="Historical"
             ><span class="glyphicon glyphicon-adjust"></span
           ></button>
         </li>
