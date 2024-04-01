@@ -9,7 +9,6 @@ flask-socketio
 flask_wtf
 gitpython
 gunicorn
-itsdangerous
 napalm
 ncclient
 netmiko
