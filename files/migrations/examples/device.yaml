@@ -5975,10 +5975,11 @@
   "labels":
     "22ddf544-3151-4361-940b-7516b78c179a":
       "alignment": "left"
-      "content": "Basic site with three devices: Router 1 is of type \"device\" and
-        the other two are \"router\".\r\nAll three links are Ethernet links.\r\nRouter
-        1 should be displayed as a router, Router 2 as a host and Router 3 as an optical
-        switch.\r\nThe icon of a device is decoupled from its type."
+      "content": |-
+        Basic site with three devices: Router 1 is of type "device" and the other two are "router".
+        All three links are Ethernet links.
+        Router 1 should be displayed as a router, Router 2 as a host and Router 3 as an optical switch.
+        The icon of a device is decoupled from its type.
       "positions":
       - !!int "19"
       - !!int "-70"
@@ -6054,13 +6055,13 @@
   "labels":
     "ebac22df-1242-4dcd-90b0-fbeeee517991":
       "alignment": "left"
-      "content": "- Enter subnetwork 1 and subnetwork 2 and make sure all of them
-        have the expected content.\r\n- Test the backward, forward and upward navigation
-        buttons.\r\n- Test the Network Tree to select any node, including a node that
-        is in a different network:\r\nthe view should immediately switch to the network
-        of the selected node.\r\n- Test using network as a teleport: Subnetwork 1
-        contains Subnetwork 2 and vice-versa,\r\nto switch from one to the other and
-        back."
+      "content": |-
+        - Enter subnetwork 1 and subnetwork 2 and make sure all of them have the expected content.
+        - Test the backward, forward and upward navigation buttons.
+        - Test the Network Tree to select any node, including a node that is in a different network:
+        the view should immediately switch to the network of the selected node.
+        - Test using network as a teleport: Subnetwork 1 contains Subnetwork 2 and vice-versa,
+        to switch from one to the other and back.
       "positions":
       - !!int "-310"
       - !!int "-212"
@@ -6135,9 +6136,10 @@
   "labels":
     "6eb6d97f-31c8-4a2a-8142-8c1427cea64d":
       "alignment": "left"
-      "content": "This subnetwork should contain\r\n- three routers, \"Subnetwork
-        1 - R1-3\"\r\n- three links between each pair of routers, \"Subnetwork 1 -
-        L1-3\""
+      "content": |-
+        This subnetwork should contain
+        - three routers, "Subnetwork 1 - R1-3"
+        - three links between each pair of routers, "Subnetwork 1 - L1-3"
       "positions":
       - !!int "51"
       - !!int "-231"
@@ -6211,19 +6213,18 @@
   "labels":
     "6bc3e996-eb39-4d52-9294-15cdd7d10f92":
       "alignment": "left"
-      "content": "Tests the creation, editing and deletion of networks and the nodes
-        inside it.\r\n- Create three devices: 1 Device, 1 Router and 1 Gateway. The
-        default icon for the Device and Router should be a router,\r\nbut it should
-        a host (computer) for the Gateway.\r\n- Create links between them, including
-        Ethernet Link and Link.\r\n- Edit the name of a node and the name of a link:
-        the name must be instantly\r\nupdated.\r\n- Edit the name of the network and
-        refresh: check that the positions are the same (the \"update\" position of
-        the Network class is replacing old with new positions).\r\n- Delete a device:
-        check that the two connected links are also deleted from the network.\r\n
-        Check that these objects still exist in the inventory: deleting from a network
-        should not delete the original objects.\r\n- Use the right-click multiple
-        selection rectangle to delete the remaining objects.\r\n- Delete the network
-        itself from the Network table."
+      "content": |-
+        Tests the creation, editing and deletion of networks and the nodes inside it.
+        - Create three devices: 1 Device, 1 Router and 1 Gateway. The default icon for the Device and Router should be a router,
+        but it should a host (computer) for the Gateway.
+        - Create links between them, including Ethernet Link and Link.
+        - Edit the name of a node and the name of a link: the name must be instantly
+        updated.
+        - Edit the name of the network and refresh: check that the positions are the same (the "update" position of the Network class is replacing old with new positions).
+        - Delete a device: check that the two connected links are also deleted from the network.
+         Check that these objects still exist in the inventory: deleting from a network should not delete the original objects.
+        - Use the right-click multiple selection rectangle to delete the remaining objects.
+        - Delete the network itself from the Network table.
       "positions":
       - !!int "227"
       - !!int "-507"
@@ -6297,8 +6298,10 @@
   "labels":
     "56c77f3e-481c-476d-a045-1120b3cb0cc2":
       "alignment": "left"
-      "content": "This subnetwork should contain\r\n- two gateways, \"Subnetwork 2
-        - G1-2\"\r\n- one link between them, \"Subnetwork 2 - L1\""
+      "content": |-
+        This subnetwork should contain
+        - two gateways, "Subnetwork 2 - G1-2"
+        - one link between them, "Subnetwork 2 - L1"
       "positions":
       - !!int "4"
       - !!int "-181"
@@ -6372,16 +6375,16 @@
   "labels":
     "0a8dc15c-8f31-4fe2-b84d-1b2e9680876e":
       "alignment": "left"
-      "content": "Tests the duplication of devices, subnetworks and top-level networks.\r
-        \n- Duplicate \"Duplicate me 1\": the duplicated device should be immediately
-        added to the network.\r\nRefresh and check that it is still displayed at the
-        same position.\r\n- Duplicate \"Duplicate me 2\": the duplicate subnetwork
-        should be immediately added to the network.\r\nDouble-click on it to check
-        that the content is the same as \"Duplicate me 2\".\r\n- Create a link between
-        the two devices.\r\n- Duplicate the top-level network: check that it contains
-        the two devices and the link between them,\r\nas well as the two subnetworks,\r
-        \nCheck that the content of the subnetworks is the same as that of the original
-        top-level network."
+      "content": |-
+        Tests the duplication of devices, subnetworks and top-level networks. 
+        - Duplicate "Duplicate me 1": the duplicated device should be immediately added to the network.
+        Refresh and check that it is still displayed at the same position.
+        - Duplicate "Duplicate me 2": the duplicate subnetwork should be immediately added to the network.
+        Double-click on it to check that the content is the same as "Duplicate me 2".
+        - Create a link between the two devices.
+        - Duplicate the top-level network: check that it contains the two devices and the link between them,
+        as well as the two subnetworks, 
+        Check that the content of the subnetworks is the same as that of the original top-level network.
       "positions":
       - !!int "-47"
       - !!int "-187"
@@ -6525,12 +6528,14 @@
   "labels":
     "65702104-28b9-4392-9472-727f6f3bf273":
       "alignment": "left"
-      "content": "Tests the display of loopback and parallel links:\r\n- One loopback
-        link for each device.\r\n- Odd number (3) of same direction links between
-        R1 and R2\r\n- Even number (4) of different direction links (3 / 1) between
-        R1 and R3\r\n- Odd number (3) of different direction links (2 / 1) between
-        R2 and R4\r\n- Even number (8) of different direction links (4 / 4) between
-        R3 and R4\r\n- One link between R1 and R4"
+      "content": |-
+        Tests the display of loopback and parallel links:
+        - One loopback link for each device.
+        - Odd number (3) of same direction links between R1 and R2
+        - Even number (4) of different direction links (3 / 1) between R1 and R3
+        - Odd number (3) of different direction links (2 / 1) between R2 and R4
+        - Even number (8) of different direction links (4 / 4) between R3 and R4
+        - One link between R1 and R4
       "positions":
       - !!int "-499"
       - !!int "98"
@@ -6628,9 +6633,11 @@
   "labels":
     "df3da1e5-33a3-46e4-baed-ee59a432c773":
       "alignment": "left"
-      "content": "Tests multiple levels of nested subnetworks, in particular:\r\n
-        - The upward navigation button\r\n- The Tree View to switch between levels\r
-        \n- The Duplication: all subnetworks down to the last should be duplicated."
+      "content": |-
+        Tests multiple levels of nested subnetworks, in particular:
+         - The upward navigation button
+        - The Tree View to switch between levels 
+        - The Duplication: all subnetworks down to the last should be duplicated.
       "positions":
       - !!int "40"
       - !!int "-173"
@@ -6901,10 +6908,10 @@
   "labels":
     "40db70f9-22d1-4497-8834-52ef5b1bf369":
       "alignment": "left"
-      "content": "- Import the pool \"All routers in Europe\" with the option \"Add
-        connected links\"\r\n- Click on the \"Automatic Layout\" button: the network
-        should be displayed in a near-optimal layout almost instantly.\r\n- Select
-        everything and delete it."
+      "content": |-
+        - Import the pool "All routers in Europe" with the option "Add connected links"
+        - Click on the "Automatic Layout" button: the network should be displayed in a near-optimal layout almost instantly.
+        - Select everything and delete it.
       "positions":
       - !!int "63"
       - !!int "-168"
@@ -6975,21 +6982,22 @@
   "labels":
     "9d96833e-cf92-45e4-8c54-f2b145b5e542":
       "alignment": "left"
-      "content": "- Add nodes \"Dallas\" and \"Atlanta\" without option: the nodes
-        should be added without any links.\r\n- Delete them\r\n- Add \"Washington\"\
-        \ and \"Austin\" with the \"Add Connected Links\" option: no link should be
-        created.\r\n- Add \"Dallas\" and \"Atlanta\" with the \"Add Connected Links\"\
-        \ option:\r\nit should create one link between \"Washington\" and \"Atlanta\"\
-        \ (link16),\r\none link between \"Dallas\" and \"Austin\" (link13),\r\nand
-        three links between \"Dallas\" and \"Atlanta\" (link25, 25-2 and 25-3)\r\n
-        - Add \"Dallas-2\" with the \"Add Connected Links\" option:\r\nit should add
-        \"Dallas-2\" along with two links:\r\n\"link25-reversed\" and \"link25-dallas2\"\
-        \r\n- Delete everything\r\n- Add \"link25\" with no option: nothing should
-        be added (missing end nodes).\r\n- Add \"link25\" with the \"Add Connected
-        Nodes\" option: \"Dallas\" and \"Atlanta\" should be added along with \"link25\"\
-        .\r\n- Add \"link25-2\" with the \"Add Connected Nodes\" option: the link
-        should be added but the two ends are already here.\r\n- Add \"link25-3\" without
-        any option: the link should be added between \"Dallas\" and \"Atlanta\"."
+      "content": |-
+        - Add nodes "Dallas" and "Atlanta" without option: the nodes should be added without any links.
+        - Delete them
+        - Add "Washington" and "Austin" with the "Add Connected Links" option: no link should be created.
+        - Add "Dallas" and "Atlanta" with the "Add Connected Links" option:
+        it should create one link between "Washington" and "Atlanta" (link16),
+        one link between "Dallas" and "Austin" (link13),
+        and three links between "Dallas" and "Atlanta" (link25, 25-2 and 25-3)
+         - Add "Dallas-2" with the "Add Connected Links" option:
+        it should add "Dallas-2" along with two links:
+        "link25-reversed" and "link25-dallas2"
+        - Delete everything
+        - Add "link25" with no option: nothing should be added (missing end nodes).
+        - Add "link25" with the "Add Connected Nodes" option: "Dallas" and "Atlanta" should be added along with "link25".
+        - Add "link25-2" with the "Add Connected Nodes" option: the link should be added but the two ends are already here.
+        - Add "link25-3" without any option: the link should be added between "Dallas" and "Atlanta".
       "positions":
       - !!int "110"
       - !!int "-18"
