@@ -995,6 +995,11 @@ class Controller:
     def migration_export(self, **kwargs):
         yaml = YAML()
         yaml.default_style='"'
+        def multiline_literal_block_representer(dumper, data):
+            style = '|' if '\n' in data else None
+            return dumper.represent_scalar('tag:yaml.org,2002:str', data, style=style)
+
+        yaml.representer.add_representer(str, multiline_literal_block_representer)
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
