@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from flask_login import current_user
 from sqlalchemy import or_
 from sqlalchemy.ext.mutable import MutableDict, MutableList
@@ -229,6 +229,8 @@ class AbstractBase(db.base):
                     else obj.get_properties(include=relation_properties)
                     for obj in value
                 ]
+                if export:
+                    properties[property].sort()
             else:
                 if not value:
                     continue
@@ -237,4 +239,4 @@ class AbstractBase(db.base):
                     if export
                     else value.get_properties(include=relation_properties)
                 )
-        return properties
+        return dict(OrderedDict(sorted(properties.items()))) if export else properties

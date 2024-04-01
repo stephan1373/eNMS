@@ -1,62 +1,62 @@
-- "type": "task"
-  "name": "Configuration Poller"
-  "admin_only": !!bool "false"
-  "description": "Back-up device configurations"
+- "admin_only": !!bool "false"
   "creator": ""
-  "last_scheduled_by": ""
-  "scheduling_mode": "standard"
+  "crontab_expression": ""
+  "description": "Back-up device configurations"
+  "devices": []
+  "end_date": ""
   "frequency": !!int "3600"
   "frequency_unit": "seconds"
-  "start_date": "09/10/2019 21:17:13"
-  "end_date": ""
-  "crontab_expression": ""
   "initial_payload": {}
-  "devices": []
-  "pools": []
-  "service": "(R) Configuration Properties Backup Services"
+  "last_scheduled_by": ""
+  "name": "Configuration Poller"
   "owners": []
+  "pools": []
+  "rbac_edit": []
   "rbac_read":
   - "Admin User"
-  "rbac_edit": []
-- "type": "task"
-  "name": "Cluster Monitoring (admin)"
-  "admin_only": !!bool "true"
-  "description": "Monitor eNMS cluster"
-  "creator": ""
-  "last_scheduled_by": "admin"
   "scheduling_mode": "standard"
+  "service": "(R) Configuration Properties Backup Services"
+  "start_date": "09/10/2019 21:17:13"
+  "type": "task"
+- "admin_only": !!bool "true"
+  "creator": ""
+  "crontab_expression": ""
+  "description": "Monitor eNMS cluster"
+  "devices": []
+  "end_date": ""
   "frequency": !!int "15"
   "frequency_unit": "seconds"
-  "start_date": "01/11/2020 12:05:19"
-  "end_date": ""
-  "crontab_expression": ""
   "initial_payload": {}
-  "devices": []
-  "pools": []
-  "service": "cluster_monitoring"
+  "last_scheduled_by": "admin"
+  "name": "Cluster Monitoring (admin)"
   "owners": []
+  "pools": []
+  "rbac_edit": []
   "rbac_read":
   - "Admin User"
-  "rbac_edit": []
-- "type": "task"
-  "name": "Scrapli RBAC scheduling (public)"
-  "admin_only": !!bool "false"
-  "description": ""
-  "creator": ""
-  "last_scheduled_by": ""
   "scheduling_mode": "standard"
+  "service": "cluster_monitoring"
+  "start_date": "01/11/2020 12:05:19"
+  "type": "task"
+- "admin_only": !!bool "false"
+  "creator": ""
+  "crontab_expression": ""
+  "description": ""
+  "devices":
+  - "Austin"
+  - "PaloAlto"
+  "end_date": ""
   "frequency": !!int "0"
   "frequency_unit": "seconds"
-  "start_date": "30/06/2020 09:15:18"
-  "end_date": ""
-  "crontab_expression": ""
   "initial_payload": {}
-  "devices":
-  - "PaloAlto"
-  - "Austin"
-  "pools": []
-  "service": "(R) Scrapli Service"
+  "last_scheduled_by": ""
+  "name": "Scrapli RBAC scheduling (public)"
   "owners": []
+  "pools": []
+  "rbac_edit": []
   "rbac_read":
   - "Admin User"
-  "rbac_edit": []
+  "scheduling_mode": "standard"
+  "service": "(R) Scrapli Service"
+  "start_date": "30/06/2020 09:15:18"
+  "type": "task"

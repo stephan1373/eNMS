@@ -22,9 +22,9 @@
   "type": "group"
   "users":
   - "admin"
-  - "readonly"
-  - "nadmin"
   - "demo"
+  - "nadmin"
+  - "readonly"
 - "admin_only": !!bool "false"
   "creator": "admin"
   "credential_access": []
