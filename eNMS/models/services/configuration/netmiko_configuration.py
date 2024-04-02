@@ -41,7 +41,7 @@ class NetmikoConfigurationService(ConnectionService):
             device,
             logger="security",
         )
-        netmiko_connection.send_config_set(
+        result = netmiko_connection.send_config_set(
             config.splitlines(),
             enter_config_mode=run.config_mode,
             exit_config_mode=False,
@@ -55,7 +55,7 @@ class NetmikoConfigurationService(ConnectionService):
             netmiko_connection.commit()
         if run.exit_config_mode:
             netmiko_connection.exit_config_mode()
-        return {"success": True, "result": f"configuration OK {config}"}
+        return {"commands": config, "result": result}
 
 
 class NetmikoConfigurationForm(NetmikoForm):
