@@ -16,7 +16,6 @@ from os.path import exists
 from pathlib import Path
 from re import search, sub
 from requests import get as http_get
-from ruamel.yaml import YAML
 from shutil import rmtree
 from sqlalchemy import and_, cast, or_, String
 from sqlalchemy.exc import IntegrityError, OperationalError
@@ -356,8 +355,7 @@ class Controller:
             )
             for service in services
         ]
-        yaml = YAML()
-        yaml.default_style = "'"
+        yaml = env.get_yaml_instance("export")
         with open(path / "service.yaml", "w") as file:
             yaml.dump(services, file)
         if service.type == "workflow":
@@ -993,14 +991,7 @@ class Controller:
         return snippets
 
     def migration_export(self, **kwargs):
-        yaml = YAML()
-        yaml.default_style = '"'
-
-        def representer(dumper, data):
-            style = "|" if "\n" in data else None
-            return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
-
-        yaml.representer.add_representer(str, representer)
+        yaml = env.get_yaml_instance("export")
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
@@ -1037,8 +1028,9 @@ class Controller:
             if folder == "migrations"
             else vs.file_path / folder / kwargs["name"]
         )
+        yaml = env.get_yaml_instance("import")
         with open(folder_path / "metadata.yaml", "r") as metadata_file:
-            metadata = YAML(typ="unsafe").load(metadata_file)
+            metadata = yaml.load(metadata_file)
         if service_import and metadata["version"] != vs.server_version:
             return {"alert": "Import from an older version is not allowed"}
         if current_user:
@@ -1057,7 +1049,7 @@ class Controller:
                     raise Exception("Invalid archive provided in service import.")
                 continue
             with open(path, "r") as migration_file:
-                instances = YAML(typ="unsafe").load(migration_file)
+                instances = yaml.load(migration_file)
             before_time = datetime.now()
             env.log("info", f"Creating {model}s")
             for instance in instances:
