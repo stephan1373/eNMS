@@ -158,6 +158,14 @@ Version 5.1.0: Changelog & Workflow Tree
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
+- Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload:
+  {
+    "target_type": "service",
+    "target_name": "service_name",
+    "property": "target_devices",
+    "model": "device",
+    "names": "name1,name2"
+  }
 
 Migration:
 - network.yaml must be merge into device.yaml:
