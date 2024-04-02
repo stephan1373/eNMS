@@ -6376,14 +6376,16 @@
     "0a8dc15c-8f31-4fe2-b84d-1b2e9680876e":
       "alignment": "left"
       "content": |-
-        Tests the duplication of devices, subnetworks and top-level networks. 
+        Tests the duplication of devices, subnetworks and top-level networks.
+
         - Duplicate "Duplicate me 1": the duplicated device should be immediately added to the network.
         Refresh and check that it is still displayed at the same position.
         - Duplicate "Duplicate me 2": the duplicate subnetwork should be immediately added to the network.
         Double-click on it to check that the content is the same as "Duplicate me 2".
         - Create a link between the two devices.
         - Duplicate the top-level network: check that it contains the two devices and the link between them,
-        as well as the two subnetworks, 
+        as well as the two subnetworks,
+
         Check that the content of the subnetworks is the same as that of the original top-level network.
       "positions":
       - !!int "-47"
@@ -6636,7 +6638,8 @@
       "content": |-
         Tests multiple levels of nested subnetworks, in particular:
          - The upward navigation button
-        - The Tree View to switch between levels 
+        - The Tree View to switch between levels
+
         - The Duplication: all subnetworks down to the last should be duplicated.
       "positions":
       - !!int "40"

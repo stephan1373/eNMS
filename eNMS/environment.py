@@ -291,8 +291,6 @@ class Environment:
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
 
     def get_yaml_instance(self, direction):
-        if direction == "import":
-            return YAML(typ="unsafe")
         yaml = YAML()
         yaml.default_style = '"'
 
