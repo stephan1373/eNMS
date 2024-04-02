@@ -243,6 +243,7 @@
     "/migration_import": "admin",
     "/multiselect_filtering": "all",
     "/remove_instance": "access",
+    "/rest/add_instances_in_bulk": "access",
     "/rest/get_cluster_status": "access",
     "/rest/get_git_content": "access",
     "/rest/instance": "access",

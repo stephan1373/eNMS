@@ -79,7 +79,7 @@ class Controller:
         if target.type == "pool" and not target.manually_defined:
             return {"alert": "Adding objects to a dynamic pool is not allowed."}
         model, property = kwargs["model"], kwargs["property"]
-        instances = set(db.objectify(model, kwargs["instances"]))
+        instances = set(db.objectify(model, kwargs.get("instances", [])))
         if kwargs["names"]:
             for name in [instance.strip() for instance in kwargs["names"].split(",")]:
                 instance = db.fetch(model, allow_none=True, name=name)
