@@ -290,7 +290,7 @@ class Environment:
             keys = [getenv(f"UNSEAL_VAULT_KEY{index}") for index in range(1, 6)]
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
 
-    def get_yaml_instance(self, direction):
+    def get_yaml_instance(self):
         yaml = YAML()
         yaml.default_style = '"'
 

@@ -355,7 +355,7 @@ class Controller:
             )
             for service in services
         ]
-        yaml = env.get_yaml_instance("export")
+        yaml = env.get_yaml_instance()
         with open(path / "service.yaml", "w") as file:
             yaml.dump(services, file)
         if service.type == "workflow":
@@ -991,7 +991,7 @@ class Controller:
         return snippets
 
     def migration_export(self, **kwargs):
-        yaml = env.get_yaml_instance("export")
+        yaml = env.get_yaml_instance()
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
@@ -1028,7 +1028,7 @@ class Controller:
             if folder == "migrations"
             else vs.file_path / folder / kwargs["name"]
         )
-        yaml = env.get_yaml_instance("import")
+        yaml = env.get_yaml_instance()
         with open(folder_path / "metadata.yaml", "r") as metadata_file:
             metadata = yaml.load(metadata_file)
         if service_import and metadata["version"] != vs.server_version:
