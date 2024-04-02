@@ -42,7 +42,7 @@ class VariableStore:
 
     def _set_setup_variables(self):
         self.path = Path.cwd()
-        for setup_file in Path(getenv("SETUP_DIR", self.path / "setup")).iterdir():
+        for setup_file in Path(getenv("SETUP_DIR", self.path / "setup")).glob("*.json"):
             with open(setup_file, "r") as file:
                 setattr(self, setup_file.stem, load(file))
         self.file_path = Path(
