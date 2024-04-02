@@ -75,7 +75,7 @@ class Controller:
         return {"update_time": workflow.last_modified, **workflow_edge}
 
     def add_instances_in_bulk(self, **kwargs):
-        target = db.fetch(kwargs["relation_type"], id=kwargs["relation_id"])
+        target = db.fetch(kwargs["target_type"], name=kwargs["target_name"], rbac="edit")
         if target.type == "pool" and not target.manually_defined:
             return {"alert": "Adding objects to a dynamic pool is not allowed."}
         model, property = kwargs["model"], kwargs["property"]

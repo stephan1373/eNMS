@@ -685,8 +685,8 @@ function showAddInstancePanel(tableId, model, relation) {
     id: tableId,
     type: model,
     callback: () => {
-      $(`#add_${model}s-relation_id-${tableId}`).val(relation.id);
-      $(`#add_${model}s-relation_type-${tableId}`).val(relation.type);
+      $(`#add_${model}s-target_name-${tableId}`).val(relation.name);
+      $(`#add_${model}s-target_type-${tableId}`).val(relation.type);
       $(`#add_${model}s-property-${tableId}`).val(relation.relation.to);
     },
   });
