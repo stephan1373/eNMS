@@ -36,6 +36,7 @@ class RestApi:
     }
 
     allowed_endpoints = [
+        "add_instances_in_bulk",
         "get_cluster_status",
         "get_git_content",
         "update_all_pools",
