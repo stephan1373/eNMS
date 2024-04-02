@@ -40,7 +40,7 @@ class NetmikoFileTransferService(ConnectionService):
         if run.direction == "get" and str(vs.file_path) not in destination:
             destination = f"{vs.file_path}{destination}"
         if run.dry_run:
-            return {"success": True, "source": source, "destination": destination}
+            return {"source": source, "destination": destination}
         netmiko_connection = run.netmiko_connection(device)
         run.log("info", f"Transferring file {source}", device)
         netmiko_connection.password = run.get_credentials(device).get("password")

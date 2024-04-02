@@ -59,7 +59,7 @@ class AnsiblePlaybookService(Service):
         if password:
             full_command = full_command.replace(password, "*" * 10)
         if run.dry_run:
-            return {"success": True, "command": full_command}
+            return {"command": full_command}
         run.log(
             "info",
             f"Sending Ansible playbook: {full_command}",

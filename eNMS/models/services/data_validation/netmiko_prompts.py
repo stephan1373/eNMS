@@ -45,9 +45,9 @@ class NetmikoPromptsService(ConnectionService):
         expect_strings = (run.confirmation1, run.confirmation2, run.confirmation3, None)
         commands, confirmation, result = [], None, "No command sent"
         if run.dry_run:
-            send = [run.sub(command, locals()) for command in send_strings]
-            expect = [run.sub(command, locals()) for command in expect_strings]
-            return {"success": True, "send_strings": send, "expect_strings": expect}
+            send_strings = [run.sub(command, locals()) for command in send_strings]
+            expect_strings = [run.sub(command, locals()) for command in expect_strings]
+            return {"send_strings": send_strings, "expect_strings": expect_strings}
         netmiko_connection = run.netmiko_connection(device)
         netmiko_connection.session_log.session_log.truncate(0)
         results = {"commands": commands}

@@ -21,7 +21,7 @@ class NapalmGettersService(ConnectionService):
 
     def job(self, run, device):
         if run.dry_run:
-            return {"success": True}
+            return {}
         napalm_connection, result = run.napalm_connection(device), {}
         run.log(
             "info",

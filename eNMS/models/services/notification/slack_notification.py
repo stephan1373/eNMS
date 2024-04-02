@@ -31,7 +31,7 @@ class SlackNotificationService(Service):
         message = run.sub(run.body, locals())
         run.log("info", f"Sending SLACK notification on {channel}", device)
         if run.dry_run:
-            return {"success": True, "channel": channel, "message": message}
+            return {"channel": channel, "message": message}
         client = WebClient(token=run.token or getenv("SLACK_TOKEN"))
         try:
             result = client.chat_postMessage(channel=f"#{channel}", text=message)

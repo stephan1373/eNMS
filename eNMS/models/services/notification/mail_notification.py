@@ -30,7 +30,7 @@ class MailNotificationService(Service):
             "bcc": run.sub(run.bcc, locals()),
         }
         if run.dry_run:
-            return {"success": True, "title": title, "body": body, **kwargs}
+            return {"title": title, "body": body, **kwargs}
         env.send_email(title, body, **kwargs)
         return {"success": True, "result": {}}
 

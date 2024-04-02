@@ -33,7 +33,7 @@ class NetmikoConfigurationService(ConnectionService):
     def job(self, run, device):
         config = run.sub(run.content, locals())
         if run.dry_run:
-            return {"success": True, "configuration": config}
+            return {"configuration": config}
         netmiko_connection = run.netmiko_connection(device)
         run.log(
             "info",

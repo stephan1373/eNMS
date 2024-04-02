@@ -28,7 +28,7 @@ class NapalmPingService(ConnectionService):
         source = run.sub(run.source_ip, locals())
         destination = run.sub(run.destination_ip, locals())
         if run.dry_run:
-            return {"success": True, "source": source, "destination": destination}
+            return {"source": source, "destination": destination}
         napalm_connection = run.napalm_connection(device)
         run.log("info", f"NAPALM PING : {source} -> {destination}", device)
         ping = napalm_connection.ping(

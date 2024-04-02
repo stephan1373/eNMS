@@ -33,7 +33,7 @@ class TopologyImportService(Service):
 
     def job(self, run):
         if run.dry_run:
-            return {"success": True}
+            return {}
         getattr(self, f"query_{self.import_type}")()
         return {"success": True}
 

@@ -23,7 +23,7 @@ class MattermostNotificationService(Service):
         message = run.sub(run.body, locals())
         run.log("info", f"Sending MATTERMOST notification on {channel}", device)
         if run.dry_run:
-            return {"success": True, "channel": channel, "message": message}
+            return {"channel": channel, "message": message}
         result = post(
             vs.settings["mattermost"]["url"],
             verify=vs.settings["mattermost"]["verify_certificate"],

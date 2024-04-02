@@ -35,7 +35,7 @@ class ScrapliService(ConnectionService):
             commands = run.sub(run.commands, local_variables)
         commands = commands.splitlines()
         if run.dry_run:
-            return {"success": True, "commands": commands}
+            return {"commands": commands}
         function = "send_configs" if run.is_configuration else "send_commands"
         run.log(
             "info",

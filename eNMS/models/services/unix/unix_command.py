@@ -20,7 +20,7 @@ class UnixCommandService(Service):
     def job(self, run, device=None):
         command = run.sub(run.command, locals())
         if run.dry_run:
-            return {"success": True, "command": command}
+            return {"command": command}
         if not self.approved_by_admin:
             log = "The service has not been approved by an admin user."
             run.log("error", log, device)

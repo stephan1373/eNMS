@@ -32,7 +32,7 @@ class UnixShellScriptService(ConnectionService):
     def job(self, run, device):
         source_code = run.sub(run.source_code, locals())
         if run.dry_run:
-            return {"success": True, "source_code": source_code}
+            return {"source_code": source_code}
         netmiko_connection = run.netmiko_connection(device)
         script_file_name = f"{run.space_deleter(vs.get_time())}.sh"
         run.log("info", f"Sending shell script '{script_file_name}'", device)

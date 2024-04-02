@@ -53,7 +53,7 @@ class NetmikoValidationService(ConnectionService):
         else:
             commands = run.sub(run.commands, local_variables)
         if run.dry_run:
-            return {"success": True, "commands": commands}
+            return {"commands": commands}
         netmiko_connection = run.netmiko_connection(device)
         try:
             prompt = run.enter_remote_device(netmiko_connection, device)

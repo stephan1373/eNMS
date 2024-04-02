@@ -25,7 +25,7 @@ class PingService(Service):
     def job(self, run, device=None):
         ip_address = run.sub(run.ip_address, locals()) or device.ip_address
         if run.dry_run:
-            return {"success": True, "ip_address": ip_address}
+            return {"ip_address": ip_address}
         if run.protocol == "ICMP":
             command = ["ping"]
             for variable, property in (

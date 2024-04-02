@@ -33,7 +33,7 @@ class NetconfService(ConnectionService):
     def job(self, run, device=None):
         xml_filter = run.sub(run.xml_filter, locals())
         if run.dry_run:
-            return {"success": True, "xml_filter": xml_filter}
+            return {"xml_filter": xml_filter}
         run.log("info", "Sending NETCONF request", device, logger="security")
         result = {"success": False, "result": "No NETCONF operation selected."}
         manager = run.ncclient_connection(device)

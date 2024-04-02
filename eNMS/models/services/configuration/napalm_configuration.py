@@ -23,7 +23,7 @@ class NapalmConfigurationService(ConnectionService):
     def job(self, run, device):
         config = "\n".join(run.sub(run.content, locals()).splitlines())
         if run.dry_run:
-            return {"success": True, "configuration": config}
+            return {"configuration": config}
         napalm_connection = run.napalm_connection(device)
         run.log(
             "info",
