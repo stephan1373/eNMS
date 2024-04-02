@@ -156,6 +156,8 @@ Version 5.1.0: Changelog & Workflow Tree
   - Add custom representer to fix bug where line are broken inside a return carriage (\r...\n): all strings that contain a line break are now
     treated as a literal block.
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
+- In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
+  actual configuration under "commands" key for consistency with other services
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -173,6 +175,8 @@ Tests:
 - Test that reverting a change requires edit access to the associated object
 - Make sure soft deleted objects are not exported (as part of the migration mechanism or
   the export of a workflow)
+- Find all Netmiko Configuration Services and check whether they rely on "result" being the configuration
+  sent to the devices: update them if need be.
 
 Version 5.0: Clustering
 -----------------------
