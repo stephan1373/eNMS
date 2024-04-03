@@ -85,6 +85,8 @@ class Runner:
             server_id=vs.server_id,
             rbac=None,
         ):
+            if run.worker:
+                continue
             db.try_set(run, "status", "Aborted (RELOAD)")
             db.try_set(run.service, "status", "Idle")
             if not env.redis_queue:
