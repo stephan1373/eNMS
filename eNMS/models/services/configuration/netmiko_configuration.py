@@ -26,6 +26,7 @@ class NetmikoConfigurationService(ConnectionService):
     exit_config_mode = db.Column(Boolean, default=True)
     strip_prompt = db.Column(Boolean, default=False)
     strip_command = db.Column(Boolean, default=False)
+    cmd_verify = db.Column(Boolean, default=False)
     config_mode_command = db.Column(db.SmallString)
 
     __mapper_args__ = {"polymorphic_identity": "netmiko_configuration_service"}
@@ -49,7 +50,7 @@ class NetmikoConfigurationService(ConnectionService):
             strip_prompt=run.strip_prompt,
             strip_command=run.strip_command,
             config_mode_command=run.config_mode_command,
-            cmd_verify=False,
+            cmd_verify=run.cmd_verify,
         )
         if run.commit_configuration:
             netmiko_connection.commit()
@@ -66,6 +67,7 @@ class NetmikoConfigurationForm(NetmikoForm):
     exit_config_mode = BooleanField(default=True)
     strip_prompt = BooleanField()
     strip_command = BooleanField()
+    cmd_verify = BooleanField("Command Verify", default=False)
     config_mode_command = StringField(help="netmiko/config_mode_command")
     groups = {
         "Main Parameters": {
@@ -79,7 +81,7 @@ class NetmikoConfigurationForm(NetmikoForm):
         },
         **NetmikoForm.groups,
         "Advanced Netmiko Parameters": {
-            "commands": ["strip_prompt", "strip_command"],
+            "commands": ["strip_prompt", "strip_command", "cmd_verify"],
             "default": "hidden",
         },
     }
