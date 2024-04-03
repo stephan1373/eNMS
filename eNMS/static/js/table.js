@@ -1042,7 +1042,7 @@ tables.service = class ServiceTable extends Table {
       row.name = `<b><a href="/workflow_builder/${row.path}">${sanitize(
         row.name
       )}</a></b>`;
-    } else if (!row.shared) {
+    } else if (!row.shared && row.workflow_path) {
       row.name =
         row.name.substring(0, row.name.lastIndexOf(row.scoped_name)) +
         `<b><a href="/workflow_builder/${row.workflow_path}">${sanitize(
