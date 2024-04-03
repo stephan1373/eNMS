@@ -170,6 +170,14 @@ Version 5.1.0: Changelog & Workflow Tree
   files like *.json.swap files created by vim prevent the app from starting with JSON load exception)
 - Add "cmd_verify" Netmiko parameter to the Netmiko Configuration Service
 - Add "read_timeout_override" Netmiko parameter to all Netmiko services
+- Refactor the Unix Command Service "Approved by an Admin user" mechanism:
+  - Before, the approval was only required to change the command itself. Editing the service without changing
+  the command would not require re-approval.
+  - Now, anytime a Unix Command service is edited / duplicated by a non-admin user, the service must
+  be re-approved.
+    - When a non-admin user is doing the edit via the edit panel, the "Approved by admin" check box
+    must be unchecked to validate the form.
+    - When deep copying a Unix Command service into a workflow, that property will be silently unchecked.
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -189,6 +197,8 @@ Tests:
   the export of a workflow)
 - Find all Netmiko Configuration Services and check whether they rely on "result" being the configuration
   sent to the devices: update them if need be.
+- Test that the Unix Command service works as intended and is safe with regards to both editing (from the
+  UI and REST API) and and deep/shallow copying into a workflow.
 
 Version 5.0: Clustering
 -----------------------
