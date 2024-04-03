@@ -17,6 +17,11 @@ class UnixCommandService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "unix_command_service"}
 
+    def update(self, **kwargs):
+        if not current_user.is_admin:
+            kwargs["approved_by_admin"] = False
+        super().update(**kwargs)
+
     def job(self, run, device=None):
         command = run.sub(run.command, locals())
         if run.dry_run:
@@ -43,15 +48,8 @@ class UnixCommandForm(ServiceForm):
     def validate(self, **_):
         valid_form = super().validate()
         service = db.fetch("service", id=self.id.data, allow_none=True)
-        current_command = getattr(service, "command", "")
-        current_approval = getattr(service, "approved_by_admin", False)
-        check_rbac = self.approved_by_admin.data and not current_user.is_admin
-        approved_by_admin_error = check_rbac and not current_approval
-        if approved_by_admin_error:
-            error_message = "A non-admin user cannot approve the Unix command."
+        rbac_error = self.approved_by_admin.data and not current_user.is_admin
+        if rbac_error:
+            error_message = "A non-admin user cannot approve the Unix service."
             self.approved_by_admin.errors.append(error_message)
-        command_error = check_rbac and self.command.data != current_command
-        if command_error:
-            error_message = "The command must be approved by an admin user."
-            self.approved_by_admin.errors.append(error_message)
-        return valid_form and not command_error and not approved_by_admin_error
+        return valid_form and not rbac_error
