@@ -178,9 +178,11 @@ class Workflow(Service):
                     }
             else:
                 kwargs = {
-                    "service": run.placeholder
-                    if service.scoped_name == "Placeholder"
-                    else service,
+                    "service": (
+                        run.placeholder
+                        if service.scoped_name == "Placeholder"
+                        else service
+                    ),
                     "workflow": self,
                     "restart_run": restart_run,
                     "parent": run,

@@ -103,9 +103,11 @@ class Server(Flask):
                 vs.template_context
                 if request.path.endswith("_form")
                 else {
-                    "user": current_user.get_properties()
-                    if current_user.is_authenticated
-                    else None,
+                    "user": (
+                        current_user.get_properties()
+                        if current_user.is_authenticated
+                        else None
+                    ),
                     "time": str(vs.get_time()),
                     "server_id": vs.server_id,
                     "parameters": db.fetch("parameters").to_dict(),

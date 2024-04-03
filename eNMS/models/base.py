@@ -224,9 +224,11 @@ class AbstractBase(db.base):
             value = getattr(self, property)
             if relation["list"]:
                 properties[property] = [
-                    obj.name
-                    if export
-                    else obj.get_properties(include=relation_properties)
+                    (
+                        obj.name
+                        if export
+                        else obj.get_properties(include=relation_properties)
+                    )
                     for obj in value
                 ]
                 if export:

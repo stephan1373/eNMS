@@ -47,20 +47,24 @@ class NetconfService(ConnectionService):
             result = manager.edit_config(
                 target=run.target,
                 config=str(xml_filter),
-                default_operation=None
-                if run.default_operation == "None"
-                else run.default_operation,
+                default_operation=(
+                    None if run.default_operation == "None" else run.default_operation
+                ),
                 test_option=None if run.test_option == "None" else run.test_option,
                 error_option=None if run.error_option == "None" else run.error_option,
             )
         if run.nc_type == "copy_config":
             result = manager.copy_config(
-                source=run.source_url
-                if run.copy_source == "source_url"
-                else run.copy_source,
-                target=run.destination_url
-                if run.copy_destination == "destination_url"
-                else run.copy_destination,
+                source=(
+                    run.source_url
+                    if run.copy_source == "source_url"
+                    else run.copy_source
+                ),
+                target=(
+                    run.destination_url
+                    if run.copy_destination == "destination_url"
+                    else run.copy_destination
+                ),
             )
         if run.commit_conf:
             manager.commit()

@@ -75,7 +75,9 @@ class Controller:
         return {"update_time": workflow.last_modified, **workflow_edge}
 
     def add_instances_in_bulk(self, **kwargs):
-        target = db.fetch(kwargs["target_type"], name=kwargs["target_name"], rbac="edit")
+        target = db.fetch(
+            kwargs["target_type"], name=kwargs["target_name"], rbac="edit"
+        )
         if target.type == "pool" and not target.manually_defined:
             return {"alert": "Adding objects to a dynamic pool is not allowed."}
         model, property = kwargs["model"], kwargs["property"]
@@ -828,9 +830,11 @@ class Controller:
                     children_results.append(child_results)
                 children = sorted(
                     filter(None, children_results),
-                    key=itemgetter("runtime")
-                    if run
-                    else lambda node: node["text"].lower(),
+                    key=(
+                        itemgetter("runtime")
+                        if run
+                        else lambda node: node["text"].lower()
+                    ),
                 )
                 if active_search:
                     is_match = match(instance, **kwargs)
@@ -866,7 +870,7 @@ class Controller:
                 "text": text if len(text) < 45 else f"{text[:45]}...",
                 "children": children,
                 "a_attr": {
-                    "class": f"no_checkbox {attr_class}", 
+                    "class": f"no_checkbox {attr_class}",
                     "style": f"color: #{color}; width: 100%; {style}",
                 },
                 "type": instance.type,
