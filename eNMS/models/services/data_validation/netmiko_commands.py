@@ -74,7 +74,6 @@ class NetmikoValidationService(ConnectionService):
                     expect_string=run.sub(run.expect_string, local_variables) or None,
                     auto_find_prompt=run.auto_find_prompt,
                     read_timeout=run.read_timeout,
-                    read_timeout_override=run.read_timeout_override,
                     strip_prompt=run.strip_prompt,
                     strip_command=run.strip_command,
                 )

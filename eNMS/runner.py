@@ -1231,6 +1231,7 @@ class Runner:
             conn_timeout=self.conn_timeout,
             auth_timeout=self.auth_timeout or None,
             banner_timeout=self.banner_timeout,
+            read_timeout_override=self.read_timeout_override,
             fast_cli=self.fast_cli,
             global_delay_factor=self.global_delay_factor,
             session_log=BytesIO(),
@@ -1469,7 +1470,6 @@ class Runner:
                 expect_string=expect,
                 auto_find_prompt=False,
                 read_timeout=self.read_timeout,
-                read_timeout_override=self.read_timeout_override,
                 strip_prompt=False,
                 strip_command=True,
                 max_loops=150,
@@ -1486,7 +1486,6 @@ class Runner:
             expect_string=prompt or None,
             auto_find_prompt=True,
             read_timeout=self.read_timeout,
-            read_timeout_override=self.read_timeout_override,
             strip_prompt=False,
             strip_command=True,
         )

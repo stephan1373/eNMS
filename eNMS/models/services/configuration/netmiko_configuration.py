@@ -48,7 +48,6 @@ class NetmikoConfigurationService(ConnectionService):
             enter_config_mode=run.config_mode,
             exit_config_mode=False,
             read_timeout=run.read_timeout,
-            read_timeout_override=run.read_timeout_override,
             strip_prompt=run.strip_prompt,
             strip_command=run.strip_command,
             config_mode_command=run.config_mode_command,

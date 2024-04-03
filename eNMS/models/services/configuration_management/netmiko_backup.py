@@ -74,7 +74,6 @@ class NetmikoBackupService(ConnectionService):
                 for line in netmiko_connection.send_command(
                     command["value"],
                     read_timeout=run.read_timeout,
-                    read_timeout_override=run.read_timeout_override,
                 ).splitlines():
                     if command["prefix"]:
                         line = f"{command['prefix']} - {line}"

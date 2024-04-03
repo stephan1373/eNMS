@@ -71,7 +71,6 @@ class NetmikoPromptsService(ConnectionService):
                     command,
                     expect_string=confirmation,
                     read_timeout=run.read_timeout,
-                    read_timeout_override=run.read_timeout_override,
                 )
                 results[command] = {"result": result, "match": confirmation}
             run.exit_remote_device(netmiko_connection, prompt, device)
