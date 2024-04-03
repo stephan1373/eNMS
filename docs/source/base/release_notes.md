@@ -168,7 +168,8 @@ Version 5.1.0: Changelog & Workflow Tree
   }
 - When initializing the app, only consider the JSON files in the "setup" folder (otherwise, temporary
   files like *.json.swap files created by vim prevent the app from starting with JSON load exception)
-- Add "cmd_verify" netmiko parameter to the Netmiko Configuration Service
+- Add "cmd_verify" Netmiko parameter to the Netmiko Configuration Service
+- Add "read_timeout_override" Netmiko parameter to all Netmiko services
 
 Migration:
 - network.yaml must be merge into device.yaml:
