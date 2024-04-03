@@ -28,6 +28,7 @@ class NetmikoBackupService(ConnectionService):
     config_mode = db.Column(Boolean, default=False)
     driver = db.Column(db.SmallString)
     read_timeout = db.Column(Float, default=10.0)
+    read_timeout_override = db.Column(Float, default=0.0)
     conn_timeout = db.Column(Float, default=10.0)
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
@@ -73,6 +74,7 @@ class NetmikoBackupService(ConnectionService):
                 for line in netmiko_connection.send_command(
                     command["value"],
                     read_timeout=run.read_timeout,
+                    read_timeout_override=run.read_timeout_override,
                 ).splitlines():
                     if command["prefix"]:
                         line = f"{command['prefix']} - {line}"

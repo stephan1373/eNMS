@@ -1469,6 +1469,7 @@ class Runner:
                 expect_string=expect,
                 auto_find_prompt=False,
                 read_timeout=self.read_timeout,
+                read_timeout_override=self.read_timeout_override,
                 strip_prompt=False,
                 strip_command=True,
                 max_loops=150,
@@ -1485,6 +1486,7 @@ class Runner:
             expect_string=prompt or None,
             auto_find_prompt=True,
             read_timeout=self.read_timeout,
+            read_timeout_override=self.read_timeout_override,
             strip_prompt=False,
             strip_command=True,
         )
