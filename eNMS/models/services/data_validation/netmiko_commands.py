@@ -23,6 +23,7 @@ class NetmikoValidationService(ConnectionService):
     use_textfsm = db.Column(Boolean, default=False)
     use_genie = db.Column(Boolean, default=False)
     read_timeout = db.Column(Float, default=10.0)
+    read_timeout_override = db.Column(Float, default=0.0)
     conn_timeout = db.Column(Float, default=10.0)
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
