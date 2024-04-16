@@ -12,7 +12,7 @@ from flask_login import current_user
 from importlib import import_module
 from json import load
 from logging.config import dictConfig
-from logging import getLogger, Handler, info
+from logging import Formatter, getLogger, Handler, info
 from multiprocessing import Queue
 from os import getenv
 from passlib.hash import argon2
@@ -215,13 +215,11 @@ class Environment:
                 module_name, class_name = handler_type.rsplit(".", 1)
                 module = __import__(module_name, fromlist=[class_name])
                 self.handler = getattr(module, class_name)(**kwargs)
+                formatter = Formatter(vs.logging["formatters"]["standard"]["format"])
+                self.handler.setFormatter(formatter)
                 self.queue, thread = Queue(-1), Thread(target=self.receive)
                 thread.daemon = True
                 thread.start()
-
-            def set_formatter(self, formatter):
-                super().setFormatter(formatter)
-                self.handler.set_formatter(formatter)
 
             def receive(self):
                 while True:
