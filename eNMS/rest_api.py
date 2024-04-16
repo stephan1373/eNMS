@@ -35,18 +35,10 @@ class RestApi:
         },
     }
 
-    allowed_endpoints = [
-        "add_instances_in_bulk",
-        "get_cluster_status",
-        "get_git_content",
-        "update_all_pools",
-        "update_database_configurations_from_git",
-        "update_device_rbac",
-    ]
-
     def __init__(self):
-        for endpoint in self.allowed_endpoints:
+        for endpoint, access_type in vs.rbac["allowed_rest_endpoints"].items():
             self.rest_endpoints["POST"][endpoint] = endpoint
+            vs.rbac["post_requests"][f"/rest/{endpoint}"] = access_type
             setattr(self, endpoint, getattr(controller, endpoint))
 
     def delete_instance(self, instance_type, name):
