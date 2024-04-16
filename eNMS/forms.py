@@ -80,6 +80,7 @@ class MetaForm(FormMeta):
             setattr(form, "admin_only", BooleanField("Admin Only", default=False))
             field_properties = {"type": "object-list", "model": "user"}
             vs.form_properties[form_type]["owners"] = field_properties
+            vs.form_properties[form_type]["admin_only"] = {"type": "bool"}
         for property, property_name in form.rbac_properties.items():
             field = MultipleInstanceField(property_name, model="group")
             setattr(form, property, field)
