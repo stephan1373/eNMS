@@ -18,7 +18,7 @@ class UnixCommandService(Service):
     __mapper_args__ = {"polymorphic_identity": "unix_command_service"}
 
     def update(self, **kwargs):
-        if not current_user.is_admin:
+        if not getattr(current_user, "is_admin", True):
             kwargs["approved_by_admin"] = False
         super().update(**kwargs)
 
