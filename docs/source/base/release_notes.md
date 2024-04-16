@@ -200,7 +200,11 @@ Tests:
 - Find all Netmiko Configuration Services and check whether they rely on "result" being the configuration
   sent to the devices: update them if need be.
 - Test that the Unix Command service works as intended and is safe with regards to both editing (from the
-  UI and REST API) and and deep/shallow copying into a workflow.
+  UI and REST API) and and deep/shallow copying into a workflow. In particular
+  - When Unix Command Services are imported via migration import, the "Admin Approved" is preserved
+  - When Unix Command Services are imported via single service import, the "Admin Approved" is reset to False if
+    the importing user is not an admin user
+  - When a service is edited or duplicated, the value depends on the user being admin or not
 
 Version 5.0: Clustering
 -----------------------
