@@ -200,7 +200,13 @@
       "user": {
         "include": ["groups"]
       },
+      "server": {
+        "exclude": ["runs"]
+      },
       "service": {
+        "exclude": ["runs"]
+      },
+      "worker": {
         "exclude": ["runs"]
       }
     }
