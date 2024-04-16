@@ -180,6 +180,8 @@ Version 5.1.0: Changelog & Workflow Tree
     - When a non-admin user is doing the edit via the edit panel, the "Approved by admin" check box
     must be unchecked to validate the form.
     - When deep copying a Unix Command service into a workflow, that property will be silently unchecked.
+- Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
+  in rest_api.py)
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -187,6 +189,7 @@ Migration:
   - remove all the "positions" key
   - copy/paste the content of network.yaml in device.yaml
 - Add quotes around all values in metadata.yaml
+- Update rbac.json with the "allowed_rest_endpoints" variable
 
 Tests:
 - Test that caching form properties doesn't affect the parameterized form display
@@ -205,6 +208,8 @@ Tests:
   - When Unix Command Services are imported via single service import, the "Admin Approved" is reset to False if
     the importing user is not an admin user
   - When a service is edited or duplicated, the value depends on the user being admin or not
+- Test that the controller functions allowed as REST endpoints still work and that the associated access type
+  ("access", "admin" or "all") is enforced
 
 Version 5.0: Clustering
 -----------------------
