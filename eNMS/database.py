@@ -26,7 +26,7 @@ from sqlalchemy import (
     Text,
 )
 from sqlalchemy.dialects.mysql.base import MSMediumBlob
-from sqlalchemy.exc import InvalidRequestError, OperationalError
+from sqlalchemy.exc import IntegrityError, InvalidRequestError, OperationalError
 from sqlalchemy.ext.associationproxy import AssociationProxyExtensionType
 from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
 from sqlalchemy.ext.mutable import MutableDict, MutableList
@@ -537,7 +537,7 @@ class Database:
                 result = transaction(*args, **kwargs)
                 self.session.commit()
                 break
-            except ValueError:
+            except (ValueError, IntegrityError):
                 raise
             except Exception as exc:
                 self.session.rollback()
