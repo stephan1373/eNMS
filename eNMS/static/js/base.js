@@ -770,7 +770,7 @@ export function showInstancePanel(type, id, mode, tableId, edge) {
       if (id) {
         call({
           url: `/get/${type}/${id}`,
-          data: { relation_properties: ["id", "name"] },
+          data: { relation_properties: ["id", "type", "name"] },
           callback: function (instance) {
             const ownersNames = instance.owners
               ? instance.owners.map((user) => user.name)
@@ -978,8 +978,7 @@ function updateProperty(instance, el, property, value, type) {
     value.forEach((o) => {
       const uiLink = `
       <button type="button" title="" class="btn btn-link btn-select2"
-      onclick="eNMS.base.showInstancePanel(
-        '${formProperties[type][property].model}', '${o.id}')">
+      onclick="eNMS.base.showInstancePanel('${o.type}', '${o.id}')">
       ${o.ui_name || o.name}</button>`;
       el.append(new Option(uiLink, o[idProperty]));
     });
