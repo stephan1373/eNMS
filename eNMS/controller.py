@@ -59,6 +59,20 @@ class Controller:
 
     def add_edge(self, workflow_id, subtype, source, destination):
         workflow = db.fetch("workflow", id=workflow_id, rbac="edit")
+        existing_edge = db.fetch(
+            "workflow_edge",
+            subtype=subtype,
+            source_id=source,
+            destination_id=destination,
+            workflow_id=workflow_id,
+            allow_none=True,
+        )
+        if existing_edge:
+            if existing_edge.soft_deleted:
+                db.delete_instance(existing_edge)
+                db.session.commit()
+            else:
+                return {"alert": f"There is already a '{subtype}' workflow edge."}
         workflow_edge = self.update(
             "workflow_edge",
             rbac=None,
@@ -1592,15 +1606,6 @@ class Controller:
             if isinstance(exc, IntegrityError):
                 if instance.class_type == "service":
                     old = db.fetch("service", name=instance.name, allow_none=True)
-                elif instance.class_type == "workflow_edge":
-                    old = db.fetch(
-                        "workflow_edge",
-                        subtype=instance.subtype,
-                        source_id=instance.source_id,
-                        destination_id=instance.destination_id,
-                        workflow_id=instance.workflow_id,
-                        allow_none=True,
-                    )
                 if getattr(old, "soft_deleted", False):
                     db.delete_instance(old)
                     db.session.commit()
