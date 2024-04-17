@@ -1604,17 +1604,7 @@ class Controller:
         except Exception as exc:
             db.session.rollback()
             if isinstance(exc, IntegrityError):
-                if instance.class_type == "service":
-                    old = db.fetch("service", name=instance.name, allow_none=True)
-                if getattr(old, "soft_deleted", False):
-                    db.delete_instance(old)
-                    db.session.commit()
-                    return self.update(type, **kwargs)
-                alert = (
-                    f"There is already a {instance.class_type} "
-                    "with the same parameters."
-                )
-                return {"alert": alert}
+                return {"alert": f"There is already a {type} with the same parameters."}
             env.log("error", format_exc())
             return {"alert": str(exc)}
 
