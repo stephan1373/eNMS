@@ -214,6 +214,8 @@ Tests:
 - Test that the controller functions allowed as REST endpoints still work and that the associated access type
   ("access", "admin" or "all") is enforced
 - Test the "refetch after fork" multiprocessing update
+- Use "class" key in handler config in logging.json to have the same syntax regardless of whether
+  "use_multiprocessing_handlers" is set to true or false
 
 Version 5.0: Clustering
 -----------------------
