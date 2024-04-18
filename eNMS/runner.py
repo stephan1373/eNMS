@@ -44,6 +44,7 @@ from eNMS.variables import vs
 
 class Runner:
     def __init__(self, run, **kwargs):
+        self.kwargs = kwargs
         self.parameterized_run = False
         self.is_main_run = kwargs.pop("is_main_run", False)
         self.iteration_run = False
@@ -59,7 +60,7 @@ class Runner:
         vs.run_instances[self.runtime] = self
         for key, value in kwargs.items():
             setattr(self, key, value)
-        self.in_process = False if self.is_main_run else run.in_process
+        self.in_process = kwargs.get("in_process", getattr(run, "in_process", False))
         self.dry_run = getattr(run, "dry_run", False) or self.get("dry_run")
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
@@ -71,7 +72,9 @@ class Runner:
         creator = db.fetch("user", name=self.main_run.creator, rbac=None)
         self.is_admin_run = creator.is_admin
         self.creator_dict = {"name": creator.name, "email": creator.email}
-        if not self.is_main_run:
+        if "in_process" in kwargs:
+            self.path = run.path
+        elif not self.is_main_run:
             self.path = f"{run.path}>{self.service.id}"
         db.session.commit()
 
@@ -397,7 +400,19 @@ class Runner:
         device_id, runtime, results = args
         run = vs.run_instances[runtime]
         device = db.fetch("device", id=device_id, rbac=None)
-        results.append(run.get_results(device))
+        if vs.automation["advanced"]["refetch_after_process_fork"]:
+            run_kwargs = {"in_process": True}
+            for key, value in run.kwargs.items():
+                try:
+                    run_kwargs[key] = db.fetch(value.type, id=value.id, rbac=None)
+                except:
+                    run_kwargs[key] = value
+            parent_run = run
+            if isinstance(run, vs.models["run"]):
+                parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
+            results.append(Runner(parent_run, **run_kwargs).get_results(device))
+        else:
+            results.append(run.get_results(device))
 
     def device_iteration(self, device):
         derived_devices = self.compute_devices_from_query(
@@ -517,10 +532,8 @@ class Runner:
                     (device.id, self.runtime, results) for device in non_skipped_targets
                 ]
                 self.log("info", f"Starting a pool of {processes} threads")
-                self.in_process = True
                 with ThreadPool(processes=processes) as pool:
                     pool.map(self.get_device_result, process_args)
-                self.in_process = False
             else:
                 results.extend(
                     [

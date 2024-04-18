@@ -81,6 +81,7 @@
   },
   "advanced": {
     "always_commit_result": false,
+    "refetch_after_process_fork": true,
     "disconnect_thread_timeout": 10,
     "task_jitter": 0
   }
