@@ -260,6 +260,7 @@ class Environment:
 
         for handler_dict in logging_config["handlers"].values():
             handler_dict["()"] = MultiProcessingLoggingHandler
+            handler_dict["handler_type"] = handler_dict.pop("class", None)
 
     def init_logs(self):
         folder = vs.path / "logs"
