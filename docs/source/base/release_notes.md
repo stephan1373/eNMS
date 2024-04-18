@@ -183,6 +183,8 @@ Version 5.1.0: Changelog & Workflow Tree
     - When deep copying a Unix Command service into a workflow, that property will be silently unchecked.
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
   in rest_api.py)
+- Add mechanism to refetch run objects (such as service, placeholder, etc) after process fork when using
+  multiprocessing. Can be deactivated in automation.json > "advanced" > "refetch_after_process_fork"
 
 Migration:
 - network.yaml must be merge into device.yaml:
