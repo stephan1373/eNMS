@@ -213,6 +213,7 @@ Tests:
   - When a service is edited or duplicated, the value depends on the user being admin or not
 - Test that the controller functions allowed as REST endpoints still work and that the associated access type
   ("access", "admin" or "all") is enforced
+- Test the "refetch after fork" multiprocessing update
 
 Version 5.0: Clustering
 -----------------------
