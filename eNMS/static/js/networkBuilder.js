@@ -255,6 +255,7 @@ export function updateNetworkRightClickBindings() {
 }
 
 function displayNetworkState(state) {
+  resetNetworkDisplay();
   drawTree(null, state.tree);
   nodes.update(
     Object.entries(state.device_results).map(([nodeId, success]) => {

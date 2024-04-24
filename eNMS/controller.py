@@ -716,7 +716,7 @@ class Controller:
                 if result.device_id
             },
         }
-        if kwargs.get("get_tree"):
+        if kwargs.get("get_tree") or kwargs.get("search_value"):
             output.update(self.get_instance_tree("network", path, **kwargs))
         return output
 
