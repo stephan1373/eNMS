@@ -746,6 +746,7 @@ class ServiceForm(BaseForm):
     mail_recipient = StringField(
         "Mail Recipients (separated by comma)", substitution=True
     )
+    mail_subject = StringField("Mail Subject", substitution=True)
     mail_sender = StringField("Sender", substitution=True)
     reply_to = StringField("Reply-to Email Address", substitution=True)
     mail_bcc = StringField("Hidden Recipients (Blind Carbon Copy)", substitution=True)
@@ -956,6 +957,7 @@ class ServiceForm(BaseForm):
             "include_device_results",
             "include_link_in_summary",
             "mail_recipient",
+            "mail_subject",
             "mail_sender",
             "mail_bcc",
             "reply_to",

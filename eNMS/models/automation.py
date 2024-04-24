@@ -80,6 +80,7 @@ class Service(AbstractBase):
     include_device_results = db.Column(Boolean, default=True)
     include_link_in_summary = db.Column(Boolean, default=True)
     mail_recipient = db.Column(db.SmallString)
+    mail_subject = db.Column(db.SmallString)
     mail_sender = db.Column(db.SmallString)
     mail_bcc = db.Column(db.SmallString)
     reply_to = db.Column(db.SmallString)

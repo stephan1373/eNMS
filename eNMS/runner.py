@@ -855,6 +855,7 @@ class Runner:
                     parent_runtime=self.parent_runtime,
                     device_id=device.id,
                     allow_none=True,
+                    rbac=None,
                 )
                 if device_result:
                     file_content["Device Results"][device.name] = device_result.result
@@ -864,7 +865,7 @@ class Runner:
             content = report if self.email_report else vs.dict_to_string(file_content)
             html_report = self.email_report and self.report_format == "html"
             result = env.send_email(
-                f"{status}: {self.service.name}",
+                self.sub(self.get("mail_subject"), locals()) or f"{status}: {self.service.name}",
                 content,
                 recipients=self.sub(self.get("mail_recipient"), locals()),
                 sender=self.sub(self.get("mail_sender"), locals()),
