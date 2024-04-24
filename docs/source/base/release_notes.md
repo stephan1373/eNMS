@@ -216,6 +216,8 @@ Tests:
 - Test the "refetch after fork" multiprocessing update
 - Use "class" key in handler config in logging.json to have the same syntax regardless of whether
   "use_multiprocessing_handlers" is set to true or false
+- Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
+  to the current subject (PASS/FAIL + service name)
 
 Version 5.0: Clustering
 -----------------------
