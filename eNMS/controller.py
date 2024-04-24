@@ -798,9 +798,10 @@ class Controller:
         visited = set()
 
         def match(instance, **kwargs):
+            name = getattr(instance, "name" if type == "network" else "scoped_name")
             is_match = not (
                 kwargs["search_mode"] == "names"
-                and kwargs["search_value"].lower() not in instance.scoped_name.lower()
+                and kwargs["search_value"].lower() not in name.lower()
                 or kwargs["search_mode"] == "properties"
                 and kwargs["search_value"].lower() not in instance.serialized
             )
