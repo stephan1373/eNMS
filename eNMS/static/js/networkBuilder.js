@@ -254,14 +254,22 @@ export function updateNetworkRightClickBindings() {
   });
 }
 
-function displayNetworkState(results, tree) {
-  drawTree(null, tree);
+function displayNetworkState(state) {
+  drawTree(null, state.tree);
   nodes.update(
-    Object.entries(results).map(([nodeId, success]) => {
+    Object.entries(state.device_results).map(([nodeId, success]) => {
       const color = success ? "green" : "red";
       const icon = nodes.get(parseInt(nodeId)).icon;
       const image = `/static/img/network/${color}/${icon}.gif`;
       return { id: parseInt(nodeId), image: image };
+    })
+  );
+  if (!state.highlight) return;
+  nodes.update(
+    state.highlight.map(nodeId => {
+      const icon = nodes.get(nodeId).icon;
+      const image = `/static/img/network/red/${icon}.gif`;
+      return { id: nodeId, image: image };
     })
   );
 }
@@ -281,7 +289,7 @@ export function getNetworkState(periodic, first) {
           instance.last_modified = result.network.last_modified;
           displayNetwork(result);
         } else {
-          displayNetworkState(result.device_results, result.tree);
+          displayNetworkState(result);
         }
       },
     });
