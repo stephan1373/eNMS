@@ -168,11 +168,16 @@ class Environment:
         return start + int(self.ssh_port) % (end - start)
 
     def init_authentication(self):
-        ldap_address, tacacs_address = getenv("LDAP_ADDR"), getenv("TACACS_ADDR")
+        ldap_servers = vs.settings["authentication"]["methods"]["ldap"].get("servers")
         try:
-            if ldap_address:
+            if getenv("LDAP_ADDR"):
                 self.ldap_server = Server(getenv("LDAP_ADDR"))
-            if tacacs_address:
+            elif ldap_servers:
+                self.ldap_servers = [
+                    Server(address, **server_kwargs)
+                    for address, server_kwargs in ldap_servers.items()
+                ]
+            if getenv("TACACS_ADDR"):
                 self.tacacs_client = TACACSClient(
                     getenv("TACACS_ADDR"), 49, getenv("TACACS_PASSWORD")
                 )

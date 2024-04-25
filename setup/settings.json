@@ -21,7 +21,13 @@
       },
       "ldap": {
         "display_name": "LDAP",
-        "enabled": true
+        "enabled": true,
+        "servers": {
+          "192.168.56.104": {
+            "port": 636,
+            "use_ssl": true
+          }
+        }
       },
       "tacacs": {
         "display_name": "TACACS+",
