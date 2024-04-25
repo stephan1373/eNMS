@@ -171,7 +171,7 @@ class Environment:
         ldap_servers = vs.settings["authentication"]["methods"]["ldap"].get("servers")
         try:
             if getenv("LDAP_ADDR"):
-                self.ldap_server = Server(getenv("LDAP_ADDR"))
+                self.ldap_servers = [Server(getenv("LDAP_ADDR"))]
             elif ldap_servers:
                 self.ldap_servers = [
                     Server(address, **server_kwargs)

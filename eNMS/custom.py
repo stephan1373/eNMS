@@ -13,11 +13,11 @@ from eNMS.variables import vs
 
 class CustomApp:
     def ldap_authentication(self, user, name, password):
-        if not hasattr(env, "ldap_server"):
+        if not hasattr(env, "ldap_servers"):
             env.log("error", "LDAP authentication failed: no server configured")
             return False
         user = f"uid={name},dc=example,dc=com"
-        success = Connection(env.ldap_server, user=user, password=password).bind()
+        success = Connection(env.ldap_servers, user=user, password=password).bind()
         return {"name": name, "is_admin": True} if success else False
 
     def tacacs_authentication(self, user, name, password):
