@@ -284,7 +284,7 @@ function saveFile(file) {
 
 function showFileUploadPanel(folder) {
   if (!folder) folder = folderPath;
-  const pathId = folder.replace(/\//g, ">") || 1;
+  const pathId = folder.replace(/\//g, "-") || 1;
   openPanel({
     name: "upload_files",
     title: `Upload files to ${folder}`,
