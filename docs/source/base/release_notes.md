@@ -226,6 +226,7 @@ Tests:
   to the current subject (PASS/FAIL + service name)
 - Test LDAP authentication: behavior should not change providing that LDAP_ADDR is set
 - Fix bug that prevented uploading files to a folder when the folder name starts with a number (e.g "1test")
+- Make 'runtime' column of 'Result' class an indexed row (slow REST API get_result endpoint)
 
 Version 5.0: Clustering
 -----------------------
