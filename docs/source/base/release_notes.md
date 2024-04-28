@@ -185,6 +185,12 @@ Version 5.1.0: Changelog & Workflow Tree
   in rest_api.py)
 - Add mechanism to refetch run objects (such as service, placeholder, etc) after process fork when using
   multiprocessing. Can be deactivated in automation.json > "advanced" > "refetch_after_process_fork"
+- Add support for connecting to multiple LDAP servers:
+  - Default behavior is unchanged: the app looks for the LDAP_ADDR environment variable and initializes
+    a single LDAP servers
+  - If that variable is not set, the app looks for the "servers" key in
+    settings.json > "authentication" > "methods" > "ldap". Servers is a dict that associates LDAP server
+    IP/URL to its keyword parameters (see ldap3 python libraries)
 
 Migration:
 - network.yaml must be merge into device.yaml:
