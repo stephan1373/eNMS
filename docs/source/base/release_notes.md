@@ -224,6 +224,7 @@ Tests:
   "use_multiprocessing_handlers" is set to true or false
 - Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
   to the current subject (PASS/FAIL + service name)
+- Test LDAP authentication: behavior should not change providing that LDAP_ADDR is set
 
 Version 5.0: Clustering
 -----------------------
