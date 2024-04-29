@@ -577,9 +577,6 @@ tables.device = class DeviceTable extends Table {
         '${model}', ${row.instance}, {parent: '${this.id}', from: '${from}',
         to: '${to}'})">${model.charAt(0).toUpperCase() + model.slice(1)}s</a></b>`;
     }
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'device',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -701,9 +698,6 @@ tables.network = class NetworkTable extends Table {
     row.devices = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'device', ${row.instance}, {parent: '${this.id}', from: 'networks',
       to: 'devices'})">Devices</a></b>`;
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'network',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -891,9 +885,6 @@ tables.link = class LinkTable extends Table {
     row.pools = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'pool', ${row.instance}, {parent: '${this.id}', from: 'links', to: 'pools'})">
       Pools</a></b>`;
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'link',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -962,9 +953,6 @@ tables.pool = class PoolTable extends Table {
         '${model}', ${row.instance}, {parent: '${this.id}', from: 'pools',
         to: '${model}s'})">${model.charAt(0).toUpperCase() + model.slice(1)}s</a></b>`;
     }
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'pool',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -1058,9 +1046,6 @@ tables.service = class ServiceTable extends Table {
     row["runs"] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'run', ${row.instance}, {parent: '${this.id}', from: 'services',
       to: 'runs'})">Runs</a></b>`;
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'service',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -1422,9 +1407,6 @@ tables.task = class TaskTable extends Table {
         '${model}', ${row.instance}, {parent: '${this.id}', from: 'tasks',
         to: '${model}s'})">${model.charAt(0).toUpperCase() + model.slice(1)}s</a></b>`;
     }
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'task',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -1511,9 +1493,6 @@ tables.group = class GroupTable extends Table {
     row.users = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'user', ${row.instance}, {parent: '${this.id}', from: 'groups', to: 'users'})">
       Users</a></b>`;
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'group',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -1571,9 +1550,6 @@ tables.user = class UserTable extends Table {
     row.groups = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'group', ${row.instance}, {parent: '${this.id}', from: 'users', to: 'groups'})">
       Groups</a></b>`;
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'user',
-      to: 'logs'})">Changelog</a></b>`;
     return row;
   }
 
@@ -1617,14 +1593,6 @@ tables.user = class UserTable extends Table {
 };
 
 tables.credential = class CredentialTable extends Table {
-  addRow(kwargs) {
-    let row = super.addRow(kwargs);
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'credential',
-      to: 'logs'})">Changelog</a></b>`;
-    return row;
-  }
-
   get controls() {
     return [
       this.columnDisplay(),
@@ -1699,9 +1667,6 @@ tables.secret = class SecretTable extends Table {
 tables.server = class ServerTable extends Table {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'server',
-      to: 'logs'})">Changelog</a></b>`;
     row.runs = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'run', ${row.instance}, {parent: '${this.id}', from: 'server', to: 'runs'})">
       Runs</a></b>`;
@@ -1817,9 +1782,6 @@ tables.session = class SessionTable extends Table {
 tables.file = class FileTable extends Table {
   addRow(properties) {
     let row = super.addRow(properties);
-    row.changelog = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'changelog', ${row.instance}, {parent: '${this.id}', from: 'file',
-      to: 'logs'})">Changelog</a></b>`;
     if (row.type == "folder") {
       row.filename = `<a href="#" onclick="eNMS.administration.enterFolder
         ({ folder: '${row.filename}'})">
