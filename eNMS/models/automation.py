@@ -256,7 +256,7 @@ class Result(AbstractBase):
     path = db.Column(db.SmallString)
     success = db.Column(Boolean, default=False)
     labels = db.Column(db.LargeString)
-    runtime = db.Column(db.TinyString, index=True)
+    runtime = db.Column(db.TinyString)
     duration = db.Column(db.TinyString)
     result = deferred(db.Column(db.Dict))
     creator = db.Column(db.SmallString)

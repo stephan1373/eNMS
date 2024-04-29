@@ -192,7 +192,6 @@ Version 5.1.0: Changelog & Workflow Tree
     settings.json > "authentication" > "methods" > "ldap". Servers is a dict that associates LDAP server
     IP/URL to its keyword parameters (see ldap3 python libraries)
 - Fix bug that prevented uploading files to a folder when the folder name starts with a number (e.g "1test")
-- Make 'runtime' column of 'Result' class an indexed row (slow REST API get_result endpoint)
 - Use "class" key in handler config in logging.json to have the same syntax regardless of whether
   "use_multiprocessing_handlers" is set to true or false
 - Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
