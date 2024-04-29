@@ -1901,6 +1901,7 @@ tables.file = class FileTable extends Table {
           ${this.changelogButton(row)}
           ${this.copyClipboardButton(row)}
           ${this.downloadButton(row)}
+          ${this.editButton(row)}
           <button type="button"
             class="btn btn-sm btn-primary"
             onclick="eNMS.administration.showFileUploadPanel('${row.path}')"
@@ -1908,7 +1909,6 @@ tables.file = class FileTable extends Table {
           >
             <span class="glyphicon glyphicon-import"></span>
           </button>
-          ${this.editButton(row)}
           ${this.deleteInstanceButton(row)}
         </ul>
         `,
@@ -1917,6 +1917,7 @@ tables.file = class FileTable extends Table {
       return [
         `
         <ul class="pagination pagination-lg" style="margin: 0px;">
+          ${this.changelogButton(row)}
           ${this.copyClipboardButton(row)}
           ${this.downloadButton(row)}
           ${this.editButton(row)}
