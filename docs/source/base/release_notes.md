@@ -191,6 +191,12 @@ Version 5.1.0: Changelog & Workflow Tree
   - If that variable is not set, the app looks for the "servers" key in
     settings.json > "authentication" > "methods" > "ldap". Servers is a dict that associates LDAP server
     IP/URL to its keyword parameters (see ldap3 python libraries)
+- Fix bug that prevented uploading files to a folder when the folder name starts with a number (e.g "1test")
+- Make 'runtime' column of 'Result' class an indexed row (slow REST API get_result endpoint)
+- Use "class" key in handler config in logging.json to have the same syntax regardless of whether
+  "use_multiprocessing_handlers" is set to true or false
+- Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
+  to the current subject (PASS/FAIL + service name)
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -220,13 +226,8 @@ Tests:
 - Test that the controller functions allowed as REST endpoints still work and that the associated access type
   ("access", "admin" or "all") is enforced
 - Test the "refetch after fork" multiprocessing update
-- Use "class" key in handler config in logging.json to have the same syntax regardless of whether
-  "use_multiprocessing_handlers" is set to true or false
-- Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
-  to the current subject (PASS/FAIL + service name)
 - Test LDAP authentication: behavior should not change providing that LDAP_ADDR is set
-- Fix bug that prevented uploading files to a folder when the folder name starts with a number (e.g "1test")
-- Make 'runtime' column of 'Result' class an indexed row (slow REST API get_result endpoint)
+
 
 Version 5.0: Clustering
 -----------------------
