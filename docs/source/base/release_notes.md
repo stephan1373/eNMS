@@ -196,6 +196,7 @@ Version 5.1.0: Changelog & Workflow Tree
   "use_multiprocessing_handlers" is set to true or false
 - Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
   to the current subject (PASS/FAIL + service name)
+- Remove "Bulk Deletion" button from the session table
 
 Migration:
 - network.yaml must be merge into device.yaml:
