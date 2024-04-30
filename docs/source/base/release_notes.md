@@ -226,7 +226,7 @@ Tests:
   ("access", "admin" or "all") is enforced
 - Test the "refetch after fork" multiprocessing update
 - Test LDAP authentication: behavior should not change providing that LDAP_ADDR is set
-
+- Test that WebSSH session works fine and that the associated "session" object is updated accordingly
 
 Version 5.0: Clustering
 -----------------------
