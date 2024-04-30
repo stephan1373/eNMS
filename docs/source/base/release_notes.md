@@ -159,7 +159,8 @@ Version 5.1.0: Changelog & Workflow Tree
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
-- Make "allowed_rest_endpoints" a variable set in rbac.json (used to be hardcoded in rest_api.py)
+- Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
+  in rest_api.py)
 - Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload:
   {
     "target_type": "service",
@@ -182,8 +183,6 @@ Version 5.1.0: Changelog & Workflow Tree
     - When a non-admin user is doing the edit via the edit panel, the "Approved by admin" check box
     must be unchecked to validate the form.
     - When deep copying a Unix Command service into a workflow, that property will be silently unchecked.
-- Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
-  in rest_api.py)
 - Add mechanism to refetch run objects (such as service, placeholder, etc) after process fork when using
   multiprocessing. Can be deactivated in automation.json > "advanced" > "refetch_after_process_fork"
 - Add support for connecting to multiple LDAP servers:
