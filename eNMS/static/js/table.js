@@ -1760,7 +1760,6 @@ tables.session = class SessionTable extends Table {
       this.columnDisplay(),
       this.refreshTableButton("session"),
       this.bulkFilteringButton(),
-      this.bulkDeletionButton(),
     ];
   }
 
