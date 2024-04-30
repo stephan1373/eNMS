@@ -159,6 +159,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
+- Make "allowed_rest_endpoints" a variable set in rbac.json (used to be hardcoded in rest_api.py)
 - Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload:
   {
     "target_type": "service",
