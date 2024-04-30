@@ -31,8 +31,7 @@ function run() {
   fi
   export SERVER_NAME="eNMS Server"
   export SERVER_ADDR="192.168.56.101"
-  # SERVER_URL cannot have a port, if it does webSSH doesn't work
-  export SERVER_URL="http://192.168.56.101"
+  export SERVER_URL="http://192.168.56.101:5000"
   export SCHEDULER_ADDR="http://192.168.56.102:5000"
   export LDAP_ADDR="192.168.56.104"
   export TACACS_ADDR="192.168.56.104"

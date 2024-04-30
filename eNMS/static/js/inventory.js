@@ -174,7 +174,7 @@ function webConnection(id) {
         serverUrl || `${window.location.protocol}//${window.location.hostname}`;
       const link = result.redirection
         ? `${url}/terminal${result.port}`
-        : `${url}:${result.port}`;
+        : `${url.match(/https?:\/\/[^:\/]+/)[0]}:${result.port}`;
       setTimeout(() => openUrl(`${link}/${result.endpoint}`), 2000);
       const message = `Click here to connect to ${result.device}.`;
       notify(
