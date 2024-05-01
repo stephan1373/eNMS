@@ -18004,8 +18004,11 @@
   "iteration_variable_name": "iteration_value"
   "labels":
     "f721f743-3dd8-40a2-a5eb-5680a80b50da":
-      "alignment": "left"
+      "positions":
+      - !!int "219"
+      - !!int "175"
       "content": |-
+        This workflow is configured in SxS with device targets mode.
         When a service fails, there can be a remediation process to apply to
         the failed devices before moving on to the next service.
         The remediation branch must be run before the next service if there are any
@@ -18013,11 +18016,34 @@
         completion if there aren't any.
         This justifies the move from the concept of "prerequisite edges" to a
         priority-based graph traversal implemented with Dijkstra algorithm.
-      "positions":
-      - !!int "177"
-      - !!int "138"
+        The remediation branch (Failure Case, Remediation) has a higher priority
+        than the "Last Service", so the devices that fail "Dispatch Devices" will run
+        the remediation branch first, then all devices will run "Last Service" together.
+        In DxD run mode, there would not be a need for any of this.
+      "alignment": "left"
       "size": !!int "14"
-  "last_modified": "2022-11-28 07:24:15.237709"
+    "19f277de-c7ea-417b-a0a7-00237dc43d89":
+      "positions":
+      - !!int "-232"
+      - !!int "-45"
+      "content": "Priority: 20"
+      "alignment": "left"
+      "size": !!int "14"
+    "9121c394-09c2-434d-9b3f-500d9fd08b3d":
+      "positions":
+      - !!int "619"
+      - !!int "-39"
+      "content": "Priority: 15"
+      "alignment": "left"
+      "size": !!int "14"
+    "eed6ee3c-3246-4ab6-9e4c-c13e7ef4f08c":
+      "positions":
+      - !!int "671"
+      - !!int "424"
+      "content": "Priority: 10"
+      "alignment": "left"
+      "size": !!int "14"
+  "last_modified": "2024-05-01 08:03:27.013644"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -18067,7 +18093,7 @@
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
   "restrict_to_owners": []
-  "run_method": "per_device"
+  "run_method": "per_service_with_workflow_targets"
   "scoped_name": "Optional Remediation Branch"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
@@ -18075,7 +18101,7 @@
   - "[Optional Remediation Branch] Dispatch Devices"
   - "[Optional Remediation Branch] Failure case"
   - "[Optional Remediation Branch] Last Service"
-  - "[Optional Remediation Branch] Post-Iteration Service"
+  - "[Optional Remediation Branch] Remediation"
   - "[Shared] End"
   - "[Shared] Start"
   "shared": !!bool "false"
@@ -18234,7 +18260,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:32.773572"
+  "last_modified": "2024-05-01 08:00:37.401291"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -18269,13 +18295,13 @@
     - !!int "644"
     - !!int "318"
     "Optional Remediation Branch":
-    - !!int "644"
-    - !!int "318"
+    - !!int "661"
+    - !!int "352"
     "Regression Workflow: Optional Prerequisite Services": *id342
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
-  "priority": !!int "11"
+  "priority": !!int "10"
   "rbac_edit":
   - "Full UI Read + Edit Access"
   "rbac_read":
@@ -18298,8 +18324,8 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-
-
+    
+    
     result = {}
     results["success"] = True
     results["result"] = result
@@ -18344,7 +18370,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-28 07:24:15.237709"
+  "last_modified": "2024-05-01 08:00:30.301913"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -18379,13 +18405,13 @@
     - !!int "-214"
     - !!int "-47"
     "Optional Remediation Branch":
-    - !!int "-214"
-    - !!int "-47"
+    - !!int "-234"
+    - !!int "8"
     "Regression Workflow: Optional Prerequisite Services": *id343
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
-  "priority": !!int "11"
+  "priority": !!int "20"
   "rbac_edit":
   - "Full UI Read + Edit Access"
   "rbac_read":
@@ -18408,8 +18434,8 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-
-
+    
+    
     result = {}
     results["success"] = device.name == "Austin"
     results["result"] = result
@@ -18454,7 +18480,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:32.776693"
+  "last_modified": "2024-05-01 08:03:27.013644"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -18468,7 +18494,7 @@
   "max_processes": !!int "15"
   "maximum_runs": !!int "1"
   "multiprocessing": !!bool "false"
-  "name": "[Optional Remediation Branch] Post-Iteration Service"
+  "name": "[Optional Remediation Branch] Remediation"
   "negative_logic": !!bool "false"
   "notification_header": ""
   "number_of_retries": !!int "0"
@@ -18489,13 +18515,13 @@
     - !!int "601"
     - !!int "-27"
     "Optional Remediation Branch":
-    - !!int "601"
-    - !!int "-27"
+    - !!int "629"
+    - !!int "12"
     "Regression Workflow: Optional Prerequisite Services": *id344
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
-  "priority": !!int "11"
+  "priority": !!int "15"
   "rbac_edit":
   - "Full UI Read + Edit Access"
   "rbac_read":
@@ -18509,7 +18535,7 @@
   "reserved": !!bool "false"
   "restrict_to_owners": []
   "run_method": "per_device"
-  "scoped_name": "Post-Iteration Service"
+  "scoped_name": "Remediation"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "shared": !!bool "false"
@@ -18518,8 +18544,8 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-
-
+    
+    
     result = {}
     results["success"] = True
     results["result"] = result
