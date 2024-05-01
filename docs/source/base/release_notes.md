@@ -197,6 +197,9 @@ Version 5.1.0: Changelog & Workflow Tree
 - Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
   to the current subject (PASS/FAIL + service name)
 - Remove "Bulk Deletion" button from the session table
+- Add parent_runtime constraint in REST API get_result query to fix performance issue
+- Fix cascade deletion of results objects when the associated device is deleted (missing
+  backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c)
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -228,6 +231,7 @@ Tests:
 - Test the "refetch after fork" multiprocessing update
 - Test LDAP authentication: behavior should not change providing that LDAP_ADDR is set
 - Test that WebSSH session works fine and that the associated "session" object is updated accordingly
+- Test cascade deletion of results when associated devices / services are deleted
 
 Version 5.0: Clustering
 -----------------------
@@ -322,7 +326,6 @@ Version 5.0: Clustering
   - Add support for multiprocessing capable logging handlers
   - New "use_multiprocessing_handlers" key in logging.json to decide whether to use
   the multiprocessing capable logging handlers
-- Add parent_runtime constraint in REST API get_result query to fix performance issue
 
 Migration:
 - Update properties.json > "properly_list" with new format
