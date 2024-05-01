@@ -7,7 +7,7 @@ from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
 from sqlalchemy import Boolean, case, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import deferred, relationship
+from sqlalchemy.orm import backref, deferred, relationship
 
 from eNMS.controller import controller
 from eNMS.database import db
@@ -273,7 +273,7 @@ class Result(AbstractBase):
     parent_device_name = association_proxy("parent_device", "name")
     device_id = db.Column(Integer, ForeignKey("device.id", ondelete="cascade"))
     device = relationship(
-        "Device", uselist=False, foreign_keys=device_id, lazy="joined"
+        "Device", uselist=False, foreign_keys=device_id, lazy="joined", backref=backref("results", cascade="all,delete")
     )
     device_name = association_proxy("device", "name")
     service_id = db.Column(
