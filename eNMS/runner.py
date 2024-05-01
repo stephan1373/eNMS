@@ -865,7 +865,8 @@ class Runner:
             content = report if self.email_report else vs.dict_to_string(file_content)
             html_report = self.email_report and self.report_format == "html"
             result = env.send_email(
-                self.sub(self.get("mail_subject"), locals()) or f"{status}: {self.service.name}",
+                self.sub(self.get("mail_subject"), locals())
+                or f"{status}: {self.service.name}",
                 content,
                 recipients=self.sub(self.get("mail_recipient"), locals()),
                 sender=self.sub(self.get("mail_sender"), locals()),

@@ -273,7 +273,11 @@ class Result(AbstractBase):
     parent_device_name = association_proxy("parent_device", "name")
     device_id = db.Column(Integer, ForeignKey("device.id", ondelete="cascade"))
     device = relationship(
-        "Device", uselist=False, foreign_keys=device_id, lazy="joined", backref=backref("results", cascade="all,delete")
+        "Device",
+        uselist=False,
+        foreign_keys=device_id,
+        lazy="joined",
+        backref=backref("results", cascade="all,delete"),
     )
     device_name = association_proxy("device", "name")
     service_id = db.Column(
