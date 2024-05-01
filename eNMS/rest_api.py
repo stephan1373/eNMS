@@ -54,7 +54,7 @@ class RestApi:
 
     def get_result(self, name, runtime, **_):
         run = db.fetch(
-            "run", service_name=name, runtime=runtime, rbac="run", allow_none=True
+            "run", service_name=name, parent_runtime=runtime, runtime=runtime, rbac="run", allow_none=True
         )
         if not run:
             error_message = (
