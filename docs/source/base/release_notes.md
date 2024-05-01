@@ -322,6 +322,7 @@ Version 5.0: Clustering
   - Add support for multiprocessing capable logging handlers
   - New "use_multiprocessing_handlers" key in logging.json to decide whether to use
   the multiprocessing capable logging handlers
+- Add parent_runtime constraint in REST API get_result query to fix performance issue
 
 Migration:
 - Update properties.json > "properly_list" with new format
