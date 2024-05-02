@@ -200,6 +200,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add parent_runtime constraint in REST API get_result query to fix performance issue
 - Fix cascade deletion of results objects when the associated device is deleted (missing
   backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c)
+- Make current_user available in parameterized form as "user" variable
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -232,6 +233,7 @@ Tests:
 - Test LDAP authentication: behavior should not change providing that LDAP_ADDR is set
 - Test that WebSSH session works fine and that the associated "session" object is updated accordingly
 - Test cascade deletion of results when associated devices / services are deleted
+- Test "user" variable in parameterized form for instance field filtering, email address in string fields, etc
 
 Version 5.0: Clustering
 -----------------------
