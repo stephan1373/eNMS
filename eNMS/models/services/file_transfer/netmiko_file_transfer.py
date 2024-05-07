@@ -55,6 +55,7 @@ class NetmikoFileTransferService(ConnectionService):
             inline_transfer=run.inline_transfer,
         )
         netmiko_connection.password = "*" * 8
+        netmiko_connection.secret = "*" * 8
         return {"success": True, "result": transfer_dict}
 
 
