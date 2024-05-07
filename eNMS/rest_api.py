@@ -56,7 +56,6 @@ class RestApi:
         run = db.fetch(
             "run",
             service_name=name,
-            parent_runtime=runtime,
             runtime=runtime,
             rbac="run",
             allow_none=True,
