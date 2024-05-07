@@ -9414,24 +9414,24 @@
       - !!int "681"
       - !!int "217"
     "15b463f1-e8ba-4d61-a84f-cf39d1434533":
-      "alignment": "left"
+      "positions":
+      - !!int "10"
+      - !!int "467"
       "content": |-
         Preprocessing: set a per-device variable "device OS" in payload with set_var
-        Python snippet: retrieves the variable with get_var and adds it to the results
+        Python snippet: retrieves the variable (as a global variable) and adds it to the results
         Postprocessing: defines the following FUNCTION and CLASS in the payload with set_var :
-
+        
         def test():
             return device.operating_system
-
-
+        
+        
         class Test():
             device = device.name
-
+        
         set_var("func", test, device=device.name)
         set_var("cls", Test, device=device.name)
-      "positions":
-      - !!int "14"
-      - !!int "449"
+      "alignment": "left"
       "size": !!int "14"
     "9bd5f8ae-d539-4fc3-bef5-2ee74517b58f":
       "alignment": "left"
@@ -9901,7 +9901,7 @@
   "labels": {}
   "last_modified": "2022-11-09 01:23:32.561528"
   "last_modified_by": "admin"
-  "last_run": "2024-04-02 20:41:38.632136"
+  "last_run": "2024-05-07 11:06:08.681749"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -18324,8 +18324,8 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-    
-    
+
+
     result = {}
     results["success"] = True
     results["result"] = result
@@ -18434,8 +18434,8 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-    
-    
+
+
     result = {}
     results["success"] = device.name == "Austin"
     results["result"] = result
@@ -18544,8 +18544,8 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-    
-    
+
+
     result = {}
     results["success"] = True
     results["result"] = result
