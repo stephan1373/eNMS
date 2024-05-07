@@ -1297,8 +1297,8 @@
     - !!int "635"
     - !!int "466"
     "Priority Mechanism":
-    - !!int "582"
-    - !!int "32"
+    - !!int "639"
+    - !!int "119"
     "RBAC Target Restriction": &id144
     - !!int "654"
     - !!int "-133"
@@ -9421,14 +9421,14 @@
         Preprocessing: set a per-device variable "device OS" in payload with set_var
         Python snippet: retrieves the variable (as a global variable) and adds it to the results
         Postprocessing: defines the following FUNCTION and CLASS in the payload with set_var :
-        
+
         def test():
             return device.operating_system
-        
-        
+
+
         class Test():
             device = device.name
-        
+
         set_var("func", test, device=device.name)
         set_var("cls", Test, device=device.name)
       "alignment": "left"
@@ -44923,29 +44923,29 @@
       "alignment": "left"
       "content": "Priority 14"
       "positions":
-      - "0"
-      - "0"
+      - !!int "-74"
+      - !!int "-97"
       "size": !!int "14"
     "48cc8c16-05aa-43bf-a328-10e9472881c9":
       "alignment": "left"
       "content": "Priority 13"
       "positions":
-      - "0"
-      - "0"
+      - !!int "-25"
+      - !!int "182"
       "size": !!int "14"
     "62272237-5361-4cec-98dc-428d0d10cc5d":
       "alignment": "left"
       "content": "Priority 10"
       "positions":
-      - "0"
-      - "0"
+      - !!int "483"
+      - !!int "-105"
       "size": !!int "14"
     "735cf3ec-a867-472e-b2ae-30722e45e3ad":
       "alignment": "left"
       "content": "Priority 12"
       "positions":
-      - "0"
-      - "0"
+      - !!int "191"
+      - !!int "-102"
       "size": !!int "14"
     "81efe644-8a97-4409-8233-ba7a2d026afb":
       "alignment": "left"
@@ -44954,15 +44954,15 @@
         Services with a higher priority run first.
         Services should run in the following order: 1 -> 2 -> 3 -> 4 -> 5.
       "positions":
-      - "76.2530517578125"
-      - "286.5"
+      - !!int "203"
+      - !!int "78"
       "size": !!int "14"
     "c6835de8-96e6-49ec-be7d-8e80bd8b3177":
       "alignment": "left"
       "content": "Priority 11"
       "positions":
-      - "0"
-      - "0"
+      - !!int "329"
+      - !!int "190"
       "size": !!int "14"
   "last_modified": "2023-03-30 13:43:57.532447"
   "last_modified_by": "admin"
@@ -45104,8 +45104,8 @@
   "parameterized_form_template": ""
   "positions":
     "Priority Mechanism":
-    - !!int "-116"
-    - !!int "-79"
+    - !!int "-81"
+    - !!int "-46"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45210,8 +45210,8 @@
   "parameterized_form_template": ""
   "positions":
     "Priority Mechanism":
-    - !!int "-11"
-    - !!int "170"
+    - !!int "-53"
+    - !!int "236"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45316,8 +45316,8 @@
   "parameterized_form_template": ""
   "positions":
     "Priority Mechanism":
-    - !!int "128"
-    - !!int "-88"
+    - !!int "188"
+    - !!int "-53"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45422,8 +45422,8 @@
   "parameterized_form_template": ""
   "positions":
     "Priority Mechanism":
-    - !!int "309"
-    - !!int "169"
+    - !!int "322"
+    - !!int "248"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45528,8 +45528,8 @@
   "parameterized_form_template": ""
   "positions":
     "Priority Mechanism":
-    - !!int "423"
-    - !!int "-95"
+    - !!int "472"
+    - !!int "-51"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
