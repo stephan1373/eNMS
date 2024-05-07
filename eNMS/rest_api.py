@@ -58,7 +58,7 @@ class RestApi:
             service_name=name,
             runtime=runtime,
             rbac="run",
-            allow_none=True,
+            allow_none=True
         )
         if not run:
             error_message = (
@@ -67,7 +67,7 @@ class RestApi:
             )
             return {"error": error_message}
         else:
-            result = db.fetch("result", runtime=runtime, allow_none=True)
+            result = db.fetch("result", runtime=runtime, parent_runtime=runtime, allow_none=True)
             return {
                 "status": run.status,
                 "result": result.result if result else "No results yet.",
