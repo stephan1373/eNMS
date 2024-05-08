@@ -201,6 +201,7 @@ Version 5.1.0: Changelog & Workflow Tree
   backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c)
 - Make current_user available in parameterized form as "user" variable
 - Add parent_runtime constraint in REST API get_result query to fix performance issue
+- Add run cascade deletion when deleting a service (in rbac.json)
 
 Migration:
 - network.yaml must be merge into device.yaml:
