@@ -235,6 +235,8 @@ Tests:
 - Test that WebSSH session works fine and that the associated "session" object is updated accordingly
 - Test cascade deletion of results when associated devices / services are deleted
 - Test "user" variable in parameterized form for instance field filtering, email address in string fields, etc
+- Test that the multiline strings are properly imported, specifically that there is no extra empty line, or extra
+  empty space at the beginning of a line (which makes python code fails with wrong indentation error)
 
 Version 5.0: Clustering
 -----------------------
