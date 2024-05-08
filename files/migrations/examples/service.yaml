@@ -5687,7 +5687,7 @@
         As a result, Washington will take the upward path, and the others
         will take the downward path.
         Both path rejoin at the end.
-        
+
         To be tested both with and without multiprocessing.
       "alignment": "left"
       "size": !!int "14"
@@ -9453,7 +9453,7 @@
         by setting success to False.
         Postprocessing set the variables "should be there":
         this variable should be in the results.
-        
+
         Besides, the results should contain:
         - func_result set to EOS (Washington) / IOS (Chicago)
         - cls_result set to Washington / Chicago
@@ -9467,13 +9467,13 @@
         Preprocessing: set a per-device variable "device OS" in payload with set_var
         Python snippet: retrieves the variable (as a global variable) and adds it to the results
         Postprocessing: defines the following FUNCTION and CLASS in the payload with set_var :
-        
+
         def test():
             return device.operating_system
-        
+
         class Test():
             device = device.name
-        
+
         set_var("func", test, device=device.name)
         set_var("cls", Test, device=device.name)
       "alignment": "left"
@@ -14289,8 +14289,8 @@
       - !!int "218"
     "a0ccdcaf-94b9-43f3-873c-db101440e363":
       "positions":
-      - "67.73579594141421"
-      - "-33.217189681893196"
+      - !!int "67"
+      - !!int "-33"
       "content": |-
         This workflow is designed to test the get_neighbors function.
          get_neighbors takes:
@@ -14303,17 +14303,17 @@
       "alignment": "left"
       "size": !!int "14"
     "a672b458-970b-42c5-958e-2c9de635e83d":
-      "alignment": "left"
+      "positions":
+      - !!int "65"
+      - !!int "170"
       "content": |-
         The workflow is also testing the RBAC default access mechanism.
-
         Default access is set to public, meaning that anyone can access it
         regardless of how RBAC is configured.
         When logging in with "ny" user, it should be visible in the workflow
         builder.
-      "positions":
-      - !!int "91"
-      - !!int "163"
+      "alignment": "left"
+      "size": !!int "14"
   "last_modified": "2022-12-04 08:01:36.837799"
   "last_modified_by": "admin"
   "last_run": ""
@@ -17787,7 +17787,7 @@
       - !!int "-110"
       "content": |-
         This workflow runs on Washington, Austin, Austin-2 and Austin-3.
-        
+
         - Washington will use "Router Credentials - Password" (correct credentials).
         - Austin and Austin-2 will match both "Router Credentials - Password"
          and "Router Credentials - SSH Key", but the SSH key has higher priority
@@ -17795,7 +17795,7 @@
         - Austin-3 will match all credentials but "Router Credentials - Wrong Password"
         has higher priority, so it should be used and
         the connection should fail.
-        
+
         All devices but Austin-3 should pass. For Austin and Austin-2,
         the authentication in the server logs should say "authentication (publickey)"
         and for Washington, "authentication (keyboard-interactive)".
@@ -19594,7 +19594,7 @@
         fail without prevent the workflow from running on Washington.
         The restriction must apply to direct targets as well as
         iteration and device targets.
-        
+
         Must be run both in DxD and SxS w/ WF targets mode.
       "alignment": "left"
       "size": !!int "14"
@@ -46664,8 +46664,8 @@
   "labels":
     "3738634d-2863-4b95-bd02-9223fa4aef24":
       "positions":
-      - !!int "141"
-      - !!int "-15"
+      - !!int "120"
+      - !!int "-12"
       "content": |-
         This workflow tests the dry run features on all Netmiko services:
         
@@ -46677,8 +46677,7 @@
         
         The workflow runs on "Router 1", a device with a wrong IP address,
         but it should still run to completion because all services have "Dry Run" enabled. 
-        
-         A number of global variables are initialized with set_var in the
+        A number of global variables are initialized with set_var in the
         preprocessing field of the workflow.
       "alignment": "left"
       "size": !!int "14"
@@ -48291,23 +48290,22 @@
   "iteration_variable_name": "iteration_value"
   "labels":
     "5878ed05-472c-4977-a537-deffbccb43bb":
-      "alignment": "left"
+      "positions":
+      - !!int "231"
+      - !!int "78"
       "content": |-
         This workflow tests the dry run features on all Netmiko services:
-
+        
         - Scrapli Commands (results = list of commands)
         - Scrapli Backup (result = local path, commands)
         - Scrapli Netconf (result = content)
-
+        
         The workflow runs on "Router 1", a device with a wrong IP address,
         but it should still run to completion because all services have "Dry Run" enabled. 
-
+        
         A number of global variables are initialized with set_var in the
-
         preprocessing field of the workflow.
-      "positions":
-      - !!int "226"
-      - !!int "98"
+      "alignment": "left"
       "size": !!int "14"
   "last_modified": "2024-02-28 13:39:50.047106"
   "last_modified_by": "admin"
@@ -48462,10 +48460,12 @@
     "Dry Run Scrapli":
     - !!int "37"
     - !!int "148"
-    "Dry Run: Scrapli Services": &id472
+    "Dry Run: Scrapli Services":
     - !!int "-115"
     - !!int "259"
-    "Dry Run: Top-level Workflow Dry Run": *id472
+    "Dry Run: Top-level Workflow Dry Run":
+    - !!int "-115"
+    - !!int "259"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48604,10 +48604,12 @@
     "Dry Run Scrapli":
     - !!int "321"
     - !!int "152"
-    "Dry Run: Scrapli Services": &id473
+    "Dry Run: Scrapli Services":
     - !!int "195"
     - !!int "267"
-    "Dry Run: Top-level Workflow Dry Run": *id473
+    "Dry Run: Top-level Workflow Dry Run":
+    - !!int "195"
+    - !!int "267"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -48735,9 +48737,9 @@
         This workflow should be run twice:
         - a first time as-is, with "Show Configuration" in "Dry Run" mode
         - a second time with "Dry Run" unchecked on that same service
-        
+
         It has two targets: "Washington" (real router) and "Router1" (fake router).
-        
+
         - In the case of a dry run, the "results" of "Show Configuration" are modified to
         include the output of the "show configuration" command as if it had successfully
         connected to the device. The "result" key should then contain the configuration,
@@ -48745,7 +48747,7 @@
         string ""boot system flash" is present in the configuration. The "success" value of
         that service depends on that check.
         Both routers should pass.
-        
+
         - In the case of a real run (the "Dry Run" checkbox of the first service must be
         unchecked), "Router 1" should fail at the first service (no connection can be
         established), and "Washington" should pass both services.
@@ -48913,10 +48915,10 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "positions":
-    "(R) Dry Run with results modified in postprocessing": &id474
+    "(R) Dry Run with results modified in postprocessing": &id472
     - !!int "-96"
     - !!int "390"
-    "(R) Dry Run: Results modified in Postprocessing": *id474
+    "(R) Dry Run: Results modified in Postprocessing": *id472
     "Dry Run with results modified in postprocessing":
     - !!int "41"
     - !!int "138"
@@ -49024,10 +49026,10 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "positions":
-    "(R) Dry Run with results modified in postprocessing": &id475
+    "(R) Dry Run with results modified in postprocessing": &id473
     - !!int "550"
     - !!int "403"
-    "(R) Dry Run: Results modified in Postprocessing": *id475
+    "(R) Dry Run: Results modified in Postprocessing": *id473
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -49105,15 +49107,15 @@
       - !!int "190"
       "content": |-
         This workflow tests the dry run features on the following services:
-        
+
         - File Transfer (result = source, destination)
         - Ansible (result = command)
         - Git (result = local repository, remote repository)
         - REST Call (result url, call kwargs)
-        
+
         The workflow runs on "Router 1", a device with a wrong IP address,
         but it should still run to completion because all services have "Dry Run" enabled. 
-        
+
         A number of global variables are initialized with set_var in the
         preprocessing field of the workflow.
       "alignment": "left"
@@ -50176,10 +50178,12 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "positions":
-    "Dry Run: Scrapli Services": &id476
+    "Dry Run: Scrapli Services":
     - !!int "505"
     - !!int "255"
-    "Dry Run: Top-level Workflow Dry Run": *id476
+    "Dry Run: Top-level Workflow Dry Run":
+    - !!int "505"
+    - !!int "255"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -50687,8 +50691,8 @@
   "labels":
     "70355135-0644-4e4c-b9a7-9224534767f2":
       "positions":
-      - !!int "176"
-      - !!int "117"
+      - !!int "159"
+      - !!int "136"
       "content": |-
         This workflow tests the dry run features on all Netmiko services:
         
@@ -50697,7 +50701,7 @@
         - Unix Command (results = command)
         - Unix Shell (results = source code)
         
-         The workflow runs on "Router 1", a device with a wrong IP address,
+        The workflow runs on "Router 1", a device with a wrong IP address,
         but it should still run to completion because all services have "Dry Run" enabled. 
         
         A number of global variables are initialized with set_var in the
@@ -51150,8 +51154,8 @@
       "size": !!int "14"
     "67c325f3-39fe-4c08-bdde-41cc1f1dafcc":
       "positions":
-      - !!int "143"
-      - !!int "192"
+      - !!int "126"
+      - !!int "185"
       "content": |-
         This workflow tests 3 global variables:
         - "try_set": used to set an object property to a given value and try to commit (with retries)
@@ -51160,9 +51164,9 @@
         - "get_secret": used to get the value of a Secret object. The user running the
           workflow must have "Use" acccess to the Secret object to obtain the value.
         
-         The workflow should be run by two users:
+        The workflow should be run by two users:
         - admin: runs to completion
-         - nadmin: fails at the last service, because while nadmin does have Read and
+        - nadmin: fails at the last service, because while nadmin does have Read and
         Edit access to "Secret 1", it does not have the "Use" access to obtain the value.
       "alignment": "left"
       "size": !!int "14"
@@ -51781,10 +51785,10 @@
     "Dry Run: Scrapli Services":
     - !!int "-115"
     - !!int "259"
-    "Dry Run: Top-level Workflow Dry Run": &id477
+    "Dry Run: Top-level Workflow Dry Run": &id474
     - !!int "-115"
     - !!int "259"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id477
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id474
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -51927,10 +51931,10 @@
     "Dry Run: Scrapli Services":
     - !!int "195"
     - !!int "267"
-    "Dry Run: Top-level Workflow Dry Run": &id478
+    "Dry Run: Top-level Workflow Dry Run": &id475
     - !!int "195"
     - !!int "267"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id478
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id475
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -52071,10 +52075,10 @@
     "Dry Run: Scrapli Services":
     - !!int "505"
     - !!int "255"
-    "Dry Run: Top-level Workflow Dry Run": &id479
+    "Dry Run: Top-level Workflow Dry Run": &id476
     - !!int "505"
     - !!int "255"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id479
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id476
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -52685,12 +52689,12 @@
     "Dry Run: Scrapli Services":
     - !!int "195"
     - !!int "267"
-    "Dry Run: Top-level Workflow Dry Run": &id480
+    "Dry Run: Top-level Workflow Dry Run": &id477
     - !!int "195"
     - !!int "267"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id480
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id480
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id480
+    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id477
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id477
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id477
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -52836,12 +52840,12 @@
     "Dry Run: Scrapli Services":
     - !!int "-115"
     - !!int "259"
-    "Dry Run: Top-level Workflow Dry Run": &id481
+    "Dry Run: Top-level Workflow Dry Run": &id478
     - !!int "-115"
     - !!int "259"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id481
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id481
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id481
+    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id478
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id478
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id478
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -52958,12 +52962,12 @@
     "Dry Run: Scrapli Services":
     - !!int "505"
     - !!int "255"
-    "Dry Run: Top-level Workflow Dry Run": &id482
+    "Dry Run: Top-level Workflow Dry Run": &id479
     - !!int "505"
     - !!int "255"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id482
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id482
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id482
+    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id479
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id479
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id479
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -53230,12 +53234,12 @@
     "Dry Run: Scrapli Services":
     - !!int "195"
     - !!int "267"
-    "Dry Run: Top-level Workflow Dry Run": &id483
+    "Dry Run: Top-level Workflow Dry Run": &id480
     - !!int "195"
     - !!int "267"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id483
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id483
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id483
+    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id480
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id480
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id480
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -53382,12 +53386,12 @@
     "Dry Run: Scrapli Services":
     - !!int "-115"
     - !!int "259"
-    "Dry Run: Top-level Workflow Dry Run": &id484
+    "Dry Run: Top-level Workflow Dry Run": &id481
     - !!int "-115"
     - !!int "259"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id484
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id484
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id484
+    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id481
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id481
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id481
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -53505,12 +53509,12 @@
     "Dry Run: Scrapli Services":
     - !!int "505"
     - !!int "255"
-    "Dry Run: Top-level Workflow Dry Run": &id485
+    "Dry Run: Top-level Workflow Dry Run": &id482
     - !!int "505"
     - !!int "255"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id485
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id485
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id485
+    "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow": *id482
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": *id482
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow": *id482
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -53584,19 +53588,19 @@
   "iteration_variable_name": "iteration_value"
   "labels":
     "6d8670f0-6b33-4cbb-8cc9-20b56601e5fb":
-      "alignment": "left"
+      "positions":
+      - !!int "196"
+      - !!int "-11"
       "content": |-
         This workflow tests using a boolean property in the parameterized form to
         configure whether the workflow runs in "Dry Run" mode or not.
-
+        
         It must be run:
         - with "Dry Run" enabled: the first service should log "DRY RUN MODE ENABLED" and 
           the second service should pass.
-         - with "Dry Run" disabled: the first service should log "DRY RUN MODE DISABLED" and
+        - with "Dry Run" disabled: the first service should log "DRY RUN MODE DISABLED" and
           the second service should fail (cannot connect to workflow target: "Router 1").
-      "positions":
-      - !!int "237"
-      - !!int "-63"
+      "alignment": "left"
       "size": !!int "14"
   "last_modified": "2024-03-13 01:50:10.419298"
   "last_modified_by": "admin"
