@@ -1265,6 +1265,7 @@ class Runner:
             netmiko_connection.config_mode(**kwargs)
         netmiko_connection.password = "*" * 8
         netmiko_connection.secret = "*" * 8
+        netmiko_connection.connection_name = self.connection_name
         vs.connections_cache["netmiko"][self.parent_runtime].setdefault(
             device.name, {}
         )[self.connection_name] = netmiko_connection
@@ -1308,6 +1309,7 @@ class Runner:
             **kwargs,
         )
         connection.open()
+        connection.connection_name = self.connection_name
         self.write_state("connections/scrapli", 1, "increment", False)
         vs.connections_cache["scrapli"][self.parent_runtime].setdefault(
             device.name, {}
@@ -1344,6 +1346,7 @@ class Runner:
             **credentials,
         )
         napalm_connection.open()
+        napalm_connection.connection_name = self.connection_name
         self.write_state("connections/napalm", 1, "increment", False)
         vs.connections_cache["napalm"][self.parent_runtime].setdefault(device.name, {})[
             self.connection_name
@@ -1373,6 +1376,7 @@ class Runner:
             username=credentials["username"],
             password=credentials["password"],
         )
+        nccclient_connection.connection_name = self.connection_name
         vs.connections_cache["ncclient"][self.parent_runtime].setdefault(
             device.name, {}
         )[self.connection_name] = ncclient_connection
@@ -1444,8 +1448,7 @@ class Runner:
             vs.connections_cache[library].pop(self.parent_runtime)
 
     def disconnect(self, library, device, connection):
-        connection_name = getattr(self, "connection_name", "default")
-        connection_log = f"{library} connection '{connection_name}'"
+        connection_log = f"{library} connection '{connection.connection_name}'"
         try:
             if library == "netmiko":
                 connection.disconnect()
@@ -1454,7 +1457,7 @@ class Runner:
             else:
                 connection.close()
             vs.connections_cache[library][self.parent_runtime][device].pop(
-                connection_name
+                connection.connection_name
             )
             self.write_state(f"connections/{library}", -1, "increment", False)
             self.log("info", f"Closed {connection_log}", device)
