@@ -5771,7 +5771,7 @@
         This workflow must be run with the router up and running.
         It runs on 3 devices: Washington (active router) and 2 dummy devices.
         The first service is a netmiko validation service running "show vrf": it
-         should pass for Washington and fail for the others.
+        should pass for Washington and fail for the others.
         As a result, Washington will take the upward path, and the others
         will take the downward path.
         Both path rejoin at the end.
@@ -14608,28 +14608,28 @@
     result = {}
     # neighbors in both direction
     results["result"] = {
-      	"direction=both, device": names(device.get_neighbors("device")),
+      "direction=both, device": names(device.get_neighbors("device")),
     	"direction=both, link": names(device.get_neighbors("link")),
     	"direction=source, device": names(device.get_neighbors("device", direction="source")),
     	"direction=source, link": names(device.get_neighbors("link", direction="source")),
     	"direction=destination, device": names(device.get_neighbors("device", direction="destination")),
-      	"direction=destination, link" : names(device.get_neighbors("link", direction="destination")),
+      "direction=destination, link" : names(device.get_neighbors("link", direction="destination")),
     	"direction=both, device, 10G": names(device.get_neighbors("device", model="10G")),
-      	"direction=both, link, 400G": names(device.get_neighbors("link", model="400G")),
-      	"direction=source, device, 40G": names(device.get_neighbors("device", direction="source", model="40G")),
-      	"direction=destination, link, 10G": names(device.get_neighbors("link", direction="destination", model="10G")),
+      "direction=both, link, 400G": names(device.get_neighbors("link", model="400G")),
+      "direction=source, device, 40G": names(device.get_neighbors("device", direction="source", model="40G")),
+      "direction=destination, link, 10G": names(device.get_neighbors("link", direction="destination", model="10G")),
     }
     results["expected_result"] = {
-       	"direction=both, device": {"Austin", "Atlanta", "Houston", "LosAngeles"},
+      "direction=both, device": {"Austin", "Atlanta", "Houston", "LosAngeles"},
     	"direction=both, link": {"link13", "link25", "link0", "link24", "link25-3", "link25-2"},
     	"direction=source, device": {"Atlanta", "LosAngeles"},
     	"direction=source, link": {"link25", "link24", "link25-3", "link25-2"},
     	"direction=destination, device": {"Austin", "Houston"},
-      	"direction=destination, link": {"link13", "link0"},
+      "direction=destination, link": {"link13", "link0"},
     	"direction=both, device, 10G": {"Houston"},
-      	"direction=both, link, 400G": {"link25", "link24", "link25-3", "link25-2"},
-      	"direction=source, device, 40G": set(),
-      	"direction=destination, link, 10G": {"link0"},
+      "direction=both, link, 400G": {"link25", "link24", "link25-3", "link25-2"},
+      "direction=source, device, 40G": set(),
+      "direction=destination, link, 10G": {"link0"},
     }
 
     results["success"] = True
@@ -16774,7 +16774,7 @@
   "source_code": |-
     result = {}
     for device in devices:
-      results.setdefault("devices", []).append(device.name)
+        results.setdefault("devices", []).append(device.name)
     results["success"] = True
     results["result"] = result
   "target_devices": []
@@ -16880,7 +16880,7 @@
   "skip_query": ""
   "skip_value": "success"
   "source_code": |-
-    # Availble variables: device, results, run
+    # Available variables: device, results, run
     # Returning state:
     #    results["success"] = True
     #    results["result"] = <return data>
@@ -43979,8 +43979,8 @@
   "skip_value": "success"
   "source_code": |-
     default_connection = get_connection("netmiko", device.name)
-     special_connection = get_connection("netmiko", device.name, "special")
-     result = {}
+    special_connection = get_connection("netmiko", device.name, "special")
+    result = {}
     results["success"] = True
     results["result"] = {
       "default": default_connection.send_command("sh ip int br"),
