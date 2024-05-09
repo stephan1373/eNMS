@@ -203,6 +203,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Make current_user available in parameterized form as "user" variable
 - Add parent_runtime constraint in REST API get_result query to fix performance issue
 - Add run cascade deletion when deleting a service (in rbac.json)
+- Fix connection with non-default name not closed at the end of a workflow bug (c9b164bd35732e9f54d0bb46c6bff61631ab85f4)
 
 Migration:
 - network.yaml must be merge into device.yaml:
