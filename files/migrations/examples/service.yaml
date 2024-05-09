@@ -20405,14 +20405,14 @@
   "connection_name": "default"
   "content": |-
     <nc:edit-config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
-       <target>
-       <running/>
-       </target>
-       <commands>
-       <command>interface Loopback5</command>
-       <command>description YYYY</command>
-       </commands>
-       </nc:edit-config>
+      <target>
+        <running/>
+      </target>
+      <commands>
+        <command>interface Loopback5</command>
+        <command>description YYYY</command>
+      </commands>
+    </nc:edit-config>
   "content_match": ""
   "content_match_regex": !!bool "false"
   "conversion_method": "none"
@@ -20528,14 +20528,14 @@
   "connection_name": "default"
   "content": |-
     <nc:edit-config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
-       <target>
-       <running/>
-       </target>
-       <commands>
-       <command>interface Loopback 5</command>
-       <command>no description YYYY</command>
-       </commands>
-       </nc:edit-config>
+      <target>
+        <running/>
+      </target>
+      <commands>
+        <command>interface Loopback 5</command>
+        <command>no description YYYY</command>
+      </commands>
+    </nc:edit-config>
   "content_match": ""
   "content_match_regex": !!bool "false"
   "conversion_method": "none"
@@ -47783,7 +47783,7 @@
   "content": |-
     config line 1: {{ variable3 }}
     config line 2: {{ variable4 }}
-     config line 3: {{ integer_variable2 }}
+    config line 3: {{ integer_variable2 }}
   "content_match": ""
   "content_match_regex": !!bool "false"
   "conversion_method": "none"
