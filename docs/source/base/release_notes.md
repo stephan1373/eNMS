@@ -157,6 +157,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Add custom representer to fix bug where line are broken inside a return carriage (\r...\n): all strings that contain a line break are now
     treated as a literal block.
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
+  - Forbid references (e.g &id000) in yaml files with representer.ignore_aliases to avoid change of id number
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
