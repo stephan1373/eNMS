@@ -303,6 +303,7 @@ class Environment:
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
 
         yaml.representer.add_representer(str, representer)
+        yaml.representer.ignore_aliases = lambda *args: True
         return yaml
 
     def get_workers(self):

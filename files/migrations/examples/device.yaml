@@ -4649,10 +4649,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Network 1: Top-level Devices and Links": &id001
+    "Network 1: Top-level Devices and Links":
     - !!int "-314"
     - !!int "42"
-    "Top-level Devices and Links": *id001
+    "Top-level Devices and Links":
+    - !!int "-314"
+    - !!int "42"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4710,10 +4712,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Network 1: Top-level Devices and Links": &id002
+    "Network 1: Top-level Devices and Links":
     - !!int "-59"
     - !!int "267"
-    "Top-level Devices and Links": *id002
+    "Top-level Devices and Links":
+    - !!int "-59"
+    - !!int "267"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4772,10 +4776,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Network 1: Top-level Devices and Links": &id003
+    "Network 1: Top-level Devices and Links":
     - !!int "310"
     - !!int "56"
-    "Top-level Devices and Links": *id003
+    "Top-level Devices and Links":
+    - !!int "310"
+    - !!int "56"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5381,10 +5387,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Duplication of Devices, Subnetworks and Top-level Networks": &id004
+    "Duplication of Devices, Subnetworks and Top-level Networks":
     - !!int "-356"
     - !!int "0"
-    "Network 4: Duplication of Devices, Subnetworks and Top-level Networks": *id004
+    "Network 4: Duplication of Devices, Subnetworks and Top-level Networks":
+    - !!int "-356"
+    - !!int "0"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5626,10 +5634,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Loopback and Parallel Links": &id005
+    "Loopback and Parallel Links":
     - !!int "-765"
     - !!int "312"
-    "Network 5: Loopback and Parallel Links": *id005
+    "Network 5: Loopback and Parallel Links":
+    - !!int "-765"
+    - !!int "312"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5687,10 +5697,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Loopback and Parallel Links": &id006
+    "Loopback and Parallel Links":
     - !!int "-345"
     - !!int "194"
-    "Network 5: Loopback and Parallel Links": *id006
+    "Network 5: Loopback and Parallel Links":
+    - !!int "-345"
+    - !!int "194"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5748,10 +5760,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Loopback and Parallel Links": &id007
+    "Loopback and Parallel Links":
     - !!int "-325"
     - !!int "426"
-    "Network 5: Loopback and Parallel Links": *id007
+    "Network 5: Loopback and Parallel Links":
+    - !!int "-325"
+    - !!int "426"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5809,10 +5823,12 @@
   "owners": []
   "port": !!int "22"
   "positions":
-    "Loopback and Parallel Links": &id008
+    "Loopback and Parallel Links":
     - !!int "243"
     - !!int "271"
-    "Network 5: Loopback and Parallel Links": *id008
+    "Network 5: Loopback and Parallel Links":
+    - !!int "243"
+    - !!int "271"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
