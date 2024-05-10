@@ -1535,8 +1535,8 @@
     - !!int "749"
     - !!int "100"
     "Functions: get_result and get_var":
-    - !!int "697"
-    - !!int "-62"
+    - !!int "726"
+    - !!int "52"
     "Functions: get_var, set_var, and get_result":
     - !!int "-528"
     - !!int "25"
@@ -33411,9 +33411,9 @@
       "positions":
       - !!int "175"
       - !!int "-198"
-  "last_modified": "2022-11-09 01:23:33.201580"
+  "last_modified": "2024-05-10 04:12:30.196985"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-10 04:12:32.907922"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -33851,7 +33851,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:33.196729"
+  "last_modified": "2024-05-10 04:12:30.196985"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -33883,8 +33883,8 @@
   "parameterized_form_template": ""
   "positions":
     "Functions: get_result and get_var":
-    - !!int "582"
-    - !!int "-169"
+    - !!int "614"
+    - !!int "-135"
     "Global variables: get_result and get_var":
     - !!int "582"
     - !!int "-169"
@@ -33915,13 +33915,13 @@
   "source_code": |-
     subworkflow_var = get_var("Subworkflow", device="Washington")
     subworkflow_result = get_result("Subservice", device="Washington")["result"]
-
+    
     success = [subworkflow_var] + subworkflow_result == [
       "Subworkflow",
       1,
       "Washington",
       "Before Run Once",
-      " Before Run Per Device: Washington",
+      "Before Run Per Device: Washington",
     ]
     results["success"] = results["result"] = success
   "target_devices":
@@ -33999,8 +33999,8 @@
   "parameterized_form_template": ""
   "positions":
     "Functions: get_result and get_var":
-    - !!int "438"
-    - !!int "106"
+    - !!int "437"
+    - !!int "123"
     "Global variables: get_result and get_var":
     - !!int "579"
     - !!int "82"
