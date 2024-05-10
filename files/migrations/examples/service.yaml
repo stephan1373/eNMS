@@ -16014,17 +16014,18 @@
   "iteration_variable_name": "iteration_value"
   "labels":
     "276a5b4a-720e-457a-8d66-6c49d03c937d":
-      "alignment": "left"
-      "content": |-
-        Delete the device "---" that was
-        created by the factory function.
       "positions":
-      - !!int "179"
-      - !!int "217"
+      - !!int "184"
+      - !!int "216"
+      "content": |-
+        Delete the device "No-{{ device.id }}" that was
+        created by the factory function.
+      "alignment": "left"
+      "size": !!int "14"
     "50a94bb5-ad54-4164-92a3-b4022d43de4d":
       "positions":
-      - "95.3828125"
-      - "-44"
+      - !!int "95"
+      - !!int "-44"
       "content": |-
         Test fetch and fetch_all.
         Change name of device "New-{device.id}" to "No-{device.id}".
@@ -16041,8 +16042,8 @@
         * {{ get_result("Credentials encryption", device=device.name)["password"] }}
         Expected result: one success (Washington), one failure (wrong IP)
       "positions":
-      - !!int "487"
-      - !!int "314"
+      - !!int "521"
+      - !!int "308"
       "size": !!int "14"
     "d7ebfa57-b26d-4401-80c5-40f8be6c8519":
       "alignment": "left"
@@ -16050,8 +16051,8 @@
         Create a new device "New-{device.id}" for each device.
         This device should be put in San Francisco pool (contains letter "e").
       "positions":
-      - !!int "-131"
-      - !!int "275"
+      - !!int "-134"
+      - !!int "267"
     "e5b50708-629d-41ac-a83b-275946c7d45a":
       "alignment": "left"
       "content": |-
