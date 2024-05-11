@@ -4091,7 +4091,7 @@
   "iteration_devices_property": "ip_address"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:32.276872"
+  "last_modified": "2024-05-11 05:12:46.651842"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -4180,10 +4180,10 @@
     # Interfaces 1
     targets = ['Loopback101', 'Loopback15'] if device.name == "Washington" else ['Loopback9', 'Loopback1000']
     set_var('Interfaces 1', targets, device=device.name)
-
+    
     # Derived Devices
-    set_var("Derived Devices", ["Atlanta", "Austin"] if device.name == "Austin" else ["Washington" ], device=device.name)
-
+    set_var("Derived Devices", ["Dummy1", "Austin"] if device.name == "Austin" else ["Washington" ], device=device.name)
+    
     # Interfaces 2
     set_var('Interfaces 2', ['Loopback333', 'Loopback334'])
     save_result(True, {})
@@ -7356,18 +7356,19 @@
       - !!int "-244"
       - !!int "92"
     "5043ff9c-79b0-4712-a706-502724ac4e31":
-      "alignment": "left"
+      "positions":
+      - !!int "272"
+      - !!int "-60"
       "content": |-
         The iteration devices field is set to "get_var("Derived Devices", device=device.name)"
         The iteration values are set to ["Loopback11","Loopback15"] (static), and the name
         of the iteration variable is set to a non-default value.
         The service does a "show interface" over the loopback interfaces.
-        For "Austin", one of the iterated device is Atlanta which does not exist,
-        so netmiko should fail to connect and the service will fail for Atlanta.
+        For "Austin", one of the iterated device is "Dummy1" which does not exist,
+        so netmiko should fail to connect and the service will fail for Dummy1.
         Austin should stop here as a result, while Washington moves forward.
-      "positions":
-      - !!int "275"
-      - !!int "-72"
+      "alignment": "left"
+      "size": !!int "14"
     "76ece5f4-54f7-4f6b-8ea0-7d2918524e92":
       "positions":
       - !!int "773"
@@ -7399,16 +7400,17 @@
       "alignment": "left"
       "size": !!int "14"
     "b61a926f-87e4-48a6-86bd-74500e9568ab":
-      "alignment": "left"
+      "positions":
+      - !!int "-255"
+      - !!int "-99"
       "content": |-
         Set the following variables in the payload :
         - Interfaces 1 : ['Loopback101', 'Loopback15'] for "Washington"
         otherwise ['Loopback9', 'Loopback1000']
-        - Derived Devices : ["Atlanta", "Austin"] for "Austin" else ["Washington"]
+        - Derived Devices : ["Dummy1", "Austin"] for "Austin" else ["Washington"]
         - Interfaces 2 : ['Loopback333', 'Loopback334'] for any device
-      "positions":
-      - !!int "-261"
-      - !!int "-105"
+      "alignment": "left"
+      "size": !!int "14"
     "fbd0224f-eae2-461b-bfc5-9de385e078f0":
       "alignment": "left"
       "content": |-
@@ -7418,9 +7420,9 @@
       "positions":
       - !!int "-113"
       - !!int "314"
-  "last_modified": "2022-12-04 08:09:24.752330"
+  "last_modified": "2024-05-11 05:12:46.651842"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-11 05:12:48.927578"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -33915,7 +33917,7 @@
   "source_code": |-
     subworkflow_var = get_var("Subworkflow", device="Washington")
     subworkflow_result = get_result("Subservice", device="Washington")["result"]
-    
+
     success = [subworkflow_var] + subworkflow_result == [
       "Subworkflow",
       1,
