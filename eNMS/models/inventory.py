@@ -117,7 +117,7 @@ class Device(Object):
             for key, value in link_constraints.items()
         ]
         neighboring_links = (
-            db.query("link")
+            db.query("link", rbac=None)
             .filter(and_(or_(*edge_constraints), *link_constraints))
             .all()
         )
