@@ -1635,7 +1635,8 @@ class Controller:
                             no_update = vs.str_to_date(value) <= vs.str_to_date(db_date)
                     setattr(device, f"last_{property}_{timestamp}", value)
                 filepath = Path(dir.path) / property
-                if not filepath.exists() or no_update:
+                print(device, device.configuration, no_update)
+                if not filepath.exists() or (device.configuration and no_update):
                     continue
                 with open(filepath) as file:
                     setattr(device, property, file.read())
