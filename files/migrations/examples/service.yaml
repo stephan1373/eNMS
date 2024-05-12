@@ -30716,7 +30716,7 @@
     Value Required,List NEXT_HOP (connected|\d+\.\d+\.\d+\.\d+)
     #Value INTERFACE (\S+)
     Value List INTERFACE (.+)
-    
+
     Start
       ^VRF(\s+name)?:\s+${VRF}\s*$$
       ^WARNING
@@ -30729,7 +30729,7 @@
       ^\! IP routing not enabled
       # Error on everything else
       ^. -> Error
-    
+
     Routes
       ^\s+(\S+\s\S+?|\w?)\s+(\d+\.\d+\.\d+\.\d+)/(\d+)\s -> Continue.Record
       ^\s+${PROTOCOL}\s+${NETWORK}/${PREFIX_LENGTH}\s+is\s+${DIRECT}\s+${NEXT_HOP},\s+${INTERFACE}$$
@@ -45908,9 +45908,9 @@
         - Generic File Transfer Service
       "alignment": "left"
       "size": !!int "14"
-  "last_modified": "2022-12-16 04:29:47.650536"
+  "last_modified": "2024-05-12 10:28:31.617925"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-12 10:28:33.035317"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -46018,7 +46018,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-13 02:38:48.396329"
+  "last_modified": "2024-05-12 10:28:31.617925"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -46072,7 +46072,7 @@
   "report_format": "text"
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
-  "rest_url": "http://192.168.56.108:5000/rest/query/device?name={{ device.name }}"
+  "rest_url": "{{ server[\"url\"] }}/rest/query/device?name={{ device.name }}"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "REST Call"
