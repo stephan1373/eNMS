@@ -4180,10 +4180,10 @@
     # Interfaces 1
     targets = ['Loopback101', 'Loopback15'] if device.name == "Washington" else ['Loopback9', 'Loopback1000']
     set_var('Interfaces 1', targets, device=device.name)
-    
+
     # Derived Devices
     set_var("Derived Devices", ["Dummy1", "Austin"] if device.name == "Austin" else ["Washington" ], device=device.name)
-    
+
     # Interfaces 2
     set_var('Interfaces 2', ['Loopback333', 'Loopback334'])
     save_result(True, {})
@@ -30429,9 +30429,9 @@
         an older payload / result can be retrieved from the database.
       "alignment": "left"
       "size": !!int "14"
-  "last_modified": "2022-12-05 10:58:00.359112"
+  "last_modified": "2024-05-12 08:40:24.186325"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-12 08:40:26.753246"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -30564,7 +30564,7 @@
   "jump_on_connect": !!bool "false"
   "jump_password": ""
   "jump_username": ""
-  "last_modified": "2022-11-09 01:23:33.096547"
+  "last_modified": "2024-05-12 08:40:06.089263"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -30641,7 +30641,7 @@
   "results_as_list": !!bool "false"
   "run_method": "per_device"
   "scoped_name": "netmiko_show_ip_route"
-  "send_notification": !!bool "true"
+  "send_notification": !!bool "false"
   "send_notification_method": "mail"
   "shared": !!bool "false"
   "skip": {}
@@ -30693,7 +30693,7 @@
   "iteration_devices_property": "ip_address"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:33.099857"
+  "last_modified": "2024-05-12 08:40:14.903993"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -30706,18 +30706,42 @@
   "match1": ""
   "match2": "(\\d.*)/32"
   "match3": |-
-    Value Filldown PROTOCOL (\S+\s\S+?|\w?)
-    Value Filldown NETWORK (\d+.\d+.\d+.\d+)
-    Value Filldown MASK (\d+)
+    Value Filldown VRF (\S+)
+    Value PROTOCOL (\S+\s\S+?|\w?)
+    Value Required NETWORK (\d+\.\d+\.\d+\.\d+)
+    Value PREFIX_LENGTH (\d+)
     Value DISTANCE (\d+)
-
     Value METRIC (\d+)
     Value DIRECT (directly)
-    Value Required NEXT_HOP (connected|\ d+\.\d+\.\d+\.\d+)
-    Value INTERFACE (\S+)
-
+    Value Required,List NEXT_HOP (connected|\d+\.\d+\.\d+\.\d+)
+    #Value INTERFACE (\S+)
+    Value List INTERFACE (.+)
+    
     Start
-      ^\s+${PROTOCOL}\ s+${NETWORK}/${MASK}\s+(?:\[${DISTANCE}/${METRIC}\]|is\s+${DIRECT})(?:.+?)${NEXT_HOP},\ s+${INTERFACE}$$ -> Next.Record
+      ^VRF(\s+name)?:\s+${VRF}\s*$$
+      ^WARNING
+      ^kernel
+      ^Codes:
+      # Match for codes
+      ^\s+.+-.+
+      ^\s*$$ -> Routes
+      # Ignore IP routing not enabled
+      ^\! IP routing not enabled
+      # Error on everything else
+      ^. -> Error
+    
+    Routes
+      ^\s+(\S+\s\S+?|\w?)\s+(\d+\.\d+\.\d+\.\d+)/(\d+)\s -> Continue.Record
+      ^\s+${PROTOCOL}\s+${NETWORK}/${PREFIX_LENGTH}\s+is\s+${DIRECT}\s+${NEXT_HOP},\s+${INTERFACE}$$
+      ^\s+${PROTOCOL}\s+${NETWORK}/${PREFIX_LENGTH}\s+(?:\[${DISTANCE}/${METRIC}\]|is\s+${DIRECT})(?:.+?)${NEXT_HOP},\s+${INTERFACE}$$
+      ^\s+via\s+${NEXT_HOP},\s+${INTERFACE}
+      ^\s*$$ -> Record
+      ^VRF(\s+name)?:\s+${VRF}\s*$$ -> Start
+      ^Gateway\s+of\s+last
+      # Ignore IP routing not enabled
+      ^\! IP routing not enabled
+      # Error on everything else
+      ^. -> Error
   "match_type1": "none"
   "match_type2": "regex"
   "match_type3": "textfsm"
@@ -30970,7 +30994,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:33.103664"
+  "last_modified": "2024-05-12 08:40:19.167834"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -31053,7 +31077,7 @@
   "source_code": |-
     result = {}
     results["success"] = True
-    results["result"] = get_result("Payload Extraction", device.name)["result"]["textfsm_variable"]["value"][0][1]
+    results["result"] = get_result("Payload Extraction", device.name)["result"]["textfsm_variable"]["value"][0][2]
   "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
@@ -31224,7 +31248,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:33.106614"
+  "last_modified": "2024-05-12 08:40:24.186325"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -31307,7 +31331,7 @@
   "source_code": |-
     result = {}
     results["success"] = True
-    results["result"] = get_var("textfsm_variable", device=device.name)[0][1]
+    results["result"] = get_var("textfsm_variable", device=device.name)[0][2]
   "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
