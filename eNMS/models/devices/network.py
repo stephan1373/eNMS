@@ -8,7 +8,7 @@ from eNMS.models.inventory import Device
 
 
 class Network(Device):
-    __tablename__ = class_type = export_type = "network"
+    __tablename__ = class_type = "network"
     __mapper_args__ = {"polymorphic_identity": "network"}
     pretty_name = "Network"
     parent_type = "device"
