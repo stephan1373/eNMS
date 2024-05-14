@@ -61,7 +61,7 @@ class NapalmBackupService(ConnectionService):
                     result[getter] = f"{getter} failed because of {exc}"
             result = vs.dict_to_string(result)
             device_with_deferred_data = (
-                db.query("device")
+                db.query("device", user=run.creator)
                 .options(load_only(getattr(vs.models["device"], self.property)))
                 .filter_by(id=device.id)
                 .one()

@@ -85,7 +85,7 @@ class NetmikoBackupService(ConnectionService):
                     replacement["pattern"], replacement["replace_with"], result, flags=M
                 )
             deferred_device = (
-                db.query("device")
+                db.query("device", user=run.creator)
                 .options(load_only(getattr(vs.models["device"], self.property)))
                 .filter_by(id=device.id)
                 .one()
