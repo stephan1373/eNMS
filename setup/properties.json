@@ -718,7 +718,8 @@
       {
         "data": "devices",
         "title": "Devices",
-        "width": "100px"
+        "width": "100px",
+        "html": true
       },
       {
         "data": "links",
