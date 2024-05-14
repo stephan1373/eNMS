@@ -5980,6 +5980,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Router 1"
   - "Router 2"
@@ -6031,6 +6032,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "92"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6061,6 +6063,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2"
@@ -6110,6 +6113,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "93"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6140,6 +6144,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Subnetwork 1 - R1"
   - "Subnetwork 1 - R2"
@@ -6191,6 +6196,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "94"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6221,6 +6227,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices": []
   "down": !!bool "false"
   "gateways": []
@@ -6273,6 +6280,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "95"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6303,6 +6311,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2 - G1"
@@ -6351,6 +6360,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "96"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6381,6 +6391,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Duplicate me 1"
   - "Duplicate me 2"
@@ -6436,6 +6447,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "97"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6466,6 +6478,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Duplication - G1"
   - "Duplication - R1"
@@ -6504,6 +6517,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "97>98"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6534,6 +6548,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "S5 R1"
   - "S5 R2"
@@ -6612,6 +6627,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "99"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6642,6 +6658,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "L1 Network"
   "down": !!bool "false"
@@ -6689,6 +6706,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "100"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6719,6 +6737,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "L2 Network"
   "down": !!bool "false"
@@ -6755,6 +6774,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "100>101"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6785,6 +6805,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "L3 Network"
   "down": !!bool "false"
@@ -6821,6 +6842,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "100>101>102"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6851,6 +6873,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "S6 L3 R1"
   - "S6 L3 R2"
@@ -6889,6 +6912,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "100>101>102>103"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6919,6 +6943,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices": []
   "down": !!bool "false"
   "gateways": []
@@ -6963,6 +6988,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "104"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -6993,6 +7019,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices": []
   "down": !!bool "false"
   "gateways": []
@@ -7049,6 +7076,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "105"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"
@@ -7079,6 +7107,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Atlanta"
   - "Austin"
@@ -7178,6 +7207,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
+  "path": "106"
   "port": !!int "22"
   "positions": {}
   "property1": "10.145.14.1"

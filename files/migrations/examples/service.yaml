@@ -13253,7 +13253,7 @@
       - !!int "219"
       - !!int "249"
       "size": !!int "14"
-  "last_modified": "2022-12-07 14:46:15.974118"
+  "last_modified": "2024-05-14 07:49:19.830849"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -13512,7 +13512,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-12-07 14:42:22.247828"
+  "last_modified": "2024-05-14 07:49:13.106175"
   "last_modified_by": "admin"
   "last_run": ""
   "load_known_host_keys": !!bool "false"
@@ -13586,7 +13586,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_file": "/media/sf_shared/eNMS-prod/files/file_transfer/a.bin"
+  "source_file": "/file_transfer/a.bin"
   "source_file_includes_globbing": !!bool "false"
   "target_devices": []
   "target_pools": []
@@ -13784,7 +13784,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-12-07 14:42:27.448678"
+  "last_modified": "2024-05-14 07:49:19.830849"
   "last_modified_by": "admin"
   "last_run": ""
   "load_known_host_keys": !!bool "false"
@@ -13859,7 +13859,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_file": "/media/sf_shared/eNMS-prod/files/file_transfer/?[c|d].bi*"
+  "source_file": "/file_transfer/?[c|d].bi*"
   "source_file_includes_globbing": !!bool "true"
   "target_devices":
   - "Washington"
