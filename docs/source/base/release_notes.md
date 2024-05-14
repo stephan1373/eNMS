@@ -205,6 +205,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add run cascade deletion when deleting a service (in rbac.json)
 - Fix connection with non-default name not closed at the end of a workflow bug
   Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4
+- Add quotes around ansible playbook service extra_args argument
 
 Migration:
 - network.yaml must be merge into device.yaml:
@@ -240,6 +241,7 @@ Tests:
 - Test "user" variable in parameterized form for instance field filtering, email address in string fields, etc
 - Test that the multiline strings are properly imported, specifically that there is no extra empty line, or extra
   empty space at the beginning of a line (which makes python code fails with wrong indentation error)
+- Test that the ansible playbook service still works fine with quotes around extra_args
 
 Version 5.0: Clustering
 -----------------------
