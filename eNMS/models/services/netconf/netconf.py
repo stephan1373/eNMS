@@ -1,7 +1,7 @@
 from json import dumps
 from sqlalchemy import Boolean, ForeignKey, Integer
-import xmltodict
 from wtforms.widgets import TextArea
+from xmltodict import parse
 
 from eNMS.database import db
 from eNMS.fields import BooleanField, HiddenField, SelectField, StringField
@@ -71,7 +71,7 @@ class NetconfService(ConnectionService):
         if run.nc_type == "rpc":
             result = manager.rpc(str(xml_filter)).data_xml
         if run.xml_conversion:
-            result = xmltodict.parse(str(result))
+            result = parse(str(result))
         if run.unlock:
             manager.unlock(target=run.target)
         return {"success": True, "result": result}
