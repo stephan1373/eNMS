@@ -1376,7 +1376,7 @@ class Runner:
             username=credentials["username"],
             password=credentials["password"],
         )
-        nccclient_connection.connection_name = self.connection_name
+        ncclient_connection.connection_name = self.connection_name
         vs.connections_cache["ncclient"][self.parent_runtime].setdefault(
             device.name, {}
         )[self.connection_name] = ncclient_connection
