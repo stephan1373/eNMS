@@ -206,6 +206,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Fix connection with non-default name not closed at the end of a workflow bug
   Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4
 - Add quotes around ansible playbook service extra_args argument
+- Fix Netmiko File Transfer Service missing netmiko_timeout_override property bug
 
 Migration:
 - network.yaml must be merge into device.yaml:
