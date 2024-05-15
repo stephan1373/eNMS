@@ -207,6 +207,7 @@ Version 5.1.0: Changelog & Workflow Tree
   Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4
 - Add quotes around ansible playbook service extra_args argument
 - Fix Netmiko File Transfer Service missing netmiko_timeout_override property bug
+- Fix Unix Shell Script Service missing netmiko_timeout_override property bug
 
 Migration:
 - network.yaml must be merge into device.yaml:
