@@ -16,6 +16,7 @@ class NetmikoFileTransferService(ConnectionService):
     id = db.Column(Integer, ForeignKey("connection_service.id"), primary_key=True)
     enable_mode = db.Column(Boolean, default=True)
     config_mode = db.Column(Boolean, default=False)
+    read_timeout_override = db.Column(Float, default=0.0)
     source_file = db.Column(db.SmallString)
     destination_file = db.Column(db.SmallString)
     direction = db.Column(db.SmallString)
