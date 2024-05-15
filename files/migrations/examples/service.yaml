@@ -164,8 +164,8 @@
     - !!int "55"
     - !!int "266"
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "-382"
-    - !!int "39"
+    - !!int "-422"
+    - !!int "108"
     "Advanced Iteration Targets":
     - !!int "-131"
     - !!int "-24"
@@ -1409,8 +1409,8 @@
     - !!int "688"
     - !!int "-88"
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "377"
-    - !!int "272"
+    - !!int "446"
+    - !!int "313"
     "AAA":
     - !!int "500"
     - !!int "0"
@@ -11073,11 +11073,20 @@
         This service uses the password admin in the "Jump on Connect" section :
         this password must be set to "admin" after database reload.
       "positions":
-      - !!int "467"
-      - !!int "-1"
-  "last_modified": "2022-11-09 01:23:33.519932"
+      - !!int "519"
+      - !!int "12"
+    "8431d3ed-08d8-4d7a-a8f8-f8f8ce512581":
+      "positions":
+      - !!int "-132"
+      - !!int "-19"
+      "content": |-
+        This service must be approved by an
+        admin user before running the workflow.
+      "alignment": "left"
+      "size": !!int "14"
+  "last_modified": "2024-05-15 07:33:26.418348"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-15 07:33:28.010027"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -11158,7 +11167,7 @@
   "version": ""
   "waiting_time": !!int "0"
 - "admin_only": !!bool "false"
-  "approved_by_admin": !!bool "false"
+  "approved_by_admin": !!bool "true"
   "command": "ps -ef"
   "completion_time": !!int "1"
   "content_match": "python\\d"
@@ -11188,7 +11197,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2022-11-09 01:23:32.527232"
+  "last_modified": "2024-05-15 07:33:26.418348"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -11221,8 +11230,8 @@
   "parameterized_form_template": ""
   "positions":
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "-142"
-    - !!int "-11"
+    - !!int "-152"
+    - !!int "48"
     "Regression Workflow M: Unix command & shell, ping, - jump on connect - mechanism":
     - !!int "-177"
     - !!int "-94"
@@ -11350,8 +11359,8 @@
   "parameterized_form_template": ""
   "positions":
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "-156"
-    - !!int "196"
+    - !!int "-160"
+    - !!int "307"
     "Regression Workflow M: Unix command & shell, ping, - jump on connect - mechanism":
     - !!int "-113"
     - !!int "220"
@@ -11480,8 +11489,8 @@
   "ports": "22"
   "positions":
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "126"
-    - !!int "-10"
+    - !!int "161"
+    - !!int "-11"
     "Regression Workflow M: Unix command & shell, ping, - jump on connect - mechanism":
     - !!int "200"
     - !!int "-71"
@@ -11846,8 +11855,8 @@
   "parameterized_form_template": ""
   "positions":
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "428"
-    - !!int "74"
+    - !!int "556"
+    - !!int "72"
     "Regression Workflow M: Unix command & shell, ping, - jump on connect - mechanism":
     - !!int "358"
     - !!int "190"
@@ -12628,7 +12637,7 @@
   "labels": {}
   "last_modified": "2022-12-08 00:28:25.116759"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-15 07:31:52.475866"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -45145,8 +45154,8 @@
   "ports": "22"
   "positions":
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism":
-    - !!int "155"
-    - !!int "189"
+    - !!int "195"
+    - !!int "301"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
