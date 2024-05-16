@@ -60,6 +60,8 @@ class Runner:
         vs.run_instances[self.runtime] = self
         for key, value in kwargs.items():
             setattr(self, key, value)
+        if self.service.soft_deleted:
+            raise Exception("Service is soft-deleted.")
         self.in_process = kwargs.get("in_process", getattr(run, "in_process", False))
         self.dry_run = getattr(run, "dry_run", False) or self.get("dry_run")
         device_progress = "iteration_device" if self.iteration_run else "device"
