@@ -351,6 +351,8 @@ class Runner:
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
             env.redis("delete", *runtime_keys)
+        vs.run_targets.pop(self.runtime)
+        vs.run_services.pop(self.runtime)
         self.close_remaining_connections()
 
     def end_of_run_transaction(self, results, status=None):
@@ -360,6 +362,7 @@ class Runner:
         self.main_run.state = state
         self.main_run.duration = results["duration"]
         self.main_run.status = state["status"] = status
+        self.main_run.payload = self.payload
         self.create_logs()
         if getattr(self, "man_minutes", None) and "summary" in results:
             self.main_run.service.man_minutes_total += (

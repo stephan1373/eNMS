@@ -497,10 +497,6 @@ class Run(AbstractBase):
             trigger=self.trigger,
         )
         self.service_run.start_run()
-        self.payload = self.service_run.payload
-        db.session.commit()
-        vs.run_targets.pop(self.runtime)
-        vs.run_services.pop(self.runtime)
         return self.service_run.results
 
 
