@@ -333,7 +333,6 @@ class Runner:
             results["duration"] = str(now - start)
             self.write_state("result/success", results["success"])
             if self.is_main_run:
-                self.close_remaining_connections()
                 self.success = results["success"]
                 self.update_service_count(-1)
                 db.try_commit(self.end_of_run_transaction, results)
@@ -342,16 +341,17 @@ class Runner:
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
-            self.end_of_run_cleanup()
+            if self.is_main_run:
+                self.end_of_run_cleanup()
             vs.custom.run_post_processing(self, results)
-
         self.results = results
         vs.run_instances.pop(self.runtime)
 
     def end_of_run_cleanup(self):
-        if env.redis_queue and self.is_main_run:
+        if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
             env.redis("delete", *runtime_keys)
+        self.close_remaining_connections()
 
     def end_of_run_transaction(self, results, status=None):
         state = self.main_run.get_state()
