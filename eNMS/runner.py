@@ -1042,7 +1042,7 @@ class Runner:
         secret = db.fetch("secret", name=name, user=self.creator, rbac="use")
         return env.get_password(secret.secret_value)
 
-    def get_result(self, service_name, device=None, workflow=None, all_matches=False):
+    def get_result(self, service_name, device=None, workflow=None, runtime=None, all_matches=False):
         def filter_run(query, property):
             query = query.filter(
                 vs.models["result"].service.has(
@@ -1055,7 +1055,7 @@ class Runner:
             if not run:
                 return None
             query = db.session.query(vs.models["result"]).filter(
-                vs.models["result"].parent_runtime == run.runtime
+                vs.models["result"].parent_runtime == runtime or run.runtime
             )
             if workflow:
                 query = query.filter(
