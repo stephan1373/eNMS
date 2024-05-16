@@ -253,7 +253,7 @@ function editFile(id, filename, filepath) {
         callback: () => {
           const display = document.getElementById(`file_content-${id}`);
           // eslint-disable-next-line new-cap
-          let fileEditor = (editors[filename] = CodeMirror.fromTextArea(display, {
+          let fileEditor = (editors[id] = CodeMirror.fromTextArea(display, {
             lineWrapping: true,
             lineNumbers: true,
             theme: "cobalt",
@@ -275,7 +275,7 @@ function saveFile(file) {
     url: `/save_file/${file}`,
     form: `file-content-form-${file}`,
     callback: function () {
-      notify(`File ${file} successfully saved.`, "success", 5, true);
+      notify("File successfully saved.", "success", 5, true);
       $(`[id="file_editor-${file}"`).remove();
       refreshTable("file");
     },

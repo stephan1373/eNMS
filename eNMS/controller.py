@@ -1392,12 +1392,11 @@ class Controller:
             **{f"target_{kwargs['type']}s": kwargs["targets"].split("-")},
         )
 
-    def save_file(self, filepath, **kwargs):
-        scoped_path, content = filepath.replace(">", "/"), None
+    def save_file(self, id, **kwargs):
+        file, content = db.fetch("file", id=id), None
         if kwargs.get("file_content"):
-            with open(f"{vs.file_path}{scoped_path}", "w") as file:
+            with open(file.full_path, "w") as file:
                 content = file.write(kwargs["file_content"])
-        db.fetch("file", path=scoped_path).update()
         return content
 
     def save_positions(self, type, id, **kwargs):
