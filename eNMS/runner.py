@@ -343,9 +343,9 @@ class Runner:
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
+            vs.custom.run_post_processing(self, results)
             if self.is_main_run:
                 self.end_of_run_cleanup()
-            vs.custom.run_post_processing(self, results)
         self.results = results
         vs.run_instances.pop(self.runtime)
 
