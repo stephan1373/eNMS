@@ -129,6 +129,10 @@ export function displayWorkflow(workflowData, workflowSwitch) {
   displayWorkflowState(workflowData, workflowSwitch);
 }
 
+export function updateRuntimeVariable(runtime) {
+  currentRuntime = runtime;
+}
+
 function updateRuntimes(result) {
   currentPlaceholder = result.state?.[currentPath]?.placeholder;
   if (!currentRuntime) currentRuntime = $("#current-runtime").val();

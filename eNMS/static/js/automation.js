@@ -31,6 +31,7 @@ import {
   currentRuntime,
   getServiceState,
   switchToWorkflow,
+  updateRuntimeVariable,
   workflow,
 } from "./workflowBuilder.js";
 
@@ -605,6 +606,7 @@ export function runLogic(result) {
       getServiceState(result.service.id, true);
     } else {
       const option = `<option value='${result.runtime}'>${result.runtime}</option>`;
+      updateRuntimeVariable(result.runtime);
       $("#current-runtime").append(option).val(result.runtime).selectpicker("refresh");
     }
   } else if (page == "network_builder") {
