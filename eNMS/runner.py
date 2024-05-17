@@ -1055,7 +1055,7 @@ class Runner:
             if not run:
                 return None
             query = db.session.query(vs.models["result"]).filter(
-                vs.models["result"].parent_runtime == runtime or run.runtime
+                vs.models["result"].parent_runtime == (runtime or run.runtime)
             )
             if workflow:
                 query = query.filter(
