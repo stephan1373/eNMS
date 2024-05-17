@@ -1202,8 +1202,8 @@
     - "-164"
     - "15"
     "Parameterized Column Ordering and Global user Property":
-    - !!int "-104"
-    - !!int "61"
+    - !!int "-157"
+    - !!int "21"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -2483,8 +2483,8 @@
     - "651"
     - "20"
     "Parameterized Column Ordering and Global user Property":
-    - !!int "545"
-    - !!int "51"
+    - !!int "547"
+    - !!int "-5"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -55926,8 +55926,8 @@
   "labels":
     "5ff90d7c-7382-4e15-8105-85e3448f9ad6":
       "positions":
-      - !!int "238"
-      - !!int "-75"
+      - !!int "209"
+      - !!int "-98"
       "content": |-
         This workflow tests:
         - The ordering mechanism of a instance or multiple instance field: by using the "order"
@@ -55936,13 +55936,47 @@
         - The available of a global "user" variable set to the current user. Typically, by filtering
         the "run" list based on on the "creator" column set to "user.name", we ensure that the
         user running the workflow will only have access to its own previous runs.
+        - Users can select a run from the parameterized form, then convert the run ID to an
+        actual run object (because the global run property coming from the form will be set
+        to the selected run ID)
         - The ability for the "get_result" function to retrieve results from previous runs via the
         "runtime" keyword argument (and not just for the on-going run)
       "alignment": "left"
       "size": !!int "14"
-  "last_modified": "2024-05-17 05:20:10.363188"
+    "e3a1e61e-569e-4937-acdb-36c863d39384":
+      "positions":
+      - !!int "-59"
+      - !!int "222"
+      "content": |-
+        How to test this workflow:
+        1) Open the parameterized and check that
+        - only devices with a "d" in their name are displayed
+        - devices are ordered in alphabetical order
+        2) Choose any device and run the workflow. It should fail
+        because the python snippet service does the following:
+        
+        run_object = fetch("run", id=old_run, allow_none=True)
+        if run_object:
+            results["success"] = run_object.runtime == get_result("Parameterized Column
+         Ordering and Global user Property", runtime=run_object.runtime)["runtime"]
+        else:
+            results["success"] = False
+      "alignment": "left"
+      "size": !!int "14"
+    "b17aecda-1373-47cc-aaf4-404950308d74":
+      "positions":
+      - !!int "540"
+      - !!int "228"
+      "content": |-
+        3) Run the workflow again, this time by selecting any device AND
+        the previous run. This time, it should work because we use the "runtime"
+        keyword argument of "get_result" to fetch the result from the previous
+        run, based on the runtime of the run object.
+      "alignment": "left"
+      "size": !!int "14"
+  "last_modified": "2024-05-17 06:28:42.330092"
   "last_modified_by": "admin"
-  "last_run": "2024-05-17 05:20:11.566362"
+  "last_run": "2024-05-17 06:28:56.314530"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -55965,7 +55999,7 @@
   "owners":
   - "admin"
   "parameterized_form": |-
-    devices = MultipleInstanceField(
+    target_devices = MultipleInstanceField(
         'Devices',
         model='device',
         constraints={
@@ -55973,7 +56007,7 @@
             "name_filter": "inclusion"
         },
     )
-    run = InstanceField('Run', model='run')
+    old_run = InstanceField('Run', model='run')
   "parameterized_form_template": ""
   "positions": {}
   "postprocessing": ""
@@ -55989,7 +56023,7 @@
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
   "restrict_to_owners": []
-  "run_method": "per_service_with_workflow_targets"
+  "run_method": "per_device"
   "scoped_name": "Parameterized Column Ordering and Global user Property"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
@@ -56002,8 +56036,7 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "target_devices":
-  - "Jackson"
+  "target_devices": []
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "workflow"
@@ -56044,7 +56077,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-05-17 05:16:27.702690"
+  "last_modified": "2024-05-17 06:28:42.330092"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -56078,8 +56111,8 @@
   "parameterized_form_template": ""
   "positions":
     "Parameterized Column Ordering and Global user Property":
-    - !!int "200"
-    - !!int "56"
+    - !!int "224"
+    - !!int "74"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -56107,10 +56140,10 @@
     
     result = {}
     
-    runtime = getattr(run, "runtime", False)
-    if runtime:
-        log("info", get_result("Parameterized Column Ordering and Global user Property", runtime=runtime))
-        results["success"] = runtime == get_result("Parameterized Column Ordering and Global user Property", runtime=runtime)
+    run_object = fetch("run", id=old_run, allow_none=True)
+    
+    if run_object:
+        results["success"] = run_object.runtime == get_result("Parameterized Column Ordering and Global user Property", runtime=run_object.runtime)["runtime"]
     else:
         results["success"] = False
     results["result"] = result
