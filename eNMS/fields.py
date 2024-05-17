@@ -180,8 +180,9 @@ class InstanceField(SelectField):
 
     def __init__(self, *args, **kwargs):
         kwargs["coerce"] = int
-        self.constraints = kwargs.pop("constraints", None)
         self.model = kwargs.pop("model", None)
+        self.constraints = kwargs.pop("constraints", None)
+        self.order = kwargs.pop("order", None)
         super().__init__(*args, **kwargs)
         self.choices = ()
 
@@ -195,6 +196,7 @@ class MultipleInstanceField(FieldMixin, WtformsSelectMultipleField):
     def __init__(self, *args, **kwargs):
         self.model = kwargs.pop("model")
         self.constraints = kwargs.pop("constraints", None)
+        self.order = kwargs.pop("order", None)
         super().__init__(*args, **kwargs)
         self.choices = ()
 

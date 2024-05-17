@@ -580,7 +580,7 @@ export function initCodeMirror(id, mode) {
   return editor;
 }
 
-export function initSelect(el, model, parentId, single, constraints) {
+export function initSelect(el, model, parentId, single, field) {
   el.select2({
     multiple: !single,
     allowClear: true,
@@ -600,7 +600,8 @@ export function initSelect(el, model, parentId, single, constraints) {
         return JSON.stringify({
           term: params.term || "",
           page: params.page || 1,
-          constraints: constraints,
+          constraints: field.constraints,
+          order: field.order,
           multiple: !single,
         });
       },
@@ -672,7 +673,7 @@ export function configureForm(form, id, panelId) {
       } else {
         model = field.model;
       }
-      initSelect(el, model, panelId, field.type == "object", field.constraints);
+      initSelect(el, model, panelId, field.type == "object", field);
     }
   }
 }

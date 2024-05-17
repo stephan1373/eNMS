@@ -98,6 +98,7 @@ class MetaForm(FormMeta):
                 "type": field_type,
                 "model": field.kwargs.get("model", None),
                 "constraints": field.kwargs.get("constraints", {}),
+                "order": field.kwargs.get("order", {}),
                 "dont_duplicate": field.kwargs.get("dont_duplicate", False),
             }
             if field.args and isinstance(field.args[0], str):
