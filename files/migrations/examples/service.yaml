@@ -55940,9 +55940,9 @@
         "runtime" keyword argument (and not just for the on-going run)
       "alignment": "left"
       "size": !!int "14"
-  "last_modified": "2024-05-17 04:47:57.513828"
+  "last_modified": "2024-05-17 05:20:10.363188"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-05-17 05:20:11.566362"
   "log_level": !!int "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -55965,8 +55965,15 @@
   "owners":
   - "admin"
   "parameterized_form": |-
-    devices = MultipleInstanceField('Devices', model='device')
-    run = InstanceField('Runs', model='run')
+    devices = MultipleInstanceField(
+        'Devices',
+        model='device',
+        constraints={
+            "name": user.name[1],
+            "name_filter": "inclusion"
+        },
+    )
+    run = InstanceField('Run', model='run')
   "parameterized_form_template": ""
   "positions": {}
   "postprocessing": ""
@@ -55982,7 +55989,7 @@
   "report_jinja2_template": !!bool "false"
   "reserved": !!bool "false"
   "restrict_to_owners": []
-  "run_method": "per_device"
+  "run_method": "per_service_with_workflow_targets"
   "scoped_name": "Parameterized Column Ordering and Global user Property"
   "send_notification": !!bool "false"
   "send_notification_method": "mail"
@@ -55995,7 +56002,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "target_devices": []
+  "target_devices":
+  - "Jackson"
   "target_pools": []
   "time_between_retries": !!int "10"
   "type": "workflow"
@@ -56036,7 +56044,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2024-05-17 04:47:57.513828"
+  "last_modified": "2024-05-17 05:16:27.702690"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -56098,8 +56106,13 @@
     # Click on "i" to right of "Source Code" for examples.
     
     result = {}
-    results["success"] = True
-    results["runtime"] = getattr(run, "runtime")
+    
+    runtime = getattr(run, "runtime", False)
+    if runtime:
+        log("info", get_result("Parameterized Column Ordering and Global user Property", runtime=runtime))
+        results["success"] = runtime == get_result("Parameterized Column Ordering and Global user Property", runtime=runtime)
+    else:
+        results["success"] = False
     results["result"] = result
   "target_devices": []
   "target_pools": []
