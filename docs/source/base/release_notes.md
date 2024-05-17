@@ -212,6 +212,8 @@ Version 5.1.0: Changelog & Workflow Tree
   in case of failure
 - Add an optional "runtime" parameter to the workflow builder's "get_result" function to retrieve results
   from a run different than the ongoing run
+- Add ordering mechanism for instance fields and multiple instance fields, with the following syntax:
+  x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"}
 
 Migration:
 - network.yaml must be merge into device.yaml:
