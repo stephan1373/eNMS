@@ -350,12 +350,12 @@ class Runner:
         vs.run_instances.pop(self.runtime)
 
     def end_of_run_cleanup(self):
+        self.close_remaining_connections()
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
             env.redis("delete", *runtime_keys)
         vs.run_targets.pop(self.runtime)
         vs.run_services.pop(self.runtime)
-        self.close_remaining_connections()
 
     def end_of_run_transaction(self, results, status=None):
         state = self.main_run.get_state()
