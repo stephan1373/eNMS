@@ -1183,8 +1183,10 @@ class Controller:
         query = db.query(model).filter(table.name.contains(params.get("term")))
         query = self.filtering_relationship_constraints(query, model, **params)
         query = query.filter(and_(*self.filtering_base_constraints(model, **params)))
-        order_property = getattr(table, params["order"]["property"])
-        query = query.order_by(getattr(order_property, params["order"]["direction"])())
+        if "property" in params.get("order", {}):
+            order_property = getattr(table, params["order"]["property"])
+            order_direction = params["order"].get("direction", "asc")
+            query = query.order_by(getattr(order_property, order_direction)())
         property = "name" if params["multiple"] else "id"
         button_html = "type='button' class='btn btn-link btn-select2'"
         return {
