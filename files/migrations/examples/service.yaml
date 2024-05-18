@@ -1202,8 +1202,8 @@
     - "-164"
     - "15"
     "Parameterized Column Ordering and Global user Property":
-    - !!int "-157"
-    - !!int "21"
+    - !!int "-218"
+    - !!int "157"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -2483,8 +2483,8 @@
     - "651"
     - "20"
     "Parameterized Column Ordering and Global user Property":
-    - !!int "547"
-    - !!int "-5"
+    - !!int "629"
+    - !!int "168"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -55926,8 +55926,8 @@
   "labels":
     "5ff90d7c-7382-4e15-8105-85e3448f9ad6":
       "positions":
-      - !!int "209"
-      - !!int "-98"
+      - !!int "207"
+      - !!int "23"
       "content": |-
         This workflow tests:
         - The ordering mechanism of a instance or multiple instance field: by using the "order"
@@ -55945,8 +55945,8 @@
       "size": !!int "14"
     "e3a1e61e-569e-4937-acdb-36c863d39384":
       "positions":
-      - !!int "-59"
-      - !!int "222"
+      - !!int "-235"
+      - !!int "288"
       "content": |-
         How to test this workflow:
         1) Open the parameterized and check that
@@ -55954,24 +55954,31 @@
         - devices are ordered in alphabetical order
         2) Choose any device and run the workflow. It should fail
         because the python snippet service does the following:
-        
-        run_object = fetch("run", id=old_run, allow_none=True)
-        if run_object:
-            results["success"] = run_object.runtime == get_result("Parameterized Column
-         Ordering and Global user Property", runtime=run_object.runtime)["runtime"]
-        else:
-            results["success"] = False
       "alignment": "left"
       "size": !!int "14"
     "b17aecda-1373-47cc-aaf4-404950308d74":
       "positions":
-      - !!int "540"
-      - !!int "228"
+      - !!int "690"
+      - !!int "271"
       "content": |-
         3) Run the workflow again, this time by selecting any device AND
         the previous run. This time, it should work because we use the "runtime"
         keyword argument of "get_result" to fetch the result from the previous
         run, based on the runtime of the run object.
+      "alignment": "left"
+      "size": !!int "14"
+    "b3ca710e-efe4-4e0c-9b21-84534d3e9ca7":
+      "positions":
+      - !!int "209"
+      - !!int "287"
+      "content": |-
+        run_object = fetch("run", id=old_run, allow_none=True)
+        if run_object:
+            results["success"] = run_object.runtime == get_result(
+                "Parameterized Column Ordering and Global user Property",
+                runtime=run_object.runtime)["runtime"]
+        else:
+            results["success"] = False
       "alignment": "left"
       "size": !!int "14"
   "last_modified": "2024-05-17 06:28:42.330092"
@@ -56111,8 +56118,8 @@
   "parameterized_form_template": ""
   "positions":
     "Parameterized Column Ordering and Global user Property":
-    - !!int "224"
-    - !!int "74"
+    - !!int "189"
+    - !!int "164"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -56134,14 +56141,14 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": |-
-    
+  "source_code": |2-
+
     # Click on "i" to right of "Source Code" for examples.
-    
+
     result = {}
-    
+
     run_object = fetch("run", id=old_run, allow_none=True)
-    
+
     if run_object:
         results["success"] = run_object.runtime == get_result("Parameterized Column Ordering and Global user Property", runtime=run_object.runtime)["runtime"]
     else:
