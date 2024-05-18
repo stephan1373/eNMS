@@ -24,7 +24,7 @@ from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
 from sqlalchemy.sql.expression import true
 from subprocess import Popen
 from tarfile import open as open_tar
-from threading import current_thread, Thread
+from threading import Thread
 from traceback import format_exc
 from uuid import uuid4
 from xlrd import open_workbook
@@ -1275,7 +1275,6 @@ class Controller:
         try:
             start = datetime.now().replace(microsecond=0)
             run_object, user = None, kwargs["creator"]
-            current_thread().name = runtime = kwargs["runtime"]
             if "path" not in kwargs:
                 kwargs["path"] = str(service)
             keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1320,7 +1319,7 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            env.log("critical", f"(runtime: {runtime}) - {format_exc()}")
+            env.log("critical", f"(runtime: {kwargs['runtime']}) - {format_exc()}")
             if run_object and run_object.status == "Running":
                 run_object.service_run.log("critical", format_exc())
                 db.try_set(run_object, "status", "Failed")
@@ -1328,7 +1327,7 @@ class Controller:
                     "success": False,
                     "result": format_exc(),
                     "duration": str(datetime.now().replace(microsecond=0) - start),
-                    "runtime": runtime,
+                    "runtime": kwargs["runtime"],
                 }
                 db.try_commit(run_object.service_run.end_of_run_transaction, results)
                 run_object.service_run.create_result(results, run_result=True)
