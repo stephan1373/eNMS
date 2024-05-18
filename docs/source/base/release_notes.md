@@ -214,6 +214,7 @@ Version 5.1.0: Changelog & Workflow Tree
   from a run different than the ongoing run
 - Add ordering mechanism for instance fields and multiple instance fields, with the following syntax:
   x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"}
+- Name of current thread when running a service no longer set to runtime
 
 Migration:
 - network.yaml must be merge into device.yaml:
