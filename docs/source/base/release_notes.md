@@ -215,6 +215,9 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add ordering mechanism for instance fields and multiple instance fields, with the following syntax:
   x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"}
 - Name of current thread when running a service no longer set to runtime
+- Add mechanism for optional search box in table 'column-display' dropdown list
+  - Syntax: add "{ search: true }" as argument when calling "columnDisplay"
+  - Add search box by default to device and configuration tables
 
 Migration:
 - network.yaml must be merge into device.yaml:
