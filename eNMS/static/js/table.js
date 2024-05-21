@@ -323,7 +323,8 @@ export class Table {
     });
   }
 
-  columnDisplay() {
+  columnDisplay({ search = false } = {}) {
+    const searchBox = search ? 'data-live-search="true"' : "";
     return `
       <button
         style="background:transparent; border:none; 
@@ -334,6 +335,7 @@ export class Table {
           id="column-display-${this.id}"
           title="Columns"
           class="form-control"
+          ${searchBox}
           data-size="20"
           data-actions-box="true"
           data-selected-text-format="static"
@@ -582,7 +584,7 @@ tables.device = class DeviceTable extends Table {
 
   get controls() {
     return [
-      this.columnDisplay(),
+      this.columnDisplay({ search: true }),
       this.displayChangelogButton(),
       this.refreshTableButton(),
       `
@@ -813,7 +815,7 @@ tables.configuration = class ConfigurationTable extends Table {
 
   get controls() {
     return [
-      this.columnDisplay(),
+      this.columnDisplay({ search: true }),
       `<input
         name="context-lines"
         id="slider"
