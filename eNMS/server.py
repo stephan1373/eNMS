@@ -349,7 +349,7 @@ class Server(Flask):
                 archive = db.fetch("folder", path=f"/{path}", allow_none=True)
                 if archive:
                     db.session.delete(archive)
-            return send_file(return_data, download_name=Path(full_path).name)
+            return send_file(return_data, download_name=Path(full_path).name, as_attachment=True)
 
         @blueprint.route("/export_service/<int:id>")
         @self.process_requests
