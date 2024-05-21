@@ -219,6 +219,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Syntax: add "{ search: true }" as argument when calling "columnDisplay"
   - Add search box by default to device and configuration tables
 - Force downloading file to browser by adding "as_attachment=True" option in flask send_file function
+- Change 'Skip' label and tooltip to 'Skip / Unskip' in workflow builder
 
 Migration:
 - network.yaml must be merge into device.yaml:
