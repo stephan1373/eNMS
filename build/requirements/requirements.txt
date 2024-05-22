@@ -8,7 +8,6 @@ flask-socketio
 flask_wtf
 gitpython
 gunicorn
-napalm
 netmiko
 passlib
 redis
