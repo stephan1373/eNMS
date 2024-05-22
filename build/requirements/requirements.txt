@@ -11,6 +11,7 @@ gunicorn
 netmiko
 passlib
 redis
+requests
 ruamel.yaml
 sqlalchemy
 watchdog
