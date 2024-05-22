@@ -77,8 +77,6 @@ class VariableStore:
     def _set_automation_variables(self):
         self.ssh_sessions = {}
         self.netmiko_drivers = sorted(CLASS_MAPPER)
-        self.napalm_drivers = sorted(SUPPORTED_DRIVERS[1:])
-        self.netconf_drivers = sorted(supported_devices_cfg)
         self.scrapli_drivers = sorted(CORE_PLATFORM_MAP)
         self.timestamps = ("status", "update", "failure", "runtime", "duration")
         self.configuration_properties = {
@@ -86,6 +84,14 @@ class VariableStore:
             "operational_data": "Operational Data",
             "specialized_data": "Specialized Data",
         }
+        try:
+            self.napalm_drivers = sorted(SUPPORTED_DRIVERS[1:])
+        except NameError:
+            self.napalm_driver = []
+        try:
+            self.netconf_drivers = sorted(supported_devices_cfg)
+        except NameError:
+            self.netconf_drivers = []
 
     def _set_general_variables(self):
         self.field_class = {}
