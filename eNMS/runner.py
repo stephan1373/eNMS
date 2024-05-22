@@ -8,7 +8,6 @@ from jinja2 import Template
 from json import dump, load, loads
 from json.decoder import JSONDecodeError
 from multiprocessing.pool import ThreadPool
-from napalm import get_network_driver
 from netmiko import ConnectHandler
 from operator import attrgetter
 from os import getenv
@@ -40,6 +39,11 @@ try:
     from ncclient import manager
 except ImportError as exc:
     warn(f"Couldn't import ncclient module ({exc})")
+
+try:
+    from napalm import get_network_driver
+except ImportError as exc:
+    warn(f"Couldn't import napalm module ({exc})")
 
 from eNMS.database import db
 from eNMS.environment import env

@@ -3,7 +3,6 @@ from datetime import datetime
 from git import Repo
 from json import load
 from logging import error
-from napalm._SUPPORTED_DRIVERS import SUPPORTED_DRIVERS
 from netmiko.ssh_dispatcher import CLASS_MAPPER
 from os import getenv
 from pathlib import Path
@@ -28,6 +27,12 @@ try:
     from ncclient.devices import supported_devices_cfg
 except ImportError as exc:
     warn(f"Couldn't import ncclient module ({exc})")
+
+try:
+    from napalm._SUPPORTED_DRIVERS import SUPPORTED_DRIVERS
+except ImportError as exc:
+    warn(f"Couldn't import napalm module ({exc})")
+
 
 class VariableStore:
     def __init__(self):
