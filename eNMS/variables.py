@@ -4,7 +4,6 @@ from git import Repo
 from json import load
 from logging import error
 from napalm._SUPPORTED_DRIVERS import SUPPORTED_DRIVERS
-from ncclient.devices import supported_devices_cfg
 from netmiko.ssh_dispatcher import CLASS_MAPPER
 from os import getenv
 from pathlib import Path
@@ -25,6 +24,10 @@ except ImportError as exc:
     CORE_PLATFORM_MAP = {"cisco_iosxe": "cisco_iosxe"}
     warn(f"Couldn't import scrapli module ({exc})")
 
+try:
+    from ncclient.devices import supported_devices_cfg
+except ImportError as exc:
+    warn(f"Couldn't import ncclient module ({exc})")
 
 class VariableStore:
     def __init__(self):

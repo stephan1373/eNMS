@@ -9,7 +9,6 @@ from json import dump, load, loads
 from json.decoder import JSONDecodeError
 from multiprocessing.pool import ThreadPool
 from napalm import get_network_driver
-from ncclient import manager
 from netmiko import ConnectHandler
 from operator import attrgetter
 from os import getenv
@@ -36,6 +35,11 @@ try:
     from slack_sdk import WebClient
 except ImportError as exc:
     warn(f"Couldn't import slack_sdk module ({exc})")
+
+try:
+    from ncclient import manager
+except ImportError as exc:
+    warn(f"Couldn't import ncclient module ({exc})")
 
 from eNMS.database import db
 from eNMS.environment import env
