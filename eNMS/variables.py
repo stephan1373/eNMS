@@ -87,7 +87,7 @@ class VariableStore:
         try:
             self.napalm_drivers = sorted(SUPPORTED_DRIVERS[1:])
         except NameError:
-            self.napalm_driver = []
+            self.napalm_drivers = []
         try:
             self.netconf_drivers = sorted(supported_devices_cfg)
         except NameError:
