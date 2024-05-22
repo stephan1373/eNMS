@@ -2,6 +2,7 @@ ansible
 dramatiq[redis, watch]
 hvac
 ldap3
+ncclient
 pynetbox
 scrapli
 scrapli-netconf
