@@ -543,7 +543,7 @@ class Database:
                 self.session.rollback()
                 if (
                     index == self.retry_commit_number - 1
-                    or type(exc) is IntegrityError
+                    or isinstance(exc, IntegrityError)
                     and "Duplicate entry" in str(exc)
                     and "for key 'name'" in str(exc)
                 ):

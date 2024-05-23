@@ -422,8 +422,8 @@ class Runner:
                         run_kwargs[key] = db.fetch(
                             value.type, id=refetch_ids[key], rbac=None
                         )
-                except Exception as ex:
-                    if isinstance(ex, SQLAlchemyError):
+                except Exception as exc:
+                    if isinstance(exc, SQLAlchemyError):
                         db.session.rollback()
                     run_kwargs[key] = value
             parent_run = run
