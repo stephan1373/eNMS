@@ -1619,7 +1619,8 @@ class Controller:
         path = vs.path / "network_data"
         env.log("info", f"Updating device configurations with data from {path}")
         for dir in scandir(path):
-            device = db.fetch("device", allow_none=True, name=dir.name)
+            user = "admin" if force_update else current_user.name
+            device = db.fetch("device", allow_none=True, name=dir.name, user=user)
             timestamp_path = Path(dir.path) / "timestamps.json"
             if not device:
                 continue
@@ -1637,8 +1638,7 @@ class Controller:
                             no_update = vs.str_to_date(value) <= vs.str_to_date(db_date)
                     setattr(device, f"last_{property}_{timestamp}", value)
                 filepath = Path(dir.path) / property
-                print(device, device.configuration, no_update)
-                if not filepath.exists() or (device.configuration and no_update):
+                if not filepath.exists() or no_update:
                     continue
                 with open(filepath) as file:
                     setattr(device, property, file.read())
