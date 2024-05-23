@@ -360,6 +360,7 @@ class Runner:
 
     def end_of_run_cleanup(self):
         self.close_remaining_connections()
+        db.try_set(self.main_run, "state", self.main_run.get_state())
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
             env.redis("delete", *runtime_keys)
@@ -367,12 +368,10 @@ class Runner:
         vs.run_services.pop(self.runtime)
 
     def end_of_run_transaction(self, results, status=None):
-        state = self.main_run.get_state()
         if not status:
             status = "Aborted" if self.stop else "Completed"
-        self.main_run.state = state
         self.main_run.duration = results["duration"]
-        self.main_run.status = state["status"] = status
+        self.main_run.status = status
         self.main_run.payload = self.payload
         self.create_logs()
         if getattr(self, "man_minutes", None) and "summary" in results:
