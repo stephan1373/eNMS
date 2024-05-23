@@ -15,6 +15,7 @@ from paramiko import AutoAddPolicy, RSAKey, SFTPClient, SSHClient
 from re import compile, search
 from requests import post
 from scp import SCPClient
+from sqlalchemy.exc import SQLAlchemyError
 from sys import getsizeof
 from threading import Thread
 from time import sleep
@@ -410,15 +411,20 @@ class Runner:
 
     @staticmethod
     def get_device_result(args):
-        device_id, runtime, results = args
+        device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
         device = db.fetch("device", id=device_id, rbac=None)
         if vs.automation["advanced"]["refetch_after_process_fork"]:
             run_kwargs = {"in_process": True}
             for key, value in run.kwargs.items():
                 try:
-                    run_kwargs[key] = db.fetch(value.type, id=value.id, rbac=None)
-                except:
+                    if key in refetch_ids:
+                        run_kwargs[key] = db.fetch(
+                            value.type, id=refetch_ids[key], rbac=None
+                        )
+                except Exception as ex:
+                    if isinstance(ex, SQLAlchemyError):
+                        db.session.rollback()
                     run_kwargs[key] = value
             parent_run = run
             if isinstance(run, vs.models["run"]):
@@ -541,12 +547,26 @@ class Runner:
                 and not self.iteration_run
             ):
                 processes = min(len(non_skipped_targets), self.get("max_processes"))
+                refetch_ids = (
+                    {
+                        key: value.id
+                        for key, value in self.kwargs.items()
+                        if hasattr(value, "id")
+                    }
+                    if vs.automation["advanced"]["refetch_after_process_fork"]
+                    else None
+                )
                 process_args = [
-                    (device.id, self.runtime, results) for device in non_skipped_targets
+                    (device.id, self.runtime, results, refetch_ids)
+                    for device in non_skipped_targets
                 ]
                 self.log("info", f"Starting a pool of {processes} threads")
+                if not vs.automation["advanced"]["refetch_after_process_fork"]:
+                    self.in_process = True
                 with ThreadPool(processes=processes) as pool:
                     pool.map(self.get_device_result, process_args)
+                if not vs.automation["advanced"]["refetch_after_process_fork"]:
+                    self.in_process = False
             else:
                 results.extend(
                     [
@@ -1050,7 +1070,9 @@ class Runner:
         secret = db.fetch("secret", name=name, user=self.creator, rbac="use")
         return env.get_password(secret.secret_value)
 
-    def get_result(self, service_name, device=None, workflow=None, runtime=None, all_matches=False):
+    def get_result(
+        self, service_name, device=None, workflow=None, runtime=None, all_matches=False
+    ):
         def filter_run(query, property):
             query = query.filter(
                 vs.models["result"].service.has(

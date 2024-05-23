@@ -541,7 +541,12 @@ class Database:
                 raise
             except Exception as exc:
                 self.session.rollback()
-                if index == self.retry_commit_number - 1:
+                if (
+                    index == self.retry_commit_number - 1
+                    or type(exc) is IntegrityError
+                    and "Duplicate entry" in str(exc)
+                    and "for key 'name'" in str(exc)
+                ):
                     error(f"Commit n°{index + 1} failed ({format_exc()})")
                     raise exc
                 else:
