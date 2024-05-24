@@ -1481,21 +1481,16 @@ class Runner:
             vs.connections_cache[library].pop(self.parent_runtime)
 
     def disconnect(self, library, device, connection):
-        connection_log = f"{library} connection '{connection.connection_name}'"
-        try:
-            if library == "netmiko":
-                connection.disconnect()
-            elif library == "ncclient":
-                connection.close_session()
-            else:
-                connection.close()
-            vs.connections_cache[library][self.parent_runtime][device].pop(
-                connection.connection_name
-            )
-            self.write_state(f"connections/{library}", -1, "increment", False)
-            self.log("info", f"Closed {connection_log}", device)
-        except Exception as exc:
-            self.log("error", f"Error while closing {connection_log} ({exc})", device)
+        if library == "netmiko":
+            connection.disconnect()
+        elif library == "ncclient":
+            connection.close_session()
+        else:
+            connection.close()
+        vs.connections_cache[library][self.parent_runtime][device].pop(
+            connection.connection_name
+        )
+        self.write_state(f"connections/{library}", -1, "increment", False)
 
     def enter_remote_device(self, connection, device):
         if not getattr(self, "jump_on_connect", False):
