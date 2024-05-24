@@ -222,6 +222,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Change 'Skip' label and tooltip to 'Skip / Unskip' in workflow builder
 - Move "state" commit in the end of run cleanup after trying to close all remaining connections to get an
   accurate display of the number of remaining connections.
+- Remove logging lines from disconnect function because of transaction issue after end of transaction commit
+  To be fixed next release
 
 Migration:
 - network.yaml must be merge into device.yaml:
