@@ -346,6 +346,7 @@ class Runner:
             if self.is_main_run:
                 self.success = results["success"]
                 self.update_service_count(-1)
+                self.payload = self.make_json_compliant(self.payload)
                 db.try_commit(self.end_of_run_transaction, results)
             results["properties"] = self.service.get_properties(exclude=["positions"])
             results["trigger"] = self.main_run.trigger
@@ -630,7 +631,6 @@ class Runner:
         if device:
             result_kw["device_id"] = device.id
         if self.is_main_run and not device:
-            self.payload = self.make_json_compliant(self.payload)
             results["payload"] = self.payload
             if self.main_run.trigger == "REST API":
                 results["devices"] = {}
