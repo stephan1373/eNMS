@@ -76,6 +76,14 @@ class Runner:
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
         self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
+        if self.is_main_run:
+            self.cache = {
+                "main_run": self.main_run.base_properties,
+                "main_run_service": self.main_run.service.base_properties,
+                "service": self.service.base_properties 
+            }
+        else:
+            self.cache = {**run.cache, "service": self.service.base_properties}
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
             if self.service not in self.main_run.services:
@@ -812,7 +820,7 @@ class Runner:
             log = f"DEVICE {device_name} - {log}"
         full_log = (
             f"RUNTIME {self.parent_runtime} - USER {self.creator} -"
-            f" SERVICE '{self.service.name}' - {log}"
+            f" SERVICE '{self.cache['service']['name']}' - {log}"
         )
         settings = env.log(
             severity, full_log, user=self.creator, change_log=change_log, logger=logger
@@ -820,11 +828,11 @@ class Runner:
         if service_log or logger and settings.get("service_log"):
             run_log = (
                 f"{vs.get_time()} - {severity} - USER {self.creator} -"
-                f" SERVICE {self.service.scoped_name} - {log}"
+                f" SERVICE {self.cache['service']['scoped_name']} - {log}"
             )
-            env.log_queue(self.parent_runtime, self.service.id, run_log)
+            env.log_queue(self.parent_runtime, self.cache["service"]["id"], run_log)
             if not self.is_main_run:
-                env.log_queue(self.parent_runtime, self.main_run.service.id, run_log)
+                env.log_queue(self.parent_runtime, self.cache["main_run_service"]["id"], run_log)
 
     def build_notification(self, results):
         notification = {
@@ -1481,16 +1489,21 @@ class Runner:
             vs.connections_cache[library].pop(self.parent_runtime)
 
     def disconnect(self, library, device, connection):
-        if library == "netmiko":
-            connection.disconnect()
-        elif library == "ncclient":
-            connection.close_session()
-        else:
-            connection.close()
-        vs.connections_cache[library][self.parent_runtime][device].pop(
-            connection.connection_name
-        )
-        self.write_state(f"connections/{library}", -1, "increment", False)
+        connection_log = f"{library} connection '{connection.connection_name}'"
+        try:
+            if library == "netmiko":
+                connection.disconnect()
+            elif library == "ncclient":
+                connection.close_session()
+            else:
+                connection.close()
+            vs.connections_cache[library][self.parent_runtime][device].pop(
+                connection.connection_name
+            )
+            self.write_state(f"connections/{library}", -1, "increment", False)
+            self.log("info", f"Closed {connection_log}", device)
+        except Exception as exc:
+            self.log("error", f"Error while closing {connection_log} ({exc})", device)
 
     def enter_remote_device(self, connection, device):
         if not getattr(self, "jump_on_connect", False):
