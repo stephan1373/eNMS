@@ -136,7 +136,11 @@ class Service(AbstractBase):
 
     @property
     def base_properties(self):
-        return {**super().base_properties, "report_format": self.report_format, "scoped_name": self.scoped_name}
+        return {
+            **super().base_properties,
+            "report_format": self.report_format,
+            "scoped_name": self.scoped_name,
+        }
 
     def table_properties(self, **kwargs):
         workflow_path = self.workflows[0].path if len(self.workflows) == 1 else None

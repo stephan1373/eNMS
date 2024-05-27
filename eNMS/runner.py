@@ -80,7 +80,7 @@ class Runner:
             self.cache = {
                 "main_run": self.main_run.base_properties,
                 "main_run_service": self.main_run.service.base_properties,
-                "service": self.service.base_properties 
+                "service": self.service.base_properties,
             }
         else:
             self.cache = {**run.cache, "service": self.service.base_properties}
@@ -832,7 +832,9 @@ class Runner:
             )
             env.log_queue(self.parent_runtime, self.cache["service"]["id"], run_log)
             if not self.is_main_run:
-                env.log_queue(self.parent_runtime, self.cache["main_run_service"]["id"], run_log)
+                env.log_queue(
+                    self.parent_runtime, self.cache["main_run_service"]["id"], run_log
+                )
 
     def build_notification(self, results):
         notification = {

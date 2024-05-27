@@ -285,7 +285,12 @@ class FormFactory:
             spec.loader.exec_module(module_from_spec(spec))
 
     def register_parameterized_form(self, service_id):
-        global_variables = {"form": None, "BaseForm": BaseForm, **vs.form_context, "user": current_user}
+        global_variables = {
+            "form": None,
+            "BaseForm": BaseForm,
+            **vs.form_context,
+            "user": current_user,
+        }
         indented_form = "\n".join(
             " " * 4 + line
             for line in (
