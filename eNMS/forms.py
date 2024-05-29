@@ -800,7 +800,10 @@ class ServiceForm(BaseForm):
         help="common/parameterized_form",
     )
     parameterized_form_template = StringField(
-        "Parameterized Form HTML Template", type="code", widget=TextArea()
+        "Parameterized Form HTML Template",
+        type="code",
+        widget=TextArea(),
+        help="common/parameterized_template"
     )
     iteration_variable_name = StringField(
         "Iteration Variable Name", default="iteration_value"
