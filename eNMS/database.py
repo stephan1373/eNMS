@@ -215,7 +215,7 @@ class Database:
                     vs.model_properties[name][property] = "str"
             if hasattr(model, "parent_type"):
                 vs.model_properties[name].update(vs.model_properties[model.parent_type])
-            if "service" in name and name != "service":
+            if "service" in name and name != "service" and issubclass(model, vs.models["service"]):
                 vs.model_properties[name].update(vs.model_properties["service"])
             vs.models.update({name: model, name.lower(): model})
             vs.model_properties[name].update(model.model_properties)
