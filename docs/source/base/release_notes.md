@@ -225,6 +225,9 @@ Version 5.1.0: Changelog & Workflow Tree
 - Re-add logging lines from disconnect function that were removed because of transaction issue after end of
   transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847)
 
+Deviations:
+- Deviation 1: Database.configure_events service subclass check (5f51ad98c843f776c46c42faf3fe904b02bc37fd)
+
 Migration:
 - network.yaml must be merge into device.yaml:
   - replace "nodes" with "devices"
