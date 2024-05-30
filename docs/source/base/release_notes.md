@@ -237,6 +237,8 @@ Deviations:
 - Deviation 4 (396b64b789b2b7b4c6afc3a4c2d7fa7549c8573d): Database._initialize change error message when
   failing metadata creation
   Updated from original deviation to include process ID in error message
+- Deviation 5: Database._initialize commit/rollback deletion of workers when initializing database
+  Updated from original deviation to include additional commit in server update + minor refactoring
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
