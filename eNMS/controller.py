@@ -1643,7 +1643,7 @@ class Controller:
                     continue
                 with open(filepath) as file:
                     setattr(device, property, file.read())
-        db.session.commit()
+            db.session.commit()
         for pool in db.fetch_all("pool"):
             if any(
                 getattr(pool, f"device_{property}")
