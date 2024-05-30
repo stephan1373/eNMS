@@ -1,5 +1,4 @@
 from base64 import b64decode, b64encode
-from click import get_current_context
 from cryptography.fernet import Fernet
 from dramatiq import set_broker
 from dramatiq.brokers.redis import RedisBroker
@@ -139,12 +138,6 @@ class Environment:
                 user = db.factory("user", authentication=method, **response)
                 db.session.commit()
             return user
-
-    def detect_cli(self):
-        try:
-            return get_current_context().info_name == "flask"
-        except RuntimeError:
-            return False
 
     def encrypt_password(self, password):
         if isinstance(password, str):
