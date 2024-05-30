@@ -126,10 +126,16 @@ class Database:
             version=vs.server_version,
             commit_sha=vs.server_commit_sha,
             last_restart=vs.get_time(),
+            commit=True,
         )
         for worker in server.workers:
-            if not exists(f"/proc/{worker.name}"):
+            if exists(f"/proc/{worker.name}"):
+                continue
+            try:
                 db.delete_instance(worker, call_delete=False)
+                db.session.commit()
+            except Exception:
+                db.session.rollback()
         vs.server_id = server.id
         parameters = self.fetch("parameters", rbac=None)
         if parameters.banner_deactivate_on_restart:
