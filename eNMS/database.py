@@ -83,7 +83,7 @@ class Database:
         try:
             self.base.metadata.create_all(bind=self.engine)
         except OperationalError:
-            info(f"Bypassing metadata creation for process {getpid()}")
+            error(f"Error during metadata creation (PID {getpid()}):\n{format_exc()}")
         configure_mappers()
         self.configure_model_events(env)
         if env.detect_cli():
