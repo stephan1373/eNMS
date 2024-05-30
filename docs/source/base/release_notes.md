@@ -234,6 +234,9 @@ Deviations:
 - Deviation 3 (c36d96ef702b6c2b08c7f67b5490a712d001cd8a): Controller.update_database_configurations_from_git
   commit after each device update instead of committing once for all devices
   No change from original deviation
+- Deviation 4 (396b64b789b2b7b4c6afc3a4c2d7fa7549c8573d): Database._initialize change error message when
+  failing metadata creation
+  Updated from original deviation to include process ID in error message
 
 Migration:
 - network.yaml must be merge into device.yaml:
