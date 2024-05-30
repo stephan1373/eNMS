@@ -227,6 +227,7 @@ Version 5.1.0: Changelog & Workflow Tree
 
 Deviations:
 - Deviation 1: Database.configure_events service subclass check (5f51ad98c843f776c46c42faf3fe904b02bc37fd)
+  Updated from original deviation to include "service_report" along with "service_log"
 
 Migration:
 - network.yaml must be merge into device.yaml:
