@@ -239,6 +239,7 @@ Deviations:
   Updated from original deviation to include process ID in error message
 - Deviation 5: Database._initialize commit/rollback deletion of workers when initializing database
   Updated from original deviation to include additional commit in server update + minor refactoring
+- Deviation 6 (dba2859e9f29d2b22a4ac876e35846ac5d931442): move Environment.detect_cli to CustomApp
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
