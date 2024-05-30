@@ -238,6 +238,10 @@ Deviations:
   failing metadata creation
   Updated from original deviation to include process ID in error message
 
+Deviations not merged:
+- Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
+  in original detect_cli function
+
 Migration:
 - network.yaml must be merge into device.yaml:
   - replace "nodes" with "devices"
