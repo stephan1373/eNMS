@@ -13,6 +13,7 @@ def initialize():
     first_init = db._initialize(env)
     if vs.custom.detect_cli():
         return
+    env._initialize()
     form_factory._initialize()
     controller._initialize(first_init)
     vs.set_template_context()

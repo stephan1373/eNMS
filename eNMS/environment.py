@@ -66,6 +66,8 @@ class Environment:
             self.init_dramatiq()
         self.init_connection_pools()
         self.cache = Cache(config=vs.settings["cache"]["config"])
+
+    def _initialize(self):
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         if vs.settings["files"]["monitor_filesystem"]:
             main_thread = Thread(target=self.monitor_filesystem)
