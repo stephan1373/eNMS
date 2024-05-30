@@ -226,8 +226,10 @@ Version 5.1.0: Changelog & Workflow Tree
   transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847)
 
 Deviations:
-- Deviation 1: Database.configure_events service subclass check (5f51ad98c843f776c46c42faf3fe904b02bc37fd)
+- Deviation 1: Database.configure_events service subclass check: 5f51ad98c843f776c46c42faf3fe904b02bc37fd
   Updated from original deviation to include "service_report" along with "service_log"
+- Deviation 2: Controller.import_services try deleting the service folder before extracting the archive
+  No change from original deviation: a079abb60069821d284fb2d36b65685b8852f054
 
 Migration:
 - network.yaml must be merge into device.yaml:
