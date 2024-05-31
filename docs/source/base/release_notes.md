@@ -239,7 +239,12 @@ Deviations:
   Updated from original deviation to include process ID in error message
 - Deviation 5: Database._initialize commit/rollback deletion of workers when initializing database
   Updated from original deviation to include additional commit in server update + minor refactoring
-- Deviation 6 (dba2859e9f29d2b22a4ac876e35846ac5d931442): move Environment.detect_cli to CustomApp
+- Deviation 6 (74e48265f931e641a77d8ded424fdafe5eb6ab52):
+  - Use "detect_cli" function from CustomApp if defined there
+  - Use "init_dramatiq" function from CustomApp if defined there
+  - Important: "init_dramatiq" is no longer called when "detect_cli" returns True because of circular import
+  issues (Environment cannot use CustomApp functions in __init__ because they are not yet defined there).
+  Check that "init_dramatiq" is not needed when CLI is used.
 - Deviation 7 (d54165d2eb072c962006a47189beb2e5536c7c8d): dont run filesystem monitoring when CLI detected:
   add new Environment._initialize function to avoid circular import issues now that detect_cli is in custom.py
 
