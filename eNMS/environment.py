@@ -1,4 +1,5 @@
 from base64 import b64decode, b64encode
+from click import get_current_context
 from cryptography.fernet import Fernet
 from dramatiq import set_broker
 from dramatiq.brokers.redis import RedisBroker
@@ -62,12 +63,12 @@ class Environment:
             sys_path.append(vs.settings["paths"]["custom_code"])
         self.init_logs()
         self.init_redis()
-        if vs.settings["automation"]["use_task_queue"]:
-            self.init_dramatiq()
         self.init_connection_pools()
         self.cache = Cache(config=vs.settings["cache"]["config"])
 
     def _initialize(self):
+        if vs.settings["automation"]["use_task_queue"]:
+            self.init_dramatiq()
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         if vs.settings["files"]["monitor_filesystem"]:
             main_thread = Thread(target=self.monitor_filesystem)
@@ -141,6 +142,14 @@ class Environment:
                 db.session.commit()
             return user
 
+    def detect_cli(self):
+        if hasattr(vs.custom, "detect_cli"):
+            return vs.custom.detect_cli()
+        try:
+            return get_current_context().info_name == "flask"
+        except RuntimeError:
+            return False
+
     def encrypt_password(self, password):
         if isinstance(password, str):
             password = str.encode(password)
@@ -189,6 +198,8 @@ class Environment:
             )
 
     def init_dramatiq(self):
+        if hasattr(vs.custom, "init_dramatiq"):
+            return vs.custom.init_dramatiq()
         set_broker(
             RedisBroker(
                 host=getenv("REDIS_ADDR"),

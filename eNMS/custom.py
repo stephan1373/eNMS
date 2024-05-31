@@ -1,4 +1,3 @@
-from click import get_current_context
 from re import sub
 from uuid import uuid4
 from warnings import warn
@@ -13,12 +12,6 @@ from eNMS.variables import vs
 
 
 class CustomApp:
-    def detect_cli(self):
-        try:
-            return get_current_context().info_name == "flask"
-        except RuntimeError:
-            return False
-
     def ldap_authentication(self, user, name, password):
         if not hasattr(env, "ldap_servers"):
             env.log("error", "LDAP authentication failed: no server configured")
