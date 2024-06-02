@@ -246,9 +246,6 @@ Deviations:
   - Use "init_redis" function from CustomApp if defined there
   Could not make retry mechanism work because of internal redis error:
   "AttributeError: 'Retry' object has no attribute 'update_supported_errors'"
-  - Important: "init_dramatiq" is no longer called when "detect_cli" returns True because of circular import
-  issues (Environment cannot use CustomApp functions in __init__ because they are not yet defined there).
-  Check that "init_dramatiq" is not needed when CLI is used
 - Deviation 7 (d54165d2eb072c962006a47189beb2e5536c7c8d): dont run filesystem monitoring when CLI detected:
   add new Environment._initialize function to avoid circular import issues now that detect_cli is in custom.py
 - Deviation 8 (001ac08fc1225272382b214a6e687b313249b142): use vs.logging instead of opening logging.json
@@ -268,6 +265,7 @@ Migration:
 - Update rbac.json with the "allowed_rest_endpoints" variable
 
 Tests:
+- Test CLI commands works as intended following deviation updates
 - Test that caching form properties doesn't affect the parameterized form display
 - Test that the workflow tree works, is scalable and has no memory leaks
 - Test that the workflow traversal algorithm ignores soft deleted workflow edges / services
