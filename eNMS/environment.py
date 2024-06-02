@@ -284,6 +284,8 @@ class Environment:
             getLogger(logger).setLevel(log_level)
 
     def init_redis(self):
+        if hasattr(vs.custom, "init_redis"):
+            return vs.custom.init_redis()
         host = getenv("REDIS_ADDR")
         if not host:
             self.redis_queue = None
