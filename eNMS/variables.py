@@ -1,5 +1,6 @@
 from collections import defaultdict
 from datetime import datetime
+from functools import wraps
 from git import Repo
 from json import load
 from logging import error
@@ -47,6 +48,14 @@ class VariableStore:
         self._set_version()
         self._set_plugins_settings()
         self._update_rbac_variables()
+
+    def custom_function(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if hasattr(self.custom, func.__name__):
+                return getattr(self.custom, func.__name__)(*args, **kwargs)
+            return func(*args, **kwargs)
+        return wrapper
 
     def _set_setup_variables(self):
         self.path = Path.cwd()

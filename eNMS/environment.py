@@ -52,7 +52,7 @@ from eNMS.variables import vs
 
 
 class Environment:
-    def __init__(self):
+    def _initialize(self):
         self.init_authentication()
         self.init_encryption()
         self.use_vault = vs.settings["vault"]["use_vault"]
@@ -64,8 +64,6 @@ class Environment:
         self.init_redis()
         self.init_connection_pools()
         self.cache = Cache(config=vs.settings["cache"]["config"])
-
-    def _initialize(self):
         if vs.settings["automation"]["use_task_queue"]:
             self.init_dramatiq()
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
@@ -141,9 +139,8 @@ class Environment:
                 db.session.commit()
             return user
 
+    @vs.custom_function
     def detect_cli(self):
-        if hasattr(vs.custom, "detect_cli"):
-            return vs.custom.detect_cli()
         try:
             return get_current_context().info_name == "flask"
         except RuntimeError:
@@ -196,9 +193,8 @@ class Environment:
                 HTTPAdapter(max_retries=retry, **vs.settings["requests"]["pool"]),
             )
 
+    @vs.custom_function
     def init_dramatiq(self):
-        if hasattr(vs.custom, "init_dramatiq"):
-            return vs.custom.init_dramatiq()
         set_broker(
             RedisBroker(
                 host=getenv("REDIS_ADDR"),
@@ -283,15 +279,15 @@ class Environment:
             log_level = getattr(import_module("logging"), log_level.upper())
             getLogger(logger).setLevel(log_level)
 
+    @vs.custom_function
     def init_redis(self):
-        if hasattr(vs.custom, "init_redis"):
-            return vs.custom.init_redis()
         host = getenv("REDIS_ADDR")
         if not host:
             self.redis_queue = None
         else:
             self.redis_queue = Redis(host=host, **vs.settings["redis"]["config"])
 
+    @vs.custom_function
     def init_vault_client(self):
         url = getenv("VAULT_ADDR", "http://127.0.0.1:8200")
         self.vault_client = VaultClient(url=url, token=getenv("VAULT_TOKEN"))

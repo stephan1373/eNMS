@@ -51,6 +51,8 @@ class Server(Flask):
     def __init__(self):
         static_folder = str(vs.path / "eNMS" / "static")
         super().__init__(__name__, static_folder=static_folder)
+
+    def _initialize(self):
         self.rest_api = RestApi()
         self.update_config()
         self.register_extensions()
