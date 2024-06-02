@@ -10,7 +10,6 @@ from email.utils import formatdate
 from flask_caching import Cache
 from flask_login import current_user
 from importlib import import_module
-from json import load
 from logging.config import dictConfig
 from logging import Formatter, getLogger, Handler, info
 from multiprocessing import Queue
@@ -276,12 +275,10 @@ class Environment:
     def init_logs(self):
         folder = vs.path / "logs"
         folder.mkdir(parents=True, exist_ok=True)
-        with open(vs.path / "setup" / "logging.json", "r") as logging_config:
-            logging_config = load(logging_config)
         if vs.logging["use_multiprocessing_handlers"]:
-            self.build_multiprocessing_logging_handler(logging_config)
-        dictConfig(logging_config)
-        for logger, log_level in logging_config["external_loggers"].items():
+            self.build_multiprocessing_logging_handler(vs.logging)
+        dictConfig(vs.logging)
+        for logger, log_level in vs.logging["external_loggers"].items():
             info(f"Changing {logger} log level to '{log_level}'")
             log_level = getattr(import_module("logging"), log_level.upper())
             getLogger(logger).setLevel(log_level)
