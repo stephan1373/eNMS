@@ -242,6 +242,9 @@ Deviations:
 - Deviation 6 (74e48265f931e641a77d8ded424fdafe5eb6ab52):
   - Use "detect_cli" function from CustomApp if defined there
   - Use "init_dramatiq" function from CustomApp if defined there
+  - Use "init_redis" function from CustomApp if defined there
+  Could not make retry mechanism work because of internal redis error:
+  "AttributeError: 'Retry' object has no attribute 'update_supported_errors'"
   - Important: "init_dramatiq" is no longer called when "detect_cli" returns True because of circular import
   issues (Environment cannot use CustomApp functions in __init__ because they are not yet defined there).
   Check that "init_dramatiq" is not needed when CLI is used
