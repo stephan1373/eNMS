@@ -244,9 +244,12 @@ Deviations:
   - Use "init_dramatiq" function from CustomApp if defined there
   - Important: "init_dramatiq" is no longer called when "detect_cli" returns True because of circular import
   issues (Environment cannot use CustomApp functions in __init__ because they are not yet defined there).
-  Check that "init_dramatiq" is not needed when CLI is used.
+  Check that "init_dramatiq" is not needed when CLI is used
 - Deviation 7 (d54165d2eb072c962006a47189beb2e5536c7c8d): dont run filesystem monitoring when CLI detected:
   add new Environment._initialize function to avoid circular import issues now that detect_cli is in custom.py
+- Deviation 8 (001ac08fc1225272382b214a6e687b313249b142): use vs.logging instead of opening logging.json
+  in Environment.init_logs
+  Partial merge of original deviation: no deepcopy of logging config
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
