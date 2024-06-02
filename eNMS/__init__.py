@@ -11,7 +11,7 @@ from eNMS.variables import vs
 def initialize():
     server.register_plugins()
     first_init = db._initialize(env)
-    if vs.custom.detect_cli():
+    if env.detect_cli():
         return
     env._initialize()
     form_factory._initialize()

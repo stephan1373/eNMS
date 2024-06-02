@@ -86,7 +86,7 @@ class Database:
             error(f"Error during metadata creation (PID {getpid()}):\n{format_exc()}")
         configure_mappers()
         self.configure_model_events(env)
-        if vs.custom.detect_cli():
+        if env.detect_cli():
             return
         first_init = not self.fetch("user", allow_none=True, rbac=None, name="admin")
         if first_init:
