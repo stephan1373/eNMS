@@ -239,7 +239,8 @@ Deviations:
   Updated from original deviation to include process ID in error message
 - Deviation 5: Database._initialize commit/rollback deletion of workers when initializing database
   Updated from original deviation to include additional commit in server update + minor refactoring
-- Deviation 6 (74e48265f931e641a77d8ded424fdafe5eb6ab52):
+- Deviation 6:
+  - Add custom function decorator to call a function from CustomApp whenever it exists
   - Use "detect_cli" function from CustomApp if defined there
   - Use "init_dramatiq" function from CustomApp if defined there
   - Use "init_redis" function from CustomApp if defined there
