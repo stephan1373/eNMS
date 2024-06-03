@@ -246,6 +246,10 @@ Deviations:
   - Use "init_redis" function from CustomApp if defined there
   Could not make retry mechanism work because of internal redis error:
   "AttributeError: 'Retry' object has no attribute 'update_supported_errors'"
+  - Add "init_vault_client" retry mechanism:
+    - 65def692961c4bff8565e0537cddbb2ca902ad5b
+    - 07238606e7ac53c18eca115f9ba14f8c3851c5b5
+  - Use "init_vault_client" function from CustomApp if defined there
 - Deviation 7 (d54165d2eb072c962006a47189beb2e5536c7c8d): dont run filesystem monitoring when CLI detected:
   add new Environment._initialize function to avoid circular import issues now that detect_cli is in custom.py
 - Deviation 8 (001ac08fc1225272382b214a6e687b313249b142): use vs.logging instead of opening logging.json
