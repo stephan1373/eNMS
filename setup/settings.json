@@ -186,7 +186,7 @@
     }
   },
   "vault": {
-    "mount_addresses": ["http://", "https://"],
+    "mount": ["http://", "https://"],
     "pool_maxsize": 25,
     "retry": {
       "total": 2,
