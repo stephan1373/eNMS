@@ -345,6 +345,7 @@ class Environment:
                     **(instance.get_changelog_kwargs() if instance else {}),
                 },
             )
+        vs.custom.log_post_processing(**locals())
         return logger_settings
 
     def log_queue(self, runtime, service, log=None, mode="add", start_line=0):

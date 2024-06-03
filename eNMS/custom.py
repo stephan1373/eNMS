@@ -37,6 +37,9 @@ class CustomApp:
     def generate_uuid(self):
         return str(uuid4())
 
+    def log_post_processing(_self, **kwargs):
+        return
+
     def run_post_processing(self, run, run_result):
         if run.is_main_run:
             env.log(
