@@ -256,6 +256,7 @@ Deviations:
   in Environment.init_logs
   Partial merge of original deviation: no deepcopy of logging config
 - Deviation 9 (912ce3c125a4c7b7d6c253eb2313404ef10a9046): add log_post_processing for custom environment log mechanism
+- Deviation 10 (f23785dcd122466b4509763e11622155cbbc86ce): replace 'standby' with 'secondary' iin forms.py Server.role
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
