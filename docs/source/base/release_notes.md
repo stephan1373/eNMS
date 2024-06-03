@@ -255,6 +255,7 @@ Deviations:
 - Deviation 8 (001ac08fc1225272382b214a6e687b313249b142): use vs.logging instead of opening logging.json
   in Environment.init_logs
   Partial merge of original deviation: no deepcopy of logging config
+- Deviation 9 (912ce3c125a4c7b7d6c253eb2313404ef10a9046): add log_post_processing for custom environment log mechanism
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
