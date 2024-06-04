@@ -13,31 +13,9 @@ from eNMS.variables import vs
 
 
 class RestApi:
-    rest_endpoints = {
-        "GET": {
-            "configuration": "get_configuration",
-            "instance": "get_instance",
-            "is_alive": "is_alive",
-            "query": "query",
-            "result": "get_result",
-            "workers": "get_workers",
-        },
-        "POST": {
-            "instance": "update_instance",
-            "migrate": "migrate",
-            "run_service": "run_service",
-            "run_task": "run_task",
-            "search": "search",
-            "topology": "topology",
-        },
-        "DELETE": {
-            "instance": "delete_instance",
-        },
-    }
-
     def __init__(self):
         for endpoint, access_type in vs.rbac["allowed_rest_endpoints"].items():
-            self.rest_endpoints["POST"][endpoint] = endpoint
+            vs.rbac["rest_endpoints"]["POST"][endpoint] = endpoint
             vs.rbac["post_requests"][f"/rest/{endpoint}"] = access_type
             setattr(self, endpoint, getattr(controller, endpoint))
 
