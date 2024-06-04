@@ -258,6 +258,8 @@ Deviations:
 - Deviation 9 (912ce3c125a4c7b7d6c253eb2313404ef10a9046): add log_post_processing for custom environment log mechanism
 - Deviation 10 (f23785dcd122466b4509763e11622155cbbc86ce): replace 'standby' with 'secondary' iin forms.py Server.role
 - Deviation 11: parameterized form context help (merged PR)
+- Deviation 12 42d305763d0bb20ef103ea6cfbb7d7f7c5a99c0c: move rest endpoints from RestApi class to rbac.json
+  to handle custom endpoints
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
