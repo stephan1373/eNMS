@@ -130,8 +130,12 @@ class Runner:
             db.try_commit(
                 runner_object.end_of_run_transaction, results, status=run.status
             )
-            runner_object.create_result(results, run_result=True)
-            runner_object.end_of_run_cleanup()
+            try:
+                runner_object.create_result(results, run_result=True)
+                runner_object.end_of_run_cleanup()
+            except Exception:
+                run_log = f"Run data recovery failed for {run.runtime}:\n{format_exc()}"
+                env.log("error", run_log)
         if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
             env.redis_queue.flushdb()
 
