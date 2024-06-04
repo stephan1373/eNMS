@@ -1,0 +1,148 @@
+<div class="modal-body" style="height: 90vh;">
+  <div>
+    <p>
+      The <b>Parameterized Form Template</b> Contains the html used to render the Parameterized Form.
+      Below are some examples that use the below parameterized form fields:
+    </p>
+    <textarea class="help-snippet">
+target_devices = MultipleInstanceField('Devices', model='device')
+target_pools = MultipleInstanceField('Pools', model='pool')
+device_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})
+a = StringField("A")
+b = StringField("B")
+c = StringField("C")
+d = StringField("D")
+e = StringField("E")
+f = StringField("F")
+    </textarea>
+  </div>
+  <div>
+    <p>Using 
+      <b>
+        <a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#template-inheritance" target="_blank" rel="noopener noreferrer">
+          Jinja template inheritance,
+        </a>
+      </b>the form_content block of the "forms/parameterized.html" template can be overridden. The {% raw %}{{form}} {% endraw %} variable is a
+      <b>
+        <a href="https://wtforms.readthedocs.io/en/2.3.x/crash_course/?highlight=jinja#rendering-fields" target="_blank" rel="noopener noreferrer">
+          WTform
+        </a>
+      </b>
+        instance and can be rendered using a jinja template.
+    </p>
+    <ul>
+      <li>
+        <p><b>Basic Example</b>
+          <textarea class="help-snippet">
+{%- raw -%}
+{% extends "forms/parameterized.html" %}
+{% block form_content %}
+<h3>Created via parameterized template</h3>
+<div>
+{% for field in form %}
+  <div>
+      {{ field.label }}
+      {{ field(class="form-control") }}
+  </div>
+{% endfor %}
+ </div>
+{% endblock form_content %}
+{%- endraw -%}
+          </textarea>
+        </p>
+      </li>
+      <li>
+        <p><b>Table-based Form Example</b>
+          <textarea class="help-snippet">
+{%- raw -%}
+{% extends "forms/parameterized.html" %}
+{% block form_content %}
+<style>
+  table {
+    width:100%;
+  }
+  table, td {
+    border: 1px solid black;
+    
+  }
+  .label-field {
+    padding-left: 5px;
+    background: light-grey;
+  }
+</style>
+<table>
+  <tr><td class="label-field">Target Devices</td><td>{{form.target_devices(class="form-control")}}</td></tr>
+  <tr><td class="label-field">Target Pools</td><td>{{form.target_pools(class="form-control")}}</td></tr>
+</table>
+<table style="margin-top: -1px">
+  <tr>
+    <td class="label-field">Field A</td><td>{{form.a(class="form-control")}}</td>
+    <td class="label-field">Field B</td><td>{{form.b(class="form-control")}}</td>
+    <td class="label-field">Field C</td><td>{{form.c(class="form-control")}}</td>
+  </tr>
+  <tr>
+    <td class="label-field">Field D</td><td>{{form.d(class="form-control")}}</td>
+    <td class="label-field">Field E</td><td>{{form.e(class="form-control")}}</td>
+    <td class="label-field">Field F</td><td>{{form.f(class="form-control")}}</td>
+  </tr>
+</table>
+<script>
+  $('input[name="a"]').val("Set programmatically with Javascript");
+ </script>
+{% endblock form_content %}
+{%- endraw -%}
+          </textarea>
+        </p>
+      </li>
+      <li>
+        <p><b>The "forms/parameterized.html" template, which is referenced in the above examples and its content being overridden</b>
+          <textarea class="help-snippet">
+{%- raw -%}
+<form
+  id="{{ form_type }}-form"
+  class="form-horizontal form-label-left add-id"
+  method="post"
+  autocomplete="off"
+>
+  <div class="modal-body">
+    <div class="form-group">
+      {% block form_content %}
+      {% for field in form %} 
+      {% set id = "{}-{}".format(form_type, field.name) %}
+      {% set style = "height: {}px".format(field.render_kw["rows"]*20 + 17) if "TextArea" in field.widget|string else "" %}
+      <div style="{{ style }}">
+        {% set class = "form-control-bool" if field.type == "BooleanField" else "form-control" %} 
+        {% if field.widget.input_type == 'hidden' %} 
+        {{ field(id=id) }}
+        {% else %}
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+          {{ field.label }}
+        </label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          {{ field(id=id, class="collapsed {} add-id".format(class), checked=field.default) }}
+        </div>
+        <br /><br />
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% endblock form_content %}
+    </div>
+    <center>
+      <button
+        id="{{ form_type }}-action-btn"
+        type="button"
+        class="btn btn-primary add-id btn-id"
+        value="eNMS.automation.submitInitialForm"
+      >
+        Run Service
+      </button>
+    </center>
+  </div>
+</form>
+{%- endraw -%}
+          </textarea>
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
