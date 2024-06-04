@@ -260,6 +260,9 @@ Deviations:
 - Deviation 11: parameterized form context help (merged PR)
 - Deviation 12 42d305763d0bb20ef103ea6cfbb7d7f7c5a99c0c: move rest endpoints from RestApi class to rbac.json
   to handle custom endpoints
+- Deviation 13 (76a4e9ba3ae19cc60fc426bc901d3b56615a36ff): add try/except when doing recovery and result/log
+  creation of 'Running' run after app restart: log traceback and runtime if it fails
+  Partial merge of original deviation: changed log error message
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
