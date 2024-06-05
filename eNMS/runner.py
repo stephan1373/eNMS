@@ -601,7 +601,13 @@ class Runner:
         column_type = "pickletype" if data_type == "result" else "large_string"
         data_size = getsizeof(str(data))
         max_allowed_size = vs.database["columns"]["length"][column_type]
-        if data_size >= max_allowed_size:
+        allow_truncate = vs.automation["advanced"]["truncate_logs"]["active"]
+        truncate_size = vs.automation["advanced"]["truncate_logs"]["maximum_size"]
+        if data_type == "log" and allow_truncate and data_size > truncate_size:
+            message = f"Log data is too large: truncated to {truncate_size} characters."
+            self.log("warning", message)
+            data = f"{data[:truncate_size]}\n{message}"
+        elif data_size >= max_allowed_size:
             logs = (
                 f"The {data_type} is too large to be committed to the database\n"
                 f"Size: {data_size}B\nMaximum Allowed Size: {max_allowed_size}B"
@@ -613,13 +619,14 @@ class Runner:
             log = f"The {data_type} is {size_percentage:.1f}% the maximum allowed size."
             if size_percentage > 50:
                 self.log("warning", log)
+        return data
 
     def create_logs(self):
         services = {service.id for service in self.main_run.services}
         for service_id in services:
             logs = env.log_queue(self.parent_runtime, service_id, mode="get")
             content = "\n".join(logs or [])
-            self.check_size_before_commit(content, "log")
+            content = self.check_size_before_commit(content, "log")
             db.factory(
                 "service_log",
                 runtime=self.parent_runtime,

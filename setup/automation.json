@@ -83,6 +83,10 @@
     "always_commit_result": false,
     "refetch_after_process_fork": true,
     "disconnect_thread_timeout": 10,
-    "task_jitter": 0
+    "task_jitter": 0,
+    "truncate_logs": {
+      "active": false,
+      "maximum_size": 1000
+    }
   }
 }
