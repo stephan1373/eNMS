@@ -263,6 +263,7 @@ Deviations:
 - Deviation 13 (76a4e9ba3ae19cc60fc426bc901d3b56615a36ff): add try/except when doing recovery and result/log
   creation of 'Running' run after app restart: log traceback and runtime if it fails
   Partial merge of original deviation: changed log error message
+- Deviation 14 (68cf6cc3d338602c92170cb09f0b34dab1fd2185): add try/except around close_remaining_connections
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
