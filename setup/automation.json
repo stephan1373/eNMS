@@ -86,7 +86,7 @@
     "task_jitter": 0,
     "truncate_logs": {
       "active": false,
-      "maximum_size": 1000
+      "maximum_size": 200000000
     }
   }
 }

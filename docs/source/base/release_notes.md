@@ -224,6 +224,8 @@ Version 5.1.0: Changelog & Workflow Tree
   accurate display of the number of remaining connections.
 - Re-add logging lines from disconnect function that were removed because of transaction issue after end of
   transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847)
+- Add new log truncate mechanism, configured in automation.json > "advanced" > "truncate_logs" via the keys
+  "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000)
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
@@ -264,6 +266,8 @@ Deviations:
   creation of 'Running' run after app restart: log traceback and runtime if it fails
   Partial merge of original deviation: changed log error message
 - Deviation 14 (68cf6cc3d338602c92170cb09f0b34dab1fd2185): add try/except around close_remaining_connections
+- Deviation 15 (a43b9c4985ce85a9da8a353014056b87782f86f6 ): add logs truncate mechanism (not active by default)
+  Partial merge of original deviation, see commit and release notes above
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
