@@ -227,6 +227,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add new log truncate mechanism, configured in automation.json > "advanced" > "truncate_logs" via the keys
   "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000)
 - Rename automation.json > "advanced" > "always_commit_result" to "always_commit"
+- Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
+  ConnectHandler class
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
