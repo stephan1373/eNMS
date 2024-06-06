@@ -1201,6 +1201,7 @@ class Runner:
                 "try_set": db.try_set,
                 "user": _self.creator_dict,
                 "workflow": _self.workflow,
+                **vs.custom.runner_global_variables(),
             }
         )
         if _self.is_admin_run:
