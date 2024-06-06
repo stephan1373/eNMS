@@ -30,6 +30,9 @@
       ["is_alive", "Is alive"]
     ]
   },
+  "netmiko": {
+    "connection_args": {}
+  },
   "parameterized_form": [
     "name = StringField('Name', [InputRequired()])",
     "initial_payload = DictField()",

@@ -1312,6 +1312,7 @@ class Runner:
             global_delay_factor=self.global_delay_factor,
             session_log=BytesIO(),
             sock=sock,
+            **vs.automation["netmiko"]["connection_args"],
             **self.get_credentials(device),
         )
         if self.enable_mode:
