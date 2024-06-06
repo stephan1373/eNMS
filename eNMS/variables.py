@@ -79,6 +79,7 @@ class VariableStore:
         self.scheduler_address = getenv("SCHEDULER_ADDR", "0.0.0.0")
         self.scheduler_active = getenv("SCHEDULER_ACTIVE", "1") == "1"
         self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
+        self.ssh_url = getenv("SSH_URL")
         self.server_location = getenv("SERVER_LOCATION")
         self.server_version = self.settings["app"]["version"]
         self.server_commit_sha = Repo(search_parent_directories=True).head.object.hexsha
@@ -210,6 +211,7 @@ class VariableStore:
             },
             "server_url": self.server_url,
             "settings": self.settings,
+            "ssh_url": self.ssh_url,
             "themes": self.themes,
             "table_properties": self.properties["tables"],
             "version": self.version,
