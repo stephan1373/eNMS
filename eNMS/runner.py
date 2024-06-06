@@ -671,7 +671,7 @@ class Runner:
                 db.factory(
                     "result",
                     result=results,
-                    commit=vs.automation["advanced"]["always_commit_result"] or commit,
+                    commit=vs.automation["advanced"]["always_commit"] or commit,
                     rbac=None,
                     **result_kw,
                 )
@@ -893,6 +893,7 @@ class Runner:
                 runtime=self.parent_runtime,
                 service=self.service.id,
                 content=report,
+                commit=vs.automation["advanced"]["always_commit"],
                 rbac=None,
             )
         return report
