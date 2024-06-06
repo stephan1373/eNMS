@@ -226,6 +226,7 @@ Version 5.1.0: Changelog & Workflow Tree
   transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847)
 - Add new log truncate mechanism, configured in automation.json > "advanced" > "truncate_logs" via the keys
   "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000)
+- Rename automation.json > "advanced" > "always_commit_result" to "always_commit"
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
@@ -268,6 +269,10 @@ Deviations:
 - Deviation 14 (68cf6cc3d338602c92170cb09f0b34dab1fd2185): add try/except around close_remaining_connections
 - Deviation 15 (a43b9c4985ce85a9da8a353014056b87782f86f6 ): add logs truncate mechanism (not active by default)
   Partial merge of original deviation, see commit and release notes above
+- Deviation 16 (d0b40b1e84f85258d556eae533fd1930548a1d16): commit in generate_report function if 'always_commit'
+  option is set to true in automation.json and rename automation.json > "advanced" > "always_commit_result"
+  to "always_commit"
+  Partial merge of original deviation: optional instead of commit=True
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
