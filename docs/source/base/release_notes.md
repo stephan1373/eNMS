@@ -273,6 +273,8 @@ Deviations:
   option is set to true in automation.json and rename automation.json > "advanced" > "always_commit_result"
   to "always_commit"
   Partial merge of original deviation: optional instead of commit=True
+- Deviation 17 (594e97cd812d802959d79006bfb2db376fe0112b): add 'runner_global_variables' function in custom app
+  to add custom variables to global variables used in a run
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
