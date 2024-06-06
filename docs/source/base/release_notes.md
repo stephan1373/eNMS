@@ -275,6 +275,9 @@ Deviations:
   Partial merge of original deviation: optional instead of commit=True
 - Deviation 17 (594e97cd812d802959d79006bfb2db376fe0112b): add 'runner_global_variables' function in custom app
   to add custom variables to global variables used in a run
+- Deviation 18 (e78db1cc93b4625e76996d015ad8aeb83b219163): add new dictionary in automation.json >
+  "netmiko" > "connection_args" used to pass additional parameters to Netmiko CustomHandler class
+  Partial merge of original deviation
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
