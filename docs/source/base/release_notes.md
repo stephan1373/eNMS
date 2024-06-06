@@ -229,6 +229,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Rename automation.json > "advanced" > "always_commit_result" to "always_commit"
 - Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
   ConnectHandler class
+- Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
@@ -280,6 +281,8 @@ Deviations:
 - Deviation 18 (e78db1cc93b4625e76996d015ad8aeb83b219163): add new dictionary in automation.json >
   "netmiko" > "connection_args" used to pass additional parameters to Netmiko CustomHandler class
   Partial merge of original deviation
+- Deviation 19 (dcaa5b4b40abe8bcaf2b83820920efd082e05746): ssh_url / sshUrl to define url for webssh connection
+  to device
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
