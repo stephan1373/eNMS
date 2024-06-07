@@ -170,7 +170,7 @@ class Database:
         self.Dict = MutableDict.as_mutable(CustomPickleType)
         self.List = MutableList.as_mutable(CustomPickleType)
         if self.dialect == "postgresql":
-            self.LargeString, self.MediumString = Text, Text
+            self.LargeString = self.MediumString = Text
         else:
             self.LargeString = Text(self.columns["length"]["large_string"])
             self.MediumString = Text(self.columns["length"]["medium_string"])
