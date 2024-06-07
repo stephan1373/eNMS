@@ -41,6 +41,8 @@ function run() {
   export FLASK_DEBUG=1
   if [ "$database" = "mysql" ]; then
     export DATABASE_URL="mysql://root:password@localhost/enms";
+  elif [ "$database" = "mariadb" ]; then
+    export DATABASE_URL="mariadb+mariadbconnector://admin:password@127.0.0.1/enms"
   elif [ "$database" = "pgsql" ]; then
     export DATABASE_URL="postgresql://root:password@localhost:5432/enms"
   else
