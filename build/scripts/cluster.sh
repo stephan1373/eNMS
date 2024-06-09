@@ -26,6 +26,7 @@ check_status() {
     mysql -e "SHOW STATUS LIKE 'wsrep_ready';"
 
     echo "Checking the local state of the node..."
+    echo "(0: INITIALIZING, 1: JOINING, 2: DONOR/DESYNCED, 3: JOINED, 4: SYNCED)"
     mysql -e "SHOW STATUS LIKE 'wsrep_local_state';"
 
     echo "Checking the local index of the node within the cluster..."
