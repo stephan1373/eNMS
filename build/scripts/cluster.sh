@@ -16,7 +16,7 @@ check_status() {
 
     # Verify cluster size
     echo "Verifying cluster size..."
-    mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_cluster_size';"
+    sudo mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_cluster_size';"
 }
 
 # Parse the argument
