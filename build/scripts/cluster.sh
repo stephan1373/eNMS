@@ -10,9 +10,9 @@ check_status() {
     echo "Checking MariaDB status..."
     sudo systemctl status mariadb
     echo "Verifying cluster size..."
-    sudo mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_cluster_size';"
+    sudo mysql -u root -e "SHOW STATUS LIKE 'wsrep_cluster_size';"
     echo "Checking local state comment..."
-    mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_local_state_comment';"
+    mysql -u root -e "SHOW STATUS LIKE 'wsrep_local_state_comment';"
 }
 
 case "$1" in
