@@ -2,8 +2,10 @@
 
 start_cluster() {
     echo "Starting a new Galera cluster..."
+    sudo systemctl stop mariadb
     sudo galera_new_cluster
     sudo systemctl start mariadb
+    sudo systemctl enable mariadb
     check_status
 }
 
