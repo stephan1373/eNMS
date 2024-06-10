@@ -3,6 +3,7 @@
 start_cluster() {
     echo "Starting a new Galera cluster..."
     sudo galera_new_cluster
+    sudo systemctl start mariadb
     check_status
 }
 
@@ -70,6 +71,13 @@ install_mariadb() {
     sudo mysql_secure_installation
 }
 
+restart_mariadb() {
+    echo "Stopping MariaDB service..."
+    sudo systemctl stop mariadb
+    echo "Starting MariaDB service..."
+    sudo systemctl start mariadb
+}
+
 case "$1" in
     -s|--start)
         start_cluster
@@ -82,6 +90,9 @@ case "$1" in
         ;;
     -i|--install)
         install_mariadb
+        ;;
+    -r|--restart)
+        restart_mariadb
         ;;
     *)
         echo "Usage: $0 {-s|--start|-c|--check|-d|--delete|-i|--install}"
