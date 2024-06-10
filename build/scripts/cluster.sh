@@ -45,6 +45,31 @@ check_status() {
     mysql -e "SHOW STATUS LIKE 'wsrep_incoming_addresses';"
 }
 
+delete_mariadb() {
+    echo "Stopping MariaDB service..."
+    sudo systemctl stop mariadb
+
+    echo "Removing MariaDB packages..."
+    sudo dnf remove -y mariadb mariadb-server
+
+    echo "Removing MariaDB data and configuration files..."
+    sudo rm -rf /var/lib/mysql
+    sudo rm -rf /etc/my.cnf
+    sudo rm -rf /etc/my.cnf.d
+}
+
+install_mariadb() {
+    echo "Installing MariaDB packages..."
+    sudo dnf install -y mariadb-server mariadb-server-galera
+
+    echo "Starting and enabling MariaDB service..."
+    sudo systemctl start mariadb
+    sudo systemctl enable mariadb
+
+    echo "Running MariaDB secure installation..."
+    sudo mysql_secure_installation
+}
+
 case "$1" in
     -s|--start)
         start_cluster
@@ -52,8 +77,14 @@ case "$1" in
     -c|--check)
         check_status
         ;;
+    -d|--delete)
+        delete_mariadb
+        ;;
+    -i|--install)
+        install_mariadb
+        ;;
     *)
-        echo "Usage: $0 {-s|--start|-c|--check}"
+        echo "Usage: $0 {-s|--start|-c|--check|-d|--delete|-i|--install}"
         exit 1
         ;;
 esac
