@@ -339,8 +339,8 @@ class ServiceReport(AbstractBase):
     log_change = False
     id = db.Column(Integer, primary_key=True)
     content = db.Column(db.LargeString)
-    runtime = db.Column(db.TinyString)
-    service_id = db.Column(Integer, ForeignKey("service.id"))
+    runtime = db.Column(db.TinyString, ForeignKey("run.runtime", ondelete="cascade"))
+    service_id = db.Column(Integer, ForeignKey("service.id", ondelete="cascade"))
     service = relationship("Service", foreign_keys="ServiceReport.service_id")
 
     def __repr__(self):
