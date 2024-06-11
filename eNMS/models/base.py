@@ -3,6 +3,7 @@ from flask_login import current_user
 from sqlalchemy import or_
 from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy.sql.expression import false
+from traceback import format_exc
 
 from eNMS.database import db
 from eNMS.environment import env
@@ -28,8 +29,12 @@ class AbstractBase(db.base):
             if env.use_vault:
                 target = self.service if self.type == "run" else self
                 path = f"secret/data/{target.type}/{target.name}/{property}"
-                data = env.vault_client.read(path)
-                value = data["data"]["data"][property] if data else ""
+                try:
+                    data = env.vault_client.read(path)
+                    value = data["data"]["data"][property] if data else ""
+                except Exception:
+                    value = ""
+                    env.log("error", f"Cannot read Vault path {path}:\n{format_exc()}")
             else:
                 value = super().__getattribute__(property)
             return value
