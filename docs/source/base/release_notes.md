@@ -284,6 +284,7 @@ Deviations:
 - Deviation 19 (dcaa5b4b40abe8bcaf2b83820920efd082e05746): ssh_url / sshUrl to define url for webssh connection
   to device
 - Deviation 20 (e5b3171ac34c9dcaaad23819f9594c74fab1288f): add method to inject new variables in flask template context
+- Deviation 21 (c24dabda29aca680a6305a2df7062a9fec3a4cf1): add missing cascade deletions for service log class
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
