@@ -54,5 +54,8 @@ class CustomApp:
     def runner_global_variables(self):
         return {}
 
+    def server_template_context(self):
+        return {}
+
 
 vs.custom = CustomApp()

@@ -216,6 +216,7 @@ class VariableStore:
             "table_properties": self.properties["tables"],
             "version": self.version,
             "visualization": self.visualization,
+            **self.custom.server_template_context()
         }
         self.form_context = {
             **{
