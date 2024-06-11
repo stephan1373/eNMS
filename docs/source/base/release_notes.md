@@ -285,6 +285,9 @@ Deviations:
   to device
 - Deviation 20 (e5b3171ac34c9dcaaad23819f9594c74fab1288f): add method to inject new variables in flask template context
 - Deviation 21 (c24dabda29aca680a6305a2df7062a9fec3a4cf1): add missing cascade deletions for service log class
+- Deviation 22 (f7f722f957f5d3172fd9b0f642ae5d4983799442): vault __getattribute__ function add try/except mechanism
+  Partial merge of original deviation: only catching the exception but not raising it. Default to an empty string
+  in case of exception
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
