@@ -283,6 +283,7 @@ Deviations:
   Partial merge of original deviation
 - Deviation 19 (dcaa5b4b40abe8bcaf2b83820920efd082e05746): ssh_url / sshUrl to define url for webssh connection
   to device
+- Deviation 20 (e5b3171ac34c9dcaaad23819f9594c74fab1288f): add method to inject new variables in flask template context
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
