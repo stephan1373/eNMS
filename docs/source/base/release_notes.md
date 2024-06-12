@@ -290,6 +290,8 @@ Deviations:
   in case of exception
 - Deviation 23 (594dc6f8404e3b92567432549514effcfcbfbba4): add netmiko command verify property to netmiko prompt service
   Partial merge of original deviation: added as property instead of hardcoding it to False
+- Deviation 24 (123c3061801bed977b7316611d8a7d15b38bbb05): use try_commit in the compute pool function
+  Different from original deviation (explicit try/commit except/rollback one time)
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
