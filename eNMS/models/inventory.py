@@ -356,47 +356,50 @@ class Pool(AbstractBase):
             self.update_last_modified_properties()
 
     def compute_pool(self):
-        for model in self.models:
-            if not self.manually_defined:
-                kwargs = {"bulk": "object", "rbac": None, "form": {}}
-                for property in vs.properties["filtering"][model]:
-                    value = getattr(self, f"{model}_{property}")
-                    match_type = getattr(self, f"{model}_{property}_match")
-                    invert_type = getattr(self, f"{model}_{property}_invert")
-                    if not value and match_type != "empty":
-                        continue
-                    kwargs["form"].update(
-                        {
-                            property: value,
-                            f"{property}_filter": match_type,
-                            f"{property}_invert": invert_type,
-                        }
-                    )
-                fast_compute = vs.settings["pool"]["fast_compute"]
-                if kwargs["form"]:
-                    if model == "device" and not self.include_networks:
-                        kwargs["sql_contraints"] = [
-                            vs.models["device"].type != "network"
-                        ]
+        def transaction():
+            for model in self.models:
+                if not self.manually_defined:
+                    kwargs = {"bulk": "object", "rbac": None, "form": {}}
+                    for property in vs.properties["filtering"][model]:
+                        value = getattr(self, f"{model}_{property}")
+                        match_type = getattr(self, f"{model}_{property}_match")
+                        invert_type = getattr(self, f"{model}_{property}_invert")
+                        if not value and match_type != "empty":
+                            continue
+                        kwargs["form"].update(
+                            {
+                                property: value,
+                                f"{property}_filter": match_type,
+                                f"{property}_invert": invert_type,
+                            }
+                        )
+                    fast_compute = vs.settings["pool"]["fast_compute"]
+                    if kwargs["form"]:
+                        if model == "device" and not self.include_networks:
+                            kwargs["sql_contraints"] = [
+                                vs.models["device"].type != "network"
+                            ]
+                        if fast_compute:
+                            kwargs["properties"] = ["id"]
+                        instances = controller.filtering(model, **kwargs)
+                    else:
+                        instances = []
                     if fast_compute:
-                        kwargs["properties"] = ["id"]
-                    instances = controller.filtering(model, **kwargs)
+                        table = getattr(db, f"pool_{model}_table")
+                        db.session.execute(table.delete().where(table.c.pool_id == self.id))
+                        if instances:
+                            values = [
+                                {"pool_id": self.id, f"{model}_id": instance.id}
+                                for instance in instances
+                            ]
+                            db.session.execute(table.insert().values(values))
+                    else:
+                        setattr(self, f"{model}s", instances)
                 else:
-                    instances = []
-                if fast_compute:
-                    table = getattr(db, f"pool_{model}_table")
-                    db.session.execute(table.delete().where(table.c.pool_id == self.id))
-                    if instances:
-                        values = [
-                            {"pool_id": self.id, f"{model}_id": instance.id}
-                            for instance in instances
-                        ]
-                        db.session.execute(table.insert().values(values))
-                else:
-                    setattr(self, f"{model}s", instances)
-            else:
-                instances = getattr(self, f"{model}s")
-            setattr(self, f"{model}_number", len(instances))
+                    instances = getattr(self, f"{model}s")
+                setattr(self, f"{model}_number", len(instances))
+
+        db.try_commit(transaction)
 
 
 class Session(AbstractBase):
