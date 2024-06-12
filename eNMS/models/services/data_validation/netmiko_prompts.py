@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from traceback import format_exc
 
 from eNMS.database import db
-from eNMS.fields import HiddenField, StringField
+from eNMS.fields import BooleanField, HiddenField, StringField
 from eNMS.forms import NetmikoForm
 from eNMS.models.automation import ConnectionService
 
@@ -29,6 +29,7 @@ class NetmikoPromptsService(ConnectionService):
     banner_timeout = db.Column(Float, default=15.0)
     fast_cli = db.Column(Boolean, default=False)
     global_delay_factor = db.Column(Float, default=1.0)
+    cmd_verify = db.Column(Boolean, default=False)
     jump_on_connect = db.Column(Boolean, default=False)
     jump_command = db.Column(db.SmallString)
     jump_username = db.Column(db.SmallString)
@@ -71,6 +72,7 @@ class NetmikoPromptsService(ConnectionService):
                     command,
                     expect_string=confirmation,
                     read_timeout=run.read_timeout,
+                    cmd_verify=run.cmd_verify,
                 )
                 results[command] = {"result": result, "match": confirmation}
             run.exit_remote_device(netmiko_connection, prompt, device)
@@ -102,6 +104,7 @@ class NetmikoPromptsForm(NetmikoForm):
     response2 = StringField(substitution=True, help="netmiko/confirmation")
     confirmation3 = StringField(substitution=True, help="netmiko/confirmation")
     response3 = StringField(substitution=True, help="netmiko/confirmation")
+    cmd_verify = BooleanField("Command Verify", default=False)
     groups = {
         "Main Parameters": {
             "commands": [
@@ -116,4 +119,8 @@ class NetmikoPromptsForm(NetmikoForm):
             "default": "expanded",
         },
         **NetmikoForm.groups,
+        "Advanced Netmiko Parameters": {
+            "commands": ["cmd_verify"],
+            "default": "hidden",
+        },
     }
