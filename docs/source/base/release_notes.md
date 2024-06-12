@@ -288,6 +288,8 @@ Deviations:
 - Deviation 22 (f7f722f957f5d3172fd9b0f642ae5d4983799442): vault __getattribute__ function add try/except mechanism
   Partial merge of original deviation: only catching the exception but not raising it. Default to an empty string
   in case of exception
+- Deviation 23 (594dc6f8404e3b92567432549514effcfcbfbba4): add netmiko command verify property to netmiko prompt service
+  Partial merge of original deviation: added as property instead of hardcoding it to False
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
