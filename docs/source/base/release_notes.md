@@ -231,7 +231,7 @@ Version 5.1.0: Changelog & Workflow Tree
   ConnectHandler class
 - Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
 - Add new settings.json options for custom branding:
-  - "app" > "name": defines window name + app name displayed in the upper left corner
+  - "app" > "name": defines window name + app name displayed in the upper left corner + login page name
   - "app" > "theme": default theme used during user creation and switching back from dark mode
 
 Deviations:
@@ -295,6 +295,8 @@ Deviations:
   Partial merge of original deviation: added as property instead of hardcoding it to False
 - Deviation 24 (123c3061801bed977b7316611d8a7d15b38bbb05): use try_commit in the compute pool function
   Different from original deviation (explicit try/commit except/rollback one time)
+- Deviation 25: custom branding (see release notes above)
+  Partial merge of original deviation
 
 Deviations not merged:
 - Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
