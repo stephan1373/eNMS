@@ -1295,7 +1295,7 @@ function fullScreen() {
 
 function switchTheme(theme) {
   $(`link[href="/static/css/themes/${currentTheme}.css"]`).remove();
-  currentTheme = theme || (currentTheme == "dark" ? "default" : "dark");
+  currentTheme = theme || (currentTheme == "dark" ? settings.app.theme : "dark");
   let cssLink = document.createElement("link");
   cssLink.rel = "stylesheet";
   cssLink.type = "text/css";
