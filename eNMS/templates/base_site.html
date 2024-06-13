@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google" content="notranslate" />
     {% endblock meta %}
-    <title>eNMS | {% block title %}{% endblock %}</title>
+    <title>{{ settings["app"]["name"] }} | {% block title %}{% endblock %}</title>
     {% block stylesheets %}
     <link
       href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}"
@@ -98,7 +98,7 @@
       <center>
         {% set logo_size = "17" if current_user.small_menu else "30" %}
         <h3 id="eNMS" class="logo unselectable" style="font-size:{{ logo_size }}px">
-          eNMS
+          {{ settings["app"]["name"] }}
         </h3>
         <img
           id="img-enms"

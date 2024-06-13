@@ -1,5 +1,6 @@
 {
   "app": {
+    "name": "eNMS",
     "config_mode": "debug",
     "documentation_url": "https://enms.readthedocs.io/en/latest/",
     "git_repository": "git@github.com:afourmy/gitpython-test.git",
