@@ -232,6 +232,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
 - Add new settings.json options for custom branding:
   - "app" > "name": defines window name + app name displayed in the upper left corner
+  - "app" > "theme": default theme used during user creation and switching back from dark mode
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
