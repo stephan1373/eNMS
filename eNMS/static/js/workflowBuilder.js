@@ -84,6 +84,7 @@ export let graph;
 
 let currentRun;
 let currentPlaceholder;
+let discardNextRefresh;
 let placeholder;
 let isSuperworkflow;
 let startId;
@@ -131,6 +132,7 @@ export function displayWorkflow(workflowData, workflowSwitch) {
 
 export function updateRuntimeVariable(runtime) {
   currentRuntime = runtime;
+  discardNextRefresh = true;
 }
 
 function updateRuntimes(result) {
@@ -762,19 +764,22 @@ export function resetWorkflowDisplay() {
 }
 
 export function getWorkflowState(periodic, first) {
-  const runtime = $("#current-runtime").val();
   if (userIsActive && workflow?.id && !first) {
     call({
       url: `/get_service_state/${currentPath}`,
       data: {
         display: runtimeDisplay,
         get_tree: treeIsDisplayed,
-        runtime: runtime,
+        runtime: $("#current-runtime").val(),
         device: $("#device-filter").val(),
         search_mode: $("#tree-search-mode").val(),
         search_value: $("#tree-search").val(),
       },
       callback: function (result) {
+        if (discardNextRefresh) {
+          discardNextRefresh = false;
+          return
+        }
         if (!Object.keys(result).length || result.service.id != workflow.id) return;
         currentRun = result.run;
         currentRuntime = result.runtime;
