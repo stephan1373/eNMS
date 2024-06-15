@@ -600,8 +600,8 @@ export function initSelect(el, model, parentId, single, field) {
         return JSON.stringify({
           term: params.term || "",
           page: params.page || 1,
-          constraints: field.constraints,
-          order: field.order,
+          constraints: field?.constraints,
+          order: field?.order,
           multiple: !single,
         });
       },
