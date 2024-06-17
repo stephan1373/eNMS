@@ -89,7 +89,6 @@ let placeholder;
 let isSuperworkflow;
 let startId;
 let endId;
-let resizeTreeMode = "expanded";
 
 export function displayWorkflow(workflowData, workflowSwitch) {
   workflow = workflowData.service;
@@ -529,7 +528,7 @@ export function updateWorkflowRightClickBindings() {
     "Add to Workflow": addServicePanel,
     "Stop Workflow": () => stopWorkflow(),
     "Runtimes Display": flipRuntimeDisplay,
-    "Resize Tree": resizeTree,
+    "Expand Tree": expandTree,
     "Service Name": (service) => copyToClipboard({ text: service.name }),
     "Top-level Result": getResultLink,
     "Per-device Result": (node) => getResultLink(node, true),
@@ -840,10 +839,8 @@ function compareWorkflowResults() {
   });
 }
 
-function resizeTree() {
-  resizeTreeMode = resizeTreeMode == "collapsed" ? "expanded" : "collapsed";
-  const action = resizeTreeMode == "collapsed" ? "close_all" : "open_all";
-  $("#workflow-tree-services").jstree(action);
+function expandTree() {
+  $("#workflow-tree-services").jstree("open_all");
   $("#resize-tree-icon").toggleClass("glyphicon-resize-small glyphicon-resize-full");
 }
 
