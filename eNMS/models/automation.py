@@ -368,6 +368,7 @@ class Run(AbstractBase):
     duration = db.Column(db.TinyString)
     trigger = db.Column(db.TinyString)
     path = db.Column(db.TinyString)
+    memory_size = db.Column(Integer, default=0)
     parameterized_run = db.Column(Boolean, default=False)
     server_id = db.Column(Integer, ForeignKey("server.id"))
     server = relationship("Server", back_populates="runs")

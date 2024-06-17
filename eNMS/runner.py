@@ -376,7 +376,9 @@ class Runner:
             self.close_remaining_connections()
         except Exception:
             env.log("error", format_exc())
-        db.try_set(self.main_run, "state", self.main_run.get_state())
+        state = self.main_run.get_state()
+        db.try_set(self.main_run, "memory_size", state["memory_size"])
+        db.try_set(self.main_run, "state", state)
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
             env.redis("delete", *runtime_keys)
@@ -600,6 +602,7 @@ class Runner:
     def check_size_before_commit(self, data, data_type):
         column_type = "pickletype" if data_type == "result" else "large_string"
         data_size = getsizeof(str(data))
+        self.write_state("memory_size", data_size, "increment", service=False)
         max_allowed_size = vs.database["columns"]["length"][column_type]
         allow_truncate = vs.automation["advanced"]["truncate_logs"]["active"]
         truncate_size = vs.automation["advanced"]["truncate_logs"]["maximum_size"]
