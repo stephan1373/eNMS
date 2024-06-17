@@ -831,6 +831,12 @@
         "width": "100px"
       },
       {
+        "data": "memory_size",
+        "title": "Size in Memory",
+        "search": "text",
+        "width": "80px"
+      },
+      {
         "data": "progress",
         "title": "Progress",
         "width": "150px",
