@@ -841,7 +841,6 @@ function compareWorkflowResults() {
 
 function expandTree() {
   $("#workflow-tree-services").jstree("open_all");
-  $("#resize-tree-icon").toggleClass("glyphicon-resize-small glyphicon-resize-full");
 }
 
 configureNamespace("workflowBuilder", [
