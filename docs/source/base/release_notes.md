@@ -233,6 +233,9 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add new settings.json options for custom branding:
   - "app" > "name": defines window name + app name displayed in the upper left corner + login page name
   - "app" > "theme": default theme used during user creation and switching back from dark mode
+- Add new "memory_size" property for a run class that shows how much memory a run takes in database.
+  This number is the sum of the size (obtained via "getsizeof") of all results and all logs saved to
+  the database during the run
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
