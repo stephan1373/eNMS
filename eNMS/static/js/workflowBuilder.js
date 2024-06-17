@@ -703,7 +703,7 @@ function displayWorkflowState(result, workflowSwitch) {
   for (const [name, content] of Object.entries(result.state.notes || {})) {
     const [x, y] = name.split("_");
     nodeUpdates.push({
-      id: name,
+      id: `runtime-note-${name}`,
       type: "note",
       label: content,
       borderWidth: 0,
