@@ -1049,9 +1049,9 @@ Expected output:
 
 ## Cluster Management Script
 
-This script provides several commands to manage a Galera cluster.
+This script (`build/script/cluster.sh`)provides several commands to manage the Galera cluster.
 
-### -s | --start
+### cluster -s | --start
 
 Starts a new Galera cluster:
 
@@ -1060,7 +1060,9 @@ Starts a new Galera cluster:
 - Starts and enables the MariaDB service.
 - Checks the status of the MariaDB service and the cluster.
 
-### -c | --check
+To be used on the **first** node of the cluster, not for joining an existing cluster.
+
+### cluster -c | --check
 
 Checks the status of the MariaDB service and various Galera cluster parameters:
 
@@ -1070,15 +1072,11 @@ Checks the status of the MariaDB service and various Galera cluster parameters:
 - Provider and version details.
 - IP addresses of cluster nodes.
 
-### -d | --delete
+### cluster -d | --delete
 
-Uninstalls MariaDB:
+Uninstalls MariaDB and deletes data and configuration files.
 
-- Stops the MariaDB service.
-- Removes MariaDB packages.
-- Deletes data and configuration files.
-
-### -i | --install
+### cluster -i | --install
 
 Installs MariaDB and Galera:
 
@@ -1086,6 +1084,6 @@ Installs MariaDB and Galera:
 - Starts and enables MariaDB service.
 - Runs the secure installation script.
 
-### -r | --restart
+### cluster -r | --restart
 
-Restarts the MariaDB service:
+Restarts the MariaDB service.
