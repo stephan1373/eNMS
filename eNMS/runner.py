@@ -283,8 +283,8 @@ class Runner:
                 self.write_state(f"placeholder/{property}", value)
         self.write_state("success", True)
 
-    def write_state(self, path, value, method=None, service=True):
-        parent_path = f"/{self.path}" if service else ""
+    def write_state(self, path, value, method=None, top_level=False):
+        parent_path = "" if top_level else f"/{self.path}"
         if env.redis_queue:
             if isinstance(value, bool):
                 value = str(value)
@@ -314,10 +314,10 @@ class Runner:
                 store.setdefault(last, []).append(value)
 
     def set_note(self, x, y, content):
-        self.write_state(f"notes/{x}_{y}", content, service=False)
+        self.write_state(f"notes/{x}_{y}", content, top_level=True)
 
     def remove_note(self, x, y):
-        self.write_state(f"notes/{x}_{y}", "", service=False, method="delete")
+        self.write_state(f"notes/{x}_{y}", "", top_level=True, method="delete")
 
     def start_run(self):
         self.init_state()
@@ -602,7 +602,7 @@ class Runner:
     def check_size_before_commit(self, data, data_type):
         column_type = "pickletype" if data_type == "result" else "large_string"
         data_size = getsizeof(str(data))
-        self.write_state("memory_size", data_size, "increment", service=False)
+        self.write_state("memory_size", data_size, "increment", top_level=True)
         if data_type == "result":
             data["memory_size"] = data_size
         max_allowed_size = vs.database["columns"]["length"][column_type]
