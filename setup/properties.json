@@ -834,7 +834,8 @@
         "data": "memory_size",
         "title": "Size in Memory",
         "search": "text",
-        "width": "80px"
+        "width": "80px",
+        "visible": false
       },
       {
         "data": "progress",
@@ -897,6 +898,13 @@
         "data": "creator",
         "title": "User",
         "search": "text",
+        "visible": false
+      },
+      {
+        "data": "memory_size",
+        "title": "Size in Memory",
+        "search": "text",
+        "width": "80px",
         "visible": false
       },
       {
