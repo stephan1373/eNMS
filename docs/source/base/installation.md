@@ -932,16 +932,7 @@ recent result.
 sudo dnf update -y
 ```
 
-### Step 2: Install MariaDB Server
-
-```bash
-sudo dnf install mariadb-server -y
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
-sudo mysql_secure_installation
-```
-
-### Step 3: Build MariaDB Connector
+### Step 2: Build MariaDB Connector
 
 ```bash
 sudo dnf groupinstall "Development Tools" -y
@@ -971,3 +962,13 @@ echo "/usr/local/lib/mariadb" | sudo tee /etc/ld.so.conf.d/mariadb.conf
 sudo ldconfig
 python3 -m pip install --force-reinstall mariadb
 ```
+
+### Step 3: Install MariaDB Server
+
+```bash
+sudo dnf install mariadb-server -y
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo mysql_secure_installation
+```
+
