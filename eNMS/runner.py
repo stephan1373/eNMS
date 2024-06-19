@@ -603,6 +603,8 @@ class Runner:
         column_type = "pickletype" if data_type == "result" else "large_string"
         data_size = getsizeof(str(data))
         self.write_state("memory_size", data_size, "increment", service=False)
+        if data_type == "result":
+            data["memory_size"] = data_size
         max_allowed_size = vs.database["columns"]["length"][column_type]
         allow_truncate = vs.automation["advanced"]["truncate_logs"]["active"]
         truncate_size = vs.automation["advanced"]["truncate_logs"]["maximum_size"]
@@ -667,12 +669,13 @@ class Runner:
             results.pop("payload", None)
         create_failed_results = self.disable_result_creation and not self.success
         results = self.make_json_compliant(results)
-        self.check_size_before_commit(results, "result")
+        results = self.check_size_before_commit(results, "result")
         if not self.disable_result_creation or create_failed_results or run_result:
             self.has_result = True
             try:
                 db.factory(
                     "result",
+                    memory_size=results["memory_size"],
                     result=results,
                     commit=vs.automation["advanced"]["always_commit"] or commit,
                     rbac=None,

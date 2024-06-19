@@ -264,6 +264,7 @@ class Result(AbstractBase):
     duration = db.Column(db.TinyString)
     result = deferred(db.Column(db.Dict))
     creator = db.Column(db.SmallString)
+    memory_size = db.Column(Integer, default=0)
     run_id = db.Column(Integer, ForeignKey("run.id", ondelete="cascade"))
     run = relationship("Run", back_populates="results", foreign_keys="Result.run_id")
     parent_runtime = db.Column(db.TinyString, index=True)
