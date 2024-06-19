@@ -972,3 +972,18 @@ sudo systemctl enable mariadb
 sudo mysql_secure_installation
 ```
 
+### Step 4: Install Galera Cluster
+
+```bash
+sudo dnf install -y mariadb-server-galera
+sudo firewall-cmd --permanent --add-service=galera
+sudo firewall-cmd --reload
+```
+
+### Step 5: Configure Galera
+
+Edit the configuration file:
+
+```bash
+sudo nano /etc/my.cnf.d/mariadb-server.cnf
+```
