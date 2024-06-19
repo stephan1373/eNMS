@@ -379,6 +379,13 @@
         "visible": false
       },
       {
+        "data": "memory_size",
+        "title": "Size in Memory",
+        "search": "text",
+        "width": "80px",
+        "visible": false
+      },
+      {
         "data": "parent_device_name",
         "title": "Parent Device",
         "search": "text",
@@ -967,6 +974,13 @@
         "data": "user",
         "title": "User",
         "search": "text",
+        "visible": false
+      },
+      {
+        "data": "memory_size",
+        "title": "Size in Memory",
+        "search": "text",
+        "width": "80px",
         "visible": false
       },
       {
