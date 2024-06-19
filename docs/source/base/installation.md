@@ -940,3 +940,34 @@ sudo systemctl start mariadb
 sudo systemctl enable mariadb
 sudo mysql_secure_installation
 ```
+
+### Step 3: Build MariaDB Connector
+
+```bash
+sudo dnf groupinstall "Development Tools" -y
+sudo dnf install cmake openssl-devel -y
+tar -xzvf mariadb-connector-c-3.3.8-src.tar.gz
+cd mariadb-connector-c-3.3.8-src
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+
+# This gives the path /usr/local/lib to the right connector
+find /usr/local -name "libmariadb.so*"
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=/usr/local/include/mariadb:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=/usr/local/include/mariadb:$CPLUS_INCLUDE_PATH
+
+echo 'export LD_LIBRARY_PATH=/usr/local/lib/mariadb:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export LIBRARY_PATH=/usr/local/lib/mariadb:$LIBRARY_PATH' >> ~/.bashrc
+echo 'export C_INCLUDE_PATH=/usr/local/include/mariadb:$C_INCLUDE_PATH' >> ~/.bashrc
+echo 'export CPLUS_INCLUDE_PATH=/usr/local/include/mariadb:$CPLUS_INCLUDE_PATH' >> ~/.bashrc
+source ~/.bashrc
+
+echo "/usr/local/lib/mariadb" | sudo tee /etc/ld.so.conf.d/mariadb.conf
+sudo ldconfig
+python3 -m pip install --force-reinstall mariadb
+```
