@@ -923,3 +923,20 @@ The shell script defines the logic and commands to run when the merge driver
 is called. In this case it compares the timestamps from `git log` commands on
 the local `master` branch and the contents of `FETCH_HEAD`, accepting the most
 recent result.
+
+## Galera Cluster Deployment on Rocky Linux
+
+### Step 1: System Update
+
+```bash
+sudo dnf update -y
+```
+
+### Step 2: Install MariaDB Server
+
+```bash
+sudo dnf install mariadb-server -y
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo mysql_secure_installation
+```
