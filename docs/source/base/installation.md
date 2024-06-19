@@ -987,3 +987,16 @@ Edit the configuration file:
 ```bash
 sudo nano /etc/my.cnf.d/mariadb-server.cnf
 ```
+
+and add the following configuration:
+
+```bash
+wsrep_on=ON
+wsrep_cluster_address="gcomm://192.168.56.103,192.168.56.104"
+binlog_format=row
+wsrep_node_address="192.168.56.104"
+wsrep_cluster_name="my_galera_cluster"
+wsrep_sst_auth="sstuser:password"
+wsrep_sst_method=rsync
+bind-address=0.0.0.0
+```
