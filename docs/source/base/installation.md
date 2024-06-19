@@ -1000,3 +1000,12 @@ wsrep_sst_auth="sstuser:password"
 wsrep_sst_method=rsync
 bind-address=0.0.0.0
 ```
+
+### Step 6: Create sstuser in database
+
+```bash
+sudo mysql -u root -p
+CREATE USER 'sstuser'@'%' IDENTIFIED BY 'password';
+GRANT RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT ON *.* TO 'sstuser'@'%';
+FLUSH PRIVILEGES;
+```
