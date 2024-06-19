@@ -152,10 +152,7 @@
         {{ nav_item.title }}
       </a>
 
-      <!-- Show table of contents -->
-      {% if toc %}
-        {% include "partials/toc.html" %}
-      {% endif %}
+
     </li>
 
   <!-- Main navigation item -->
@@ -167,6 +164,3 @@
     </li>
   {% endif %}
 {% endmacro %}
-
-<!-- Render current and nested navigation items -->
-{{ render(nav_item, path, level) }}
