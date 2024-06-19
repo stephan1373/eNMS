@@ -1001,11 +1001,48 @@ wsrep_sst_method=rsync
 bind-address=0.0.0.0
 ```
 
-### Step 6: Create sstuser in database
+### Step 6: Create 'sstuser' in database
 
 ```bash
 sudo mysql -u root -p
 CREATE USER 'sstuser'@'%' IDENTIFIED BY 'password';
 GRANT RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT ON *.* TO 'sstuser'@'%';
 FLUSH PRIVILEGES;
+```
+
+### Step 7: Start Galera Cluster
+
+On VM1:
+
+```bash
+sudo galera_new_cluster
+sudo systemctl start mariadb
+sudo mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_cluster_size';"
+```
+
+Expected output:
+
+```bash
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| wsrep_cluster_size | 1     |
++--------------------+-------+
+```
+
+On VM2:
+
+```bash
+sudo systemctl restart mariadb
+sudo mysql -u root -p -e "SHOW STATUS LIKE 'wsrep_cluster_size';"
+```
+
+Expected output:
+
+```bash
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| wsrep_cluster_size | 2     |
++--------------------+-------+
 ```
