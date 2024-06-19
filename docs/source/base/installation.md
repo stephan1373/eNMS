@@ -1046,3 +1046,46 @@ Expected output:
 | wsrep_cluster_size | 2     |
 +--------------------+-------+
 ```
+
+## Cluster Management Script
+
+This script provides several commands to manage a Galera cluster.
+
+### -s | --start
+
+Starts a new Galera cluster:
+
+- Stops the MariaDB service.
+- Initializes a new Galera cluster.
+- Starts and enables the MariaDB service.
+- Checks the status of the MariaDB service and the cluster.
+
+### -c | --check
+
+Checks the status of the MariaDB service and various Galera cluster parameters:
+
+- MariaDB service status.
+- Cluster size.
+- Node state and connection status.
+- Provider and version details.
+- IP addresses of cluster nodes.
+
+### -d | --delete
+
+Uninstalls MariaDB:
+
+- Stops the MariaDB service.
+- Removes MariaDB packages.
+- Deletes data and configuration files.
+
+### -i | --install
+
+Installs MariaDB and Galera:
+
+- Installs MariaDB server and Galera.
+- Starts and enables MariaDB service.
+- Runs the secure installation script.
+
+### -r | --restart
+
+Restarts the MariaDB service:
