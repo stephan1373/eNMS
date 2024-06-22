@@ -21,7 +21,9 @@ nav:
       - Credentials: administration/credentials.md
       - Groups: administration/groups.md
       - Users: administration/users.md
-    - Servers: administration/servers.md
+    - Clustering:
+      - Servers: administration/servers.md
+      - Workers: administration/workers.md
     - Tools:
       - Admin Panel: administration/admin_panel.md
       - Debugging: administration/debug.md
