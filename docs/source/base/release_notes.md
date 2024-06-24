@@ -355,7 +355,7 @@ Version 5.0: Clustering
     are initialized with the SCHEDULER_ADDR and SCHEDULER_ACTIVE environment variable. D
   - Add "runs" and "workers" links in server table D
   - Add "version" and "commit SHA" properties D
-  - Add "location" property, populated from SERVER_LOCATION environment variable
+  - Add "location" property, populated from SERVER_LOCATION environment variable D
   - Add "Last Restart" property in server table: updated every time the application starts.
   - Add "Current runs" property in server table: counts number of runs currently running on server.
   - Add "Role" property to distinguish between "primary" and "standby" in the cluster
