@@ -11,4 +11,9 @@
 > * **Secondary**: Secondary server of the cluster
 * **IP Address**: IP Address of the server
 * **Scheduler Address**: Address of the Scheduler used by the Server to run tasks.
-* **Scheduler Active**: Can be used in custom code to determine which server of the cluster is responsible for scheduling tasks
+* **Scheduler Active**: Can be used in custom code to determine which server in the cluster is responsible for scheduling tasks
+* **Location**: Physical location of the server
+* **Version**: eNMS version running on the server, as defined in settings.json > "app" > "version"
+* **Commit SHA**: Commit SHA of the latest git commit in the eNMS repository. This quickly shows if all servers are running the same version of the code, and identifies the exact code being run if they are not.
+* **Latest Restart**: Date and time of the last server restart
+* **Weight**: Weight of the server, used in custom master election processes
