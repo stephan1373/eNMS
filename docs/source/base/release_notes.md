@@ -363,12 +363,12 @@ Version 5.0: Clustering
     - "scheduler": server can run jobs from scheduler via "run_task" REST endpoint D
     - "rest_api": server can run jobs from REST API via "run_service" REST endpoint D
     - "application": server can run jobs from the UI via "run_service" controller endpoint D
-  - "Allowed Automation" can be configured from settings.json > "cluster" > "allowed_automation"
-- Rename 'import_version' key to 'version' in settings.json > app
-- Update both server version and commit SHA every time the application starts
-- Add server version and commit SHA at the time of the run in Run table as string properties:
-  - These properties are not updated when the server version / commit SHA is modified
-  - These properties are not erased if the server object of the run is deleted
+  - "Allowed Automation" can be configured from settings.json > "cluster" > "allowed_automation" D
+- Rename 'import_version' key to 'version' in settings.json > app D
+- Update both server version and commit SHA every time the application starts D
+- Add server version and commit SHA at the time of the run in Run table as string properties: D
+  - These properties are not updated when the server version / commit SHA is modified D
+  - These properties are not erased if the server object of the run is deleted D
 - Add new "Worker" table in database and UI (Administration menu)
   - A worker is created or updated whenever a job starts running
   - The worker name is built as server name + process ID to guarantee that it is unique

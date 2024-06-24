@@ -13,8 +13,8 @@
 * **Scheduler Address**: Address of the Scheduler used by the Server to run tasks. This property is initialized using the SCHEDULER_ADDR environment variable
 * **Scheduler Active**: Can be used in custom code to determine which server in the cluster is responsible for scheduling tasks. This properties is initialized using the SCHEDULER_ACTIVE environment variable
 * **Location**: Physical location of the server. This property is initialized using the SERVER_LOCATION environment variable
-* **Version**: eNMS version running on the server, as defined in settings.json > "app" > "version"
-* **Commit SHA**: Commit SHA of the latest git commit in the eNMS repository. This quickly shows if all servers are running the same version of the code, and identifies the exact code being run if they are not.
+* **Version**: eNMS version running on the server, as defined in settings.json > "app" > "version". Updated every time the application starts
+* **Commit SHA**: Commit SHA of the latest git commit in the eNMS repository, updated every time the application starts. This quickly shows if all servers are running the same version of the code, and identifies the exact code being run if they are not
 * **Latest Restart**: Date and time of the last server restart
 * **Weight**: Weight of the server, used in custom master election processes
 * **Allowed Automation** Defines what services the server is allowed to run. The default configuration of the "Allowed Automation" setting can be configured from settings.json > "cluster" > "allowed_automation"
