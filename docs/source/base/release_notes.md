@@ -352,9 +352,9 @@ Version 5.0: Clustering
 - Display server and worker in run table as hyperlink to the edit panel D
 - In Server SQL table and Server table in the UI:
   - Add "scheduler_address" and "scheduler_active" properties in Server table. These properties
-    are initialized with the SCHEDULER_ADDR and SCHEDULER_ACTIVE environment variable.
-  - Add "runs" and "workers" links in server table
-  - Add "version" and "commit SHA" properties
+    are initialized with the SCHEDULER_ADDR and SCHEDULER_ACTIVE environment variable. D
+  - Add "runs" and "workers" links in server table D
+  - Add "version" and "commit SHA" properties D
   - Add "location" property, populated from SERVER_LOCATION environment variable
   - Add "Last Restart" property in server table: updated every time the application starts.
   - Add "Current runs" property in server table: counts number of runs currently running on server.
