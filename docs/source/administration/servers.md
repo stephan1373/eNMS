@@ -17,3 +17,7 @@
 * **Commit SHA**: Commit SHA of the latest git commit in the eNMS repository. This quickly shows if all servers are running the same version of the code, and identifies the exact code being run if they are not.
 * **Latest Restart**: Date and time of the last server restart
 * **Weight**: Weight of the server, used in custom master election processes
+* **Allowed Automation** Defines what services the server is allowed to run:
+> * **Scheduled Runs**: The server is allowed to run services from scheduled tasks
+> * **ReST API Runs**: The server is allowed to run services from REST API requests
+> * **Application Runs**: The server is allowed to run services started from the GUI
