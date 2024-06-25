@@ -149,6 +149,28 @@ Example of this configuration data:
 - `"visible": false`, *default display option*.
 - `"orderable": false`, *allow user to order by this attribute*.
 
+### Property List
+
+Some properties are displayed as a drop-down list in the UI, allowing the user to select a value from a predefined list. These values are defined in properties.json under the `property_list` key.
+
+For example, the `model` property of a device can be defined as follows:
+
+```json
+"device": {
+  "model": {
+    "choices": [
+      ["Arista", "Arista"],
+      ["Cisco", "Cisco"],
+      ["Linux", "Linux"],
+      ["Juniper", "Juniper"]
+    ],
+    "validate_choice": false
+  }
+}
+```
+
+The `validate_choice` key determines whether the application enforces that the selected value in the form must be from the drop-down list. If `validate_choice` is set to False and the value is empty, the application will not require the user to select a value from the drop-down list, thus preventing the user from editing the object.
+
 ### Table Filtering
 
 The `"filtering"` key in `properties.json` defines the properties that can be
