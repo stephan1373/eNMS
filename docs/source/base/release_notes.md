@@ -383,11 +383,11 @@ Version 5.0: Clustering
 - When loading the application, check whether the server's workers are running and if not,
   delete them from the database D
 - Workers are created when they are detected by the application, ie when a service is run
-  by the worker
+  by the worker D
 - Refactor get_workers REST endpoint to use workers in the database instead of storing
-  worker data in the redis queue
-- When a worker is deleted from the worker table, send SIGTERM signal to underlying process
-- Don't check for metadata version when doing migration import, only check for service import
+  worker data in the redis queue D
+- When a worker is deleted from the worker table, send SIGTERM signal to underlying process D
+- Don't check for metadata version when doing migration import, only check for service import D
 - Add mechanism to use a StringField for the properties in properties.json > "property_list":
   - if the list is empty, will default to StringField instead of a SelectField.
   - new format in case of a SelectField: must provide all wtforms keyword arguments
