@@ -1,7 +1,5 @@
 # Workers
 
-A worker is created or updated whenever a job starts running. By default, the worker's name is set to "Server Name - Process ID" to ensure uniqueness across servers.
-
 <h4>Workers Details</h4> 
 ![Worker Details](../_static/administration/worker.png)
 
@@ -13,3 +11,5 @@ A worker is created or updated whenever a job starts running. By default, the wo
 
 Note:
 - When the application starts, it checks if the server's workers are running on Unix (via /proc/id). If they are not, they are deleted from the database.
+- A worker is detected (and created or updated) whenever a job starts running. By default, until the first service is run, there isn't any worker in the database.
+- The worker's name is set to "Server Name - Process ID" to ensure uniqueness across servers.
