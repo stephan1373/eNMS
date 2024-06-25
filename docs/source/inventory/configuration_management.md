@@ -42,6 +42,8 @@ configuration.
 
 ![Configuration Comparison.](../_static/base/configuration_history.png)
 
+You can also compare a configuration property between two devices by selecting V1 and V2 in the configuration table and then clicking the comparison button in the upper menu bar.
+
 ## Data Backup Services - Overview 
 
 Configurations are retrieved by `Data Backup` services which:

@@ -169,7 +169,8 @@ For example, the `model` property of a device can be defined as follows:
 }
 ```
 
-The `validate_choice` key determines whether the application enforces that the selected value in the form must be from the drop-down list. If `validate_choice` is set to False and the value is empty, the application will not require the user to select a value from the drop-down list, thus preventing the user from editing the object.
+- The `validate_choice` key determines whether the application enforces that the selected value in the form must be from the drop-down list. If `validate_choice` is set to False and the value is empty, the application will not require the user to select a value from the drop-down list, thus preventing the user from editing the object.
+- If the list is left empty, the field will default to a WTForms StringField instead of a SelectField. In the UI, it will appear as a free-form text field.
 
 ### Table Filtering
 
