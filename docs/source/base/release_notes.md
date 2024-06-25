@@ -375,13 +375,13 @@ Version 5.0: Clustering
     across servers D
   - Add "process_id" property (populated with getpid()) D
   - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq) D
-  - Add "last_update" property to show when the worker was last used / updated
-  - Add "server" hyperlink to the edit panel of worker's server
-  - Add "current_runs" property to show how many jobs the worker is currently running
+  - Add "last_update" property to show when the worker was last used / updated D
+  - Add "server" hyperlink to the edit panel of worker's server D
+  - Add "current_runs" property to show how many jobs the worker is currently running D
   - Add "runs" property: one-to-many relationship between worker <-> runs, and button in
-    worker table to display all runs executed by the worker.
+    worker table to display all runs executed by the worker. D
 - When loading the application, check whether the server's workers are running and if not,
-  delete them from the database
+  delete them from the database D
 - Workers are created when they are detected by the application, ie when a service is run
   by the worker
 - Refactor get_workers REST endpoint to use workers in the database instead of storing
