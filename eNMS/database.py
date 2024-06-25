@@ -129,7 +129,7 @@ class Database:
             commit=True,
         )
         for worker in server.workers:
-            if exists(f"/proc/{worker.name}"):
+            if exists(f"/proc/{worker.process_id}"):
                 continue
             try:
                 db.delete_instance(worker, call_delete=False)
