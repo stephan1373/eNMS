@@ -369,12 +369,12 @@ Version 5.0: Clustering
 - Add server version and commit SHA at the time of the run in Run table as string properties: D
   - These properties are not updated when the server version / commit SHA is modified D
   - These properties are not erased if the server object of the run is deleted D
-- Add new "Worker" table in database and UI (Administration menu)
+- Add new "Worker" table in database and UI (Administration menu) D
   - A worker is created or updated whenever a job starts running
   - The worker name is built as server name + process ID to guarantee that it is unique
-    across servers
-  - Add "process_id" property (populated with getpid())
-  - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq)
+    across servers D
+  - Add "process_id" property (populated with getpid()) D
+  - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq) D
   - Add "last_update" property to show when the worker was last used / updated
   - Add "server" hyperlink to the edit panel of worker's server
   - Add "current_runs" property to show how many jobs the worker is currently running
