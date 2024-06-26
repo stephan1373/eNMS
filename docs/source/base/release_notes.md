@@ -397,7 +397,7 @@ Version 5.0: Clustering
 - Add setting to control whether or not to monitor changes system in
   settings.json > "files" > "monitor_filesystem" D
 - Add new "name" field to the "Parameters" class so it can be updated from the REST API D
-- Add support for BCC in the send email mechanism (service step 4 and email notification service)
+- Add support for BCC in the send email mechanism (service step 4 and email notification service) D
 - Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
   RBAC which users can view, edit and use them in a workflow.
 - Make 'runtime' property of Run class unique at database level ("unique = True")
