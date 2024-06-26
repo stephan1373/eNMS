@@ -21,6 +21,7 @@ nav:
       - Credentials: administration/credentials.md
       - Groups: administration/groups.md
       - Users: administration/users.md
+      - Secrets: administration/secrets.md
     - Clustering:
       - Servers: administration/servers.md
       - Workers: administration/workers.md
