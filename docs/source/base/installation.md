@@ -631,9 +631,11 @@ Define how the charts are displayed in the dashboard section in the user interfa
 #### `files` section
 Control how the app tracks files on the filesystem.
 
+- `monitor_filesystem` manages the monitoring of file changes on the system
 - `ignored_types` file extensions to exclude from tracking (default: `[".swp"," .tgz"]`)
 - `upload_timeout` (default: `600000`)
 - `log_events` log changes (modify/update/delete) of tracked files to both the console and changelog (defalt: `true`)
+- `trash` path to the "trash" folder where deleted files are moved
 
 #### `mail` section
 
