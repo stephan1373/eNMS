@@ -20,3 +20,12 @@ Fine control of actions a team can take.
 * **Read Access**: Groups of users allowed to read the secret
 * **Edit Access**: Groups of users allowed to edit the secret
 * **Use Access**: Groups of users allowed to use the secret in a workflow
+
+<br/>
+<h4>Usage</h4>
+
+![Usage](../_static/administration/secret_usage.png)
+
+The `get_secret` function is a global variable in a workflow that retrieves the secret value of a "secret" object by its name. At runtime, the application first checks that the user running the workflow has "Use" RBAC access for the secret object. If access is granted, it returns the associated secret value.
+
+Typical usage includes using a password as part of a Python secret or embedding a password in a URL (e.g., for a REST call) via string substitution (`https://URL&password={{ get_secret("name") }}`).
