@@ -401,10 +401,10 @@ Version 5.0: Clustering
 - Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
   RBAC which users can view, edit and use them in a workflow. D
 - Make 'runtime' property of Run class unique at database level ("unique = True") D
-- Add new "Sender" field for the email notification mechanism (service Step 4)
-- Add new snippet to delete corrupted services ("delete_corrupted_services.py")
+- Add new "Sender" field for the email notification mechanism (service Step 4) D
+- Add new snippet to delete corrupted services ("delete_corrupted_services.py") D
 - Make pool 'fast compute' mechanism optional via new "pool" > "fast_compute" boolean
-  property in settings.json (default: true)
+  property in settings.json (default: true) D
 - Add new try_set function to retry updating a property in case of deadlock
 - Add new key in automation.json: "advanced" > "always_commit_result" set to False by default.
   If set to True, results are always committed as soon as they are created to avoid deadlocks.

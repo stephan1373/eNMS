@@ -679,6 +679,11 @@ This section is covered in depth in the [administration panel](../administration
 - `playbooks` (default: `""`) Path to where Ansible playbooks are
   stored so that they are selectable in the Ansible Playbook service.
 
+#### `pool` section
+
+- `fast_compute` (default:`true`) use raw SQL queries to empty and insert
+  the object IDs in the pool in order to speed up the pool udpate mechanism
+
 #### `redis` section
 
 This section allows configuration of the Redis queue.

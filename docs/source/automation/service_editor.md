@@ -448,6 +448,7 @@ Configure the following parameters:
     a link to the results.
 -   `Mail Recipients`: Must be a list of email addresses, separated by
     comma.  (Variable Substitution is supported.)
+    `Sender`: Email address of the sender.
 -   `Reply-to Email Address`: Must be a list of email addresses, separated by
     comma.
 -   `Display only failed nodes`: The notification will not include

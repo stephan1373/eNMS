@@ -132,6 +132,9 @@
     "migration": "",
     "playbooks": ""
   },
+  "pool": {
+    "fast_compute": true
+  },
   "redis": {
     "config": {
       "charset": "utf-8",
@@ -198,8 +201,5 @@
     },
     "unseal_vault": false,
     "use_vault": false
-  },
-  "pool": {
-    "fast_compute": true
   }
 }
