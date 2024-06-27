@@ -143,6 +143,7 @@ added here.
 Example of this configuration data:  
   
 - `"data": "device_status"`, *attribute created in custom device above*.
+- `"html": false`, *if true, the content will be interpreted as HTML code*.
 - `"title": "Device Status"`, *name to display in table*.
 - `"search": "text"`, *search type*.
 - `"width": "80%"`, *optional - text alignment, other example: "width":"130px",*.

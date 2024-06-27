@@ -414,8 +414,8 @@ Version 5.0: Clustering
   update transaction in case of deadlocks D
 - Forbid redirecting outside of the base URL in the login redirection mechanism D
 - Prevent active HTML / JavaScript in the cells of a table by default, and add the `html`
-  keyword in properties.json to allow it wherever necessary.
-- Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table
+  keyword in properties.json to allow it wherever necessary. D
+- Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table D
 - Validate that the path of a file is inside the "files" folder when renaming a file object
   or uploading a file.
 - Move v1/v2 in config table after the configuration properties columns
