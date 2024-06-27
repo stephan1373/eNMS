@@ -67,10 +67,14 @@ Examples:
 - The second argument is the name of the property to update (as a string).
 - The third argument is the value of that property.
 
-Examples:
+### Commit a transaction: `try_commit`
 
-    try_set(service, "status", "Running")
-    try_set(device, "operating_system", "EOS")
+`try_commit` can be called to run a function and attempt to commit the transaction at the end. If the commit fails for any reason (database unavailable, deadlock, etc.), `try_commit` will automatically roll back and attempt to commit again. The number of retries is configured in database.json.
+
+- The first argument of try_commit is the function to run (the SQL transaction)
+- The following arguments, *args and **kwargs, are passed to the function
+
+Typical usage: `try_commit(transaction, *args, **kwargs)`
 
 ### Retrieving Links and neighboring Devices: `get_neighbors()`
 

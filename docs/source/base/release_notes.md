@@ -417,11 +417,11 @@ Version 5.0: Clustering
   keyword in properties.json to allow it wherever necessary. D
 - Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table D
 - Validate that the path of a file is inside the "files" folder when renaming a file object
-  or uploading a file.
-- Move v1/v2 in config table after the configuration properties columns
-- Move v1/v2 in all results table before the table buttons
-- Add runtime in traceback when a run fails in controller.run function
-- Add try_set and try_commit to run global variables
+  or uploading a file. D
+- Move v1/v2 in config table after the configuration properties columns D
+- Move v1/v2 in all results table before the table buttons D
+- Add runtime in traceback when a run fails in controller.run function D
+- Add try_set and try_commit to run global variables D
 - Add new timeout when trying to close connection with multithreading. Timeout is configured
   under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) 
 - Append 3-digits postfix to all runtimes to prevent name and runtime collisions for
