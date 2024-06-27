@@ -424,6 +424,10 @@ Key parameters to be aware of:
 - `always_commit` (default: `false`) Always commit results and logs immediately
   after they are created when a service is running. This can help prevent various
   database issues that arise during a run.
+- `disconnect_thread_timeout` (default: `10` (seconds)) This parameter sets the timeout value
+  used when attempting to close all open connections at the end of a workflow.
+  Multiple threads are spawned to close all connections as quickly as possible,
+  and this timeout is passed to each thread.
 
 ### `database.json`
 The `setup/database.json` file contains database and schema configuration

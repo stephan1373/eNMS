@@ -423,11 +423,11 @@ Version 5.0: Clustering
 - Add runtime in traceback when a run fails in controller.run function D
 - Add try_set and try_commit to run global variables D
 - Add new timeout when trying to close connection with multithreading. Timeout is configured
-  under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) 
+  under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) D
 - Append 3-digits postfix to all runtimes to prevent name and runtime collisions for
-  runs that start at the same time (replaces jitter mechanism)
+  runs that start at the same time (replaces jitter mechanism) D
 - Refactor the end of run transaction and cleanup mechanism after a run is interrupted by
-  a critical exception or application reload:
+  a critical exception or application reload: D
   - Trigger end of run transaction to have results and logs available
   - Remove the run data from the redis queue (if a redis queue is used)
   - Close connections to device (in case of an interruption by critical exception)
