@@ -405,7 +405,7 @@ Version 5.0: Clustering
 - Add new snippet to delete corrupted services ("delete_corrupted_services.py") D
 - Make pool 'fast compute' mechanism optional via new "pool" > "fast_compute" boolean
   property in settings.json (default: true) D
-- Add new try_set function to retry updating a property in case of deadlock
+- Add new try_set function to retry updating a property in case of deadlock D
 - Add new key in automation.json: "advanced" > "always_commit_result" set to False by default.
   If set to True, results are always committed as soon as they are created to avoid deadlocks.
 - Refactor "service run count" mechanism to work with the redis queue and correctly update

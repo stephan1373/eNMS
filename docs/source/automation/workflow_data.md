@@ -59,6 +59,19 @@ Examples:
     set_var("iteration_device", devices, section="pools", device=device.name)
     get_var("iteration_device", section="pools", device=device.name)
 
+### Update an object property: `try_set`
+
+`try_set` can be called to update an object's property and commit it to the database. If the commit fails for any reason (database unavailable, deadlock, etc.), `try_set` will automatically roll back and attempt to commit again. The number of retries is configured in database.json.
+
+- The first argument of try_set is the SQLAlchemy object to update.
+- The second argument is the name of the property to update (as a string).
+- The third argument is the value of that property.
+
+Examples:
+
+    try_set(service, "status", "Running")
+    try_set(device, "operating_system", "EOS")
+
 ### Retrieving Links and neighboring Devices: `get_neighbors()`
 
 The user can retrieve the list of links to and from the target device
