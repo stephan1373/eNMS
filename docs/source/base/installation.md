@@ -456,6 +456,13 @@ Python3 logger file configuration syntax for the user's version of Python3.
 Using this file, the administrator can configure additional loggers and
 logger destinations as needed for workflows.
 
+Key advanced parameters to be aware of:
+
+- `use_multiprocessing_handlers` (default: `true`) Tell the application to
+  use a specific handler called `MultiProcessingLoggingHandler` for logging.
+  This handler helps prevent issues related to concurrent access to logs
+  from multiple threads during a service run.
+
 By default, the two loggers are configured:
 
 -   The default logger has handlers for sending logs to the stdout

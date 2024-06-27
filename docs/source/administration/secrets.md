@@ -7,7 +7,7 @@
 
 * **Name**: Unique identification for secret name
 * **Description**: Text field for storing notes  
-* **Value**: Secret value (never shown in the UI)
+* **Value**: Secret value (private property that is never shown in the UI)
 
 <br/>
 <h4>RBAC properties</h4> 

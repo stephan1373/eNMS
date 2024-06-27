@@ -431,8 +431,8 @@ Version 5.0: Clustering
   - Trigger end of run transaction to have results and logs available
   - Remove the run data from the redis queue (if a redis queue is used)
   - Close connections to device (in case of an interruption by critical exception)
-- Make the value of a Secret a private property
-- Major logging update to prevent stuck workflow with dramatiq processes > 2:
+- Make the value of a Secret a private property D
+- Major logging update to prevent stuck workflow with dramatiq processes > 2: D
   - Add support for multiprocessing capable logging handlers
   - New "use_multiprocessing_handlers" key in logging.json to decide whether to use
   the multiprocessing capable logging handlers
