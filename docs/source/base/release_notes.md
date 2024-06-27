@@ -407,12 +407,12 @@ Version 5.0: Clustering
   property in settings.json (default: true) D
 - Add new try_set function to retry updating a property in case of deadlock D
 - Add new key in automation.json: "advanced" > "always_commit_result" set to False by default.
-  If set to True, results are always committed as soon as they are created to avoid deadlocks.
+  If set to True, results are always committed as soon as they are created to avoid deadlocks. D
 - Refactor "service run count" mechanism to work with the redis queue and correctly update
-  the service status ("Idle" / "Running") at the end of the run
+  the service status ("Idle" / "Running") at the end of the run D
 - Refactor netmiko backup service and scrapli backup service to retry the configuration
-  update transaction in case of deadlocks
-- Forbid redirecting outside of the base URL in the login redirection mechanism
+  update transaction in case of deadlocks D
+- Forbid redirecting outside of the base URL in the login redirection mechanism D
 - Prevent active HTML / JavaScript in the cells of a table by default, and add the `html`
   keyword in properties.json to allow it wherever necessary.
 - Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table

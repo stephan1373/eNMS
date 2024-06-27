@@ -419,6 +419,12 @@ of the parameterized run form for workflows, the default arguments used to
 open a Scrapli connection, and the models that one can access or create
 from the workflow builder global variables.
 
+Key parameters to be aware of:
+
+- `always_commit` (default: `false`) Always commit results and logs immediately
+  after they are created when a service is running. This can help prevent various
+  database issues that arise during a run.
+
 ### `database.json`
 The `setup/database.json` file contains database and schema configuration
 parameters.  Make sure to include a new database engine section here if
