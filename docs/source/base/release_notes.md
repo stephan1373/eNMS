@@ -346,93 +346,93 @@ Tests:
 Version 5.0: Clustering
 -----------------------
 
-- Add new Clustering menu entry with "Server" and "Worker" pages D
-- Add one-to-many relationship between Run and Server class D
-- Add one-to-many relationship between Worker and Server class D
-- Display server and worker in run table as hyperlink to the edit panel D
+- Add new Clustering menu entry with "Server" and "Worker" pages
+- Add one-to-many relationship between Run and Server class
+- Add one-to-many relationship between Worker and Server class
+- Display server and worker in run table as hyperlink to the edit panel
 - In Server SQL table and Server table in the UI:
   - Add "scheduler_address" and "scheduler_active" properties in Server table. These properties
-    are initialized with the SCHEDULER_ADDR and SCHEDULER_ACTIVE environment variable. D
-  - Add "runs" and "workers" links in server table D
-  - Add "version" and "commit SHA" properties D
-  - Add "location" property, populated from SERVER_LOCATION environment variable D
-  - Add "Last Restart" property in server table: updated every time the application starts. D
-  - Add "Current runs" property in server table: counts number of runs currently running on server. D
-  - Add "Role" property to distinguish between "primary" and "standby" in the cluster D
-  - Add "Allowed Automation" property to control allowed automation: D
-    - "scheduler": server can run jobs from scheduler via "run_task" REST endpoint D
-    - "rest_api": server can run jobs from REST API via "run_service" REST endpoint D
-    - "application": server can run jobs from the UI via "run_service" controller endpoint D
-  - "Allowed Automation" can be configured from settings.json > "cluster" > "allowed_automation" D
-- Rename 'import_version' key to 'version' in settings.json > app D
-- Update both server version and commit SHA every time the application starts D
-- Add server version and commit SHA at the time of the run in Run table as string properties: D
-  - These properties are not updated when the server version / commit SHA is modified D
-  - These properties are not erased if the server object of the run is deleted D
-- Add new "Worker" table in database and UI (Administration menu) D
+    are initialized with the SCHEDULER_ADDR and SCHEDULER_ACTIVE environment variable.
+  - Add "runs" and "workers" links in server table
+  - Add "version" and "commit SHA" properties
+  - Add "location" property, populated from SERVER_LOCATION environment variable
+  - Add "Last Restart" property in server table: updated every time the application starts.
+  - Add "Current runs" property in server table: counts number of runs currently running on server.
+  - Add "Role" property to distinguish between "primary" and "standby" in the cluster
+  - Add "Allowed Automation" property to control allowed automation:
+    - "scheduler": server can run jobs from scheduler via "run_task" REST endpoint
+    - "rest_api": server can run jobs from REST API via "run_service" REST endpoint
+    - "application": server can run jobs from the UI via "run_service" controller endpoint
+  - "Allowed Automation" can be configured from settings.json > "cluster" > "allowed_automation"
+- Rename 'import_version' key to 'version' in settings.json > app
+- Update both server version and commit SHA every time the application starts
+- Add server version and commit SHA at the time of the run in Run table as string properties:
+  - These properties are not updated when the server version / commit SHA is modified
+  - These properties are not erased if the server object of the run is deleted
+- Add new "Worker" table in database and UI (Administration menu)
   - A worker is created or updated whenever a job starts running
   - The worker name is built as server name + process ID to guarantee that it is unique
-    across servers D
-  - Add "process_id" property (populated with getpid()) D
-  - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq) D
-  - Add "last_update" property to show when the worker was last used / updated D
-  - Add "server" hyperlink to the edit panel of worker's server D
-  - Add "current_runs" property to show how many jobs the worker is currently running D
+    across servers
+  - Add "process_id" property (populated with getpid())
+  - Add "subtype" based on the "_" environment variable (e.g python, gunicorn, dramatiq)
+  - Add "last_update" property to show when the worker was last used / updated
+  - Add "server" hyperlink to the edit panel of worker's server
+  - Add "current_runs" property to show how many jobs the worker is currently running
   - Add "runs" property: one-to-many relationship between worker <-> runs, and button in
-    worker table to display all runs executed by the worker. D
+    worker table to display all runs executed by the worker.
 - When loading the application, check whether the server's workers are running and if not,
-  delete them from the database D
+  delete them from the database
 - Workers are created when they are detected by the application, ie when a service is run
-  by the worker D
+  by the worker
 - Refactor get_workers REST endpoint to use workers in the database instead of storing
-  worker data in the redis queue D
-- When a worker is deleted from the worker table, send SIGTERM signal to underlying process D
-- Don't check for metadata version when doing migration import, only check for service import D
-- Add mechanism to use a StringField for the properties in properties.json > "property_list": D
+  worker data in the redis queue
+- When a worker is deleted from the worker table, send SIGTERM signal to underlying process
+- Don't check for metadata version when doing migration import, only check for service import
+- Add mechanism to use a StringField for the properties in properties.json > "property_list":
   - if the list is empty, will default to StringField instead of a SelectField.
   - new format in case of a SelectField: must provide all wtforms keyword arguments
-- Add mechanism to compare configuration properties between two devices: D
+- Add mechanism to compare configuration properties between two devices:
   - New drop-down list in configuration table to choose configuration property
   - New "v1" and "v2" column to choose which devices to compare
 - Add setting to control whether or not to monitor changes system in
-  settings.json > "files" > "monitor_filesystem" D
-- Add new "name" field to the "Parameters" class so it can be updated from the REST API D
-- Add support for BCC in the send email mechanism (service step 4 and email notification service) D
+  settings.json > "files" > "monitor_filesystem"
+- Add new "name" field to the "Parameters" class so it can be updated from the REST API
+- Add support for BCC in the send email mechanism (service step 4 and email notification service)
 - Add new "Secrets" mechanism for the user to associate a secret value to a key, and decide via
-  RBAC which users can view, edit and use them in a workflow. D
-- Make 'runtime' property of Run class unique at database level ("unique = True") D
-- Add new "Sender" field for the email notification mechanism (service Step 4) D
-- Add new snippet to delete corrupted services ("delete_corrupted_services.py") D
+  RBAC which users can view, edit and use them in a workflow.
+- Make 'runtime' property of Run class unique at database level ("unique = True")
+- Add new "Sender" field for the email notification mechanism (service Step 4)
+- Add new snippet to delete corrupted services ("delete_corrupted_services.py")
 - Make pool 'fast compute' mechanism optional via new "pool" > "fast_compute" boolean
-  property in settings.json (default: true) D
-- Add new try_set function to retry updating a property in case of deadlock D
+  property in settings.json (default: true)
+- Add new try_set function to retry updating a property in case of deadlock
 - Add new key in automation.json: "advanced" > "always_commit_result" set to False by default.
-  If set to True, results are always committed as soon as they are created to avoid deadlocks. D
+  If set to True, results are always committed as soon as they are created to avoid deadlocks.
 - Refactor "service run count" mechanism to work with the redis queue and correctly update
-  the service status ("Idle" / "Running") at the end of the run D
+  the service status ("Idle" / "Running") at the end of the run
 - Refactor netmiko backup service and scrapli backup service to retry the configuration
-  update transaction in case of deadlocks D
-- Forbid redirecting outside of the base URL in the login redirection mechanism D
+  update transaction in case of deadlocks
+- Forbid redirecting outside of the base URL in the login redirection mechanism
 - Prevent active HTML / JavaScript in the cells of a table by default, and add the `html`
-  keyword in properties.json to allow it wherever necessary. D
-- Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table D
+  keyword in properties.json to allow it wherever necessary.
+- Add `sanitize` function to sanitize user input in the HTML-enabled cells of a table
 - Validate that the path of a file is inside the "files" folder when renaming a file object
-  or uploading a file. D
-- Move v1/v2 in config table after the configuration properties columns D
-- Move v1/v2 in all results table before the table buttons D
-- Add runtime in traceback when a run fails in controller.run function D
-- Add try_set and try_commit to run global variables D
+  or uploading a file.
+- Move v1/v2 in config table after the configuration properties columns
+- Move v1/v2 in all results table before the table buttons
+- Add runtime in traceback when a run fails in controller.run function
+- Add try_set and try_commit to run global variables
 - Add new timeout when trying to close connection with multithreading. Timeout is configured
-  under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s) D
+  under automation.json > "advanced" > "disconnect_thread_timeout" (default: 10s)
 - Append 3-digits postfix to all runtimes to prevent name and runtime collisions for
-  runs that start at the same time (replaces jitter mechanism) D
+  runs that start at the same time (replaces jitter mechanism)
 - Refactor the end of run transaction and cleanup mechanism after a run is interrupted by
-  a critical exception or application reload: D
+  a critical exception or application reload:
   - Trigger end of run transaction to have results and logs available
   - Remove the run data from the redis queue (if a redis queue is used)
   - Close connections to device (in case of an interruption by critical exception)
-- Make the value of a Secret a private property D
-- Major logging update to prevent stuck workflow with dramatiq processes > 2: D
+- Make the value of a Secret a private property
+- Major logging update to prevent stuck workflow with dramatiq processes > 2:
   - Add support for multiprocessing capable logging handlers
   - New "use_multiprocessing_handlers" key in logging.json to decide whether to use
   the multiprocessing capable logging handlers
