@@ -38,3 +38,5 @@ From other tables:
 - Click the "Changelogs" button in an object's row to see all changelogs for that specific object.
 
 For example, you can click these buttons to view changelogs for all devices (using the top menu bar) or just for the device named "Atlanta" (using the row-specific button):
+
+![Filtering from Any Table](../_static/system/changelog_filter2.png)
