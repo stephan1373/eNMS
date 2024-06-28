@@ -31,6 +31,8 @@ In the changelog table:
 
 For example, here's how to view changelogs for the device named "Atlanta" only from the changelog table:
 
+![Filtering from Changelog Table](../_static/system/changelog_filter1.png)
+
 From other tables:
 - Click the "Changelogs" button in the top menu to see all changelogs for the type of objects shown in the table.
 - Click the "Changelogs" button in an object's row to see all changelogs for that specific object.
