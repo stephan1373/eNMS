@@ -50,3 +50,7 @@ Some of the changelogs linked to an object can be undone. The following changes 
 - Updating standard properties (strings, integers, and lists)
 - Updating one-to-many (scalar) and many-to-many relationship
 - Deletion of non-shared services and edges in the workflow builder
+
+![Filtering from Any Table](../_static/system/changelog_revert.png)
+
+Changelogs can be undone by clicking the red button on the right side of a row in the changelog table. If the button is greyed out, reversion is not supported for that specific type of changelog.
