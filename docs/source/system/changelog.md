@@ -49,11 +49,12 @@ Some of the changelogs linked to an object can be undone. The following changes 
 
 - Updating standard properties (strings, integers, and lists)
 - Updating one-to-many (scalar) and many-to-many relationship
-- Deletion of non-shared services and edges in the workflow builder
+- Deletion of non-shared services and edges in the Workflow Builder
 
 ![Reverting Changelogs](../_static/system/changelog_revert.png)
 
 Changelogs can be undone by clicking the red button on the right side of a row in the changelog table. If the button is greyed out, reversion is not supported for that specific type of changelog.
+For a user to revert a changelog, "edit" access to the target object is required.
 
 ## Workflow Changelogs
 
@@ -70,7 +71,7 @@ However, the changelog of a workflow does not include:
 
 ## Accessing Changelogs
 
-From the workflow builder, you can:
+From the Workflow Builder, you can:
 
 - Access the main workflow changelogs by clicking the wrench icon in the upper menu.
 - Access the main workflow changelogs from the right-click menu: "Workflow" / "Workflow Changelog".
@@ -78,7 +79,9 @@ From the workflow builder, you can:
 
 ![Accessing Changelogs from the Workflow Builder](../_static/system/changelog_workflow_builder.png)
 
-Note that when more than one service is selected in the workflow builder, the "Changelog" entry in the menu will display changelogs for all selected services.
+Note that when more than one service is selected in the Workflow Builder, the "Changelog" entry in the menu will display changelogs for all selected services.
+
+For the Network Builder, the same options described above for the Workflow Builder are also available.
 
 From a table, you can:
 
@@ -86,3 +89,7 @@ From a table, you can:
 - Access the changelog for a specific object by clicking the same icon in the object's row.
 
 ![Accessing Changelogs from Any Table](../_static/system/changelog_table.png)
+
+## Maintenance
+
+A Python script is available in the troubleshooting panel to permanently delete all objects currently in a "soft-deleted" state.

@@ -23,15 +23,15 @@ Version 5.1.0: Changelog & Workflow Tree
       - changes made to the parent workflow (by design)
       - changes made to the superworkflow when displaying changelogs of the top-level
         workflow (not supported)
-    - Add changelog button in workflow builder, service and global RC menus.
+    - Add changelog button in workflow builder, service and global RC menus. D
       When a selection is active, the changelog entry will only display changelogs for
       the subset of services that are selected (similar to skip mechanism).
-  - Add changelog button to all tables to display:
+  - Add changelog button to all tables to display: D
     - all changelogs about a specific type of object in table controls (e.g all device changelogs)
     - all changes about a specific object via link to "Changelog" relation table in every row
-  - Add changelog support in network builder
-  - Add script (snippet) to permanently delete all soft-deleted edges and services
-  - Require "edit" access for a user to be able to revert a change to an object
+  - Add changelog support in network builder D
+  - Add script (snippet) to permanently delete all soft-deleted edges and services D
+  - Require "edit" access for a user to be able to revert a change to an object D
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
