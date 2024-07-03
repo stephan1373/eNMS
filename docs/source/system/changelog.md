@@ -21,7 +21,7 @@ In the changelogs table, you can enable the "target type" and "target name" colu
 
 A change linked to a specific object can sometimes be reverted or undone. The "Revert" icon on the right side of the changelogs table allows you to do this. If the icon is greyed out, the "Revert" action is not available.
 
-## Filtering changelogs
+## Filtering Changelogs
 
 You can filter changelogs to see all entries for a specific object type or a particular object. There are two ways to do this:
 
@@ -43,7 +43,7 @@ For example, you can click these buttons to view changelogs for all devices (usi
 
 ![Filtering from Any Table](../_static/system/changelog_filter2.png)
 
-## Reverting changelogs
+## Reverting Changelogs
 
 Some of the changelogs linked to an object can be undone. The following changes support reversion:
 
@@ -54,3 +54,11 @@ Some of the changelogs linked to an object can be undone. The following changes 
 ![Filtering from Any Table](../_static/system/changelog_revert.png)
 
 Changelogs can be undone by clicking the red button on the right side of a row in the changelog table. If the button is greyed out, reversion is not supported for that specific type of changelog.
+
+## Workflow Changelogs
+
+Workflow changelogs are handled uniquely because they must include not only changes to the workflow object itself but also:
+
+- Updates to any service or edge in that workflow (including services and edges in subworkflows, subworkflows' subworkflows, and so on)
+- Changes to labels (adding, editing, and deleting)
+- Creating and deleting services and workflow edges
