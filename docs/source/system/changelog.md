@@ -62,3 +62,8 @@ Workflow changelogs are handled uniquely because they must include not only chan
 - Updates to any service or edge in that workflow (including services and edges in subworkflows, subworkflows' subworkflows, and so on)
 - Changes to labels (adding, editing, and deleting)
 - Creating and deleting services and workflow edges
+
+However, the changelog of a workflow does not include:
+
+- Changes made to the parent workflow (by design)
+- Changes made to the superworkflow when displaying changelogs of the top-level workflow (not yet supported)
