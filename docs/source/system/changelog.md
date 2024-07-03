@@ -4,7 +4,7 @@
 
 The eNMS changelog is found under `System / Changelog`
 
-![Filtering System.](../_static/system/changelog.png)
+![Changelogs](../_static/system/changelog.png)
 
 Changelog contains the following searchable information:
 
@@ -51,7 +51,7 @@ Some of the changelogs linked to an object can be undone. The following changes 
 - Updating one-to-many (scalar) and many-to-many relationship
 - Deletion of non-shared services and edges in the workflow builder
 
-![Filtering from Any Table](../_static/system/changelog_revert.png)
+![Reverting Changelogs](../_static/system/changelog_revert.png)
 
 Changelogs can be undone by clicking the red button on the right side of a row in the changelog table. If the button is greyed out, reversion is not supported for that specific type of changelog.
 
@@ -75,3 +75,14 @@ From the workflow builder, you can:
 - Access the main workflow changelogs by clicking the wrench icon in the upper menu.
 - Access the main workflow changelogs from the right-click menu: "Workflow" / "Workflow Changelog".
 - Access a service's changelogs from that service's right-click menu: "Display" / "Changelog".
+
+![Accessing Changelogs from the Workflow Builder](../_static/system/changelog_workflow_builder.png)
+
+Note that when more than one service is selected in the workflow builder, the "Changelog" entry in the menu will display changelogs for all selected services.
+
+From a table, you can:
+
+- Access all changelogs for the table's type of object by clicking the wrench icon in the upper menu.
+- Access the changelog for a specific object by clicking the same icon in the object's row.
+
+![Accessing Changelogs from Any Table](../_static/system/changelog_table.png)
