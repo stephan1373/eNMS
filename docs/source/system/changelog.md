@@ -26,6 +26,7 @@ A change linked to a specific object can sometimes be reverted or undone. The "R
 You can filter changelogs to see all entries for a specific object type or a particular object. There are two ways to do this:
 
 In the changelog table:
+
 - Show the "Target Type" and "Target Name" columns.
 - Type the object type or name you want to filter by in the search fields at the top of these columns.
 
@@ -34,9 +35,18 @@ For example, here's how to view changelogs for the device named "Atlanta" only f
 ![Filtering from Changelog Table](../_static/system/changelog_filter1.png)
 
 From other tables:
+
 - Click the "Changelogs" button in the top menu to see all changelogs for the type of objects shown in the table.
 - Click the "Changelogs" button in an object's row to see all changelogs for that specific object.
 
 For example, you can click these buttons to view changelogs for all devices (using the top menu bar) or just for the device named "Atlanta" (using the row-specific button):
 
 ![Filtering from Any Table](../_static/system/changelog_filter2.png)
+
+## Reverting changelogs
+
+Some of the changelogs linked to an object can be undone. The following changes support reversion:
+
+- Updating standard properties (strings, integers, and lists)
+- Updating one-to-many (scalar) and many-to-many relationship
+- Deletion of non-shared services and edges in the workflow builder
