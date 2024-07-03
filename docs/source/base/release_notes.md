@@ -13,13 +13,13 @@ Version 5.1.0: Changelog & Workflow Tree
     - Scalar relationships
     - Many-to-many relationships
     - Soft Deletion for non-shared services and edges in Workflow Builder
-  - Add changelog support in workflow builder.
+  - Add changelog support in workflow builder. D
     - The changelog of a workflow includes
       - the changes to the worklfow itself
       - the changes to any service in that workflow (including services in subworkflows, etc)
       - adding, editing and deleting labels
       - adding and removing services and workflow edges
-    - The changelog of a workflow does not include:
+    - The changelog of a workflow does not include: D
       - changes made to the parent workflow (by design)
       - changes made to the superworkflow when displaying changelogs of the top-level
         workflow (not supported)

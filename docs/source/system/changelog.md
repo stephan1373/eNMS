@@ -67,3 +67,11 @@ However, the changelog of a workflow does not include:
 
 - Changes made to the parent workflow (by design)
 - Changes made to the superworkflow when displaying changelogs of the top-level workflow (not yet supported)
+
+## Accessing Changelogs
+
+From the workflow builder, you can:
+
+- Access the main workflow changelogs by clicking the wrench icon in the upper menu.
+- Access the main workflow changelogs from the right-click menu: "Workflow" / "Workflow Changelog".
+- Access a service's changelogs from that service's right-click menu: "Display" / "Changelog".
