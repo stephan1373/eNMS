@@ -98,7 +98,7 @@ The Service Editor Panel is accessible from the following locations:
 	first retry. If D2 succeeds and D3 fails, the second and last retry will
 	run on D3 only.    
     
-- `Type of Credentials`: (default: Any) Allows the user to limit the type
+- `Type of Credentials`: (default: Read Write) Allows the user to limit the type
     of credential used when running the 
     service to Read versus Read-Write credentials, assuming both credentials
     are accessible by the user. 
