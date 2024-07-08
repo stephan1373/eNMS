@@ -34,8 +34,8 @@ Version 5.1.0: Changelog & Workflow Tree
   - Require "edit" access for a user to be able to revert a change to an object D
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template D
 - Make "any" come last in the list of credential type for a service (default becomes read write) D
-- Dont validate model, vendor and OS for device and link forms
-- Add runtime display mechanism (Personal or All Runtimes) to results table.
+- Dont validate model, vendor and OS for device and link forms D
+- Add runtime display mechanism (Personal or All Runtimes) to Run table (Results page). D
   - Display value is stored in localStorage
   - It applies to both the run table and the workflow builder
   - Add Search field to the runtime list to allow per user runtime search
