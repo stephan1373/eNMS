@@ -1323,7 +1323,7 @@ class Runner:
         )
         if self.enable_mode:
             netmiko_connection.enable()
-        self.write_state("connections/netmiko", 1, "increment", False)
+        self.write_state("connections/netmiko", 1, "increment", True)
         if self.config_mode:
             kwargs = {}
             if getattr(self, "config_mode_command", None):
@@ -1376,7 +1376,7 @@ class Runner:
         )
         connection.open()
         connection.connection_name = self.connection_name
-        self.write_state("connections/scrapli", 1, "increment", False)
+        self.write_state("connections/scrapli", 1, "increment", True)
         vs.connections_cache["scrapli"][self.parent_runtime].setdefault(
             device.name, {}
         )[self.connection_name] = connection
@@ -1413,7 +1413,7 @@ class Runner:
         )
         napalm_connection.open()
         napalm_connection.connection_name = self.connection_name
-        self.write_state("connections/napalm", 1, "increment", False)
+        self.write_state("connections/napalm", 1, "increment", True)
         vs.connections_cache["napalm"][self.parent_runtime].setdefault(device.name, {})[
             self.connection_name
         ] = napalm_connection
@@ -1525,7 +1525,7 @@ class Runner:
             vs.connections_cache[library][self.parent_runtime][device].pop(
                 connection.connection_name
             )
-            self.write_state(f"connections/{library}", -1, "increment", False)
+            self.write_state(f"connections/{library}", -1, "increment", True)
             self.log("info", f"Closed {connection_log}", device)
         except Exception as exc:
             self.log("error", f"Error while closing {connection_log} ({exc})", device)
