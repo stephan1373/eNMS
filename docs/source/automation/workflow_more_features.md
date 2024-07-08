@@ -157,3 +157,24 @@ In the superworkflow definition in Workflow Builder, the
 position of the main workflow is designated by adding the `Placeholder`
 service to the graph. And in the main workflow definition, the
 superworkflow must be selected from the list of existing workflows.
+
+## Workflow Tree
+
+A special "tree" display is available in the workflow builder to help manage workflows with many services or multiple subworkflows.
+
+Enable the tree display by clicking the "tree" icon in the middle menu of the workflow builder.
+
+![Workflow Tree Icon](../_static/automation/workflows/workflow_tree_icon.png)  
+
+The tree will appear on the right side of the builder.
+
+![Workflow Tree Display](../_static/automation/workflows/workflow_tree_display.png)  
+
+The tree automatically tracks the current workflow:
+
+- Only the services on the path of the displayed workflow are open by default.
+- The currently displayed workflow is highlighted in blue in the tree.
+
+Double-clicking a service will automatically select and focus on that service. If the service is in another workflow, it will switch to that workflow.
+
+When a workflow has a superworkflow, it is displayed as part of the tree.
