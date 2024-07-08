@@ -67,7 +67,7 @@ Version 5.1.0: Changelog & Workflow Tree
     - Cache configuration defined in settings.json > "cache"
 - Add lower menu bar to display profile, server, server time and logout D
 - Add "Hide Menu" button in upper bar to hide the menu D
-- Add new global service Search mechanism:
+- Add new global service Search mechanism: D
   - Whenever a service is saved, it is serialized and saved as a string in the database
   - The "serialized" property can be used for searching in the service table and in the
     workflow builder

@@ -58,6 +58,10 @@ The Workflow Builder's panel is organized into 3 blocks of controls:
        mouse wheel).
     - `Zoom Out`: makes the display aspect ratio smaller (also achievable via
        the mouse wheel).
+    - `Search`: allows the user to:
+      - Search for specific services by name or search based on a specific string
+        across all properties of the workflow's services.
+      - Filter the display and results/logs based on a specific device.
     - `Export Workflow`: to the user's browser as a .tgz file.
     - `Previous workflow`: functions like the Back-button of the browser.
     - `Switch to Parent workflow`: transitions back to the parent workflow if

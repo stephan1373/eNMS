@@ -39,6 +39,8 @@ Filtering and Bulk operations:
 - `Creator` Allows users to switch between viewing all services (created by any user)
    and viewing only the services that they created.
 - `Refresh` the Table.
+- `Global Search` Allows users to search for a specific string across all
+   properties of all services
 - `Advanced Search:` for complex filtering of the table.
 - `Clear Search` criteria.
 - `Copy the Selection` of currently displayed Services to the clipboard.
