@@ -84,8 +84,18 @@ like:
 ## Connection Cache
 
 When using netconf, netmiko, napalm, and scrapli services in a workflow,
-eNMS will cache and reuse the connection automatically. In the Step2
-`Connection Parameters` section of a service, there are some properties to
+eNMS will cache and reuse the connection automatically. The number of open connections
+for each library is displayed in the workflow builder as the workflow progresses.
+
+A connection threshold can be defined in the automation.json file to limit the number
+of concurrent connections. It is configured with the following parameters:
+
+- `enforce_threshold`: Activates the threshold mechanism (default: `false`)
+- `threshold`: Maximum number of connections (default: `100`)
+- `log_level`: Log level of the warning (default: `warning`)
+- `raise_exception`: Prevents new connections from being created when the threshold is reached
+
+In the Step2 `Connection Parameters` section of a service, there are some properties to
 change this behavior :
 
 - `Start New Connection`: **before the service runs**, the current
