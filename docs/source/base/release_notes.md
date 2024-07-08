@@ -51,9 +51,9 @@ Version 5.1.0: Changelog & Workflow Tree
     - "raise_exception": prevents new connections from being created when reaching
       the threshold
 - If a service is run using aync = true, and the user has service run privilages, allow that
-  same user to retrieve the results without needing read access
+  same user to retrieve the results without needing read access D
 - Add a way to get the parameterized form to display a drop down of devices with custom set
-  of constraints for both InstanceField and MultipleInstanceField
+  of constraints for both InstanceField and MultipleInstanceField D
 - Move "Admin Only" check box into "Access Control" panel:
   - prevent non-admin users from changing the "Admin Only" value
   - extend "Admin Only" mechanism to all rbac models (plus the group model)
@@ -108,7 +108,6 @@ Version 5.1.0: Changelog & Workflow Tree
   a timeline of changes)
 - Make device, link and service form "description" field a multiline field
 - Add "description" field to the service table (hidden by default)
-- Remove Ctrl + Z shortcut from the workflow builder to not interfere with default Ctrl + Z
 - Add new "Search" button in the Network Builder: similar to the Workflow Builder search
   without the canvas highlight and per-device filtering
 - Extend new "Global Search" mechanism to devices for table and Network Builder search

@@ -74,7 +74,35 @@ The Service Editor Panel is accessible from the following locations:
     | multiprocessing | boolean; turn multiprocessing on/off. |
     | mail_recipient | string; comma-separated list of email addresses. |
     | send_notification | boolean; turn notification on/off. |
-    | custom | Example:<br>`custom_field = StringField('Custom Field', default='desired_default_value')`<br><br>This field can be referenced via:<br> `payload["form"]["custom_field"]`<br> OR <br>you may refer directly to the variable name `custom_field` <br><br>Other WTForm components can be used to define a variety of properties. |
+
+    Additionally, any custom field can be defined from the parameterized form. This field can then be referenced:
+
+    - via  `payload["form"]["custom_field"]`
+    - directly as a global variable `custom_field`
+
+    Other WTForm components can be used to define a variety of properties. A user can also define custom `InstanceField` and `MultipleInstanceField` fields with specific constraints such as:
+
+    ```
+    custom_devices = MultipleInstanceField(
+        "Devices",
+        model="device",
+        constraints={
+            "name": "user_name",
+            "name_filter": "inclusion"
+        },
+        order={
+            "property": "name",
+            "direction": "asc"
+        },
+    )
+    custom_run = InstanceField(
+        "Run",
+        model="run",
+        constraints={
+            "service_name": "service name"
+        }
+    )
+    ```
 
 - `Priority`: (default: `1`) Allows the user to determine the order a
     service runs when two services are ready to run at the same time.
