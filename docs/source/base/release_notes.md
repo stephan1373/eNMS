@@ -54,7 +54,7 @@ Version 5.1.0: Changelog & Workflow Tree
   same user to retrieve the results without needing read access D
 - Add a way to get the parameterized form to display a drop down of devices with custom set
   of constraints for both InstanceField and MultipleInstanceField D
-- Move "Admin Only" check box into "Access Control" panel:
+- Move "Admin Only" check box into "Access Control" panel: D
   - prevent non-admin users from changing the "Admin Only" value
   - extend "Admin Only" mechanism to all rbac models (plus the group model)
 - Add support for named credential in the web SSH connection to a device
