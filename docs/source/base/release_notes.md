@@ -57,7 +57,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Move "Admin Only" check box into "Access Control" panel: D
   - prevent non-admin users from changing the "Admin Only" value
   - extend "Admin Only" mechanism to all rbac models (plus the group model)
-- Add support for named credential in the web SSH connection to a device
+- Add support for named credential in the web SSH connection to a device D
 - Performance Improvements:
   - Dont inject context processor variables for forms
   - Refactor "get" controller function to only use form properties when serializing object
