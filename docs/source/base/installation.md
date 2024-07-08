@@ -624,6 +624,11 @@ ldap active directory system, etc.
 - `max_process` limit on multiprocessing (default: 15).
 - `use_task_queue` use dramatiq for service execution (default: false).
 
+#### `cache` section
+
+- `config`: settings given to `flask_caching.Cache` (default: `{"CACHE_TYPE": "SimpleCache"}`)
+- `timeout`: time limit (in seconds) set for the `cached` decorator, after which a stored page is removed from the cache (default: `500`)
+
 #### `cluster` section
 Section used for detecting other running instances of eNMS.
 - `active` (default: `false`).
