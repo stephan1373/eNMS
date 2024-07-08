@@ -71,7 +71,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Whenever a service is saved, it is serialized and saved as a string in the database
   - The "serialized" property can be used for searching in the service table and in the
     workflow builder
-- Add Workflow Tree mechanism
+- Add Workflow Tree mechanism D
   - New "tree" icon to display / hide the workflow tree
   - Merge get_workflow_results and get_instance_tree function: displaying the workflow
   tree and displaying the results now calls the same function
@@ -83,11 +83,11 @@ Version 5.1.0: Changelog & Workflow Tree
   - Track the workflow currently being displayed:
     - Only the tree node on the path of the displayed workflow are open by default
     - The workflow currently displayed is highlighted in blue in the tree
-- Skip mechanism improvement:
+- Skip mechanism improvement: D
   - Don't allow skipping Start, End, and Placeholder services
   - When unskipping a service, pop from service.skip dictionary instead of setting to False
     to avoid storing unused data.
-- Internal Refactoring:
+- Internal Refactoring: D
   - Remove internal "dualize" function as wtforms now accepts a list of values as SelectField
   or SelectMultipleField choices.
   - Refactor internal "to_dict" function from the Base model: add include_relations,
