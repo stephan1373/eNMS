@@ -99,13 +99,13 @@ Version 5.1.0: Changelog & Workflow Tree
     Related issue: #400
   - Networks being devices, they can now be part of pools.
 - Add new "Include Networks" property to pools to decide whether the devices of a pool
-  should consider networks.
+  should consider networks. D
 - Add new "source" property to trace the origin of a change: 'REST API', 'Edit Panel',
-  or 'Change Reverted'
+  or 'Change Reverted' D
 - Rename the "Undo" mechanism to "Revert" mechanism (given that we're not keeping track of
-  a timeline of changes)
-- Make device, link and service form "description" field a multiline field
-- Add "description" field to the service table (hidden by default)
+  a timeline of changes) D
+- Make device, link and service form "description" field a multiline field D
+- Add "description" field to the service table (hidden by default) D
 - Add new "Search" button in the Network Builder: similar to the Workflow Builder search
   without the canvas highlight and per-device filtering
 - Extend new "Global Search" mechanism to devices for table and Network Builder search

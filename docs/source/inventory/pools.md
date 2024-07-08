@@ -217,4 +217,9 @@ be specified, and the service will run against all specified objects.
     
 ![Clearing a manuallly defined pool](../_static/inventory/pools/manual_clear.png)    
      
-      
+## `Include Networks`
+
+Networks are considered a specific type of device in the application.
+Including them in a pool may or may not be appropriate.
+Therefore, the "Include Networks" option allows the user to decide whether
+automatically-defined pools should include networks.
