@@ -35,6 +35,9 @@ Filtering and Bulk operations:
 - `Columns` Selector - Choose which columns to display in the table.
 - `Display Services hierarchically` (using hyperlinks in the scope of
    the workflow that they are contained in) or Display All Services.
+- `Changelog` Displays all changelogs linked to services
+- `Creator` Allows users to switch between viewing all services (created by any user)
+   and viewing only the services that they created.
 - `Refresh` the Table.
 - `Advanced Search:` for complex filtering of the table.
 - `Clear Search` criteria.
