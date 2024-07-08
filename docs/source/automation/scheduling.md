@@ -92,10 +92,11 @@ of time left until then.
 When specifying a start time, one must take into account the server's
 time zone configuration, as it may not match the user's local time zone. 
 Often in network administration, the server will be set to UTC (Coordinated
-Universal Time), but for verification, the current server time will always be
-displayed in the bottom-left corner of eNMS in the navigation panel:
+Universal Time), but for verification, the current server time can be displayed
+(or refreshed) by clicking on the "clock" icon in the lower menu bar of the left-side panel:
 
 ![](../_static/automation/scheduling/nav_panel_time.png)
+
 
 To run a scheduled task at a specific local time, ensure that the start time
 or crontab expression is adjusted to the server time.
