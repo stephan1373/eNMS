@@ -39,7 +39,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Display value is stored in localStorage
   - It applies to both the run table and the workflow builder
   - Add Search field to the runtime list to allow per user runtime search
-- Add new user filtering mechanism (per user / all users) for tasks and services
+- Add new user filtering mechanism (per user / all users) for tasks and services D
 - Add new "start / end query monitoring" python snippet to analyze what SQL queries are sent
   to the database and how long they take to execute (only active in "debug" mode)
 - Connection Threshold:
