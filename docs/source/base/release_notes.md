@@ -130,7 +130,7 @@ Version 5.1.0: Changelog & Workflow Tree
   anything to commit (add log explaining that there was nothing to commit) D
 - Export "server" model in migration files D
 - Add "trigger" variable to the global variables of a run
-- Add Dry Run Mechanism:
+- Add Dry Run Mechanism: D
   - The "Dry Run" is a property of a service (any service, not just the connection services)
   available in Step 1 - part 3.
   - The results of a service in Dry Run mode contains the properties of the service that

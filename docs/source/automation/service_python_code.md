@@ -271,6 +271,12 @@ are made available to the user.
         -   `x`: `x` position of the note.
         -   `y`: `y` position of the note.
 
+- `dry_run`
+    -   **Meaning**: Indicates whether the service is running in "Dry Run"
+        mode or not.
+    -   **Type**: Boolean.
+    -   **Available**: Always.
+
 !!! note
 
     Variables saved globally (i.e. set_var("var1", value) and for a device
