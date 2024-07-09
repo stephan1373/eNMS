@@ -172,8 +172,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add "cmd_verify" Netmiko parameter to the Netmiko Configuration Service D
 - Add "read_timeout_override" Netmiko parameter to all Netmiko services D
 - Before setting a run status to "Aborted (RELOAD)" when the app restarts, check whether the run has a
-  valid process associated to it and don't do anything if it does: this allows for individual process restart
-- Refactor the Unix Command Service "Approved by an Admin user" mechanism:
+  valid process associated to it and don't do anything if it does: this allows for individual process restart D
+- Refactor the Unix Command Service "Approved by an Admin user" mechanism: D
   - Before, the approval was only required to change the command itself. Editing the service without changing
   the command would not require re-approval.
   - Now, anytime a Unix Command service is edited / duplicated by a non-admin user, the service must
