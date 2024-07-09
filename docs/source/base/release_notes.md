@@ -193,10 +193,10 @@ Version 5.1.0: Changelog & Workflow Tree
 - Use "class" key in handler config in logging.json to have the same syntax regardless of whether D
   "use_multiprocessing_handlers" is set to true or false
 - Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
-  to the current subject (PASS/FAIL + service name)
-- Remove "Bulk Deletion" button from the session table
+  to the current subject (PASS/FAIL + service name) D
+- Remove "Bulk Deletion" button from the session table D
 - Fix cascade deletion of results objects when the associated device is deleted (missing
-  backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c)
+  backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c) D
 - Make current_user available in parameterized form as "user" variable
 - Add parent_runtime constraint in REST API get_result query to fix performance issue
 - Add run cascade deletion when deleting a service (in rbac.json)

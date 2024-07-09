@@ -476,6 +476,8 @@ Configure the following parameters:
     a link to the results.
 -   `Mail Recipients`: Must be a list of email addresses, separated by
     comma.  (Variable Substitution is supported.)
+    `Mail Subject` Subject of the mails. If the subject is left empty, it defaults
+    to `PASS/FAIL + service name`
     `Sender`: Email address of the sender.
 -   `Reply-to Email Address`: Must be a list of email addresses, separated by
     comma.
