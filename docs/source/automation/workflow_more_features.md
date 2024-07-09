@@ -209,7 +209,11 @@ Example use-case: A netmiko service is configured to retrieve a device's configu
 
 The `dry_run` variable can be configured in the parameterized form, allowing the user to specify for each run whether the service or workflow should operate in "Dry Run" mode or not.
 
-Services in Dry Run mode are displayed with a special green color to distinguish them from other services. This color has different meanings depending on the display mode in the workflow builder:
+Services in Dry Run mode are displayed with a special green color to distinguish them from other services.
+
+![Dry Run Color](../_static/automation/workflows/dry_run_color.png)
+
+This color has different meanings depending on the display mode in the workflow builder:
 
 - In "Normal Display" mode, the green color indicates that the service is configured to run in Dry Run mode (the "Dry Run" property is enabled in the service parameters).
 - When viewing a specific runtime, the green color indicates that the service ran in Dry Run mode during that runtime.
