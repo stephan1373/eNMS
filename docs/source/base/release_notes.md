@@ -129,7 +129,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Don't raise an exception in a git service configured to "git add and commit" if there isn't
   anything to commit (add log explaining that there was nothing to commit) D
 - Export "server" model in migration files D
-- Add "trigger" variable to the global variables of a run
+- Add "trigger" variable to the global variables of a run D
 - Add Dry Run Mechanism: D
   - The "Dry Run" is a property of a service (any service, not just the connection services)
   available in Step 1 - part 3.
@@ -143,9 +143,9 @@ Version 5.1.0: Changelog & Workflow Tree
   - Add special color for services in "Dry Run" mode:
     - In "Normal display": whether the "Dry Run" mode is enabled for a service
     - In "Runtime display": whether the "Dry Run" mode was enabled when it ran
-- Activate multiprocessing logging handlers
-- Add default / dark theme button switch in upper menu
-- Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt
+- Activate multiprocessing logging handlers D
+- Add default / dark theme button switch in upper menu D
+- Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt D
 - Add new MediumString column type and make service name a MediumString to allow for longer service (full) names
 - Update Show Git History button tooltip from "Historic" to "Historical"
 - Add new freeform "version" property in the service class and form (edit panel step 1)

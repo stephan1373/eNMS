@@ -277,6 +277,12 @@ are made available to the user.
     -   **Type**: Boolean.
     -   **Available**: Always.
 
+- `trigger`
+    -   **Meaning**: Indicates how the current run was triggered (from the UI,
+        from the REST API, or from a scheduled task).
+    -   **Type**: String.
+    -   **Available**: Always.
+
 !!! note
 
     Variables saved globally (i.e. set_var("var1", value) and for a device
