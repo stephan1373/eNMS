@@ -619,6 +619,28 @@ environments, `eNMS/custom.py` allows the user to customize how the
 authentication needs to occur. It can be modified to fit a company's
 ldap active directory system, etc.
 
+For LDAP authentication, by default, the application looks for the LDAP_ADDR
+environment variable and initializes a single LDAP server.
+If that variable is not set, it looks for the `servers` key under
+`authentication` > `methods` > `ldap`. The servers key is a dictionary that maps
+LDAP server IPs/URLs to their keyword parameters, based on the syntax
+supported by the `ldap3` Python library.
+
+Example syntax for LDAP:
+
+```
+"ldap": {
+  "display_name": "LDAP",
+  "enabled": true,
+  "servers": {
+    "192.168.56.104": {
+      "port": 636,
+      "use_ssl": true
+    }
+  }
+},
+```
+
 #### `automation` section
 
 - `max_process` limit on multiprocessing (default: 15).
