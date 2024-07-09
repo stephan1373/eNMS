@@ -199,10 +199,10 @@ If a note is not removed by the end of the run, it will be permanently displayed
 
 ![Dry Run Property](../_static/automation/workflows/dry_run_property.png)
 
-While the service itself does not run, the string substitution mechanism is applied, giving the user an idea of the parameters the service would use if it weren't in Dry Run mode.
+While the service itself does not run, the string substitution mechanism is applied, giving the user an idea of the parameters the service would use if it weren't in "Dry Run" mode.
 
-A global variable, dry_run (set to True if the service is in Dry Run mode, and False otherwise), is available for users to tweak the results of a service in Dry Run mode. This variable can be used to change the service results only if Dry Run is enabled. These results can then be used by subsequent services.
+A global variable, `dry_run` (set to True if the service is in Dry Run mode, and False otherwise), is available for users to tweak the results of a service in "Dry Run" mode. This variable can be used to change the service results only if "Dry Run" is enabled. These results can then be used by subsequent services.
 
-Example use-case: A netmiko service is configured to retrieve a device's configuration. In normal mode, it connects to the device and runs the command to get the configuration. In Dry Run mode (if dry_run), the configuration is manually defined in the post-processing section. Subsequent services using this configuration will function as if the netmiko service had actually connected to the device, resulting in faster execution speed.
+Example use-case: A netmiko service is configured to retrieve a device's configuration. In normal mode, it connects to the device and runs the command to get the configuration. In "Dry Run" mode (`if dry_run`), the configuration is manually defined in the post-processing section. Subsequent services using this configuration will function as if the netmiko service had actually connected to the device, resulting in faster execution speed.
 
 ![Dry Run Variable](../_static/automation/workflows/dry_run_variable.png)
