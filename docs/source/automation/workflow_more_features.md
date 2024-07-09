@@ -183,8 +183,10 @@ When a workflow has a superworkflow, it is displayed as part of the tree.
 
 Labels in a workflow are always displayed, whether in "Normal Display" mode or when viewing a specific runtime. However, a specific type of label, referred to as "notes," can be created and deleted during a runtime in Python.
 
-Notes can be created with the `add_note` function: `set_note(-10.24, 22.5, "note1")`. The first two parameters are the position, and the third is the content of the note. A position in the workflow builde
+Notes can be created with the `add_note` function: `set_note(-10.24, 22.5, "note1")`. The first two parameters are the position, and the third is the content of the note. Notes can be removed with the `remove_note` function: `remove_note(-10.24, 22.5)`.
 
-Notes can be removed with the `remove_note` function: `remove_note(-10.24, 22.5)`.
+A position in the workflow builder can be obtained from the right-click menu ("Reference" / "Position"):
 
-If a note is not removed by the end of the run, it will be displayed when viewing that specific runtime in the workflow builder.
+![Workflow Builder Position](../_static/automation/workflows/get_position.png)  
+
+If a note is not removed by the end of the run, it will be permanently displayed when viewing that specific runtime in the workflow builder.

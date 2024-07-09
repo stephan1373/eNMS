@@ -117,18 +117,18 @@ Version 5.1.0: Changelog & Workflow Tree
 - Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property D
 - Make credential type in service form (any, read-only or read-write) come from automation.json,
   under "credential_type" key D
-- Add new runtime notes mechanism in the workflow builder
+- Add new runtime notes mechanism in the workflow builder D
   - New "add_note" and "remote_note" global function taking the positions "x", "y" and the
   content of the label as arguments
   - New entry in the right-click menu "Reference" > "Position"
   - A note that is not deleted will be displayed in the workflow builder when the runtime is
   selected, even after the workflow completes
-- Extend the per-device filtering mechanism in the workflow builder to also apply to the tree
+- Extend the per-device filtering mechanism in the workflow builder to also apply to the tree D
 - Raise RBAC error when no current_user available, "rbac" is not set to "None" and no
-  "username" is passed to the function.
+  "username" is passed to the function. D
 - Don't raise an exception in a git service configured to "git add and commit" if there isn't
-  anything to commit (add log explaining that there was nothing to commit)
-- Export "server" model in migration files
+  anything to commit (add log explaining that there was nothing to commit) D
+- Export "server" model in migration files D
 - Add "trigger" variable to the global variables of a run
 - Add Dry Run Mechanism:
   - The "Dry Run" is a property of a service (any service, not just the connection services)
