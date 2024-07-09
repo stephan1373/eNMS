@@ -251,6 +251,17 @@ are made available to the user.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
 
+- `add_note()`
+    -   **Meaning**: Create a note at the given position on the workflow
+        builder.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `x`: `x` position of the note.
+        -   `y`: `y` position of the note.
+        -   `content`: Content of the note (`string`)
+
 !!! note
 
     Variables saved globally (i.e. set_var("var1", value) and for a device
