@@ -262,6 +262,15 @@ are made available to the user.
         -   `y`: `y` position of the note.
         -   `content`: Content of the note (`string`)
 
+- `remove_note()`
+    -   **Meaning**: Remove the note located at the given position.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `x`: `x` position of the note.
+        -   `y`: `y` position of the note.
+
 !!! note
 
     Variables saved globally (i.e. set_var("var1", value) and for a device
