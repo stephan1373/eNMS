@@ -146,17 +146,17 @@ Version 5.1.0: Changelog & Workflow Tree
 - Activate multiprocessing logging handlers D
 - Add default / dark theme button switch in upper menu D
 - Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt D
-- Add new MediumString column type and make service name a MediumString to allow for longer service (full) names
-- Update Show Git History button tooltip from "Historic" to "Historical"
-- Add new freeform "version" property in the service class and form (edit panel step 1)
-- Unpin ruamel version:
+- Add new MediumString column type and make service name a MediumString to allow for longer service (full) names D
+- Update Show Git History button tooltip from "Historic" to "Historical" D
+- Add new freeform "version" property in the service class and form (edit panel step 1) D
+- Unpin ruamel version: D
   - Add quotes as "default_style"
   - Add custom representer to fix bug where line are broken inside a return carriage (\r...\n): all strings that contain a line break are now
     treated as a literal block.
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
   - Forbid references (e.g &id000) in yaml files with representer.ignore_aliases to avoid change of id number
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
-  actual configuration under "commands" key for consistency with other services
+  actual configuration under "commands" key for consistency with other services D
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
   in rest_api.py)
 - Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload:
