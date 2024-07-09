@@ -217,3 +217,5 @@ This color has different meanings depending on the display mode in the workflow 
 
 - In "Normal Display" mode, the green color indicates that the service is configured to run in Dry Run mode (the "Dry Run" property is enabled in the service parameters).
 - When viewing a specific runtime, the green color indicates that the service ran in Dry Run mode during that runtime.
+
+When the "Dry Run" property is enabled in a workflow, it cascades to everything within that workflow. Any service in the workflow will be considered to be in "Dry Run" mode, making the entire workflow effectively operate in "Dry Run" mode.
