@@ -224,8 +224,7 @@ An example custom Service file exists in `eNMS/models/services/examples/example.
 !!! tip
 
     Plugins can also define Custom Service Types.
-     
-     
+
 ## Plugins
 
 A Plugin represents a more advanced form of customization - that can include new data 

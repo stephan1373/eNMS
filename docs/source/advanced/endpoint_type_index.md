@@ -34,7 +34,8 @@ by eNMS. In a request, `<instance_type>` can be any of the following:
   Get information of workers and currently running services.
 - [Administrative](endpoint_types/admin.md) 
   Provides access to many endpoints found in the administration panel.
-
+- [Add instances in bulk](endpoint_types/add_instances_in_bulk.md) 
+  Add instances to an object's relationship using their names.
 
   
 
