@@ -107,8 +107,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Make device, link and service form "description" field a multiline field D
 - Add "description" field to the service table (hidden by default) D
 - Add new "Search" button in the Network Builder: similar to the Workflow Builder search
-  without the canvas highlight and per-device filtering
-- Extend new "Global Search" mechanism to devices for table and Network Builder search
+  without the canvas highlight and per-device filtering D
+- Extend new "Global Search" mechanism to devices for table and Network Builder search D
 - Add "is_async" property to the Run class (+ associated column in Results table)
 - Add mechanism to automatically hard delete a soft-deleted edge when creating
   a new one with the same parameters. For services, no automatic deletion of soft-deleted
