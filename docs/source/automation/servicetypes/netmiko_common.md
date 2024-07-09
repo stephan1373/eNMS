@@ -23,11 +23,9 @@ These are the Netmiko Common Parameters for all Netmiko Services.
 -   `Config mode`: If checked, Netmiko should enter config mode.
 -   `Fast CLI`: If checked, Netmiko will disable internal wait states and
     delays in order to execute the service as fast as possible.
--   `Timeout`: Netmiko internal timeout in seconds to wait for a
+-   `Read Timeout`: Netmiko internal timeout in seconds to wait for a
     connection or response before declaring failure.
--   `Delay factor`: Netmiko multiplier used to increase internal delays
-    (defaults to 1). Delay factor is used in the send_command Netmiko
-    method. See [here for more explanation](https://pynet.twb-tech.com/blog/automation/netmiko-what-is-done.html).
+-   `Read Timeout Override` Overrides the Read Timeout.
 -   `Global delay factor`: Netmiko multiplier used to increase internal
     delays (defaults to 1). Global delay factor affects delays
     beyond Netmiko send_command. Increase this for devices that have
