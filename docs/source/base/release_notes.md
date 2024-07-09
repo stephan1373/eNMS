@@ -158,8 +158,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services D
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
-  in rest_api.py)
-- Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload:
+  in rest_api.py) D
+- Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload: D
   {
     "target_type": "service",
     "target_name": "service_name",

@@ -4,8 +4,6 @@ In this section, the word `instance` refers to any object type supported
 by eNMS. In a request, `<instance_type>` can be any of the following:
 `device`, `link`, `user`, `service`, `task`, `pool`, `result`.
 
-
-
 - [Retrieve an instance](endpoint_types/retrieve_instance.md) 
   Returns the attributes of an existing instance.
 - [Delete an instance](endpoint_types/delete_instance.md) 
@@ -37,13 +35,5 @@ by eNMS. In a request, `<instance_type>` can be any of the following:
 - [Add instances in bulk](endpoint_types/add_instances_in_bulk.md) 
   Add instances to an object's relationship using their names.
 
-  
-
-
-
-
-
-
-
-
-
+The list of all REST endpoints is defined in rbac.json under the `rest_endpoints` key.
+You can add custom endpoints by updating that list and adding the corresponding function in the rest_api.py file.
