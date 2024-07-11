@@ -339,6 +339,8 @@ Tests:
 - Test that the multiline strings are properly imported, specifically that there is no extra empty line, or extra
   empty space at the beginning of a line (which makes python code fails with wrong indentation error)
 - Test that the ansible playbook service still works fine with quotes around extra_args
+- Test making changes to the migration files, exporting, then importing again. Must make sure that the migration files
+  exported with the new version can be imported without any issue with return carriage
 
 Version 5.0: Clustering
 -----------------------
