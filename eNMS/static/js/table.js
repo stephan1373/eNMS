@@ -366,7 +366,7 @@ export class Table {
         onclick="eNMS.table.displayRelationTable(
           'changelog', ${row.instance},
           {parent: '${this.type}', from: '${this.type}', to: 'logs'})"
-          data-tooltip="Edit"
+          data-tooltip="Changelog"
           ><span class="glyphicon glyphicon-wrench"></span
         ></button>
       </li>`;
