@@ -312,6 +312,7 @@ Migration:
 - Update rbac.json with the "allowed_rest_endpoints" variable
 
 Tests:
+- Review documentation
 - Test CLI commands works as intended following deviation updates
 - Test that caching form properties doesn't affect the parameterized form display
 - Test that the workflow tree works, is scalable and has no memory leaks
