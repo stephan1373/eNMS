@@ -222,8 +222,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Re-add logging lines from disconnect function that were removed because of transaction issue after end of
   transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847) D
 - Add new log truncate mechanism, configured in automation.json > "advanced" > "truncate_logs" via the keys
-  "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000)
-- Rename automation.json > "advanced" > "always_commit_result" to "always_commit"
+  "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000) D
+- Rename automation.json > "advanced" > "always_commit_result" to "always_commit" D
 - Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
   ConnectHandler class
 - Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
