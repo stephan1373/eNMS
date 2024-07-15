@@ -6,43 +6,43 @@ Version 5.1.0: Changelog & Workflow Tree
 
 - Changelog feature:
   - Add changelog mechanism for credentials, devices, files, groups, links, networks, pools
-    servers, services, tasks and users. D
-  - Add "Target Type" and "Target Name" properties in changelog table D
-  - Add revert mechanism to undo the changes in a changelog. Supported revert action: D
+    servers, services, tasks and users.
+  - Add "Target Type" and "Target Name" properties in changelog table
+  - Add revert mechanism to undo the changes in a changelog. Supported revert action:
     - Standard properties (string, integer, list)
     - Scalar relationships
     - Many-to-many relationships
     - Soft Deletion for non-shared services and edges in Workflow Builder
-  - Add changelog support in workflow builder. D
+  - Add changelog support in workflow builder.
     - The changelog of a workflow includes
       - the changes to the worklfow itself
       - the changes to any service in that workflow (including services in subworkflows, etc)
       - adding, editing and deleting labels
       - adding and removing services and workflow edges
-    - The changelog of a workflow does not include: D
+    - The changelog of a workflow does not include:
       - changes made to the parent workflow (by design)
       - changes made to the superworkflow when displaying changelogs of the top-level
         workflow (not supported)
-    - Add changelog button in workflow builder, service and global RC menus. D
+    - Add changelog button in workflow builder, service and global RC menus.
       When a selection is active, the changelog entry will only display changelogs for
       the subset of services that are selected (similar to skip mechanism).
-  - Add changelog button to all tables to display: D
+  - Add changelog button to all tables to display:
     - all changelogs about a specific type of object in table controls (e.g all device changelogs)
     - all changes about a specific object via link to "Changelog" relation table in every row
-  - Add changelog support in network builder D
-  - Add script (snippet) to permanently delete all soft-deleted edges and services D
-  - Require "edit" access for a user to be able to revert a change to an object D
-- Fail netmiko and scrapli commands service if undefined variable in Jinja2 template D
-- Make "any" come last in the list of credential type for a service (default becomes read write) D
-- Dont validate model, vendor and OS for device and link forms D
-- Add runtime display mechanism (Personal or All Runtimes) to Run table (Results page). D
+  - Add changelog support in network builder
+  - Add script (snippet) to permanently delete all soft-deleted edges and services
+  - Require "edit" access for a user to be able to revert a change to an object
+- Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
+- Make "any" come last in the list of credential type for a service (default becomes read write)
+- Dont validate model, vendor and OS for device and link forms
+- Add runtime display mechanism (Personal or All Runtimes) to Run table (Results page).
   - Display value is stored in localStorage
   - It applies to both the run table and the workflow builder
   - Add Search field to the runtime list to allow per user runtime search
-- Add new user filtering mechanism (per user / all users) for tasks and services D
+- Add new user filtering mechanism (per user / all users) for tasks and services
 - Add new "start / end query monitoring" python snippet to analyze what SQL queries are sent
-  to the database and how long they take to execute (only active in "debug" mode) D
-- Connection Threshold: D
+  to the database and how long they take to execute (only active in "debug" mode)
+- Connection Threshold:
   - Add number of connections for each library in the workflow builder
   - Add new connection threshold mechanism with the following parameters in automation.json:
     - "enforce_threshold": activates threshold mechanism (default: false)
@@ -51,27 +51,27 @@ Version 5.1.0: Changelog & Workflow Tree
     - "raise_exception": prevents new connections from being created when reaching
       the threshold
 - If a service is run using aync = true, and the user has service run privilages, allow that
-  same user to retrieve the results without needing read access D
+  same user to retrieve the results without needing read access
 - Add a way to get the parameterized form to display a drop down of devices with custom set
-  of constraints for both InstanceField and MultipleInstanceField D
-- Move "Admin Only" check box into "Access Control" panel: D
+  of constraints for both InstanceField and MultipleInstanceField
+- Move "Admin Only" check box into "Access Control" panel:
   - prevent non-admin users from changing the "Admin Only" value
   - extend "Admin Only" mechanism to all rbac models (plus the group model)
-- Add support for named credential in the web SSH connection to a device D
-- Performance Improvements: D
+- Add support for named credential in the web SSH connection to a device
+- Performance Improvements:
   - Dont inject context processor variables for forms
   - Refactor "get" controller function to only use form properties when serializing object
   - Use flask_caching to cache parts of the Jinja2 templates with fragment caching
     - Full caching for the forms with token post update
     - Fragment caching for the base template (page content + JS variables)
     - Cache configuration defined in settings.json > "cache"
-- Add lower menu bar to display profile, server, server time and logout D
-- Add "Hide Menu" button in upper bar to hide the menu D
-- Add new global service Search mechanism: D
+- Add lower menu bar to display profile, server, server time and logout
+- Add "Hide Menu" button in upper bar to hide the menu
+- Add new global service Search mechanism:
   - Whenever a service is saved, it is serialized and saved as a string in the database
   - The "serialized" property can be used for searching in the service table and in the
     workflow builder
-- Add Workflow Tree mechanism D
+- Add Workflow Tree mechanism
   - New "tree" icon to display / hide the workflow tree
   - Merge get_workflow_results and get_instance_tree function: displaying the workflow
   tree and displaying the results now calls the same function
@@ -83,11 +83,11 @@ Version 5.1.0: Changelog & Workflow Tree
   - Track the workflow currently being displayed:
     - Only the tree node on the path of the displayed workflow are open by default
     - The workflow currently displayed is highlighted in blue in the tree
-- Skip mechanism improvement: D
+- Skip mechanism improvement:
   - Don't allow skipping Start, End, and Placeholder services
   - When unskipping a service, pop from service.skip dictionary instead of setting to False
     to avoid storing unused data.
-- Internal Refactoring: D
+- Internal Refactoring:
   - Remove internal "dualize" function as wtforms now accepts a list of values as SelectField
   or SelectMultipleField choices.
   - Refactor internal "to_dict" function from the Base model: add include_relations,
@@ -99,38 +99,38 @@ Version 5.1.0: Changelog & Workflow Tree
     Related issue: #400
   - Networks being devices, they can now be part of pools.
 - Add new "Include Networks" property to pools to decide whether the devices of a pool
-  should consider networks. D
+  should consider networks.
 - Add new "source" property to trace the origin of a change: 'REST API', 'Edit Panel',
-  or 'Change Reverted' D
+  or 'Change Reverted'
 - Rename the "Undo" mechanism to "Revert" mechanism (given that we're not keeping track of
-  a timeline of changes) D
-- Make device, link and service form "description" field a multiline field D
-- Add "description" field to the service table (hidden by default) D
+  a timeline of changes)
+- Make device, link and service form "description" field a multiline field
+- Add "description" field to the service table (hidden by default)
 - Add new "Search" button in the Network Builder: similar to the Workflow Builder search
-  without the canvas highlight and per-device filtering D
-- Extend new "Global Search" mechanism to devices for table and Network Builder search D
-- Add "is_async" property to the Run class (+ associated column in Results table) D
+  without the canvas highlight and per-device filtering
+- Extend new "Global Search" mechanism to devices for table and Network Builder search
+- Add "is_async" property to the Run class (+ associated column in Results table)
 - Add mechanism to automatically hard delete a soft-deleted edge when creating
   a new one with the same parameters. For services, no automatic deletion of soft-deleted
-  objects. D
-- Make non shared services in the service table a link to the workflow that contains them D
-- Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property D
+  objects.
+- Make non shared services in the service table a link to the workflow that contains them
+- Use 'user' instead of 'username' in database functions to avoid conflict with credential.username property
 - Make credential type in service form (any, read-only or read-write) come from automation.json,
-  under "credential_type" key D
-- Add new runtime notes mechanism in the workflow builder D
+  under "credential_type" key
+- Add new runtime notes mechanism in the workflow builder
   - New "add_note" and "remote_note" global function taking the positions "x", "y" and the
   content of the label as arguments
   - New entry in the right-click menu "Reference" > "Position"
   - A note that is not deleted will be displayed in the workflow builder when the runtime is
   selected, even after the workflow completes
-- Extend the per-device filtering mechanism in the workflow builder to also apply to the tree D
+- Extend the per-device filtering mechanism in the workflow builder to also apply to the tree
 - Raise RBAC error when no current_user available, "rbac" is not set to "None" and no
-  "username" is passed to the function. D
+  "username" is passed to the function.
 - Don't raise an exception in a git service configured to "git add and commit" if there isn't
-  anything to commit (add log explaining that there was nothing to commit) D
-- Export "server" model in migration files D
-- Add "trigger" variable to the global variables of a run D
-- Add Dry Run Mechanism: D
+  anything to commit (add log explaining that there was nothing to commit)
+- Export "server" model in migration files
+- Add "trigger" variable to the global variables of a run
+- Add Dry Run Mechanism:
   - The "Dry Run" is a property of a service (any service, not just the connection services)
   available in Step 1 - part 3.
   - The results of a service in Dry Run mode contains the properties of the service that
@@ -143,23 +143,23 @@ Version 5.1.0: Changelog & Workflow Tree
   - Add special color for services in "Dry Run" mode:
     - In "Normal display": whether the "Dry Run" mode is enabled for a service
     - In "Runtime display": whether the "Dry Run" mode was enabled when it ran
-- Activate multiprocessing logging handlers D
-- Add default / dark theme button switch in upper menu D
-- Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt D
-- Add new MediumString column type and make service name a MediumString to allow for longer service (full) names D
-- Update Show Git History button tooltip from "Historic" to "Historical" D
-- Add new freeform "version" property in the service class and form (edit panel step 1) D
-- Unpin ruamel version: D
+- Activate multiprocessing logging handlers
+- Add default / dark theme button switch in upper menu
+- Remove dicttoxml (unused), psutil (unused) and itsdangerous (no longer pinned) from requirements.txt
+- Add new MediumString column type and make service name a MediumString to allow for longer service (full) names
+- Update Show Git History button tooltip from "Historic" to "Historical"
+- Add new freeform "version" property in the service class and form (edit panel step 1)
+- Unpin ruamel version:
   - Add quotes as "default_style"
   - Add custom representer to fix bug where line are broken inside a return carriage (\r...\n): all strings that contain a line break are now
     treated as a literal block.
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
   - Forbid references (e.g &id000) in yaml files with representer.ignore_aliases to avoid change of id number
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
-  actual configuration under "commands" key for consistency with other services D
+  actual configuration under "commands" key for consistency with other services
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
-  in rest_api.py) D
-- Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload: D
+  in rest_api.py)
+- Refactor 'add_instances_in_bulk' endpoint to make it available from the REST API. Example Payload:
   {
     "target_type": "service",
     "target_name": "service_name",
@@ -168,12 +168,12 @@ Version 5.1.0: Changelog & Workflow Tree
     "names": "name1,name2"
   }
 - When initializing the app, only consider the JSON files in the "setup" folder (otherwise, temporary
-  files like *.json.swap files created by vim prevent the app from starting with JSON load exception) D
-- Add "cmd_verify" Netmiko parameter to the Netmiko Configuration Service D
-- Add "read_timeout_override" Netmiko parameter to all Netmiko services D
+  files like *.json.swap files created by vim prevent the app from starting with JSON load exception)
+- Add "cmd_verify" Netmiko parameter to the Netmiko Configuration Service
+- Add "read_timeout_override" Netmiko parameter to all Netmiko services
 - Before setting a run status to "Aborted (RELOAD)" when the app restarts, check whether the run has a
-  valid process associated to it and don't do anything if it does: this allows for individual process restart D
-- Refactor the Unix Command Service "Approved by an Admin user" mechanism: D
+  valid process associated to it and don't do anything if it does: this allows for individual process restart
+- Refactor the Unix Command Service "Approved by an Admin user" mechanism:
   - Before, the approval was only required to change the command itself. Editing the service without changing
   the command would not require re-approval.
   - Now, anytime a Unix Command service is edited / duplicated by a non-admin user, the service must
@@ -182,56 +182,56 @@ Version 5.1.0: Changelog & Workflow Tree
     must be unchecked to validate the form.
     - When deep copying a Unix Command service into a workflow, that property will be silently unchecked.
 - Add mechanism to refetch run objects (such as service, placeholder, etc) after process fork when using
-  multiprocessing. Can be deactivated in automation.json > "advanced" > "refetch_after_process_fork" D
-- Add support for connecting to multiple LDAP servers: D
+  multiprocessing. Can be deactivated in automation.json > "advanced" > "refetch_after_process_fork"
+- Add support for connecting to multiple LDAP servers:
   - Default behavior is unchanged: the app looks for the LDAP_ADDR environment variable and initializes
     a single LDAP servers
   - If that variable is not set, the app looks for the "servers" key in
     settings.json > "authentication" > "methods" > "ldap". Servers is a dict that associates LDAP server
     IP/URL to its keyword parameters (see ldap3 python libraries)
-- Fix bug that prevented uploading files to a folder when the folder name starts with a number (e.g "1test") D
-- Use "class" key in handler config in logging.json to have the same syntax regardless of whether D
+- Fix bug that prevented uploading files to a folder when the folder name starts with a number (e.g "1test")
+- Use "class" key in handler config in logging.json to have the same syntax regardless of whether
   "use_multiprocessing_handlers" is set to true or false
 - Allow custom subject for emails (in email notification - step 4). If the subject is left empty, it defaults
-  to the current subject (PASS/FAIL + service name) D
-- Remove "Bulk Deletion" button from the session table D
+  to the current subject (PASS/FAIL + service name)
+- Remove "Bulk Deletion" button from the session table
 - Fix cascade deletion of results objects when the associated device is deleted (missing
-  backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c) D
-- Make current_user available in parameterized form as "user" variable D
-- Add parent_runtime constraint in REST API get_result query to fix performance issue D
-- Add run cascade deletion when deleting a service (in rbac.json) D
+  backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c)
+- Make current_user available in parameterized form as "user" variable
+- Add parent_runtime constraint in REST API get_result query to fix performance issue
+- Add run cascade deletion when deleting a service (in rbac.json)
 - Fix connection with non-default name not closed at the end of a workflow bug
-  Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4 D
-- Add quotes around ansible playbook service extra_args argument D
-- Fix Netmiko File Transfer Service missing netmiko_timeout_override property bug D
-- Fix Unix Shell Script Service missing netmiko_timeout_override property bug D
+  Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4
+- Add quotes around ansible playbook service extra_args argument
+- Fix Netmiko File Transfer Service missing netmiko_timeout_override property bug
+- Fix Unix Shell Script Service missing netmiko_timeout_override property bug
 - Move 'close_remaining_connections' at the end of run cleanup so it does not impact the result creation
-  in case of failure D
+  in case of failure
 - Add an optional "runtime" parameter to the workflow builder's "get_result" function to retrieve results
-  from a run different than the ongoing run D
+  from a run different than the ongoing run
 - Add ordering mechanism for instance fields and multiple instance fields, with the following syntax:
-  x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"} D
-- Name of current thread when running a service no longer set to runtime D
-- Add mechanism for optional search box in table 'column-display' dropdown list D
+  x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"}
+- Name of current thread when running a service no longer set to runtime
+- Add mechanism for optional search box in table 'column-display' dropdown list
   - Syntax: add "{ search: true }" as argument when calling "columnDisplay"
   - Add search box by default to device and configuration tables
-- Force downloading file to browser by adding "as_attachment=True" option in flask send_file function D
-- Change 'Skip' label and tooltip to 'Skip / Unskip' in workflow builder D
+- Force downloading file to browser by adding "as_attachment=True" option in flask send_file function
+- Change 'Skip' label and tooltip to 'Skip / Unskip' in workflow builder
 - Move "state" commit in the end of run cleanup after trying to close all remaining connections to get an
-  accurate display of the number of remaining connections. D
+  accurate display of the number of remaining connections.
 - Re-add logging lines from disconnect function that were removed because of transaction issue after end of
-  transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847) D
+  transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847)
 - Add new log truncate mechanism, configured in automation.json > "advanced" > "truncate_logs" via the keys
-  "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000) D
-- Rename automation.json > "advanced" > "always_commit_result" to "always_commit" D
+  "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000)
+- Rename automation.json > "advanced" > "always_commit_result" to "always_commit"
 - Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
-  ConnectHandler class D
-- Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices D
-- Add new settings.json options for custom branding: D
+  ConnectHandler class
+- Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
+- Add new settings.json options for custom branding:
   - "app" > "name": defines window name + app name displayed in the upper left corner + login page name
   - "app" > "theme": default theme used during user creation and switching back from dark mode
-- Add new "memory_size" property for the result class that shows how much memory a result takes in database. D
-- Add new "memory_size" property for a run class that shows how much memory a run takes in database. D
+- Add new "memory_size" property for the result class that shows how much memory a result takes in database.
+- Add new "memory_size" property for a run class that shows how much memory a run takes in database.
   This number is the sum of the size (obtained via "getsizeof") of all results and all logs saved to
   the database during the run
 
