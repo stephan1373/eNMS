@@ -46,7 +46,7 @@ function run() {
   elif [ "$database" = "pgsql" ]; then
     export DATABASE_URL="postgresql://root:password@localhost:5432/enms"
   else
-    export DATABASE_URL="sqlite:///database.db"
+    export DATABASE_URL="sqlite:///$HOME/database.db"
   fi
   if [ "$reload" = true ]; then
     if [ "$database" = "mysql" ]; then
