@@ -226,7 +226,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Rename automation.json > "advanced" > "always_commit_result" to "always_commit" D
 - Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
   ConnectHandler class D
-- Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
+- Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices D
 - Add new settings.json options for custom branding:
   - "app" > "name": defines window name + app name displayed in the upper left corner + login page name
   - "app" > "theme": default theme used during user creation and switching back from dark mode

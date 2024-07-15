@@ -80,6 +80,11 @@ it is recommended to run the application with the following command:
 1. In setup/settings.json set `"use_task_queue": true`
 2. Set the `REDIS_ADDR` environment variable and run `dramatiq eNMS` from the project root. 
     - The number of worker processes and threads can be configured (among other things). Run `dramatiq --help` to see the full list of dramatiq's command-line options.
+
+### WebSSH
+
+The SSH_URL can be set to specify which web address to use when connecting to network devices through web-based SSH.
+
 ### Hashicorp Vault
 
 All credentials should be stored in a Hashicorp Vault: the settings
