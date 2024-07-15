@@ -431,6 +431,9 @@ Key parameters to be aware of:
 - `truncate_logs`: (default: `false` with a `maximum_size` of `200000000`) This parameter
   determines whether to trim the logs of a service before saving them to the database if
   they exceed a certain size limit (`maximum_size`).
+- `connection_args`: These parameters are sent to the Netmiko or Scrapli connection handler
+  before establishing the connection. To see which parameters are supported, you should
+  check the Netmiko or Scrapli documentation.
 
 ### `database.json`
 The `setup/database.json` file contains database and schema configuration

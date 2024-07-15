@@ -225,7 +225,7 @@ Version 5.1.0: Changelog & Workflow Tree
   "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000) D
 - Rename automation.json > "advanced" > "always_commit_result" to "always_commit" D
 - Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
-  ConnectHandler class
+  ConnectHandler class D
 - Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices
 - Add new settings.json options for custom branding:
   - "app" > "name": defines window name + app name displayed in the upper left corner + login page name
