@@ -80,7 +80,10 @@ The Service Editor Panel is accessible from the following locations:
     - via  `payload["form"]["custom_field"]`
     - directly as a global variable `custom_field`
 
-    Other WTForm components can be used to define a variety of properties. A user can also define custom `InstanceField` and `MultipleInstanceField` fields with specific constraints such as:
+    The `current_user` global variables is also available in the parameterized form field.
+
+    Other WTForm components can be used to define a variety of properties. A user can also define custom
+    `InstanceField` and `MultipleInstanceField` fields with specific constraints such as:
 
     ```
     custom_devices = MultipleInstanceField(

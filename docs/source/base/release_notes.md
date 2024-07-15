@@ -197,16 +197,16 @@ Version 5.1.0: Changelog & Workflow Tree
 - Remove "Bulk Deletion" button from the session table D
 - Fix cascade deletion of results objects when the associated device is deleted (missing
   backref cascade deletion: 58370667b723bbdb0f8f50f931bad8a4586d172c) D
-- Make current_user available in parameterized form as "user" variable
-- Add parent_runtime constraint in REST API get_result query to fix performance issue
-- Add run cascade deletion when deleting a service (in rbac.json)
+- Make current_user available in parameterized form as "user" variable D
+- Add parent_runtime constraint in REST API get_result query to fix performance issue D
+- Add run cascade deletion when deleting a service (in rbac.json) D
 - Fix connection with non-default name not closed at the end of a workflow bug
-  Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4
-- Add quotes around ansible playbook service extra_args argument
-- Fix Netmiko File Transfer Service missing netmiko_timeout_override property bug
-- Fix Unix Shell Script Service missing netmiko_timeout_override property bug
+  Commit: c9b164bd35732e9f54d0bb46c6bff61631ab85f4 D
+- Add quotes around ansible playbook service extra_args argument D
+- Fix Netmiko File Transfer Service missing netmiko_timeout_override property bug D
+- Fix Unix Shell Script Service missing netmiko_timeout_override property bug D
 - Move 'close_remaining_connections' at the end of run cleanup so it does not impact the result creation
-  in case of failure
+  in case of failure D
 - Add an optional "runtime" parameter to the workflow builder's "get_result" function to retrieve results
   from a run different than the ongoing run
 - Add ordering mechanism for instance fields and multiple instance fields, with the following syntax:
