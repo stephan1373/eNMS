@@ -227,11 +227,11 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add automation.json > "netmiko" > "connection_args" option to pass additional parameters to netmiko
   ConnectHandler class D
 - Add optional "SSH_URL" environment variable to define URL used for the webSSH connection to devices D
-- Add new settings.json options for custom branding:
+- Add new settings.json options for custom branding: D
   - "app" > "name": defines window name + app name displayed in the upper left corner + login page name
   - "app" > "theme": default theme used during user creation and switching back from dark mode
-- Add new "memory_size" property for the result class that shows how much memory a result takes in database.
-- Add new "memory_size" property for a run class that shows how much memory a run takes in database.
+- Add new "memory_size" property for the result class that shows how much memory a result takes in database. D
+- Add new "memory_size" property for a run class that shows how much memory a run takes in database. D
   This number is the sum of the size (obtained via "getsizeof") of all results and all logs saved to
   the database during the run
 

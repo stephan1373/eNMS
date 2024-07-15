@@ -620,6 +620,10 @@ back to settings.json file` is selected.
     -   One can set the migration to `"default"` instead, in which case
         eNMS will only load what is required for the application to
         function properly.
+-   `name` Choose the application name that will appear on the login page,
+    in the upper left corner after logging in, and in the browser tab.
+-   `theme` Select the default theme that will be automatically applied
+    when creating new user accounts.
 
 #### `authentication` section
 
