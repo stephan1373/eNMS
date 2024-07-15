@@ -208,19 +208,19 @@ Version 5.1.0: Changelog & Workflow Tree
 - Move 'close_remaining_connections' at the end of run cleanup so it does not impact the result creation
   in case of failure D
 - Add an optional "runtime" parameter to the workflow builder's "get_result" function to retrieve results
-  from a run different than the ongoing run
+  from a run different than the ongoing run D
 - Add ordering mechanism for instance fields and multiple instance fields, with the following syntax:
-  x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"}
-- Name of current thread when running a service no longer set to runtime
-- Add mechanism for optional search box in table 'column-display' dropdown list
+  x = (Multiple)InstanceField(..., order={"property": "name", "direction": "desc"} D
+- Name of current thread when running a service no longer set to runtime D
+- Add mechanism for optional search box in table 'column-display' dropdown list D
   - Syntax: add "{ search: true }" as argument when calling "columnDisplay"
   - Add search box by default to device and configuration tables
-- Force downloading file to browser by adding "as_attachment=True" option in flask send_file function
-- Change 'Skip' label and tooltip to 'Skip / Unskip' in workflow builder
+- Force downloading file to browser by adding "as_attachment=True" option in flask send_file function D
+- Change 'Skip' label and tooltip to 'Skip / Unskip' in workflow builder D
 - Move "state" commit in the end of run cleanup after trying to close all remaining connections to get an
-  accurate display of the number of remaining connections.
+  accurate display of the number of remaining connections. D
 - Re-add logging lines from disconnect function that were removed because of transaction issue after end of
-  transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847)
+  transaction commit: use cache mechanism in run.log function (a098e2b62f7a46d2c8d0fc2a3e6ad6fddcf9b847) D
 - Add new log truncate mechanism, configured in automation.json > "advanced" > "truncate_logs" via the keys
   "activate" (truncate or don't truncate) and "maximum_size" (default: 200000000)
 - Rename automation.json > "advanced" > "always_commit_result" to "always_commit"

@@ -23,6 +23,10 @@ Examples:
   the current device for the `get_interfaces` service.
 - `get_result("Payload editor")["runtime"]`: Get the `runtime` key of
   the top-level result of the `Payload editor` service.
+- `get_result("get_interfaces", device=device.name, runtime="2024-07-15 05:18:35.48611572025")`:
+  Get the result for the current device for the `get_interfaces` service, for the runtime
+  `2024-07-15 05:18:35.48611572025`. By default, when no runtime is specified, the results for
+  the current runtime are retrieved.
 
 The `get_result()` function works everywhere that python code is accepted.
 
