@@ -741,12 +741,12 @@ export function showChangelogPanel(id, constraints) {
   });
 }
 
-export function showInstancePanel(type, id, mode, tableId, edge) {
+export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
   const formType = mode == "bulk-filter" ? `${type}_filtering` : type;
   openPanel({
     name: formType,
     id: id || tableId,
-    footerToolbar: `
+    footerToolbar: hideButton ? "" : `
       <div style="width: 100%; height: 40px; display: flex;
         align-items: center; justify-content: center;">
         <button
