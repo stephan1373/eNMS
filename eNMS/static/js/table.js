@@ -627,7 +627,7 @@ tables.device = class DeviceTable extends Table {
 
   buttons(row) {
     return `
-      <ul class="pagination pagination-lg" style="margin: 0px; width: 300px">
+      <ul class="pagination pagination-lg" style="margin: 0px; width: 310px">
         ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-info"

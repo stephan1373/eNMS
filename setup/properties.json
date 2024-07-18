@@ -268,7 +268,7 @@
       },
       {
         "data": "buttons",
-        "width": "300px",
+        "width": "310px",
         "orderable": false,
         "export": false,
         "html": true
