@@ -163,7 +163,7 @@ class VariableStore:
             if category_values["rbac"] == "access":
                 self.rbac["menus"].append(category)
             for page, page_values in category_values["pages"].items():
-                self.rbac["all_pages"][page] = page_values["endpoint"]
+                self.rbac["all_pages"][f"{category} - {page}"] = page_values["endpoint"]
                 if page_values["rbac"] == "access":
                     self.rbac["pages"].append(page)
                 for subpage, subpage_values in page_values.get("subpages", {}).items():
