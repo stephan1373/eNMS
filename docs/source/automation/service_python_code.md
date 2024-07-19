@@ -251,7 +251,7 @@ are made available to the user.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
 
-- `add_note()`
+- `set_note()`
     -   **Meaning**: Create a note at the given position on the workflow
         builder.
     -   **Type**: Function.

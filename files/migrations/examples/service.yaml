@@ -47826,7 +47826,7 @@
     "b494ef7f-cad9-478b-80a2-a5d03604ad4c":
       "alignment": "left"
       "content": |-
-        This workflow tests the "Runtime Notes" mechanism, and the "add_note"
+        This workflow tests the "Runtime Notes" mechanism, and the "set_note"
         and "remote_note" global functions to create and delete nodes.
 
         - The first service will create two notes "note1" and "note2"
