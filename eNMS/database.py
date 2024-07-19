@@ -543,7 +543,7 @@ class Database:
                 result = transaction(*args, **kwargs)
                 self.session.commit()
                 break
-            except (ValueError, IntegrityError):
+            except (ValueError, IntegrityError, self.RbacError):
                 raise
             except Exception as exc:
                 self.session.rollback()
