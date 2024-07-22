@@ -22,8 +22,9 @@ class NapalmConfigurationService(ConnectionService):
 
     def job(self, run, device):
         config = "\n".join(run.sub(run.content, locals()).splitlines())
+        log_config = run.safe_log(run.content, config)
         if run.dry_run:
-            return {"configuration": config}
+            return {"configuration": log_config}
         napalm_connection = run.napalm_connection(device)
         run.log(
             "info",
@@ -33,7 +34,7 @@ class NapalmConfigurationService(ConnectionService):
         )
         getattr(napalm_connection, run.action)(config=config)
         napalm_connection.commit_config()
-        return {"success": True, "result": f"Config push ({config})"}
+        return {"success": True, "result": f"Config push ({log_config})"}
 
 
 class NapalmConfigurationForm(NapalmForm):

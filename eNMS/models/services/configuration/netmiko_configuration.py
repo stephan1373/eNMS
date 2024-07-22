@@ -34,8 +34,9 @@ class NetmikoConfigurationService(ConnectionService):
 
     def job(self, run, device):
         config = run.sub(run.content, locals())
+        log_config = run.safe_log(run.content, config)
         if run.dry_run:
-            return {"configuration": config}
+            return {"configuration": log_config}
         netmiko_connection = run.netmiko_connection(device)
         run.log(
             "info",
@@ -57,7 +58,7 @@ class NetmikoConfigurationService(ConnectionService):
             netmiko_connection.commit()
         if run.exit_config_mode:
             netmiko_connection.exit_config_mode()
-        return {"commands": config, "result": result}
+        return {"commands": log_config, "result": result}
 
 
 class NetmikoConfigurationForm(NetmikoForm):

@@ -24,16 +24,17 @@ class UnixCommandService(Service):
 
     def job(self, run, device=None):
         command = run.sub(run.command, locals())
+        log_command = run.safe_log(run.command, command)
         if run.dry_run:
-            return {"command": command}
+            return {"command": log_command}
         if not self.approved_by_admin:
             log = "The service has not been approved by an admin user."
             run.log("error", log, device)
             return {"success": False, "result": log}
-        run.log("info", f"Running UNIX command: {command}", device)
+        run.log("info", f"Running UNIX command: {log_command}", device)
         result = sub_run(command, shell=True, capture_output=True, text=True)
         return {
-            "command": command,
+            "command": log_command,
             "result": result.stdout or result.stderr,
             "return_code": result.returncode,
             "success": result.returncode == 0,

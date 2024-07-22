@@ -41,7 +41,7 @@ class RestCallService(Service):
     def job(self, run, device=None):
         local_variables = locals()
         rest_url = run.sub(run.rest_url, local_variables)
-        log_url = run.rest_url if "get_credential" in run.rest_url else rest_url
+        log_url = run.safe_log(run.rest_url, rest_url)
         run.log("info", f"Sending REST Call to {log_url}", device, logger="security")
         kwargs = {
             parameter: run.sub(getattr(self, parameter), local_variables)

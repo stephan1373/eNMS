@@ -33,13 +33,14 @@ class ScrapliService(ConnectionService):
             )
         else:
             commands = run.sub(run.commands, local_variables)
+        log_commands = run.safe_log(run.commands, commands)
         commands = commands.splitlines()
         if run.dry_run:
-            return {"commands": commands}
+            return {"commands": log_commands}
         function = "send_configs" if run.is_configuration else "send_commands"
         run.log(
             "info",
-            f"sending COMMANDS {commands} with Scrapli",
+            f"sending COMMANDS {log_commands} with Scrapli",
             device,
             logger="security",
         )
@@ -53,7 +54,7 @@ class ScrapliService(ConnectionService):
                 f"COMMAND: {response.channel_input}\n{response.result}"
                 for response in multi_response.data
             )
-        return {"commands": commands, "result": result}
+        return {"commands": log_commands.splitlines(), "result": result}
 
 
 class ScrapliCommandsForm(ScrapliForm):

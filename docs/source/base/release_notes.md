@@ -235,6 +235,8 @@ Version 5.1.0: Changelog & Workflow Tree
   This number is the sum of the size (obtained via "getsizeof") of all results and all logs saved to
   the database during the run
 - Remove "Save" button in server panel when accesed from left side menu lower bar
+- Add log obfuscation feature: if an input field uses either get_secret or get_credential, it must be obfuscated
+  in the logs and results. Otherwise, it appears as it is after substitution.
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
@@ -343,6 +345,17 @@ Tests:
 - Test that the ansible playbook service still works fine with quotes around extra_args
 - Test making changes to the migration files, exporting, then importing again. Must make sure that the migration files
   exported with the new version can be imported without any issue with return carriage
+- Test the log obfuscation feature:
+    - In the following services:
+      - Napalm configuration ("content")
+      - Netmiko configuration ("content")
+      - Netmiko commands ("commands")
+      - Netmiko prompts ("command", "response1", "response2", "response3")
+      - Scrapli ("commands")
+      - Rest Call ("rest_url")
+      - Unix Command ("command")
+    - Test that both logs and results are obfuscated
+    - Each service must be tested in both dry run mode and normal mode (different results)
 
 Version 5.0: Clustering
 -----------------------

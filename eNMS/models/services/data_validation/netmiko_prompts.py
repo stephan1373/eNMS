@@ -47,7 +47,10 @@ class NetmikoPromptsService(ConnectionService):
         expect_strings = (run.confirmation1, run.confirmation2, run.confirmation3, None)
         commands, confirmation, result = [], None, "No command sent"
         if run.dry_run:
-            send_strings = [run.sub(command, locals()) for command in send_strings]
+            send_strings = [
+                run.safe_log(command, run.sub(command, locals()))
+                for command in send_strings
+            ]
             expect_strings = [run.sub(command, locals()) for command in expect_strings]
             return {"send_strings": send_strings, "expect_strings": expect_strings}
         netmiko_connection = run.netmiko_connection(device)
@@ -59,11 +62,12 @@ class NetmikoPromptsService(ConnectionService):
                 if not send_string:
                     break
                 command = run.sub(send_string, locals())
-                clean_command = command.replace(netmiko_connection.password, "********")
-                commands.append(clean_command)
+                safe_command = command.replace(netmiko_connection.password, "********")
+                log_command = run.safe_log(send_string, safe_command)
+                commands.append(log_command)
                 run.log(
                     "info",
-                    f"Sending '{clean_command}' with Netmiko",
+                    f"Sending '{log_command}' with Netmiko",
                     device,
                     logger="security",
                 )
@@ -74,7 +78,7 @@ class NetmikoPromptsService(ConnectionService):
                     read_timeout=run.read_timeout,
                     cmd_verify=run.cmd_verify,
                 )
-                results[command] = {"result": result, "match": confirmation}
+                results[log_command] = {"result": result, "match": confirmation}
             run.exit_remote_device(netmiko_connection, prompt, device)
         except Exception:
             result = (

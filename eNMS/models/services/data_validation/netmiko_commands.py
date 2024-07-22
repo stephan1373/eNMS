@@ -53,19 +53,20 @@ class NetmikoValidationService(ConnectionService):
             )
         else:
             commands = run.sub(run.commands, local_variables)
+        log_commands = run.safe_log(run.commands, commands)
+        log_commands_list = log_commands.splitlines()
         if run.dry_run:
-            return {"commands": commands}
+            return {"commands": log_commands}
         netmiko_connection = run.netmiko_connection(device)
         try:
             prompt = run.enter_remote_device(netmiko_connection, device)
             netmiko_connection.session_log.session_log.truncate(0)
             run.log(
                 "info",
-                f"sending COMMAND '{commands}' with Netmiko",
+                f"sending COMMAND '{log_commands}' with Netmiko",
                 device,
                 logger="security",
             )
-            commands = commands.splitlines()
             result = [
                 netmiko_connection.send_command(
                     command,
@@ -77,14 +78,14 @@ class NetmikoValidationService(ConnectionService):
                     strip_prompt=run.strip_prompt,
                     strip_command=run.strip_command,
                 )
-                for command in commands
+                for command in commands.splitlines()
             ]
             if len(result) == 1:
                 (result,) = result
             elif not run.results_as_list:
                 for index in range(len(result)):
                     prefix = "{}COMMAND :".format("\n" if index else "")
-                    result[index] = prefix + commands[index] + "\n\n" + result[index]
+                    result[index] = prefix + log_commands_list[index] + "\n\n" + result[index]
                 result = "\n".join(map(str, result))
             run.exit_remote_device(netmiko_connection, prompt, device)
         except Exception:
@@ -95,12 +96,12 @@ class NetmikoValidationService(ConnectionService):
                 .lstrip("\u0000")
             )
             return {
-                "commands": commands,
+                "commands": log_commands_list,
                 "error": format_exc(),
                 "result": result,
                 "success": False,
             }
-        return {"commands": commands, "result": result}
+        return {"commands": log_commands_list, "result": result}
 
 
 class NetmikoValidationForm(NetmikoForm):

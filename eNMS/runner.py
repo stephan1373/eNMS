@@ -1219,6 +1219,12 @@ class Runner:
         results = builtins[function](query, exec_variables) if query else ""
         return results, exec_variables
 
+    def safe_str(self, original, modified):
+        if "get_secret" in original or "get_credential" in original:
+            return original
+        else:
+            return modified
+
     def sub(self, input, variables):
         regex = compile("{{(.*?)}}")
         variables["payload"] = self.payload
