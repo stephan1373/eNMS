@@ -13,12 +13,10 @@ import {
   call,
   configureNamespace,
   createTooltips,
-  hideMenu,
   history,
   historyPosition,
   initSelect,
   loadTypes,
-  menuIsHidden,
   notify,
   openPanel,
   showChangelogPanel,
@@ -793,7 +791,6 @@ export function initBuilder() {
 function toggleTree() {
   const kwargs = { duration: 200, queue: false };
   if (!treeIsDisplayed) {
-    if (!menuIsHidden) hideMenu();
     $(`#${type}-tree,#resize-tree-li`).show();
     $("#run-navbar").hide();
     $(".left_frame").animate({ width: "-=600px" }, kwargs);
@@ -811,7 +808,6 @@ function toggleTree() {
       }
     );
   } else {
-    if (menuIsHidden) hideMenu();
     $("#run-navbar,#resize-tree-li").hide();
     $(".left_frame").animate({ width: "+=600px" }, kwargs);
     $(".right_frame").animate(
