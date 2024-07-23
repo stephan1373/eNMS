@@ -616,13 +616,13 @@ class Controller:
     def get_runtimes(self, id, display=None):
         service_alias = aliased(vs.models["service"])
         query = (
-            db.query("run", properties=["runtime"])
+            db.query("run", properties=["name", "runtime"])
             .join(service_alias, vs.models["run"].services)
             .filter(service_alias.id == id)
         )
         if display == "user":
             query = query.filter(vs.models["run"].creator == current_user.name)
-        return sorted(((run.runtime, run.runtime) for run in query.all()), reverse=True)
+        return sorted(((run.runtime, run.name) for run in query.all()), reverse=True)
 
     def get_service_logs(self, service, runtime, line=0, device=None):
         log_instance = db.fetch(
