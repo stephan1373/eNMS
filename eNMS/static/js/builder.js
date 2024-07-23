@@ -284,7 +284,8 @@ export function highlightNode(node) {
   const [containerId, nodeId] = nodePath.slice(-2);
   const selection = { nodes: [parseInt(nodeId)], edges: [] };
   if (containerId != instance.id) {
-    switchTo(nodePath.slice(0, -1).join(">"), null, null, node);
+    const listPath = nodePath.length > 1 ? nodePath.slice(0, -1) : nodePath;
+    switchTo(listPath.join(">"), null, null, node);
   } else if (nodeId) {
     network.setSelection(selection);
     network.focus(nodeId, {
