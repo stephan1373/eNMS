@@ -325,7 +325,7 @@ export const showRuntimePanel = function (
             class="navbar navbar-default nav-controls"
             role="navigation"
           >
-            <div style="width: 280px; float: left;">
+            <div style="width: 380px; float: left;">
               <select
                 id="runtimes-${panelId}"
                 name="runtimes"
