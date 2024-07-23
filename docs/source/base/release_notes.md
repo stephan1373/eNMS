@@ -235,6 +235,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - Remove "Save" button in server panel when accesed from left side menu lower bar
 - Add log obfuscation feature: if an input field uses either get_secret or get_credential, it must be obfuscated
   in the logs and results. Otherwise, it appears as it is after substitution.
+- Add runtime name and search box in logs, report and results panel
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
