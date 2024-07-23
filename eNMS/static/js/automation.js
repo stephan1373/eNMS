@@ -330,6 +330,7 @@ export const showRuntimePanel = function (
                 id="runtimes-${panelId}"
                 name="runtimes"
                 class="form-control"
+                data-live-search="true"
               ></select>
             </div>
             <div style="width: 30px; float: left; margin-left: 15px;">
@@ -359,6 +360,7 @@ export const showRuntimePanel = function (
               id="runtimes-${panelId}"
               name="runtimes"
               class="form-control"
+              data-live-search="true"
             ></select>
           </div>
           <div style="width: 30px; float: left; margin-left: 15px;">
