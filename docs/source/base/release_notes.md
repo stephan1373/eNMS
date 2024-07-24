@@ -32,6 +32,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Add changelog support in network builder
   - Add script (snippet) to permanently delete all soft-deleted edges and services
   - Require "edit" access for a user to be able to revert a change to an object
+  - A changelog must have an "author" to be reverted (system changes cannot be reverted)
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
 - Make "any" come last in the list of credential type for a service (default becomes read write)
 - Dont validate model, vendor and OS for device and link forms
