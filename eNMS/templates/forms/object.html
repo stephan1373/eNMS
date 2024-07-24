@@ -42,8 +42,8 @@
         </div>
         {% endif %} {% if form.rbac_properties %}
         <div class="tab-pane fade add-id" id="rbac-properties">
-          {{ inline_field(form_type, form["owners"]) }} {{ inline_field(form_type,
-          form["admin_only"]) }} {% for property in form.rbac_properties %} {% set field
+          {{ inline_field(form_type,
+          form["admin_only"]) }} {{ inline_field(form_type, form["owners"]) }}  {% for property in form.rbac_properties %} {% set field
           = form[property] %} {{ inline_field(form_type, field) }} {% endfor %}
         </div>
         {% endif %}
