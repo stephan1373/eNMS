@@ -1340,7 +1340,6 @@ class Controller:
                 except Exception:
                     env.log("critical", f"Failed to create results:\n{format_exc()}")
                 run_object.service_run.end_of_run_cleanup()
-                run_object.service_run.close_remaining_connections()
             db.session.commit()
             return {"success": False, "result": format_exc()}
 
