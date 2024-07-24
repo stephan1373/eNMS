@@ -1323,7 +1323,8 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            env.log("critical", f"(runtime: {kwargs['runtime']}) - {format_exc()}")
+            runtime_log = f"(runtime: {kwargs.get('runtime', 'No runtime defined')})"
+            env.log("critical", f"{runtime_log} - {format_exc()}")
             if run_object and run_object.status == "Running":
                 run_object.service_run.log("critical", format_exc())
                 db.try_set(run_object, "status", "Failed")
