@@ -767,7 +767,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
-      if (type == "folder") showFolderPanel(id);
+      if (type == "folder") showFolderPanel(id); 
       if (id) {
         call({
           url: `/get/${type}/${id}`,
@@ -782,6 +782,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
             panel.setHeaderTitle(`${action} ${type} - ${instance.name}`);
             processInstance(type, instance);
             if (isService) loadScript(`/static/js/services/${type}.js`, id);
+            if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
           },
         });
       } else if (mode == "bulk-edit") {
@@ -794,6 +795,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
           $(`#${type}-workflows`).append(new Option(instance.name, instance.name));
           $(`#${type}-workflows`).val(instance.name).trigger("change");
         }
+        if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
         if (page == "network_builder") updateNetworkPanel(type);
       }
       if (isService && !id) loadScript(`/static/js/services/${type}.js`);

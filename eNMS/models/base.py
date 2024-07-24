@@ -105,12 +105,14 @@ class AbstractBase(db.base):
     def filter_rbac_kwargs(self, kwargs):
         if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
             return
-        rbac_properties = ["owners", "restrict_to_owners", "admin_only"]
+        rbac_properties = ["owners", "restrict_to_owners"]
         model_rbac_properties = list(vs.rbac["rbac_models"][self.class_type])
         is_admin = getattr(current_user, "is_admin", True)
-        if not is_admin and current_user not in self.owners:
-            for property in rbac_properties + model_rbac_properties:
-                kwargs.pop(property, None)
+        if not is_admin:
+            kwargs.pop("admin_only", None)
+            if current_user not in self.owners:
+                for property in rbac_properties + model_rbac_properties:
+                    kwargs.pop(property, None)
 
     def get_changelog_kwargs(self):
         return {
