@@ -1736,14 +1736,15 @@ tables.changelog = class ChangelogTable extends Table {
   }
 
   buttons(row) {
+    const isReversible = row.history && row.author;
     return [
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
         <li>
           <button
             type="button"
-            class="btn btn-sm btn-${row.history ? "danger" : "dark"}"
-            ${row.history ? "" : "disabled"}
+            class="btn btn-sm btn-${isReversible ? "danger" : "dark"}"
+            ${isReversible ? "" : "disabled"}
             onclick="eNMS.administration.revertChange(${
               row.id
             })" data-tooltip="Revert Change"
