@@ -41,7 +41,7 @@ form[field_name].render_kw or {} %}
     <label for="{{ field_name }}">{{ render_kw["ui_name"] }}</label>
     {% else %} {{ render_kw.get("ui_name", form[field_name].label) }} {% endif %}
   </label>
-  {% endif %} {% endset %} {% if field_name == "form_type" %} {% elif
+  {% endif %} {% endset %} {% if form[field_name].type == "HiddenField" %} {% elif
   form[field_name].type == "BooleanField" %}
   <fieldset>
     <div class="item">
