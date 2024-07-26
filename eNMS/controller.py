@@ -1084,6 +1084,11 @@ class Controller:
                 }
                 try:
                     if instance["name"] in store[model]:
+                        if instance["name"] in ("[Shared] Start", "[Shared] End"):
+                            store[model][instance["name"]].positions = {
+                                **instance["positions"],
+                                **store[model][instance["name"]].positions,
+                            }
                         instance = store[model][instance["name"]]
                     else:
                         instance = db.factory(
