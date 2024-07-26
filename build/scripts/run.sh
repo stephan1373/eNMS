@@ -57,7 +57,7 @@ function run() {
       sudo -u postgres psql -c "DROP DATABASE enms"
       sudo -u postgres psql -c "CREATE DATABASE enms;"
     else
-      rm database.db
+      rm /$HOME/database.db
     fi
   fi
   if [ "$gunicorn" = true ]; then
