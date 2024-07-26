@@ -34,4 +34,16 @@
       results['success'] = False
       results['result'] = 'Waiting for ready'
   </textarea>
+  <div>
+    <p>
+      The global variable <b>dry_run</b> can be used to define the expected results when the service is running in dry run mode.
+    </p>
+    <textarea class="help-snippet" style="height: fit-content">
+      if dry_run:
+        results["success"] = True
+        results["result"] = "..."
+      else:
+        ...
+    </textarea>
+  </div>
 </div>
