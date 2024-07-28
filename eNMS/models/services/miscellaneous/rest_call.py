@@ -52,7 +52,7 @@ class RestCallService(Service):
             kwargs["json"] = run.sub(self.payload, local_variables)
         if run.dry_run:
             return {"url": log_url, "kwargs": kwargs}
-        credentials = run.get_credentials(device)
+        credentials = run.get_credentials(device, add_secret=False)
         if self.credentials != "custom" or credentials["username"]:
             kwargs["auth"] = HTTPBasicAuth(
                 credentials["username"], credentials["password"]

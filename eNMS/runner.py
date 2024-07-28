@@ -957,9 +957,10 @@ class Runner:
 
     def get_credentials(self, device, add_secret=True):
         result, credential_type = {}, self.main_run.service.credential_type
+        credential = None
         if self.credentials == "object":
             credential = self.named_credential
-        else:
+        elif self.credentials == "device" or add_secret:
             credential = db.get_credential(
                 self.creator,
                 device=device,
