@@ -238,6 +238,7 @@ Version 5.1.0: Changelog & Workflow Tree
   in the logs and results. Otherwise, it appears as it is after substitution.
 - Add runtime name and search box in logs, report and results panel
 - Don't let non-admin users change admin only RBAC property
+- Don't fetch credential object and dont add secret to credential dict in rest call service using custom credentials
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
