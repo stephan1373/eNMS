@@ -1084,7 +1084,7 @@ class Controller:
                 }
                 try:
                     if instance["name"] in store[model]:
-                        if instance["name"] in ("[Shared] Start", "[Shared] End"):
+                        if instance["name"] in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
                             store[model][instance["name"]].positions = {
                                 **instance["positions"],
                                 **store[model][instance["name"]].positions,
