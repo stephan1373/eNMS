@@ -368,7 +368,7 @@ export const showRuntimePanel = function (
               class="btn btn-info pull-right"
               onclick="eNMS.automation.showRuntimePanel(
                 'results', ${JSON.stringify(serviceProperties).replace(/"/g, "'")},
-                '#runtimes-${panelId}', 'result', null, true)"
+                '#runtimes-${panelId}', 'full_result', null, true)"
               data-tooltip="All Results"
               type="button"
             >
