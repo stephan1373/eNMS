@@ -241,7 +241,7 @@ class Changelog(AbstractBase):
     history = db.Column(JSON, default={})
     source = db.Column(db.SmallString)
     target_type = db.Column(db.SmallString)
-    target_name = db.Column(db.SmallString)
+    target_name = db.Column(db.MediumString)
     workflows = relationship(
         "Workflow",
         secondary=db.changelog_workflow_table,
