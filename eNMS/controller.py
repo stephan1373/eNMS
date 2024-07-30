@@ -1343,7 +1343,7 @@ class Controller:
                 try:
                     run_object.service_run.create_result(results, run_result=True)
                 except Exception:
-                    env.log("critical", f"Failed to create results:\n{format_exc()}")
+                    env.log("critical", f"{runtime_log} - {format_exc()}")
                 run_object.service_run.end_of_run_cleanup()
             db.session.commit()
             return {"success": False, "result": format_exc()}
