@@ -399,6 +399,12 @@
         "orderable": false
       },
       {
+        "data": "workflow_name",
+        "title": "Workflow",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "service_name",
         "title": "Service",
         "search": "text",
