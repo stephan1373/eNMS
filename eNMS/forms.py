@@ -1050,6 +1050,7 @@ class SessionForm(BaseForm):
     form_type = HiddenField(default="session")
     timestamp = StringField("Timestamp")
     username = StringField("User")
+    content = StringField("Content")
 
 
 class TaskForm(BaseForm):
