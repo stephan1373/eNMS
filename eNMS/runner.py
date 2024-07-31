@@ -981,6 +981,7 @@ class Runner:
                 result["pkey"] = RSAKey.from_private_key(StringIO(private_key))
         else:
             result["username"] = self.sub(self.custom_username, locals())
+            self.log("info", f"Using Custom Credentials (user: {result['username']})")
             password = env.get_password(self.custom_password)
             substituted_password = self.sub(password, locals())
             if password != substituted_password:
