@@ -151,7 +151,7 @@ class AbstractBase(db.base):
         pass
 
     def get_properties(
-        self, export=False, exclude=None, include=None, private_properties=False
+        self, export=False, exclude=None, include=None, private_properties=False, logging=False
     ):
         result = {}
         no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
@@ -161,6 +161,10 @@ class AbstractBase(db.base):
         for property in properties:
             if not private_properties and property in vs.private_properties_set:
                 continue
+            if logging:
+                attribute = getattr(vs.models[self.type], property, None)
+                if not getattr(attribute, "info", {}).get("log_change", True):
+                    continue
             if property in db.dont_serialize.get(self.class_type, []):
                 continue
             if export and property in getattr(self, "model_properties", {}):

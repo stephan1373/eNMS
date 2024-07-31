@@ -242,7 +242,8 @@ class Database:
             if not getattr(target, "log_change", True) or not env.log_events:
                 return
             if hasattr(target, "name") and target.type != "run":
-                log_content = f"CREATION: {target.type} '{target.name}'"
+                properties = target.get_properties(logging=True)
+                log_content = f"CREATION: {target.type} '{target.name}' ({properties})"
                 env.log("info", log_content, instance=target)
 
         @event.listens_for(self.base, "before_delete", propagate=True)
