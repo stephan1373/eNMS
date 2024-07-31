@@ -1049,7 +1049,7 @@ class SessionForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="session")
     timestamp = StringField("Timestamp")
-    user = StringField("User")
+    username = StringField("User")
 
 
 class TaskForm(BaseForm):

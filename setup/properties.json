@@ -1504,7 +1504,7 @@
         "orderable": false
       },
       {
-        "data": "user",
+        "data": "username",
         "title": "User",
         "search": "text",
         "width": "100px",
