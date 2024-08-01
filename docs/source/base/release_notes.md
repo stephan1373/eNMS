@@ -9,6 +9,7 @@ Version 5.1.0: Changelog & Workflow Tree
     servers, services, tasks and users.
   - Add "Target Type" and "Target Name" properties in changelog table
   - Add revert mechanism to undo the changes in a changelog. Supported revert action:
+    - Creation of an instance
     - Standard properties (string, integer, list)
     - Scalar relationships
     - Many-to-many relationships
