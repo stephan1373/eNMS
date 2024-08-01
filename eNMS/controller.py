@@ -1264,7 +1264,7 @@ class Controller:
         else:
             return {"alert": f"{instance.name} is not associated with {target.name}."}
 
-    def result_log_deletion(self, **kwargs):
+    def old_instances_deletion(self, **kwargs):
         date_time_object = datetime.strptime(kwargs["date_time"], "%d/%m/%Y %H:%M:%S")
         date_time_string = date_time_object.strftime("%Y-%m-%d %H:%M:%S.%f")
         for model in kwargs["deletion_types"]:

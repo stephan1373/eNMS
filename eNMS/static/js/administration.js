@@ -207,14 +207,14 @@ function databaseDeletion() {
   });
 }
 
-function resultLogDeletion() {
-  notify("Log Deletion initiated...", "success", 5, true);
+function oldInstancesDeletion() {
+  notify("Instances Deletion initiated...", "success", 5, true);
   call({
-    url: "/result_log_deletion",
-    form: "result_log_deletion-form",
+    url: "/old_instances_deletion",
+    form: "old_instances_deletion-form",
     callback: function () {
       notify("Log Deletion done.", "success", 5, true);
-      $("#result_log_deletion").remove();
+      $("#old_instances_deletion").remove();
     },
   });
 }
@@ -406,7 +406,7 @@ configureNamespace("administration", [
   getGitContent,
   migrationsExport,
   migrationsImport,
-  resultLogDeletion,
+  oldInstancesDeletion,
   runDebugCode,
   saveFile,
   saveProfile,

@@ -250,7 +250,7 @@
     "/rest/run_task": "access",
     "/rest/search": "access",
     "/rest/topology": "access",
-    "/result_log_deletion": "access",
+    "/old_instances_deletion": "access",
     "/revert_change": "access",
     "/run_debug_code": "admin",
     "/run_service": "access",
