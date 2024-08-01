@@ -32,8 +32,8 @@ Version 5.1.0: Changelog & Workflow Tree
     - all changes about a specific object via link to "Changelog" relation table in every row
   - Add changelog support in network builder
   - Add script (snippet) to permanently delete all soft-deleted edges and services
-  - Add option in the admin panel / REST API to delete all soft-deleted services older than
-    a given date
+  - Add option in the admin panel / REST API to delete all soft-deleted services and workflow edges
+    older than a given date
   - Require "edit" access for a user to be able to revert a change to an object
   - A changelog must have an "author" to be reverted (system changes cannot be reverted)
 - Fail netmiko and scrapli commands service if undefined variable in Jinja2 template
