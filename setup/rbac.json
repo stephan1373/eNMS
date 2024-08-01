@@ -171,6 +171,7 @@
     "/result_comparison_form": "access",
     "/result_form": "access",
     "/run_table": "access",
+    "/search_form": "access",
     "/server_table": "access",
     "/service_table": "access",
     "/session_log_form": "admin",
