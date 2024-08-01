@@ -243,8 +243,8 @@ class Database:
                 return
             if hasattr(target, "name") and target.type != "run":
                 properties = target.get_properties(logging=True)
-                log_content = f"CREATION: {target.type} '{target.name}' ({properties})"
-                env.log("info", log_content, instance=target)
+                content = f"CREATION: {target.type} '{target.name}' ({properties})"
+                env.log("info", content, instance=target, history={"creation": True})
 
         @event.listens_for(self.base, "before_delete", propagate=True)
         def log_instance_deletion(mapper, connection, target):

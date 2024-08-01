@@ -1569,6 +1569,8 @@ class Controller:
         )
         if target is None:
             return {"alert": "The target object no longer exists."}
+        if log.history.get("creation"):
+            return db.delete_instance(target)
         for relationship, history in log.history.get("lists", {}).items():
             target_value = getattr(target, relationship)
             for value in history["deleted"]:
