@@ -322,6 +322,8 @@ class WorkflowEdge(AbstractBase):
     __tablename__ = type = class_type = "workflow_edge"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     soft_deleted = db.Column(Boolean, default=False)
     label = db.Column(db.SmallString)
     color = db.Column(db.SmallString)
@@ -362,6 +364,8 @@ class WorkflowEdge(AbstractBase):
     def update(self, **kwargs):
         super().update(**kwargs)
         self.set_name(kwargs.get("name"))
+        if not kwargs.get("migration_import"):
+            self.update_last_modified_properties()
 
     def set_name(self, name=None):
         self.name = name or f"[{self.workflow}] {vs.get_time()}"

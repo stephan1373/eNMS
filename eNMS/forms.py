@@ -1172,6 +1172,8 @@ class WorkflowEdgeForm(BaseForm):
     id = HiddenField()
     label = StringField()
     color = StringField()
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
 
 
 class ConnectionForm(ServiceForm):
