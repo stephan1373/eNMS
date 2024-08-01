@@ -1268,9 +1268,9 @@ class Controller:
         date_time_object = datetime.strptime(kwargs["date_time"], "%d/%m/%Y %H:%M:%S")
         date_time_string = date_time_object.strftime("%Y-%m-%d %H:%M:%S.%f")
         for model in kwargs["deletion_types"]:
-            row = {"run": "runtime", "changelog": "time", "service": "last_modified"}[model]
+            row = {"run": "runtime", "changelog": "time", "service": "last_modified", "workflow_edge": "last_modified"}[model]
             conditions = [getattr(vs.models[model], row) < date_time_string]
-            if model == "service":
+            if model in ("service", "workflow_edge"):
                 conditions.append(vs.models[model].soft_deleted == True)
             session_query = db.session.query(vs.models[model]).filter(and_(*conditions))
             session_query.delete(synchronize_session=False)

@@ -606,7 +606,7 @@ class OldInstancesDeletionForm(BaseForm):
     form_type = HiddenField(default="old_instances_deletion")
     deletion_types = SelectMultipleField(
         "Instances to Delete",
-        choices=[("run", "Result"), ("changelog", "Changelog"), ("service", "Soft Deleted Services")],
+        choices=[("run", "Result"), ("changelog", "Changelog"), ("service", "Soft Deleted Services"), ("workflow_edge", "Soft Deleted Edges")],
     )
     date_time = StringField(type="date", label="Older Than")
 
