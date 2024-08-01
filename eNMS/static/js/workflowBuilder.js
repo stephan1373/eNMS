@@ -369,7 +369,7 @@ export function drawWorkflowNode(service) {
       : isPlaceholder
       ? "#E6ADD8"
       : service.dry_run
-      ? "#9CE69C"
+      ? "#EDC582"
       : "#D2E5FF",
     font: {
       size: 15,
@@ -658,7 +658,7 @@ function displayWorkflowState(result, workflowSwitch) {
     const id = parseInt(path.split(">").slice(-1)[0]);
     if (ends.has(id) || !serviceIds.includes(id)) continue;
     let label = `<b>${nodes.get(id).name}</b>\n`;
-    colorService(id, state.dry_run ? "#9CE69C" : state.success ? "#32CD32" : "#FF6666");
+    colorService(id, state.dry_run ? "#EDC582" : state.success ? "#32CD32" : "#FF6666");
     let first = true;
     for (const progressKey of ["device", "iteration_device"]) {
       if (state.progress?.[progressKey]) {
@@ -673,7 +673,7 @@ function displayWorkflowState(result, workflowSwitch) {
             : success + failure + skipped < total
             ? "#89CFF0"
             : state.dry_run
-            ? "#9CE69C"
+            ? "#EDC582"
             : state.success === false || failure > 0
             ? "#FF6666"
             : state.success === true
@@ -747,7 +747,7 @@ export function resetWorkflowDisplay() {
         color: service.skip[workflow.name]
           ? "#D3D3D3"
           : service.dry_run
-          ? "#9CE69C"
+          ? "#EDC582"
           : "#D2E5FF",
       });
     }
