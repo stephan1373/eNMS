@@ -1253,9 +1253,9 @@ tables.run = class RunTable extends Table {
     return [
       this.columnDisplay(),
       this.userFilteringButton(),
+      this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
-      this.refreshTableButton(),
       ` <button
         class="btn btn-info"
         onclick="eNMS.automation.displayCalendar('run')"
