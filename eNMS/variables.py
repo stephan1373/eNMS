@@ -55,6 +55,7 @@ class VariableStore:
             if hasattr(self.custom, func.__name__):
                 return getattr(self.custom, func.__name__)(*args, **kwargs)
             return func(*args, **kwargs)
+
         return wrapper
 
     def _set_setup_variables(self):
@@ -216,7 +217,7 @@ class VariableStore:
             "table_properties": self.properties["tables"],
             "version": self.version,
             "visualization": self.visualization,
-            **self.custom.server_template_context()
+            **self.custom.server_template_context(),
         }
         self.form_context = {
             **{

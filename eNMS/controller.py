@@ -874,8 +874,11 @@ class Controller:
                     color = "25B6FA"
             else:
                 color = (
-                    "FF1694" if getattr(instance, "shared", False)
-                    else "E09E2F" if getattr(instance, "dry_run", False) else "6666FF"
+                    "FF1694"
+                    if getattr(instance, "shared", False)
+                    else "E09E2F"
+                    if getattr(instance, "dry_run", False)
+                    else "6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
@@ -1089,7 +1092,11 @@ class Controller:
                 }
                 try:
                     if instance["name"] in store[model]:
-                        if instance["name"] in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
+                        if instance["name"] in (
+                            "[Shared] Start",
+                            "[Shared] End",
+                            "[Shared] Placeholder",
+                        ):
                             store[model][instance["name"]].positions = {
                                 **instance["positions"],
                                 **store[model][instance["name"]].positions,
@@ -1221,7 +1228,7 @@ class Controller:
         with open_tar(filepath) as tar_file:
             folder_name = tar_file.getmembers()[0].name
             rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
-            tar_file.extractall(path=vs.file_path / "services")            
+            tar_file.extractall(path=vs.file_path / "services")
             status = self.migration_import(
                 folder="services",
                 name=folder_name,
@@ -1273,7 +1280,12 @@ class Controller:
         date_time_object = datetime.strptime(kwargs["date_time"], "%d/%m/%Y %H:%M:%S")
         date_time_string = date_time_object.strftime("%Y-%m-%d %H:%M:%S.%f")
         for model in kwargs["deletion_types"]:
-            row = {"run": "runtime", "changelog": "time", "service": "last_modified", "workflow_edge": "last_modified"}[model]
+            row = {
+                "run": "runtime",
+                "changelog": "time",
+                "service": "last_modified",
+                "workflow_edge": "last_modified",
+            }[model]
             conditions = [getattr(vs.models[model], row) < date_time_string]
             if model in ("service", "workflow_edge"):
                 conditions.append(vs.models[model].soft_deleted == True)

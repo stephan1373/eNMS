@@ -151,7 +151,12 @@ class AbstractBase(db.base):
         pass
 
     def get_properties(
-        self, export=False, exclude=None, include=None, private_properties=False, logging=False
+        self,
+        export=False,
+        exclude=None,
+        include=None,
+        private_properties=False,
+        logging=False,
     ):
         result = {}
         no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})

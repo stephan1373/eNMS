@@ -109,7 +109,9 @@ class User(AbstractBase, UserMixin):
     password = db.Column(db.SmallString)
     authentication = db.Column(db.TinyString, default="database")
     small_menu = db.Column(Boolean, default=False, info={"log_change": False})
-    theme = db.Column(db.TinyString, default=vs.settings["app"]["theme"], info={"log_change": False})
+    theme = db.Column(
+        db.TinyString, default=vs.settings["app"]["theme"], info={"log_change": False}
+    )
     zoom_sensitivity = db.Column(Float, default=1, info={"log_change": False})
     groups = relationship(
         "Group", secondary=db.user_group_table, back_populates="users"

@@ -295,11 +295,13 @@ class Environment:
             session = RequestSession()
             adapter = HTTPAdapter(
                 max_retries=Retry(**vs.settings["vault"]["retry"]),
-                pool_maxsize=vs.settings["vault"].get("pool_maxsize", 25)
+                pool_maxsize=vs.settings["vault"].get("pool_maxsize", 25),
             )
             for address in vs.settings["vault"].get("mount", ["http://", "https://"]):
                 session.mount(address, adapter)
-        self.vault_client = VaultClient(url=url, token=getenv("VAULT_TOKEN"), session=session)
+        self.vault_client = VaultClient(
+            url=url, token=getenv("VAULT_TOKEN"), session=session
+        )
         if self.vault_client.sys.is_sealed() and vs.settings["vault"]["unseal_vault"]:
             keys = [getenv(f"UNSEAL_VAULT_KEY{index}") for index in range(1, 6)]
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))

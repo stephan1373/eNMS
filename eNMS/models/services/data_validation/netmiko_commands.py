@@ -85,7 +85,9 @@ class NetmikoValidationService(ConnectionService):
             elif not run.results_as_list:
                 for index in range(len(result)):
                     prefix = "{}COMMAND :".format("\n" if index else "")
-                    result[index] = prefix + log_commands_list[index] + "\n\n" + result[index]
+                    result[index] = (
+                        prefix + log_commands_list[index] + "\n\n" + result[index]
+                    )
                 result = "\n".join(map(str, result))
             run.exit_remote_device(netmiko_connection, prompt, device)
         except Exception:

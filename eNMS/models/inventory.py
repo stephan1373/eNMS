@@ -386,7 +386,9 @@ class Pool(AbstractBase):
                         instances = []
                     if fast_compute:
                         table = getattr(db, f"pool_{model}_table")
-                        db.session.execute(table.delete().where(table.c.pool_id == self.id))
+                        db.session.execute(
+                            table.delete().where(table.c.pool_id == self.id)
+                        )
                         if instances:
                             values = [
                                 {"pool_id": self.id, f"{model}_id": instance.id}

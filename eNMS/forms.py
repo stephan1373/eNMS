@@ -606,7 +606,12 @@ class OldInstancesDeletionForm(BaseForm):
     form_type = HiddenField(default="old_instances_deletion")
     deletion_types = SelectMultipleField(
         "Instances to Delete",
-        choices=[("run", "Result"), ("changelog", "Changelog"), ("service", "Soft Deleted Services"), ("workflow_edge", "Soft Deleted Edges")],
+        choices=[
+            ("run", "Result"),
+            ("changelog", "Changelog"),
+            ("service", "Soft Deleted Services"),
+            ("workflow_edge", "Soft Deleted Edges"),
+        ],
     )
     date_time = StringField(type="date", label="Older Than")
 
@@ -652,7 +657,9 @@ class ServerForm(BaseForm):
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
-    role = SelectField("Role", choices=(("primary", "Primary"), ("secondary", "Secondary")))
+    role = SelectField(
+        "Role", choices=(("primary", "Primary"), ("secondary", "Secondary"))
+    )
     ip_address = StringField("IP address", render_kw={"readonly": True})
     scheduler_address = StringField("Scheduler Address", render_kw={"readonly": True})
     scheduler_active = BooleanField("Scheduler is Active", render_kw={"readonly": True})
@@ -803,7 +810,7 @@ class ServiceForm(BaseForm):
         "Parameterized Form HTML Template",
         type="code",
         widget=TextArea(),
-        help="common/parameterized_template"
+        help="common/parameterized_template",
     )
     iteration_variable_name = StringField(
         "Iteration Variable Name", default="iteration_value"
