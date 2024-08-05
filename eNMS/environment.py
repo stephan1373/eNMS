@@ -52,6 +52,10 @@ from eNMS.variables import vs
 
 
 class Environment:
+    def __init__(self):
+        if vs.settings["automation"]["use_task_queue"]:
+            self.init_dramatiq()
+
     def _initialize(self):
         self.init_authentication()
         self.init_encryption()
@@ -64,8 +68,6 @@ class Environment:
         self.init_redis()
         self.init_connection_pools()
         self.cache = Cache(config=vs.settings["cache"]["config"])
-        if vs.settings["automation"]["use_task_queue"]:
-            self.init_dramatiq()
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         if vs.settings["files"]["monitor_filesystem"]:
             main_thread = Thread(target=self.monitor_filesystem)
@@ -193,7 +195,6 @@ class Environment:
                 HTTPAdapter(max_retries=retry, **vs.settings["requests"]["pool"]),
             )
 
-    @vs.custom_function
     def init_dramatiq(self):
         set_broker(
             RedisBroker(
