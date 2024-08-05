@@ -51,6 +51,8 @@ class UnixCommandForm(ServiceForm):
         service = db.fetch("service", id=self.id.data, allow_none=True)
         rbac_error = self.approved_by_admin.data and not current_user.is_admin
         if rbac_error:
-            error_message = "A non-admin user cannot approve the Unix service."
-            self.approved_by_admin.errors.append(error_message)
+            self.approved_by_admin.errors.append(
+                "Only an admin user can save when 'Approved"
+                " by an admin user' is selected."
+            )
         return valid_form and not rbac_error
