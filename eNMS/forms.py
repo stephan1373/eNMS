@@ -613,7 +613,7 @@ class OldInstancesDeletionForm(BaseForm):
             ("workflow_edge", "Soft Deleted Edges"),
         ],
     )
-    date_time = StringField(type="date", label="Older Than")
+    date_time = StringField("Older Than", [InputRequired()], type="date")
 
 
 class RunForm(BaseForm):
