@@ -866,12 +866,17 @@ class Controller:
             if "device_state" in kwargs:
                 color = "32CD32" if kwargs["device_state"][instance.id] else "FF6666"
             elif run:
-                if "success" in state[path]["result"]:
+                if state[path].get("dry_run"):
+                    color = "E09E2F"
+                elif "success" in state[path]["result"]:
                     color = "32CD32" if state[path]["result"]["success"] else "FF6666"
                 else:
                     color = "25B6FA"
             else:
-                color = "FF1694" if getattr(instance, "shared", False) else "6666FF"
+                color = (
+                    "FF1694" if getattr(instance, "shared", False)
+                    else "E09E2F" if getattr(instance, "dry_run", False) else "6666FF"
+                )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
             return {
