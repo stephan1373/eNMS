@@ -351,7 +351,7 @@ function showBuilderSearchPanel() {
             <div style="margin-bottom: 5px">
               <select data-width="100%" id="tree-search-mode" name="search_mode">
                 <option value="properties">Search across all properties</option>
-                <option value="names">Search by names</option>
+                <option value="names">Search by service name</option>
               </select>
             </div>
             <input
