@@ -732,6 +732,7 @@ function displayWorkflowState(result, workflowSwitch) {
 export function resetWorkflowDisplay() {
   let nodeUpdates = [];
   let edgeUpdates = [];
+  $("#connections-div").hide();
   workflow.services.forEach((service) => {
     if (service.scoped_name == "Placeholder") {
       nodeUpdates.push({
