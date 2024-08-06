@@ -342,7 +342,8 @@ class Controller:
                     service.soft_deleted = True
                 else:
                     instance.services.remove(service)
-        env.log("info", f"Removing '{names}' from '{instance}'", instance=instance)
+        log = " - ".join(f"{k.capitalize()}: {', '.join(v)}" for k, v in names.items())
+        env.log("info", f"Removed from '{instance}': {log}", instance=instance)
         return instance.last_modified
 
     def edit_file(self, filepath):
