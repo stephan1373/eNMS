@@ -502,8 +502,9 @@ class Database:
             return result
         else:
             raise self.rbac_error(
-                f"There is no {instance_type} in the database "
-                f"with the following characteristics: {kwargs}"
+                f"There is no {instance_type} in the database with the following "
+                f"characteristics: {kwargs}. Either the record does not exist "
+                "or the user does not have access"
             )
 
     def delete(self, model, **kwargs):
