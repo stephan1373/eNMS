@@ -1293,7 +1293,8 @@ class Controller:
             if model in ("service", "workflow_edge"):
                 conditions.append(vs.models[model].soft_deleted == True)
             session_query = db.session.query(vs.models[model]).filter(and_(*conditions))
-            session_query.delete(synchronize_session=False)
+            if model not in ("service", "workflow_edge"):
+                session_query.delete(synchronize_session=False)
             db.session.commit()
 
     @staticmethod
