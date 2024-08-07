@@ -472,7 +472,7 @@ function openDeletionPanel() {
     showConfirmationPanel({
       id: "builder_deletion",
       title: `Deletion from ${type}`,
-      message: `Are you sure you want to permanently remove the current selection
+      message: `Are you sure you want to delete the current selection
       (<b>${nodeSelection} node${nodeSelection > 1 ? "s" : ""}
       and ${edgeSelection} ${edgeType}${edgeSelection > 1 ? "s" : ""}</b>) ?`,
       confirmButton: "Delete",

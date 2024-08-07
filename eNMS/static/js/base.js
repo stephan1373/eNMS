@@ -489,7 +489,7 @@ function showDeletionPanel(instance, tableId) {
   showConfirmationPanel({
     id: `${instance.type}-${instance.id}`,
     title: `Delete ${instance.type} '${instance.name}'`,
-    message: "Are you sure you want to permanently remove this item ?",
+    message: "Are you sure you want to delete this item ?",
     confirmButton: "Delete",
     onConfirm: () => deleteInstance(instance.type, instance.id, tableId),
   });

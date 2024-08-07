@@ -2049,7 +2049,7 @@ function showBulkDeletionPanel(tableId, model) {
   showConfirmationPanel({
     id: `bulk-${model}-${tableId}`,
     title: "Bulk Deletion (delete all items in table)",
-    message: `Are you sure you want to permanently remove all items
+    message: `Are you sure you want to delete all items
       currently displayed in the table ?`,
     confirmButton: "Delete",
     onConfirm: () => bulkDeletion(tableId, model),
