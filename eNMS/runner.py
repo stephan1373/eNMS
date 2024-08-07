@@ -614,8 +614,8 @@ class Runner:
             data = f"{data[:truncate_size]}\n{message}"
         elif data_size >= max_allowed_size:
             logs = (
-                f"The {data_type} is too large to be committed to the database\n"
-                f"Size: {data_size}B\nMaximum Allowed Size: {max_allowed_size}B"
+                f"The {data_type} is too large to be committed to the database: "
+                f"Size: {data_size}B / Maximum Allowed Size: {max_allowed_size}B"
             )
             self.log("critical", logs)
             raise Exception(f"{data_type.capitalize()} Data Overflow")
