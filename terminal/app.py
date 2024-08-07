@@ -41,7 +41,7 @@ class Server(Flask):
                 f"{getenv('APP_ADDRESS')}/rest/instance/session",
                 json={
                     "content": request.json,
-                    "device_id": getenv("DEVICE"),
+                    "device": getenv("DEVICE"),
                     "name": str(uuid4()),
                     "timestamp": str(datetime.now()),
                     "user": getenv("USER"),
