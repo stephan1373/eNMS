@@ -92,7 +92,7 @@ class Environment:
                         move_file=False,
                     )
                 elif event.event_type in ("created", "modified"):
-                    file = db.factory(filetype, path=src_path)
+                    file = db.factory(filetype, path=src_path, rbac=None)
                 elif event.event_type != "deleted" or not file:
                     return
                 file.status = event.event_type.capitalize()
