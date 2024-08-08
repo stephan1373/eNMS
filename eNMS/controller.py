@@ -1294,7 +1294,8 @@ class Controller:
                 conditions.append(vs.models[model].soft_deleted == True)
             session_query = db.session.query(vs.models[model]).filter(and_(*conditions))
             if model in ("service", "workflow_edge"):
-                db.session.delete(*session_query.all())
+                for obj in session_query.all():
+                    db.delete_instance(obj)
             else:
                 session_query.delete(synchronize_session=False)
             db.session.commit()
