@@ -967,9 +967,15 @@
     ],
     "device_result": [
       {
+        "data": "parent_runtime",
+        "title": "Parent Runtime",
+        "search": "text"
+      },
+      {
         "data": "runtime",
         "title": "Runtime",
-        "search": "text"
+        "search": "text",
+        "visible": false
       },
       {
         "data": "labels",
