@@ -488,6 +488,7 @@ class FileForm(BaseForm):
 
 class FolderForm(FileForm):
     form_type = HiddenField(default="folder")
+    filename = StringField("Folder Name", render_kw={"readonly": True})
 
 
 class FileEditorForm(BaseForm):
