@@ -1927,7 +1927,7 @@ tables.file = class FileTable extends Table {
             <button type="button" class="btn btn-sm btn-primary"
             onclick="eNMS.administration.editFile(
               '${row.id}', '${row.name}', '${row.path}')" data-tooltip="File Content">
-              <span class="glyphicon glyphicon-list"></span>
+              <span class="glyphicon glyphicon-pencil"></span>
             </button>
           </li>
           ${this.deleteInstanceButton(row)}
