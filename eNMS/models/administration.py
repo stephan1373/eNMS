@@ -288,7 +288,7 @@ class File(AbstractBase):
     description = db.Column(db.LargeString)
     filename = db.Column(db.SmallString, index=True)
     path = db.Column(db.SmallString, unique=True)
-    full_path = db.Column(db.SmallString, unique=True)
+    full_path = db.Column(db.SmallString, unique=True, info={"log_change": False})
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_updated = db.Column(db.TinyString)
     status = db.Column(db.TinyString)
@@ -296,7 +296,7 @@ class File(AbstractBase):
     folder = relationship(
         "Folder", foreign_keys="Folder.folder_id", back_populates="files"
     )
-    folder_path = db.Column(db.SmallString)
+    folder_path = db.Column(db.SmallString, info={"log_change": False})
     logs = relationship("Changelog", back_populates="file")
 
     def update(self, move_file=True, **kwargs):
