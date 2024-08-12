@@ -46,7 +46,7 @@ class MailNotificationForm(ServiceForm):
 
     def validate(self, **_):
         valid_form = super().validate()
-        for field in ("title", "sender", "recipients", "body"):
+        for field in ("title", "recipients", "body"):
             if not getattr(self, field).data:
                 getattr(self, field).errors.append(f"{field.capitalize()} is missing.")
                 valid_form = False
