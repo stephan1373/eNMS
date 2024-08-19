@@ -268,13 +268,14 @@ class Database:
                     getattr(target, "private", False)
                     or not getattr(target, "log_change", True)
                     or not getattr(state.class_, attr.key).info.get("log_change", True)
-                    or attr.key in vs.private_properties_set
                     or not hist.has_changes()
                 ):
                     continue
                 change, added, deleted = f"{attr.key}: ", hist.added, hist.deleted
                 property_type = type(getattr(target, attr.key))
-                if property_type in (InstrumentedList, MutableList):
+                if attr.key in vs.private_properties_set:
+                    change += "updated"
+                elif property_type in (InstrumentedList, MutableList):
                     if property_type == MutableList:
                         # when reverting a changelog for a db.List property,
                         # hist.deleted is improperly set as a tuple
