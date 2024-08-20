@@ -61,5 +61,12 @@ def migrate_5_1_to_5_2():
     for service in services:
         for workflow_name, coords in service["positions"].items():
             positions[workflow_name][service["name"]] = coords
+    for service in services:
+        service.pop("positions")
+        if service["type"] == "workflow" and service["name"] in positions:
+            service["positions"] = positions[service["name"]]
+    with open(PATH / FILENAME / "service.yaml", "w") as service_file:
+        yaml.dump(services, service_file)
+
 
 migrate_5_1_to_5_2()
