@@ -6,8 +6,18 @@ from ruamel.yaml import YAML
 FILENAME = "examples"
 PATH = Path.cwd().parent.parent.parent / "eNMS-prod2" / "files" / "migrations"
 
-yaml = YAML()
-yaml.default_style = "'"
+
+def get_yaml_instance():
+    yaml = YAML()
+    yaml.default_style = '"'
+
+    def representer(dumper, data):
+        style = "|" if "\n" in data else None
+        return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
+
+    yaml.representer.add_representer(str, representer)
+    yaml.representer.ignore_aliases = lambda *args: True
+    return yaml
 
 
 def migrate_from_4_to_4_2():
@@ -56,6 +66,7 @@ def migrate_from_4_3_to_4_4():
 
 def migrate_5_1_to_5_2():
     positions = defaultdict(dict)
+    yaml = get_yaml_instance()
     with open(PATH / FILENAME / "service.yaml", "r") as service_file:
         services = yaml.load(service_file)
     for service in services:
