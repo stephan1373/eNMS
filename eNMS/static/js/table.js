@@ -1761,9 +1761,29 @@ tables.session = class SessionTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      `<input
+        name="context-lines"
+        id="slider"
+        class="slider"
+        style="width: 200px"
+      >`,
       this.refreshTableButton("session"),
       this.bulkFilteringButton(),
     ];
+  }
+
+  postProcessing(...args) {
+    super.postProcessing(...args);
+    $("#slider")
+      .bootstrapSlider({
+        value: 0,
+        ticks: [...Array(6).keys()],
+        formatter: (value) => `Lines of context: ${value}`,
+        tooltip: "always",
+      })
+      .on("change", function () {
+        refreshTable("session");
+      });
   }
 
   buttons(row) {
