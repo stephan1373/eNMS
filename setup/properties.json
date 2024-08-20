@@ -1527,7 +1527,8 @@
         "title": "Session",
         "search": "text",
         "width": "600px",
-        "orderable": false
+        "orderable": false,
+        "html": true
       },
       {
         "data": "name",
