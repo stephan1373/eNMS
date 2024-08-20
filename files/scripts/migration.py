@@ -1,9 +1,10 @@
+from collections import defaultdict
 from pathlib import Path
 from ruamel.yaml import YAML
 
 
 FILENAME = "examples"
-PATH = Path.cwd().parent.parent.parent / "eNMS-prod" / "files" / "migrations"
+PATH = Path.cwd().parent.parent.parent / "eNMS-prod2" / "files" / "migrations"
 
 yaml = YAML()
 yaml.default_style = "'"
@@ -53,4 +54,12 @@ def migrate_from_4_3_to_4_4():
         yaml.dump(credentials, credential_file)
 
 
-migrate_from_4_3_to_4_4()
+def migrate_5_1_to_5_2():
+    positions = defaultdict(dict)
+    with open(PATH / FILENAME / "service.yaml", "r") as service_file:
+        services = yaml.load(service_file)
+    for service in services:
+        for workflow_name, coords in service["positions"].items():
+            positions[workflow_name][service["name"]] = coords
+
+migrate_5_1_to_5_2()
