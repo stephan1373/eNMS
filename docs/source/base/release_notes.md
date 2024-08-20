@@ -6,6 +6,9 @@ Version 5.2.0: Various Improvements
 
 - Add search mechanism to the session table
   - Make Device.table_properties use the table_properties function from Base class
+  - Add new "Session" column to the session table: allows searching through session content
+    just like in the Configuration table
+  - Add slider to the Session table to select number of lines of context to display
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
