@@ -417,3 +417,8 @@ class Session(AbstractBase):
         "Device", back_populates="sessions", foreign_keys="Session.device_id"
     )
     device_name = association_proxy("device", "name")
+
+    def table_properties(self, **kwargs):
+        properties = super().table_properties(**kwargs)
+        properties["content"] = ""
+        return properties
