@@ -368,5 +368,5 @@ class Session(AbstractBase):
 
     def table_properties(self, **kwargs):
         properties = super().table_properties(**kwargs)
-        properties["content"] = ""
-        return properties
+        search_properties = super().table_search(("content",), **kwargs)
+        return {**properties, **search_properties}
