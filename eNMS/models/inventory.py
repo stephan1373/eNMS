@@ -134,8 +134,7 @@ class Device(Object):
     def table_properties(self, **kwargs):
         columns = [column["data"] for column in kwargs["columns"]]
         rest_api_request = kwargs.get("rest_api_request")
-        include_properties = columns if rest_api_request else None
-        properties = super().get_properties(include=include_properties)
+        properties = super().table_properties(**kwargs)
         context = int(kwargs["form"].get("context-lines", 0))
         for property in vs.configuration_properties:
             if rest_api_request:
