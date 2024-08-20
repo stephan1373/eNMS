@@ -1,4 +1,3 @@
-from re import search, sub
 from sqlalchemy import and_, Boolean, event, ForeignKey, Integer, or_
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import backref, deferred, relationship
@@ -132,59 +131,9 @@ class Device(Object):
             )
 
     def table_properties(self, **kwargs):
-        columns = [column["data"] for column in kwargs["columns"]]
-        rest_api_request = kwargs.get("rest_api_request")
         properties = super().table_properties(**kwargs)
-        context = int(kwargs["form"].get("context-lines", 0))
-        for property in vs.configuration_properties:
-            if rest_api_request:
-                if property in columns:
-                    properties[property] = getattr(self, property)
-                if f"{property}_matches" not in columns:
-                    continue
-            data = kwargs["form"].get(property)
-            regex_match = kwargs["form"].get(f"{property}_filter") == "regex"
-            if not data:
-                properties[property] = ""
-            else:
-                result = []
-                content, visited = getattr(self, property).splitlines(), set()
-                for index, line in enumerate(content):
-                    match_lines, merge = [], index - context - 1 in visited
-                    if (
-                        not search(data, line)
-                        if regex_match
-                        else data.lower() not in line.lower()
-                    ):
-                        continue
-                    for i in range(-context, context + 1):
-                        if index + i < 0 or index + i > len(content) - 1:
-                            continue
-                        if index + i in visited:
-                            merge = True
-                            continue
-                        visited.add(index + i)
-                        line = content[index + i].strip()
-                        if rest_api_request:
-                            match_lines.append(f"L{index + i + 1}: {line}")
-                            continue
-                        line = sub(f"(?i){data}", r"<mark>\g<0></mark>", line)
-                        match_lines.append(f"<b>L{index + i + 1}:</b> {line}")
-                    if rest_api_request:
-                        result.extend(match_lines)
-                    else:
-                        if merge:
-                            result[-1] += f"<br>{'<br>'.join(match_lines)}"
-                        else:
-                            result.append("<br>".join(match_lines))
-                if rest_api_request:
-                    properties[f"{property}_matches"] = result
-                else:
-                    properties[property] = "".join(
-                        f"<pre style='text-align: left'>{match}</pre>"
-                        for match in result
-                    )
-        return properties
+        search_properties = super().table_search(vs.configuration_properties, **kwargs)
+        return {**properties, **search_properties}
 
     @property
     def view_properties(self):

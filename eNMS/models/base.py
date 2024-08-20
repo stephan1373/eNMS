@@ -1,5 +1,6 @@
 from collections import defaultdict, OrderedDict
 from flask_login import current_user
+from re import search, sub
 from sqlalchemy import or_
 from sqlalchemy.ext.mutable import MutableDict, MutableList
 from sqlalchemy.sql.expression import false
@@ -198,6 +199,61 @@ class AbstractBase(db.base):
         base = ["type"] if kwargs.get("rest_api_request") else ["id", "type"]
         additional = vs.properties["tables_additional"].get(table_type, [])
         return self.get_properties(include=base + displayed + additional)
+
+    def table_search(self, properties, **kwargs):
+        columns = [column["data"] for column in kwargs["columns"]]
+        rest_api_request = kwargs.get("rest_api_request")
+        search_properties = {}
+        context = int(kwargs["form"].get("context-lines", 0))
+        for property in properties:
+            if rest_api_request:
+                if property in columns:
+                    search_properties[property] = getattr(self, property)
+                if f"{property}_matches" not in columns:
+                    continue
+            data = kwargs["form"].get(property)
+            regex_match = kwargs["form"].get(f"{property}_filter") == "regex"
+            if not data:
+                search_properties[property] = ""
+            else:
+                result = []
+                content, visited = getattr(self, property).splitlines(), set()
+                for index, line in enumerate(content):
+                    match_lines, merge = [], index - context - 1 in visited
+                    if (
+                        not search(data, line)
+                        if regex_match
+                        else data.lower() not in line.lower()
+                    ):
+                        continue
+                    for i in range(-context, context + 1):
+                        if index + i < 0 or index + i > len(content) - 1:
+                            continue
+                        if index + i in visited:
+                            merge = True
+                            continue
+                        visited.add(index + i)
+                        line = content[index + i].strip()
+                        if rest_api_request:
+                            match_lines.append(f"L{index + i + 1}: {line}")
+                            continue
+                        line = sub(f"(?i){data}", r"<mark>\g<0></mark>", line)
+                        match_lines.append(f"<b>L{index + i + 1}:</b> {line}")
+                    if rest_api_request:
+                        result.extend(match_lines)
+                    else:
+                        if merge:
+                            result[-1] += f"<br>{'<br>'.join(match_lines)}"
+                        else:
+                            result.append("<br>".join(match_lines))
+                if rest_api_request:
+                    search_properties[f"{property}_matches"] = result
+                else:
+                    search_properties[property] = "".join(
+                        f"<pre style='text-align: left'>{match}</pre>"
+                        for match in result
+                    )
+        return search_properties
 
     def duplicate(self, **kwargs):
         properties = {
