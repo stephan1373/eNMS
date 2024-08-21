@@ -33,7 +33,7 @@ class Network(Device):
     )
 
     def duplicate(self, clone=None):
-        for property in ("labels", "devices", "links"):
+        for property in ("labels", "positions", "devices", "links"):
             setattr(clone, property, getattr(self, property))
         db.session.commit()
         return clone
