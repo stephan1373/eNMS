@@ -692,14 +692,16 @@ export function processBuilderData(newInstance) {
     if (!newInstance[`${type}s`].some((w) => w.id == instance.id)) return;
     const property = type == "network" ? "devices" : "services";
     let index = instance[property].findIndex((s) => s.id == newInstance.id);
-    nodes.update(drawNode(newInstance));
     if (index == -1) {
       instance[property].push(newInstance);
     } else {
+      const oldRecordName = instance[property][index].name;
+      instance.positions[newInstance.name] = instance.positions[oldRecordName];
       instance[property][index] = newInstance;
     }
+    nodes.update(drawNode(newInstance));
     if (type == "workflow") drawIterationEdge(instance);
-    switchMode("motion");
+    switchMode("motion");    
   }
 }
 

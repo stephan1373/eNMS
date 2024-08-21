@@ -40,7 +40,6 @@ class Service(AbstractBase):
     time_between_retries = db.Column(Integer, default=10)
     max_number_of_retries = db.Column(Integer, default=100)
     credential_type = db.Column(db.SmallString, default="any")
-    positions = db.Column(db.Dict, info={"log_change": False})
     disable_result_creation = db.Column(Boolean, default=False)
     restrict_to_owners = db.Column(db.List)
     tasks = relationship("Task", back_populates="service", cascade="all,delete")
@@ -172,11 +171,9 @@ class Service(AbstractBase):
         return self.to_dict(include_relations=["services", "workflows"])
 
     def update(self, **kwargs):
-        old_disabled_status = self.disabled
+        old_name, old_disabled_status = self.name, self.disabled
         if self.path:
             self.check_restriction_to_owners("edit")
-        if self.positions and "positions" in kwargs:
-            kwargs["positions"] = {**self.positions, **kwargs["positions"]}
         super().update(**kwargs)
         if self.disabled and not old_disabled_status:
             self.disabled_info = f"Disabled at {vs.get_time()} by {current_user}"
@@ -185,6 +182,8 @@ class Service(AbstractBase):
         if not kwargs.get("migration_import"):
             self.set_name()
             self.update_last_modified_properties()
+            for workflow in self.workflows:
+                workflow.positions[self.name] = workflow.positions.pop(old_name, [0, 0])
         self.serialized = str(
             self.to_dict(relation_properties=["name"]).values()
         ).lower()

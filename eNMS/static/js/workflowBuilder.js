@@ -386,8 +386,8 @@ export function drawWorkflowNode(service) {
     label: getServiceLabel(service),
     name: service.scoped_name,
     type: service.type,
-    x: service.x,
-    y: service.y,
+    x: workflow.positions?.[service.name]?.[0] ?? 0,
+    y: workflow.positions?.[service.name]?.[1] ?? 0,
   };
 }
 

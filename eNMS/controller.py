@@ -690,8 +690,6 @@ class Controller:
             serialized_service["services"] = []
             for subservice in service.exclude_soft_deleted("services"):
                 properties = subservice.get_properties(include=service_properties)
-                subservice_positions = subservice.positions.get(service.name, [0, 0])
-                properties["x"], properties["y"] = subservice_positions
                 serialized_service["services"].append(properties)
         return {
             "service": serialized_service,
@@ -1442,7 +1440,7 @@ class Controller:
             new_position = [position["x"], position["y"]]
             if "-" not in id:
                 relation = db.fetch(relation_type, id=id, rbac=None)
-                relation.positions[instance.name] = new_position
+                instance.positions[relation.name] = new_position
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
         return now

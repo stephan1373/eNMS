@@ -28,6 +28,7 @@ class Workflow(Service):
     category = db.Column(db.SmallString)
     close_connection = db.Column(Boolean, default=False)
     labels = db.Column(db.Dict, info={"log_change": False})
+    positions = db.Column(db.Dict, default={}, info={"log_change": False})
     man_minutes_type = db.Column(db.TinyString, default="workflow")
     man_minutes = db.Column(Integer, default=0)
     man_minutes_total = db.Column(Integer, default=0)
@@ -64,9 +65,10 @@ class Workflow(Service):
             start = db.fetch("service", scoped_name="Start", rbac=None)
             end = db.fetch("service", scoped_name="End", rbac=None)
             self.services.extend([start, end])
+            self.positions = {}
         super().__init__(**kwargs)
-        if not migration_import and self.name not in end.positions:
-            end.positions[self.name] = (500, 0)
+        if not migration_import and "[Shared] End" not in self.positions:
+            self.positions["[Shared] End"] = (500, 0)
 
     def recursive_update(self):
         def rec(service):
@@ -87,10 +89,11 @@ class Workflow(Service):
         old_name = self.name
         super().set_name(name)
         for service in self.services:
+            old_service_name = service.name
             if not service.shared:
                 service.set_name()
-            if old_name in service.positions:
-                service.positions[self.name] = service.positions[old_name]
+            if old_service_name in self.positions:
+                self.positions[service.name] = self.positions[old_service_name]
         for edge in self.edges:
             edge.name.replace(old_name, self.name)
 
