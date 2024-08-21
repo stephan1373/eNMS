@@ -78,6 +78,7 @@ def migrate_5_1_to_5_2():
             service["positions"] = positions[service["name"]]
     with open(PATH / FILENAME / "service.yaml", "w") as service_file:
         yaml.dump(services, service_file)
+    positions = defaultdict(dict)
     with open(PATH / FILENAME / "device.yaml", "r") as device_file:
         devices = yaml.load(device_file)
     for device in devices:

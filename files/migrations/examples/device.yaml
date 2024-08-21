@@ -44,13 +44,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "621"
-    - !!int "908"
-    "Network 9: Large Network Display":
-    - !!int "621"
-    - !!int "908"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -114,13 +107,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-387"
-    - !!int "104"
-    "Network 9: Large Network Display":
-    - !!int "-387"
-    - !!int "104"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -184,13 +170,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "253"
-    - !!int "413"
-    "Network 9: Large Network Display":
-    - !!int "253"
-    - !!int "413"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -254,13 +233,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-47"
-    - !!int "331"
-    "Network 9: Large Network Display":
-    - !!int "-47"
-    - !!int "331"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -326,13 +298,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-1073"
-    - !!int "540"
-    "Network 9: Large Network Display":
-    - !!int "-1073"
-    - !!int "540"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -396,13 +361,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-92"
-    - !!int "-121"
-    "Network 9: Large Network Display":
-    - !!int "-92"
-    - !!int "-121"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -466,13 +424,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "333"
-    - !!int "-657"
-    "Network 9: Large Network Display":
-    - !!int "333"
-    - !!int "-657"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -536,13 +487,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "562"
-    - !!int "157"
-    "Network 9: Large Network Display":
-    - !!int "562"
-    - !!int "157"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -606,13 +550,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-686"
-    - !!int "820"
-    "Network 9: Large Network Display":
-    - !!int "-686"
-    - !!int "820"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -676,13 +613,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "351"
-    - !!int "-244"
-    "Network 9: Large Network Display":
-    - !!int "351"
-    - !!int "-244"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -746,13 +676,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-1351"
-    - !!int "-44"
-    "Network 9: Large Network Display":
-    - !!int "-1351"
-    - !!int "-44"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -816,13 +739,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "93"
-    - !!int "-32"
-    "Network 9: Large Network Display":
-    - !!int "93"
-    - !!int "-32"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -886,13 +802,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "427"
-    - !!int "535"
-    "Network 9: Large Network Display":
-    - !!int "427"
-    - !!int "535"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -956,13 +865,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-1213"
-    - !!int "935"
-    "Network 9: Large Network Display":
-    - !!int "-1213"
-    - !!int "935"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1027,13 +929,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "951"
-    - !!int "21"
-    "Network 9: Large Network Display":
-    - !!int "951"
-    - !!int "21"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1097,13 +992,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "289"
-    - !!int "127"
-    "Network 9: Large Network Display":
-    - !!int "289"
-    - !!int "127"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1167,13 +1055,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-993"
-    - !!int "184"
-    "Network 9: Large Network Display":
-    - !!int "-993"
-    - !!int "184"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1237,13 +1118,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-1099"
-    - !!int "-216"
-    "Network 9: Large Network Display":
-    - !!int "-1099"
-    - !!int "-216"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1307,13 +1181,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-1404"
-    - !!int "258"
-    "Network 9: Large Network Display":
-    - !!int "-1404"
-    - !!int "258"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1377,13 +1244,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-367"
-    - !!int "811"
-    "Network 9: Large Network Display":
-    - !!int "-367"
-    - !!int "811"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1447,13 +1307,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-1467"
-    - !!int "680"
-    "Network 9: Large Network Display":
-    - !!int "-1467"
-    - !!int "680"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1517,13 +1370,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-537"
-    - !!int "433"
-    "Network 9: Large Network Display":
-    - !!int "-537"
-    - !!int "433"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1587,13 +1433,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-382"
-    - !!int "-610"
-    "Network 9: Large Network Display":
-    - !!int "-382"
-    - !!int "-610"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1657,13 +1496,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-740"
-    - !!int "-568"
-    "Network 9: Large Network Display":
-    - !!int "-740"
-    - !!int "-568"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1727,13 +1559,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "686"
-    - !!int "-483"
-    "Network 9: Large Network Display":
-    - !!int "686"
-    - !!int "-483"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1797,13 +1622,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-519"
-    - !!int "-222"
-    "Network 9: Large Network Display":
-    - !!int "-519"
-    - !!int "-222"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1867,13 +1685,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "-770"
-    - !!int "169"
-    "Network 9: Large Network Display":
-    - !!int "-770"
-    - !!int "169"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1937,7 +1748,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2001,7 +1811,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2065,7 +1874,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2129,7 +1937,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2193,7 +2000,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2257,7 +2063,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2321,7 +2126,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2385,7 +2189,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2449,7 +2252,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2513,7 +2315,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2577,7 +2378,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2641,7 +2441,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2705,7 +2504,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2769,7 +2567,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2833,7 +2630,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2897,7 +2693,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2961,7 +2756,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3025,7 +2819,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3089,7 +2882,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3153,7 +2945,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3217,7 +3008,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3281,7 +3071,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3345,7 +3134,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3409,7 +3197,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3473,7 +3260,6 @@
   "os_version": "17.2R1.13"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3537,7 +3323,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3601,7 +3386,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3665,7 +3449,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3729,7 +3512,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3793,7 +3575,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3857,7 +3638,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3921,7 +3701,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3985,7 +3764,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4049,7 +3827,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4113,7 +3890,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4177,13 +3953,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "285"
-    - !!int "905"
-    "Network 9: Large Network Display":
-    - !!int "285"
-    - !!int "905"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4247,13 +4016,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "851"
-    - !!int "631"
-    "Network 9: Large Network Display":
-    - !!int "851"
-    - !!int "631"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4317,10 +4079,6 @@
   "os_version": "5.1.X"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 9: Large Network Display":
-    - !!int "1505"
-    - !!int "-2076"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4384,13 +4142,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Large Network Display":
-    - !!int "1231"
-    - !!int "770"
-    "Network 9: Large Network Display":
-    - !!int "1231"
-    - !!int "770"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4454,10 +4205,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 9: Large Network Display":
-    - !!int "272"
-    - !!int "2538"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4521,10 +4268,6 @@
   "os_version": "15.5(3)M"
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 9: Large Network Display":
-    - !!int "2753"
-    - !!int "-63"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4588,10 +4331,6 @@
   "os_version": "3.6.5E "
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 9: Large Network Display":
-    - !!int "-1288"
-    - !!int "1977"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4648,13 +4387,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 1: Top-level Devices and Links":
-    - !!int "-314"
-    - !!int "42"
-    "Top-level Devices and Links":
-    - !!int "-314"
-    - !!int "42"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4711,13 +4443,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 1: Top-level Devices and Links":
-    - !!int "-59"
-    - !!int "267"
-    "Top-level Devices and Links":
-    - !!int "-59"
-    - !!int "267"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4775,13 +4500,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Network 1: Top-level Devices and Links":
-    - !!int "310"
-    - !!int "56"
-    "Top-level Devices and Links":
-    - !!int "310"
-    - !!int "56"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4840,7 +4558,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4901,7 +4618,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -4961,7 +4677,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "priority": !!int "2"
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5021,7 +4736,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "priority": !!int "3"
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5082,7 +4796,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5140,10 +4853,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Subnetwork 1":
-    - !!int "-284"
-    - !!int "-105"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5201,10 +4910,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Subnetwork 1":
-    - !!int "298"
-    - !!int "-122"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5263,10 +4968,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Subnetwork 2":
-    - !!int "-213"
-    - !!int "-57"
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5325,10 +5026,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Subnetwork 2":
-    - !!int "202"
-    - !!int "-63"
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5386,13 +5083,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Duplication of Devices, Subnetworks and Top-level Networks":
-    - !!int "-356"
-    - !!int "0"
-    "Network 4: Duplication of Devices, Subnetworks and Top-level Networks":
-    - !!int "-356"
-    - !!int "0"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5450,10 +5140,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Duplicate me 2":
-    - !!int "-127"
-    - !!int "-54"
   "priority": !!int "1"
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5511,10 +5197,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Duplicate me 2":
-    - !!int "127"
-    - !!int "87"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5572,10 +5254,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Subnetwork 1":
-    - !!int "-8"
-    - !!int "136"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5633,13 +5311,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Loopback and Parallel Links":
-    - !!int "-765"
-    - !!int "312"
-    "Network 5: Loopback and Parallel Links":
-    - !!int "-765"
-    - !!int "312"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5696,13 +5367,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Loopback and Parallel Links":
-    - !!int "-345"
-    - !!int "194"
-    "Network 5: Loopback and Parallel Links":
-    - !!int "-345"
-    - !!int "194"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5759,13 +5423,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Loopback and Parallel Links":
-    - !!int "-325"
-    - !!int "426"
-    "Network 5: Loopback and Parallel Links":
-    - !!int "-325"
-    - !!int "426"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5822,13 +5479,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "Loopback and Parallel Links":
-    - !!int "243"
-    - !!int "271"
-    "Network 5: Loopback and Parallel Links":
-    - !!int "243"
-    - !!int "271"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5885,10 +5535,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "L3 Network":
-    - !!int "-181"
-    - !!int "-10"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5945,10 +5591,6 @@
   "os_version": ""
   "owners": []
   "port": !!int "22"
-  "positions":
-    "L3 Network":
-    - !!int "170"
-    - !!int "-14"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -6034,7 +5676,6 @@
   "owners": []
   "path": "92"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6049,6 +5690,16 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "Router 1":
+    - !!int "-314"
+    - !!int "42"
+    "Router 2":
+    - !!int "-59"
+    - !!int "267"
+    "Router 3":
+    - !!int "310"
+    - !!int "56"
 - "admin_only": !!bool "false"
   "category": "Subnetwork"
   "creator": "admin"
@@ -6115,7 +5766,6 @@
   "owners": []
   "path": "93"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6198,7 +5848,6 @@
   "owners": []
   "path": "94"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6213,6 +5862,16 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "Subnetwork 1 - R1":
+    - !!int "-284"
+    - !!int "-105"
+    "Subnetwork 1 - R2":
+    - !!int "298"
+    - !!int "-122"
+    "Subnetwork 1 - R3":
+    - !!int "-8"
+    - !!int "136"
 - "admin_only": !!bool "false"
   "category": "Editing"
   "creator": "admin"
@@ -6282,7 +5941,6 @@
   "owners": []
   "path": "95"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6362,7 +6020,6 @@
   "owners": []
   "path": "96"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6377,6 +6034,13 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "Subnetwork 2 - G1":
+    - !!int "-213"
+    - !!int "-57"
+    "Subnetwork 2 - G2":
+    - !!int "202"
+    - !!int "-63"
 - "admin_only": !!bool "false"
   "category": "Editing"
   "creator": "admin"
@@ -6449,7 +6113,6 @@
   "owners": []
   "path": "97"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6464,6 +6127,10 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "Duplicate me 1":
+    - !!int "-356"
+    - !!int "0"
 - "admin_only": !!bool "false"
   "category": ""
   "creator": "admin"
@@ -6519,7 +6186,6 @@
   "owners": []
   "path": "97>98"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6534,6 +6200,13 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "Duplication - G1":
+    - !!int "-127"
+    - !!int "-54"
+    "Duplication - R1":
+    - !!int "127"
+    - !!int "87"
 - "admin_only": !!bool "false"
   "category": "Display"
   "creator": "admin"
@@ -6629,7 +6302,6 @@
   "owners": []
   "path": "99"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6644,6 +6316,19 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "S5 R1":
+    - !!int "-765"
+    - !!int "312"
+    "S5 R2":
+    - !!int "-345"
+    - !!int "194"
+    "S5 R3":
+    - !!int "-325"
+    - !!int "426"
+    "S5 R4":
+    - !!int "243"
+    - !!int "271"
 - "admin_only": !!bool "false"
   "category": "Subnetwork"
   "creator": "admin"
@@ -6708,7 +6393,6 @@
   "owners": []
   "path": "100"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6776,7 +6460,6 @@
   "owners": []
   "path": "100>101"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6844,7 +6527,6 @@
   "owners": []
   "path": "100>101>102"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6914,7 +6596,6 @@
   "owners": []
   "path": "100>101>102>103"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6929,6 +6610,13 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "S6 L3 R1":
+    - !!int "-181"
+    - !!int "-10"
+    "S6 L3 R2":
+    - !!int "170"
+    - !!int "-14"
 - "admin_only": !!bool "false"
   "category": "Display"
   "creator": "admin"
@@ -6990,7 +6678,6 @@
   "owners": []
   "path": "104"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -7078,7 +6765,6 @@
   "owners": []
   "path": "105"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -7209,7 +6895,6 @@
   "owners": []
   "path": "106"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -7224,6 +6909,97 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
+  "positions":
+    "Jackson":
+    - !!int "621"
+    - !!int "908"
+    "PaloAlto":
+    - !!int "-387"
+    - !!int "104"
+    "Austin":
+    - !!int "253"
+    - !!int "413"
+    "Washington":
+    - !!int "-47"
+    - !!int "331"
+    "Chicago":
+    - !!int "-1073"
+    - !!int "540"
+    "SanJose":
+    - !!int "-92"
+    - !!int "-121"
+    "SanDiego":
+    - !!int "333"
+    - !!int "-657"
+    "Dallas":
+    - !!int "562"
+    - !!int "157"
+    "Philadelphia":
+    - !!int "-686"
+    - !!int "820"
+    "LosAngeles":
+    - !!int "351"
+    - !!int "-244"
+    "Detroit":
+    - !!int "-1351"
+    - !!int "-44"
+    "Richmond":
+    - !!int "93"
+    - !!int "-32"
+    "Atlanta":
+    - !!int "427"
+    - !!int "535"
+    "Boston":
+    - !!int "-1213"
+    - !!int "935"
+    "Houston":
+    - !!int "951"
+    - !!int "21"
+    "Baltimore":
+    - !!int "289"
+    - !!int "127"
+    "Cleveland":
+    - !!int "-993"
+    - !!int "184"
+    "Columbus":
+    - !!int "-1099"
+    - !!int "-216"
+    "Cincinnati":
+    - !!int "-1404"
+    - !!int "258"
+    "Cambridge":
+    - !!int "-367"
+    - !!int "811"
+    "Minneapolis":
+    - !!int "-1467"
+    - !!int "680"
+    "NewYork":
+    - !!int "-537"
+    - !!int "433"
+    "Sacramento":
+    - !!int "-382"
+    - !!int "-610"
+    "SanFrancisco":
+    - !!int "-740"
+    - !!int "-568"
+    "Orange":
+    - !!int "686"
+    - !!int "-483"
+    "Oakland":
+    - !!int "-519"
+    - !!int "-222"
+    "Denver":
+    - !!int "-770"
+    - !!int "169"
+    "Dallas-2":
+    - !!int "285"
+    - !!int "905"
+    "Dallas-3":
+    - !!int "851"
+    - !!int "631"
+    "Austin-2":
+    - !!int "1231"
+    - !!int "770"
 - "admin_only": !!bool "false"
   "creator": "admin"
   "custom_json": {}
@@ -7264,7 +7040,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7318,7 +7093,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7372,7 +7146,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7426,7 +7199,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7480,7 +7252,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7534,7 +7305,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7588,7 +7358,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7642,7 +7411,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7696,7 +7464,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7750,7 +7517,6 @@
   "owners":
   - "admin"
   "port": !!int "22"
-  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
