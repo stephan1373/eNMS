@@ -45,7 +45,6 @@ class Device(Object):
     parent_type = "object"
     id = db.Column(Integer, ForeignKey(Object.id), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    positions = db.Column(db.Dict, info={"log_change": False})
     latitude = db.Column(db.TinyString, default="0.0")
     longitude = db.Column(db.TinyString, default="0.0")
     icon = db.Column(db.TinyString, default="router")
@@ -87,9 +86,11 @@ class Device(Object):
     logs = relationship("Changelog", back_populates="device")
 
     def update(self, **kwargs):
-        if self.positions and "positions" in kwargs:
-            kwargs["positions"] = {**self.positions, **kwargs["positions"]}
+        old_name = self.name
         super().update(**kwargs)
+        if not kwargs.get("migration_import") and self.name != old_name:
+            for network in self.networks:
+                network.positions[self.name] = network.positions.pop(old_name, [0, 0])
         self.serialized = str(self.get_properties()).lower()
 
     def post_update(self):

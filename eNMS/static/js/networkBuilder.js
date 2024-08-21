@@ -139,8 +139,8 @@ export function drawNetworkNode(node) {
     type: node.type,
     image: displayImage ? `/static/img/network/default/${node.icon}.gif` : undefined,
     shape: displayImage ? "image" : "ellipse",
-    x: node.positions[network.name] ? node.positions[network.name][0] : 0,
-    y: node.positions[network.name] ? node.positions[network.name][1] : 0,
+    x: network.positions?.[node.name]?.[0] ?? 0,
+    y: network.positions?.[node.name]?.[1] ?? 0,
   };
 }
 

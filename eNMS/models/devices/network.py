@@ -17,6 +17,7 @@ class Network(Device):
     id = db.Column(Integer, ForeignKey(Device.id), primary_key=True)
     path = db.Column(db.TinyString)
     labels = db.Column(db.Dict, info={"log_change": False})
+    positions = db.Column(db.Dict, info={"log_change": False})
     devices = relationship(
         "Device", secondary=db.device_network_table, back_populates="networks"
     )
@@ -34,8 +35,6 @@ class Network(Device):
     def duplicate(self, clone=None):
         for property in ("labels", "devices", "links"):
             setattr(clone, property, getattr(self, property))
-        for device in self.devices:
-            device.positions[clone.name] = device.positions.get(self.name, (0, 0))
         db.session.commit()
         return clone
 
@@ -45,16 +44,6 @@ class Network(Device):
         else:
             self.path = str(self.id)
         return self.to_dict(include_relations=["networks", "devices"])
-
-    def update(self, **kwargs):
-        old_name = self.name
-        super().update(**kwargs)
-        if self.name == old_name:
-            return
-        for device in self.devices:
-            if old_name not in device.positions:
-                continue
-            device.positions[self.name] = device.positions[old_name]
 
 
 class NetworkForm(DeviceForm):
