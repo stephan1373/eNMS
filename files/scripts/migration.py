@@ -78,6 +78,17 @@ def migrate_5_1_to_5_2():
             service["positions"] = positions[service["name"]]
     with open(PATH / FILENAME / "service.yaml", "w") as service_file:
         yaml.dump(services, service_file)
+    with open(PATH / FILENAME / "device.yaml", "r") as device_file:
+        devices = yaml.load(device_file)
+    for device in devices:
+        for network_name, coords in device["positions"].items():
+            positions[network_name][device["name"]] = coords
+    for device in devices:
+        device.pop("positions")
+        if device["type"] == "network" and device["name"] in positions:
+            device["positions"] = positions[device["name"]]
+    with open(PATH / FILENAME / "device.yaml", "w") as device_file:
+        yaml.dump(devices, device_file)
 
 
 migrate_5_1_to_5_2()
