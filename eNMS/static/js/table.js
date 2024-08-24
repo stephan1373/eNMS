@@ -1736,13 +1736,13 @@ tables.changelog = class ChangelogTable extends Table {
   }
 
   buttons(row) {
-    const isReversible = row.history && row.author; 
+    const isReversible = row.history && row.author;
     return [
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
         <li>
           <button type="button" class="btn btn-sm btn-info"
-          onclick="eNMS.administration.showChangelogDiff()"
+          onclick="eNMS.administration.showChangelogDiff(${row.id})"
           data-tooltip="Diff"
             ><span class="glyphicon glyphicon-adjust"></span
           ></button>

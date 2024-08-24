@@ -214,6 +214,7 @@
     "/filtering": "all",
     "/get": "access",
     "/get_builder_children": "access",
+    "/get_changelog_history": "access",
     "/get_cluster_status": "access",
     "/get_git_history": "access",
     "/get_device_network_data": "access",

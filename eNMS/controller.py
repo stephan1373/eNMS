@@ -775,6 +775,9 @@ class Controller:
         pools = db.query("pool").filter(or_(has_device, has_link)).all()
         return [pool.base_properties for pool in pools]
 
+    def get_changelog_history(self, changelog_id):
+        return db.fetch("changelog", id=changelog_id).history
+
     def get_builder_children(self, type, instance_id):
         instance = db.fetch(type, id=instance_id)
         children = {instance.name}

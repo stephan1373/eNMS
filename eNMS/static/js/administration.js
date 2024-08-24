@@ -86,6 +86,45 @@ function enterFolder({ folder, path, parent }) {
   displayFolderPath();
 }
 
+function showChangelogDiff(id) {
+  call({
+    url: `/get_changelog_history/${id}`,
+    callback: function (history) {
+      openPanel({
+        name: "changelog_diff",
+        content: `
+          <div class="modal-body" style="width:100%">
+            <button
+              style="background:transparent; border:none; 
+              color:transparent; width: 100%;"
+              type="button"
+            >
+              <select
+                id="changelog-properties-${id}"
+                name="changelog-properties"
+                class="form-control"
+              ></select>
+            </button>
+          </div>`,
+        title: "Result",
+        id: id,
+        callback: function () {
+          for (const property of Object.keys(history.properties)) {
+            $(`#changelog-properties-${id}`).append(
+              `<option value="${property}">${property}</option>`
+            );
+          }
+          $(`#changelog-properties-${id}`)
+            .on("change", function () {
+              console.log("test")
+            })
+            .selectpicker("refresh");
+        },
+      });
+    }
+  })
+}
+
 export function openDebugPanel() {
   openPanel({
     name: "debug",
@@ -412,6 +451,7 @@ configureNamespace("administration", [
   saveProfile,
   scanCluster,
   scanFolder,
+  showChangelogDiff,
   showFileUploadPanel,
   showMigrationPanel,
   showProfile,
