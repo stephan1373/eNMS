@@ -119,6 +119,7 @@ class AbstractBase(db.base):
         return {
             "target_name": self.name,
             "target_type": self.class_type,
+            "target_id": self.id,
             f"{self.class_type}_id": self.id,
         }
 

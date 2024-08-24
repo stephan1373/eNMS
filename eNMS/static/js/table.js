@@ -1736,10 +1736,19 @@ tables.changelog = class ChangelogTable extends Table {
   }
 
   buttons(row) {
-    const isReversible = row.history && row.author;
+    const isReversible = row.history && row.author; 
     return [
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
+        <li>
+          <button ${row.target_id ? "" : "disabled"} type="button"
+          class="btn btn-sm btn-primary"
+          onclick="eNMS.base.showInstancePanel('${row.target_type}', '${
+      row.target_id
+    }')" data-tooltip="Edit"
+            ><span class="glyphicon glyphicon-edit"></span
+          ></button>
+        </li>
         <li>
           <button
             type="button"
