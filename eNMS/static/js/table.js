@@ -1741,6 +1741,13 @@ tables.changelog = class ChangelogTable extends Table {
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
         <li>
+          <button type="button" class="btn btn-sm btn-info"
+          onclick="eNMS.administration.showChangelogDiff()"
+          data-tooltip="Diff"
+            ><span class="glyphicon glyphicon-adjust"></span
+          ></button>
+        </li>
+        <li>
           <button ${row.target_id ? "" : "disabled"} type="button"
           class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.target_type}', '${
