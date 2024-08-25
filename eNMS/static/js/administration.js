@@ -120,7 +120,7 @@ function showChangelogDiff(id) {
           const editor = initCodeMirror(`changelog-content-${id}`, "network");
           $(`#changelog-properties-${id}`)
             .on("change", function () {
-              editor.setValue("test");
+              editor.setValue(history.properties[this.value]);
               editor.refresh();
             })
             .selectpicker("refresh");
