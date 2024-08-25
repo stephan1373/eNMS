@@ -12,6 +12,7 @@ import {
   call,
   configureNamespace,
   editors,
+  initCodeMirror,
   notify,
   openPanel,
   processInstance,
@@ -104,7 +105,7 @@ function showChangelogDiff(id) {
                 class="form-control"
               ></select>
             </nav>` : ""}
-            <div id="content-${id}"></div>
+            <div id="changelog-content-${id}"></div>
           </div>`,
         title: "Result",
         id: id,
@@ -116,9 +117,11 @@ function showChangelogDiff(id) {
               );
             }
           }
+          const editor = initCodeMirror(`changelog-content-${id}`, "network");
           $(`#changelog-properties-${id}`)
             .on("change", function () {
-              console.log("test")
+              editor.setValue("test");
+              editor.refresh();
             })
             .selectpicker("refresh");
         },
