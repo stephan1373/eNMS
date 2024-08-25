@@ -93,26 +93,28 @@ function showChangelogDiff(id) {
       openPanel({
         name: "changelog_diff",
         content: `
-          <div class="modal-body" style="width:100%">
-            <button
-              style="background:transparent; border:none; 
-              color:transparent; width: 100%;"
-              type="button"
+          <div class="modal-body">
+            ${history ? `<nav
+              class="navbar navbar-default nav-controls"
+              role="navigation"
             >
               <select
                 id="changelog-properties-${id}"
                 name="changelog-properties"
                 class="form-control"
               ></select>
-            </button>
+            </nav>` : ""}
+            <div id="content-${id}"></div>
           </div>`,
         title: "Result",
         id: id,
         callback: function () {
-          for (const property of Object.keys(history.properties)) {
-            $(`#changelog-properties-${id}`).append(
-              `<option value="${property}">${property}</option>`
-            );
+          if (history) {
+            for (const property of Object.keys(history.properties)) {
+              $(`#changelog-properties-${id}`).append(
+                `<option value="${property}">${property}</option>`
+              );
+            }
           }
           $(`#changelog-properties-${id}`)
             .on("change", function () {
