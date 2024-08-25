@@ -303,7 +303,8 @@ class Database:
                         if hasattr(deleted[0], "class_type"):
                             history["scalars"][attr.key] = deleted[0].base_properties
                         else:
-                            history["properties"][attr.key] = deleted[0]
+                            change_dict = {"old": deleted[0], "new": added[0]}
+                            history["properties"][attr.key] = change_dict
                     change += (
                         f"'{deleted[0] if deleted else None}' => "
                         f"'{added[0] if added else None}'"

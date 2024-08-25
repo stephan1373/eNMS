@@ -1605,7 +1605,8 @@ class Controller:
             related_instance = db.fetch(values["type"], id=values["id"])
             setattr(target, property, related_instance)
         if "properties" in log.history:
-            target.update(**log.history["properties"])
+            for property, value_dict in log.history["properties"].items():
+                setattr(target, property, value_dict["old"])
         key = f"update_{target.type}_{target.name}"
         db.session.connection().info[key] = "Change Reverted"
         db.session.commit()
