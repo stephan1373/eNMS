@@ -776,7 +776,8 @@ class Controller:
         return [pool.base_properties for pool in pools]
 
     def get_changelog_history(self, changelog_id):
-        return db.fetch("changelog", id=changelog_id).history
+        changelog = db.fetch("changelog", id=changelog_id)
+        return {"content": changelog.content, "history": changelog.history}
 
     def get_builder_children(self, type, instance_id):
         instance = db.fetch(type, id=instance_id)

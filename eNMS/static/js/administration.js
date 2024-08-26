@@ -90,13 +90,12 @@ function enterFolder({ folder, path, parent }) {
 function showChangelogDiff(id) {
   call({
     url: `/get_changelog_history/${id}`,
-    callback: function (history) {
-      console.log(history)
+    callback: function (changelog) {
       openPanel({
         name: "changelog_diff",
         content: `
           <div class="modal-body">
-            ${history ? `<nav
+            ${changelog.history ? `<nav
               class="navbar navbar-default nav-controls"
               role="navigation"
             >
@@ -112,16 +111,19 @@ function showChangelogDiff(id) {
         id: id,
         callback: function () {
           const editor = initCodeMirror(`changelog-content-${id}`, "network");
-          if (history) {
-            for (const property of Object.keys(history.properties)) {
+          if (changelog.history) {
+            for (const property of Object.keys(changelog.history.properties)) {
               $(`#changelog-properties-${id}`).append(
                 `<option value="${property}">${property}</option>`
               ).on("change", function () {
-                editor.setValue(history.properties[this.value].new);
+                editor.setValue(changelog.history.properties[this.value].new);
                 editor.refresh();
               })
               .selectpicker("refresh");
             }
+          } else {
+            editor.setValue(changelog.content);
+            editor.refresh();
           }
         },
       });
