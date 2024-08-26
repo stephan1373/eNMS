@@ -121,10 +121,9 @@ function showChangelogDiff(id) {
               })
               .selectpicker("refresh");
             }
-          } else {
-            editor.setValue(changelog.content);
-            editor.refresh();
           }
+          editor.setValue(changelog.content);
+          editor.refresh();
         },
       });
     }
