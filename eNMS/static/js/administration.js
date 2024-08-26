@@ -91,6 +91,7 @@ function showChangelogDiff(id) {
   call({
     url: `/get_changelog_history/${id}`,
     callback: function (history) {
+      console.log(history)
       openPanel({
         name: "changelog_diff",
         content: `
@@ -110,20 +111,18 @@ function showChangelogDiff(id) {
         title: "Result",
         id: id,
         callback: function () {
+          const editor = initCodeMirror(`changelog-content-${id}`, "network");
           if (history) {
             for (const property of Object.keys(history.properties)) {
               $(`#changelog-properties-${id}`).append(
                 `<option value="${property}">${property}</option>`
-              );
+              ).on("change", function () {
+                editor.setValue(history.properties[this.value].new);
+                editor.refresh();
+              })
+              .selectpicker("refresh");
             }
           }
-          const editor = initCodeMirror(`changelog-content-${id}`, "network");
-          $(`#changelog-properties-${id}`)
-            .on("change", function () {
-              editor.setValue(history.properties[this.value].new);
-              editor.refresh();
-            })
-            .selectpicker("refresh");
         },
       });
     }
