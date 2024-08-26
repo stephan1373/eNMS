@@ -118,7 +118,7 @@ class AbstractBase(db.base):
     def get_changelog_kwargs(self):
         return {
             "target_name": self.name,
-            "target_type": self.class_type,
+            "target_type": self.type,
             "target_id": self.id,
             f"{self.class_type}_id": self.id,
         }
