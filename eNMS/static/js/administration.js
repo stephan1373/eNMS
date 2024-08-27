@@ -98,13 +98,22 @@ function showChangelogDiff(id) {
             ${changelog.history ? `<nav
               class="navbar navbar-default nav-controls"
               role="navigation"
-              style="width: 300px"
+              style="width: 300px; display: flex; align-items: center;"
             >
               <select
                 id="changelog-properties-${id}"
                 name="changelog-properties"
                 class="form-control"
               ></select>
+              <button
+                class="btn btn-info"
+                id="compare-changelog-${id}-btn"
+                data-tooltip="Compare"
+                type="button"
+                style="margin-left:10px"
+              >
+                <span class="glyphicon glyphicon-adjust"></span>
+              </button>
             </nav>` : ""}
             <div id="changelog-content-${id}" style="margin-top: 30px"></div>
           </div>`,
