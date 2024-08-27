@@ -44,7 +44,7 @@ function openServicePanel(tableId, bulkMode) {
   showInstancePanel(panelType, ...args);
 }
 
-export function displayDiff(type, instanceId) {
+export function displayDiff(type, instanceId, property) {
   const objectType =
     instanceId == "none"
       ? $("#configuration-property-diff").val()
@@ -52,8 +52,9 @@ export function displayDiff(type, instanceId) {
       ? "result"
       : type;
   const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
-  const v1 = $(`input[name=v1${postfix}]:checked`).val();
-  const v2 = $(`input[name=v2${postfix}]:checked`).val();
+  let v1 = $(`input[name=v1${postfix}]:checked`).val();
+  let v2 = $(`input[name=v2${postfix}]:checked`).val();
+  if (type == "changelog") [v1, v2] = [property, "none"];
   if (!v1 || !v2) {
     notify("Select two versions to compare first.", "error", 5);
   } else if (v1 == v2) {

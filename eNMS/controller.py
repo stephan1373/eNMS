@@ -215,7 +215,10 @@ class Controller:
             db.session.delete(result)
 
     def compare(self, type, id, v1, v2, context_lines):
-        if id == "none":
+        if type == "changelog":
+            properties = db.fetch("changelog", id=id).history["properties"][v1]
+            first, second = properties["old"], properties["new"]
+        elif id == "none":
             first = getattr(db.fetch("device", id=v1), type)
             second = getattr(db.fetch("device", id=v2), type)
         elif type in ("result", "device_result"):

@@ -8,6 +8,7 @@ rbac: false
 user: false
 */
 
+import { displayDiff } from "./automation.js";
 import {
   call,
   configureNamespace,
@@ -134,6 +135,11 @@ function showChangelogDiff(id) {
           }
           editor.setValue(changelog.content);
           editor.refresh();
+          $(`#compare-changelog-${id}-btn`)
+            .unbind("click")
+            .on("click", function () {
+              displayDiff("changelog", id, $(`#changelog-properties-${id}`).val());
+            });
         },
       });
     }
