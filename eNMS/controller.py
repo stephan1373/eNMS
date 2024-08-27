@@ -217,7 +217,7 @@ class Controller:
     def compare(self, type, id, v1, v2, context_lines):
         if type == "changelog":
             properties = db.fetch("changelog", id=id).history["properties"][v1]
-            first, second = properties["old"], properties["new"]
+            first, second, v1, v2 = properties["old"], properties["new"], "Old", "New"
         elif id == "none":
             first = getattr(db.fetch("device", id=v1), type)
             second = getattr(db.fetch("device", id=v2), type)
