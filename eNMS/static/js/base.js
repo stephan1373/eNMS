@@ -4,6 +4,7 @@ alertify: false
 CodeMirror: false
 settings: true
 csrfToken: false
+Diff2HtmlUI: false
 eNMS: true
 formProperties: false
 job: false
@@ -957,6 +958,96 @@ function buildBulkFilterPanel(panel, type, formType, tableId) {
     .text("Bulk Filter");
 }
 
+export function displayDiff(type, instanceId, property) {
+  const objectType =
+    instanceId == "none"
+      ? $("#configuration-property-diff").val()
+      : type.includes("result")
+      ? "result"
+      : type;
+  const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
+  let v1 = $(`input[name=v1${postfix}]:checked`).val();
+  let v2 = $(`input[name=v2${postfix}]:checked`).val();
+  if (type == "changelog") [v1, v2] = [property, "none"];
+  if (!v1 || !v2) {
+    notify("Select two versions to compare first.", "error", 5);
+  } else if (v1 == v2) {
+    notify("You must select two distinct versions.", "error", 5);
+  } else {
+    const cantorId = cantorPairing(parseInt(v1), parseInt(v2));
+    openPanel({
+      name: "compare",
+      title: `Compare ${objectType}`,
+      id: cantorId,
+      size: "700 500",
+      content: `
+        <nav
+          class="navbar navbar-default nav-controls"
+          role="navigation"
+          style="margin-top: 30px"
+        >
+          <input
+            id="diff-type-${cantorId}"
+            type="checkbox"
+            data-onstyle="info"
+            data-offstyle="primary"
+          >
+          <input
+            name="diff-context-lines"
+            id="slider-${cantorId}"
+            class="slider"
+          >
+        </nav>
+        <div class="modal-body">
+          <div id="content-${cantorId}" style="height:100%"></div>
+        </div>`,
+      callback: () => {
+        $(`#diff-type-${cantorId}`).bootstrapToggle({
+          on: "Side by side",
+          off: "Line by line",
+          width: "120px",
+        });
+        const valueToLabel = { 0: 1, 1: 3, 2: 10, 3: 100, 4: "All" };
+        $(`#slider-${cantorId}`)
+          .bootstrapSlider({
+            value: 1,
+            ticks: [...Array(5).keys()],
+            ticks_labels: Object.values(valueToLabel),
+            formatter: (value) => `Lines of context: ${valueToLabel[value]}`,
+            tooltip: "always",
+          })
+          .change(function () {
+            let value = valueToLabel[this.value];
+            if (value == "All") value = 999999;
+            call({
+              url: `/compare/${objectType}/${instanceId}/${v1}/${v2}/${value}`,
+              callback: (result) => {
+                if (!result) {
+                  $(`#content-${cantorId}`).text("No difference found.");
+                  return;
+                }
+                let diff2htmlUi = new Diff2HtmlUI({ diff: result });
+                $(`#diff-type-${cantorId}`)
+                  .on("change", function () {
+                    diff2htmlUi.draw(`#content-${cantorId}`, {
+                      matching: "lines",
+                      drawFileList: true,
+                      outputFormat: $(this).prop("checked")
+                        ? "side-by-side"
+                        : "line-by-line",
+                    });
+                    $(".d2h-tag").hide();
+                  })
+                  .change();
+              },
+            });
+          })
+          .trigger("change");
+      },
+    });
+  }
+}
+
 function updateProperty(instance, el, property, value, type) {
   let propertyType;
   if (formProperties[type][property]) {
@@ -1421,6 +1512,7 @@ configureNamespace("base", [
   clearAlerts,
   copyToClipboard,
   createAlerts,
+  displayDiff,
   fullScreen,
   hideMenu,
   loadScript,

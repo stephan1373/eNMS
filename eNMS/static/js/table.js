@@ -828,7 +828,7 @@ tables.configuration = class ConfigurationTable extends Table {
       this.copyTableButton(),
       ` <button
         class="btn btn-info"
-        onclick="eNMS.automation.displayDiff('configuration', 'none')"
+        onclick="eNMS.base.displayDiff('configuration', 'none')"
         data-tooltip="Compare"
         type="button"
       >
@@ -1339,7 +1339,7 @@ tables.result = class ResultTable extends Table {
       this.columnDisplay(),
       `<button
         class="btn btn-info"
-        onclick="eNMS.automation.displayDiff('${this.type}', ${id})"
+        onclick="eNMS.base.displayDiff('${this.type}', ${id})"
         data-tooltip="Compare"
         type="button"
       >

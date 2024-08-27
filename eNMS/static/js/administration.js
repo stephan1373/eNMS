@@ -8,10 +8,10 @@ rbac: false
 user: false
 */
 
-import { displayDiff } from "./automation.js";
 import {
   call,
   configureNamespace,
+  displayDiff,
   editors,
   initCodeMirror,
   notify,

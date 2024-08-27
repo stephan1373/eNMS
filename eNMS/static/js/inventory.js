@@ -8,10 +8,10 @@ echarts: false
 theme: false
 */
 
-import { displayDiff } from "./automation.js";
 import {
   call,
   configureNamespace,
+  displayDiff,
   downloadFile,
   initCodeMirror,
   notify,
