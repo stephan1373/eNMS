@@ -242,6 +242,12 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add runtime name and search box in logs, report and results panel
 - Don't let non-admin users change admin only RBAC property
 - Don't fetch credential object and dont add secret to credential dict in rest call service using custom credentials
+- Update to the workflow refresh mechanism:
+  - Move the refresh setTimeout inside the callback function to avoid stacking refresh
+  - Compute refresh time based on how long get_service_state endpoints takes
+  - Update the refresh timer for individual service refresh to 5s
+  - Add new parameters in automation.json / "workflow" / "builder_refresh_rate" to configure
+    min, max and factor used to compute refresh rate based on elapsed time
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 

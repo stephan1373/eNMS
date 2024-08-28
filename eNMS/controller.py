@@ -1445,6 +1445,7 @@ class Controller:
                 relation.positions[instance.name] = new_position
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
+        instance.last_modified = vs.get_time()
         return now
 
     def save_profile(self, **kwargs):

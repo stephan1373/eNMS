@@ -612,7 +612,7 @@ export function getServiceState(id, first) {
           localStorage.setItem("workflow_path", id);
           localStorage.setItem("workflow", JSON.stringify(result.service));
         }
-        setTimeout(() => getServiceState(id), 300);
+        setTimeout(() => getServiceState(id), 5000);
       } else {
         colorService(id, "#D2E5FF");
       }
@@ -764,6 +764,7 @@ export function resetWorkflowDisplay() {
 }
 
 export function getWorkflowState(periodic, first) {
+  const startTime = new Date().getTime();
   if (userIsActive && workflow?.id && !first) {
     call({
       url: `/get_service_state/${currentPath}`,
@@ -776,22 +777,35 @@ export function getWorkflowState(periodic, first) {
         search_value: $("#tree-search").val(),
       },
       callback: function (result) {
-        if (discardNextRefresh) {
-          discardNextRefresh = false;
-          return
-        }
-        if (!Object.keys(result).length || result.service.id != workflow.id) return;
-        currentRun = result.run;
-        currentRuntime = result.runtime;
-        if (result.service.last_modified > instance.last_modified) {
-          displayWorkflow(result);
+        const updateDisplay = (
+          !discardNextRefresh
+          && Object.keys(result).length
+          && result.service.id == workflow.id
+        );
+        if (updateDisplay) {
+          currentRun = result.run;
+          currentRuntime = result.runtime;
+          if (result.service.last_modified > instance.last_modified) {
+            displayWorkflow(result);
+          } else {
+            displayWorkflowState(result);
+          }
         } else {
-          displayWorkflowState(result);
+          discardNextRefresh = false;
         }
+        const refreshSettings = automation.workflow.builder_refresh_rate;
+        const endTime = new Date().getTime();
+        const delay = Math.min(
+          refreshSettings.max, Math.max(
+            refreshSettings.min, (endTime - startTime) * refreshSettings.factor
+          )
+        );
+        if (periodic) setTimeout(() => getWorkflowState(true), delay);
       },
     });
+  } else if (periodic) {
+    setTimeout(() => getWorkflowState(true), 5000);
   }
-  if (periodic) setTimeout(() => getWorkflowState(true, false), 5000);
 }
 
 function compareWorkflowResults() {
