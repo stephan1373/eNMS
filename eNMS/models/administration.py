@@ -42,10 +42,6 @@ class Server(AbstractBase):
     workers = relationship("Worker", back_populates="server")
     model_properties = {"current_runs": "str"}
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        vs.server_data = self.to_dict()
-
     @property
     def current_runs(self):
         return (
