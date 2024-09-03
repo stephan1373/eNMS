@@ -248,6 +248,8 @@ Version 5.1.0: Changelog & Workflow Tree
   - Update the refresh timer for individual service refresh to 5s
   - Add new parameters in automation.json / "workflow" / "builder_refresh_rate" to configure
     min, max and factor used to compute refresh rate based on elapsed time
+- Add new settings "allow_file_deletion" in settings.json / "files" to explicitly allow deleting local files that
+  are located in the trash foler. Set to false by default.
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
