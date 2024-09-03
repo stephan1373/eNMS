@@ -317,6 +317,8 @@ class File(AbstractBase):
         self.status = "Updated"
 
     def delete(self):
+        if not vs.settings["files"]["allow_file_deletion"]:
+            return {"log": "File deletion is not allowed in the settings."}
         trash = vs.settings["files"]["trash"]
         if not exists(self.full_path) or not trash:
             return
