@@ -313,9 +313,9 @@ class Database:
             if changelog:
                 name, changes = (
                     getattr(target, "name", target.id),
-                    " | ".join(changelog),
+                    "\n- " + "\n- ".join(changelog),
                 )
-                log_content = f"UPDATE: {target.type} '{name}': ({changes})"
+                log_content = f"UPDATE: {target.type} '{name}':\n{changes}"
                 env.log(
                     "info",
                     log_content,
