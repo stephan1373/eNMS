@@ -122,7 +122,7 @@ function showChangelogDiff(id) {
         id: id,
         callback: function () {
           const editor = initCodeMirror(`changelog-content-${id}`, "network");
-          if (changelog.history) {
+          if (changelog?.history?.properties) {
             for (const property of Object.keys(changelog.history.properties)) {
               $(`#changelog-properties-${id}`).append(
                 `<option value="${property}">${property}</option>`
