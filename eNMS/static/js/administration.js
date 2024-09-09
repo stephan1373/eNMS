@@ -127,7 +127,8 @@ function showChangelogDiff(id) {
               $(`#changelog-properties-${id}`).append(
                 `<option value="${property}">${property}</option>`
               ).on("change", function () {
-                editor.setValue(changelog.history.properties[this.value].new);
+                const value = changelog.history.properties[this.value].new;
+                editor.setValue(typeof value === "number" ? value.toString() : value);
                 editor.refresh();
               })
               .selectpicker("refresh");
