@@ -9,6 +9,15 @@ Version 5.2.0: Various Improvements
   - Add new "Session" column to the session table: allows searching through session content
     just like in the Configuration table
   - Add slider to the Session table to select number of lines of context to display
+- Store the positions of services in a workflow in the workflow itself, instead of storing
+  them at service level. Motivation for the change
+  - When exporting a workflow, we are exporting start and end services, including the positions
+  of the start and end services in all workflows (not needed)
+  - When importing a workflow, we need to merge the positions dictionary of Start and End services
+  being imported into the existing ones
+
+Migration
+- Run the script to collect all services position and store them in workflows
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
