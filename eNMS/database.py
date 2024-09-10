@@ -295,9 +295,9 @@ class Database:
                         ),
                     }
                     if deleted:
-                        change += f"REMOVED: {deleted}"
+                        change += f"\n  - Removed: {deleted}"
                     if added:
-                        change += f"{' / ' if deleted else ''}ADDED: {added}"
+                        change += f"\n  - Added: {added}"
                 else:
                     if deleted:
                         if hasattr(deleted[0], "class_type"):
