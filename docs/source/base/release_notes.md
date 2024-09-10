@@ -15,9 +15,11 @@ Version 5.2.0: Various Improvements
   of the start and end services in all workflows (not needed)
   - When importing a workflow, we need to merge the positions dictionary of Start and End services
   being imported into the existing ones
+- Store the positions of network nodes at network level
 
 Migration
-- Run the script to collect all services position and store them in workflows
+- Run the script to collect all services position and store them in workflows, and do the same for
+  nodes and networks
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
