@@ -161,6 +161,9 @@ function showChangelogDiff(id) {
           $(`#compare-changelog-${id}-btn`)
             .unbind("click")
             .on("click", function () {
+              if ($(`#changelog-properties-${id}`).val() == "full_content") {
+                return notify("A specific property must be selected.", "error", 5);
+              }
               displayDiff("changelog", id, $(`#changelog-properties-${id}`).val());
             });
         },
