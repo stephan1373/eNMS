@@ -99,19 +99,28 @@ function showChangelogDiff(id) {
             ${changelog?.history?.properties ? `<nav
               class="navbar navbar-default nav-controls"
               role="navigation"
-              style="width: 300px; display: flex; align-items: center;"
+              style="width: 350px; display: flex;"
             >
               <select
                 id="changelog-properties-${id}"
                 name="changelog-properties"
                 class="form-control"
               ></select>
+              <div style="margin-left:10px;">
+                <input
+                  id="diff-value-type"
+                  style="width: 200px;"
+                  type="checkbox"
+                  data-onstyle="info"
+                  data-offstyle="primary"
+                >
+              </div>
               <button
                 class="btn btn-info"
                 id="compare-changelog-${id}-btn"
                 data-tooltip="Compare"
                 type="button"
-                style="margin-left:10px"
+                style="margin-left:10px;"
               >
                 <span class="glyphicon glyphicon-adjust"></span>
               </button>
@@ -136,6 +145,10 @@ function showChangelogDiff(id) {
           }
           editor.setValue(changelog.content);
           editor.refresh();
+          $("#diff-value-type").bootstrapToggle({
+            on: "New Value",
+            off: "Old Value",
+          });
           $(`#compare-changelog-${id}-btn`)
             .unbind("click")
             .on("click", function () {
