@@ -142,13 +142,13 @@ function showChangelogDiff(id) {
               })
               .selectpicker("refresh");
             }
+            $("#diff-value-type").bootstrapToggle({
+              on: "New Value",
+              off: "Old Value",
+            });
           }
           editor.setValue(changelog.content);
           editor.refresh();
-          $("#diff-value-type").bootstrapToggle({
-            on: "New Value",
-            off: "Old Value",
-          });
           $(`#compare-changelog-${id}-btn`)
             .unbind("click")
             .on("click", function () {
