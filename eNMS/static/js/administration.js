@@ -132,23 +132,29 @@ function showChangelogDiff(id) {
         callback: function () {
           const editor = initCodeMirror(`changelog-content-${id}`, "network");
           if (changelog?.history?.properties) {
-            for (const property of Object.keys(changelog.history.properties)) {
-              $(`#changelog-properties-${id}`).append(
-                `<option value="${property}">${property}</option>`
-              ).on("change", function () {
+            $(`#changelog-properties-${id}`).append(
+              `<option value="full_content">Full Content</option>`
+            ).on("change", function () {
+              let value = changelog.content
+              if ($(`#changelog-properties-${id}`).val() != "full_content") {
                 const valueType = $("#diff-value-type").prop("checked") ? "old" : "new";
-                const value = changelog.history.properties[this.value][valueType];
-                editor.setValue(typeof value === "number" ? value.toString() : value);
-                editor.refresh();
-              })
-              .selectpicker("refresh");
-            }
+                value = changelog.history.properties[this.value][valueType];
+              }
+              editor.setValue(typeof value === "number" ? value.toString() : value);
+              editor.refresh();
+            });
             $("#diff-value-type").bootstrapToggle({
               on: "Old Value",
               off: "New Value",
             }).change(function() {
               $(`#changelog-properties-${id}`).trigger("change");
             });
+            for (const property of Object.keys(changelog.history.properties)) {
+              $(`#changelog-properties-${id}`).append(
+                `<option value="${property}">${property}</option>`
+              )
+            }
+            $(`#changelog-properties-${id}`).selectpicker("refresh");
           }
           editor.setValue(changelog.content);
           editor.refresh();
