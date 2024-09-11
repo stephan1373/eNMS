@@ -96,7 +96,7 @@ function showChangelogDiff(id) {
         name: "changelog_diff",
         content: `
           <div class="modal-body">
-            ${changelog.history ? `<nav
+            ${changelog?.history?.properties ? `<nav
               class="navbar navbar-default nav-controls"
               role="navigation"
               style="width: 300px; display: flex; align-items: center;"
