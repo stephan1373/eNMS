@@ -136,15 +136,18 @@ function showChangelogDiff(id) {
               $(`#changelog-properties-${id}`).append(
                 `<option value="${property}">${property}</option>`
               ).on("change", function () {
-                const value = changelog.history.properties[this.value].new;
+                const valueType = $("#diff-value-type").prop("checked") ? "old" : "new";
+                const value = changelog.history.properties[this.value][valueType];
                 editor.setValue(typeof value === "number" ? value.toString() : value);
                 editor.refresh();
               })
               .selectpicker("refresh");
             }
             $("#diff-value-type").bootstrapToggle({
-              on: "New Value",
-              off: "Old Value",
+              on: "Old Value",
+              off: "New Value",
+            }).change(function() {
+              $(`#changelog-properties-${id}`).trigger("change");
             });
           }
           editor.setValue(changelog.content);
