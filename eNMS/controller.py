@@ -820,7 +820,11 @@ class Controller:
         def rec(instance, path):
             if run and path not in state:
                 return
-            if "device_state" in kwargs and instance.id not in kwargs["device_state"]:
+            if (
+                instance.run_method == "per_device"
+                and "device_state" in kwargs
+                and instance.id not in kwargs["device_state"]
+            ):
                 return
             style, active_search = "", kwargs.get("search_value")
             if type == "workflow":
@@ -867,11 +871,11 @@ class Controller:
                     elif is_match:
                         style = "font-weight: bold;"
             progress_data = {}
-            if run:
+            if run and "device_state" not in kwargs:
                 progress = state[path].get("progress")
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
-            if "device_state" in kwargs:
+            if instance.id in kwargs.get("device_state", {}):
                 color = "32CD32" if kwargs["device_state"][instance.id] else "FF6666"
             elif run:
                 if state[path].get("dry_run"):
@@ -884,7 +888,9 @@ class Controller:
                 color = (
                     "FF1694"
                     if getattr(instance, "shared", False)
-                    else "E09E2F" if getattr(instance, "dry_run", False) else "6666FF"
+                    else "E09E2F"
+                    if getattr(instance, "dry_run", False)
+                    else "6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
@@ -1299,7 +1305,7 @@ class Controller:
     def run(service, **kwargs):
         try:
             start = datetime.now().replace(microsecond=0)
-            run_object, user = None, kwargs["creator"]
+            run_object, runtime, user = None, kwargs["runtime"], kwargs["creator"]
             if "path" not in kwargs:
                 kwargs["path"] = str(service)
             keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1344,8 +1350,7 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            runtime_log = f"(runtime: {kwargs.get('runtime', 'No runtime defined')})"
-            env.log("critical", f"{runtime_log} - {format_exc()}")
+            env.log("critical", f"{runtime} - {format_exc()}")
             if run_object:
                 run_object.service_run.log("critical", format_exc())
                 db.try_set(run_object, "status", "Failed")
@@ -1353,13 +1358,13 @@ class Controller:
                     "success": False,
                     "result": format_exc(),
                     "duration": str(datetime.now().replace(microsecond=0) - start),
-                    "runtime": kwargs.get("runtime", "No runtime defined"),
+                    "runtime": runtime,
                 }
                 db.try_commit(run_object.service_run.end_of_run_transaction, results)
                 try:
                     run_object.service_run.create_result(results, run_result=True)
                 except Exception:
-                    env.log("critical", f"{runtime_log} - {format_exc()}")
+                    env.log("critical", f"{runtime} - {format_exc()}")
                 run_object.service_run.end_of_run_cleanup()
             db.session.commit()
             return {"success": False, "result": format_exc()}
@@ -1383,7 +1388,8 @@ class Controller:
         return result.getvalue()
 
     def run_service(self, path, **kwargs):
-        if "application" not in vs.server_data["allowed_automation"]:
+        server = db.fetch("server", name=vs.server)
+        if "application" not in server.allowed_automation:
             return {"error": "Runs from the UI are not allowed on this server."}
         if isinstance(kwargs.get("start_services"), str):
             kwargs["start_services"] = kwargs["start_services"].split("-")
@@ -1441,6 +1447,7 @@ class Controller:
                 instance.positions[relation.name] = new_position
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
+        instance.last_modified = vs.get_time()
         return now
 
     def save_profile(self, **kwargs):

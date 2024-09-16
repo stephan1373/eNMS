@@ -377,6 +377,7 @@ function showBuilderSearchPanel() {
         if (timer) clearTimeout(timer);
         timer = setTimeout(func, 500);
       });
+      $(`#search-form-${instance.id}`).on("submit", false);
     },
   });
 }

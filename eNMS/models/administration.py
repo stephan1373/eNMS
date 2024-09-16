@@ -42,10 +42,6 @@ class Server(AbstractBase):
     workers = relationship("Worker", back_populates="server")
     model_properties = {"current_runs": "str"}
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        vs.server_data = self.to_dict()
-
     @property
     def current_runs(self):
         return (
@@ -327,7 +323,7 @@ class File(AbstractBase):
             return
         if self.full_path == trash:
             return {"log": "Cannot delete the 'trash' folder."}
-        if trash in self.full_path:
+        if trash in self.full_path and vs.settings["files"]["allow_file_deletion"]:
             if self.type == "folder":
                 rmtree(self.full_path, ignore_errors=True)
             else:
