@@ -815,7 +815,7 @@ class Controller:
         def rec(instance, path):
             if run and path not in state:
                 return
-            if "device_state" in kwargs and instance.id not in kwargs["device_state"]:
+            if instance.run_method == "per_device" and "device_state" in kwargs and instance.id not in kwargs["device_state"]:
                 return
             style, active_search = "", kwargs.get("search_value")
             if type == "workflow":
@@ -862,11 +862,11 @@ class Controller:
                     elif is_match:
                         style = "font-weight: bold;"
             progress_data = {}
-            if run:
+            if run and "device_state" not in kwargs:
                 progress = state[path].get("progress")
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
-            if "device_state" in kwargs:
+            if instance.id in kwargs.get("device_state", {}):
                 color = "32CD32" if kwargs["device_state"][instance.id] else "FF6666"
             elif run:
                 if state[path].get("dry_run"):
