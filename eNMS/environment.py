@@ -79,7 +79,7 @@ class Environment:
         class Handler(FileSystemEventHandler):
             def on_any_event(self, event):
                 src_path = event.src_path.replace(str(vs.file_path), "")
-                if any(
+                if not src_path or any(
                     src_path.endswith(extension)
                     for extension in vs.settings["files"]["ignored_types"]
                 ):
