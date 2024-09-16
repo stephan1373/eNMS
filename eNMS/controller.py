@@ -1303,7 +1303,7 @@ class Controller:
     def run(service, **kwargs):
         try:
             start = datetime.now().replace(microsecond=0)
-            run_object, user = None, kwargs["creator"]
+            run_object, runtime, user = None, kwargs["runtime"], kwargs["creator"]
             if "path" not in kwargs:
                 kwargs["path"] = str(service)
             keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1348,8 +1348,7 @@ class Controller:
             return run_object.run()
         except Exception:
             db.session.rollback()
-            runtime_log = f"(runtime: {kwargs.get('runtime', 'No runtime defined')})"
-            env.log("critical", f"{runtime_log} - {format_exc()}")
+            env.log("critical", f"{runtime} - {format_exc()}")
             if run_object:
                 run_object.service_run.log("critical", format_exc())
                 db.try_set(run_object, "status", "Failed")
@@ -1357,13 +1356,13 @@ class Controller:
                     "success": False,
                     "result": format_exc(),
                     "duration": str(datetime.now().replace(microsecond=0) - start),
-                    "runtime": kwargs.get("runtime", "No runtime defined"),
+                    "runtime": runtime,
                 }
                 db.try_commit(run_object.service_run.end_of_run_transaction, results)
                 try:
                     run_object.service_run.create_result(results, run_result=True)
                 except Exception:
-                    env.log("critical", f"{runtime_log} - {format_exc()}")
+                    env.log("critical", f"{runtime} - {format_exc()}")
                 run_object.service_run.end_of_run_cleanup()
             db.session.commit()
             return {"success": False, "result": format_exc()}
