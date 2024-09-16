@@ -77,7 +77,7 @@ class Environment:
 
     def monitor_filesystem(self):
         class Handler(FileSystemEventHandler):
-            def on_any_event(self, event):
+            def on_any_event(_, event):
                 src_path = event.src_path.replace(str(vs.file_path), "")
                 if not src_path or any(
                     src_path.endswith(extension)
@@ -98,7 +98,7 @@ class Environment:
                 file.status = event.event_type.capitalize()
                 if vs.settings["files"]["log_events"]:
                     log = f"File {src_path} {event.event_type} (watchdog)."
-                    env.log("info", log, change_log=True)
+                    self.log("info", log, change_log=True)
                 try:
                     db.session.commit()
                 except (StaleDataError, IntegrityError):
