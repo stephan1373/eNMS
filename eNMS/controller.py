@@ -815,7 +815,11 @@ class Controller:
         def rec(instance, path):
             if run and path not in state:
                 return
-            if instance.run_method == "per_device" and "device_state" in kwargs and instance.id not in kwargs["device_state"]:
+            if (
+                instance.run_method == "per_device"
+                and "device_state" in kwargs
+                and instance.id not in kwargs["device_state"]
+            ):
                 return
             style, active_search = "", kwargs.get("search_value")
             if type == "workflow":
@@ -879,7 +883,9 @@ class Controller:
                 color = (
                     "FF1694"
                     if getattr(instance, "shared", False)
-                    else "E09E2F" if getattr(instance, "dry_run", False) else "6666FF"
+                    else "E09E2F"
+                    if getattr(instance, "dry_run", False)
+                    else "6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
