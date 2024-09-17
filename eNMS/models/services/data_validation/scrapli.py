@@ -40,7 +40,7 @@ class ScrapliService(ConnectionService):
         function = "send_configs" if run.is_configuration else "send_commands"
         run.log(
             "info",
-            f"sending COMMANDS {log_commands} with Scrapli",
+            f"sending COMMANDS '{log_commands}' with Scrapli",
             device,
             logger="security",
         )
