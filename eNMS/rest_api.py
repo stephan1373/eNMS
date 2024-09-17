@@ -65,7 +65,7 @@ class RestApi:
         return [result.get_properties(exclude=["positions"]) for result in results]
 
     def run_service(self, **kwargs):
-        server = db.fetch("server", name=vs.server)
+        server = db.fetch("server", name=vs.server, rbac=None)
         if "rest_api" not in server.allowed_automation:
             return {"error": "Runs from the REST API are not allowed on this server."}
         data = {"trigger": "REST API", "creator": current_user.name, **kwargs}
@@ -111,7 +111,7 @@ class RestApi:
             return {**controller.run(service.id, **data), "errors": errors}
 
     def run_task(self, task_id):
-        server = db.fetch("server", name=vs.server)
+        server = db.fetch("server", name=vs.server, rbac=None)
         if "scheduler" not in server.allowed_automation:
             return {"error": "Scheduled runs are not allowed on this server."}
         sleep(uniform(0, vs.automation["advanced"]["task_jitter"]))
