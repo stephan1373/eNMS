@@ -318,11 +318,15 @@ class File(AbstractBase):
 
     def delete(self):
         trash = vs.settings["files"]["trash"]
-        if not exists(self.full_path) or not trash:
+        if (
+            not vs.settings["files"]["allow_file_deletion"]
+            or not exists(self.full_path)
+            or not trash
+        ):
             return
         if self.full_path == trash:
             return {"log": "Cannot delete the 'trash' folder."}
-        if trash in self.full_path and vs.settings["files"]["allow_file_deletion"]:
+        if trash in self.full_path:
             if self.type == "folder":
                 rmtree(self.full_path, ignore_errors=True)
             else:
