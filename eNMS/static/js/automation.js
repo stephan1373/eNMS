@@ -255,7 +255,31 @@ export const showRuntimePanel = function (
                 ></span>
               </button>
             </div>
+            <div style="width: 30px; float: left; margin-left: 15px;">
+              <button
+                id="search-button-${panelId}"
+                class="btn btn-default pull-right"
+                data-tooltip="Search"
+                type="button"
+                onclick="$('#search-logs-${panelId}')
+                  .toggle().find('input').focus()"
+              >
+                <span
+                  class="glyphicon glyphicon-search"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </div>
           </nav>
+          <div id="search-logs-${panelId}" style="display: none">
+            <input
+              type="text"
+              id="search-field-${panelId}"
+              class="form-control"
+              placeholder="&#xF002; Search"
+              style="font-family: Arial, FontAwesome;"
+            >
+          </div>
           <hr>
           <div id="service-${panelId}"></div>
         </div>
@@ -387,6 +411,14 @@ function displayLogs(service, runtime, change) {
   } else {
     editor = initCodeMirror(`service-logs-${service.id}`, "logs");
   }
+  let timer = false;
+  $(`#search-field-logs-${service.id}`).on("input", function() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function () {
+      const currentRuntime = $(`#runtimes-logs-${service.id}`).val();
+      refreshLogs(service, currentRuntime, editor, true, false, 0, true);
+    }, 500);
+  });
   $(`#runtimes-logs-${service.id}`).on("change", function () {
     refreshLogs(service, this.value, editor, true);
   });
@@ -423,13 +455,18 @@ function displayResultsTable(service, runtime, _, type, refresh, fullResult) {
   }
 }
 
-function refreshLogs(service, runtime, editor, first, wasRefreshed, line) {
+function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search) {
   if (!$(`#service-logs-${service.id}`).length) return;
   if (runtime != $(`#runtimes-logs-${service.id}`).val()) return;
   call({
     url: `/get_service_logs/${service.id}/${runtime}`,
-    data: { line: line || 0, device: $("#device-filter").val() },
+    data: {
+      line: line || 0,
+      device: $("#device-filter").val(),
+      search: $(`#search-field-logs-${service.id}`).val(),
+    },
     callback: function (result) {
+      if (search) editor.setValue("");
       if (!first && result.refresh && result.logs.length) {
         // eslint-disable-next-line new-cap
         editor.replaceRange(`\n${result.logs}`, CodeMirror.Pos(editor.lineCount()));
@@ -438,6 +475,7 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line) {
         editor.setValue(`Gathering logs for '${service.name}'...\n\n${result.logs}`);
         editor.refresh();
       }
+      if (search) return;
       if (first || result.refresh) {
         setTimeout(
           () =>

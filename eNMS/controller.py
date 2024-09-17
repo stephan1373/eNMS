@@ -630,7 +630,7 @@ class Controller:
             query = query.filter(vs.models["run"].creator == current_user.name)
         return sorted(((run.runtime, run.name) for run in query.all()), reverse=True)
 
-    def get_service_logs(self, service, runtime, line=0, device=None):
+    def get_service_logs(self, service, runtime, line=0, device=None, search=None):
         log_instance = db.fetch(
             "service_log", allow_none=True, runtime=runtime, service_id=service
         )
@@ -645,6 +645,8 @@ class Controller:
         if device:
             device_name = db.fetch("device", id=device).name
             lines = [line for line in lines if f"DEVICE {device_name}" in line]
+        if search:
+            lines = [line for line in lines if search in line]
         return {
             "logs": "\n".join(lines),
             "refresh": not log_instance,
