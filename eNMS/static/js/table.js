@@ -2001,6 +2001,10 @@ export const clearSearch = function (tableId, notification) {
   $(".search-relation-dd").val("any").selectpicker("refresh");
   $(".search-relation").val([]).trigger("change");
   $(`.search-select-${tableId}`).val("inclusion");
+  if ($("#serialized-search-div").is(":visible")) {
+    $("#serialized-search").val("");
+    $("#serialized-search-div").toggle();
+  }
   refreshTable(tableId);
   if (notification) notify("Search parameters cleared.", "success", 5);
 };
