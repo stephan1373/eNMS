@@ -2147,7 +2147,7 @@ function displayRelationTable(type, instance, relation) {
         </form>
       </div>`,
     id: instance.id,
-    size: "1200 600",
+    size: "1300 600",
     title: `${instance.name} - ${type}s`,
     tableId: `${type}-${instance.id}`,
     callback: function () {
