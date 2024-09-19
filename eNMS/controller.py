@@ -816,7 +816,7 @@ class Controller:
             if run and path not in state:
                 return
             if (
-                instance.run_method == "per_device"
+                getattr(instance, "run_method", None) == "per_device"
                 and "device_state" in kwargs
                 and instance.id not in kwargs["device_state"]
             ):
