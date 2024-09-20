@@ -262,7 +262,10 @@ class Changelog(AbstractBase):
         return self.content
 
     def update(self, **kwargs):
-        super().update(**{"time": vs.get_time(), **kwargs})
+        kwargs["time"] = vs.get_time()
+        if not kwargs.get("author"):
+            kwargs["author"] = getattr(current_user, "name", "")
+        super().update(**kwargs)
 
 
 class Parameters(AbstractBase):

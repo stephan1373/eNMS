@@ -342,7 +342,7 @@ class Environment:
                 **{
                     "severity": severity,
                     "content": content,
-                    "author": user or getattr(current_user, "name", ""),
+                    "author": user,
                     "history": history,
                     "source": source,
                     **(instance.get_changelog_kwargs() if instance else {}),
