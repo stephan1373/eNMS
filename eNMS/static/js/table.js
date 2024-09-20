@@ -1853,7 +1853,6 @@ tables.file = class FileTable extends Table {
       >
         <span class="glyphicon glyphicon-flash"></span>
       </button>`,
-      this.bulkDeletionButton(),
       `<div id="current-folder-path" style="margin-top: 9px; margin-left: 9px"></div>`,
     ];
   }
