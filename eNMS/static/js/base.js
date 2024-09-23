@@ -1066,7 +1066,12 @@ function processData(type, id) {
 
 export function copyToClipboard({ text, isId, includeText = true }) {
   if (isId) text = $(`#${text}`).val();
-  window.navigator.clipboard?.writeText(text);
+  let dummy = document.createElement("textarea");
+  document.body.appendChild(dummy);
+  dummy.value = text;
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
   notify(`Copied to Clipboard${includeText ? `: ${text}` : "."}`, "success", 5);
 }
 
