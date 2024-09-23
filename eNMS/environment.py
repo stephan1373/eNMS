@@ -255,6 +255,7 @@ class Environment:
             def emit(self, record):
                 try:
                     formatted_record = self.format_record(record)
+                    formatted_record.session = None
                     self.send(formatted_record)
                 except (KeyboardInterrupt, SystemExit):
                     raise
