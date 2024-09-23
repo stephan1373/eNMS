@@ -500,7 +500,7 @@ class Controller:
                 obj.table_properties(**kwargs) for obj in query.all()
             ]
         if kwargs.get("clipboard"):
-            table_result["full_result"] = ",".join(obj.name for obj in query.all())
+            table_result["clipboard"] = ",".join(obj.name for obj in query.all())
         return table_result
 
     def get(self, model, id, **kwargs):

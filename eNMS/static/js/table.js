@@ -152,6 +152,7 @@ export class Table {
             ...this.getFilteringData(),
           });
           Object.assign(data, self.filteringData);
+          self.copyClipboard = false;
           return JSON.stringify(data);
         },
         dataSrc: function (result) {
@@ -163,9 +164,8 @@ export class Table {
             self.exportTable(result.full_result);
             self.csvExport = false;
           }
-          if (self.copyClipboard) {
-            copyToClipboard({ text: result.full_result, includeText: false });
-            self.copyClipboard = false;
+          if (result.clipboard) {
+            copyToClipboard({ text: result.clipboard, includeText: false });
           }
           return result.data.map((instance) =>
             self.addRow({ properties: instance, tableId: self.id })
