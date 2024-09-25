@@ -148,7 +148,7 @@ are made available to the user.
         - `allow_matches`: (**optional**) `True`(Default) or `False`.
         - Model properties: (**optional**) Filter values to limit the set of
           returned objects: vendor="Cisco".
-            
+
 - `get_neighbors()`
     -   **Meaning**: Used to return links or devices connected to the target
         device.
@@ -167,7 +167,7 @@ are made available to the user.
         -   `source_name` (source device name).
         -   `destination_name` (destination device name).
         -   [Custom link properties, if implemented](custom_link_properties.md).
-        
+
 - `get_result()`
     -   **Meaning**: Fetch the result of a service in the workflow that
         has already been executed.
@@ -235,7 +235,7 @@ are made available to the user.
         `set_var()` and populating the `initial_payload` field for a workflow.
     -   **Type**: Dictionary.
     -   **Available**: Always.
-    
+
 - `placeholder`
     -   **Meaning**: This is the reference inside a superworkflow for the main
         workflow that the superworkflow wraps around. A superworkflow must have
@@ -247,7 +247,7 @@ are made available to the user.
     -   **Meaning**: The results of the current service.
     -   **Type**: Dictionary.
     -   **Available**: After a service has run.
-        
+
 - `set_var()`
     -   **Meaning**: Save a value by `name` for use later in a workflow.
         When `device` and/or `section` is specified, a unique value is
