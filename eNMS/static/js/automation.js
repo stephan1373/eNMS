@@ -220,6 +220,7 @@ function showResult(id) {
           <button class="btn btn-default pull-right"
             onclick="eNMS.base.copyToClipboard({text: 'result-path-${id}', isId: true})"
             type="button"
+            title="Copy Results Dictionary Path"
           >
             <span class="glyphicon glyphicon-copy"></span>
           </button>
