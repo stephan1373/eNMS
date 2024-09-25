@@ -270,6 +270,15 @@ are made available to the user.
     -   **Type**: Database Object of type Service.
     -   **Available**: When a service is running inside a superworkflow.
 
+- `prepend_filepath()`
+    -   **Meaning**: Prepend a filepath with the path to the "files" folder 
+        (stored in "vs.file_path")
+    -   **Type**: Function.
+    -   **Return Type**: None.
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `path`: Path to a file (relative to the "files" folder)
+
 - `results`
     -   **Meaning**: The results of the current service.
     -   **Type**: Dictionary.
