@@ -314,6 +314,7 @@ class Environment:
 
         def representer(dumper, data):
             style = "|" if "\n" in data else None
+            data = data.lstrip()
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
 
         yaml.representer.add_representer(str, representer)
