@@ -907,8 +907,14 @@ class Controller:
                 "type": instance.type,
             }
 
+        # In a standard run, the top-level service in the path has run so we use it
+        # as root of the tree. In case of restart run from a subworkflow or from a
+        # workflow that has a superworkflow, we use the last service as root.
+        has_root_state = str(path_id[0]) in state
+        root_id = path_id[0] if has_root_state else path_id[-1]
+        root_path = str(path_id[0]) if has_root_state else full_path
         return {
-            "tree": rec(db.fetch(type, id=path_id[0]), str(path_id[0])),
+            "tree": rec(db.fetch(type, id=root_id), root_path),
             "highlight": highlight,
         }
 
