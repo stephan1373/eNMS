@@ -98,7 +98,13 @@ are made available to the user.
         mode or not.
     -   **Type**: Boolean.
     -   **Available**: Always.
-    
+
+- `encrypt()`
+    -   **Meaning**: Encrypt a password string so it can be used in one of the
+        password field (and automatically decrypted)
+    -   **Type**: Function.
+    -   **Available**: Always.
+
 - `factory()`
     -   **Meaning**: Allows for creating one of the following object types
         in the database: `device`, `link`, `pool`, `service`. Calling
@@ -112,7 +118,7 @@ are made available to the user.
         - `commit`: (**optional**) `True` or `False`(Default).
         - Model properties: Specify values for the new instance: 
           ip_address="1.2.3.4" when creating a new device. 
-           
+
 - `fetch()`
     -   **Meaning**: Allows for retrieving one of the following object types
         from the database: `device`, `link`, `pool`, `service`. Calling
@@ -127,7 +133,7 @@ are made available to the user.
         - `allow_matches`: (**optional**) `True` or `False`(Default).
         - Model properties: (**mandatory**) Property values to identify
           the desired object: ip_address="1.2.3.4".
-  
+
 - `fetch_all()`
     -   **Meaning**: Allows for retrieving all instances for one of the
         following object types from the database: `device`, `link`, `pool`,
