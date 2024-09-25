@@ -168,6 +168,13 @@ are made available to the user.
         -   `destination_name` (destination device name).
         -   [Custom link properties, if implemented](custom_link_properties.md).
 
+- `get_all_results()`
+    -   **Meaning**: Fetch all results for the current runtime. Typically used at
+        the end of a run to generate a report.
+    -   **Type**: Function.
+    -   **Return Type**: List of results.
+    -   **Available**: Always.
+
 - `get_result()`
     -   **Meaning**: Fetch the result of a service in the workflow that
         has already been executed.
