@@ -279,6 +279,15 @@ are made available to the user.
     -   **Parameters**:
         -   `path`: Path to a file (relative to the "files" folder)
 
+- `remove_note()`
+    -   **Meaning**: Remove the note located at the given position.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `x`: `x` position of the note.
+        -   `y`: `y` position of the note.
+
 - `results`
     -   **Meaning**: The results of the current service.
     -   **Type**: Dictionary.
@@ -309,15 +318,6 @@ are made available to the user.
         -   `x`: `x` position of the note.
         -   `y`: `y` position of the note.
         -   `content`: Content of the note (`string`)
-
-- `remove_note()`
-    -   **Meaning**: Remove the note located at the given position.
-    -   **Type**: Function.
-    -   **Return Type**: None
-    -   **Available**: Always.
-    -   **Parameters**:
-        -   `x`: `x` position of the note.
-        -   `y`: `y` position of the note.
 
 - `trigger`
     -   **Meaning**: Indicates how the current run was triggered (from the UI,
