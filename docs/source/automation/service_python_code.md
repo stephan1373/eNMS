@@ -175,6 +175,18 @@ are made available to the user.
     -   **Return Type**: List of results.
     -   **Available**: Always.
 
+- `get_connection()`
+    -   **Meaning**: Retrieve the Connection Object of a device for a specific library.
+    -   **Type**: Function.
+    -   **Return Type**: Connection Object.
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `library`: (**mandatory**) Netmiko, Napalm or Scrapli
+        -   `device`: (**optional**) Name of the device that you want to get
+            a connection for.
+        -   `name`: (**optional**) Name of the connection to return when there are
+            more than one active connection to a device.
+
 - `get_result()`
     -   **Meaning**: Fetch the result of a service in the workflow that
         has already been executed.
