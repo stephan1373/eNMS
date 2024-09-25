@@ -204,6 +204,14 @@ are made available to the user.
             a list with results for all devices.  Otherwise only the first
             result is returned.
 
+- `get_secret()`
+    -   **Meaning**: Retrieve the secret value of a Secret object.
+    -   **Type**: Function.
+    -   **Return Type**: Secret value.
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `name`: Name of the Secret object.
+
 - `get_var()`
     -   **Meaning**: Retrieve a value by `name` that was previously
         saved in the workflow. Use `set_var()` to save values. Always use
@@ -218,14 +226,6 @@ are made available to the user.
             device.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
-
-- `get_secret()`
-    -   **Meaning**: Retrieve the secret value of a Secret object.
-    -   **Type**: Function.
-    -   **Return Type**: Secret value.
-    -   **Available**: Always.
-    -   **Parameters**:
-        -   `name`: Name of the Secret object.
 
 - `log()`
     -   **Meaning**: Write an entry to a log file.
