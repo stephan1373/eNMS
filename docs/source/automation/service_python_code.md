@@ -92,6 +92,12 @@ are made available to the user.
             - 1135
             - 544
     ```
+
+- `dry_run`
+    -   **Meaning**: Indicates whether the service is running in "Dry Run"
+        mode or not.
+    -   **Type**: Boolean.
+    -   **Available**: Always.
     
 - `factory()`
     -   **Meaning**: Allows for creating one of the following object types
@@ -270,12 +276,6 @@ are made available to the user.
     -   **Parameters**:
         -   `x`: `x` position of the note.
         -   `y`: `y` position of the note.
-
-- `dry_run`
-    -   **Meaning**: Indicates whether the service is running in "Dry Run"
-        mode or not.
-    -   **Type**: Boolean.
-    -   **Available**: Always.
 
 - `trigger`
     -   **Meaning**: Indicates how the current run was triggered (from the UI,
