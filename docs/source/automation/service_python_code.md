@@ -382,6 +382,17 @@ are made available to the user.
         -   `*args`: arguments passed to the transaction.
         -   `**kwargs`: keyword arguments, passed to the transaction.
 
+- `try_set()`
+    -   **Meaning**: Try to set a SQL object property to a specific value with a
+        retry mechanism in case of failure.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `object`: Target SQL object.
+        -   `property`: property to update (string).
+        -   `value`: value of that property.
+
 - `username`
     -   **Meaning**: The username that created the run
     -   **Type**: string
