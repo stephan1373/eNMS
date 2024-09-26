@@ -330,6 +330,17 @@ are made available to the user.
         -   `name`: Server Name.
         -   `url`: Server URL
 
+- `set_note()`
+    -   **Meaning**: Create a note at the given position on the workflow
+        builder.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `x`: `x` position of the note.
+        -   `y`: `y` position of the note.
+        -   `content`: Content of the note (`string`)
+
 - `set_var()`
     -   **Meaning**: Save a value by `name` for use later in a workflow.
         When `device` and/or `section` is specified, a unique value is
@@ -344,17 +355,6 @@ are made available to the user.
             device.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
-
-- `set_note()`
-    -   **Meaning**: Create a note at the given position on the workflow
-        builder.
-    -   **Type**: Function.
-    -   **Return Type**: None
-    -   **Available**: Always.
-    -   **Parameters**:
-        -   `x`: `x` position of the note.
-        -   `y`: `y` position of the note.
-        -   `content`: Content of the note (`string`)
 
 - `trigger`
     -   **Meaning**: Indicates how the current run was triggered (from the UI,
