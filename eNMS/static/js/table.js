@@ -1749,7 +1749,7 @@ tables.changelog = class ChangelogTable extends Table {
               row.id
             })" data-tooltip="Revert Change"
             >
-              <span class="glyphicon glyphicon-step-backward"></span>
+              <span class="fa fa-undo"></span>
             </button>
         </li>
       </ul>`,
