@@ -399,6 +399,17 @@ are made available to the user.
     -   **Type**: Dictionary.
     -   **Available**: Always.
 
+- `try_commit()`
+    -   **Meaning**: Commit a SQL transaction with a retry mechanism in case of
+        failure.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `transaction`: function that does the SQL transaction.
+        -   `*args`: arguments passed to the transaction.
+        -   `**kwargs`: keyword arguments, passed to the transaction.
+
 - `username`
     -   **Meaning**: The username that created the run
     -   **Type**: string
