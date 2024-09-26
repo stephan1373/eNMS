@@ -403,6 +403,19 @@ are made available to the user.
     -   **Meaning**: current workflow.
     -   **Type**: Database Object.
     -   **Available**: when the service runs inside a workflow.
+    -   **Properties**: Member attributes which can be referenced as
+        `{{workflow.property}}`, such as `{{workflow.name}}`. Below is
+        a list of some of the properties that can be accessed:
+
+        - workflow.name.
+        - workflow.creator.
+        - workflow.last_modified.
+        - workflow.last_modified_by.
+        - workflow.shared.
+        - workflow.last_run.
+        - workflow.version.
+        - workflow.vendor.
+        - workflow.operating_system.
 
 !!! note
 
