@@ -356,11 +356,42 @@ are made available to the user.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
 
+- `settings`
+
+    -   **Meaning**: eNMS settings, editable from the top-level `Settings`
+        Icon. It is initially set to the content of `settings.json`, and
+        it stays synchronized if the option to write changes back to 
+        `settings.json` is used.
+    -   **Type**: Dictionary.
+    -   **Available**: Always.
+
 - `trigger`
     -   **Meaning**: Indicates how the current run was triggered (from the UI,
         from the REST API, or from a scheduled task).
     -   **Type**: String.
     -   **Available**: Always.
+
+- `try_commit()`
+    -   **Meaning**: Commit a SQL transaction with a retry mechanism in case of
+        failure.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `transaction`: function that does the SQL transaction.
+        -   `*args`: arguments passed to the transaction.
+        -   `**kwargs`: keyword arguments, passed to the transaction.
+
+- `username`
+    -   **Meaning**: The username that created the run
+    -   **Type**: string
+    -   **Available**: Always
+            
+- `workflow`
+
+    -   **Meaning**: current workflow.
+    -   **Type**: Database Object.
+    -   **Available**: when the service runs inside a workflow.
 
 !!! note
 
@@ -389,37 +420,6 @@ are made available to the user.
     `payload['mydict']['another_dict'] = payload` or
     `set_var("my_payload", payload)` each result in a loop from within the
     payload to a higher level in the payload. 
-
-- `settings`
-
-    -   **Meaning**: eNMS settings, editable from the top-level `Settings`
-        Icon. It is initially set to the content of `settings.json`, and
-        it stays synchronized if the option to write changes back to 
-        `settings.json` is used.
-    -   **Type**: Dictionary.
-    -   **Available**: Always.
-
-- `try_commit()`
-    -   **Meaning**: Commit a SQL transaction with a retry mechanism in case of
-        failure.
-    -   **Type**: Function.
-    -   **Return Type**: None
-    -   **Available**: Always.
-    -   **Parameters**:
-        -   `transaction`: function that does the SQL transaction.
-        -   `*args`: arguments passed to the transaction.
-        -   `**kwargs`: keyword arguments, passed to the transaction.
-
-- `username`
-    -   **Meaning**: The username that created the run
-    -   **Type**: string
-    -   **Available**: Always
-            
-- `workflow`
-
-    -   **Meaning**: current workflow.
-    -   **Type**: Database Object.
-    -   **Available**: when the service runs inside a workflow.
 
 ### Substitution fields
 
