@@ -293,6 +293,34 @@ are made available to the user.
     -   **Type**: Dictionary.
     -   **Available**: After a service has run.
 
+-   `send_email()` allows for sending an email with optional attached file. It
+    takes the following parameters:
+
+    -   `title`: (**string, mandatory**).
+    -   `content`: (**string, mandatory**).
+    -   `sender`: (**string, optional**) Email address of the sender.
+        Defaults to the sender address in eNMS settings.
+    -   `recipients`: (**string, optional**) Mail addresses of the
+        recipients, separated by comma. Defaults to the recipients'
+        addresses in eNMS settings.
+    -   `reply_to`: (**string, optional**) Single mail address for
+        replies to notifications.
+    -   `filename`: (**string, optional**) Name of the attached file.
+    -   `file_content`: (**string, optional**) Content of the attached
+        file.
+
+    ``` 
+    send_email(
+        title,
+        content,
+        sender=sender,
+        recipients=recipients,
+        reply_to=reply_to,
+        filename=filename,
+        file_content=file_content
+    )
+    ```
+
 - `set_var()`
     -   **Meaning**: Save a value by `name` for use later in a workflow.
         When `device` and/or `section` is specified, a unique value is
@@ -361,34 +389,6 @@ are made available to the user.
         `settings.json` is used.
     -   **Type**: Dictionary.
     -   **Available**: Always.
-
--   `send_email()` allows for sending an email with optional attached file. It
-    takes the following parameters:
-
-    -   `title`: (**string, mandatory**).
-    -   `content`: (**string, mandatory**).
-    -   `sender`: (**string, optional**) Email address of the sender.
-        Defaults to the sender address in eNMS settings.
-    -   `recipients`: (**string, optional**) Mail addresses of the
-        recipients, separated by comma. Defaults to the recipients'
-        addresses in eNMS settings.
-    -   `reply_to`: (**string, optional**) Single mail address for
-        replies to notifications.
-    -   `filename`: (**string, optional**) Name of the attached file.
-    -   `file_content`: (**string, optional**) Content of the attached
-        file.
-
-    ``` 
-    send_email(
-        title,
-        content,
-        sender=sender,
-        recipients=recipients,
-        reply_to=reply_to,
-        filename=filename,
-        file_content=file_content
-    )
-    ```
 
 - `username`
     -   **Meaning**: The username that created the run
