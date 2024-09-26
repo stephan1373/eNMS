@@ -293,7 +293,7 @@ are made available to the user.
     -   **Type**: Dictionary.
     -   **Available**: After a service has run.
 
--   `send_email()` allows for sending an email with optional attached file. It
+- `send_email()` allows for sending an email with optional attached file. It
     takes the following parameters:
 
     -   `title`: (**string, mandatory**).
@@ -320,6 +320,15 @@ are made available to the user.
         file_content=file_content
     )
     ```
+
+- `server`
+    -   **Meaning**: Server Parameters
+    -   **Type**: Dictionary.
+    -   **Available**: Always.
+    -   **Keys**:
+        -   `ip_address`: Server IP Address.
+        -   `name`: Server Name.
+        -   `url`: Server URL
 
 - `set_var()`
     -   **Meaning**: Save a value by `name` for use later in a workflow.
@@ -381,7 +390,7 @@ are made available to the user.
     `set_var("my_payload", payload)` each result in a loop from within the
     payload to a higher level in the payload. 
 
--   `settings`
+- `settings`
 
     -   **Meaning**: eNMS settings, editable from the top-level `Settings`
         Icon. It is initially set to the content of `settings.json`, and
@@ -395,7 +404,7 @@ are made available to the user.
     -   **Type**: string
     -   **Available**: Always
             
--   `workflow`
+- `workflow`
 
     -   **Meaning**: current workflow.
     -   **Type**: Database Object.
