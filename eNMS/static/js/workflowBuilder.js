@@ -503,9 +503,14 @@ function getResultLink(service, device) {
 function getWorkflowLink(includeRuntime) {
   const baseUrl =
     serverUrl || `${window.location.protocol}//${window.location.hostname}`;
-  let link = `${baseUrl}/workflow_builder/${currentPath}`;
-  if (includeRuntime) link += `/${currentRuntime}`;
-  copyToClipboard({ text: encodeURI(link) });
+  call({
+    url: `/get_workflow_path/${currentPath}`,
+    callback: function (persistentPath) {
+      let link = `${baseUrl}/workflow_builder/${persistentPath}`;
+      if (includeRuntime) link += `/${currentRuntime}`;
+      copyToClipboard({ text: encodeURI(link) });
+    },
+  });
 }
 
 export function updateWorkflowRightClickBindings() {

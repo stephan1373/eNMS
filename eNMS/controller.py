@@ -923,6 +923,12 @@ class Controller:
             "highlight": highlight,
         }
 
+    def get_workflow_path(self, path):
+        return ">".join(
+            db.fetch("service", id=id).persistent_id
+            for id in path.split(">")
+        )
+
     def get_workflow_services(self, id, node):
         parents = db.fetch("workflow", id=id).get_ancestors()
         if node == "all":
