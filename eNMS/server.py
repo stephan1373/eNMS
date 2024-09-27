@@ -285,6 +285,10 @@ class Server(Flask):
         @self.process_requests
         def builder(type, **kwargs):
             endpoint = f"{type}_builder"
+            kwargs["link_path"] = ">".join(
+                str(db.fetch("service", persistent_id=persistent_id).id)
+                for persistent_id in kwargs["link_path"].split(">")
+            )
             return render_template(f"{endpoint}.html", endpoint=endpoint, **kwargs)
 
         @blueprint.route("/<form_type>_form")
