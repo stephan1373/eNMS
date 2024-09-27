@@ -16,6 +16,8 @@ Version 5.2.0: Various Improvements
   - When importing a workflow, we need to merge the positions dictionary of Start and End services
   being imported into the existing ones
 - Store the positions of network nodes at network level
+- Make workflow link persistent across releases (with a new property "persistent_id" different
+  from the database ID and exported in the migration files)
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
