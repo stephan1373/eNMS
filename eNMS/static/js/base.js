@@ -1164,6 +1164,7 @@ export function copyToClipboard({ text, isId, includeText = true }) {
   dummy.select();
   document.execCommand("copy");
   document.body.removeChild(dummy);
+  window.navigator.clipboard?.writeText(text);
   notify(`Copied to Clipboard${includeText ? `: ${text}` : "."}`, "success", 5);
 }
 

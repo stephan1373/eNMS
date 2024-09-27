@@ -152,6 +152,7 @@ export class Table {
             ...this.getFilteringData(),
           });
           Object.assign(data, self.filteringData);
+          self.copyClipboard = false;
           return JSON.stringify(data);
         },
         dataSrc: function (result) {
@@ -163,9 +164,8 @@ export class Table {
             self.exportTable(result.full_result);
             self.csvExport = false;
           }
-          if (self.copyClipboard) {
-            copyToClipboard({ text: result.full_result, includeText: false });
-            self.copyClipboard = false;
+          if (result.clipboard) {
+            copyToClipboard({ text: result.clipboard, includeText: false });
           }
           return result.data.map((instance) =>
             self.addRow({ properties: instance, tableId: self.id })
@@ -355,7 +355,7 @@ export class Table {
         data-tooltip="Bulk Filtering"
         type="button"
       >
-        <span class="glyphicon glyphicon-search"></span>
+        <span class="glyphicon glyphicon-filter"></span>
       </button>`;
   }
 
@@ -594,7 +594,7 @@ tables.device = class DeviceTable extends Table {
         data-tooltip="Search across all properties"
         type="button"
       >
-        <span class="glyphicon glyphicon-filter"></span>
+        <span class="glyphicon glyphicon-search"></span>
       </button>`,
       this.bulkFilteringButton(),
       this.clearSearchButton(),
@@ -1097,7 +1097,7 @@ tables.service = class ServiceTable extends Table {
         data-tooltip="Search across all properties"
         type="button"
       >
-        <span class="glyphicon glyphicon-filter"></span>
+        <span class="glyphicon glyphicon-search"></span>
       </button>`,
       this.bulkFilteringButton(),
       this.clearSearchButton(),
@@ -1139,7 +1139,7 @@ tables.service = class ServiceTable extends Table {
     let runtimeArg = "";
     if (row.type != "workflow") runtimeArg = ", null, 'result'";
     return `
-      <ul class="pagination pagination-lg" style="margin: 0px; width: 340px">
+      <ul class="pagination pagination-lg" style="margin: 0px; width: 350px">
         ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-info"
@@ -1765,7 +1765,7 @@ tables.changelog = class ChangelogTable extends Table {
               row.id
             })" data-tooltip="Revert Change"
             >
-              <span class="glyphicon glyphicon-step-backward"></span>
+              <span class="fa fa-undo"></span>
             </button>
         </li>
       </ul>`,
@@ -1889,7 +1889,6 @@ tables.file = class FileTable extends Table {
       >
         <span class="glyphicon glyphicon-flash"></span>
       </button>`,
-      this.bulkDeletionButton(),
       `<div id="current-folder-path" style="margin-top: 9px; margin-left: 9px"></div>`,
     ];
   }
@@ -2037,6 +2036,10 @@ export const clearSearch = function (tableId, notification) {
   $(".search-relation-dd").val("any").selectpicker("refresh");
   $(".search-relation").val([]).trigger("change");
   $(`.search-select-${tableId}`).val("inclusion");
+  if ($("#serialized-search-div").is(":visible")) {
+    $("#serialized-search").val("");
+    $("#serialized-search-div").toggle();
+  }
   refreshTable(tableId);
   if (notification) notify("Search parameters cleared.", "success", 5);
 };
@@ -2179,7 +2182,7 @@ function displayRelationTable(type, instance, relation) {
         </form>
       </div>`,
     id: instance.id,
-    size: "1200 600",
+    size: "1300 600",
     title: `${instance.name} - ${type}s`,
     tableId: `${type}-${instance.id}`,
     callback: function () {

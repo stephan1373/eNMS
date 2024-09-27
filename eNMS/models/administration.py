@@ -42,10 +42,6 @@ class Server(AbstractBase):
     workers = relationship("Worker", back_populates="server")
     model_properties = {"current_runs": "str"}
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        vs.server_data = self.to_dict()
-
     @property
     def current_runs(self):
         return (
@@ -267,7 +263,10 @@ class Changelog(AbstractBase):
         return self.content
 
     def update(self, **kwargs):
-        super().update(**{"time": vs.get_time(), **kwargs})
+        kwargs["time"] = vs.get_time()
+        if not kwargs.get("author"):
+            kwargs["author"] = getattr(current_user, "name", "")
+        super().update(**kwargs)
 
 
 class Parameters(AbstractBase):

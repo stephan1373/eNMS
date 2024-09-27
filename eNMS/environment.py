@@ -77,9 +77,9 @@ class Environment:
 
     def monitor_filesystem(self):
         class Handler(FileSystemEventHandler):
-            def on_any_event(self, event):
+            def on_any_event(_, event):
                 src_path = event.src_path.replace(str(vs.file_path), "")
-                if any(
+                if not src_path or any(
                     src_path.endswith(extension)
                     for extension in vs.settings["files"]["ignored_types"]
                 ):
@@ -98,7 +98,7 @@ class Environment:
                 file.status = event.event_type.capitalize()
                 if vs.settings["files"]["log_events"]:
                     log = f"File {src_path} {event.event_type} (watchdog)."
-                    env.log("info", log, change_log=True)
+                    self.log("info", log, change_log=True)
                 try:
                     db.session.commit()
                 except (StaleDataError, IntegrityError):
@@ -255,6 +255,7 @@ class Environment:
             def emit(self, record):
                 try:
                     formatted_record = self.format_record(record)
+                    formatted_record.session = None
                     self.send(formatted_record)
                 except (KeyboardInterrupt, SystemExit):
                     raise
@@ -313,6 +314,7 @@ class Environment:
 
         def representer(dumper, data):
             style = "|" if "\n" in data else None
+            data = data.lstrip()
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
 
         yaml.representer.add_representer(str, representer)
@@ -342,7 +344,7 @@ class Environment:
                 **{
                     "severity": severity,
                     "content": content,
-                    "author": user or getattr(current_user, "name", ""),
+                    "author": user,
                     "history": history,
                     "source": source,
                     **(instance.get_changelog_kwargs() if instance else {}),

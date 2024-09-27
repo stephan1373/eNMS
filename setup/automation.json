@@ -59,6 +59,11 @@
   ],
   "workflow": {
     "logs_refresh_rate": 1000,
+    "builder_refresh_rate": {
+      "min": 5000,
+      "max": 60000,
+      "factor": 10
+    },
     "allowed_models": {
       "delete": ["device", "link", "pool", "service"],
       "fetch": ["device", "link", "pool", "service", "run"],

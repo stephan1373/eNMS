@@ -704,7 +704,7 @@
       },
       {
         "data": "buttons",
-        "width": "340px",
+        "width": "350px",
         "orderable": false,
         "export": false,
         "html": true

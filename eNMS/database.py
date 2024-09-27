@@ -598,7 +598,7 @@ class Database:
             else:
                 instance = vs.models[_class](rbac=rbac, **kwargs)
                 self.session.add(instance)
-            if "update_source" in kwargs:
+            if "update_source" in kwargs and hasattr(instance, "name"):
                 key = f"update_{instance.type}_{instance.name}"
                 db.session.connection().info[key] = kwargs["update_source"]
             return instance
