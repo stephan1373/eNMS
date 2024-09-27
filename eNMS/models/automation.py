@@ -1,7 +1,8 @@
+from base64 import b64encode
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
-from os import environ, getpid
+from os import environ, getpid, urandom
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
 from sqlalchemy import Boolean, case, ForeignKey, Integer
@@ -24,6 +25,7 @@ class Service(AbstractBase):
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "service", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
+    persistent_id = db.Column(db.SmallString)
     name = db.Column(db.MediumString, unique=True)
     path = db.Column(db.TinyString, info={"log_change": False})
     creator = db.Column(db.SmallString)
@@ -132,6 +134,8 @@ class Service(AbstractBase):
     def __init__(self, **kwargs):
         kwargs.pop("status", None)
         super().__init__(**kwargs)
+        if not self.persistent_id:
+            self.persistent_id = b64encode(urandom(8)).decode("utf-8").rstrip("=")
 
     @property
     def base_properties(self):
