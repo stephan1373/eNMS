@@ -506,6 +506,9 @@ class Controller:
             table_result["clipboard"] = ",".join(obj.name for obj in query.all())
         return table_result
 
+    def format_code_with_black(self, content):
+        return content
+
     def get(self, model, id, **kwargs):
         func = "get_properties" if kwargs.pop("properties_only", None) else "to_dict"
         if func == "to_dict":

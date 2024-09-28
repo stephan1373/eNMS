@@ -674,7 +674,14 @@ export function configureForm(form, id, panelId) {
         </button>
       `);
       blackButton.on("click", function() {
-        console.log('Button clicked!');
+        call({
+          url: "/format_code_with_black",
+          data: {content: editor.getValue()},
+          callback: (result) => {
+            editor.setValue(result);
+            notify("Code formatted with black", "success", 5);
+          },
+        });
       });
       $(`label[help="${el.attr('help')}"]`).css({
           "display": "flex",
