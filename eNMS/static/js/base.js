@@ -679,7 +679,7 @@ export function configureForm(form, id, panelId) {
           data: {content: editor.getValue()},
           callback: (result) => {
             editor.setValue(result);
-            notify("Code formatted with black", "success", 5);
+            notify("Code formatted with black.", "success", 5);
           },
         });
       });
