@@ -668,6 +668,19 @@ export function configureForm(form, id, panelId) {
       editor.on("change", () => editor.save());
       if (!editors[id]) editors[id] = {};
       editors[id][property] = editor;
+      const blackButton = $(`
+        <button class="icon-button" type="button" style="margin-left: auto;">
+          <span class="glyphicon glyphicon-bold"></span>
+        </button>
+      `);
+      blackButton.on("click", function() {
+        console.log('Button clicked!');
+      });
+      $(`label[help="${el.attr('help')}"]`).css({
+          "display": "flex",
+          "justify-content": "space-between",
+          "align-items": "center"
+      }).append(blackButton);
     } else if (["object", "object-list"].includes(field.type)) {
       let model;
       if (relationships?.[form]?.[property]?.model) {
