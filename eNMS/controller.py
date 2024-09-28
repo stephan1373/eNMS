@@ -1,3 +1,4 @@
+from black import format_str, Mode
 from collections import Counter, defaultdict
 from contextlib import redirect_stdout
 from datetime import datetime
@@ -507,7 +508,7 @@ class Controller:
         return table_result
 
     def format_code_with_black(self, content):
-        return content
+        return format_str(content, mode=Mode())
 
     def get(self, model, id, **kwargs):
         func = "get_properties" if kwargs.pop("properties_only", None) else "to_dict"
