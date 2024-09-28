@@ -20,6 +20,7 @@ Version 5.2.0: Various Improvements
   from the database ID and exported in the migration files)
 - Add options for all fields accepting python code to automatically format the code with black.
   Move black to requirements.txt (from requirements_dev.txt)
+- Remove "refetch_after_process_fork" option (always refetch after process fork)
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
