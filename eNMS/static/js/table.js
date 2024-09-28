@@ -133,6 +133,11 @@ export class Table {
                   waitForSearch = false;
                 }, 500);
               })
+              .on("keydown", function (e) {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                }
+              })
               .on("click", function (e) {
                 e.stopPropagation();
               });
