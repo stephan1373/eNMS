@@ -1,5 +1,6 @@
 apscheduler
 argon2-cffi
+black
 flask
 flask_caching
 flask_login
