@@ -22,6 +22,8 @@ Version 5.2.0: Various Improvements
   Move black to requirements.txt (from requirements_dev.txt)
 - Remove "refetch_after_process_fork" option (always refetch after process fork)
 - Fix bug when entering enter when searching a property like server_name on a table (e.g worker table)
+- Display service color in Workflow Builder and Workflow Tree based on "color" key in the device
+  results if it exists
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
