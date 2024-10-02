@@ -360,8 +360,14 @@ function showBuilderSearchPanel() {
               name="search_value"
               placeholder="&#xF002;"
               class="form-control"
-              style="font-family: Arial, FontAwesome;"
+              style="font-family: Arial, FontAwesome; margin-bottom: 5px"
             />
+            <div>
+              <label for="tree-display-all-services">
+                <input type="checkbox" id="tree-display-all-services" />
+                  Include Non-Matching Services in Workflow Tree
+              </label>
+            </div>
         </fieldset>
         ${bottomField}
       </form>`,
@@ -370,7 +376,7 @@ function showBuilderSearchPanel() {
     callback: () => {
       const func = type == "workflow" ? getWorkflowState : getNetworkState;
       initSelect($(`#device-filter`), "device", null, true);
-      $("#device-filter").on("change", func);
+      $("#device-filter,#tree-display-all-services").on("change", func);
       $("#tree-search-mode").selectpicker().on("change", func);
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function () {
