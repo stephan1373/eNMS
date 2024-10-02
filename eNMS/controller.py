@@ -679,10 +679,9 @@ class Controller:
             state = run.get_state() if run else None
         if kwargs.get("device") and run:
             output["device_state"] = kwargs["device_state"] = {
-                result.service_id: {
-                    "status": result.success,
-                    "color": result.result.get("color"),
-                }
+                result.service_id: result.result.get(
+                    "color", "#32CD32" if result.success else "#FF6666"
+                )
                 for result in db.fetch_all(
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
@@ -883,11 +882,7 @@ class Controller:
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
             if instance.id in kwargs.get("device_state", {}):
-                color = kwargs["device_state"][instance.id]["color"] or (
-                    "#32CD32"
-                    if kwargs["device_state"][instance.id]["status"]
-                    else "#FF6666"
-                )
+                color = kwargs["device_state"][instance.id]
             elif run:
                 if state[path].get("dry_run"):
                     color = "#E09E2F"
