@@ -24,6 +24,8 @@ Version 5.2.0: Various Improvements
 - Fix bug when entering enter when searching a property like server_name on a table (e.g worker table)
 - Display service color in Workflow Builder and Workflow Tree based on "color" key in the device
   results if it exists
+- Workflow Tree updates:
+  - Add yellow color to services that match a workflow search in the workflow tree
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
