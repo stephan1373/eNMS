@@ -26,6 +26,10 @@ Version 5.2.0: Various Improvements
   results if it exists
 - Workflow Tree updates:
   - Add yellow color to services that match a workflow search in the workflow tree
+  - In the workflow search panel, add an option to include all services in the workflow tree:
+    - When the option is disabled, services that do not match are filtered out.
+    - When the option is enabled, services that do match are highlighted and services
+    that don't are displayed normally.
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
