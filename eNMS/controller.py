@@ -1445,7 +1445,6 @@ class Controller:
         return content
 
     def save_positions(self, type, id, **kwargs):
-        now = vs.get_time()
         instance = db.fetch(type, allow_none=True, id=id, rbac="edit")
         if not instance:
             return
@@ -1458,7 +1457,7 @@ class Controller:
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
         instance.last_modified = vs.get_time()
-        return now
+        return instance.last_modified
 
     def save_profile(self, **kwargs):
         allow_password_change = vs.settings["authentication"]["allow_password_change"]
