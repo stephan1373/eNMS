@@ -679,7 +679,10 @@ class Controller:
             state = run.get_state() if run else None
         if kwargs.get("device") and run:
             output["device_state"] = kwargs["device_state"] = {
-                result.service_id: result.success
+                result.service_id: {
+                    "status": result.success,
+                    "color": result.result.get("color")
+                }
                 for result in db.fetch_all(
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
@@ -880,21 +883,24 @@ class Controller:
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
             if instance.id in kwargs.get("device_state", {}):
-                color = "32CD32" if kwargs["device_state"][instance.id] else "FF6666"
+                color = (
+                    kwargs["device_state"][instance.id]["color"]
+                    or ("#32CD32" if kwargs["device_state"][instance.id]["status"] else "#FF6666")
+                )
             elif run:
                 if state[path].get("dry_run"):
-                    color = "E09E2F"
+                    color = "#E09E2F"
                 elif "success" in state[path]["result"]:
-                    color = "32CD32" if state[path]["result"]["success"] else "FF6666"
+                    color = "#32CD32" if state[path]["result"]["success"] else "#FF6666"
                 else:
-                    color = "25B6FA"
+                    color = "#25B6FA"
             else:
                 color = (
-                    "FF1694"
+                    "#FF1694"
                     if getattr(instance, "shared", False)
-                    else "E09E2F"
+                    else "#E09E2F"
                     if getattr(instance, "dry_run", False)
-                    else "6666FF"
+                    else "#6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
@@ -911,7 +917,7 @@ class Controller:
                 "children": children,
                 "a_attr": {
                     "class": f"no_checkbox {attr_class}",
-                    "style": f"color: #{color}; width: 100%; {style}",
+                    "style": f"color: {color}; width: 100%; {style}",
                 },
                 "type": instance.type,
             }

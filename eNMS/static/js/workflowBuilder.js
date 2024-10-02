@@ -639,8 +639,9 @@ function displayWorkflowState(result, workflowSwitch) {
   }
   if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
-    for (const [serviceId, status] of Object.entries(result.device_state)) {
-      colorService(parseInt(serviceId), status ? "#32CD32" : "#FF6666");
+    for (const [serviceId, state] of Object.entries(result.device_state)) {
+      const color = state.color || (state.success ? "#32CD32" : "#FF6666");
+      colorService(parseInt(serviceId), color);
     }
     return;
   }
