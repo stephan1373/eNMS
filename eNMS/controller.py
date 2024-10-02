@@ -841,7 +841,7 @@ class Controller:
                     path = f"{path.split('>')[0]}>{path_id[1]}"
             if active_search and instance.type != type:
                 if match(instance, **kwargs):
-                    style = "font-weight: bold;"
+                    style = "font-weight: bold; color: #BABA06"
                 else:
                     return
             children = False
@@ -875,7 +875,7 @@ class Controller:
                     if not children and not is_match:
                         return
                     elif is_match:
-                        style = "font-weight: bold;"
+                        style = "font-weight: bold; color: #BABA06"
             progress_data = {}
             if run and "device_state" not in kwargs:
                 progress = state[path].get("progress")
