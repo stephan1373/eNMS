@@ -434,9 +434,7 @@ class Runner:
         run_kwargs = {"in_process": True}
         for key, value in run.kwargs.items():
             try:
-                run_kwargs[key] = db.fetch(
-                    value.type, id=refetch_ids[key], rbac=None
-                )
+                run_kwargs[key] = db.fetch(value.type, id=refetch_ids[key], rbac=None)
             except Exception as exc:
                 if isinstance(exc, SQLAlchemyError):
                     db.session.rollback()

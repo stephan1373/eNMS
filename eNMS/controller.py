@@ -681,7 +681,7 @@ class Controller:
             output["device_state"] = kwargs["device_state"] = {
                 result.service_id: {
                     "status": result.success,
-                    "color": result.result.get("color")
+                    "color": result.result.get("color"),
                 }
                 for result in db.fetch_all(
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
@@ -883,9 +883,10 @@ class Controller:
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
             if instance.id in kwargs.get("device_state", {}):
-                color = (
-                    kwargs["device_state"][instance.id]["color"]
-                    or ("#32CD32" if kwargs["device_state"][instance.id]["status"] else "#FF6666")
+                color = kwargs["device_state"][instance.id]["color"] or (
+                    "#32CD32"
+                    if kwargs["device_state"][instance.id]["status"]
+                    else "#FF6666"
                 )
             elif run:
                 if state[path].get("dry_run"):
@@ -898,9 +899,7 @@ class Controller:
                 color = (
                     "#FF1694"
                     if getattr(instance, "shared", False)
-                    else "#E09E2F"
-                    if getattr(instance, "dry_run", False)
-                    else "#6666FF"
+                    else "#E09E2F" if getattr(instance, "dry_run", False) else "#6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
@@ -935,8 +934,7 @@ class Controller:
 
     def get_workflow_path(self, path):
         return ">".join(
-            db.fetch("service", id=id).persistent_id
-            for id in path.split(">")
+            db.fetch("service", id=id).persistent_id for id in path.split(">")
         )
 
     def get_workflow_services(self, id, node):
