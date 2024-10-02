@@ -51697,7 +51697,7 @@
   "version": ""
   "waiting_time": !!int "0"
 - "admin_only": !!bool "false"
-  "category": "Other"
+  "category": "Basics"
   "close_connection": !!bool "false"
   "completion_time": !!int "1"
   "content_match": ""
@@ -51728,8 +51728,18 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
-  "last_modified": "2024-10-02 08:47:40.574774"
+  "labels":
+    "b4d81230-7098-43f3-bc12-b5d10faf0fd5":
+      "positions":
+      - !!int "228"
+      - !!int "62"
+      "content": |-
+        This workflow is running on two devices, Austin and Washington.
+        The "Device Filtering" feature must be enabled, and different colors
+        should be shown based on the selected device.
+      "alignment": "left"
+      "size": !!int "14"
+  "last_modified": "2024-10-02 08:53:01.451973"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": !!int "1"
@@ -51766,17 +51776,17 @@
   "persistent_id": "+F8WZQI8kvE"
   "positions":
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - !!int "618"
+    - !!int "4"
     "[Colored Per-Device Display based on Results] Color 1":
-    - !!int "244"
-    - !!int "-120"
+    - !!int "6"
+    - !!int "218"
     "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
+    - !!int "-197"
+    - !!int "21"
     "[Colored Per-Device Display based on Results] Color 2":
-    - !!int "236"
-    - !!int "105"
+    - !!int "400"
+    - !!int "240"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -51901,7 +51911,7 @@
   "skip_value": "success"
   "source_code": |-
     # Click on "i" to right of "Source Code" for examples.
-    
+
     result = {}
     results["color"] = "#fcba03" if device.name == "Washington" else "#03fc2c"
     results["success"] = True
