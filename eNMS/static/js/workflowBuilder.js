@@ -780,7 +780,7 @@ export function getWorkflowState(periodic, first) {
         device: $("#device-filter").val(),
         search_mode: $("#tree-search-mode").val(),
         search_value: $("#tree-search").val(),
-        display_all_services: $("#tree-display-all-services").prop("checked"),
+        display_all: $("#tree-display-all-services").prop("checked"),
       },
       callback: function (result) {
         const updateDisplay = (

@@ -842,7 +842,7 @@ class Controller:
             if active_search and instance.type != type:
                 if match(instance, **kwargs):
                     style = "font-weight: bold; color: #BABA06"
-                else:
+                elif not kwargs["display_all"]:
                     return
             children = False
             if instance.type == type:
@@ -872,7 +872,7 @@ class Controller:
                 )
                 if active_search:
                     is_match = match(instance, **kwargs)
-                    if not children and not is_match:
+                    if not children and not is_match and not kwargs["display_all"]:
                         return
                     elif is_match:
                         style = "font-weight: bold; color: #BABA06"
