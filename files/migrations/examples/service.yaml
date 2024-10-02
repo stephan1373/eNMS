@@ -51696,3 +51696,325 @@
   "vendor": ""
   "version": ""
   "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "category": "Other"
+  "close_connection": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "custom_property": "Default Value"
+  "default_uuid": "a244a479-3f82-4c14-8832-de93673237f3"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "labels": {}
+  "last_modified": "2024-10-02 08:47:40.574774"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "man_minutes": !!int "0"
+  "man_minutes_total": !!int "0"
+  "man_minutes_type": "workflow"
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "Colored Per-Device Display based on Results"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": |-
+    name = StringField('Name', [InputRequired()])
+    initial_payload = DictField()
+    target_devices = MultipleInstanceField('Devices', model='device')
+    target_pools = MultipleInstanceField('Pools', model='pool')
+    device_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})
+    device_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))
+    multiprocessing = BooleanField('Multiprocessing', default=False)
+    max_processes = IntegerField('Maximum number of processes', default=15)
+  "parameterized_form_template": ""
+  "persistent_id": "+F8WZQI8kvE"
+  "positions":
+    "[Shared] End":
+    - !!int "500"
+    - !!int "0"
+    "[Colored Per-Device Display based on Results] Color 1":
+    - !!int "244"
+    - !!int "-120"
+    "[Shared] Start":
+    - !!int "0"
+    - !!int "0"
+    "[Colored Per-Device Display based on Results] Color 2":
+    - !!int "236"
+    - !!int "105"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Colored Per-Device Display based on Results"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "services":
+  - "[Colored Per-Device Display based on Results] Color 1"
+  - "[Colored Per-Device Display based on Results] Color 2"
+  - "[Shared] End"
+  - "[Shared] Start"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices":
+  - "Austin"
+  - "Washington"
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "workflow"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "c2647d10-1540-40a6-830d-eadad919935b"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-10-02 08:46:47.316745"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Colored Per-Device Display based on Results] Color 1"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": |-
+    name = StringField('Name', [InputRequired()])
+    initial_payload = DictField()
+    target_devices = MultipleInstanceField('Devices', model='device')
+    target_pools = MultipleInstanceField('Pools', model='pool')
+    device_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})
+    device_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))
+    multiprocessing = BooleanField('Multiprocessing', default=False)
+    max_processes = IntegerField('Maximum number of processes', default=15)
+  "parameterized_form_template": ""
+  "persistent_id": "CvwdAOgc4aI"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Color 1"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": |-
+    # Click on "i" to right of "Source Code" for examples.
+    
+    result = {}
+    results["color"] = "#fcba03" if device.name == "Washington" else "#03fc2c"
+    results["success"] = True
+    results["result"] = result
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": !!int "0"
+- "admin_only": !!bool "false"
+  "completion_time": !!int "1"
+  "content_match": ""
+  "content_match_regex": !!bool "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "c2647d10-1540-40a6-830d-eadad919935b"
+  "definition": "Definition"
+  "delete_spaces_before_matching": !!bool "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": !!bool "false"
+  "disabled": !!bool "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": !!bool "false"
+  "display_report": !!bool "false"
+  "dry_run": !!bool "false"
+  "email_report": !!bool "false"
+  "impacting": !!bool "true"
+  "include_device_results": !!bool "false"
+  "include_link_in_summary": !!bool "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-10-02 08:47:32.381171"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": !!int "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": !!bool "false"
+  "max_number_of_retries": !!int "100"
+  "max_processes": !!int "15"
+  "maximum_runs": !!int "1"
+  "multiprocessing": !!bool "false"
+  "name": "[Colored Per-Device Display based on Results] Color 2"
+  "negative_logic": !!bool "false"
+  "notification_header": ""
+  "number_of_retries": !!int "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": |-
+    name = StringField('Name', [InputRequired()])
+    initial_payload = DictField()
+    target_devices = MultipleInstanceField('Devices', model='device')
+    target_pools = MultipleInstanceField('Pools', model='pool')
+    device_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})
+    device_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))
+    multiprocessing = BooleanField('Multiprocessing', default=False)
+    max_processes = IntegerField('Maximum number of processes', default=15)
+  "parameterized_form_template": ""
+  "persistent_id": "8OwkZLOs9Rw"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": !!int "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": !!bool "false"
+  "reserved": !!bool "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Color 2"
+  "send_notification": !!bool "false"
+  "send_notification_method": "mail"
+  "shared": !!bool "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": |-
+    # Click on "i" to right of "Source Code" for examples.
+    results["color"] = "#03fcf0" if device.name == "Washington" else "#fc03db"
+    result = {}
+    results["success"] = True
+    results["result"] = result
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": !!int "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": !!bool "false"
+  "update_target_pools": !!bool "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": !!int "0"
