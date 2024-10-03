@@ -32,6 +32,12 @@ Version 5.2.0: Various Improvements
     that don't are displayed normally.
   - In Tree Search, add support for regular expression search
 
+Tests:
+- Test that the workflow builder's search functions correctly across all case combinations:
+  - Normal search versus regex-based search
+  - Search by names versus search across all properties
+  - Display all services versus only matching services
+
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
   nodes and networks
