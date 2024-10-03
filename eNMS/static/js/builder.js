@@ -382,7 +382,7 @@ function showBuilderSearchPanel() {
     callback: () => {
       const func = type == "workflow" ? getWorkflowState : getNetworkState;
       initSelect($(`#device-filter`), "device", null, true);
-      $("#device-filter,#tree-display-all-services").on("change", func);
+      $("#device-filter,#tree-display-all-services,#tree-regex-search").on("change", func);
       $("#tree-search-mode").selectpicker().on("change", func);
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function () {
