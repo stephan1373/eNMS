@@ -420,6 +420,12 @@ function displayResultsTable(service, runtime, _, type, refresh, fullResult) {
         service_id_filter: "equality",
       });
     }
+    if ($("#device-filter").val()) {
+      Object.assign(constraints, {
+        device_id: $("#device-filter").val(),
+        device_id_filter: "equality",
+      });
+    }
     new tables[type](service.id, constraints);
   }
 }
