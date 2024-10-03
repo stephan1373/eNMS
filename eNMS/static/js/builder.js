@@ -362,10 +362,16 @@ function showBuilderSearchPanel() {
               class="form-control"
               style="font-family: Arial, FontAwesome; margin-bottom: 5px"
             />
-            <div>
+            <div style="margin-bottom: 5px">
               <label for="tree-display-all-services">
                 <input type="checkbox" id="tree-display-all-services" />
                   Include Non-Matching Services in Workflow Tree
+              </label>
+            </div>
+            <div>
+              <label for="tree-regex-search">
+                <input type="checkbox" id="tree-regex-search" />
+                  Regular Expression Search
               </label>
             </div>
         </fieldset>

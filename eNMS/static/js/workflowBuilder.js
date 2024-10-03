@@ -781,6 +781,7 @@ export function getWorkflowState(periodic, first) {
         search_mode: $("#tree-search-mode").val(),
         search_value: $("#tree-search").val(),
         display_all: $("#tree-display-all-services").prop("checked"),
+        regex_search: $("#tree-regex-search").prop("checked"),
       },
       callback: function (result) {
         const updateDisplay = (
