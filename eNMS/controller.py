@@ -812,13 +812,13 @@ class Controller:
         visited = set()
 
         def match(instance, **kwargs):
+            is_regex_search = kwargs.get("regex_search", False)
             name = getattr(instance, "name" if type == "network" else "scoped_name")
-            is_match = not (
-                kwargs["search_mode"] == "names"
-                and kwargs["search_value"].lower() not in name.lower()
-                or kwargs["search_mode"] == "properties"
-                and kwargs["search_value"].lower() not in instance.serialized
-            )
+            value = kwargs["search_value"]
+            if kwargs["search_mode"] == "names":
+                is_match = search(value, name) if is_regex_search else value.lower() in name.lower()
+            else:
+                is_match = search(value, instance.serialized) if is_regex_search else value.lower() in instance.serialized
             if is_match:
                 highlight.append(instance.id)
             return is_match
