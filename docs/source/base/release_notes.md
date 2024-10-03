@@ -30,6 +30,7 @@ Version 5.2.0: Various Improvements
     - When the option is disabled, services that do not match are filtered out.
     - When the option is enabled, services that do match are highlighted and services
     that don't are displayed normally.
+  - In Tree Search, add support for regular expression search
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
