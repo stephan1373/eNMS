@@ -31,6 +31,7 @@ Version 5.2.0: Various Improvements
     - When the option is enabled, services that do match are highlighted and services
     that don't are displayed normally.
   - In Tree Search, add support for regular expression search
+- When device filtering is enabled, limit results displayed in result table to the filtered device
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
