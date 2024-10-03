@@ -816,9 +816,17 @@ class Controller:
             name = getattr(instance, "name" if type == "network" else "scoped_name")
             value = kwargs["search_value"]
             if kwargs["search_mode"] == "names":
-                is_match = search(value, name) if is_regex_search else value.lower() in name.lower()
+                is_match = (
+                    search(value, name)
+                    if is_regex_search
+                    else value.lower() in name.lower()
+                )
             else:
-                is_match = search(value, instance.serialized) if is_regex_search else value.lower() in instance.serialized
+                is_match = (
+                    search(value, instance.serialized)
+                    if is_regex_search
+                    else value.lower() in instance.serialized
+                )
             if is_match:
                 highlight.append(instance.id)
             return is_match
