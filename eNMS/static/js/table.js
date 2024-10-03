@@ -215,7 +215,7 @@ export class Table {
       : `#search-form-${this.id}`;
     let form = serializeForm(serializedForm, `${this.model}_filtering`, bulkFiltering);
     for (const [key, value] of Object.entries(form)) {
-      if (key.includes("_invert")) form[key] = ["y", "on"].includes(value);
+      if (key.includes("_invert")) form[key] = ["y", "on", "bool-true"].includes(value);
     }
     Object.assign(data, {
       form: form,
