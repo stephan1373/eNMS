@@ -33,6 +33,7 @@ Version 5.2.0: Various Improvements
   - In Tree Search, add support for regular expression search
 - When device filtering is enabled, limit results displayed in result table to the filtered device
 - Fix table form filtering bug: invert checkbox constraint in table filtering not enforced previously
+- Upgrade JQuery to the latest version v3.7.1
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
