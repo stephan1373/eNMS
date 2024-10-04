@@ -260,7 +260,11 @@ export function drawTree(service, data, resultsPanel) {
       }
     });
     tree.on("select_node.jstree", function (_, data) {
-      network.selectNodes(data.selected.map(path => parseInt(path.split(">").pop())).filter(id => nodes.get(id)))
+      network.selectNodes(
+        data.selected
+          .map((path) => parseInt(path.split(">").pop()))
+          .filter((id) => nodes.get(id))
+      );
     });
     tree.unbind("dblclick").on("dblclick", function (event) {
       highlightNode($(treeId).jstree(true).get_node(event.target).data);
@@ -382,7 +386,10 @@ function showBuilderSearchPanel() {
     callback: () => {
       const func = type == "workflow" ? getWorkflowState : getNetworkState;
       initSelect($(`#device-filter`), "device", null, true);
-      $("#device-filter,#tree-display-all-services,#tree-regex-search").on("change", func);
+      $("#device-filter,#tree-display-all-services,#tree-regex-search").on(
+        "change",
+        func
+      );
       $("#tree-search-mode").selectpicker().on("change", func);
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function () {
@@ -714,7 +721,7 @@ export function processBuilderData(newInstance) {
     }
     nodes.update(drawNode(newInstance));
     if (type == "workflow") drawIterationEdge(instance);
-    switchMode("motion");    
+    switchMode("motion");
   }
 }
 

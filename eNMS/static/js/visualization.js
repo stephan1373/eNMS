@@ -106,8 +106,8 @@ function createNode(node) {
       markerType == "Circle Marker"
         ? L.circleMarker([node.latitude, node.longitude])
         : markerType == "Circle"
-        ? L.circle([node.latitude, node.longitude])
-        : L.marker([node.latitude, node.longitude]);
+          ? L.circle([node.latitude, node.longitude])
+          : L.marker([node.latitude, node.longitude]);
   } catch (err) {
     return console.error(`Device '${node.name}' couldn't be loaded (${err})`);
   }
@@ -259,8 +259,8 @@ function displayNetwork({ direction, noAlert, withCluster } = {}) {
     direction == "left"
       ? history[historyPosition - 1]
       : direction == "right"
-      ? history[historyPosition + 1]
-      : $("#current-pool").val();
+        ? history[historyPosition + 1]
+        : $("#current-pool").val();
   localStorage.setItem(page, currentPath);
   if (
     (direction == "left" && historyPosition == 0) ||

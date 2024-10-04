@@ -267,7 +267,7 @@ function displayNetworkState(state) {
   );
   if (!state.highlight) return;
   nodes.update(
-    state.highlight.map(nodeId => {
+    state.highlight.map((nodeId) => {
       if (!nodes.get(nodeId)) return;
       const icon = nodes.get(nodeId).icon;
       const image = `/static/img/network/red/${icon}.gif`;

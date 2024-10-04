@@ -367,10 +367,10 @@ export function drawWorkflowNode(service) {
     color: defaultService
       ? "pink"
       : isPlaceholder
-      ? "#E6ADD8"
-      : service.dry_run
-      ? "#EDC582"
-      : "#D2E5FF",
+        ? "#E6ADD8"
+        : service.dry_run
+          ? "#EDC582"
+          : "#D2E5FF",
     font: {
       size: 15,
       multi: "html",
@@ -676,14 +676,14 @@ function displayWorkflowState(result, workflowSwitch) {
           state.status == "Skipped" || (total && skipped == total)
             ? "#D3D3D3"
             : success + failure + skipped < total
-            ? "#89CFF0"
-            : state.dry_run
-            ? "#EDC582"
-            : state.success === false || failure > 0
-            ? "#FF6666"
-            : state.success === true
-            ? "#32CD32"
-            : "#00CCFF"
+              ? "#89CFF0"
+              : state.dry_run
+                ? "#EDC582"
+                : state.success === false || failure > 0
+                  ? "#FF6666"
+                  : state.success === true
+                    ? "#32CD32"
+                    : "#00CCFF"
         );
         if (total) {
           const prefix = progressKey == "device" ? "Devices" : "Iteration";
@@ -753,8 +753,8 @@ export function resetWorkflowDisplay() {
         color: service.skip[workflow.name]
           ? "#D3D3D3"
           : service.dry_run
-          ? "#EDC582"
-          : "#D2E5FF",
+            ? "#EDC582"
+            : "#D2E5FF",
       });
     }
   });
@@ -784,11 +784,10 @@ export function getWorkflowState(periodic, first) {
         regex_search: $("#tree-regex-search").prop("checked"),
       },
       callback: function (result) {
-        const updateDisplay = (
-          !discardNextRefresh
-          && Object.keys(result).length
-          && result.service.id == workflow.id
-        );
+        const updateDisplay =
+          !discardNextRefresh &&
+          Object.keys(result).length &&
+          result.service.id == workflow.id;
         if (updateDisplay) {
           currentRun = result.run;
           currentRuntime = result.runtime;
@@ -803,9 +802,8 @@ export function getWorkflowState(periodic, first) {
         const refreshSettings = automation.workflow.builder_refresh_rate;
         const endTime = new Date().getTime();
         const delay = Math.min(
-          refreshSettings.max, Math.max(
-            refreshSettings.min, (endTime - startTime) * refreshSettings.factor
-          )
+          refreshSettings.max,
+          Math.max(refreshSettings.min, (endTime - startTime) * refreshSettings.factor)
         );
         if (periodic) setTimeout(() => getWorkflowState(true), delay);
       },

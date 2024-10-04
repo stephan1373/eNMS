@@ -207,18 +207,18 @@ export const showRuntimePanel = function (
     type == "logs"
       ? displayLogs
       : type == "report"
-      ? displayReport
-      : service.type == "workflow" && !table
-      ? displayResultsTree
-      : displayResultsTable;
+        ? displayReport
+        : service.type == "workflow" && !table
+          ? displayResultsTree
+          : displayResultsTable;
   const panelType =
     type == "logs"
       ? "logs"
       : type == "report"
-      ? "report"
-      : service.type == "workflow" && !table
-      ? "tree"
-      : "table";
+        ? "report"
+        : service.type == "workflow" && !table
+          ? "tree"
+          : "table";
   const panelId = `${panelType}-${service.id}`;
   call({
     url: `/get_runtimes/${service.id}`,
@@ -654,8 +654,8 @@ export function showRunServicePanel({ instance, tableId, targets, type }) {
   const title = type
     ? `all ${type}s`
     : tableId
-    ? `all ${type}s in table`
-    : `${instance.type} '${instance.name}'`;
+      ? `all ${type}s in table`
+      : `${instance.type} '${instance.name}'`;
   const panelId = tableId || instance?.id || type;
   openPanel({
     name: "run_service",

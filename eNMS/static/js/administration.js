@@ -96,7 +96,9 @@ function showChangelogDiff(id) {
         name: "changelog_diff",
         content: `
           <div class="modal-body">
-            ${changelog?.history?.properties ? `<nav
+            ${
+              changelog?.history?.properties
+                ? `<nav
               class="navbar navbar-default nav-controls"
               role="navigation"
               style="width: 350px; display: flex;"
@@ -124,7 +126,9 @@ function showChangelogDiff(id) {
               >
                 <span class="glyphicon glyphicon-adjust"></span>
               </button>
-            </nav>` : ""}
+            </nav>`
+                : ""
+            }
             <div id="changelog-content-${id}" style="margin-top: 30px"></div>
           </div>`,
         title: "Result",
@@ -132,27 +136,31 @@ function showChangelogDiff(id) {
         callback: function () {
           const editor = initCodeMirror(`changelog-content-${id}`, "network");
           if (changelog?.history?.properties) {
-            $(`#changelog-properties-${id}`).append(
-              `<option value="full_content">Full Content</option>`
-            ).on("change", function () {
-              let value = changelog.content
-              if ($(`#changelog-properties-${id}`).val() != "full_content") {
-                const valueType = $("#diff-value-type").prop("checked") ? "old" : "new";
-                value = changelog.history.properties[this.value][valueType];
-              }
-              editor.setValue(typeof value === "number" ? value.toString() : value);
-              editor.refresh();
-            });
-            $("#diff-value-type").bootstrapToggle({
-              on: "Old Value",
-              off: "New Value",
-            }).change(function() {
-              $(`#changelog-properties-${id}`).trigger("change");
-            });
+            $(`#changelog-properties-${id}`)
+              .append(`<option value="full_content">Full Content</option>`)
+              .on("change", function () {
+                let value = changelog.content;
+                if ($(`#changelog-properties-${id}`).val() != "full_content") {
+                  const valueType = $("#diff-value-type").prop("checked")
+                    ? "old"
+                    : "new";
+                  value = changelog.history.properties[this.value][valueType];
+                }
+                editor.setValue(typeof value === "number" ? value.toString() : value);
+                editor.refresh();
+              });
+            $("#diff-value-type")
+              .bootstrapToggle({
+                on: "Old Value",
+                off: "New Value",
+              })
+              .change(function () {
+                $(`#changelog-properties-${id}`).trigger("change");
+              });
             for (const property of Object.keys(changelog.history.properties)) {
               $(`#changelog-properties-${id}`).append(
                 `<option value="${property}">${property}</option>`
-              )
+              );
             }
             $(`#changelog-properties-${id}`).selectpicker("refresh");
           }
@@ -168,8 +176,8 @@ function showChangelogDiff(id) {
             });
         },
       });
-    }
-  })
+    },
+  });
 }
 
 export function openDebugPanel() {

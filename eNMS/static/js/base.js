@@ -673,21 +673,23 @@ export function configureForm(form, id, panelId) {
           <span class="glyphicon glyphicon-bold"></span>
         </button>
       `);
-      blackButton.on("click", function() {
+      blackButton.on("click", function () {
         call({
           url: "/format_code_with_black",
-          data: {content: editor.getValue()},
+          data: { content: editor.getValue() },
           callback: (result) => {
             editor.setValue(result);
             notify("Code formatted with black.", "success", 5);
           },
         });
       });
-      $(`label[help="${el.attr('help')}"]`).css({
-          "display": "flex",
+      $(`label[help="${el.attr("help")}"]`)
+        .css({
+          display: "flex",
           "justify-content": "space-between",
-          "align-items": "center"
-      }).append(blackButton);
+          "align-items": "center",
+        })
+        .append(blackButton);
     } else if (["object", "object-list"].includes(field.type)) {
       let model;
       if (relationships?.[form]?.[property]?.model) {
@@ -768,7 +770,9 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
   openPanel({
     name: formType,
     id: id || tableId,
-    footerToolbar: hideButton ? "" : `
+    footerToolbar: hideButton
+      ? ""
+      : `
       <div style="width: 100%; height: 40px; display: flex;
         align-items: center; justify-content: center;">
         <button
@@ -789,7 +793,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
-      if (type == "folder") showFolderPanel(id); 
+      if (type == "folder") showFolderPanel(id);
       if (id) {
         call({
           url: `/get/${type}/${id}`,
@@ -824,8 +828,8 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       const property = isService
         ? "scoped_name"
         : type == "folder"
-        ? "filename"
-        : "name";
+          ? "filename"
+          : "name";
       $(`#${type}-${property}`).focus();
     },
     type: type,
@@ -983,8 +987,8 @@ export function displayDiff(type, instanceId, property) {
     instanceId == "none"
       ? $("#configuration-property-diff").val()
       : type.includes("result")
-      ? "result"
-      : type;
+        ? "result"
+        : type;
   const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
   let v1 = $(`input[name=v1${postfix}]:checked`).val();
   let v2 = $(`input[name=v2${postfix}]:checked`).val();
@@ -1523,7 +1527,7 @@ $(document).ready(function () {
   createNotificationBanner();
 });
 
-$(window).on("load", function() {
+$(window).on("load", function () {
   NProgress.done();
 });
 

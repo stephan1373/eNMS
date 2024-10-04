@@ -236,8 +236,8 @@ export class Table {
       const visible = visibleColumns
         ? visibleColumns.split(",").includes(column.name)
         : "visible" in column
-        ? column.visible
-        : true;
+          ? column.visible
+          : true;
       const columnTitle = column.data == "buttons" ? "Buttons" : column.title;
       $(`#column-display-${this.id}`).append(
         new Option(columnTitle || column.data, column.data, visible, visible)
@@ -382,10 +382,10 @@ export class Table {
           '${this.id}', '${this.type}', ${this.relationString}
         )`
       : this.type == "service"
-      ? `eNMS.automation.openServicePanel()`
-      : this.type == "device" || this.type == "link"
-      ? `eNMS.inventory.openObjectPanel('${this.type}')`
-      : `eNMS.base.showInstancePanel('${this.type}')`;
+        ? `eNMS.automation.openServicePanel()`
+        : this.type == "device" || this.type == "link"
+          ? `eNMS.inventory.openObjectPanel('${this.type}')`
+          : `eNMS.base.showInstancePanel('${this.type}')`;
     return `
       <button
         class="btn btn-primary"
@@ -656,8 +656,8 @@ tables.device = class DeviceTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -753,8 +753,8 @@ tables.network = class NetworkTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -923,8 +923,8 @@ tables.link = class LinkTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -1754,8 +1754,8 @@ tables.changelog = class ChangelogTable extends Table {
           <button ${row.target_id ? "" : "disabled"} type="button"
           class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.target_type}', '${
-      row.target_id
-    }')" data-tooltip="Edit"
+            row.target_id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
