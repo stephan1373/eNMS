@@ -4,7 +4,11 @@
         "es2021": true,
         "jquery": true
     },
-    "ignorePatterns": ["**/*.min.js", "**/bundles", "docs/**"],
+    "ignorePatterns": [
+        "**/*.min.js",
+        "**/bundles",
+        "docs/**"
+    ],
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
