@@ -7,11 +7,10 @@
     "lint": "eslint --config build/linting/.eslintrc --ignore-path build/linting/.eslintignore ."
   },
   "engines": {
-    "node": "12.11.1"
+    "node": "20.18.0"
   },
   "devDependencies": {
-    "eslint": "^7.7.0",
-    "eslint-config-google": "^0.9.1",
+    "eslint": "^7.32.0",
     "prettier": "^1.19.1"
   },
   "repository": {
