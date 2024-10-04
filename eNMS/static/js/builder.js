@@ -259,6 +259,9 @@ export function drawTree(service, data, resultsPanel) {
         network.selectNodes([]);
       }
     });
+    tree.on("select_node.jstree", function (_, data) {
+      network.selectNodes(data.selected.map(path => parseInt(path.split(">").pop())).filter(id => nodes.get(id)))
+    });
     tree.unbind("dblclick").on("dblclick", function (event) {
       highlightNode($(treeId).jstree(true).get_node(event.target).data);
     });
