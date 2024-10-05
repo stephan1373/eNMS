@@ -269,7 +269,7 @@ export function drawTree(service, data, resultsPanel) {
     tree.unbind("dblclick").on("dblclick", function (event) {
       highlightNode($(treeId).jstree(true).get_node(event.target).data);
     });
-    tree.bind("loaded.jstree", function (e, data) {
+    tree.bind("loaded.jstree", function () {
       createTooltips();
       if (resultsPanel) tree.jstree("open_all");
     });
