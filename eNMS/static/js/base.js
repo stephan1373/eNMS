@@ -111,7 +111,7 @@ export function sanitize(input) {
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
-    '"': "&quot;",
+    '"': "&quot;", /* eslint-disable-line quotes */
     "'": "&#x27;",
     "/": "&#x2F;",
   };
@@ -439,7 +439,6 @@ export function createTooltip({
   content,
   callback,
   size,
-  ...other
 }) {
   if ($(target).length) {
     let kwargs = {
