@@ -1,6 +1,7 @@
 /*
 global
 action: false
+automation: false
 linkRuntime: false
 page: false
 subtypes: false
@@ -56,8 +57,8 @@ const options = {
   },
   manipulation: {
     enabled: false,
-    addNode: function (data, callback) {},
-    addEdge: function (data, callback) {
+    addNode: function (data, callback) {}, // eslint-disable-line no-unused-vars
+    addEdge: function (data, callback) { // eslint-disable-line no-unused-vars
       if (data.from.length == 36 || data.to.length == 36) {
         notify("You cannot use a label to draw an edge.", "error", 5);
       } else if (data.to == startId) {
@@ -479,7 +480,7 @@ function addServicePanel() {
         },
       });
       let timer = false;
-      $("#add-services-search").keyup(function (event) {
+      $("#add-services-search").keyup(function () {
         if (timer) clearTimeout(timer);
         timer = setTimeout(function () {
           $("#service-tree").jstree(true).search($("#add-services-search").val());
