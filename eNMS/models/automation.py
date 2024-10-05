@@ -417,7 +417,7 @@ class Run(AbstractBase):
         super().__init__(**kwargs)
         if not self.name:
             self.name = f"{self.runtime} ({self.creator})"
-        self.service_name = (self.placeholder or self.service).scoped_name
+        self.service_name = (self.placeholder or self.service).name
 
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
