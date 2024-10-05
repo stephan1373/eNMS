@@ -1,10 +1,11 @@
 /*
 global
 configurationProperties: false
+echarts: false
 formProperties: false
 serverUrl: false
 settings: true
-echarts: false
+sshUrl: false
 theme: false
 */
 
