@@ -53,8 +53,8 @@ const options = {
   },
   manipulation: {
     enabled: false,
-    addNode: function (data, callback) {},
-    addEdge: function (data, callback) {
+    addNode: function (data, callback) {}, // eslint-disable-line no-unused-vars
+    addEdge: function (data, callback) { // eslint-disable-line no-unused-vars
       saveLink(data);
     },
     deleteNode: function (data, callback) {
