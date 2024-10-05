@@ -278,6 +278,7 @@ class AbstractBase(db.base):
         include=None,
         include_relations=None,
         private_properties=False,
+        relation_names_only=False,
         relation_properties=None,
     ):
         properties = self.get_properties(
@@ -299,7 +300,7 @@ class AbstractBase(db.base):
                 properties[property] = [
                     (
                         obj.name
-                        if export
+                        if export or relation_names_only
                         else obj.get_properties(include=relation_properties)
                     )
                     for obj in value
@@ -311,7 +312,7 @@ class AbstractBase(db.base):
                     continue
                 properties[property] = (
                     value.name
-                    if export
+                    if export or relation_names_only
                     else value.get_properties(include=relation_properties)
                 )
         return dict(OrderedDict(sorted(properties.items()))) if export else properties
