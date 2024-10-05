@@ -36,6 +36,7 @@ Version 5.2.0: Various Improvements
 - Upgrade JQuery to the latest version v3.7.1
 - Select node in workflow builder from tree left-click selection and allow for multiple selection
   via the tree
+- Use full name instead of scoped name in run table
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
