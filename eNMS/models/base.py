@@ -289,6 +289,8 @@ class AbstractBase(db.base):
         )
         no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
         for property, relation in vs.relationships[self.type].items():
+            if relation["model"] == "changelog":
+                continue
             if include_relations and property not in include_relations:
                 continue
             if exclude_relations and property in exclude_relations:
