@@ -13,7 +13,6 @@ class Network(Device):
     pretty_name = "Network"
     parent_type = "device"
     category = db.Column(db.SmallString)
-    icon = db.Column(db.TinyString, default="network")
     id = db.Column(Integer, ForeignKey(Device.id), primary_key=True)
     path = db.Column(db.TinyString)
     labels = db.Column(db.Dict, info={"log_change": False})

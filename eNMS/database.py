@@ -721,7 +721,8 @@ class Database:
                 back_populates=f"user_{model}s",
             ),
         )
-        setattr(table, "admin_only", db.Column(Boolean, default=False))
+        if not hasattr(table, "admin_only"):
+            setattr(table, "admin_only", db.Column(Boolean, default=False))
         for property in properties:
             setattr(
                 table,
