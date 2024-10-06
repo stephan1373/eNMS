@@ -235,7 +235,7 @@ export const switchToWorkflow = function (path, direction, runtime, selection) {
         localStorage.setItem("workflow", JSON.stringify(workflow));
       }
       displayWorkflow(result, true);
-      if (selection) highlightNode(selection);
+      if (selection) setTimeout(() => highlightNode(selection), 200);
       switchMode(currentMode, true);
     },
   });
