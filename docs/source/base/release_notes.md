@@ -45,6 +45,7 @@ Version 5.2.0: Various Improvements
 - Fix sqlalchemy warnings about implicitly combining columns ("SAWarning: Implicitly combining column
   device.icon with column network.icon" and same warning for admin_only)
 - Remove "network" from the rbac.json "rbac_models" and make it inherit its RBAC properties from device
+- Make the icon default to "network" in the Network form instead of "router"
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
