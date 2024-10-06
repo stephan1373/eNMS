@@ -44,6 +44,7 @@ Version 5.2.0: Various Improvements
   before zooming on a service in that workflow otherwise the zoom does not occur.
 - Fix sqlalchemy warnings about implicitly combining columns ("SAWarning: Implicitly combining column
   device.icon with column network.icon" and same warning for admin_only)
+  (email: "gunicorn startup messages")
 - Remove "network" from the rbac.json "rbac_models" and make it inherit its RBAC properties from device
 - Make the icon default to "network" in the Network form instead of "router"
 
