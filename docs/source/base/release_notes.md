@@ -37,7 +37,9 @@ Version 5.2.0: Various Improvements
 - Select node in workflow builder from tree left-click selection and allow for multiple selection
   via the tree
 - Use full name instead of scoped name in run table
-
+- Add 'name' property to changelog to remove special case in to_dict from bug fix in
+  bcdb8cb051d8b0d131a2826da093e3643203e6dd (error 500 when returning an object from the REST API)
+  Commit: 1fe9217b0deb4f23ff6546af6d1a290ad44ab10c
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
   - Normal search versus regex-based search
