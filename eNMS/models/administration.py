@@ -232,6 +232,7 @@ class Changelog(AbstractBase):
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "changelog", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.MediumString)
     time = db.Column(db.TinyString, index=True)
     content = db.Column(db.LargeString)
     severity = db.Column(db.TinyString, default="debug")
@@ -267,6 +268,7 @@ class Changelog(AbstractBase):
         if not kwargs.get("author"):
             kwargs["author"] = getattr(current_user, "name", "")
         super().update(**kwargs)
+        self.name = f"{self.target_name} updated by {self.author}"
 
 
 class Parameters(AbstractBase):
