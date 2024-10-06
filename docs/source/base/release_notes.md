@@ -42,6 +42,9 @@ Version 5.2.0: Various Improvements
   Commit: 1fe9217b0deb4f23ff6546af6d1a290ad44ab10c
 - When double-clicking on a service in another workflow in the workflow tree, introduce a 200ms delay
   before zooming on a service in that workflow otherwise the zoom does not occur.
+- Fix sqlalchemy warnings about implicitly combining columns ("SAWarning: Implicitly combining column
+  device.icon with column network.icon" and same warning for admin_only)
+  Commit: e91b4b23f1046ec2c82128d354e271263fa95ec6
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
