@@ -114,8 +114,6 @@ Version 5.1.0: Changelog & Workflow Tree
     - "log_level": log level of the warning (default: warning)
     - "raise_exception": prevents new connections from being created when reaching
       the threshold
-- If a service is run using aync = true, and the user has service run privilages, allow that
-  same user to retrieve the results without needing read access
 - Add a way to get the parameterized form to display a drop down of devices with custom set
   of constraints for both InstanceField and MultipleInstanceField
 - Move "Admin Only" check box into "Access Control" panel:
