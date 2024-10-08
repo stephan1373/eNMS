@@ -79,7 +79,10 @@ class Runner:
         if self.is_main_run:
             self.cache = {
                 "main_run": self.main_run.base_properties,
-                "main_run_service": self.main_run.service.base_properties,
+                "main_run_service": {
+                    "log_level": int(self.main_run.service.log_level),
+                    **self.main_run.service.base_properties,
+                },
                 "service": self.service.base_properties,
             }
         else:
@@ -812,10 +815,7 @@ class Runner:
         service_log=True,
         allow_disable=True,
     ):
-        try:
-            log_level = int(self.main_run.service.log_level)
-        except Exception:
-            log_level = 1
+        log_level = self.cache["main_run_service"]["log_level"]
         if (
             logger != "security"
             and allow_disable
@@ -1523,8 +1523,9 @@ class Runner:
                 connection.connection_name
             )
             self.write_state(f"connections/{library}", -1, "increment", True)
+            self.log("info", f"Closed {connection_log}", device)
         except Exception:
-            env.log("error", f"Error closing {connection_log}:\n{format_exc()})", change_log=False)
+            self.log("error", f"Error closing {connection_log}\n{format_exc()}", device)
 
     def enter_remote_device(self, connection, device):
         if not getattr(self, "jump_on_connect", False):
