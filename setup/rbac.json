@@ -317,7 +317,8 @@
   "rbac_models": {
     "credential": {
       "rbac_read": "Read",
-      "rbac_edit": "Edit"
+      "rbac_edit": "Edit",
+      "rbac_use": "Use"
     },
     "device": {
       "rbac_read": "Read",
