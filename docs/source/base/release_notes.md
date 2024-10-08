@@ -53,9 +53,10 @@ Version 5.2.0: Various Improvements
 - Update eslint (and package.json) to work with the latest node.js / eslint version
 - Rotate all fa-sitemap icons to 270 degrees with "fa-rotate-270" class, including in the workflow tree
   and the "Add Services" panel
-- Convert credentials 'User Groups' to RBAC 'Use' section
-  - For consistency with the way RBAC work
-  - For consistency with secrets (who can use a secret is defined from RBAC 'Use')
+- Refactor credentials to use the RBAC 'Use' section instead of the old 'User Groups'
+  - For consistency with the way RBAC work in general (credentials didn't have RBAC before as they were
+    "admin only")
+  - For consistency with secrets (being allowed to use a secret is controlled via RBAC 'Use')
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -73,6 +74,8 @@ Tests:
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
   nodes and networks
+- Run the script to convert credential "groups" property into "rbac_use" (can be done manually by renaming
+  "groups" -> "rbac_use" in credential.yaml too)
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
