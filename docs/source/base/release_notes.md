@@ -57,6 +57,7 @@ Version 5.2.0: Various Improvements
   - For consistency with the way RBAC work in general (credentials didn't have RBAC before as they were
     "admin only")
   - For consistency with secrets (being allowed to use a secret is controlled via RBAC 'Use')
+- Update select2 library to v4.1.0 (the 'Select {model}s' text disappeared after jquery update)
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
