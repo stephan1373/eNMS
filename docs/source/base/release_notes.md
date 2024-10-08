@@ -70,6 +70,8 @@ Tests:
   mechanism at the end of a run.
   - Look at 2b624a314d112388b6974e1cd71e8a972366de18 to see the exact change (log_level now cached)
   - Find PendingRollbackError threads on Slack for details
+- Test that retrieving credentials via "db.get_credential" still works correctly (tests with different
+  RBAC type (any, read-write, ...), priorities, credential types (object, device, SSH key, etc)
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
