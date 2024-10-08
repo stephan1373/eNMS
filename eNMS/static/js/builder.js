@@ -243,7 +243,7 @@ export function drawTree(service, data, resultsPanel) {
           icon: "glyphicon glyphicon-file",
         },
         workflow: {
-          icon: "fa fa-sitemap",
+          icon: "fa fa-sitemap fa-rotate-270",
         },
       },
     });
