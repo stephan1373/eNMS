@@ -50,6 +50,7 @@ Version 5.2.0: Various Improvements
 - Reinstate the log lines in the multithreaded disconnect function at the end of a run. Cache the log_level
   to prevent PendingRollbackError errors (see slack thread)
   Commit: 2b624a314d112388b6974e1cd71e8a972366de18
+- Update eslint (and package.json) to work with the latest node.js / eslint version
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
