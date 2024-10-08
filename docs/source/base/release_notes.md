@@ -53,6 +53,9 @@ Version 5.2.0: Various Improvements
 - Update eslint (and package.json) to work with the latest node.js / eslint version
 - Rotate all fa-sitemap icons to 270 degrees with "fa-rotate-270" class, including in the workflow tree
   and the "Add Services" panel
+- Convert credentials 'User Groups' to RBAC 'Use' section
+  - For consistency with the way RBAC work
+  - For consistency with secrets (who can use a secret is defined from RBAC 'Use')
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
