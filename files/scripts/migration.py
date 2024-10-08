@@ -90,6 +90,12 @@ def migrate_5_1_to_5_2():
             device["positions"] = positions[device["name"]]
     with open(PATH / FILENAME / "device.yaml", "w") as device_file:
         yaml.dump(devices, device_file)
+    with open(PATH / FILENAME / "credential.yaml", "r") as credential_file:
+        credentials = yaml.load(credential_file)
+    for credential in credentials:
+        credential["rbac_use"] = credential.pop("groups")
+    with open(PATH / FILENAME / "credential.yaml", "w") as credential_file:
+        yaml.dump(credentials, credential_file)
 
 
 migrate_5_1_to_5_2()
