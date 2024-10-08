@@ -1536,9 +1536,8 @@ class Runner:
                 connection.connection_name
             )
             self.write_state(f"connections/{library}", -1, "increment", True)
-            self.log("info", f"Closed {connection_log}", device)
-        except Exception as exc:
-            self.log("error", f"Error while closing {connection_log} ({exc})", device)
+        except Exception:
+            env.log("error", f"Error closing {connection_log}:\n{format_exc()})", change_log=False)
 
     def enter_remote_device(self, connection, device):
         if not getattr(self, "jump_on_connect", False):
