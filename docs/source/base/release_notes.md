@@ -47,6 +47,9 @@ Version 5.2.0: Various Improvements
   (email: "gunicorn startup messages")
 - Remove "network" from the rbac.json "rbac_models" and make it inherit its RBAC properties from device
 - Make the icon default to "network" in the Network form instead of "router"
+- Reinstate the log lines in the multithreaded disconnect function at the end of a run. Cache the log_level
+  to prevent PendingRollbackError errors (see slack thread)
+  Commit: 2b624a314d112388b6974e1cd71e8a972366de18
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -56,6 +59,10 @@ Tests:
 - Test the REST API get instance endpoint ("to_dict" function)
 - Test that when double-clicking in the workflow tree on a service in a different workflow than the one
   displayed, the display correctly switches to the new workflow then zooms in on that service.
+- Test that there are no PendingRollbackError at the end of a run due to the multithreaded "disconnect"
+  mechanism at the end of a run.
+  - Look at 2b624a314d112388b6974e1cd71e8a972366de18 to see the exact change (log_level now cached)
+  - Find PendingRollbackError threads on Slack for details
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
