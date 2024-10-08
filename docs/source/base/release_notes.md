@@ -51,6 +51,8 @@ Version 5.2.0: Various Improvements
   to prevent PendingRollbackError errors (see slack thread)
   Commit: 2b624a314d112388b6974e1cd71e8a972366de18
 - Update eslint (and package.json) to work with the latest node.js / eslint version
+- Rotate all fa-sitemap icons to 270 degrees with "fa-rotate-270" class, including in the workflow tree
+  and the "Add Services" panel
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
