@@ -1,3 +1,4 @@
+from black import format_str, Mode
 from collections import Counter, defaultdict
 from contextlib import redirect_stdout
 from datetime import datetime
@@ -503,8 +504,11 @@ class Controller:
                 obj.table_properties(**kwargs) for obj in query.all()
             ]
         if kwargs.get("clipboard"):
-            table_result["full_result"] = ",".join(obj.name for obj in query.all())
+            table_result["clipboard"] = ",".join(obj.name for obj in query.all())
         return table_result
+
+    def format_code_with_black(self, content):
+        return format_str(content, mode=Mode())
 
     def get(self, model, id, **kwargs):
         func = "get_properties" if kwargs.pop("properties_only", None) else "to_dict"
@@ -677,7 +681,9 @@ class Controller:
             state = run.get_state() if run else None
         if kwargs.get("device") and run:
             output["device_state"] = kwargs["device_state"] = {
-                result.service_id: result.success
+                result.service_id: result.result.get(
+                    "color", "#32CD32" if result.success else "#FF6666"
+                )
                 for result in db.fetch_all(
                     "result", parent_runtime=run.runtime, device_id=kwargs.get("device")
                 )
@@ -803,18 +809,23 @@ class Controller:
         run = db.fetch("run", runtime=runtime) if runtime else None
         state = (run.state or run.get_state()) if run else {}
         highlight = []
-        # to prevent infinite recursion in the network builder in case of a
-        # network that contains one of its parents
-        visited = set()
 
         def match(instance, **kwargs):
+            is_regex_search = kwargs.get("regex_search", False)
             name = getattr(instance, "name" if type == "network" else "scoped_name")
-            is_match = not (
-                kwargs["search_mode"] == "names"
-                and kwargs["search_value"].lower() not in name.lower()
-                or kwargs["search_mode"] == "properties"
-                and kwargs["search_value"].lower() not in instance.serialized
-            )
+            value = kwargs["search_value"]
+            if kwargs["search_mode"] == "names":
+                is_match = (
+                    search(value, name)
+                    if is_regex_search
+                    else value.lower() in name.lower()
+                )
+            else:
+                is_match = (
+                    search(value, instance.serialized)
+                    if is_regex_search
+                    else value.lower() in instance.serialized
+                )
             if is_match:
                 highlight.append(instance.id)
             return is_match
@@ -822,8 +833,9 @@ class Controller:
         def rec(instance, path):
             if run and path not in state:
                 return
+            local_path_ids = path.split(">")
             if (
-                instance.run_method == "per_device"
+                getattr(instance, "run_method", None) == "per_device"
                 and "device_state" in kwargs
                 and instance.id not in kwargs["device_state"]
             ):
@@ -837,8 +849,8 @@ class Controller:
                     path = f"{path.split('>')[0]}>{path_id[1]}"
             if active_search and instance.type != type:
                 if match(instance, **kwargs):
-                    style = "font-weight: bold;"
-                else:
+                    style = "font-weight: bold; color: #BABA06"
+                elif not kwargs["display_all"]:
                     return
             children = False
             if instance.type == type:
@@ -849,9 +861,8 @@ class Controller:
                 )
                 children_results = []
                 for child in instances:
-                    if child in visited:
+                    if str(child.id) in local_path_ids:
                         continue
-                    visited.add(child)
                     if run and child.scoped_name == "Placeholder":
                         child = run.placeholder
                     child_results = rec(child, f"{path}>{child.id}")
@@ -868,31 +879,29 @@ class Controller:
                 )
                 if active_search:
                     is_match = match(instance, **kwargs)
-                    if not children and not is_match:
+                    if not children and not is_match and not kwargs["display_all"]:
                         return
                     elif is_match:
-                        style = "font-weight: bold;"
+                        style = "font-weight: bold; color: #BABA06"
             progress_data = {}
             if run and "device_state" not in kwargs:
                 progress = state[path].get("progress")
                 if progress and progress["device"]["total"]:
                     progress_data = {"progress": progress["device"]}
             if instance.id in kwargs.get("device_state", {}):
-                color = "32CD32" if kwargs["device_state"][instance.id] else "FF6666"
+                color = kwargs["device_state"][instance.id]
             elif run:
                 if state[path].get("dry_run"):
-                    color = "E09E2F"
+                    color = "#E09E2F"
                 elif "success" in state[path]["result"]:
-                    color = "32CD32" if state[path]["result"]["success"] else "FF6666"
+                    color = "#32CD32" if state[path]["result"]["success"] else "#FF6666"
                 else:
-                    color = "25B6FA"
+                    color = "#25B6FA"
             else:
                 color = (
-                    "FF1694"
+                    "#FF1694"
                     if getattr(instance, "shared", False)
-                    else "E09E2F"
-                    if getattr(instance, "dry_run", False)
-                    else "6666FF"
+                    else "#E09E2F" if getattr(instance, "dry_run", False) else "#6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""
@@ -909,15 +918,26 @@ class Controller:
                 "children": children,
                 "a_attr": {
                     "class": f"no_checkbox {attr_class}",
-                    "style": f"color: #{color}; width: 100%; {style}",
+                    "style": f"color: {color}; width: 100%; {style}",
                 },
                 "type": instance.type,
             }
 
+        # In a standard run, the top-level service in the path has run so we use it
+        # as root of the tree. In case of restart run from a subworkflow or from a
+        # workflow that has a superworkflow, we use the last service as root.
+        has_root_state = str(path_id[0]) in state
+        root_id = path_id[0] if has_root_state else path_id[-1]
+        root_path = str(path_id[0]) if has_root_state else full_path
         return {
-            "tree": rec(db.fetch(type, id=path_id[0]), str(path_id[0])),
+            "tree": rec(db.fetch(type, id=root_id), root_path),
             "highlight": highlight,
         }
+
+    def get_workflow_path(self, path):
+        return ">".join(
+            db.fetch("service", id=id).persistent_id for id in path.split(">")
+        )
 
     def get_workflow_services(self, id, node):
         parents = db.fetch("workflow", id=id).get_ancestors()
@@ -1390,7 +1410,7 @@ class Controller:
         return result.getvalue()
 
     def run_service(self, path, **kwargs):
-        server = db.fetch("server", name=vs.server)
+        server = db.fetch("server", name=vs.server, rbac=None)
         if "application" not in server.allowed_automation:
             return {"error": "Runs from the UI are not allowed on this server."}
         if isinstance(kwargs.get("start_services"), str):
@@ -1437,7 +1457,6 @@ class Controller:
         return content
 
     def save_positions(self, type, id, **kwargs):
-        now = vs.get_time()
         instance = db.fetch(type, allow_none=True, id=id, rbac="edit")
         if not instance:
             return
@@ -1450,7 +1469,7 @@ class Controller:
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
         instance.last_modified = vs.get_time()
-        return now
+        return instance.last_modified
 
     def save_profile(self, **kwargs):
         allow_password_change = vs.settings["authentication"]["allow_password_change"]

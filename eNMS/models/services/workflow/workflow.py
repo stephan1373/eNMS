@@ -110,7 +110,9 @@ class Workflow(Service):
                     clone.services.append(service)
             else:
                 service_clone = service.duplicate(clone)
-            clone.positions[service_clone.name] = self.positions.get(service.name, (0, 0))
+            clone.positions[service_clone.name] = self.positions.get(
+                service.name, (0, 0)
+            )
             service_clone.skip[clone.name] = service.skip.get(self.name, False)
             clone_services[service.id] = service_clone
         db.session.commit()
@@ -210,7 +212,7 @@ class Workflow(Service):
             for edge_type in ("success", "failure"):
                 if not tracking_bfs and edge_type != status:
                     continue
-                if (tracking_bfs or device) and not summary[edge_type]:
+                if (tracking_bfs or device) and not summary.get(edge_type):
                     continue
                 for edge in service.neighbors(self, edge_type):
                     successor = edge.destination

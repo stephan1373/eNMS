@@ -92,7 +92,19 @@ are made available to the user.
             - 1135
             - 544
     ```
-    
+
+- `dry_run`
+    -   **Meaning**: Indicates whether the service is running in "Dry Run"
+        mode or not.
+    -   **Type**: Boolean.
+    -   **Available**: Always.
+
+- `encrypt()`
+    -   **Meaning**: Encrypt a password string so it can be used in one of the
+        password field (and automatically decrypted)
+    -   **Type**: Function.
+    -   **Available**: Always.
+
 - `factory()`
     -   **Meaning**: Allows for creating one of the following object types
         in the database: `device`, `link`, `pool`, `service`. Calling
@@ -106,7 +118,7 @@ are made available to the user.
         - `commit`: (**optional**) `True` or `False`(Default).
         - Model properties: Specify values for the new instance: 
           ip_address="1.2.3.4" when creating a new device. 
-           
+
 - `fetch()`
     -   **Meaning**: Allows for retrieving one of the following object types
         from the database: `device`, `link`, `pool`, `service`. Calling
@@ -121,7 +133,7 @@ are made available to the user.
         - `allow_matches`: (**optional**) `True` or `False`(Default).
         - Model properties: (**mandatory**) Property values to identify
           the desired object: ip_address="1.2.3.4".
-  
+
 - `fetch_all()`
     -   **Meaning**: Allows for retrieving all instances for one of the
         following object types from the database: `device`, `link`, `pool`,
@@ -136,7 +148,7 @@ are made available to the user.
         - `allow_matches`: (**optional**) `True`(Default) or `False`.
         - Model properties: (**optional**) Filter values to limit the set of
           returned objects: vendor="Cisco".
-            
+
 - `get_neighbors()`
     -   **Meaning**: Used to return links or devices connected to the target
         device.
@@ -155,7 +167,26 @@ are made available to the user.
         -   `source_name` (source device name).
         -   `destination_name` (destination device name).
         -   [Custom link properties, if implemented](custom_link_properties.md).
-        
+
+- `get_all_results()`
+    -   **Meaning**: Fetch all results for the current runtime. Typically used at
+        the end of a run to generate a report.
+    -   **Type**: Function.
+    -   **Return Type**: List of results.
+    -   **Available**: Always.
+
+- `get_connection()`
+    -   **Meaning**: Retrieve the Connection Object of a device for a specific library.
+    -   **Type**: Function.
+    -   **Return Type**: Connection Object.
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `library`: (**mandatory**) Netmiko, Napalm or Scrapli
+        -   `device`: (**optional**) Name of the device that you want to get
+            a connection for.
+        -   `name`: (**optional**) Name of the connection to return when there are
+            more than one active connection to a device.
+
 - `get_result()`
     -   **Meaning**: Fetch the result of a service in the workflow that
         has already been executed.
@@ -172,6 +203,14 @@ are made available to the user.
         -   `all_matches`: (**optional**, default=False) When True, returns
             a list with results for all devices.  Otherwise only the first
             result is returned.
+
+- `get_secret()`
+    -   **Meaning**: Retrieve the secret value of a Secret object.
+    -   **Type**: Function.
+    -   **Return Type**: Secret value.
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `name`: Name of the Secret object.
 
 - `get_var()`
     -   **Meaning**: Retrieve a value by `name` that was previously
@@ -223,7 +262,7 @@ are made available to the user.
         `set_var()` and populating the `initial_payload` field for a workflow.
     -   **Type**: Dictionary.
     -   **Available**: Always.
-    
+
 - `placeholder`
     -   **Meaning**: This is the reference inside a superworkflow for the main
         workflow that the superworkflow wraps around. A superworkflow must have
@@ -231,11 +270,77 @@ are made available to the user.
     -   **Type**: Database Object of type Service.
     -   **Available**: When a service is running inside a superworkflow.
 
+- `prepend_filepath()`
+    -   **Meaning**: Prepend a filepath with the path to the "files" folder 
+        (stored in "vs.file_path")
+    -   **Type**: Function.
+    -   **Return Type**: None.
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `path`: Path to a file (relative to the "files" folder)
+
+- `remove_note()`
+    -   **Meaning**: Remove the note located at the given position.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `x`: `x` position of the note.
+        -   `y`: `y` position of the note.
+
 - `results`
     -   **Meaning**: The results of the current service.
     -   **Type**: Dictionary.
     -   **Available**: After a service has run.
-        
+
+- `send_email()` allows for sending an email with optional attached file. It
+    takes the following parameters:
+
+    -   `title`: (**string, mandatory**).
+    -   `content`: (**string, mandatory**).
+    -   `sender`: (**string, optional**) Email address of the sender.
+        Defaults to the sender address in eNMS settings.
+    -   `recipients`: (**string, optional**) Mail addresses of the
+        recipients, separated by comma. Defaults to the recipients'
+        addresses in eNMS settings.
+    -   `reply_to`: (**string, optional**) Single mail address for
+        replies to notifications.
+    -   `filename`: (**string, optional**) Name of the attached file.
+    -   `file_content`: (**string, optional**) Content of the attached
+        file.
+
+    ``` 
+    send_email(
+        title,
+        content,
+        sender=sender,
+        recipients=recipients,
+        reply_to=reply_to,
+        filename=filename,
+        file_content=file_content
+    )
+    ```
+
+- `server`
+    -   **Meaning**: Server Parameters
+    -   **Type**: Dictionary.
+    -   **Available**: Always.
+    -   **Keys**:
+        -   `ip_address`: Server IP Address.
+        -   `name`: Server Name.
+        -   `url`: Server URL
+
+- `set_note()`
+    -   **Meaning**: Create a note at the given position on the workflow
+        builder.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `x`: `x` position of the note.
+        -   `y`: `y` position of the note.
+        -   `content`: Content of the note (`string`)
+
 - `set_var()`
     -   **Meaning**: Save a value by `name` for use later in a workflow.
         When `device` and/or `section` is specified, a unique value is
@@ -251,30 +356,13 @@ are made available to the user.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
 
-- `set_note()`
-    -   **Meaning**: Create a note at the given position on the workflow
-        builder.
-    -   **Type**: Function.
-    -   **Return Type**: None
-    -   **Available**: Always.
-    -   **Parameters**:
-        -   `x`: `x` position of the note.
-        -   `y`: `y` position of the note.
-        -   `content`: Content of the note (`string`)
+- `settings`
 
-- `remove_note()`
-    -   **Meaning**: Remove the note located at the given position.
-    -   **Type**: Function.
-    -   **Return Type**: None
-    -   **Available**: Always.
-    -   **Parameters**:
-        -   `x`: `x` position of the note.
-        -   `y`: `y` position of the note.
-
-- `dry_run`
-    -   **Meaning**: Indicates whether the service is running in "Dry Run"
-        mode or not.
-    -   **Type**: Boolean.
+    -   **Meaning**: eNMS settings, editable from the top-level `Settings`
+        Icon. It is initially set to the content of `settings.json`, and
+        it stays synchronized if the option to write changes back to 
+        `settings.json` is used.
+    -   **Type**: Dictionary.
     -   **Available**: Always.
 
 - `trigger`
@@ -282,6 +370,52 @@ are made available to the user.
         from the REST API, or from a scheduled task).
     -   **Type**: String.
     -   **Available**: Always.
+
+- `try_commit()`
+    -   **Meaning**: Commit a SQL transaction with a retry mechanism in case of
+        failure.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `transaction`: function that does the SQL transaction.
+        -   `*args`: arguments passed to the transaction.
+        -   `**kwargs`: keyword arguments, passed to the transaction.
+
+- `try_set()`
+    -   **Meaning**: Try to set a SQL object property to a specific value with a
+        retry mechanism in case of failure.
+    -   **Type**: Function.
+    -   **Return Type**: None
+    -   **Available**: Always.
+    -   **Parameters**:
+        -   `object`: Target SQL object.
+        -   `property`: property to update (string).
+        -   `value`: value of that property.
+
+- `username`
+    -   **Meaning**: The username that created the run
+    -   **Type**: string
+    -   **Available**: Always
+            
+- `workflow`
+
+    -   **Meaning**: current workflow.
+    -   **Type**: Database Object.
+    -   **Available**: when the service runs inside a workflow.
+    -   **Properties**: Member attributes which can be referenced as
+        `{{workflow.property}}`, such as `{{workflow.name}}`. Below is
+        a list of some of the properties that can be accessed:
+
+        - workflow.name.
+        - workflow.creator.
+        - workflow.last_modified.
+        - workflow.last_modified_by.
+        - workflow.shared.
+        - workflow.last_run.
+        - workflow.version.
+        - workflow.vendor.
+        - workflow.operating_system.
 
 !!! note
 
@@ -310,54 +444,6 @@ are made available to the user.
     `payload['mydict']['another_dict'] = payload` or
     `set_var("my_payload", payload)` each result in a loop from within the
     payload to a higher level in the payload. 
-
--   `settings`
-
-    -   **Meaning**: eNMS settings, editable from the top-level `Settings`
-        Icon. It is initially set to the content of `settings.json`, and
-        it stays synchronized if the option to write changes back to 
-        `settings.json` is used.
-    -   **Type**: Dictionary.
-    -   **Available**: Always.
-
--   `send_email()` allows for sending an email with optional attached file. It
-    takes the following parameters:
-
-    -   `title`: (**string, mandatory**).
-    -   `content`: (**string, mandatory**).
-    -   `sender`: (**string, optional**) Email address of the sender.
-        Defaults to the sender address in eNMS settings.
-    -   `recipients`: (**string, optional**) Mail addresses of the
-        recipients, separated by comma. Defaults to the recipients'
-        addresses in eNMS settings.
-    -   `reply_to`: (**string, optional**) Single mail address for
-        replies to notifications.
-    -   `filename`: (**string, optional**) Name of the attached file.
-    -   `file_content`: (**string, optional**) Content of the attached
-        file.
-
-    ``` 
-    send_email(
-        title,
-        content,
-        sender=sender,
-        recipients=recipients,
-        reply_to=reply_to,
-        filename=filename,
-        file_content=file_content
-    )
-    ```
-
-- `username`
-    -   **Meaning**: The username that created the run
-    -   **Type**: string
-    -   **Available**: Always
-            
--   `workflow`
-
-    -   **Meaning**: current workflow.
-    -   **Type**: Database Object.
-    -   **Available**: when the service runs inside a workflow.
 
 ### Substitution fields
 

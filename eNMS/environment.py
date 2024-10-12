@@ -255,6 +255,7 @@ class Environment:
             def emit(self, record):
                 try:
                     formatted_record = self.format_record(record)
+                    formatted_record.session = None
                     self.send(formatted_record)
                 except (KeyboardInterrupt, SystemExit):
                     raise
@@ -313,6 +314,7 @@ class Environment:
 
         def representer(dumper, data):
             style = "|" if "\n" in data else None
+            data = data.lstrip()
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
 
         yaml.representer.add_representer(str, representer)
@@ -342,7 +344,7 @@ class Environment:
                 **{
                     "severity": severity,
                     "content": content,
-                    "author": user or getattr(current_user, "name", ""),
+                    "author": user,
                     "history": history,
                     "source": source,
                     **(instance.get_changelog_kwargs() if instance else {}),

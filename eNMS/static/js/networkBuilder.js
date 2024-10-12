@@ -53,8 +53,8 @@ const options = {
   },
   manipulation: {
     enabled: false,
-    addNode: function (data, callback) {},
-    addEdge: function (data, callback) {
+    addNode: function (data, callback) {}, // eslint-disable-line no-unused-vars
+    addEdge: function (data, callback) { // eslint-disable-line no-unused-vars
       saveLink(data);
     },
     deleteNode: function (data, callback) {
@@ -267,7 +267,8 @@ function displayNetworkState(state) {
   );
   if (!state.highlight) return;
   nodes.update(
-    state.highlight.map(nodeId => {
+    state.highlight.map((nodeId) => {
+      if (!nodes.get(nodeId)) return;
       const icon = nodes.get(nodeId).icon;
       const image = `/static/img/network/red/${icon}.gif`;
       return { id: nodeId, image: image };

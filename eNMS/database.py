@@ -598,7 +598,7 @@ class Database:
             else:
                 instance = vs.models[_class](rbac=rbac, **kwargs)
                 self.session.add(instance)
-            if "update_source" in kwargs:
+            if "update_source" in kwargs and hasattr(instance, "name"):
                 key = f"update_{instance.type}_{instance.name}"
                 db.session.connection().info[key] = kwargs["update_source"]
             return instance
@@ -612,16 +612,11 @@ class Database:
     def get_credential(
         self, username, name=None, device=None, credential_type="any", optional=False
     ):
-        query = (
-            self.session.query(vs.models["credential"])
-            .join(vs.models["group"], vs.models["credential"].groups)
-            .join(vs.models["user"], vs.models["group"].users)
-        )
+        query = db.query("credential", rbac="use", user=username)
         if device:
             query = query.join(
                 vs.models["pool"], vs.models["credential"].device_pools
             ).join(vs.models["device"], vs.models["pool"].devices)
-        query = query.filter(vs.models["user"].name == username)
         if name:
             query = query.filter(vs.models["credential"].name == name)
         if device:

@@ -5676,6 +5676,16 @@
   "owners": []
   "path": "92"
   "port": !!int "22"
+  "positions":
+    "Router 1":
+    - !!int "-314"
+    - !!int "42"
+    "Router 2":
+    - !!int "-59"
+    - !!int "267"
+    "Router 3":
+    - !!int "310"
+    - !!int "56"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -5690,16 +5700,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "Router 1":
-    - !!int "-314"
-    - !!int "42"
-    "Router 2":
-    - !!int "-59"
-    - !!int "267"
-    "Router 3":
-    - !!int "310"
-    - !!int "56"
 - "admin_only": !!bool "false"
   "category": "Subnetwork"
   "creator": "admin"
@@ -5766,6 +5766,7 @@
   "owners": []
   "path": "93"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -5848,6 +5849,16 @@
   "owners": []
   "path": "94"
   "port": !!int "22"
+  "positions":
+    "Subnetwork 1 - R1":
+    - !!int "-284"
+    - !!int "-105"
+    "Subnetwork 1 - R2":
+    - !!int "298"
+    - !!int "-122"
+    "Subnetwork 1 - R3":
+    - !!int "-8"
+    - !!int "136"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -5862,16 +5873,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "Subnetwork 1 - R1":
-    - !!int "-284"
-    - !!int "-105"
-    "Subnetwork 1 - R2":
-    - !!int "298"
-    - !!int "-122"
-    "Subnetwork 1 - R3":
-    - !!int "-8"
-    - !!int "136"
 - "admin_only": !!bool "false"
   "category": "Editing"
   "creator": "admin"
@@ -5941,6 +5942,7 @@
   "owners": []
   "path": "95"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6020,6 +6022,13 @@
   "owners": []
   "path": "96"
   "port": !!int "22"
+  "positions":
+    "Subnetwork 2 - G1":
+    - !!int "-213"
+    - !!int "-57"
+    "Subnetwork 2 - G2":
+    - !!int "202"
+    - !!int "-63"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6034,13 +6043,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "Subnetwork 2 - G1":
-    - !!int "-213"
-    - !!int "-57"
-    "Subnetwork 2 - G2":
-    - !!int "202"
-    - !!int "-63"
 - "admin_only": !!bool "false"
   "category": "Editing"
   "creator": "admin"
@@ -6113,6 +6115,10 @@
   "owners": []
   "path": "97"
   "port": !!int "22"
+  "positions":
+    "Duplicate me 1":
+    - !!int "-356"
+    - !!int "0"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6127,10 +6133,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "Duplicate me 1":
-    - !!int "-356"
-    - !!int "0"
 - "admin_only": !!bool "false"
   "category": ""
   "creator": "admin"
@@ -6186,6 +6188,13 @@
   "owners": []
   "path": "97>98"
   "port": !!int "22"
+  "positions":
+    "Duplication - G1":
+    - !!int "-127"
+    - !!int "-54"
+    "Duplication - R1":
+    - !!int "127"
+    - !!int "87"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6200,13 +6209,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "Duplication - G1":
-    - !!int "-127"
-    - !!int "-54"
-    "Duplication - R1":
-    - !!int "127"
-    - !!int "87"
 - "admin_only": !!bool "false"
   "category": "Display"
   "creator": "admin"
@@ -6302,6 +6304,19 @@
   "owners": []
   "path": "99"
   "port": !!int "22"
+  "positions":
+    "S5 R1":
+    - !!int "-765"
+    - !!int "312"
+    "S5 R2":
+    - !!int "-345"
+    - !!int "194"
+    "S5 R3":
+    - !!int "-325"
+    - !!int "426"
+    "S5 R4":
+    - !!int "243"
+    - !!int "271"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6316,19 +6331,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "S5 R1":
-    - !!int "-765"
-    - !!int "312"
-    "S5 R2":
-    - !!int "-345"
-    - !!int "194"
-    "S5 R3":
-    - !!int "-325"
-    - !!int "426"
-    "S5 R4":
-    - !!int "243"
-    - !!int "271"
 - "admin_only": !!bool "false"
   "category": "Subnetwork"
   "creator": "admin"
@@ -6393,6 +6395,7 @@
   "owners": []
   "path": "100"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6460,6 +6463,7 @@
   "owners": []
   "path": "100>101"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6527,6 +6531,7 @@
   "owners": []
   "path": "100>101>102"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6596,6 +6601,13 @@
   "owners": []
   "path": "100>101>102>103"
   "port": !!int "22"
+  "positions":
+    "S6 L3 R1":
+    - !!int "-181"
+    - !!int "-10"
+    "S6 L3 R2":
+    - !!int "170"
+    - !!int "-14"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6610,13 +6622,6 @@
   "subtype": ""
   "type": "network"
   "vendor": ""
-  "positions":
-    "S6 L3 R1":
-    - !!int "-181"
-    - !!int "-10"
-    "S6 L3 R2":
-    - !!int "170"
-    - !!int "-14"
 - "admin_only": !!bool "false"
   "category": "Display"
   "creator": "admin"
@@ -6678,6 +6683,7 @@
   "owners": []
   "path": "104"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6765,6 +6771,7 @@
   "owners": []
   "path": "105"
   "port": !!int "22"
+  "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6895,20 +6902,6 @@
   "owners": []
   "path": "106"
   "port": !!int "22"
-  "property1": "10.145.14.1"
-  "property2": "CP"
-  "property3": ""
-  "rbac_configuration": []
-  "rbac_connect": []
-  "rbac_edit": []
-  "rbac_read":
-  - "Admin User"
-  "rbac_target": []
-  "reachable": !!bool "true"
-  "scrapli_driver": "cisco_iosxe"
-  "subtype": ""
-  "type": "network"
-  "vendor": ""
   "positions":
     "Jackson":
     - !!int "621"
@@ -7000,6 +6993,20 @@
     "Austin-2":
     - !!int "1231"
     - !!int "770"
+  "property1": "10.145.14.1"
+  "property2": "CP"
+  "property3": ""
+  "rbac_configuration": []
+  "rbac_connect": []
+  "rbac_edit": []
+  "rbac_read":
+  - "Admin User"
+  "rbac_target": []
+  "reachable": !!bool "true"
+  "scrapli_driver": "cisco_iosxe"
+  "subtype": ""
+  "type": "network"
+  "vendor": ""
 - "admin_only": !!bool "false"
   "creator": "admin"
   "custom_json": {}

@@ -16,10 +16,69 @@ Version 5.2.0: Various Improvements
   - When importing a workflow, we need to merge the positions dictionary of Start and End services
   being imported into the existing ones
 - Store the positions of network nodes at network level
+- Make workflow link persistent across releases (with a new property "persistent_id" different
+  from the database ID and exported in the migration files)
+- Add options for all fields accepting python code to automatically format the code with black.
+  Move black to requirements.txt (from requirements_dev.txt)
+- Remove "refetch_after_process_fork" option (always refetch after process fork)
+- Fix bug when entering enter when searching a property like server_name on a table (e.g worker table)
+- Display service color in Workflow Builder and Workflow Tree based on "color" key in the device
+  results if it exists
+- Workflow Tree updates:
+  - Add yellow color to services that match a workflow search in the workflow tree
+  - In the workflow search panel, add an option to include all services in the workflow tree:
+    - When the option is disabled, services that do not match are filtered out.
+    - When the option is enabled, services that do match are highlighted and services
+    that don't are displayed normally.
+  - In Tree Search, add support for regular expression search
+- When device filtering is enabled, limit results displayed in result table to the filtered device
+- Fix table form filtering bug: invert checkbox constraint in table filtering not enforced previously
+- Upgrade JQuery to the latest version v3.7.1
+- Select node in workflow builder from tree left-click selection and allow for multiple selection
+  via the tree
+- Use full name instead of scoped name in run table
+- Add 'name' property to changelog to remove special case in to_dict from bug fix in
+  bcdb8cb051d8b0d131a2826da093e3643203e6dd (error 500 when returning an object from the REST API)
+  Commit: 1fe9217b0deb4f23ff6546af6d1a290ad44ab10c
+- When double-clicking on a service in another workflow in the workflow tree, introduce a 200ms delay
+  before zooming on a service in that workflow otherwise the zoom does not occur.
+- Fix sqlalchemy warnings about implicitly combining columns ("SAWarning: Implicitly combining column
+  device.icon with column network.icon" and same warning for admin_only)
+  (email: "gunicorn startup messages")
+- Remove "network" from the rbac.json "rbac_models" and make it inherit its RBAC properties from device
+- Make the icon default to "network" in the Network form instead of "router"
+- Reinstate the log lines in the multithreaded disconnect function at the end of a run. Cache the log_level
+  to prevent PendingRollbackError errors (see slack thread)
+  Commit: 2b624a314d112388b6974e1cd71e8a972366de18
+- Update eslint (and package.json) to work with the latest node.js / eslint version
+- Rotate all fa-sitemap icons to 270 degrees with "fa-rotate-270" class, including in the workflow tree
+  and the "Add Services" panel
+- Refactor credentials to use the RBAC 'Use' section instead of the old 'User Groups'
+  - For consistency with the way RBAC work in general (credentials didn't have RBAC before as they were
+    "admin only")
+  - For consistency with secrets (being allowed to use a secret is controlled via RBAC 'Use')
+- Update select2 library to v4.1.0 (the 'Select {model}s' text disappeared after jquery update)
+
+Tests:
+- Test that the workflow builder's search functions correctly across all case combinations:
+  - Normal search versus regex-based search
+  - Search by names versus search across all properties
+  - Display all services versus only matching services
+- Test the REST API get instance endpoint ("to_dict" function)
+- Test that when double-clicking in the workflow tree on a service in a different workflow than the one
+  displayed, the display correctly switches to the new workflow then zooms in on that service.
+- Test that there are no PendingRollbackError at the end of a run due to the multithreaded "disconnect"
+  mechanism at the end of a run.
+  - Look at 2b624a314d112388b6974e1cd71e8a972366de18 to see the exact change (log_level now cached)
+  - Find PendingRollbackError threads on Slack for details
+- Test that retrieving credentials via "db.get_credential" still works correctly (tests with different
+  RBAC type (any, read-write, ...), priorities, credential types (object, device, SSH key, etc)
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
   nodes and networks
+- Run the script to convert credential "groups" property into "rbac_use" (can be done manually by renaming
+  "groups" -> "rbac_use" in credential.yaml too)
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
@@ -74,8 +133,6 @@ Version 5.1.0: Changelog & Workflow Tree
     - "log_level": log level of the warning (default: warning)
     - "raise_exception": prevents new connections from being created when reaching
       the threshold
-- If a service is run using aync = true, and the user has service run privilages, allow that
-  same user to retrieve the results without needing read access
 - Add a way to get the parameterized form to display a drop down of devices with custom set
   of constraints for both InstanceField and MultipleInstanceField
 - Move "Admin Only" check box into "Access Control" panel:

@@ -232,6 +232,7 @@ class Changelog(AbstractBase):
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "changelog", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.MediumString)
     time = db.Column(db.TinyString, index=True)
     content = db.Column(db.LargeString)
     severity = db.Column(db.TinyString, default="debug")
@@ -263,7 +264,11 @@ class Changelog(AbstractBase):
         return self.content
 
     def update(self, **kwargs):
-        super().update(**{"time": vs.get_time(), **kwargs})
+        kwargs["time"] = vs.get_time()
+        if not kwargs.get("author"):
+            kwargs["author"] = getattr(current_user, "name", "")
+        super().update(**kwargs)
+        self.name = f"{self.target_name} updated by {self.author}"
 
 
 class Parameters(AbstractBase):
@@ -323,7 +328,7 @@ class File(AbstractBase):
             return
         if self.full_path == trash:
             return {"log": "Cannot delete the 'trash' folder."}
-        if trash in self.full_path and vs.settings["files"]["allow_file_deletion"]:
+        if trash in self.full_path:
             if self.type == "folder":
                 rmtree(self.full_path, ignore_errors=True)
             else:

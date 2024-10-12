@@ -111,7 +111,7 @@ export function sanitize(input) {
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
-    '"': "&quot;",
+    '"': "&quot;", /* eslint-disable-line quotes */
     "'": "&#x27;",
     "/": "&#x2F;",
   };
@@ -439,7 +439,6 @@ export function createTooltip({
   content,
   callback,
   size,
-  ...other
 }) {
   if ($(target).length) {
     let kwargs = {
@@ -668,6 +667,28 @@ export function configureForm(form, id, panelId) {
       editor.on("change", () => editor.save());
       if (!editors[id]) editors[id] = {};
       editors[id][property] = editor;
+      const blackButton = $(`
+        <button class="icon-button" type="button" style="margin-left: auto;">
+          <span class="glyphicon glyphicon-bold"></span>
+        </button>
+      `);
+      blackButton.on("click", function () {
+        call({
+          url: "/format_code_with_black",
+          data: { content: editor.getValue() },
+          callback: (result) => {
+            editor.setValue(result);
+            notify("Code formatted with black.", "success", 5);
+          },
+        });
+      });
+      $(`label[help="${el.attr("help")}"]`)
+        .css({
+          display: "flex",
+          "justify-content": "space-between",
+          "align-items": "center",
+        })
+        .append(blackButton);
     } else if (["object", "object-list"].includes(field.type)) {
       let model;
       if (relationships?.[form]?.[property]?.model) {
@@ -748,7 +769,9 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
   openPanel({
     name: formType,
     id: id || tableId,
-    footerToolbar: hideButton ? "" : `
+    footerToolbar: hideButton
+      ? ""
+      : `
       <div style="width: 100%; height: 40px; display: flex;
         align-items: center; justify-content: center;">
         <button
@@ -769,7 +792,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
-      if (type == "folder") showFolderPanel(id); 
+      if (type == "folder") showFolderPanel(id);
       if (id) {
         call({
           url: `/get/${type}/${id}`,
@@ -804,8 +827,8 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       const property = isService
         ? "scoped_name"
         : type == "folder"
-        ? "filename"
-        : "name";
+          ? "filename"
+          : "name";
       $(`#${type}-${property}`).focus();
     },
     type: type,
@@ -963,8 +986,8 @@ export function displayDiff(type, instanceId, property) {
     instanceId == "none"
       ? $("#configuration-property-diff").val()
       : type.includes("result")
-      ? "result"
-      : type;
+        ? "result"
+        : type;
   const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
   let v1 = $(`input[name=v1${postfix}]:checked`).val();
   let v2 = $(`input[name=v2${postfix}]:checked`).val();
@@ -1164,6 +1187,7 @@ export function copyToClipboard({ text, isId, includeText = true }) {
   dummy.select();
   document.execCommand("copy");
   document.body.removeChild(dummy);
+  window.navigator.clipboard?.writeText(text);
   notify(`Copied to Clipboard${includeText ? `: ${text}` : "."}`, "success", 5);
 }
 
@@ -1502,7 +1526,7 @@ $(document).ready(function () {
   createNotificationBanner();
 });
 
-$(window).load(function () {
+$(window).on("load", function () {
   NProgress.done();
 });
 

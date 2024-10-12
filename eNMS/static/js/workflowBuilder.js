@@ -1,6 +1,7 @@
 /*
 global
 action: false
+automation: false
 linkRuntime: false
 page: false
 subtypes: false
@@ -56,8 +57,8 @@ const options = {
   },
   manipulation: {
     enabled: false,
-    addNode: function (data, callback) {},
-    addEdge: function (data, callback) {
+    addNode: function (data, callback) {}, // eslint-disable-line no-unused-vars
+    addEdge: function (data, callback) { // eslint-disable-line no-unused-vars
       if (data.from.length == 36 || data.to.length == 36) {
         notify("You cannot use a label to draw an edge.", "error", 5);
       } else if (data.to == startId) {
@@ -234,7 +235,7 @@ export const switchToWorkflow = function (path, direction, runtime, selection) {
         localStorage.setItem("workflow", JSON.stringify(workflow));
       }
       displayWorkflow(result, true);
-      if (selection) highlightNode(selection);
+      if (selection) setTimeout(() => highlightNode(selection), 200);
       switchMode(currentMode, true);
     },
   });
@@ -367,10 +368,10 @@ export function drawWorkflowNode(service) {
     color: defaultService
       ? "pink"
       : isPlaceholder
-      ? "#E6ADD8"
-      : service.dry_run
-      ? "#EDC582"
-      : "#D2E5FF",
+        ? "#E6ADD8"
+        : service.dry_run
+          ? "#EDC582"
+          : "#D2E5FF",
     font: {
       size: 15,
       multi: "html",
@@ -474,12 +475,12 @@ function addServicePanel() {
             icon: "glyphicon glyphicon-file",
           },
           workflow: {
-            icon: "fa fa-sitemap",
+            icon: "fa fa-sitemap fa-rotate-270",
           },
         },
       });
       let timer = false;
-      $("#add-services-search").keyup(function (event) {
+      $("#add-services-search").keyup(function () {
         if (timer) clearTimeout(timer);
         timer = setTimeout(function () {
           $("#service-tree").jstree(true).search($("#add-services-search").val());
@@ -503,9 +504,14 @@ function getResultLink(service, device) {
 function getWorkflowLink(includeRuntime) {
   const baseUrl =
     serverUrl || `${window.location.protocol}//${window.location.hostname}`;
-  let link = `${baseUrl}/workflow_builder/${currentPath}`;
-  if (includeRuntime) link += `/${currentRuntime}`;
-  copyToClipboard({ text: encodeURI(link) });
+  call({
+    url: `/get_workflow_path/${currentPath}`,
+    callback: function (persistentPath) {
+      let link = `${baseUrl}/workflow_builder/${persistentPath}`;
+      if (includeRuntime) link += `/${currentRuntime}`;
+      copyToClipboard({ text: encodeURI(link) });
+    },
+  });
 }
 
 export function updateWorkflowRightClickBindings() {
@@ -634,8 +640,8 @@ function displayWorkflowState(result, workflowSwitch) {
   }
   if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
-    for (const [serviceId, status] of Object.entries(result.device_state)) {
-      colorService(parseInt(serviceId), status ? "#32CD32" : "#FF6666");
+    for (const [serviceId, color] of Object.entries(result.device_state)) {
+      colorService(parseInt(serviceId), color);
     }
     return;
   }
@@ -671,14 +677,14 @@ function displayWorkflowState(result, workflowSwitch) {
           state.status == "Skipped" || (total && skipped == total)
             ? "#D3D3D3"
             : success + failure + skipped < total
-            ? "#89CFF0"
-            : state.dry_run
-            ? "#EDC582"
-            : state.success === false || failure > 0
-            ? "#FF6666"
-            : state.success === true
-            ? "#32CD32"
-            : "#00CCFF"
+              ? "#89CFF0"
+              : state.dry_run
+                ? "#EDC582"
+                : state.success === false || failure > 0
+                  ? "#FF6666"
+                  : state.success === true
+                    ? "#32CD32"
+                    : "#00CCFF"
         );
         if (total) {
           const prefix = progressKey == "device" ? "Devices" : "Iteration";
@@ -748,8 +754,8 @@ export function resetWorkflowDisplay() {
         color: service.skip[workflow.name]
           ? "#D3D3D3"
           : service.dry_run
-          ? "#EDC582"
-          : "#D2E5FF",
+            ? "#EDC582"
+            : "#D2E5FF",
       });
     }
   });
@@ -775,13 +781,14 @@ export function getWorkflowState(periodic, first) {
         device: $("#device-filter").val(),
         search_mode: $("#tree-search-mode").val(),
         search_value: $("#tree-search").val(),
+        display_all: $("#tree-display-all-services").prop("checked"),
+        regex_search: $("#tree-regex-search").prop("checked"),
       },
       callback: function (result) {
-        const updateDisplay = (
-          !discardNextRefresh
-          && Object.keys(result).length
-          && result.service.id == workflow.id
-        );
+        const updateDisplay =
+          !discardNextRefresh &&
+          Object.keys(result).length &&
+          result.service.id == workflow.id;
         if (updateDisplay) {
           currentRun = result.run;
           currentRuntime = result.runtime;
@@ -796,9 +803,8 @@ export function getWorkflowState(periodic, first) {
         const refreshSettings = automation.workflow.builder_refresh_rate;
         const endTime = new Date().getTime();
         const delay = Math.min(
-          refreshSettings.max, Math.max(
-            refreshSettings.min, (endTime - startTime) * refreshSettings.factor
-          )
+          refreshSettings.max,
+          Math.max(refreshSettings.min, (endTime - startTime) * refreshSettings.factor)
         );
         if (periodic) setTimeout(() => getWorkflowState(true), delay);
       },

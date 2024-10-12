@@ -79,7 +79,10 @@ class Runner:
         if self.is_main_run:
             self.cache = {
                 "main_run": self.main_run.base_properties,
-                "main_run_service": self.main_run.service.base_properties,
+                "main_run_service": {
+                    "log_level": int(self.main_run.service.log_level),
+                    **self.main_run.service.base_properties,
+                },
                 "service": self.service.base_properties,
             }
         else:
@@ -431,23 +434,18 @@ class Runner:
         device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
         device = db.fetch("device", id=device_id, rbac=None)
-        if vs.automation["advanced"]["refetch_after_process_fork"]:
-            run_kwargs = {"in_process": True}
-            for key, value in run.kwargs.items():
-                try:
-                    run_kwargs[key] = db.fetch(
-                        value.type, id=refetch_ids[key], rbac=None
-                    )
-                except Exception as exc:
-                    if isinstance(exc, SQLAlchemyError):
-                        db.session.rollback()
-                    run_kwargs[key] = value
-            parent_run = run
-            if isinstance(run, vs.models["run"]):
-                parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
-            results.append(Runner(parent_run, **run_kwargs).get_results(device))
-        else:
-            results.append(run.get_results(device))
+        run_kwargs = {"in_process": True}
+        for key, value in run.kwargs.items():
+            try:
+                run_kwargs[key] = db.fetch(value.type, id=refetch_ids[key], rbac=None)
+            except Exception as exc:
+                if isinstance(exc, SQLAlchemyError):
+                    db.session.rollback()
+                run_kwargs[key] = value
+        parent_run = run
+        if isinstance(run, vs.models["run"]):
+            parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
+        results.append(Runner(parent_run, **run_kwargs).get_results(device))
 
     def device_iteration(self, device):
         derived_devices = self.compute_devices_from_query(
@@ -563,26 +561,18 @@ class Runner:
                 and not self.iteration_run
             ):
                 processes = min(len(non_skipped_targets), self.get("max_processes"))
-                refetch_ids = (
-                    {
-                        key: value.id
-                        for key, value in self.kwargs.items()
-                        if hasattr(value, "id")
-                    }
-                    if vs.automation["advanced"]["refetch_after_process_fork"]
-                    else None
-                )
+                refetch_ids = {
+                    key: value.id
+                    for key, value in self.kwargs.items()
+                    if hasattr(value, "id")
+                }
                 process_args = [
                     (device.id, self.runtime, results, refetch_ids)
                     for device in non_skipped_targets
                 ]
                 self.log("info", f"Starting a pool of {processes} threads")
-                if not vs.automation["advanced"]["refetch_after_process_fork"]:
-                    self.in_process = True
                 with ThreadPool(processes=processes) as pool:
                     pool.map(self.get_device_result, process_args)
-                if not vs.automation["advanced"]["refetch_after_process_fork"]:
-                    self.in_process = False
             else:
                 results.extend(
                     [
@@ -825,10 +815,7 @@ class Runner:
         service_log=True,
         allow_disable=True,
     ):
-        try:
-            log_level = int(self.main_run.service.log_level)
-        except Exception:
-            log_level = 1
+        log_level = self.cache["main_run_service"]["log_level"]
         if (
             logger != "security"
             and allow_disable
@@ -1190,8 +1177,8 @@ class Runner:
                 "get_all_results": _self.get_all_results,
                 "get_connection": _self.get_connection,
                 "get_result": _self.get_result,
-                "get_var": _self.get_var,
                 "get_secret": _self.get_secret,
+                "get_var": _self.get_var,
                 "log": _self.log,
                 "parent_device": _self.parent_device or device,
                 "payload": _self.payload,
@@ -1537,8 +1524,8 @@ class Runner:
             )
             self.write_state(f"connections/{library}", -1, "increment", True)
             self.log("info", f"Closed {connection_log}", device)
-        except Exception as exc:
-            self.log("error", f"Error while closing {connection_log} ({exc})", device)
+        except Exception:
+            self.log("error", f"Error closing {connection_log}\n{format_exc()}", device)
 
     def enter_remote_device(self, connection, device):
         if not getattr(self, "jump_on_connect", False):

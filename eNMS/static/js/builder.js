@@ -243,7 +243,7 @@ export function drawTree(service, data, resultsPanel) {
           icon: "glyphicon glyphicon-file",
         },
         workflow: {
-          icon: "fa fa-sitemap",
+          icon: "fa fa-sitemap fa-rotate-270",
         },
       },
     });
@@ -259,10 +259,17 @@ export function drawTree(service, data, resultsPanel) {
         network.selectNodes([]);
       }
     });
+    tree.on("select_node.jstree", function (_, data) {
+      network.selectNodes(
+        data.selected
+          .map((path) => parseInt(path.split(">").pop()))
+          .filter((id) => nodes.get(id))
+      );
+    });
     tree.unbind("dblclick").on("dblclick", function (event) {
       highlightNode($(treeId).jstree(true).get_node(event.target).data);
     });
-    tree.bind("loaded.jstree", function (e, data) {
+    tree.bind("loaded.jstree", function () {
       createTooltips();
       if (resultsPanel) tree.jstree("open_all");
     });
@@ -343,7 +350,7 @@ function showBuilderSearchPanel() {
   const filteringType = type == "workflow" ? "Service" : "Device";
   openPanel({
     name: "search",
-    size: `500 ${type == "workflow" ? "240" : "160"}`,
+    size: `500 ${type == "workflow" ? "310" : "160"}`,
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <fieldset class="custom-fieldset">
@@ -360,8 +367,17 @@ function showBuilderSearchPanel() {
               name="search_value"
               placeholder="&#xF002;"
               class="form-control"
-              style="font-family: Arial, FontAwesome;"
+              style="font-family: Arial, FontAwesome; margin-bottom: 5px"
             />
+            <label for="tree-display-all-services">
+              <input type="checkbox" id="tree-display-all-services" />
+                Include Non-Matching Services in Workflow Tree
+            </label>
+
+            <label for="tree-regex-search">
+              <input type="checkbox" id="tree-regex-search" />
+                Regular Expression Search
+            </label>
         </fieldset>
         ${bottomField}
       </form>`,
@@ -370,7 +386,10 @@ function showBuilderSearchPanel() {
     callback: () => {
       const func = type == "workflow" ? getWorkflowState : getNetworkState;
       initSelect($(`#device-filter`), "device", null, true);
-      $("#device-filter").on("change", func);
+      $("#device-filter,#tree-display-all-services,#tree-regex-search").on(
+        "change",
+        func
+      );
       $("#tree-search-mode").selectpicker().on("change", func);
       let timer = false;
       document.getElementById("tree-search").addEventListener("keyup", function () {
@@ -702,7 +721,7 @@ export function processBuilderData(newInstance) {
     }
     nodes.update(drawNode(newInstance));
     if (type == "workflow") drawIterationEdge(instance);
-    switchMode("motion");    
+    switchMode("motion");
   }
 }
 

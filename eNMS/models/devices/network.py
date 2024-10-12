@@ -5,6 +5,7 @@ from eNMS.database import db
 from eNMS.forms import DeviceForm
 from eNMS.fields import HiddenField, SelectField
 from eNMS.models.inventory import Device
+from eNMS.variables import vs
 
 
 class Network(Device):
@@ -13,7 +14,6 @@ class Network(Device):
     pretty_name = "Network"
     parent_type = "device"
     category = db.Column(db.SmallString)
-    icon = db.Column(db.TinyString, default="network")
     id = db.Column(Integer, ForeignKey(Device.id), primary_key=True)
     path = db.Column(db.TinyString)
     labels = db.Column(db.Dict, info={"log_change": False})
@@ -50,3 +50,6 @@ class NetworkForm(DeviceForm):
     form_type = HiddenField(default="network")
     category = SelectField("Category")
     properties = ["category"]
+    icon = SelectField(
+        "Icon", choices=list(vs.visualization["icons"].items()), default="network"
+    )

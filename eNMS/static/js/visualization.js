@@ -40,7 +40,7 @@ let routerIcon;
 let currentPath = localStorage.getItem(page);
 let controls;
 
-function updateRightClickBindings(controls) {
+function updateRightClickBindings() {
   Object.assign(action, {
     "Edit Pool": () => showInstancePanel("pool", currentPath),
     "Open Street Map": () => switchLayer("osm"),
@@ -66,7 +66,7 @@ function initLeaflet() {
   layer = L.tileLayer(settings.layers[settings.tile_layer]);
   map
     .addLayer(layer)
-    .on("click", function (e) {
+    .on("click", function () {
       selectedObject = null;
     })
     .on("contextmenu", function () {
@@ -106,8 +106,8 @@ function createNode(node) {
       markerType == "Circle Marker"
         ? L.circleMarker([node.latitude, node.longitude])
         : markerType == "Circle"
-        ? L.circle([node.latitude, node.longitude])
-        : L.marker([node.latitude, node.longitude]);
+          ? L.circle([node.latitude, node.longitude])
+          : L.marker([node.latitude, node.longitude]);
   } catch (err) {
     return console.error(`Device '${node.name}' couldn't be loaded (${err})`);
   }
@@ -121,10 +121,10 @@ function createNode(node) {
   marker.bindTooltip(node["name"], { permanent: false });
   marker.node_id = node.id;
   markersArray.push(marker);
-  marker.on("click", function (e) {
+  marker.on("click", function () {
     leftClickBinding("device", node.id, node.type == "site");
   });
-  marker.on("contextmenu", function (e) {
+  marker.on("contextmenu", function () {
     $(".menu").hide();
     $(`.rc-${node.type}-menu`).show();
     selectedObject = node;
@@ -150,7 +150,7 @@ function createLink(link) {
   });
   polylinesObjects[link.id] = polyline;
   polyline.link_id = link.id;
-  polyline.on("click", function (e) {
+  polyline.on("click", function () {
     leftClickBinding("link", this.link_id, link.type == "bundle");
   });
   polyline.on("contextmenu", () => linkRightClickBinding(link));
@@ -259,8 +259,8 @@ function displayNetwork({ direction, noAlert, withCluster } = {}) {
     direction == "left"
       ? history[historyPosition - 1]
       : direction == "right"
-      ? history[historyPosition + 1]
-      : $("#current-pool").val();
+        ? history[historyPosition + 1]
+        : $("#current-pool").val();
   localStorage.setItem(page, currentPath);
   if (
     (direction == "left" && historyPosition == 0) ||

@@ -133,6 +133,9 @@ export class Table {
                   waitForSearch = false;
                 }, 500);
               })
+              .on("keydown", function (e) {
+                if (e.key === "Enter") e.preventDefault();
+              })
               .on("click", function (e) {
                 e.stopPropagation();
               });
@@ -152,6 +155,7 @@ export class Table {
             ...this.getFilteringData(),
           });
           Object.assign(data, self.filteringData);
+          self.copyClipboard = false;
           return JSON.stringify(data);
         },
         dataSrc: function (result) {
@@ -163,9 +167,8 @@ export class Table {
             self.exportTable(result.full_result);
             self.csvExport = false;
           }
-          if (self.copyClipboard) {
-            copyToClipboard({ text: result.full_result, includeText: false });
-            self.copyClipboard = false;
+          if (result.clipboard) {
+            copyToClipboard({ text: result.clipboard, includeText: false });
           }
           return result.data.map((instance) =>
             self.addRow({ properties: instance, tableId: self.id })
@@ -212,7 +215,7 @@ export class Table {
       : `#search-form-${this.id}`;
     let form = serializeForm(serializedForm, `${this.model}_filtering`, bulkFiltering);
     for (const [key, value] of Object.entries(form)) {
-      if (key.includes("_invert")) form[key] = ["y", "on"].includes(value);
+      if (key.includes("_invert")) form[key] = ["y", "on", "bool-true"].includes(value);
     }
     Object.assign(data, {
       form: form,
@@ -233,8 +236,8 @@ export class Table {
       const visible = visibleColumns
         ? visibleColumns.split(",").includes(column.name)
         : "visible" in column
-        ? column.visible
-        : true;
+          ? column.visible
+          : true;
       const columnTitle = column.data == "buttons" ? "Buttons" : column.title;
       $(`#column-display-${this.id}`).append(
         new Option(columnTitle || column.data, column.data, visible, visible)
@@ -379,10 +382,10 @@ export class Table {
           '${this.id}', '${this.type}', ${this.relationString}
         )`
       : this.type == "service"
-      ? `eNMS.automation.openServicePanel()`
-      : this.type == "device" || this.type == "link"
-      ? `eNMS.inventory.openObjectPanel('${this.type}')`
-      : `eNMS.base.showInstancePanel('${this.type}')`;
+        ? `eNMS.automation.openServicePanel()`
+        : this.type == "device" || this.type == "link"
+          ? `eNMS.inventory.openObjectPanel('${this.type}')`
+          : `eNMS.base.showInstancePanel('${this.type}')`;
     return `
       <button
         class="btn btn-primary"
@@ -653,8 +656,8 @@ tables.device = class DeviceTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -750,8 +753,8 @@ tables.network = class NetworkTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -920,8 +923,8 @@ tables.link = class LinkTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -1139,7 +1142,7 @@ tables.service = class ServiceTable extends Table {
     let runtimeArg = "";
     if (row.type != "workflow") runtimeArg = ", null, 'result'";
     return `
-      <ul class="pagination pagination-lg" style="margin: 0px; width: 340px">
+      <ul class="pagination pagination-lg" style="margin: 0px; width: 350px">
         ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-info"
@@ -1751,8 +1754,8 @@ tables.changelog = class ChangelogTable extends Table {
           <button ${row.target_id ? "" : "disabled"} type="button"
           class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.target_type}', '${
-      row.target_id
-    }')" data-tooltip="Edit"
+            row.target_id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
@@ -1765,7 +1768,7 @@ tables.changelog = class ChangelogTable extends Table {
               row.id
             })" data-tooltip="Revert Change"
             >
-              <span class="glyphicon glyphicon-step-backward"></span>
+              <span class="fa fa-undo"></span>
             </button>
         </li>
       </ul>`,
@@ -1889,7 +1892,6 @@ tables.file = class FileTable extends Table {
       >
         <span class="glyphicon glyphicon-flash"></span>
       </button>`,
-      this.bulkDeletionButton(),
       `<div id="current-folder-path" style="margin-top: 9px; margin-left: 9px"></div>`,
     ];
   }
@@ -2037,6 +2039,10 @@ export const clearSearch = function (tableId, notification) {
   $(".search-relation-dd").val("any").selectpicker("refresh");
   $(".search-relation").val([]).trigger("change");
   $(`.search-select-${tableId}`).val("inclusion");
+  if ($("#serialized-search-div").is(":visible")) {
+    $("#serialized-search").val("");
+    $("#serialized-search-div").toggle();
+  }
   refreshTable(tableId);
   if (notification) notify("Search parameters cleared.", "success", 5);
 };
@@ -2179,7 +2185,7 @@ function displayRelationTable(type, instance, relation) {
         </form>
       </div>`,
     id: instance.id,
-    size: "1200 600",
+    size: "1300 600",
     title: `${instance.name} - ${type}s`,
     tableId: `${type}-${instance.id}`,
     callback: function () {

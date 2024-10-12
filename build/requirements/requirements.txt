@@ -1,6 +1,6 @@
 apscheduler
 argon2-cffi
-dramatiq[redis, watch]
+black
 flask
 flask_caching
 flask_login
