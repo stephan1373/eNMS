@@ -650,7 +650,7 @@ class Controller:
             device_name = db.fetch("device", id=device).name
             lines = [line for line in lines if f"DEVICE {device_name}" in line]
         if search:
-            lines = [line for line in lines if search in line]
+            lines = [line for line in lines if search.lower() in line.lower()]
         return {
             "logs": "\n".join(lines),
             "refresh": not log_instance,
