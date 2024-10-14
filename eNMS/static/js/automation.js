@@ -262,8 +262,6 @@ export const showRuntimePanel = function (
                 class="btn btn-default pull-right"
                 data-tooltip="Search"
                 type="button"
-                onclick="$('#search-logs-${panelId}')
-                  .toggle().find('input').focus()"
               >
                 <span
                   class="glyphicon glyphicon-search"
@@ -413,6 +411,9 @@ function displayLogs(service, runtime, change) {
     editor = initCodeMirror(`service-logs-${service.id}`, "logs");
   }
   let timer = false;
+  $(`#search-button-logs-${service.id}`).on("click", function() {
+    $(`#search-logs-logs-${service.id}`).toggle().find("input").focus();
+  });
   $(`#search-field-logs-${service.id}`).on("input", function() {
     if (timer) clearTimeout(timer);
     timer = setTimeout(function () {
