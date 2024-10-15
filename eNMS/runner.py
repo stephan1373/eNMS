@@ -821,7 +821,7 @@ class Runner:
         log,
         device=None,
         change_log=False,
-        logger="root",
+        logger=None,
         service_log=True,
         allow_disable=True,
     ):
