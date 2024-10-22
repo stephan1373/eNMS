@@ -46,7 +46,7 @@ class Device(Object):
     parent_type = "object"
     id = db.Column(Integer, ForeignKey(Object.id), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    positions = db.Column(db.Dict, info={"log_change": False})
+    positions = deferred(db.Column(db.Dict, info={"log_change": False}))
     latitude = db.Column(db.TinyString, default="0.0")
     longitude = db.Column(db.TinyString, default="0.0")
     icon = db.Column(db.TinyString, default="router")

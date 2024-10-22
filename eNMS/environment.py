@@ -309,9 +309,7 @@ class Environment:
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
 
     def get_yaml_instance(self, direction):
-        if direction == "import":
-            return YAML(typ="unsafe")
-        yaml = YAML()
+        yaml = YAML() if direction == "export" else YAML(typ="safe", pure=True)
         yaml.default_style = '"'
 
         def representer(dumper, data):
@@ -319,6 +317,10 @@ class Environment:
             data = data.lstrip()
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
 
+        def tuple_constructor(loader, node):
+            return tuple(loader.construct_sequence(node))
+
+        yaml.constructor.add_constructor('tag:yaml.org,2002:python/tuple', tuple_constructor)
         yaml.representer.add_representer(str, representer)
         yaml.representer.ignore_aliases = lambda *args: True
         return yaml
