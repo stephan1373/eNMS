@@ -155,6 +155,9 @@ Version 5.1.0: Changelog & Workflow Tree
     treated as a literal block.
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
   - Forbid references (e.g &id000) in yaml files with representer.ignore_aliases to avoid change of id number
+  - Refactor get_yaml_instance to use the "typ='safe'" keyword because of database corruption issue by ruamel
+    when it isn't used
+  - Add a representer for tuples because service positions can be stored in the database as a tuple
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
@@ -248,6 +251,7 @@ Version 5.1.0: Changelog & Workflow Tree
     min, max and factor used to compute refresh rate based on elapsed time
 - Add new settings "allow_file_deletion" in settings.json / "files" to explicitly allow deleting local files that
   are located in the trash foler. Set to false by default.
+- Defer Service.positions to improve run performance
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
