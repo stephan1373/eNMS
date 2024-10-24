@@ -309,7 +309,7 @@ class Environment:
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
 
     def get_yaml_instance(self):
-        yaml = YAML(typ="safe", pure=True)
+        yaml = YAML(typ="safe")
         yaml.default_style = '"'
 
         def representer(dumper, data):

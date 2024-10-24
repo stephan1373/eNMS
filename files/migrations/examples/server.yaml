@@ -1,4 +1,4 @@
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "allowed_automation":
   - "scheduler"
   - "rest_api"
@@ -14,8 +14,8 @@
   "owners": []
   "rbac_read": []
   "role": "primary"
-  "scheduler_active": !!bool "true"
+  "scheduler_active": ! "true"
   "scheduler_address": "http://192.168.56.103:5000"
   "type": "server"
   "version": "4.6"
-  "weight": !!int "3"
+  "weight": ! "3"
