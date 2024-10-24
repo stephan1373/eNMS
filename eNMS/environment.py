@@ -308,8 +308,8 @@ class Environment:
             keys = [getenv(f"UNSEAL_VAULT_KEY{index}") for index in range(1, 6)]
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
 
-    def get_yaml_instance(self, direction):
-        yaml = YAML() if direction == "export" else YAML(typ="safe", pure=True)
+    def get_yaml_instance(self):
+        yaml = YAML(typ="safe", pure=True)
         yaml.default_style = '"'
 
         def representer(dumper, data):
