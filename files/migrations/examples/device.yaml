@@ -1,17 +1,17 @@
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Jackson"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -56,25 +56,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "PaloAlto"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.86"
@@ -119,25 +119,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Austin"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -182,25 +182,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Washington"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -247,25 +247,25 @@
   "rbac_target":
   - "Full UI Read + Edit Access"
   - "ny Group"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Chicago"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -310,25 +310,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "SanJose"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.187"
@@ -373,25 +373,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "SanDiego"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -436,25 +436,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Dallas"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -499,25 +499,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Philadelphia"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -562,25 +562,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "LosAngeles"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "optical_switch"
   "ip_address": "192.168.56.51"
@@ -625,25 +625,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Detroit"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.14"
@@ -688,25 +688,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Richmond"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.15"
@@ -751,25 +751,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Atlanta"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -814,25 +814,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Boston"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -878,25 +878,25 @@
   - "ny Group"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Houston"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.104"
@@ -941,25 +941,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Baltimore"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -1004,25 +1004,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Cleveland"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -1067,25 +1067,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Columbus"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -1130,25 +1130,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Cincinnati"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -1193,25 +1193,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Cambridge"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -1256,25 +1256,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Minneapolis"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.110"
@@ -1319,25 +1319,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "NewYork"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.88"
@@ -1382,25 +1382,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Sacramento"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.111"
@@ -1445,25 +1445,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "SanFrancisco"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.89"
@@ -1508,25 +1508,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Orange"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.114"
@@ -1571,25 +1571,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Oakland"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.112"
@@ -1634,25 +1634,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Denver"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.113"
@@ -1697,25 +1697,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.85"
@@ -1760,25 +1760,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.86"
@@ -1823,25 +1823,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.87"
@@ -1886,25 +1886,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.88"
@@ -1949,25 +1949,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.188"
@@ -2012,25 +2012,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.1.187"
@@ -2075,25 +2075,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.12"
@@ -2138,25 +2138,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.13"
@@ -2201,25 +2201,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.14"
@@ -2264,25 +2264,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.15"
@@ -2327,25 +2327,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.16"
@@ -2390,25 +2390,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.17"
@@ -2453,25 +2453,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.18"
@@ -2516,25 +2516,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.19"
@@ -2579,25 +2579,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.20"
@@ -2642,25 +2642,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.21"
@@ -2705,25 +2705,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.22"
@@ -2768,25 +2768,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.23"
@@ -2831,25 +2831,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.24"
@@ -2894,25 +2894,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.25"
@@ -2957,25 +2957,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.26"
@@ -3020,25 +3020,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.27"
@@ -3083,25 +3083,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "france"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.28"
@@ -3146,25 +3146,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.29"
@@ -3209,25 +3209,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.30"
@@ -3272,25 +3272,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Juniper"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.31"
@@ -3335,25 +3335,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.32"
@@ -3398,25 +3398,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.33"
@@ -3461,25 +3461,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.34"
@@ -3524,25 +3524,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "eastern europe"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.35"
@@ -3587,25 +3587,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.36"
@@ -3650,25 +3650,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.37"
@@ -3713,25 +3713,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "spain"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.38"
@@ -3776,25 +3776,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": "router"
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Washington"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.103"
@@ -3839,25 +3839,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Linux"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": ""
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Denver"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "127.0.0.1"
@@ -3902,25 +3902,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Dallas"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.100"
@@ -3965,25 +3965,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Dallas"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.100"
@@ -4028,25 +4028,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Dallas"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.100"
@@ -4091,25 +4091,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Austin"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -4154,25 +4154,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Austin"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -4217,25 +4217,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Jackson"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
@@ -4280,25 +4280,25 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": "Oakland"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "10.0.0.112"
@@ -4343,18 +4343,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "subtype": ""
   "type": "device"
   "vendor": "Cisco"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.87.189"
@@ -4399,18 +4399,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "server"
   "ip_address": ""
@@ -4455,19 +4455,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "optical_switch"
   "ip_address": ""
@@ -4512,19 +4512,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways":
   - "Gateway 1"
   "icon": "antenna"
@@ -4570,13 +4570,13 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4585,7 +4585,7 @@
   "devices":
   - "Router behind Gateway 1"
   - "Router behind Gateway 1, 2 and 3"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "antenna"
   "ip_address": "192.168.56.104"
@@ -4631,12 +4631,12 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4644,7 +4644,7 @@
   "description": ""
   "devices":
   - "Router behind Gateway 1, 2 and 3"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "antenna"
   "ip_address": "192.168.56.199"
@@ -4690,12 +4690,12 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4703,7 +4703,7 @@
   "description": ""
   "devices":
   - "Router behind Gateway 1, 2 and 3"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "antenna"
   "ip_address": "192.168.56.201"
@@ -4749,18 +4749,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways":
   - "Gateway 1"
   - "Gateway 2"
@@ -4808,19 +4808,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "arista_eos"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -4865,19 +4865,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -4922,20 +4922,20 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
   "devices": []
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "host"
   "ip_address": ""
@@ -4981,19 +4981,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
   "devices": []
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "host"
   "ip_address": ""
@@ -5039,18 +5039,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5095,19 +5095,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
   "devices": []
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "host"
   "ip_address": ""
@@ -5153,18 +5153,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "gateway"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5209,19 +5209,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5266,19 +5266,19 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "serial_number": ""
   "subtype": ""
   "type": "router"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5323,18 +5323,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5379,18 +5379,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5435,18 +5435,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5491,18 +5491,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5547,18 +5547,18 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": ""
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": ""
@@ -5603,31 +5603,30 @@
   - "Full UI Read + Edit Access"
   "rbac_target":
   - "Full UI Read + Edit Access"
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Display"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Router 1"
   - "Router 2"
   - "Router 3"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -5640,8 +5639,8 @@
         Router 1 should be displayed as a router, Router 2 as a host and Router 3 as an optical switch.
         The icon of a device is decoupled from its type.
       "positions":
-      - !!int "19"
-      - !!int "-70"
+      - ! "19"
+      - ! "-70"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -5695,30 +5694,29 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Subnetwork"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -5733,8 +5731,8 @@
         - Test using network as a teleport: Subnetwork 1 contains Subnetwork 2 and vice-versa,
         to switch from one to the other and back.
       "positions":
-      - !!int "-310"
-      - !!int "-212"
+      - ! "-310"
+      - ! "-212"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -5765,7 +5763,7 @@
   "os_version": ""
   "owners": []
   "path": "93"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5776,32 +5774,31 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Subnetwork 1 - R1"
   - "Subnetwork 1 - R2"
   - "Subnetwork 1 - R3"
   - "Subnetwork 2"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -5813,8 +5810,8 @@
         - three routers, "Subnetwork 1 - R1-3"
         - three links between each pair of routers, "Subnetwork 1 - L1-3"
       "positions":
-      - !!int "51"
-      - !!int "-231"
+      - ! "51"
+      - ! "-231"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -5868,28 +5865,27 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Editing"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices": []
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -5909,8 +5905,8 @@
         - Use the right-click multiple selection rectangle to delete the remaining objects.
         - Delete the network itself from the Network table.
       "positions":
-      - !!int "227"
-      - !!int "-507"
+      - ! "227"
+      - ! "-507"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -5941,7 +5937,7 @@
   "os_version": ""
   "owners": []
   "path": "95"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -5952,31 +5948,30 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2 - G1"
   - "Subnetwork 2 - G2"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -5988,8 +5983,8 @@
         - two gateways, "Subnetwork 2 - G1-2"
         - one link between them, "Subnetwork 2 - L1"
       "positions":
-      - !!int "4"
-      - !!int "-181"
+      - ! "4"
+      - ! "-181"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -6038,30 +6033,29 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Editing"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Duplicate me 1"
   - "Duplicate me 2"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6081,8 +6075,8 @@
 
         Check that the content of the subnetworks is the same as that of the original top-level network.
       "positions":
-      - !!int "-47"
-      - !!int "-187"
+      - ! "-47"
+      - ! "-187"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -6128,30 +6122,29 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Duplication - G1"
   - "Duplication - R1"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6204,32 +6197,31 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Display"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "S5 R1"
   - "S5 R2"
   - "S5 R3"
   - "S5 R4"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6245,8 +6237,8 @@
         - Even number (8) of different direction links (4 / 4) between R3 and R4
         - One link between R1 and R4
       "positions":
-      - !!int "-499"
-      - !!int "98"
+      - ! "-499"
+      - ! "98"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -6326,29 +6318,28 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Subnetwork"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "L1 Network"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6362,8 +6353,8 @@
 
         - The Duplication: all subnetworks down to the last should be duplicated.
       "positions":
-      - !!int "40"
-      - !!int "-173"
+      - ! "40"
+      - ! "-173"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -6394,7 +6385,7 @@
   "os_version": ""
   "owners": []
   "path": "100"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -6405,29 +6396,28 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "L2 Network"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6462,7 +6452,7 @@
   "os_version": ""
   "owners": []
   "path": "100>101"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -6473,29 +6463,28 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "L3 Network"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6530,7 +6519,7 @@
   "os_version": ""
   "owners": []
   "path": "100>101>102"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -6541,30 +6530,29 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "S6 L3 R1"
   - "S6 L3 R2"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6617,28 +6605,27 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Display"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices": []
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6650,8 +6637,8 @@
         - Click on the "Automatic Layout" button: the network should be displayed in a near-optimal layout almost instantly.
         - Select everything and delete it.
       "positions":
-      - !!int "63"
-      - !!int "-168"
+      - ! "63"
+      - ! "-168"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -6682,7 +6669,7 @@
   "os_version": ""
   "owners": []
   "path": "104"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -6693,28 +6680,27 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Editing"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices": []
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -6738,8 +6724,8 @@
         - Add "link25-2" with the "Add Connected Nodes" option: the link should be added but the two ends are already here.
         - Add "link25-3" without any option: the link should be added between "Dallas" and "Atlanta".
       "positions":
-      - !!int "110"
-      - !!int "-18"
+      - ! "110"
+      - ! "-18"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -6770,7 +6756,7 @@
   "os_version": ""
   "owners": []
   "path": "105"
-  "port": !!int "22"
+  "port": ! "22"
   "positions": {}
   "property1": "10.145.14.1"
   "property2": "CP"
@@ -6781,26 +6767,25 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "category": "Display"
   "creator": "admin"
   "custom_json":
     "a": "c"
     "b":
-    - !!int "1"
-    - !!int "2"
+    - ! "1"
+    - ! "2"
     - "3"
   "custom_multiselect":
   - "a"
   - "c"
   "custom_select": "b"
   "description": ""
-  "device_changelogs": []
   "devices":
   - "Atlanta"
   - "Austin"
@@ -6832,7 +6817,7 @@
   - "SanFrancisco"
   - "SanJose"
   - "Washington"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "network"
   "ip_address": ""
@@ -7002,18 +6987,18 @@
   "rbac_read":
   - "Admin User"
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "network"
   "vendor": ""
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.145"
@@ -7055,18 +7040,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7108,18 +7093,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7161,18 +7146,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7214,18 +7199,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7267,18 +7252,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7320,18 +7305,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7373,18 +7358,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7426,18 +7411,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7479,18 +7464,18 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"
   "vendor": "Arista"
-- "admin_only": !!bool "false"
+- "admin_only": ! "false"
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
   "custom_select": "b"
   "description": "Fake IP - No connection"
-  "down": !!bool "false"
+  "down": ! "false"
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.12.146"
@@ -7532,7 +7517,7 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_target": []
-  "reachable": !!bool "true"
+  "reachable": ! "true"
   "scrapli_driver": "cisco_iosxe"
   "subtype": ""
   "type": "device"

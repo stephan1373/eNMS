@@ -59,7 +59,7 @@ class Device(Object):
     configuration = deferred(db.Column(db.LargeString, info={"log_change": False}))
     operational_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
     specialized_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
-    serialized = db.Column(db.LargeString, info={"log_change": False})
+    serialized = deferred(db.Column(db.LargeString, info={"log_change": False}))
     gateways = relationship(
         "Gateway", secondary=db.device_gateway_table, back_populates="devices"
     )

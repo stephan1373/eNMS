@@ -1,7 +1,7 @@
 from collections import defaultdict
 from heapq import heappop, heappush
 from sqlalchemy import Boolean, ForeignKey, Integer
-from sqlalchemy.orm import backref, relationship
+from sqlalchemy.orm import backref, deferred, relationship
 from sqlalchemy.schema import UniqueConstraint
 from wtforms.validators import NumberRange
 
@@ -28,7 +28,7 @@ class Workflow(Service):
     category = db.Column(db.SmallString)
     close_connection = db.Column(Boolean, default=False)
     labels = db.Column(db.Dict, info={"log_change": False})
-    positions = db.Column(db.Dict, default={}, info={"log_change": False})
+    positions = deferred(db.Column(db.Dict, default={}, info={"log_change": False}))
     man_minutes_type = db.Column(db.TinyString, default="workflow")
     man_minutes = db.Column(Integer, default=0)
     man_minutes_total = db.Column(Integer, default=0)

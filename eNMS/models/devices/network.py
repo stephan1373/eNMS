@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey, Integer
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import deferred, relationship
 
 from eNMS.database import db
 from eNMS.forms import DeviceForm
@@ -17,7 +17,7 @@ class Network(Device):
     id = db.Column(Integer, ForeignKey(Device.id), primary_key=True)
     path = db.Column(db.TinyString)
     labels = db.Column(db.Dict, info={"log_change": False})
-    positions = db.Column(db.Dict, info={"log_change": False})
+    positions = deferred(db.Column(db.Dict, info={"log_change": False}))
     devices = relationship(
         "Device", secondary=db.device_network_table, back_populates="networks"
     )
