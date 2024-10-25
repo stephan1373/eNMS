@@ -43,7 +43,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -106,7 +106,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -169,7 +169,7 @@
   "operating_system": "EOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -232,7 +232,7 @@
   "operating_system": "EOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -297,7 +297,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -360,7 +360,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -423,7 +423,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -486,7 +486,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -549,7 +549,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -612,7 +612,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -675,7 +675,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -738,7 +738,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -801,7 +801,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -864,7 +864,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -928,7 +928,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -991,7 +991,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1054,7 +1054,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1117,7 +1117,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1180,7 +1180,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1243,7 +1243,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1306,7 +1306,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1369,7 +1369,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1432,7 +1432,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1495,7 +1495,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1558,7 +1558,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1621,7 +1621,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1684,7 +1684,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1747,7 +1747,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1810,7 +1810,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1873,7 +1873,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1936,7 +1936,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -1999,7 +1999,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2062,7 +2062,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2125,7 +2125,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2188,7 +2188,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2251,7 +2251,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2314,7 +2314,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2377,7 +2377,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2440,7 +2440,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2503,7 +2503,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2566,7 +2566,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2629,7 +2629,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2692,7 +2692,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2755,7 +2755,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2818,7 +2818,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2881,7 +2881,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -2944,7 +2944,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3007,7 +3007,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3070,7 +3070,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3133,7 +3133,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3196,7 +3196,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3259,7 +3259,7 @@
   "operating_system": "Junos"
   "os_version": "17.2R1.13"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3322,7 +3322,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3385,7 +3385,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3448,7 +3448,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3511,7 +3511,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3574,7 +3574,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3637,7 +3637,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3700,7 +3700,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3763,7 +3763,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3826,7 +3826,7 @@
   "operating_system": "Linux"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3889,7 +3889,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -3952,7 +3952,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4015,7 +4015,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4078,7 +4078,7 @@
   "operating_system": "IOS-XR"
   "os_version": "5.1.X"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4141,7 +4141,7 @@
   "operating_system": "EOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4204,7 +4204,7 @@
   "operating_system": "EOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4267,7 +4267,7 @@
   "operating_system": "IOS"
   "os_version": "15.5(3)M"
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4330,7 +4330,7 @@
   "operating_system": "IOS-XE"
   "os_version": "3.6.5E "
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -4386,7 +4386,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4442,7 +4442,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4499,7 +4499,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4557,7 +4557,7 @@
   "operating_system": "EOS"
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4617,8 +4617,8 @@
   "operating_system": "Linux"
   "os_version": ""
   "owners": []
-  "port": !!int "22"
-  "priority": !!int "1"
+  "port": ! "22"
+  "priority": ! "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4676,8 +4676,8 @@
   "operating_system": "Linux"
   "os_version": ""
   "owners": []
-  "port": !!int "22"
-  "priority": !!int "2"
+  "port": ! "22"
+  "priority": ! "2"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4735,8 +4735,8 @@
   "operating_system": "Linux"
   "os_version": ""
   "owners": []
-  "port": !!int "22"
-  "priority": !!int "3"
+  "port": ! "22"
+  "priority": ! "3"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4795,7 +4795,7 @@
   "operating_system": "EOS"
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4852,7 +4852,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4909,7 +4909,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -4967,8 +4967,8 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
-  "priority": !!int "1"
+  "port": ! "22"
+  "priority": ! "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5025,8 +5025,8 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
-  "priority": !!int "1"
+  "port": ! "22"
+  "priority": ! "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5082,7 +5082,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5139,8 +5139,8 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
-  "priority": !!int "1"
+  "port": ! "22"
+  "priority": ! "1"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5196,7 +5196,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5253,7 +5253,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5310,7 +5310,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5366,7 +5366,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5422,7 +5422,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5478,7 +5478,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5534,7 +5534,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5590,7 +5590,7 @@
   "operating_system": ""
   "os_version": ""
   "owners": []
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -5622,6 +5622,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Router 1"
   - "Router 2"
@@ -5674,17 +5675,17 @@
   "os_version": ""
   "owners": []
   "path": "92"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "Router 1":
-    - !!int "-314"
-    - !!int "42"
+    - ! "-314"
+    - ! "42"
     "Router 2":
-    - !!int "-59"
-    - !!int "267"
+    - ! "-59"
+    - ! "267"
     "Router 3":
-    - !!int "310"
-    - !!int "56"
+    - ! "310"
+    - ! "56"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -5713,6 +5714,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2"
@@ -5793,6 +5795,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Subnetwork 1 - R1"
   - "Subnetwork 1 - R2"
@@ -5845,17 +5848,17 @@
   "os_version": ""
   "owners": []
   "path": "94"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "Subnetwork 1 - R1":
-    - !!int "-284"
-    - !!int "-105"
+    - ! "-284"
+    - ! "-105"
     "Subnetwork 1 - R2":
-    - !!int "298"
-    - !!int "-122"
+    - ! "298"
+    - ! "-122"
     "Subnetwork 1 - R3":
-    - !!int "-8"
-    - !!int "136"
+    - ! "-8"
+    - ! "136"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -5884,6 +5887,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices": []
   "down": ! "false"
   "gateways": []
@@ -5967,6 +5971,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Subnetwork 1"
   - "Subnetwork 2 - G1"
@@ -6016,14 +6021,14 @@
   "os_version": ""
   "owners": []
   "path": "96"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "Subnetwork 2 - G1":
-    - !!int "-213"
-    - !!int "-57"
+    - ! "-213"
+    - ! "-57"
     "Subnetwork 2 - G2":
-    - !!int "202"
-    - !!int "-63"
+    - ! "202"
+    - ! "-63"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6052,6 +6057,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Duplicate me 1"
   - "Duplicate me 2"
@@ -6108,11 +6114,11 @@
   "os_version": ""
   "owners": []
   "path": "97"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "Duplicate me 1":
-    - !!int "-356"
-    - !!int "0"
+    - ! "-356"
+    - ! "0"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6141,6 +6147,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Duplication - G1"
   - "Duplication - R1"
@@ -6180,14 +6187,14 @@
   "os_version": ""
   "owners": []
   "path": "97>98"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "Duplication - G1":
-    - !!int "-127"
-    - !!int "-54"
+    - ! "-127"
+    - ! "-54"
     "Duplication - R1":
-    - !!int "127"
-    - !!int "87"
+    - ! "127"
+    - ! "87"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6216,6 +6223,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "S5 R1"
   - "S5 R2"
@@ -6295,20 +6303,20 @@
   "os_version": ""
   "owners": []
   "path": "99"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "S5 R1":
-    - !!int "-765"
-    - !!int "312"
+    - ! "-765"
+    - ! "312"
     "S5 R2":
-    - !!int "-345"
-    - !!int "194"
+    - ! "-345"
+    - ! "194"
     "S5 R3":
-    - !!int "-325"
-    - !!int "426"
+    - ! "-325"
+    - ! "426"
     "S5 R4":
-    - !!int "243"
-    - !!int "271"
+    - ! "243"
+    - ! "271"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6337,6 +6345,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "L1 Network"
   "down": ! "false"
@@ -6415,6 +6424,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "L2 Network"
   "down": ! "false"
@@ -6482,6 +6492,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "L3 Network"
   "down": ! "false"
@@ -6549,6 +6560,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "S6 L3 R1"
   - "S6 L3 R2"
@@ -6588,14 +6600,14 @@
   "os_version": ""
   "owners": []
   "path": "100>101>102>103"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
     "S6 L3 R1":
-    - !!int "-181"
-    - !!int "-10"
+    - ! "-181"
+    - ! "-10"
     "S6 L3 R2":
-    - !!int "170"
-    - !!int "-14"
+    - ! "170"
+    - ! "-14"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -6624,6 +6636,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices": []
   "down": ! "false"
   "gateways": []
@@ -6699,6 +6712,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices": []
   "down": ! "false"
   "gateways": []
@@ -6786,6 +6800,7 @@
   - "c"
   "custom_select": "b"
   "description": ""
+  "device_changelogs": []
   "devices":
   - "Atlanta"
   - "Austin"
@@ -6886,98 +6901,98 @@
   "os_version": ""
   "owners": []
   "path": "106"
-  "port": !!int "22"
+  "port": ! "22"
   "positions":
-    "Jackson":
-    - !!int "621"
-    - !!int "908"
-    "PaloAlto":
-    - !!int "-387"
-    - !!int "104"
-    "Austin":
-    - !!int "253"
-    - !!int "413"
-    "Washington":
-    - !!int "-47"
-    - !!int "331"
-    "Chicago":
-    - !!int "-1073"
-    - !!int "540"
-    "SanJose":
-    - !!int "-92"
-    - !!int "-121"
-    "SanDiego":
-    - !!int "333"
-    - !!int "-657"
-    "Dallas":
-    - !!int "562"
-    - !!int "157"
-    "Philadelphia":
-    - !!int "-686"
-    - !!int "820"
-    "LosAngeles":
-    - !!int "351"
-    - !!int "-244"
-    "Detroit":
-    - !!int "-1351"
-    - !!int "-44"
-    "Richmond":
-    - !!int "93"
-    - !!int "-32"
     "Atlanta":
-    - !!int "427"
-    - !!int "535"
-    "Boston":
-    - !!int "-1213"
-    - !!int "935"
-    "Houston":
-    - !!int "951"
-    - !!int "21"
-    "Baltimore":
-    - !!int "289"
-    - !!int "127"
-    "Cleveland":
-    - !!int "-993"
-    - !!int "184"
-    "Columbus":
-    - !!int "-1099"
-    - !!int "-216"
-    "Cincinnati":
-    - !!int "-1404"
-    - !!int "258"
-    "Cambridge":
-    - !!int "-367"
-    - !!int "811"
-    "Minneapolis":
-    - !!int "-1467"
-    - !!int "680"
-    "NewYork":
-    - !!int "-537"
-    - !!int "433"
-    "Sacramento":
-    - !!int "-382"
-    - !!int "-610"
-    "SanFrancisco":
-    - !!int "-740"
-    - !!int "-568"
-    "Orange":
-    - !!int "686"
-    - !!int "-483"
-    "Oakland":
-    - !!int "-519"
-    - !!int "-222"
-    "Denver":
-    - !!int "-770"
-    - !!int "169"
-    "Dallas-2":
-    - !!int "285"
-    - !!int "905"
-    "Dallas-3":
-    - !!int "851"
-    - !!int "631"
+    - ! "427"
+    - ! "535"
+    "Austin":
+    - ! "253"
+    - ! "413"
     "Austin-2":
-    - !!int "1231"
-    - !!int "770"
+    - ! "1231"
+    - ! "770"
+    "Baltimore":
+    - ! "289"
+    - ! "127"
+    "Boston":
+    - ! "-1213"
+    - ! "935"
+    "Cambridge":
+    - ! "-367"
+    - ! "811"
+    "Chicago":
+    - ! "-1073"
+    - ! "540"
+    "Cincinnati":
+    - ! "-1404"
+    - ! "258"
+    "Cleveland":
+    - ! "-993"
+    - ! "184"
+    "Columbus":
+    - ! "-1099"
+    - ! "-216"
+    "Dallas":
+    - ! "562"
+    - ! "157"
+    "Dallas-2":
+    - ! "285"
+    - ! "905"
+    "Dallas-3":
+    - ! "851"
+    - ! "631"
+    "Denver":
+    - ! "-770"
+    - ! "169"
+    "Detroit":
+    - ! "-1351"
+    - ! "-44"
+    "Houston":
+    - ! "951"
+    - ! "21"
+    "Jackson":
+    - ! "621"
+    - ! "908"
+    "LosAngeles":
+    - ! "351"
+    - ! "-244"
+    "Minneapolis":
+    - ! "-1467"
+    - ! "680"
+    "NewYork":
+    - ! "-537"
+    - ! "433"
+    "Oakland":
+    - ! "-519"
+    - ! "-222"
+    "Orange":
+    - ! "686"
+    - ! "-483"
+    "PaloAlto":
+    - ! "-387"
+    - ! "104"
+    "Philadelphia":
+    - ! "-686"
+    - ! "820"
+    "Richmond":
+    - ! "93"
+    - ! "-32"
+    "Sacramento":
+    - ! "-382"
+    - ! "-610"
+    "SanDiego":
+    - ! "333"
+    - ! "-657"
+    "SanFrancisco":
+    - ! "-740"
+    - ! "-568"
+    "SanJose":
+    - ! "-92"
+    - ! "-121"
+    "Washington":
+    - ! "-47"
+    - ! "331"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": ""
@@ -7031,7 +7046,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7084,7 +7099,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7137,7 +7152,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7190,7 +7205,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7243,7 +7258,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7296,7 +7311,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7349,7 +7364,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7402,7 +7417,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7455,7 +7470,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"
@@ -7508,7 +7523,7 @@
   "os_version": ""
   "owners":
   - "admin"
-  "port": !!int "22"
+  "port": ! "22"
   "property1": "10.145.14.1"
   "property2": "CP"
   "property3": "password"

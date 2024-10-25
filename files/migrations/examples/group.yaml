@@ -11,7 +11,6 @@
   "link_access": []
   "menu": []
   "name": "All users"
-  "network_access": []
   "pages": []
   "pool_access": []
   "post_requests": []
@@ -38,7 +37,6 @@
   "link_access": []
   "menu": []
   "name": "Admin User"
-  "network_access": []
   "pages": []
   "pool_access": []
   "post_requests": []
@@ -206,7 +204,6 @@
   - "Visualization"
   - "Automation"
   "name": "Full UI Read + Edit Access"
-  "network_access": []
   "pages":
   - "Files"
   - "Changelog"
@@ -461,7 +458,6 @@
   - "Visualization"
   - "Automation"
   "name": "ny Group"
-  "network_access": []
   "pages":
   - "Files"
   - "Changelog"

@@ -2504,7 +2504,7 @@
     multiprocessing = BooleanField('Multiprocessing', default=False)
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
-  "pass_device_properties": !!bool "true"
+  "pass_device_properties": ! "true"
   "persistent_id": "/1vflrm3zaU"
   "playbook_path": "/arista_show_version.yml"
   "postprocessing": ""
@@ -2607,7 +2607,7 @@
     multiprocessing = BooleanField('Multiprocessing', default=False)
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
-  "pass_device_properties": !!bool "true"
+  "pass_device_properties": ! "true"
   "persistent_id": "dYKuJ0ZzH94"
   "playbook_path": "/arista_show_running_config.yml"
   "postprocessing": ""
@@ -2712,7 +2712,7 @@
     multiprocessing = BooleanField('Multiprocessing', default=False)
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
-  "pass_device_properties": !!bool "true"
+  "pass_device_properties": ! "true"
   "persistent_id": "Tm1EcQT4nR8"
   "playbook_path": "/arista_show_running_config.yml"
   "postprocessing": ""
@@ -3331,30 +3331,30 @@
   "parameterized_form_template": ""
   "persistent_id": "n5rtiHCbIO4"
   "positions":
-    "[Shared] Start":
-    - !!int "-826"
-    - !!int "220"
-    "[Shared] End":
-    - !!int "328"
-    - !!int "372"
     "[(R) Configuration Properties Backup Services] Configuration Backup (NAPALM)":
-    - !!int "-299"
-    - !!int "188"
-    "[(R) Configuration Properties Backup Services] Get Operational Data with Netmiko":
-    - !!int "-25"
-    - !!int "33"
+    - ! "-299"
+    - ! "188"
     "[(R) Configuration Properties Backup Services] Get Configuration with Netmiko":
-    - !!int "-550"
-    - !!int "45"
-    "[(R) Configuration Properties Backup Services] Push Configurations to Git":
-    - !!int "271"
-    - !!int "209"
+    - ! "-550"
+    - ! "45"
     "[(R) Configuration Properties Backup Services] Get Configuration with Scrapli":
-    - !!int "-531"
-    - !!int "385"
+    - ! "-531"
+    - ! "385"
+    "[(R) Configuration Properties Backup Services] Get Operational Data with Netmiko":
+    - ! "-25"
+    - ! "33"
     "[(R) Configuration Properties Backup Services] Get Operational Data with Scrapli":
-    - !!int "-93"
-    - !!int "389"
+    - ! "-93"
+    - ! "389"
+    "[(R) Configuration Properties Backup Services] Push Configurations to Git":
+    - ! "271"
+    - ! "209"
+    "[Shared] End":
+    - ! "328"
+    - ! "372"
+    "[Shared] Start":
+    - ! "-826"
+    - ! "220"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -3519,24 +3519,24 @@
   "parameterized_form_template": ""
   "persistent_id": "YQsCy/EfEXg"
   "positions":
-    "[Shared] Start":
-    - !!int "-435"
-    - !!int "-39"
-    "[Shared] End":
-    - !!int "-418"
-    - !!int "177"
-    "[(R) Netmiko Configuration and Validation Services] netmiko_create_vrf_test":
-    - !!int "-115"
-    - !!int "-70"
     "[(R) Netmiko Configuration and Validation Services] netmiko_check_vrf_test":
-    - !!int "352"
-    - !!int "7"
+    - ! "352"
+    - ! "7"
+    "[(R) Netmiko Configuration and Validation Services] netmiko_create_vrf_test":
+    - ! "-115"
+    - ! "-70"
     "[(R) Netmiko Configuration and Validation Services] netmiko_delete_vrf_test":
-    - !!int "347"
-    - !!int "119"
+    - ! "347"
+    - ! "119"
+    "[Shared] End":
+    - ! "-418"
+    - ! "177"
     "[Shared] Netmiko: Check VRF (Telecom1) does not exist":
-    - !!int "-84"
-    - !!int "184"
+    - ! "-84"
+    - ! "184"
+    "[Shared] Start":
+    - ! "-435"
+    - ! "-39"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -3702,27 +3702,27 @@
   "parameterized_form_template": ""
   "persistent_id": "UL65Cjm48Yw"
   "positions":
-    "[Shared] Start":
-    - !!int "-327"
-    - !!int "-20"
     "[Shared] End":
-    - !!int "553"
-    - !!int "357"
+    - ! "553"
+    - ! "357"
     "[Shared] Example Service (does nothing)":
-    - !!int "696"
-    - !!int "185"
-    "[Shared] Netmiko: Check VRF (Telecom1) does not exist":
-    - !!int "-179"
-    - !!int "259"
-    "[Shared] REST API: call *is_alive* endpoint":
-    - !!int "339"
-    - !!int "297"
+    - ! "696"
+    - ! "185"
     "[Shared] NAPALM: Get Facts":
-    - !!int "-31"
-    - !!int "-43"
+    - ! "-31"
+    - ! "-43"
     "[Shared] NAPALM: Get interfaces":
-    - !!int "608"
-    - !!int "46"
+    - ! "608"
+    - ! "46"
+    "[Shared] Netmiko: Check VRF (Telecom1) does not exist":
+    - ! "-179"
+    - ! "259"
+    "[Shared] REST API: call *is_alive* endpoint":
+    - ! "339"
+    - ! "297"
+    "[Shared] Start":
+    - ! "-327"
+    - ! "-20"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -3856,24 +3856,24 @@
   "parameterized_form_template": ""
   "persistent_id": "XphMok6epek"
   "positions":
-    "[Shared] Start":
-    - !!int "-397"
-    - !!int "136"
-    "[Shared] End":
-    - !!int "626"
-    - !!int "21"
-    "[Shared] REST API: call *is_alive* endpoint":
-    - !!int "405"
-    - !!int "-103"
-    "[(R) Netmiko Prompts Service] Test Netmiko Prompt Service":
-    - !!int "22"
-    - !!int "-74"
-    "[(R) Netmiko Prompts Service] Test netmiko prompts pass":
-    - !!int "350"
-    - !!int "108"
     "[(R) Netmiko Prompts Service] Check VRF (NOVRF) exists":
-    - !!int "-291"
-    - !!int "-104"
+    - ! "-291"
+    - ! "-104"
+    "[(R) Netmiko Prompts Service] Test Netmiko Prompt Service":
+    - ! "22"
+    - ! "-74"
+    "[(R) Netmiko Prompts Service] Test netmiko prompts pass":
+    - ! "350"
+    - ! "108"
+    "[Shared] End":
+    - ! "626"
+    - ! "21"
+    "[Shared] REST API: call *is_alive* endpoint":
+    - ! "405"
+    - ! "-103"
+    "[Shared] Start":
+    - ! "-397"
+    - ! "136"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -4018,30 +4018,30 @@
   "parameterized_form_template": ""
   "persistent_id": "J4Li8owZAFI"
   "positions":
-    "[Shared] Start":
-    - !!int "-506"
-    - !!int "-55"
-    "[Shared] End":
-    - !!int "-528"
-    - !!int "25"
-    "[Shared] REST API: call *is_alive* endpoint":
-    - !!int "-10"
-    - !!int "157"
     "[(R) Functions: get_var, set_var, and get_result] Modify payload (no device)":
-    - !!int "-376"
-    - !!int "-138"
+    - ! "-376"
+    - ! "-138"
     "[(R) Functions: get_var, set_var, and get_result] Modify payload (per device)":
-    - !!int "0"
-    - !!int "-144"
+    - ! "0"
+    - ! "-144"
     "[(R) Functions: get_var, set_var, and get_result] Show vrf with payload helper":
-    - !!int "474"
-    - !!int "-11"
+    - ! "474"
+    - ! "-11"
     "[(R) Functions: get_var, set_var, and get_result] Show vrf with python query":
-    - !!int "425"
-    - !!int "190"
+    - ! "425"
+    - ! "190"
     "[(R) Functions: get_var, set_var, and get_result] show runtime with get_result helper":
-    - !!int "-445"
-    - !!int "128"
+    - ! "-445"
+    - ! "128"
+    "[Shared] End":
+    - ! "-528"
+    - ! "25"
+    "[Shared] REST API: call *is_alive* endpoint":
+    - ! "-10"
+    - ! "157"
+    "[Shared] Start":
+    - ! "-506"
+    - ! "-55"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -4226,24 +4226,24 @@
   "parameterized_form_template": ""
   "persistent_id": "AGtjQ6EEqCs"
   "positions":
-    "[Shared] Start":
-    - !!int "-638"
-    - !!int "93"
-    "[Shared] End":
-    - !!int "512"
-    - !!int "246"
-    "[(R) Ansible Playbook Service] Ansible Workflow: Arista show version":
-    - !!int "-305"
-    - !!int "177"
-    "[(R) Ansible Playbook Service] Ansible Workflow: Arista show configuration (regex match)":
-    - !!int "267"
-    - !!int "283"
     "[(R) Ansible Playbook Service] Ansible Workflow: Arista show configuration (dict match)":
-    - !!int "211"
-    - !!int "148"
+    - ! "211"
+    - ! "148"
+    "[(R) Ansible Playbook Service] Ansible Workflow: Arista show configuration (regex match)":
+    - ! "267"
+    - ! "283"
+    "[(R) Ansible Playbook Service] Ansible Workflow: Arista show version":
+    - ! "-305"
+    - ! "177"
     "[(R) Ansible Playbook Service] Simple Playbook":
-    - !!int "-640"
-    - !!int "277"
+    - ! "-640"
+    - ! "277"
+    "[Shared] End":
+    - ! "512"
+    - ! "246"
+    "[Shared] Start":
+    - ! "-638"
+    - ! "93"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -4375,18 +4375,18 @@
   "parameterized_form_template": ""
   "persistent_id": "IyHdIqxKzNo"
   "positions":
-    "[Shared] Start":
-    - !!int "-492"
-    - !!int "-39"
     "[Shared] End":
-    - !!int "505"
-    - !!int "-10"
+    - ! "505"
+    - ! "-10"
     "[Shared] Example Service (does nothing)":
-    - !!int "-211"
-    - !!int "129"
+    - ! "-211"
+    - ! "129"
     "[Shared] REST API: call *is_alive* endpoint":
-    - !!int "210"
-    - !!int "130"
+    - ! "210"
+    - ! "130"
+    "[Shared] Start":
+    - ! "-492"
+    - ! "-39"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -4590,27 +4590,27 @@
   "parameterized_form_template": ""
   "persistent_id": "q3O5yIRro/c"
   "positions":
-    "[Shared] Start":
-    - !!int "-458"
-    - !!int "-30"
-    "[Shared] End":
-    - !!int "-437"
-    - !!int "191"
-    "[Shared] Modify Payload for Iteration":
-    - !!int "-201"
-    - !!int "-15"
-    "[(R) Combined Device & Target Iteration] Iteration Targets Workflow - Test 1":
-    - !!int "214"
-    - !!int "72"
     "[(R) Combined Device & Target Iteration] Iteration Target Workflow - Test 2":
-    - !!int "633"
-    - !!int "36"
+    - ! "633"
+    - ! "36"
     "[(R) Combined Device & Target Iteration] Iteration Target Workflow - Test 3":
-    - !!int "468"
-    - !!int "196"
+    - ! "468"
+    - ! "196"
+    "[(R) Combined Device & Target Iteration] Iteration Targets Workflow - Test 1":
+    - ! "214"
+    - ! "72"
     "[(R) Combined Device & Target Iteration] Iteration Targets Workflow - Test 4":
-    - !!int "-120"
-    - !!int "211"
+    - ! "-120"
+    - ! "211"
+    "[Shared] End":
+    - ! "-437"
+    - ! "191"
+    "[Shared] Modify Payload for Iteration":
+    - ! "-201"
+    - ! "-15"
+    "[Shared] Start":
+    - ! "-458"
+    - ! "-30"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -4899,27 +4899,27 @@
   "parameterized_form_template": ""
   "persistent_id": "idW1dC5aIa8"
   "positions":
-    "[Shared] Start":
-    - !!int "-404"
-    - !!int "147"
-    "[Shared] End":
-    - !!int "638"
-    - !!int "130"
-    "[DxD and SxS Run Methods] Workflow  in device by device mode":
-    - !!int "-296"
-    - !!int "-98"
-    "[DxD and SxS Run Methods] Service in run once mode":
-    - !!int "-135"
-    - !!int "189"
-    "[DxD and SxS Run Methods] Workflow in service by service mode (workflow targets)":
-    - !!int "123"
-    - !!int "-96"
     "[DxD and SxS Run Methods] Service in Run once per device mode":
-    - !!int "254"
-    - !!int "163"
+    - ! "254"
+    - ! "163"
+    "[DxD and SxS Run Methods] Service in run once mode":
+    - ! "-135"
+    - ! "189"
+    "[DxD and SxS Run Methods] Workflow  in device by device mode":
+    - ! "-296"
+    - ! "-98"
+    "[DxD and SxS Run Methods] Workflow in service by service mode (workflow targets)":
+    - ! "123"
+    - ! "-96"
     "[DxD and SxS Run Methods] Workflow in service targets mode":
-    - !!int "622"
-    - !!int "-89"
+    - ! "622"
+    - ! "-89"
+    "[Shared] End":
+    - ! "638"
+    - ! "130"
+    "[Shared] Start":
+    - ! "-404"
+    - ! "147"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -5034,15 +5034,15 @@
   "parameterized_form_template": ""
   "persistent_id": "ZnSoQ781Jo8"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[DxD and SxS Run Methods] Workflow  in device by device mode] Validation show VRF":
-    - !!int "248"
-    - !!int "-94"
+    - ! "248"
+    - ! "-94"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -5259,15 +5259,15 @@
   "parameterized_form_template": ""
   "persistent_id": "KLtbaKA681w"
   "positions":
-    "[Shared] Start":
-    - !!int "-2"
-    - !!int "14"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "-2"
+    - ! "14"
     "[[DxD and SxS Run Methods] Workflow in service by service mode (workflow targets)] Validation show VRF":
-    - !!int "239"
-    - !!int "-108"
+    - ! "239"
+    - ! "-108"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -5483,15 +5483,15 @@
   "parameterized_form_template": ""
   "persistent_id": "kqStDMzIZTw"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[DxD and SxS Run Methods] Workflow in service targets mode] Validation show VRF":
-    - !!int "234"
-    - !!int "-86"
+    - ! "234"
+    - ! "-86"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -6032,18 +6032,18 @@
   "parameterized_form_template": ""
   "persistent_id": "yOiDd+CZrhY"
   "positions":
-    "[Shared] Start":
-    - !!int "55"
-    - !!int "266"
-    "[Shared] End":
-    - !!int "688"
-    - !!int "-88"
     "[(R) Shared Service in Multiple Subworkflows] Subworkflow 1":
-    - !!int "-241"
-    - !!int "197"
+    - ! "-241"
+    - ! "197"
     "[(R) Shared Service in Multiple Subworkflows] Subworkflow 2":
-    - !!int "548"
-    - !!int "48"
+    - ! "548"
+    - ! "48"
+    "[Shared] End":
+    - ! "688"
+    - ! "-88"
+    "[Shared] Start":
+    - ! "55"
+    - ! "266"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -6154,15 +6154,15 @@
   "parameterized_form_template": ""
   "persistent_id": "LynnyIEHXbg"
   "positions":
-    "[Shared] Start":
-    - !!int "-118"
-    - !!int "0"
     "[Shared] End":
-    - !!int "610"
-    - !!int "4"
+    - ! "610"
+    - ! "4"
     "[Shared] Shared Service used Twice in Workflow":
-    - !!int "167"
-    - !!int "-185"
+    - ! "167"
+    - ! "-185"
+    "[Shared] Start":
+    - ! "-118"
+    - ! "0"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -6271,15 +6271,15 @@
   "parameterized_form_template": ""
   "persistent_id": "13dwiDKnXmg"
   "positions":
-    "[Shared] Start":
-    - !!int "-39"
-    - !!int "57"
     "[Shared] End":
-    - !!int "554"
-    - !!int "66"
+    - ! "554"
+    - ! "66"
     "[Shared] Shared Service used Twice in Workflow":
-    - !!int "243"
-    - !!int "-104"
+    - ! "243"
+    - ! "-104"
+    "[Shared] Start":
+    - ! "-39"
+    - ! "57"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -6512,7 +6512,7 @@
     multiprocessing = BooleanField('Multiprocessing', default=False)
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
-  "pass_device_properties": !!bool "false"
+  "pass_device_properties": ! "false"
   "persistent_id": "1DNNkmmJ5/4"
   "playbook_path": "/simple_playbook.yml"
   "postprocessing": ""
@@ -6652,18 +6652,18 @@
   "parameterized_form_template": ""
   "persistent_id": "LmSgTpPeUfE"
   "positions":
-    "[Shared] Start":
-    - !!int "-308"
-    - !!int "-231"
-    "[Shared] End":
-    - !!int "596"
-    - !!int "-221"
     "[(R) Dictionary as Iteration Target Variable] Set Variables for Iteration":
-    - !!int "-209"
-    - !!int "-7"
+    - ! "-209"
+    - ! "-7"
     "[(R) Dictionary as Iteration Target Variable] Show VRF with iteration":
-    - !!int "436"
-    - !!int "-6"
+    - ! "436"
+    - ! "-6"
+    "[Shared] End":
+    - ! "596"
+    - ! "-221"
+    "[Shared] Start":
+    - ! "-308"
+    - ! "-231"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -7065,24 +7065,24 @@
   "parameterized_form_template": ""
   "persistent_id": "ace3Bdq9nMs"
   "positions":
-    "[Shared] Start":
-    - !!int "-313"
-    - !!int "364"
     "[Shared] End":
-    - !!int "627"
-    - !!int "254"
-    "[Workflow and Subworkflow Iteration] Test Iteration":
-    - !!int "-197"
-    - !!int "268"
-    "[Workflow and Subworkflow Iteration] Subworkflow Value Iteration":
-    - !!int "-182"
-    - !!int "477"
+    - ! "627"
+    - ! "254"
+    "[Shared] Start":
+    - ! "-313"
+    - ! "364"
     "[Workflow and Subworkflow Iteration] Subworkflow Device Iteration":
-    - !!int "233"
-    - !!int "471"
+    - ! "233"
+    - ! "471"
     "[Workflow and Subworkflow Iteration] Subworkflow Device Iteration 2":
-    - !!int "628"
-    - !!int "455"
+    - ! "628"
+    - ! "455"
+    "[Workflow and Subworkflow Iteration] Subworkflow Value Iteration":
+    - ! "-182"
+    - ! "477"
+    "[Workflow and Subworkflow Iteration] Test Iteration":
+    - ! "-197"
+    - ! "268"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -7296,15 +7296,15 @@
   "parameterized_form_template": ""
   "persistent_id": "GfCrlziJM5U"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[Workflow and Subworkflow Iteration] Subworkflow Value Iteration] Test Iteration":
-    - !!int "231"
-    - !!int "-87"
+    - ! "231"
+    - ! "-87"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -7563,18 +7563,18 @@
   "parameterized_form_template": ""
   "persistent_id": "gb8l0XJ6SR8"
   "positions":
-    "[Shared] Start":
-    - !!int "-155"
-    - !!int "200"
-    "[Shared] End":
-    - !!int "635"
-    - !!int "466"
     "[Preprocessing and Postprocessing Mechanisms] Preprocessing":
-    - !!int "-97"
-    - !!int "303"
+    - ! "-97"
+    - ! "303"
     "[Preprocessing and Postprocessing Mechanisms] Service preprocessing and postprocessing":
-    - !!int "612"
-    - !!int "349"
+    - ! "612"
+    - ! "349"
+    "[Shared] End":
+    - ! "635"
+    - ! "466"
+    "[Shared] Start":
+    - ! "-155"
+    - ! "200"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -7679,18 +7679,10 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "persistent_id": "x5QEJuukP5A"
-  "postprocessing": |
-    results["postprocessing"] = f"Value set with postprocessing for {device.name}"
-
-    def test():
-      	return device.operating_system
-
-
-    class Test():
-      device = device.name
-
-    set_var("func", test, device=device.name)
-    set_var("cls", Test, device=device.name)
+  "postprocessing": "results[\"postprocessing\"] = f\"Value set with postprocessing
+    for {device.name}\"\n\ndef test():\n  \treturn device.operating_system\n\n\nclass
+    Test():\n  device = device.name\n\nset_var(\"func\", test, device=device.name)\nset_var(\"cls\",
+    Test, device=device.name)\n"
   "postprocessing_mode": "always"
   "preprocessing": "set_var(\"test\", device.operating_system, device=device.name)"
   "priority": ! "11"
@@ -7998,24 +7990,24 @@
   "parameterized_form_template": ""
   "persistent_id": "AsZeiVZictY"
   "positions":
-    "[Shared] Start":
-    - !!int "-179"
-    - !!int "6"
     "[Shared] End":
-    - !!int "730"
-    - !!int "218"
-    "[Shared] REST API: call *is_alive* endpoint":
-    - !!int "162"
-    - !!int "-126"
+    - ! "730"
+    - ! "218"
     "[Shared] Placeholder":
-    - !!int "511"
-    - !!int "-111"
-    "[Specific Superworkflow] REST API: call to placeholder property":
-    - !!int "227"
-    - !!int "151"
+    - ! "511"
+    - ! "-111"
+    "[Shared] REST API: call *is_alive* endpoint":
+    - ! "162"
+    - ! "-126"
+    "[Shared] Start":
+    - ! "-179"
+    - ! "6"
     "[Specific Superworkflow] Post Placeholder Processing":
-    - !!int "606"
-    - !!int "47"
+    - ! "606"
+    - ! "47"
+    "[Specific Superworkflow] REST API: call to placeholder property":
+    - ! "227"
+    - ! "151"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -8146,27 +8138,27 @@
   "parameterized_form_template": ""
   "persistent_id": "TmUkcS9z26w"
   "positions":
-    "[Shared] Start":
-    - !!int "-422"
-    - !!int "108"
-    "[Shared] End":
-    - !!int "446"
-    - !!int "313"
-    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Unix command: ps -ef | grep test":
-    - !!int "-152"
-    - !!int "48"
-    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Unix shell: ping eNMS server from remote server":
-    - !!int "-160"
-    - !!int "307"
-    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Ping Washington":
-    - !!int "161"
-    - !!int "-11"
-    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Validation: jump on server 2 from Washington":
-    - !!int "556"
-    - !!int "72"
     "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Ping Custom IP":
-    - !!int "195"
-    - !!int "301"
+    - ! "195"
+    - ! "301"
+    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Ping Washington":
+    - ! "161"
+    - ! "-11"
+    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Unix command: ps -ef | grep test":
+    - ! "-152"
+    - ! "48"
+    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Unix shell: ping eNMS server from remote server":
+    - ! "-160"
+    - ! "307"
+    "[(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism] Validation: jump on server 2 from Washington":
+    - ! "556"
+    - ! "72"
+    "[Shared] End":
+    - ! "446"
+    - ! "313"
+    "[Shared] Start":
+    - ! "-422"
+    - ! "108"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -8616,15 +8608,15 @@
   "parameterized_form_template": ""
   "persistent_id": "F0fjitpBc4U"
   "positions":
-    "[Shared] Start":
-    - !!int "-141"
-    - !!int "21"
     "[Shared] End":
-    - !!int "636"
-    - !!int "24"
+    - ! "636"
+    - ! "24"
+    "[Shared] Start":
+    - ! "-141"
+    - ! "21"
     "[Topology Import Services] OpenNMS Import":
-    - !!int "221"
-    - !!int "-123"
+    - ! "221"
+    - ! "-123"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -9598,24 +9590,24 @@
   "parameterized_form_template": ""
   "persistent_id": "3UjmhH5lhIc"
   "positions":
-    "[Shared] Start":
-    - !!int "-192"
-    - !!int "31"
-    "[Shared] End":
-    - !!int "628"
-    - !!int "113"
     "[(R) Scrapli Service] Check running configuration":
-    - !!int "-33"
-    - !!int "-167"
-    "[(R) Scrapli Service] Configure VRF TEST-VRF":
-    - !!int "402"
-    - !!int "-161"
+    - ! "-33"
+    - ! "-167"
     "[(R) Scrapli Service] Check that TEST-VRF is configured":
-    - !!int "6"
-    - !!int "112"
+    - ! "6"
+    - ! "112"
+    "[(R) Scrapli Service] Configure VRF TEST-VRF":
+    - ! "402"
+    - ! "-161"
     "[(R) Scrapli Service] Decommission VRF TEST-VRF":
-    - !!int "373"
-    - !!int "107"
+    - ! "373"
+    - ! "107"
+    "[Shared] End":
+    - ! "628"
+    - ! "113"
+    "[Shared] Start":
+    - ! "-192"
+    - ! "31"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -9731,8 +9723,7 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "persistent_id": "DHbLc6y3KsM"
-  "postprocessing": "results[\"success\"] = \"TEST-VRF\" not in results[\"result\"\
-    ]"
+  "postprocessing": "results[\"success\"] = \"TEST-VRF\" not in results[\"result\"]"
   "postprocessing_mode": "always"
   "preprocessing": ""
   "priority": ! "11"
@@ -10196,30 +10187,30 @@
   "parameterized_form_template": ""
   "persistent_id": "AvBd0eCG0/k"
   "positions":
-    "[Shared] Start":
-    - !!int "-491"
-    - !!int "-32"
-    "[Shared] End":
-    - !!int "476"
-    - !!int "156"
     "[(R) Generic File Transfer Service] Check that test file does not exist":
-    - !!int "-252"
-    - !!int "-10"
-    "[(R) Generic File Transfer Service] Transfer a.bin":
-    - !!int "-121"
-    - !!int "188"
+    - ! "-252"
+    - ! "-10"
     "[(R) Generic File Transfer Service] Check that the files are on the disk":
-    - !!int "204"
-    - !!int "172"
-    "[(R) Generic File Transfer Service] Transfer bc.bin and bd.bin with glob option":
-    - !!int "121"
-    - !!int "-24"
+    - ! "204"
+    - ! "172"
     "[(R) Generic File Transfer Service] Delete all transferred files":
-    - !!int "463"
-    - !!int "-10"
+    - ! "463"
+    - ! "-10"
+    "[(R) Generic File Transfer Service] Transfer a.bin":
+    - ! "-121"
+    - ! "188"
+    "[(R) Generic File Transfer Service] Transfer bc.bin and bd.bin with glob option":
+    - ! "121"
+    - ! "-24"
     "[(R) Generic File Transfer Service] Transfer non-existing file":
-    - !!int "-423"
-    - !!int "187"
+    - ! "-423"
+    - ! "187"
+    "[Shared] End":
+    - ! "476"
+    - ! "156"
+    "[Shared] Start":
+    - ! "-491"
+    - ! "-32"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -11082,21 +11073,21 @@
   "parameterized_form_template": ""
   "persistent_id": "czxOgbEf3zA"
   "positions":
-    "[Shared] Start":
-    - !!int "-605"
-    - !!int "-49"
     "[Shared] End":
-    - !!int "210"
-    - !!int "-67"
-    "[Skip in SxS with WF targets mode] Partial failure (Washington)":
-    - !!int "-595"
-    - !!int "141"
-    "[Skip in SxS with WF targets mode] Query Skipped Service":
-    - !!int "93"
-    - !!int "160"
+    - ! "210"
+    - ! "-67"
+    "[Shared] Start":
+    - ! "-605"
+    - ! "-49"
     "[Skip in SxS with WF targets mode] Globally Skipped Service":
-    - !!int "-226"
-    - !!int "165"
+    - ! "-226"
+    - ! "165"
+    "[Skip in SxS with WF targets mode] Partial failure (Washington)":
+    - ! "-595"
+    - ! "141"
+    "[Skip in SxS with WF targets mode] Query Skipped Service":
+    - ! "93"
+    - ! "160"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -11600,27 +11591,27 @@
   "parameterized_form_template": ""
   "persistent_id": "saCbhe+Ec2Y"
   "positions":
-    "[Shared] Start":
-    - !!int "-322"
-    - !!int "98"
-    "[Shared] End":
-    - !!int "599"
-    - !!int "331"
-    "[Conditional Skip Query in Failed and Discard Modes] Skip Washington with Skip value == False":
-    - !!int "38"
-    - !!int "378"
-    "[Conditional Skip Query in Failed and Discard Modes] Post-success service":
-    - !!int "450"
-    - !!int "173"
-    "[Conditional Skip Query in Failed and Discard Modes] Post-failure service":
-    - !!int "519"
-    - !!int "439"
     "[Conditional Skip Query in Failed and Discard Modes] Final service":
-    - !!int "324"
-    - !!int "323"
+    - ! "324"
+    - ! "323"
+    "[Conditional Skip Query in Failed and Discard Modes] Post-failure service":
+    - ! "519"
+    - ! "439"
+    "[Conditional Skip Query in Failed and Discard Modes] Post-success service":
+    - ! "450"
+    - ! "173"
+    "[Conditional Skip Query in Failed and Discard Modes] Skip Washington with Skip value == False":
+    - ! "38"
+    - ! "378"
     "[Conditional Skip Query in Failed and Discard Modes] Skip router5-7 in discard mode":
-    - !!int "-335"
-    - !!int "369"
+    - ! "-335"
+    - ! "369"
+    "[Shared] End":
+    - ! "599"
+    - ! "331"
+    "[Shared] Start":
+    - ! "-322"
+    - ! "98"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -12232,18 +12223,18 @@
   "parameterized_form_template": ""
   "persistent_id": "nYiRNLExeKc"
   "positions":
-    "[Shared] Start":
-    - !!int "-339"
-    - !!int "-122"
-    "[Shared] End":
-    - !!int "478"
-    - !!int "-146"
-    "[Link Neighbors Mechanism (device.get_neighbors function)] Test get_neighbors function":
-    - !!int "-314"
-    - !!int "94"
     "[Link Neighbors Mechanism (device.get_neighbors function)] Iterate over neighbors of workflow device":
-    - !!int "528"
-    - !!int "125"
+    - ! "528"
+    - ! "125"
+    "[Link Neighbors Mechanism (device.get_neighbors function)] Test get_neighbors function":
+    - ! "-314"
+    - ! "94"
+    "[Shared] End":
+    - ! "478"
+    - ! "-146"
+    "[Shared] Start":
+    - ! "-339"
+    - ! "-122"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -12761,27 +12752,27 @@
   "parameterized_form_template": ""
   "persistent_id": "vePFoNzUqGg"
   "positions":
-    "[Shared] Start":
-    - !!int "-228"
-    - !!int "7"
-    "[Shared] End":
-    - !!int "749"
-    - !!int "100"
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Functions fetch and fetch_all":
-    - !!int "22"
-    - !!int "32"
     "[Functions: factory, fetch, fetch_all, encrypt and get_result] Credentials encryption":
-    - !!int "568"
-    - !!int "6"
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Show vrf with custom encrypted credentials":
-    - !!int "514"
-    - !!int "220"
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Factory function: Create new device":
-    - !!int "-165"
-    - !!int "199"
+    - ! "568"
+    - ! "6"
     "[Functions: factory, fetch, fetch_all, encrypt and get_result] Delete function: delete new device":
-    - !!int "187"
-    - !!int "156"
+    - ! "187"
+    - ! "156"
+    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Factory function: Create new device":
+    - ! "-165"
+    - ! "199"
+    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Functions fetch and fetch_all":
+    - ! "22"
+    - ! "32"
+    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Show vrf with custom encrypted credentials":
+    - ! "514"
+    - ! "220"
+    "[Shared] End":
+    - ! "749"
+    - ! "100"
+    "[Shared] Start":
+    - ! "-228"
+    - ! "7"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -13422,27 +13413,27 @@
   "parameterized_form_template": ""
   "persistent_id": "PNDZWJmMwUU"
   "positions":
-    "[Shared] Start":
-    - !!int "-563"
-    - !!int "184"
-    "[Shared] End":
-    - !!int "388"
-    - !!int "363"
-    "[Fork based on value with Skip Discard Mechanism] REST API: call *is_alive* endpoint":
-    - !!int "-480"
-    - !!int "30"
     "[Fork based on value with Skip Discard Mechanism] Arista devices":
-    - !!int "336"
-    - !!int "89"
+    - ! "336"
+    - ! "89"
     "[Fork based on value with Skip Discard Mechanism] Juniper devices":
-    - !!int "-434"
-    - !!int "308"
+    - ! "-434"
+    - ! "308"
+    "[Fork based on value with Skip Discard Mechanism] REST API: call *is_alive* endpoint":
+    - ! "-480"
+    - ! "30"
     "[Fork based on value with Skip Discard Mechanism] Show VRF":
-    - !!int "548"
-    - !!int "232"
+    - ! "548"
+    - ! "232"
     "[Fork based on value with Skip Discard Mechanism] is_alive endpoint 2: Skipped":
-    - !!int "-5"
-    - !!int "318"
+    - ! "-5"
+    - ! "318"
+    "[Shared] End":
+    - ! "388"
+    - ! "363"
+    "[Shared] Start":
+    - ! "-563"
+    - ! "184"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -14173,18 +14164,18 @@
   "parameterized_form_template": ""
   "persistent_id": "WIMLdnFJarU"
   "positions":
-    "[Shared] Start":
-    - !!int "-344"
-    - !!int "-15"
     "[Shared] End":
-    - !!int "579"
-    - !!int "-12"
-    "[Skip Query with device in Run Once Mode] Subworkflow in SxS mode - workflow targets":
-    - !!int "380"
-    - !!int "97"
+    - ! "579"
+    - ! "-12"
+    "[Shared] Start":
+    - ! "-344"
+    - ! "-15"
     "[Skip Query with device in Run Once Mode] Python service in run once mode":
-    - !!int "-141"
-    - !!int "134"
+    - ! "-141"
+    - ! "134"
+    "[Skip Query with device in Run Once Mode] Subworkflow in SxS mode - workflow targets":
+    - ! "380"
+    - ! "97"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -14299,15 +14290,15 @@
   "parameterized_form_template": ""
   "persistent_id": "CFjyX+GDGx4"
   "positions":
-    "[Shared] Start":
-    - !!int "-77"
-    - !!int "-17"
     "[Shared] End":
-    - !!int "521"
-    - !!int "-13"
+    - ! "521"
+    - ! "-13"
+    "[Shared] Start":
+    - ! "-77"
+    - ! "-17"
     "[[Skip Query with device in Run Once Mode] Subworkflow in SxS mode - workflow targets] Fail Austin":
-    - !!int "230"
-    - !!int "-19"
+    - ! "230"
+    - ! "-19"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -14663,24 +14654,24 @@
   "parameterized_form_template": ""
   "persistent_id": "5+9RJW41/uo"
   "positions":
-    "[Shared] Start":
-    - !!int "-295"
-    - !!int "-141"
     "[Shared] End":
-    - !!int "547"
-    - !!int "-96"
+    - ! "547"
+    - ! "-96"
+    "[Shared] Start":
+    - ! "-295"
+    - ! "-141"
     "[Skip, Discard and Disable Result Creation Mechanism] Pre-service with result creation disabled":
-    - !!int "-254"
-    - !!int "-15"
-    "[Skip, Discard and Disable Result Creation Mechanism] Workflow in DxD mode":
-    - !!int "-231"
-    - !!int "149"
-    "[Skip, Discard and Disable Result Creation Mechanism] Workflow in SxS mode":
-    - !!int "379"
-    - !!int "130"
+    - ! "-254"
+    - ! "-15"
     "[Skip, Discard and Disable Result Creation Mechanism] Service in run once mode":
-    - !!int "103"
-    - !!int "-43"
+    - ! "103"
+    - ! "-43"
+    "[Skip, Discard and Disable Result Creation Mechanism] Workflow in DxD mode":
+    - ! "-231"
+    - ! "149"
+    "[Skip, Discard and Disable Result Creation Mechanism] Workflow in SxS mode":
+    - ! "379"
+    - ! "130"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -14897,15 +14888,15 @@
   "parameterized_form_template": ""
   "persistent_id": "Sc+/Yy52ANc"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[Skip, Discard and Disable Result Creation Mechanism] Workflow in DxD mode] Fail Austin":
-    - !!int "224"
-    - !!int "-51"
+    - ! "224"
+    - ! "-51"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -15015,15 +15006,15 @@
   "parameterized_form_template": ""
   "persistent_id": "JXgYVXN8+AE"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[Skip, Discard and Disable Result Creation Mechanism] Workflow in SxS mode] Fail PaloAlto":
-    - !!int "220"
-    - !!int "-28"
+    - ! "220"
+    - ! "-28"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -15604,15 +15595,15 @@
   "parameterized_form_template": ""
   "persistent_id": "u2WT0uTvAYI"
   "positions":
-    "[Shared] Start":
-    - !!int "-157"
-    - !!int "96"
-    "[Shared] End":
-    - !!int "590"
-    - !!int "124"
     "[(R) Credentials (Password & Key, Priority Mechanism)] Show interfaces with netmiko":
-    - !!int "220"
-    - !!int "52"
+    - ! "220"
+    - ! "52"
+    "[Shared] End":
+    - ! "590"
+    - ! "124"
+    "[Shared] Start":
+    - ! "-157"
+    - ! "96"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -15894,24 +15885,24 @@
   "parameterized_form_template": ""
   "persistent_id": "teduSWdUyOQ"
   "positions":
-    "[Shared] Start":
-    - !!int "-356"
-    - !!int "121"
-    "[Shared] End":
-    - !!int "734"
-    - !!int "171"
     "[Optional Remediation Branch] Dispatch Devices":
-    - !!int "-342"
-    - !!int "317"
-    "[Optional Remediation Branch] Last Service":
-    - !!int "661"
-    - !!int "352"
+    - ! "-342"
+    - ! "317"
     "[Optional Remediation Branch] Failure case":
-    - !!int "-234"
-    - !!int "8"
+    - ! "-234"
+    - ! "8"
+    "[Optional Remediation Branch] Last Service":
+    - ! "661"
+    - ! "352"
     "[Optional Remediation Branch] Remediation":
-    - !!int "629"
-    - !!int "12"
+    - ! "629"
+    - ! "12"
+    "[Shared] End":
+    - ! "734"
+    - ! "171"
+    "[Shared] Start":
+    - ! "-356"
+    - ! "121"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -16473,18 +16464,18 @@
   "parameterized_form_template": ""
   "persistent_id": "MmgYMx8g0VY"
   "positions":
-    "[Shared] Start":
-    - !!int "-354"
-    - !!int "-121"
-    "[Shared] End":
-    - !!int "549"
-    - !!int "-155"
     "[Device Iteration] Hard-coded iteration devices":
-    - !!int "-151"
-    - !!int "24"
+    - ! "-151"
+    - ! "24"
     "[Device Iteration] Iteration Devices from Predefined Variable":
-    - !!int "245"
-    - !!int "25"
+    - ! "245"
+    - ! "25"
+    "[Shared] End":
+    - ! "549"
+    - ! "-155"
+    "[Shared] Start":
+    - ! "-354"
+    - ! "-121"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": |-
@@ -16701,15 +16692,15 @@
   "parameterized_form_template": ""
   "persistent_id": "weod8wyeQJc"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[Workflow and Subworkflow Iteration] Subworkflow Device Iteration] Service that does nothing":
-    - !!int "241"
-    - !!int "-26"
+    - ! "241"
+    - ! "-26"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -16819,15 +16810,15 @@
   "parameterized_form_template": ""
   "persistent_id": "ZVC7yAMBRUE"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[Workflow and Subworkflow Iteration] Subworkflow Device Iteration 2] Service that does nothing":
-    - !!int "233"
-    - !!int "-24"
+    - ! "233"
+    - ! "-24"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -17372,21 +17363,21 @@
   "parameterized_form_template": ""
   "persistent_id": "bI7xYSWu0MU"
   "positions":
-    "[Shared] Start":
-    - !!int "-176"
-    - !!int "-144"
     "[Shared] End":
-    - !!int "654"
-    - !!int "-133"
-    "[Target Restriction Mechanism] Direct Target":
-    - !!int "-162"
-    - !!int "99"
+    - ! "654"
+    - ! "-133"
+    "[Shared] Start":
+    - ! "-176"
+    - ! "-144"
     "[Target Restriction Mechanism] Device Targets":
-    - !!int "181"
-    - !!int "119"
+    - ! "181"
+    - ! "119"
+    "[Target Restriction Mechanism] Direct Target":
+    - ! "-162"
+    - ! "99"
     "[Target Restriction Mechanism] Iteration Targets":
-    - !!int "590"
-    - !!int "138"
+    - ! "590"
+    - ! "138"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -17842,21 +17833,21 @@
   "parameterized_form_template": ""
   "persistent_id": "ssq4NfrjHAk"
   "positions":
-    "[Shared] Start":
-    - !!int "-305"
-    - !!int "77"
-    "[Shared] End":
-    - !!int "-306"
-    - !!int "164"
-    "[(R) Scrapli Netconf Service] Get Running Configuration":
-    - !!int "520"
-    - !!int "102"
-    "[(R) Scrapli Netconf Service] Edit Interface Loopback 3":
-    - !!int "39"
-    - !!int "57"
     "[(R) Scrapli Netconf Service] Delete Loopback3 description":
-    - !!int "28"
-    - !!int "228"
+    - ! "28"
+    - ! "228"
+    "[(R) Scrapli Netconf Service] Edit Interface Loopback 3":
+    - ! "39"
+    - ! "57"
+    "[(R) Scrapli Netconf Service] Get Running Configuration":
+    - ! "520"
+    - ! "102"
+    "[Shared] End":
+    - ! "-306"
+    - ! "164"
+    "[Shared] Start":
+    - ! "-305"
+    - ! "77"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -17968,10 +17959,9 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "persistent_id": "xrF9JG1JmRc"
-  "postprocessing": |-
-    results["success"] = "<description>YYYY</description>" in results["result"]
-    if not results["success"]:
-    	log("error", "Description 'YYYY' missing from Running Configuration")
+  "postprocessing": "results[\"success\"] = \"<description>YYYY</description>\" in
+    results[\"result\"]\nif not results[\"success\"]:\n\tlog(\"error\", \"Description
+    'YYYY' missing from Running Configuration\")"
   "postprocessing_mode": "success"
   "preprocessing": ""
   "priority": ! "11"
@@ -18331,18 +18321,18 @@
   "parameterized_form_template": ""
   "persistent_id": "5rsued6/oPM"
   "positions":
-    "[Shared] Start":
-    - !!int "-256"
-    - !!int "-78"
-    "[Shared] End":
-    - !!int "669"
-    - !!int "-84"
-    "[(R) Labels and Custom Property] Show interface from initial form (default: Lo1)":
-    - !!int "-78"
-    - !!int "122"
     "[(R) Labels and Custom Property] Show inteface as global variable":
-    - !!int "435"
-    - !!int "130"
+    - ! "435"
+    - ! "130"
+    "[(R) Labels and Custom Property] Show interface from initial form (default: Lo1)":
+    - ! "-78"
+    - ! "122"
+    "[Shared] End":
+    - ! "669"
+    - ! "-84"
+    "[Shared] Start":
+    - ! "-256"
+    - ! "-78"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -18635,21 +18625,21 @@
   "parameterized_form_template": ""
   "persistent_id": "fVlWqh0l8eg"
   "positions":
-    "[Shared] Start":
-    - !!int "-478"
-    - !!int "-72"
     "[Shared] End":
-    - !!int "310"
-    - !!int "-55"
+    - ! "310"
+    - ! "-55"
+    "[Shared] Start":
+    - ! "-478"
+    - ! "-72"
     "[Validation Mechanism] Dict Equality Validation of default path":
-    - !!int "-467"
-    - !!int "119"
+    - ! "-467"
+    - ! "119"
     "[Validation Mechanism] Dict Inclusion Validation of new key":
-    - !!int "-55"
-    - !!int "123"
+    - ! "-55"
+    - ! "123"
     "[Validation Mechanism] Nested Result String Validation":
-    - !!int "290"
-    - !!int "124"
+    - ! "290"
+    - ! "124"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -19106,27 +19096,27 @@
   "parameterized_form_template": ""
   "persistent_id": "pKHbG2BrzRY"
   "positions":
-    "[Shared] Start":
-    - !!int "-448"
-    - !!int "-185"
-    "[Shared] End":
-    - !!int "556"
-    - !!int "119"
-    "[(R) NCClient Netconf Service] Get Full Config":
-    - !!int "-414"
-    - !!int "116"
-    "[(R) NCClient Netconf Service] Set Description of Lo3 to ZZZZ":
-    - !!int "-132"
-    - !!int "-139"
-    "[(R) NCClient Netconf Service] Check for ZZZZ in Config":
-    - !!int "30"
-    - !!int "126"
-    "[(R) NCClient Netconf Service] Erase Lo3 Description":
-    - !!int "249"
-    - !!int "-136"
     "[(R) NCClient Netconf Service] Check ZZZZ is not in Config":
-    - !!int "388"
-    - !!int "123"
+    - ! "388"
+    - ! "123"
+    "[(R) NCClient Netconf Service] Check for ZZZZ in Config":
+    - ! "30"
+    - ! "126"
+    "[(R) NCClient Netconf Service] Erase Lo3 Description":
+    - ! "249"
+    - ! "-136"
+    "[(R) NCClient Netconf Service] Get Full Config":
+    - ! "-414"
+    - ! "116"
+    "[(R) NCClient Netconf Service] Set Description of Lo3 to ZZZZ":
+    - ! "-132"
+    - ! "-139"
+    "[Shared] End":
+    - ! "556"
+    - ! "119"
+    "[Shared] Start":
+    - ! "-448"
+    - ! "-185"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -19401,8 +19391,8 @@
   "validation_section": "results['result']"
   "vendor": ""
   "version": ""
-  "waiting_time": !!int "0"
-  "xml_conversion": !!bool "true"
+  "waiting_time": ! "0"
+  "xml_conversion": ! "true"
   "xml_filter": |-
     <nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
         <if:interfaces xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:mmif="urn:metamako:params:xml:ns:yang:metamako-if">
@@ -19643,8 +19633,8 @@
   "validation_section": "results['result']"
   "vendor": ""
   "version": ""
-  "waiting_time": !!int "0"
-  "xml_conversion": !!bool "true"
+  "waiting_time": ! "0"
+  "xml_conversion": ! "true"
   "xml_filter": |-
     <nc:config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
         <if:interfaces xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:mmif="urn:metamako:params:xml:ns:yang:metamako-if">
@@ -19878,21 +19868,21 @@
   "parameterized_form_template": ""
   "persistent_id": "oqu7/z34UHU"
   "positions":
-    "[Shared] Start":
-    - !!int "-339"
-    - !!int "-168"
-    "[Shared] End":
-    - !!int "689"
-    - !!int "58"
-    "[(R) Multiple parallel connections to same device] Show VRF with default connection":
-    - !!int "-72"
-    - !!int "-122"
     "[(R) Multiple parallel connections to same device] Show VRF with connection connection2":
-    - !!int "-219"
-    - !!int "114"
+    - ! "-219"
+    - ! "114"
+    "[(R) Multiple parallel connections to same device] Show VRF with default connection":
+    - ! "-72"
+    - ! "-122"
     "[(R) Multiple parallel connections to same device] Show users with connection2 and close":
-    - !!int "454"
-    - !!int "-84"
+    - ! "454"
+    - ! "-84"
+    "[Shared] End":
+    - ! "689"
+    - ! "58"
+    "[Shared] Start":
+    - ! "-339"
+    - ! "-168"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -20441,21 +20431,21 @@
   "parameterized_form_template": ""
   "persistent_id": "MjWeir23V7k"
   "positions":
-    "[Shared] Start":
-    - !!int "-391"
-    - !!int "-77"
-    "[Shared] End":
-    - !!int "530"
-    - !!int "32"
     "[Mail Notifications] Notification 1":
-    - !!int "-422"
-    - !!int "198"
+    - ! "-422"
+    - ! "198"
     "[Mail Notifications] Notification 2":
-    - !!int "-26"
-    - !!int "64"
+    - ! "-26"
+    - ! "64"
     "[Mail Notifications] Notification 3":
-    - !!int "384"
-    - !!int "192"
+    - ! "384"
+    - ! "192"
+    "[Shared] End":
+    - ! "530"
+    - ! "32"
+    "[Shared] Start":
+    - ! "-391"
+    - ! "-77"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -20919,27 +20909,27 @@
   "parameterized_form_template": ""
   "persistent_id": "H7SPPjRhvac"
   "positions":
-    "[Shared] Start":
-    - !!int "-380"
-    - !!int "-131"
-    "[Shared] End":
-    - !!int "499"
-    - !!int "-103"
-    "[(R) Netmiko File Transfer Service] Check no file in enms_files directory":
-    - !!int "-346"
-    - !!int "74"
-    "[(R) Netmiko File Transfer Service] Transfer netmiko_file":
-    - !!int "-138"
-    - !!int "-122"
     "[(R) Netmiko File Transfer Service] Check file in directory":
-    - !!int "13"
-    - !!int "69"
-    "[(R) Netmiko File Transfer Service] Delete netmiko_file":
-    - !!int "196"
-    - !!int "-120"
+    - ! "13"
+    - ! "69"
     "[(R) Netmiko File Transfer Service] Check netmiko_file is deleted":
-    - !!int "358"
-    - !!int "66"
+    - ! "358"
+    - ! "66"
+    "[(R) Netmiko File Transfer Service] Check no file in enms_files directory":
+    - ! "-346"
+    - ! "74"
+    "[(R) Netmiko File Transfer Service] Delete netmiko_file":
+    - ! "196"
+    - ! "-120"
+    "[(R) Netmiko File Transfer Service] Transfer netmiko_file":
+    - ! "-138"
+    - ! "-122"
+    "[Shared] End":
+    - ! "499"
+    - ! "-103"
+    "[Shared] Start":
+    - ! "-380"
+    - ! "-131"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -21740,21 +21730,21 @@
   "parameterized_form_template": ""
   "persistent_id": "iDOQtE40Aw4"
   "positions":
-    "[Shared] Start":
-    - !!int "-477"
-    - !!int "-78"
-    "[Shared] End":
-    - !!int "591"
-    - !!int "-45"
     "[(R) Function: get_credential] Get device credential":
-    - !!int "-315"
-    - !!int "9"
-    "[(R) Function: get_credential] Show interface via get_credential":
-    - !!int "14"
-    - !!int "146"
+    - ! "-315"
+    - ! "9"
     "[(R) Function: get_credential] Rest Call with get_credential":
-    - !!int "447"
-    - !!int "101"
+    - ! "447"
+    - ! "101"
+    "[(R) Function: get_credential] Show interface via get_credential":
+    - ! "14"
+    - ! "146"
+    "[Shared] End":
+    - ! "591"
+    - ! "-45"
+    "[Shared] Start":
+    - ! "-477"
+    - ! "-78"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -22247,24 +22237,24 @@
   "parameterized_form_template": ""
   "persistent_id": "T7fr/WLzTDA"
   "positions":
-    "[Shared] Start":
-    - !!int "-436"
-    - !!int "94"
     "[Shared] End":
-    - !!int "605"
-    - !!int "380"
-    "[Skip in SxS with service targets and Run Once services] Once per device":
-    - !!int "-361"
-    - !!int "360"
-    "[Skip in SxS with service targets and Run Once services] Skip Query":
-    - !!int "267"
-    - !!int "355"
+    - ! "605"
+    - ! "380"
+    "[Shared] Start":
+    - ! "-436"
+    - ! "94"
     "[Skip in SxS with service targets and Run Once services] Global Skip":
-    - !!int "-201"
-    - !!int "121"
+    - ! "-201"
+    - ! "121"
+    "[Skip in SxS with service targets and Run Once services] Once per device":
+    - ! "-361"
+    - ! "360"
     "[Skip in SxS with service targets and Run Once services] Run Once with Pool":
-    - !!int "429"
-    - !!int "170"
+    - ! "429"
+    - ! "170"
+    "[Skip in SxS with service targets and Run Once services] Skip Query":
+    - ! "267"
+    - ! "355"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -22800,39 +22790,39 @@
   "parameterized_form_template": ""
   "persistent_id": "T1uBrco5Jsg"
   "positions":
-    "[Shared] Start":
-    - !!int "-421"
-    - !!int "129"
-    "[Shared] End":
-    - !!int "365"
-    - !!int "216"
-    "[Data Extraction Service] Initialize Variables":
-    - !!int "-521"
-    - !!int "287"
-    "[Data Extraction Service] String Extraction":
-    - !!int "-410"
-    - !!int "425"
     "[Data Extraction Service] Dict Definition":
-    - !!int "-102"
-    - !!int "128"
+    - ! "-102"
+    - ! "128"
     "[Data Extraction Service] Dict Update":
-    - !!int "-201"
-    - !!int "416"
-    "[Data Extraction Service] String Replacement":
-    - !!int "-307"
-    - !!int "222"
-    "[Data Extraction Service] List Definition":
-    - !!int "-1"
-    - !!int "512"
+    - ! "-201"
+    - ! "416"
+    "[Data Extraction Service] Initialize Variables":
+    - ! "-521"
+    - ! "287"
     "[Data Extraction Service] List Append":
-    - !!int "31"
-    - !!int "308"
+    - ! "31"
+    - ! "308"
+    "[Data Extraction Service] List Definition":
+    - ! "-1"
+    - ! "512"
     "[Data Extraction Service] List Extend":
-    - !!int "159"
-    - !!int "138"
+    - ! "159"
+    - ! "138"
     "[Data Extraction Service] Operation via set_var":
-    - !!int "274"
-    - !!int "366"
+    - ! "274"
+    - ! "366"
+    "[Data Extraction Service] String Extraction":
+    - ! "-410"
+    - ! "425"
+    "[Data Extraction Service] String Replacement":
+    - ! "-307"
+    - ! "222"
+    "[Shared] End":
+    - ! "365"
+    - ! "216"
+    "[Shared] Start":
+    - ! "-421"
+    - ! "129"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -23982,15 +23972,15 @@
   "parameterized_form_template": ""
   "persistent_id": "LyYDM7a0hxM"
   "positions":
-    "[Shared] Start":
-    - !!int "-293"
-    - !!int "-76"
-    "[Shared] End":
-    - !!int "565"
-    - !!int "-70"
     "[Parameterized Run with a Superworkflow] Service":
-    - !!int "142"
-    - !!int "-32"
+    - ! "142"
+    - ! "-32"
+    "[Shared] End":
+    - ! "565"
+    - ! "-70"
+    "[Shared] Start":
+    - ! "-293"
+    - ! "-76"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -24214,18 +24204,18 @@
   "parameterized_form_template": ""
   "persistent_id": "JsjPfyfXX7g"
   "positions":
-    "[Shared] Start":
-    - !!int "-197"
-    - !!int "-103"
     "[Shared] End":
-    - !!int "514"
-    - !!int "-109"
+    - ! "514"
+    - ! "-109"
     "[Shared] Placeholder":
-    - !!int "408"
-    - !!int "135"
+    - ! "408"
+    - ! "135"
+    "[Shared] Start":
+    - ! "-197"
+    - ! "-103"
     "[Superworkflow in SxS w WT with Run Once service] Call to is_alive, Run Once":
-    - !!int "-101"
-    - !!int "129"
+    - ! "-101"
+    - ! "129"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -24594,24 +24584,24 @@
   "parameterized_form_template": ""
   "persistent_id": "zdyD8yNJCMY"
   "positions":
-    "[Shared] Start":
-    - !!int "-366"
-    - !!int "74"
-    "[Shared] End":
-    - !!int "522"
-    - !!int "4"
-    "[(R) Netmiko Validation with TextFSM Option] show ip int brief":
-    - !!int "-132"
-    - !!int "-29"
-    "[(R) Netmiko Validation with TextFSM Option] show version":
-    - !!int "-28"
-    - !!int "186"
     "[(R) Netmiko Validation with TextFSM Option] show arp":
-    - !!int "316"
-    - !!int "137"
+    - ! "316"
+    - ! "137"
+    "[(R) Netmiko Validation with TextFSM Option] show ip int brief":
+    - ! "-132"
+    - ! "-29"
     "[(R) Netmiko Validation with TextFSM Option] show lldp neighbor":
-    - !!int "269"
-    - !!int "-27"
+    - ! "269"
+    - ! "-27"
+    "[(R) Netmiko Validation with TextFSM Option] show version":
+    - ! "-28"
+    - ! "186"
+    "[Shared] End":
+    - ! "522"
+    - ! "4"
+    "[Shared] Start":
+    - ! "-366"
+    - ! "74"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -25271,24 +25261,24 @@
   "parameterized_form_template": ""
   "persistent_id": "hEhfgJQ6sAk"
   "positions":
-    "[Shared] Start":
-    - !!int "-684"
-    - !!int "-34"
-    "[Shared] End":
-    - !!int "-696"
-    - !!int "47"
-    "[(R) NAPALM Configuration and Rollback Services] Create a VRF with NAPALM":
-    - !!int "-374"
-    - !!int "-164"
-    "[(R) NAPALM Configuration and Rollback Services] Rollback Configuration with NAPALM":
-    - !!int "287"
-    - !!int "136"
     "[(R) NAPALM Configuration and Rollback Services] Check VRF exists with Netmiko":
-    - !!int "267"
-    - !!int "-146"
+    - ! "267"
+    - ! "-146"
     "[(R) NAPALM Configuration and Rollback Services] Check VRF is not configured with Netmiko":
-    - !!int "-348"
-    - !!int "160"
+    - ! "-348"
+    - ! "160"
+    "[(R) NAPALM Configuration and Rollback Services] Create a VRF with NAPALM":
+    - ! "-374"
+    - ! "-164"
+    "[(R) NAPALM Configuration and Rollback Services] Rollback Configuration with NAPALM":
+    - ! "287"
+    - ! "136"
+    "[Shared] End":
+    - ! "-696"
+    - ! "47"
+    "[Shared] Start":
+    - ! "-684"
+    - ! "-34"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -25936,27 +25926,27 @@
   "parameterized_form_template": ""
   "persistent_id": "OmQ1vqwItXI"
   "positions":
-    "[Shared] Start":
-    - !!int "-604"
-    - !!int "9"
-    "[Shared] End":
-    - !!int "-600"
-    - !!int "63"
-    "[Shared] Getters Workflow: Interface IP":
-    - !!int "581"
-    - !!int "136"
-    "[(R) Napalm Getters Service] Getters Workflow: is alive":
-    - !!int "-405"
-    - !!int "-99"
-    "[(R) Napalm Getters Service] Getters Workflow: get facts":
-    - !!int "18"
-    - !!int "-122"
     "[(R) Napalm Getters Service] Getters Workflow: MAC address":
-    - !!int "-45"
-    - !!int "144"
+    - ! "-45"
+    - ! "144"
+    "[(R) Napalm Getters Service] Getters Workflow: get facts":
+    - ! "18"
+    - ! "-122"
     "[(R) Napalm Getters Service] Getters Workflow: get facts failed match":
-    - !!int "535"
-    - !!int "-147"
+    - ! "535"
+    - ! "-147"
+    "[(R) Napalm Getters Service] Getters Workflow: is alive":
+    - ! "-405"
+    - ! "-99"
+    "[Shared] End":
+    - ! "-600"
+    - ! "63"
+    "[Shared] Getters Workflow: Interface IP":
+    - ! "581"
+    - ! "136"
+    "[Shared] Start":
+    - ! "-604"
+    - ! "9"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -26568,30 +26558,30 @@
   "parameterized_form_template": ""
   "persistent_id": "WQ99pL8QztA"
   "positions":
-    "[Shared] Start":
-    - !!int "-308"
-    - !!int "-170"
-    "[Shared] End":
-    - !!int "279"
-    - !!int "262"
-    "[(R) Payload Extraction & Validation] netmiko_show_ip_route":
-    - !!int "-18"
-    - !!int "-145"
     "[(R) Payload Extraction & Validation] Payload Extraction":
-    - !!int "-19"
-    - !!int "-26"
-    "[(R) Payload Extraction & Validation] Validation dict via results":
-    - !!int "-362"
-    - !!int "111"
-    "[(R) Payload Extraction & Validation] Validate text via results":
-    - !!int "-124"
-    - !!int "296"
+    - ! "-19"
+    - ! "-26"
     "[(R) Payload Extraction & Validation] Validate dict via payload":
-    - !!int "451"
-    - !!int "-43"
+    - ! "451"
+    - ! "-43"
     "[(R) Payload Extraction & Validation] Validate text via payload":
-    - !!int "808"
-    - !!int "157"
+    - ! "808"
+    - ! "157"
+    "[(R) Payload Extraction & Validation] Validate text via results":
+    - ! "-124"
+    - ! "296"
+    "[(R) Payload Extraction & Validation] Validation dict via results":
+    - ! "-362"
+    - ! "111"
+    "[(R) Payload Extraction & Validation] netmiko_show_ip_route":
+    - ! "-18"
+    - ! "-145"
+    "[Shared] End":
+    - ! "279"
+    - ! "262"
+    "[Shared] Start":
+    - ! "-308"
+    - ! "-170"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -27391,24 +27381,24 @@
   "parameterized_form_template": ""
   "persistent_id": "vhkQ6VfcGD8"
   "positions":
-    "[Shared] Start":
-    - !!int "-554"
-    - !!int "-173"
-    "[Shared] End":
-    - !!int "-604"
-    - !!int "99"
-    "[Shared] Getters Workflow: Interface IP":
-    - !!int "-248"
-    - !!int "-175"
     "[(R) Payload Extraction with Operations] Payload Workflow: Add initial variables":
-    - !!int "314"
-    - !!int "-165"
+    - ! "314"
+    - ! "-165"
     "[(R) Payload Extraction with Operations] Payload Workflow: Extraction 1":
-    - !!int "412"
-    - !!int "90"
+    - ! "412"
+    - ! "90"
     "[(R) Payload Extraction with Operations] Validation 1":
-    - !!int "-385"
-    - !!int "81"
+    - ! "-385"
+    - ! "81"
+    "[Shared] End":
+    - ! "-604"
+    - ! "99"
+    "[Shared] Getters Workflow: Interface IP":
+    - ! "-248"
+    - ! "-175"
+    "[Shared] Start":
+    - ! "-554"
+    - ! "-173"
   "postprocessing": ""
   "postprocessing_mode": "always"
   "preprocessing": ""
@@ -27837,27 +27827,27 @@
   "parameterized_form_template": ""
   "persistent_id": "96N7C2Ac17A"
   "positions":
-    "[Shared] Start":
-    - !!int "-238"
-    - !!int "-178"
-    "[Shared] End":
-    - !!int "663"
-    - !!int "12"
-    "[Payload Recursive Conservation with Restart Mechanism] Set Payload and Result":
-    - !!int "-255"
-    - !!int "25"
     "[Payload Recursive Conservation with Restart Mechanism] Get Payload 1":
-    - !!int "36"
-    - !!int "-178"
+    - ! "36"
+    - ! "-178"
     "[Payload Recursive Conservation with Restart Mechanism] Get Payload 2":
-    - !!int "394"
-    - !!int "-170"
+    - ! "394"
+    - ! "-170"
     "[Payload Recursive Conservation with Restart Mechanism] Get Result 1":
-    - !!int "77"
-    - !!int "130"
+    - ! "77"
+    - ! "130"
     "[Payload Recursive Conservation with Restart Mechanism] Get Result 2":
-    - !!int "410"
-    - !!int "129"
+    - ! "410"
+    - ! "129"
+    "[Payload Recursive Conservation with Restart Mechanism] Set Payload and Result":
+    - ! "-255"
+    - ! "25"
+    "[Shared] End":
+    - ! "663"
+    - ! "12"
+    "[Shared] Start":
+    - ! "-238"
+    - ! "-178"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -28580,21 +28570,21 @@
   "parameterized_form_template": ""
   "persistent_id": "Wcc025c1sSw"
   "positions":
-    "[Shared] Start":
-    - !!int "-212"
-    - !!int "24"
-    "[Shared] End":
-    - !!int "500"
-    - !!int "0"
     "[Interaction of Restart Mechanism and Superworkflow] Service 1":
-    - !!int "-9"
-    - !!int "-137"
+    - ! "-9"
+    - ! "-137"
     "[Interaction of Restart Mechanism and Superworkflow] Service 2":
-    - !!int "149"
-    - !!int "-3"
+    - ! "149"
+    - ! "-3"
     "[Interaction of Restart Mechanism and Superworkflow] Service 3":
-    - !!int "305"
-    - !!int "150"
+    - ! "305"
+    - ! "150"
+    "[Shared] End":
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "-212"
+    - ! "24"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -28710,21 +28700,21 @@
   "parameterized_form_template": ""
   "persistent_id": "FlpZKFvNeIo"
   "positions":
-    "[Shared] Start":
-    - !!int "-149"
-    - !!int "39"
-    "[Shared] End":
-    - !!int "500"
-    - !!int "0"
-    "[Shared] Placeholder":
-    - !!int "187"
-    - !!int "18"
-    "[Basic Superworkflow] Before Placeholder":
-    - !!int "5"
-    - !!int "-109"
     "[Basic Superworkflow] After Placeholder":
-    - !!int "293"
-    - !!int "159"
+    - ! "293"
+    - ! "159"
+    "[Basic Superworkflow] Before Placeholder":
+    - ! "5"
+    - ! "-109"
+    "[Shared] End":
+    - ! "500"
+    - ! "0"
+    "[Shared] Placeholder":
+    - ! "187"
+    - ! "18"
+    "[Shared] Start":
+    - ! "-149"
+    - ! "39"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -29371,27 +29361,27 @@
   "parameterized_form_template": ""
   "persistent_id": "vAVNwcWvVng"
   "positions":
-    "[Shared] Start":
-    - !!int "-368"
-    - !!int "44"
-    "[Shared] End":
-    - !!int "726"
-    - !!int "52"
-    "[Functions: get_result and get_var] Before Run Once":
-    - !!int "-187"
-    - !!int "-139"
-    "[Functions: get_result and get_var] Before Run Per Device":
-    - !!int "-172"
-    - !!int "94"
-    "[Functions: get_result and get_var] Subworkflow":
-    - !!int "194"
-    - !!int "-49"
     "[Functions: get_result and get_var] After Run Once":
-    - !!int "614"
-    - !!int "-135"
+    - ! "614"
+    - ! "-135"
     "[Functions: get_result and get_var] After Run Per Device":
-    - !!int "437"
-    - !!int "123"
+    - ! "437"
+    - ! "123"
+    "[Functions: get_result and get_var] Before Run Once":
+    - ! "-187"
+    - ! "-139"
+    "[Functions: get_result and get_var] Before Run Per Device":
+    - ! "-172"
+    - ! "94"
+    "[Functions: get_result and get_var] Subworkflow":
+    - ! "194"
+    - ! "-49"
+    "[Shared] End":
+    - ! "726"
+    - ! "52"
+    "[Shared] Start":
+    - ! "-368"
+    - ! "44"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -29710,15 +29700,15 @@
   "parameterized_form_template": ""
   "persistent_id": "NT85OH2zNcY"
   "positions":
-    "[Shared] Start":
-    - !!int "0"
-    - !!int "0"
     "[Shared] End":
-    - !!int "500"
-    - !!int "0"
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
     "[[Functions: get_result and get_var] Subworkflow] Subservice":
-    - !!int "228"
-    - !!int "-43"
+    - ! "228"
+    - ! "-43"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -30215,30 +30205,30 @@
   "parameterized_form_template": ""
   "persistent_id": "vuimqvEwIcs"
   "positions":
-    "[Shared] Start":
-    - !!int "-335"
-    - !!int "173"
-    "[Shared] End":
-    - !!int "664"
-    - !!int "197"
-    "[Deletion and Cascade Deletion] Service1":
-    - !!int "-119"
-    - !!int "33"
-    "[Deletion and Cascade Deletion] Service2":
-    - !!int "380"
-    - !!int "42"
     "[Deletion and Cascade Deletion] Deletion of SanJose":
-    - !!int "-204"
-    - !!int "300"
+    - ! "-204"
+    - ! "300"
     "[Deletion and Cascade Deletion] Deletion of Service2":
-    - !!int "33"
-    - !!int "305"
+    - ! "33"
+    - ! "305"
     "[Deletion and Cascade Deletion] Link Deletion":
-    - !!int "265"
-    - !!int "307"
+    - ! "265"
+    - ! "307"
+    "[Deletion and Cascade Deletion] Service1":
+    - ! "-119"
+    - ! "33"
+    "[Deletion and Cascade Deletion] Service2":
+    - ! "380"
+    - ! "42"
     "[Deletion and Cascade Deletion] Task Deletion":
-    - !!int "530"
-    - !!int "289"
+    - ! "530"
+    - ! "289"
+    "[Shared] End":
+    - ! "664"
+    - ! "197"
+    "[Shared] Start":
+    - ! "-335"
+    - ! "173"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -31102,27 +31092,27 @@
   "parameterized_form_template": ""
   "persistent_id": "yBmKq9ci/hs"
   "positions":
-    "[Shared] Start":
-    - !!int "-477"
-    - !!int "22"
-    "[Shared] End":
-    - !!int "460"
-    - !!int "246"
-    "[GET Endpoints is_alive, configuration and instance] is_alive":
-    - !!int "-312"
-    - !!int "-87"
     "[GET Endpoints is_alive, configuration and instance] configuration":
-    - !!int "-231"
-    - !!int "158"
-    "[GET Endpoints is_alive, configuration and instance] operational_data":
-    - !!int "-39"
-    - !!int "-37"
+    - ! "-231"
+    - ! "158"
     "[GET Endpoints is_alive, configuration and instance] instance - device":
-    - !!int "111"
-    - !!int "139"
+    - ! "111"
+    - ! "139"
     "[GET Endpoints is_alive, configuration and instance] instance - user":
-    - !!int "390"
-    - !!int "31"
+    - ! "390"
+    - ! "31"
+    "[GET Endpoints is_alive, configuration and instance] is_alive":
+    - ! "-312"
+    - ! "-87"
+    "[GET Endpoints is_alive, configuration and instance] operational_data":
+    - ! "-39"
+    - ! "-37"
+    "[Shared] End":
+    - ! "460"
+    - ! "246"
+    "[Shared] Start":
+    - ! "-477"
+    - ! "22"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -31799,21 +31789,21 @@
   "parameterized_form_template": ""
   "persistent_id": "XjNfNQNa7bU"
   "positions":
-    "[Shared] Start":
-    - !!int "-423"
-    - !!int "-76"
-    "[Shared] End":
-    - !!int "315"
-    - !!int "-13"
-    "[GET Endpoints query and token] Query Device - Washington":
-    - !!int "-241"
-    - !!int "163"
     "[GET Endpoints query and token] Query Device - NonExisting":
-    - !!int "-43"
-    - !!int "-33"
+    - ! "-43"
+    - ! "-33"
     "[GET Endpoints query and token] Query Device - OS EOS":
-    - !!int "193"
-    - !!int "158"
+    - ! "193"
+    - ! "158"
+    "[GET Endpoints query and token] Query Device - Washington":
+    - ! "-241"
+    - ! "163"
+    "[Shared] End":
+    - ! "315"
+    - ! "-13"
+    "[Shared] Start":
+    - ! "-423"
+    - ! "-76"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -32291,21 +32281,21 @@
   "parameterized_form_template": ""
   "persistent_id": "zQpGBWRufsg"
   "positions":
-    "[Shared] Start":
-    - !!int "-374"
-    - !!int "42"
-    "[Shared] End":
-    - !!int "576"
-    - !!int "170"
-    "[POST Endpoint search] First 5 devices":
-    - !!int "-117"
-    - !!int "-35"
-    "[POST Endpoint search] Devices with i":
-    - !!int "-29"
-    - !!int "112"
     "[POST Endpoint search] Configuration with regex TRAFFIC-dd":
-    - !!int "389"
-    - !!int "58"
+    - ! "389"
+    - ! "58"
+    "[POST Endpoint search] Devices with i":
+    - ! "-29"
+    - ! "112"
+    "[POST Endpoint search] First 5 devices":
+    - ! "-117"
+    - ! "-35"
+    "[Shared] End":
+    - ! "576"
+    - ! "170"
+    "[Shared] Start":
+    - ! "-374"
+    - ! "42"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -32830,27 +32820,27 @@
   "parameterized_form_template": ""
   "persistent_id": "F+5eGygcC5k"
   "positions":
-    "[Shared] Start":
-    - !!int "-359"
-    - !!int "245"
-    "[Shared] End":
-    - !!int "503"
-    - !!int "145"
-    "[POST update, DELETE delete and GET & POST results] POST Update NewDevice property1":
-    - !!int "140"
-    - !!int "51"
-    "[POST update, DELETE delete and GET & POST results] POST Create NewDevice":
-    - !!int "-232"
-    - !!int "66"
     "[POST update, DELETE delete and GET & POST results] DELETE NewDevice":
-    - !!int "473"
-    - !!int "77"
+    - ! "473"
+    - ! "77"
     "[POST update, DELETE delete and GET & POST results] GET result":
-    - !!int "-123"
-    - !!int "167"
+    - ! "-123"
+    - ! "167"
+    "[POST update, DELETE delete and GET & POST results] POST Create NewDevice":
+    - ! "-232"
+    - ! "66"
     "[POST update, DELETE delete and GET & POST results] POST Search Result":
-    - !!int "319"
-    - !!int "227"
+    - ! "319"
+    - ! "227"
+    "[POST update, DELETE delete and GET & POST results] POST Update NewDevice property1":
+    - ! "140"
+    - ! "51"
+    "[Shared] End":
+    - ! "503"
+    - ! "145"
+    "[Shared] Start":
+    - ! "-359"
+    - ! "245"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": "set_var(\"runtime\", self.parent_runtime)"
@@ -33561,21 +33551,21 @@
   "parameterized_form_template": ""
   "persistent_id": "VDXqd5WpPvQ"
   "positions":
-    "[Shared] Start":
-    - !!int "-208"
-    - !!int "-125"
-    "[Shared] End":
-    - !!int "795"
-    - !!int "-51"
-    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 1":
-    - !!int "-39"
-    - !!int "41"
-    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 3, 2 then 1":
-    - !!int "301"
-    - !!int "39"
     "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Both":
-    - !!int "660"
-    - !!int "34"
+    - ! "660"
+    - ! "34"
+    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 1":
+    - ! "-39"
+    - ! "41"
+    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 3, 2 then 1":
+    - ! "301"
+    - ! "39"
+    "[Shared] End":
+    - ! "795"
+    - ! "-51"
+    "[Shared] Start":
+    - ! "-208"
+    - ! "-125"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -34097,15 +34087,15 @@
   "parameterized_form_template": ""
   "persistent_id": "dxjC0++etKM"
   "positions":
-    "[Shared] Start":
-    - !!int "-169"
-    - !!int "101"
-    "[Shared] End":
-    - !!int "615"
-    - !!int "109"
     "[Parameterized Multiprocessing] Empty Service":
-    - !!int "216"
-    - !!int "129"
+    - ! "216"
+    - ! "129"
+    "[Shared] End":
+    - ! "615"
+    - ! "109"
+    "[Shared] Start":
+    - ! "-169"
+    - ! "101"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -34362,15 +34352,15 @@
   "parameterized_form_template": ""
   "persistent_id": "5PiClsEPObE"
   "positions":
-    "[Shared] Start":
-    - !!int "-54"
-    - !!int "-115"
-    "[Shared] End":
-    - !!int "-41"
-    - !!int "252"
     "[Parameterized Targets] Empty Service":
-    - !!int "-49"
-    - !!int "79"
+    - ! "-49"
+    - ! "79"
+    "[Shared] End":
+    - ! "-41"
+    - ! "252"
+    "[Shared] Start":
+    - ! "-54"
+    - ! "-115"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -34584,96 +34574,96 @@
   "parameterized_form_template": ""
   "persistent_id": "NTHD5RWLtgw"
   "positions":
-    "[Shared] Start":
-    - !!int "-193"
-    - !!int "16"
-    "[Shared] End":
-    - !!int "626"
-    - !!int "191"
     "[Large Workflow (30 services)] S1":
-    - !!int "-201"
-    - !!int "-74"
-    "[Large Workflow (30 services)] S2":
-    - !!int "-198"
-    - !!int "-156"
-    "[Large Workflow (30 services)] S3":
-    - !!int "-44"
-    - !!int "-155"
-    "[Large Workflow (30 services)] S4":
-    - !!int "-42"
-    - !!int "-74"
-    "[Large Workflow (30 services)] S5":
-    - !!int "-39"
-    - !!int "12"
-    "[Large Workflow (30 services)] S6":
-    - !!int "-46"
-    - !!int "100"
-    "[Large Workflow (30 services)] S7":
-    - !!int "-197"
-    - !!int "97"
-    "[Large Workflow (30 services)] S8":
-    - !!int "-195"
-    - !!int "196"
-    "[Large Workflow (30 services)] S9":
-    - !!int "-35"
-    - !!int "195"
+    - ! "-201"
+    - ! "-74"
     "[Large Workflow (30 services)] S10":
-    - !!int "127"
-    - !!int "192"
+    - ! "127"
+    - ! "192"
     "[Large Workflow (30 services)] S11":
-    - !!int "125"
-    - !!int "97"
+    - ! "125"
+    - ! "97"
     "[Large Workflow (30 services)] S12":
-    - !!int "123"
-    - !!int "9"
+    - ! "123"
+    - ! "9"
     "[Large Workflow (30 services)] S13":
-    - !!int "122"
-    - !!int "-75"
+    - ! "122"
+    - ! "-75"
     "[Large Workflow (30 services)] S14":
-    - !!int "124"
-    - !!int "-155"
+    - ! "124"
+    - ! "-155"
     "[Large Workflow (30 services)] S15":
-    - !!int "281"
-    - !!int "-155"
+    - ! "281"
+    - ! "-155"
     "[Large Workflow (30 services)] S16":
-    - !!int "283"
-    - !!int "-74"
+    - ! "283"
+    - ! "-74"
     "[Large Workflow (30 services)] S17":
-    - !!int "282"
-    - !!int "13"
+    - ! "282"
+    - ! "13"
     "[Large Workflow (30 services)] S18":
-    - !!int "287"
-    - !!int "100"
+    - ! "287"
+    - ! "100"
     "[Large Workflow (30 services)] S19":
-    - !!int "296"
-    - !!int "192"
+    - ! "296"
+    - ! "192"
+    "[Large Workflow (30 services)] S2":
+    - ! "-198"
+    - ! "-156"
     "[Large Workflow (30 services)] S20":
-    - !!int "456"
-    - !!int "194"
+    - ! "456"
+    - ! "194"
     "[Large Workflow (30 services)] S21":
-    - !!int "457"
-    - !!int "99"
+    - ! "457"
+    - ! "99"
     "[Large Workflow (30 services)] S22":
-    - !!int "454"
-    - !!int "12"
+    - ! "454"
+    - ! "12"
     "[Large Workflow (30 services)] S23":
-    - !!int "448"
-    - !!int "-77"
+    - ! "448"
+    - ! "-77"
     "[Large Workflow (30 services)] S24":
-    - !!int "448"
-    - !!int "-158"
+    - ! "448"
+    - ! "-158"
     "[Large Workflow (30 services)] S25":
-    - !!int "617"
-    - !!int "-161"
+    - ! "617"
+    - ! "-161"
     "[Large Workflow (30 services)] S26":
-    - !!int "624"
-    - !!int "-76"
+    - ! "624"
+    - ! "-76"
     "[Large Workflow (30 services)] S27":
-    - !!int "625"
-    - !!int "10"
+    - ! "625"
+    - ! "10"
     "[Large Workflow (30 services)] S28":
-    - !!int "625"
-    - !!int "100"
+    - ! "625"
+    - ! "100"
+    "[Large Workflow (30 services)] S3":
+    - ! "-44"
+    - ! "-155"
+    "[Large Workflow (30 services)] S4":
+    - ! "-42"
+    - ! "-74"
+    "[Large Workflow (30 services)] S5":
+    - ! "-39"
+    - ! "12"
+    "[Large Workflow (30 services)] S6":
+    - ! "-46"
+    - ! "100"
+    "[Large Workflow (30 services)] S7":
+    - ! "-197"
+    - ! "97"
+    "[Large Workflow (30 services)] S8":
+    - ! "-195"
+    - ! "196"
+    "[Large Workflow (30 services)] S9":
+    - ! "-35"
+    - ! "195"
+    "[Shared] End":
+    - ! "626"
+    - ! "191"
+    "[Shared] Start":
+    - ! "-193"
+    - ! "16"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -37658,15 +37648,15 @@
   "parameterized_form_template": ""
   "persistent_id": "bOS3f0H+nBk"
   "positions":
-    "[Shared] Start":
-    - !!int "-102"
-    - !!int "94"
-    "[Shared] End":
-    - !!int "605"
-    - !!int "99"
     "[Large Payload] Create Large Payload":
-    - !!int "235"
-    - !!int "103"
+    - ! "235"
+    - ! "103"
+    "[Shared] End":
+    - ! "605"
+    - ! "99"
+    "[Shared] Start":
+    - ! "-102"
+    - ! "94"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -37899,15 +37889,15 @@
   "parameterized_form_template": ""
   "persistent_id": "GQ3xsmgyt0w"
   "positions":
-    "[Shared] Start":
-    - !!int "-100"
-    - !!int "46"
-    "[Shared] End":
-    - !!int "642"
-    - !!int "43"
     "[Large Results] Create Large Result":
-    - !!int "241"
-    - !!int "66"
+    - ! "241"
+    - ! "66"
+    "[Shared] End":
+    - ! "642"
+    - ! "43"
+    "[Shared] Start":
+    - ! "-100"
+    - ! "46"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -38140,15 +38130,15 @@
   "parameterized_form_template": ""
   "persistent_id": "URMNcQbwJmQ"
   "positions":
-    "[Shared] Start":
-    - !!int "-179"
-    - !!int "-19"
-    "[Shared] End":
-    - !!int "611"
-    - !!int "1"
     "[Large Device Configuration and Operational Data] Set Large Configuration and Operational Data":
-    - !!int "222"
-    - !!int "78"
+    - ! "222"
+    - ! "78"
+    "[Shared] End":
+    - ! "611"
+    - ! "1"
+    "[Shared] Start":
+    - ! "-179"
+    - ! "-19"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -38362,18 +38352,18 @@
   "parameterized_form_template": ""
   "persistent_id": "zSHhcNVI4e4"
   "positions":
-    "[Shared] Start":
-    - !!int "-143"
-    - !!int "42"
     "[Shared] End":
-    - !!int "588"
-    - !!int "19"
-    "[Slack and Mattermost Notifications] Slack in random, per device":
-    - !!int "236"
-    - !!int "-114"
+    - ! "588"
+    - ! "19"
+    "[Shared] Start":
+    - ! "-143"
+    - ! "42"
     "[Slack and Mattermost Notifications] Notification in general, once":
-    - !!int "240"
-    - !!int "143"
+    - ! "240"
+    - ! "143"
+    "[Slack and Mattermost Notifications] Slack in random, per device":
+    - ! "236"
+    - ! "-114"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -39061,30 +39051,30 @@
   "parameterized_form_template": ""
   "persistent_id": "653NcE1+4rU"
   "positions":
-    "[Shared] Start":
-    - !!int "-208"
-    - !!int "-125"
-    "[Shared] End":
-    - !!int "795"
-    - !!int "-51"
-    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 1":
-    - !!int "-39"
-    - !!int "41"
-    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 3, 2 then 1":
-    - !!int "301"
-    - !!int "39"
     "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Both":
-    - !!int "660"
-    - !!int "34"
-    "[(R) Gateway Mechanism (SSH Proxy with Scrapli)] Gateway 1":
-    - !!int "-43"
-    - !!int "52"
-    "[(R) Gateway Mechanism (SSH Proxy with Scrapli)] Gateway 3, 2 then 1":
-    - !!int "288"
-    - !!int "43"
+    - ! "660"
+    - ! "34"
+    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 1":
+    - ! "-39"
+    - ! "41"
+    "[(R) Gateway Mechanism (SSH Proxy with Netmiko)] Gateway 3, 2 then 1":
+    - ! "301"
+    - ! "39"
     "[(R) Gateway Mechanism (SSH Proxy with Scrapli)] Both":
-    - !!int "669"
-    - !!int "48"
+    - ! "669"
+    - ! "48"
+    "[(R) Gateway Mechanism (SSH Proxy with Scrapli)] Gateway 1":
+    - ! "-43"
+    - ! "52"
+    "[(R) Gateway Mechanism (SSH Proxy with Scrapli)] Gateway 3, 2 then 1":
+    - ! "288"
+    - ! "43"
+    "[Shared] End":
+    - ! "795"
+    - ! "-51"
+    "[Shared] Start":
+    - ! "-208"
+    - ! "-125"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -39544,21 +39534,21 @@
   "parameterized_form_template": ""
   "persistent_id": "w+0hsRfxOmI"
   "positions":
-    "[Shared] Start":
-    - !!int "-255"
-    - !!int "-44"
-    "[Shared] End":
-    - !!int "445"
-    - !!int "190"
-    "[Data Extraction Jinja2 Template] Apply jinja2 Template":
-    - !!int "72"
-    - !!int "107"
-    "[Data Extraction Jinja2 Template] Define Input Variables":
-    - !!int "-266"
-    - !!int "195"
     "[Data Extraction Jinja2 Template] Apply TTP Template":
-    - !!int "80"
-    - !!int "246"
+    - ! "80"
+    - ! "246"
+    "[Data Extraction Jinja2 Template] Apply jinja2 Template":
+    - ! "72"
+    - ! "107"
+    "[Data Extraction Jinja2 Template] Define Input Variables":
+    - ! "-266"
+    - ! "195"
+    "[Shared] End":
+    - ! "445"
+    - ! "190"
+    "[Shared] Start":
+    - ! "-255"
+    - ! "-44"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -39971,24 +39961,24 @@
   "parameterized_form_template": ""
   "persistent_id": "5tszJvRcuI0"
   "positions":
-    "[Shared] Start":
-    - !!int "-473"
-    - !!int "156"
-    "[Shared] End":
-    - !!int "651"
-    - !!int "173"
-    "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Scrapli Multiple Commands (text)":
-    - !!int "-274"
-    - !!int "92"
-    "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Scrapli Multiple Commands (list)":
-    - !!int "-290"
-    - !!int "222"
-    "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Netmiko Jinja 2 conversion (text)":
-    - !!int "463"
-    - !!int "96"
     "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Netmiko Jinja 2 conversion (list)":
-    - !!int "441"
-    - !!int "226"
+    - ! "441"
+    - ! "226"
+    "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Netmiko Jinja 2 conversion (text)":
+    - ! "463"
+    - ! "96"
+    "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Scrapli Multiple Commands (list)":
+    - ! "-290"
+    - ! "222"
+    "[(R) Scrapli and Netmiko Multiple Commands and Jinja2] Scrapli Multiple Commands (text)":
+    - ! "-274"
+    - ! "92"
+    "[Shared] End":
+    - ! "651"
+    - ! "173"
+    "[Shared] Start":
+    - ! "-473"
+    - ! "156"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": "set_var(\"abc\", [\"a\", \"b\", \"c\"], device=device.name)"
@@ -40904,21 +40894,21 @@
   "parameterized_form_template": ""
   "persistent_id": "7NEbvtTwT2k"
   "positions":
-    "[Shared] Start":
-    - !!int "-312"
-    - !!int "102"
-    "[Shared] End":
-    - !!int "569"
-    - !!int "-45"
     "[(R) Function: get_connection] Open default connection":
-    - !!int "29"
-    - !!int "-40"
-    "[(R) Function: get_connection] Use both connections in python":
-    - !!int "590"
-    - !!int "141"
+    - ! "29"
+    - ! "-40"
     "[(R) Function: get_connection] Open special connection":
-    - !!int "25"
-    - !!int "279"
+    - ! "25"
+    - ! "279"
+    "[(R) Function: get_connection] Use both connections in python":
+    - ! "590"
+    - ! "141"
+    "[Shared] End":
+    - ! "569"
+    - ! "-45"
+    "[Shared] Start":
+    - ! "-312"
+    - ! "102"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -41425,21 +41415,21 @@
   "parameterized_form_template": ""
   "persistent_id": "nB6H/sPnEK8"
   "positions":
-    "[Shared] Start":
-    - !!int "-227"
-    - !!int "-77"
-    "[Shared] End":
-    - !!int "554"
-    - !!int "-50"
-    "[(R) Named Credential Mechanism] REST Call":
-    - !!int "-159"
-    - !!int "100"
-    "[(R) Named Credential Mechanism] Netmiko - show run -":
-    - !!int "116"
-    - !!int "106"
     "[(R) Named Credential Mechanism] Napalm - get interfaces -":
-    - !!int "430"
-    - !!int "101"
+    - ! "430"
+    - ! "101"
+    "[(R) Named Credential Mechanism] Netmiko - show run -":
+    - ! "116"
+    - ! "106"
+    "[(R) Named Credential Mechanism] REST Call":
+    - ! "-159"
+    - ! "100"
+    "[Shared] End":
+    - ! "554"
+    - ! "-50"
+    "[Shared] Start":
+    - ! "-227"
+    - ! "-77"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -41922,18 +41912,18 @@
   "parameterized_form_template": ""
   "persistent_id": "HrWPdWQTXV8"
   "positions":
-    "[Shared] Start":
-    - !!int "-217"
-    - !!int "200"
-    "[Shared] End":
-    - !!int "615"
-    - !!int "191"
-    "[Text Reports with Normal Templates] Service":
-    - !!int "187"
-    - !!int "202"
     "[HTML Reports with Jinja2 Templates] Service":
-    - !!int "187"
-    - !!int "202"
+    - ! "187"
+    - ! "202"
+    "[Shared] End":
+    - ! "615"
+    - ! "191"
+    "[Shared] Start":
+    - ! "-217"
+    - ! "200"
+    "[Text Reports with Normal Templates] Service":
+    - ! "187"
+    - ! "202"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -42196,15 +42186,15 @@
   "parameterized_form_template": ""
   "persistent_id": "dn479+eYpkA"
   "positions":
-    "[Shared] Start":
-    - !!int "-289"
-    - !!int "300"
-    "[Shared] End":
-    - !!int "636"
-    - !!int "287"
     "[HTML Reports with Jinja2 Templates] Service":
-    - !!int "126"
-    - !!int "349"
+    - ! "126"
+    - ! "349"
+    "[Shared] End":
+    - ! "636"
+    - ! "287"
+    "[Shared] Start":
+    - ! "-289"
+    - ! "300"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -42482,27 +42472,27 @@
   "parameterized_form_template": ""
   "persistent_id": "M6CPDA9bpKk"
   "positions":
-    "[Shared] Start":
-    - !!int "-249"
-    - !!int "62"
-    "[Shared] End":
-    - !!int "639"
-    - !!int "119"
     "[Priority Mechanism] Service 1":
-    - !!int "-81"
-    - !!int "-46"
+    - ! "-81"
+    - ! "-46"
     "[Priority Mechanism] Service 2":
-    - !!int "-53"
-    - !!int "236"
+    - ! "-53"
+    - ! "236"
     "[Priority Mechanism] Service 3":
-    - !!int "188"
-    - !!int "-53"
+    - ! "188"
+    - ! "-53"
     "[Priority Mechanism] Service 4":
-    - !!int "322"
-    - !!int "248"
+    - ! "322"
+    - ! "248"
     "[Priority Mechanism] Service 5":
-    - !!int "472"
-    - !!int "-51"
+    - ! "472"
+    - ! "-51"
+    "[Shared] End":
+    - ! "639"
+    - ! "119"
+    "[Shared] Start":
+    - ! "-249"
+    - ! "62"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -43216,12 +43206,12 @@
     </script>
   "persistent_id": "mE+jSd+Wpb4"
   "positions":
-    "[Shared] Start":
-    - !!int "-218"
-    - !!int "198"
     "[Shared] End":
-    - !!int "584"
-    - !!int "193"
+    - ! "584"
+    - ! "193"
+    "[Shared] Start":
+    - ! "-218"
+    - ! "198"
   "postprocessing": |-
     log("info", payload)
     log("info", f"Field A: {payload['field_a']}")
@@ -43349,24 +43339,24 @@
   "parameterized_form_template": ""
   "persistent_id": "rIdauaj/9wA"
   "positions":
-    "[Shared] Start":
-    - !!int "-278"
-    - !!int "-92"
-    "[Shared] End":
-    - !!int "-337"
-    - !!int "238"
-    "[Runtime Notes Mechanism] Set note1 and note2":
-    - !!int "45"
-    - !!int "-92"
-    "[Runtime Notes Mechanism] Remove note2":
-    - !!int "481"
-    - !!int "-81"
-    "[Runtime Notes Mechanism] Update note1 and add note3":
-    - !!int "506"
-    - !!int "264"
     "[Runtime Notes Mechanism] Remove note1":
-    - !!int "-40"
-    - !!int "271"
+    - ! "-40"
+    - ! "271"
+    "[Runtime Notes Mechanism] Remove note2":
+    - ! "481"
+    - ! "-81"
+    "[Runtime Notes Mechanism] Set note1 and note2":
+    - ! "45"
+    - ! "-92"
+    "[Runtime Notes Mechanism] Update note1 and add note3":
+    - ! "506"
+    - ! "264"
+    "[Shared] End":
+    - ! "-337"
+    - ! "238"
+    "[Shared] Start":
+    - ! "-278"
+    - ! "-92"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -43891,15 +43881,15 @@
   "parameterized_form_template": ""
   "persistent_id": "C8gUEKV4MV8"
   "positions":
-    "[Shared] Start":
-    - !!int "-98"
-    - !!int "74"
-    "[Shared] End":
-    - !!int "574"
-    - !!int "60"
     "[Global Variables: trigger and user] Include global variables in result":
-    - !!int "226"
-    - !!int "46"
+    - ! "226"
+    - ! "46"
+    "[Shared] End":
+    - ! "574"
+    - ! "60"
+    "[Shared] Start":
+    - ! "-98"
+    - ! "74"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -44127,27 +44117,27 @@
   "parameterized_form_template": ""
   "persistent_id": "gZjsjsNHOpk"
   "positions":
-    "[Shared] Start":
-    - !!int "-273"
-    - !!int "-81"
-    "[Shared] End":
-    - !!int "518"
-    - !!int "-90"
-    "[Dry Run: Netmiko Services] Commands":
-    - !!int "-296"
-    - !!int "84"
-    "[Dry Run: Netmiko Services] Prompts":
-    - !!int "-163"
-    - !!int "229"
-    "[Dry Run: Netmiko Services] Configuration":
-    - !!int "288"
-    - !!int "239"
-    "[Dry Run: Netmiko Services] File Transfer":
-    - !!int "556"
-    - !!int "127"
     "[Dry Run: Netmiko Services] Backup":
-    - !!int "44"
-    - !!int "137"
+    - ! "44"
+    - ! "137"
+    "[Dry Run: Netmiko Services] Commands":
+    - ! "-296"
+    - ! "84"
+    "[Dry Run: Netmiko Services] Configuration":
+    - ! "288"
+    - ! "239"
+    "[Dry Run: Netmiko Services] File Transfer":
+    - ! "556"
+    - ! "127"
+    "[Dry Run: Netmiko Services] Prompts":
+    - ! "-163"
+    - ! "229"
+    "[Shared] End":
+    - ! "518"
+    - ! "-90"
+    "[Shared] Start":
+    - ! "-273"
+    - ! "-81"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -44939,30 +44929,30 @@
   "parameterized_form_template": ""
   "persistent_id": "E09IJoRdS7w"
   "positions":
-    "[Shared] Start":
-    - !!int "-181"
-    - !!int "-63"
-    "[Shared] End":
-    - !!int "669"
-    - !!int "-90"
-    "[Dry Run: Napalm Services] Configuration":
-    - !!int "-221"
-    - !!int "97"
     "[Dry Run: Napalm Services] Backup":
-    - !!int "-151"
-    - !!int "288"
+    - ! "-151"
+    - ! "288"
+    "[Dry Run: Napalm Services] Configuration":
+    - ! "-221"
+    - ! "97"
     "[Dry Run: Napalm Services] Getters":
-    - !!int "75"
-    - !!int "194"
+    - ! "75"
+    - ! "194"
     "[Dry Run: Napalm Services] Ping":
-    - !!int "265"
-    - !!int "311"
+    - ! "265"
+    - ! "311"
     "[Dry Run: Napalm Services] Rollback":
-    - !!int "448"
-    - !!int "195"
+    - ! "448"
+    - ! "195"
     "[Dry Run: Napalm Services] Traceroute":
-    - !!int "669"
-    - !!int "301"
+    - ! "669"
+    - ! "301"
+    "[Shared] End":
+    - ! "669"
+    - ! "-90"
+    "[Shared] Start":
+    - ! "-181"
+    - ! "-63"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -45405,7 +45395,7 @@
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
   "persistent_id": "lobAzo5oGFE"
-  "ping_timeout": !!int "2"
+  "ping_timeout": ! "2"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -45736,48 +45726,48 @@
   "parameterized_form_template": ""
   "persistent_id": "geJ2Pbce9wU"
   "positions":
-    "[Shared] Start":
-    - !!int "-190"
-    - !!int "10"
-    "[Shared] End":
-    - !!int "634"
-    - !!int "16"
-    "[Dry Run: Scrapli Services] Commands":
-    - !!int "-115"
-    - !!int "259"
     "[Dry Run: Scrapli Services] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
+    "[Dry Run: Scrapli Services] Commands":
+    - ! "-115"
+    - ! "259"
     "[Dry Run: Scrapli Services] Netconf":
-    - !!int "505"
-    - !!int "255"
-    "[Dry Run: Top-level Workflow Dry Run] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "505"
+    - ! "255"
     "[Dry Run: Top-level Workflow Dry Run] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
+    "[Dry Run: Top-level Workflow Dry Run] Commands":
+    - ! "-115"
+    - ! "259"
     "[Dry Run: Top-level Workflow Dry Run] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
+    "[Shared] End":
+    - ! "634"
+    - ! "16"
+    "[Shared] Start":
+    - ! "-190"
+    - ! "10"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -46205,18 +46195,18 @@
   "parameterized_form_template": ""
   "persistent_id": "0lTzeNF73mY"
   "positions":
-    "[Shared] Start":
-    - !!int "-223"
-    - !!int "192"
-    "[Shared] End":
-    - !!int "718"
-    - !!int "112"
-    "[(R) Dry Run: Results modified in Postprocessing] Show Configuration":
-    - !!int "-96"
-    - !!int "390"
     "[(R) Dry Run: Results modified in Postprocessing] Check Configuration":
-    - !!int "550"
-    - !!int "403"
+    - ! "550"
+    - ! "403"
+    "[(R) Dry Run: Results modified in Postprocessing] Show Configuration":
+    - ! "-96"
+    - ! "390"
+    "[Shared] End":
+    - ! "718"
+    - ! "112"
+    "[Shared] Start":
+    - ! "-223"
+    - ! "192"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -46568,24 +46558,24 @@
   "parameterized_form_template": ""
   "persistent_id": "mZRsZ+B5pb8"
   "positions":
-    "[Shared] Start":
-    - !!int "-243"
-    - !!int "143"
-    "[Shared] End":
-    - !!int "488"
-    - !!int "125"
-    "[Dry Run: File Transfer, Ansible, Git and REST Services] File Transfer":
-    - !!int "-305"
-    - !!int "413"
     "[Dry Run: File Transfer, Ansible, Git and REST Services] Ansible":
-    - !!int "-15"
-    - !!int "347"
+    - ! "-15"
+    - ! "347"
+    "[Dry Run: File Transfer, Ansible, Git and REST Services] File Transfer":
+    - ! "-305"
+    - ! "413"
     "[Dry Run: File Transfer, Ansible, Git and REST Services] Git":
-    - !!int "266"
-    - !!int "414"
+    - ! "266"
+    - ! "414"
     "[Dry Run: File Transfer, Ansible, Git and REST Services] REST Call":
-    - !!int "485"
-    - !!int "279"
+    - ! "485"
+    - ! "279"
+    "[Shared] End":
+    - ! "488"
+    - ! "125"
+    "[Shared] Start":
+    - ! "-243"
+    - ! "143"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -46802,7 +46792,7 @@
     multiprocessing = BooleanField('Multiprocessing', default=False)
     max_processes = IntegerField('Maximum number of processes', default=15)
   "parameterized_form_template": ""
-  "pass_device_properties": !!bool "false"
+  "pass_device_properties": ! "false"
   "persistent_id": "yt0SI8rQ6sI"
   "playbook_path": "/arista_show_running_config.yml"
   "postprocessing": ""
@@ -47134,21 +47124,21 @@
   "parameterized_form_template": ""
   "persistent_id": "i+LsMKp0QkQ"
   "positions":
-    "[Shared] Start":
-    - !!int "-272"
-    - !!int "153"
-    "[Shared] End":
-    - !!int "619"
-    - !!int "136"
-    "[Dry Run: Topology Import, Netconf, and Ping Services] Topology Import":
-    - !!int "-227"
-    - !!int "394"
     "[Dry Run: Topology Import, Netconf, and Ping Services] Netconf":
-    - !!int "154"
-    - !!int "431"
+    - ! "154"
+    - ! "431"
     "[Dry Run: Topology Import, Netconf, and Ping Services] Ping":
-    - !!int "521"
-    - !!int "427"
+    - ! "521"
+    - ! "427"
+    "[Dry Run: Topology Import, Netconf, and Ping Services] Topology Import":
+    - ! "-227"
+    - ! "394"
+    "[Shared] End":
+    - ! "619"
+    - ! "136"
+    "[Shared] Start":
+    - ! "-272"
+    - ! "153"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -47702,21 +47692,21 @@
   "parameterized_form_template": ""
   "persistent_id": "PrTxrkPecHE"
   "positions":
-    "[Shared] Start":
-    - !!int "-256"
-    - !!int "-27"
-    "[Shared] End":
-    - !!int "668"
-    - !!int "12"
     "[Dry Run: Email, Mattermost and Slack Notification Services] Mail":
-    - !!int "-186"
-    - !!int "252"
+    - ! "-186"
+    - ! "252"
     "[Dry Run: Email, Mattermost and Slack Notification Services] Mattermost":
-    - !!int "192"
-    - !!int "253"
+    - ! "192"
+    - ! "253"
     "[Dry Run: Email, Mattermost and Slack Notification Services] Slack":
-    - !!int "553"
-    - !!int "250"
+    - ! "553"
+    - ! "250"
+    "[Shared] End":
+    - ! "668"
+    - ! "12"
+    "[Shared] Start":
+    - ! "-256"
+    - ! "-27"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -48139,21 +48129,21 @@
   "parameterized_form_template": ""
   "persistent_id": "RAYSsVe0J0M"
   "positions":
-    "[Shared] Start":
-    - !!int "-273"
-    - !!int "28"
-    "[Shared] End":
-    - !!int "601"
-    - !!int "9"
     "[Dry Run: Unix Command, Unix Shell and Python Snippet Services] Python Snippet":
-    - !!int "-174"
-    - !!int "323"
+    - ! "-174"
+    - ! "323"
     "[Dry Run: Unix Command, Unix Shell and Python Snippet Services] Unix Command":
-    - !!int "142"
-    - !!int "320"
+    - ! "142"
+    - ! "320"
     "[Dry Run: Unix Command, Unix Shell and Python Snippet Services] Unix Shell":
-    - !!int "486"
-    - !!int "321"
+    - ! "486"
+    - ! "321"
+    "[Shared] End":
+    - ! "601"
+    - ! "9"
+    "[Shared] Start":
+    - ! "-273"
+    - ! "28"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -48635,21 +48625,21 @@
   "parameterized_form_template": ""
   "persistent_id": "gM3sJUCSzE0"
   "positions":
-    "[Shared] Start":
-    - !!int "-348"
-    - !!int "99"
-    "[Shared] End":
-    - !!int "622"
-    - !!int "93"
-    "[Global Variables: try_set, try_commit, and get_secret] Try Set":
-    - !!int "-259"
-    - !!int "344"
-    "[Global Variables: try_set, try_commit, and get_secret] Try Commit":
-    - !!int "109"
-    - !!int "349"
     "[Global Variables: try_set, try_commit, and get_secret] Get Secret":
-    - !!int "496"
-    - !!int "356"
+    - ! "496"
+    - ! "356"
+    "[Global Variables: try_set, try_commit, and get_secret] Try Commit":
+    - ! "109"
+    - ! "349"
+    "[Global Variables: try_set, try_commit, and get_secret] Try Set":
+    - ! "-259"
+    - ! "344"
+    "[Shared] End":
+    - ! "622"
+    - ! "93"
+    "[Shared] Start":
+    - ! "-348"
+    - ! "99"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -49073,48 +49063,48 @@
   "parameterized_form_template": ""
   "persistent_id": "swr+4qZxzvM"
   "positions":
-    "[Shared] Start":
-    - !!int "-190"
-    - !!int "10"
-    "[Shared] End":
-    - !!int "634"
-    - !!int "16"
-    "[Dry Run: Scrapli Services] Commands":
-    - !!int "-115"
-    - !!int "259"
     "[Dry Run: Scrapli Services] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
+    "[Dry Run: Scrapli Services] Commands":
+    - ! "-115"
+    - ! "259"
     "[Dry Run: Scrapli Services] Netconf":
-    - !!int "505"
-    - !!int "255"
-    "[Dry Run: Top-level Workflow Dry Run] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "505"
+    - ! "255"
     "[Dry Run: Top-level Workflow Dry Run] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
+    "[Dry Run: Top-level Workflow Dry Run] Commands":
+    - ! "-115"
+    - ! "259"
     "[Dry Run: Top-level Workflow Dry Run] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
+    "[Shared] End":
+    - ! "634"
+    - ! "16"
+    "[Shared] Start":
+    - ! "-190"
+    - ! "10"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -49623,24 +49613,24 @@
   "parameterized_form_template": ""
   "persistent_id": "uU5WcuekgOM"
   "positions":
-    "[Shared] Start":
-    - !!int "-283"
-    - !!int "75"
-    "[Shared] End":
-    - !!int "796"
-    - !!int "75"
-    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Scrapli":
-    - !!int "-152"
-    - !!int "-36"
     "[Dry Run: Subservice and Subworkflow level Dry Run] DR Scrapli":
-    - !!int "-166"
-    - !!int "198"
+    - ! "-166"
+    - ! "198"
     "[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow":
-    - !!int "617"
-    - !!int "-44"
+    - ! "617"
+    - ! "-44"
+    "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Scrapli":
+    - ! "-152"
+    - ! "-36"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow":
-    - !!int "626"
-    - !!int "220"
+    - ! "626"
+    - ! "220"
+    "[Shared] End":
+    - ! "796"
+    - ! "75"
+    "[Shared] Start":
+    - ! "-283"
+    - ! "75"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -49981,30 +49971,30 @@
   "parameterized_form_template": ""
   "persistent_id": "qE57Lwp8/78"
   "positions":
-    "[Shared] Start":
-    - !!int "-190"
-    - !!int "10"
     "[Shared] End":
-    - !!int "634"
-    - !!int "16"
+    - ! "634"
+    - ! "16"
+    "[Shared] Start":
+    - ! "-190"
+    - ! "10"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -50514,30 +50504,30 @@
   "parameterized_form_template": ""
   "persistent_id": "BrSizrTha7s"
   "positions":
-    "[Shared] Start":
-    - !!int "-190"
-    - !!int "10"
     "[Shared] End":
-    - !!int "634"
-    - !!int "16"
+    - ! "634"
+    - ! "16"
+    "[Shared] Start":
+    - ! "-190"
+    - ! "10"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Backup":
-    - !!int "195"
-    - !!int "267"
+    - ! "195"
+    - ! "267"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Commands":
-    - !!int "-115"
-    - !!int "259"
+    - ! "-115"
+    - ! "259"
     "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Netconf":
-    - !!int "505"
-    - !!int "255"
+    - ! "505"
+    - ! "255"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": |-
@@ -51044,18 +51034,18 @@
   "parameterized_form_template": ""
   "persistent_id": "NL3GdlqTvw0"
   "positions":
-    "[Shared] Start":
-    - !!int "-208"
-    - !!int "3"
-    "[Shared] End":
-    - !!int "625"
-    - !!int "-16"
     "[Dry Run: Parameterized Form Dry Run] Dry Run Global Variable":
-    - !!int "-22"
-    - !!int "168"
+    - ! "-22"
+    - ! "168"
     "[Dry Run: Parameterized Form Dry Run] Show Run":
-    - !!int "413"
-    - !!int "172"
+    - ! "413"
+    - ! "172"
+    "[Shared] End":
+    - ! "625"
+    - ! "-16"
+    "[Shared] Start":
+    - ! "-208"
+    - ! "3"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -51448,15 +51438,15 @@
   "parameterized_form_template": ""
   "persistent_id": "BdIwKExksKw"
   "positions":
-    "[Shared] Start":
-    - !!int "-218"
-    - !!int "157"
-    "[Shared] End":
-    - !!int "629"
-    - !!int "168"
     "[Parameterized Column Ordering and Global user Property] Use get_result with previous runtime":
-    - !!int "189"
-    - !!int "164"
+    - ! "189"
+    - ! "164"
+    "[Shared] End":
+    - ! "629"
+    - ! "168"
+    "[Shared] Start":
+    - ! "-218"
+    - ! "157"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
@@ -51601,34 +51591,34 @@
   "validation_section": "results['result']"
   "vendor": ""
   "version": ""
-  "waiting_time": !!int "0"
-- "admin_only": !!bool "false"
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
   "category": "Basics"
-  "close_connection": !!bool "false"
-  "completion_time": !!int "1"
+  "close_connection": ! "false"
+  "completion_time": ! "1"
   "content_match": ""
-  "content_match_regex": !!bool "false"
+  "content_match_regex": ! "false"
   "conversion_method": "none"
   "creator": "admin"
   "credential_type": "any"
   "custom_property": "Default Value"
   "default_uuid": "a244a479-3f82-4c14-8832-de93673237f3"
   "definition": "Definition"
-  "delete_spaces_before_matching": !!bool "false"
+  "delete_spaces_before_matching": ! "false"
   "description": ""
   "device_query": ""
   "device_query_property": "name"
   "dict_match": {}
-  "disable_result_creation": !!bool "false"
-  "disabled": !!bool "false"
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
   "disabled_info": ""
-  "display_only_failed_nodes": !!bool "false"
-  "display_report": !!bool "false"
-  "dry_run": !!bool "false"
-  "email_report": !!bool "false"
-  "impacting": !!bool "true"
-  "include_device_results": !!bool "false"
-  "include_link_in_summary": !!bool "false"
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
   "initial_payload": {}
   "iteration_devices": ""
   "iteration_devices_property": "name"
@@ -51636,36 +51626,36 @@
   "iteration_variable_name": "iteration_value"
   "labels":
     "b4d81230-7098-43f3-bc12-b5d10faf0fd5":
-      "positions":
-      - !!int "228"
-      - !!int "62"
+      "alignment": "left"
       "content": |-
         This workflow is running on two devices, Austin and Washington.
         The "Device Filtering" feature must be enabled, and different colors
         should be shown based on the selected device.
-      "alignment": "left"
-      "size": !!int "14"
+      "positions":
+      - ! "228"
+      - ! "62"
+      "size": ! "14"
   "last_modified": "2024-10-02 08:53:01.451973"
   "last_modified_by": "admin"
   "last_run": ""
-  "log_level": !!int "1"
+  "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
   "mail_sender": ""
   "mail_subject": ""
-  "man_minutes": !!int "0"
-  "man_minutes_total": !!int "0"
+  "man_minutes": ! "0"
+  "man_minutes_total": ! "0"
   "man_minutes_type": "workflow"
   "mandatory_parameter": "Default Value"
-  "mandatory_parametrization": !!bool "false"
-  "max_number_of_retries": !!int "100"
-  "max_processes": !!int "15"
-  "maximum_runs": !!int "1"
-  "multiprocessing": !!bool "false"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
   "name": "Colored Per-Device Display based on Results"
-  "negative_logic": !!bool "false"
+  "negative_logic": ! "false"
   "notification_header": ""
-  "number_of_retries": !!int "0"
+  "number_of_retries": ! "0"
   "operating_system": ""
   "owners":
   - "admin"
@@ -51681,41 +51671,41 @@
   "parameterized_form_template": ""
   "persistent_id": "+F8WZQI8kvE"
   "positions":
-    "[Shared] End":
-    - !!int "618"
-    - !!int "4"
     "[Colored Per-Device Display based on Results] Color 1":
-    - !!int "6"
-    - !!int "218"
-    "[Shared] Start":
-    - !!int "-197"
-    - !!int "21"
+    - ! "6"
+    - ! "218"
     "[Colored Per-Device Display based on Results] Color 2":
-    - !!int "400"
-    - !!int "240"
+    - ! "400"
+    - ! "240"
+    "[Shared] End":
+    - ! "618"
+    - ! "4"
+    "[Shared] Start":
+    - ! "-197"
+    - ! "21"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
-  "priority": !!int "10"
+  "priority": ! "10"
   "rbac_edit": []
   "rbac_read": []
   "rbac_run": []
   "reply_to": ""
   "report": ""
   "report_format": "text"
-  "report_jinja2_template": !!bool "false"
-  "reserved": !!bool "false"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Colored Per-Device Display based on Results"
-  "send_notification": !!bool "false"
+  "send_notification": ! "false"
   "send_notification_method": "mail"
   "services":
   - "[Colored Per-Device Display based on Results] Color 1"
   - "[Colored Per-Device Display based on Results] Color 2"
   - "[Shared] End"
   - "[Shared] Start"
-  "shared": !!bool "false"
+  "shared": ! "false"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -51723,40 +51713,40 @@
   - "Austin"
   - "Washington"
   "target_pools": []
-  "time_between_retries": !!int "10"
+  "time_between_retries": ! "10"
   "type": "workflow"
-  "update_pools_after_running": !!bool "false"
-  "update_target_pools": !!bool "false"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
   "validation_condition": "none"
   "validation_method": "text"
   "validation_section": "results['result']"
   "vendor": ""
   "version": ""
-  "waiting_time": !!int "0"
-- "admin_only": !!bool "false"
-  "completion_time": !!int "1"
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "completion_time": ! "1"
   "content_match": ""
-  "content_match_regex": !!bool "false"
+  "content_match_regex": ! "false"
   "conversion_method": "none"
   "creator": "admin"
   "credential_type": "any"
   "default_uuid": "c2647d10-1540-40a6-830d-eadad919935b"
   "definition": "Definition"
-  "delete_spaces_before_matching": !!bool "false"
+  "delete_spaces_before_matching": ! "false"
   "description": ""
   "device_query": ""
   "device_query_property": "name"
   "dict_match": {}
-  "disable_result_creation": !!bool "false"
-  "disabled": !!bool "false"
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
   "disabled_info": ""
-  "display_only_failed_nodes": !!bool "false"
-  "display_report": !!bool "false"
-  "dry_run": !!bool "false"
-  "email_report": !!bool "false"
-  "impacting": !!bool "true"
-  "include_device_results": !!bool "false"
-  "include_link_in_summary": !!bool "false"
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
   "initial_payload": {}
   "iteration_devices": ""
   "iteration_devices_property": "name"
@@ -51765,21 +51755,21 @@
   "last_modified": "2024-10-02 08:46:47.316745"
   "last_modified_by": "admin"
   "last_run": ""
-  "log_level": !!int "1"
+  "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
   "mail_sender": ""
   "mail_subject": ""
   "mandatory_parameter": "Default Value"
-  "mandatory_parametrization": !!bool "false"
-  "max_number_of_retries": !!int "100"
-  "max_processes": !!int "15"
-  "maximum_runs": !!int "1"
-  "multiprocessing": !!bool "false"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
   "name": "[Colored Per-Device Display based on Results] Color 1"
-  "negative_logic": !!bool "false"
+  "negative_logic": ! "false"
   "notification_header": ""
-  "number_of_retries": !!int "0"
+  "number_of_retries": ! "0"
   "operating_system": ""
   "owners":
   - "admin"
@@ -51797,21 +51787,21 @@
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
-  "priority": !!int "10"
+  "priority": ! "10"
   "rbac_edit": []
   "rbac_read": []
   "rbac_run": []
   "reply_to": ""
   "report": ""
   "report_format": "text"
-  "report_jinja2_template": !!bool "false"
-  "reserved": !!bool "false"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Color 1"
-  "send_notification": !!bool "false"
+  "send_notification": ! "false"
   "send_notification_method": "mail"
-  "shared": !!bool "false"
+  "shared": ! "false"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -51824,40 +51814,40 @@
     results["result"] = result
   "target_devices": []
   "target_pools": []
-  "time_between_retries": !!int "10"
+  "time_between_retries": ! "10"
   "type": "python_snippet_service"
-  "update_pools_after_running": !!bool "false"
-  "update_target_pools": !!bool "false"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
   "validation_condition": "none"
   "validation_method": "text"
   "validation_section": "results['result']"
   "vendor": ""
   "version": ""
-  "waiting_time": !!int "0"
-- "admin_only": !!bool "false"
-  "completion_time": !!int "1"
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "completion_time": ! "1"
   "content_match": ""
-  "content_match_regex": !!bool "false"
+  "content_match_regex": ! "false"
   "conversion_method": "none"
   "creator": "admin"
   "credential_type": "any"
   "default_uuid": "c2647d10-1540-40a6-830d-eadad919935b"
   "definition": "Definition"
-  "delete_spaces_before_matching": !!bool "false"
+  "delete_spaces_before_matching": ! "false"
   "description": ""
   "device_query": ""
   "device_query_property": "name"
   "dict_match": {}
-  "disable_result_creation": !!bool "false"
-  "disabled": !!bool "false"
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
   "disabled_info": ""
-  "display_only_failed_nodes": !!bool "false"
-  "display_report": !!bool "false"
-  "dry_run": !!bool "false"
-  "email_report": !!bool "false"
-  "impacting": !!bool "true"
-  "include_device_results": !!bool "false"
-  "include_link_in_summary": !!bool "false"
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
   "initial_payload": {}
   "iteration_devices": ""
   "iteration_devices_property": "name"
@@ -51866,21 +51856,21 @@
   "last_modified": "2024-10-02 08:47:32.381171"
   "last_modified_by": "admin"
   "last_run": ""
-  "log_level": !!int "1"
+  "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
   "mail_sender": ""
   "mail_subject": ""
   "mandatory_parameter": "Default Value"
-  "mandatory_parametrization": !!bool "false"
-  "max_number_of_retries": !!int "100"
-  "max_processes": !!int "15"
-  "maximum_runs": !!int "1"
-  "multiprocessing": !!bool "false"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
   "name": "[Colored Per-Device Display based on Results] Color 2"
-  "negative_logic": !!bool "false"
+  "negative_logic": ! "false"
   "notification_header": ""
-  "number_of_retries": !!int "0"
+  "number_of_retries": ! "0"
   "operating_system": ""
   "owners":
   - "admin"
@@ -51898,21 +51888,21 @@
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
-  "priority": !!int "10"
+  "priority": ! "10"
   "rbac_edit": []
   "rbac_read": []
   "rbac_run": []
   "reply_to": ""
   "report": ""
   "report_format": "text"
-  "report_jinja2_template": !!bool "false"
-  "reserved": !!bool "false"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
   "restrict_to_owners": []
   "run_method": "per_device"
   "scoped_name": "Color 2"
-  "send_notification": !!bool "false"
+  "send_notification": ! "false"
   "send_notification_method": "mail"
-  "shared": !!bool "false"
+  "shared": ! "false"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -51924,13 +51914,13 @@
     results["result"] = result
   "target_devices": []
   "target_pools": []
-  "time_between_retries": !!int "10"
+  "time_between_retries": ! "10"
   "type": "python_snippet_service"
-  "update_pools_after_running": !!bool "false"
-  "update_target_pools": !!bool "false"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
   "validation_condition": "none"
   "validation_method": "text"
   "validation_section": "results['result']"
   "vendor": ""
   "version": ""
-  "waiting_time": !!int "0"
+  "waiting_time": ! "0"
