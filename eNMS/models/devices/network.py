@@ -35,7 +35,7 @@ class Network(Device):
         for property in ("labels", "devices", "links"):
             setattr(clone, property, getattr(self, property))
         for device in self.devices:
-            device.positions[clone.name] = device.positions.get(self.name, (0, 0))
+            device.positions[clone.name] = device.positions.get(self.name, [0, 0])
         db.session.commit()
         return clone
 
