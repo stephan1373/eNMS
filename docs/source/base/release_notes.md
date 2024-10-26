@@ -253,6 +253,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add new settings "allow_file_deletion" in settings.json / "files" to explicitly allow deleting local files that
   are located in the trash foler. Set to false by default.
 - Defer Service.positions to improve run performance
+- Always set the positions as a list instead of a tuple to remove the need for a specific constructor
+  for tuples in the migration files
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
