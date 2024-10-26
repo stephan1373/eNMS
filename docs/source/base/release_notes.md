@@ -237,6 +237,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Refactor get_yaml_instance to use the "typ='safe'" keyword because of database corruption issue by ruamel
     when it isn't used
   - Add a representer for tuples because service positions can be stored in the database as a tuple
+  - Move 'get_yaml_function' in custom app to allow for custom representers / constructors
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
@@ -331,6 +332,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add new settings "allow_file_deletion" in settings.json / "files" to explicitly allow deleting local files that
   are located in the trash foler. Set to false by default.
 - Defer Service.positions to improve run performance
+- Always set the positions as a list instead of a tuple to remove the need for a specific constructor
+  for tuples in the migration files
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
@@ -407,6 +410,12 @@ Migration:
   - copy/paste the content of network.yaml in device.yaml
 - Add quotes around all values in metadata.yaml
 - Update rbac.json with the "allowed_rest_endpoints" variable
+- Import the migration files in the new version:
+  - Remove the typ="safe" keyword in the "get_yaml_instance" function in custom.py
+  - Start the application and import the migration files from the last release
+  - Stop the application and re-add the typ="safe" keyword to the code
+  - Start the application and Export the migration files
+  - Drop the database and Import the migration files again (that were exported in the last step)
 
 Tests:
 - Review documentation

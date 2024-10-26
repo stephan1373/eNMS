@@ -21,7 +21,6 @@ from redis.exceptions import ConnectionError, TimeoutError
 from requests import Session as RequestSession
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
-from ruamel.yaml import YAML
 from smtplib import SMTP
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
@@ -307,23 +306,6 @@ class Environment:
         if self.vault_client.sys.is_sealed() and vs.settings["vault"]["unseal_vault"]:
             keys = [getenv(f"UNSEAL_VAULT_KEY{index}") for index in range(1, 6)]
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
-
-    def get_yaml_instance(self):
-        yaml = YAML(typ="safe")
-        yaml.default_style = '"'
-
-        def representer(dumper, data):
-            style = "|" if "\n" in data else None
-            data = data.lstrip()
-            return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
-
-        def tuple_constructor(loader, node):
-            return tuple(loader.construct_sequence(node))
-
-        yaml.constructor.add_constructor('tag:yaml.org,2002:python/tuple', tuple_constructor)
-        yaml.representer.add_representer(str, representer)
-        yaml.representer.ignore_aliases = lambda *args: True
-        return yaml
 
     def get_workers(self):
         return {worker.name: worker.to_dict() for worker in db.fetch_all("worker")}

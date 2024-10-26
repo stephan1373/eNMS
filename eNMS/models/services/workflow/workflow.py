@@ -68,7 +68,7 @@ class Workflow(Service):
             self.positions = {}
         super().__init__(**kwargs)
         if not migration_import and "[Shared] End" not in self.positions:
-            self.positions["[Shared] End"] = (500, 0)
+            self.positions["[Shared] End"] = [500, 0]
 
     def recursive_update(self):
         def rec(service):
@@ -111,7 +111,7 @@ class Workflow(Service):
             else:
                 service_clone = service.duplicate(clone)
             clone.positions[service_clone.name] = self.positions.get(
-                service.name, (0, 0)
+                service.name, [0, 0]
             )
             service_clone.skip[clone.name] = service.skip.get(self.name, False)
             clone_services[service.id] = service_clone
