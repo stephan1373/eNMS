@@ -158,6 +158,7 @@ Version 5.1.0: Changelog & Workflow Tree
   - Refactor get_yaml_instance to use the "typ='safe'" keyword because of database corruption issue by ruamel
     when it isn't used
   - Add a representer for tuples because service positions can be stored in the database as a tuple
+  - Move 'get_yaml_function' in custom app to allow for custom representers / constructors
 - In the Netmiko Configuration Service, return the netmiko send_config_set output under "result" key, and the
   actual configuration under "commands" key for consistency with other services
 - Refactor the allowed controller endpoints in the REST API to come from rbac.json (previously hardcoded
