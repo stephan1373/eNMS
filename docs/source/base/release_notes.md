@@ -329,6 +329,12 @@ Migration:
   - copy/paste the content of network.yaml in device.yaml
 - Add quotes around all values in metadata.yaml
 - Update rbac.json with the "allowed_rest_endpoints" variable
+- Import the migration files in the new version:
+  - Remove the typ="safe" keyword in the "get_yaml_instance" function in custom.py
+  - Start the application and import the migration files from the last release
+  - Stop the application and re-add the typ="safe" keyword to the code
+  - Start the application and Export the migration files
+  - Drop the database and Import the migration files again (that were exported in the last step)
 
 Tests:
 - Review documentation
