@@ -129,7 +129,7 @@ class Workflow(Service):
                     },
                 )
             )
-            db.session.commit()
+        db.session.commit()
         clone.recursive_update()
         return clone
 
