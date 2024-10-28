@@ -58,6 +58,9 @@ Version 5.2.0: Various Improvements
     "admin only")
   - For consistency with secrets (being allowed to use a secret is controlled via RBAC 'Use')
 - Update select2 library to v4.1.0 (the 'Select {model}s' text disappeared after jquery update)
+- During workflow duplication, commit once after creating all edges instead of commiting after each
+  edge creation to speed up process
+  Commit: dcd119a9e7c19ceb2bd786fd8e25419cdfeceaea
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -73,6 +76,8 @@ Tests:
   - Find PendingRollbackError threads on Slack for details
 - Test that retrieving credentials via "db.get_credential" still works correctly (tests with different
   RBAC type (any, read-write, ...), priorities, credential types (object, device, SSH key, etc)
+- Test workflow duplication for simple workflows and workflows with subworkflows, and make sure that
+  everything is properly created / duplicated. Compare workflow duplication time pre and post release
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
