@@ -70,6 +70,7 @@ Version 5.2.0: Various Improvements
     Commit: 00705dd18d7157769183e7155256935153aee197
   - Fix wrong spacing after 'Gathering logs for' log in logs window when running a service
     Commit: d847bb39f3f33be684f83f7b7e13215a01d196b3
+  - Add a new search feature in the logs window to filter the displayed logs.
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
