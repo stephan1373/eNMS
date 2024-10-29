@@ -478,14 +478,14 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search
       if (search) editor.setValue("");
       if (!first && result.refresh && result.logs.length) {
         // eslint-disable-next-line new-cap
-        editor.replaceRange(`\n${result.logs}`, CodeMirror.Pos(editor.lineCount()));
+        editor.replaceRange(result.logs, CodeMirror.Pos(editor.lineCount()));
         editor.setCursor(editor.lineCount(), 0);
         if (rollingWindow && editor.lineCount() > rollingWindow) {
           const cutoffPosition = CodeMirror.Pos(editor.lineCount() - rollingWindow, 0);
           editor.replaceRange("", CodeMirror.Pos(0, 0), cutoffPosition);
         }
       } else if (first || !result.refresh) {
-        editor.setValue(`Gathering logs for '${service.name}'...\n\n${result.logs}`);
+        editor.setValue(`Gathering logs for '${service.name}'...${result.logs}`);
         editor.refresh();
       }
       if (search) return;

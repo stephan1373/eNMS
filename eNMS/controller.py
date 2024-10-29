@@ -652,7 +652,7 @@ class Controller:
         if search:
             lines = [line for line in lines if search.lower() in line.lower()]
         return {
-            "logs": "\n".join(lines),
+            "logs": "\n" + "\n".join(lines) if lines else "",
             "refresh": not log_instance,
             "line": int(line) + number_of_lines,
         }
