@@ -334,6 +334,7 @@ export function openPanel({
   tableId,
   url,
   css,
+  headerStyle,
   checkRbac = true,
   ...other
 }) {
@@ -391,6 +392,7 @@ export function openPanel({
     };
   }
   const panel = jsPanel.create(kwargs);
+  panel.headertoolbar.style = headerStyle;
   if (callback && content) callback(content);
   createTooltips(panel);
   const position = { top: `${50 + $(window).scrollTop()}px`, position: "absolute" };

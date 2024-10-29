@@ -227,9 +227,12 @@ export const showRuntimePanel = function (
       if (newRuntime) runtimes.push([runtime, runtime]);
       if (!runtimes.length) return notify(`No ${type} yet.`, "error", 5);
       let content;
+      let header;
+      const headerColor = panelType == "logs" ? "282828" : "fafafa";
+      let headerStyle = `background-color: #${headerColor};`
       if (panelType == "logs" || panelType == "report") {
-        content = `
-        <div class="modal-body">
+        header = `
+        <div class="modal-body centered" >
           <nav
             id="controls"
             class="navbar navbar-default nav-controls"
@@ -279,10 +282,8 @@ export const showRuntimePanel = function (
               style="font-family: Arial, FontAwesome;"
             >
           </div>
-          <hr>
-          <div id="service-${panelId}"></div>
-        </div>
-        `;
+        </div>`;
+        content = `<div class="modal-body"><div id="service-${panelId}"></div></div>`;
       } else if (panelType == "tree") {
         const serviceProperties = { id: service.id, name: service.name };
         content = `
@@ -351,6 +352,8 @@ export const showRuntimePanel = function (
       }
       openPanel({
         name: panelType,
+        headerToolbar: header,
+        headerStyle: headerStyle,
         content: content,
         size: "1000 600",
         type: "result",
