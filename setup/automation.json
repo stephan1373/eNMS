@@ -59,7 +59,7 @@
   ],
   "workflow": {
     "logs_refresh_rate": 1000,
-    "logs_rolling_window": 0,
+    "logs_rolling_window": 1000,
     "builder_refresh_rate": {
       "min": 5000,
       "max": 60000,
