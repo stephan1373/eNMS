@@ -466,6 +466,7 @@ function displayResultsTable(service, runtime, _, type, refresh, fullResult) {
 function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search) {
   if (!$(`#service-logs-${service.id}`).length) return;
   if (runtime != $(`#runtimes-logs-${service.id}`).val()) return;
+  const rollingWindow = automation.workflow.logs_rolling_window;
   call({
     url: `/get_service_logs/${service.id}/${runtime}`,
     data: {
@@ -479,6 +480,10 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search
         // eslint-disable-next-line new-cap
         editor.replaceRange(`\n${result.logs}`, CodeMirror.Pos(editor.lineCount()));
         editor.setCursor(editor.lineCount(), 0);
+        if (rollingWindow && editor.lineCount() > rollingWindow) {
+          const cutoffPosition = CodeMirror.Pos(editor.lineCount() - rollingWindow, 0);
+          editor.replaceRange("", CodeMirror.Pos(0, 0), cutoffPosition);
+        }
       } else if (first || !result.refresh) {
         editor.setValue(`Gathering logs for '${service.name}'...\n\n${result.logs}`);
         editor.refresh();
