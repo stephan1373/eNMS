@@ -272,6 +272,18 @@ export const showRuntimePanel = function (
                 ></span>
               </button>
             </div>
+            <div style="float: left;">
+                <input
+                  type="checkbox"
+                  class="form-control-bool"
+                  id="autoscroll-checkbox-${panelId}"
+                checked>
+                <label
+                  style="margin-left: 8px;
+                  font-size: 20px;
+                  color: white;"
+                >Auto-scroll</label>
+            </div>
           </nav>
           <div id="search-logs-${panelId}" style="display: none">
             <input
