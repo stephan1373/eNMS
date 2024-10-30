@@ -237,6 +237,8 @@ export const showRuntimePanel = function (
               type="checkbox"
               class="form-control-bool"
               id="autoscroll-checkbox-${panelId}"
+              style="cursor: pointer;"
+              title="Scroll to bottom automatically when refreshing"
             checked>
             <label
               style="margin-left: 8px;
