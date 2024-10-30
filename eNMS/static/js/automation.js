@@ -494,7 +494,9 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search
       if (!first && result.refresh && result.logs.length) {
         // eslint-disable-next-line new-cap
         editor.replaceRange(result.logs, CodeMirror.Pos(editor.lineCount()));
-        editor.setCursor(editor.lineCount(), 0);
+        if ($(`#autoscroll-checkbox-logs-${service.id}`).prop("checked")) {
+          editor.setCursor(editor.lineCount(), 0);
+        }
         if (rollingWindow && editor.lineCount() > rollingWindow) {
           const cutoffPosition = CodeMirror.Pos(editor.lineCount() - rollingWindow, 0);
           editor.replaceRange("", CodeMirror.Pos(0, 0), cutoffPosition);
