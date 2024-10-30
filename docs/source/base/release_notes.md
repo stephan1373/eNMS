@@ -79,6 +79,9 @@ Version 5.2.0: Various Improvements
     Commit: a6660f78805d9475d68441c0b042d67ce03925e6
   - Add a new 'Autoscroll' feature to the logs window, allowing users to disable automatic scrolling to
   the bottom while logs refresh (to read the logs without being pulled back to the end)
+- Fix bug where the in-workflow "fetch" function in runner.py could not work when filtering by
+  model because one of the mandatory variable was named model (conflict with model from kwargs)
+  Commit: 40be7555172b6da9db2be294cef548d8e28a1ae8
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
