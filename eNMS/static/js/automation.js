@@ -231,6 +231,19 @@ export const showRuntimePanel = function (
       const headerColor = panelType == "logs" ? "282828" : "fafafa";
       let headerStyle = `background-color: #${headerColor};`
       if (panelType == "logs" || panelType == "report") {
+        const autoscrollBox = panelType == "logs" ? `
+          <div style="float: left;">
+            <input
+              type="checkbox"
+              class="form-control-bool"
+              id="autoscroll-checkbox-${panelId}"
+            checked>
+            <label
+              style="margin-left: 8px;
+              font-size: 20px;
+              color: white;"
+            >Auto-scroll</label>
+          </div>` : "";
         header = `
         <div class="modal-body centered" >
           <nav
@@ -272,18 +285,7 @@ export const showRuntimePanel = function (
                 ></span>
               </button>
             </div>
-            <div style="float: left;">
-              <input
-                type="checkbox"
-                class="form-control-bool"
-                id="autoscroll-checkbox-${panelId}"
-              checked>
-              <label
-                style="margin-left: 8px;
-                font-size: 20px;
-                color: white;"
-              >Auto-scroll</label>
-            </div>
+            ${autoscrollBox}
           </nav>
           <div id="search-logs-${panelId}" style="display: none">
             <input
