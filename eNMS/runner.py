@@ -1137,11 +1137,11 @@ class Runner:
             raise ImportError(f"Module '{module}' is restricted.")
         return importlib_import(module, *args, **kwargs)
 
-    def database_function(self, func, model, **kwargs):
-        if model not in vs.automation["workflow"]["allowed_models"][func]:
-            raise db.rbac_error(f"Use of '{func}' not allowed on {model}s.")
+    def database_function(self, func, _model, **kwargs):
+        if _model not in vs.automation["workflow"]["allowed_models"][func]:
+            raise db.rbac_error(f"Use of '{func}' not allowed on {_model}s.")
         kwargs.update({"rbac": "edit", "user": self.creator})
-        return getattr(db, func)(model, **kwargs)
+        return getattr(db, func)(_model, **kwargs)
 
     def prepend_filepath(self, value):
         return f"{vs.file_path}{value}"
