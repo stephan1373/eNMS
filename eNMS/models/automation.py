@@ -5,7 +5,7 @@ from functools import wraps
 from os import environ, getpid, urandom
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
-from sqlalchemy import Boolean, case, ForeignKey, Integer
+from sqlalchemy import and_, Boolean, case, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, deferred, relationship
@@ -235,9 +235,16 @@ class Service(AbstractBase):
         self.name = f"{workflow}{name or self.scoped_name}"
 
     def neighbors(self, workflow, subtype):
-        for edge in self.exclude_soft_deleted("destinations"):
-            if edge.subtype == subtype and edge.workflow.name == workflow.name:
-                yield edge
+        return (
+            db.query("workflow_edge", rbac=None)
+            .filter(and_(
+                vs.models["workflow_edge"].source == self,
+                vs.models["workflow_edge"].workflow == workflow,
+                vs.models["workflow_edge"].subtype == subtype,
+                vs.models["workflow_edge"].soft_deleted == False
+            ))
+            .all()
+        )
 
 
 class ConnectionService(Service):
