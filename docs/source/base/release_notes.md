@@ -82,6 +82,9 @@ Version 5.2.0: Various Improvements
 - Fix bug where the in-workflow "fetch" function in runner.py could not work when filtering by
   model because one of the mandatory variable was named model (conflict with model from kwargs)
   Commit: 40be7555172b6da9db2be294cef548d8e28a1ae8
+- Update the service neighbors query used in the workflow traversal algorithm to use a SQL query to
+  get workflow edges instead of a python generator to speed up workflow execution in DxD mode
+  Commit: c79fdbe4f8f5ab84e5944006017cad7e66b23854
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -99,6 +102,8 @@ Tests:
   RBAC type (any, read-write, ...), priorities, credential types (object, device, SSH key, etc)
 - Test workflow duplication for simple workflows and workflows with subworkflows, and make sure that
   everything is properly created / duplicated. Compare workflow duplication time pre and post release
+- Test performance of a workflow with DxD run method and a single python snippet service. Compare 
+  performance pre and post release (should be faster because of the neighbors SQL query)
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
