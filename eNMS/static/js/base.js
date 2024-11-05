@@ -760,11 +760,14 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         </button>
       </div>`,
     callback: function (panel) {
+      let uiType = type;
       const isService = type == "service" || type in subtypes.service;
       const isDevice = type in subtypes.device;
       const isLink = type in subtypes.link;
-      const uiType = subtypes?.service[type] || type;
-      if (isService) showServicePanel(type, id, mode, tableId);
+      if (isService) {
+        if (type !== "workflow") uiType = `${subtypes.service[type]} Service`;
+        showServicePanel(type, id, mode, tableId);
+      }
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
