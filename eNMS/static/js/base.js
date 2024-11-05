@@ -763,6 +763,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       const isService = type == "service" || type in subtypes.service;
       const isDevice = type in subtypes.device;
       const isLink = type in subtypes.link;
+      const uiType = subtypes?.service[type] || type;
       if (isService) showServicePanel(type, id, mode, tableId);
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
@@ -779,7 +780,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
             const allowedUser = user.is_admin || ownersNames.includes(user.name);
             $(`#rbac-properties-${id} *`).prop("disabled", !allowedUser);
             const action = mode ? mode.toUpperCase() : "EDIT";
-            panel.setHeaderTitle(`${action} ${type} - ${instance.name}`);
+            panel.setHeaderTitle(`${action} ${uiType} - ${instance.name}`);
             processInstance(type, instance);
             if (isService) loadScript(`/static/js/services/${type}.js`, id);
             if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
@@ -790,7 +791,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       } else if (mode == "bulk-filter") {
         buildBulkFilterPanel(panel, type, formType, tableId);
       } else {
-        panel.setHeaderTitle(`Create a New ${type}`);
+        panel.setHeaderTitle(`Create a New ${uiType}`);
         if (page == "workflow_builder" && creationMode == "create_service") {
           $(`#${type}-workflows`).append(new Option(instance.name, instance.name));
           $(`#${type}-workflows`).val(instance.name).trigger("change");
