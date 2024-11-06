@@ -1350,7 +1350,6 @@ class NetmikoForm(ConnectionForm):
                 "enable_mode",
                 "config_mode",
                 "read_timeout",
-                "read_timeout_override",
             ],
             "default": "expanded",
         },
