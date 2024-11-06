@@ -23,7 +23,6 @@ class NetmikoPromptsService(ConnectionService):
     response3 = db.Column(db.SmallString)
     driver = db.Column(db.SmallString)
     read_timeout = db.Column(Float, default=10.0)
-    read_timeout_override = db.Column(Float, default=0.0)
     conn_timeout = db.Column(Float, default=10.0)
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
