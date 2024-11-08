@@ -85,6 +85,9 @@ Version 5.2.0: Various Improvements
 - Update the service neighbors query used in the workflow traversal algorithm to use a SQL query to
   get workflow edges instead of a python generator to speed up workflow execution in DxD mode
   Commit: c79fdbe4f8f5ab84e5944006017cad7e66b23854
+- Prevent run.get_state from getting called twice when displaying the workflow tree while a workflow
+  is running
+  Commit: a4a31cca7a4e87bcf60c74ca9189a956b7385bea
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
