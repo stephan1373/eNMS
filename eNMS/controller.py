@@ -678,7 +678,7 @@ class Controller:
                 run = sorted(runs, key=attrgetter("runtime"), reverse=True)[0]
             else:
                 run = db.fetch("run", allow_none=True, runtime=runtime)
-            state = run.get_state() if run else None
+            state = kwargs["state"] = run.get_state() if run else None
         if kwargs.get("device") and run:
             output["device_state"] = kwargs["device_state"] = {
                 result.service_id: result.result.get(
@@ -807,7 +807,11 @@ class Controller:
     def get_instance_tree(self, type, full_path, runtime=None, **kwargs):
         path_id = full_path.split(">")
         run = db.fetch("run", runtime=runtime) if runtime else None
-        state = (run.state or run.get_state()) if run else {}
+        state = {}
+        if "state" in kwargs:
+            state = kwargs["state"]
+        elif run:
+            state = run.state or run.get_state()
         highlight = []
 
         def match(instance, **kwargs):
