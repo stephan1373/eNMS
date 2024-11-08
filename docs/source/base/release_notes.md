@@ -88,6 +88,8 @@ Version 5.2.0: Various Improvements
 - Prevent run.get_state from getting called twice when displaying the workflow tree while a workflow
   is running
   Commit: a4a31cca7a4e87bcf60c74ca9189a956b7385bea
+- Don't export soft_deleted relationship objects via "to_dict" to prevent migration import errors
+  Commit: fef814960881b48841e4928c5032427769cc8af0
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
