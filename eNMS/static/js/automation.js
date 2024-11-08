@@ -371,7 +371,7 @@ export const showRuntimePanel = function (
         headerToolbar: header,
         headerStyle: headerStyle,
         content: content,
-        size: "1000 600",
+        size: "1200 650",
         type: "result",
         title: `${type} - ${service.name}`,
         id: service.id,
