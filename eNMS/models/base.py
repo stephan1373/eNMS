@@ -303,12 +303,12 @@ class AbstractBase(db.base):
                         if export or relation_names_only
                         else obj.get_properties(include=relation_properties)
                     )
-                    for obj in value
+                    for obj in value if not getattr(obj, "soft_deleted", False)
                 ]
                 if export:
                     properties[property].sort()
             else:
-                if not value:
+                if not value or getattr(value, "soft_deleted", False):
                     continue
                 properties[property] = (
                     value.name
