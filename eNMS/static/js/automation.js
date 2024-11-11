@@ -619,13 +619,19 @@ export function runLogic(result) {
 }
 
 export function exportServices(tableId) {
+  let notificaiton =  notify("Preparing your export. This may take a moment depending on the service list. Please wait...", "message", 0, true);
   call({
     url: `/export_services`,
     form: `search-form-${tableId}`,
-    callback: () => {
-      notify("Services successfully exported.", "success", 5, true);
+    callback: (result) => {
+      notificaiton.dismiss();
+      notify("Your services are ready for download. Downloading now...", "warning", 4, true);      
+      window.location.href = `/download_services?filename=${result.download_file_name}`;        
     },
-  });
+    errorCallback: ()=> {
+      notificaiton.dismiss();
+    },
+  });  
 }
 
 function pauseTask(id) {

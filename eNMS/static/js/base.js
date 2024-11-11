@@ -153,7 +153,7 @@ export function observeMutations(container, target, callback) {
   }).observe(container, { childList: true, subtree: true });
 }
 
-export const call = function ({ url, data, form, callback }) {
+export const call = function ({ url, data, form, callback, errorCallback }) {
   let params = {
     type: "POST",
     url: url,
@@ -166,6 +166,9 @@ export const call = function ({ url, data, form, callback }) {
         message += " Your session might have expired, try refreshing the page.";
       } else if (error.status == 403) {
         message = "Error 403 - Not Authorized.";
+      }
+      if(errorCallback){
+        errorCallback(error);
       }
       notify(message, "error", 5);
     },
@@ -1164,7 +1167,7 @@ export function notify(...args) {
     const alert = alerts.length + 1 > 99 ? "99+" : alerts.length + 1;
     $("#alert-number").text(alert);
   }
-  alertify.notify(...args);
+  return alertify.notify(...args);
 }
 
 function showAllAlerts() {

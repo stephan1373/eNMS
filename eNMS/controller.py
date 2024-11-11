@@ -4,6 +4,7 @@ from datetime import datetime
 from difflib import unified_diff
 from dramatiq import actor
 from flask_login import current_user
+from datetime import datetime
 from functools import wraps
 from git import Repo
 from io import BytesIO, StringIO
@@ -360,9 +361,12 @@ class Controller:
         except UnicodeDecodeError:
             return {"error": "Cannot read file (unsupported type)."}
 
-    def export_service(self, service_id):
+    def export_service(self, service_id, tmp_folder=None):
         service = db.fetch("service", id=service_id)
-        path = Path(vs.path / "files" / "services" / service.filename)
+        if(tmp_folder):
+            path = Path(vs.path / "files" / "services" / tmp_folder / service.filename)
+        else:
+            path = Path(vs.path / "files" / "services" / service.filename)
         path.mkdir(parents=True, exist_ok=True)
         services = (
             set(service.deep_services) if service.type == "workflow" else [service]
@@ -388,16 +392,36 @@ class Controller:
                 "service": service.name,
             }
             yaml.dump(metadata, file)
-        with open_tar(f"{path}.tgz", "w:gz") as tar:
-            tar.add(path, arcname=service.filename)
-        rmtree(path, ignore_errors=True)
+        if not tmp_folder:
+            with open_tar(f"{path}.tgz", "w:gz") as tar:
+                tar.add(path, arcname=service.filename)
+            rmtree(path, ignore_errors=True)
         return path
 
     def export_services(self, **kwargs):
         if kwargs["parent-filtering"] == "true":
             kwargs["workflows_filter"] = "empty"
+        tmp_folder = Path(vs.path / "files" / "services" / f"tmp_{uuid4()}")
+        tmp_folder.mkdir(parents=True, exist_ok=True)
+        files, service_count = [], defaultdict(int)  
         for service in self.filtering("service", properties=["id"], form=kwargs):
-            self.export_service(service.id)
+            service_path = self.export_service(service.id, tmp_folder)
+            rename = f"{tmp_folder}/{Path(service_path).name}"
+            if service_path in service_count:
+                rename += f"({service_count[service_path]})" 
+            rename +=  "_"
+            service_count[service_path] += 1
+            Path(service_path).rename(rename)
+            files.append(rename)  
+        service_root_path = Path(vs.path / "files" / "services")
+        tgz_file_name = f"services_{len(files):03d}_{str(uuid4()).replace('-','')}.tgz"
+        download_file_name = f"{service_root_path}/{tgz_file_name}"
+        with open_tar(download_file_name,"w:gz") as tar:
+            for file in files:            
+                tar.add(file,arcname=Path(file[:-1]).name) 
+                rmtree(file, ignore_errors=True)       
+        rmtree(tmp_folder, ignore_errors=True)   
+        return { "download_file_name" : download_file_name}  
 
     def filtering_base_constraints(self, model, **kwargs):
         table, constraints = vs.models[model], []
