@@ -90,6 +90,8 @@ Version 5.2.0: Various Improvements
   Commit: a4a31cca7a4e87bcf60c74ca9189a956b7385bea
 - Don't export soft_deleted relationship objects via "to_dict" to prevent migration import errors
   Commit: fef814960881b48841e4928c5032427769cc8af0
+- Force global_delay_factor to 0.1 in update_netmiko_connection function when fast CLI is enabled
+  Commit: 03323f1fb46c9d6b8ce1337da552f4f03ed3d7d4
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
