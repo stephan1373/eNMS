@@ -363,7 +363,7 @@ class Controller:
 
     def export_service(self, service_id, folder=""):
         service = db.fetch("service", id=service_id)
-        path = Path(vs.path / "files" / "services" / folder / service.filename)
+        path = Path(vs.file_path / "services" / folder / service.filename)
         path.mkdir(parents=True, exist_ok=True)
         services = (
             set(service.deep_services) if service.type == "workflow" else [service]
@@ -398,7 +398,7 @@ class Controller:
         if kwargs["parent-filtering"] == "true":
             kwargs["workflows_filter"] = "empty"
         folder_name = f"bulk_export_{current_user}_{vs.get_time(path=True)}"
-        folder = Path(vs.path / "files" / "services" / folder_name)
+        folder = Path(vs.file_path / "services" / folder_name)
         folder.mkdir(parents=True, exist_ok=True)
         service_count = defaultdict(int)  
         for service in self.filtering("service", properties=["id"], form=kwargs):
