@@ -336,7 +336,7 @@ class Server(Flask):
         @self.process_requests
         def download(type, path):
             db_file = db.fetch(type, path=f"/{path}", allow_none=True)
-            if not db_file:
+            if not db_file and not path.startswith("services/bulk_export"):
                 return {"error": "File not found in database."}
             return_data, full_path = BytesIO(), f"{vs.file_path}/{path}"
             if type == "folder":
@@ -360,15 +360,6 @@ class Server(Flask):
         def export_service(id):
             filename = f"/{controller.export_service(id)}.tgz"
             return send_file(filename, as_attachment=True)
-
-        @blueprint.route("/download_services")
-        @self.process_requests
-        def download_services():   
-            filename = request.args.get("filename")
-            try: 
-                return send_file(filename, as_attachment=True)
-            finally:
-                remove(filename)
 
         @blueprint.route("/terminal/<session>")
         @self.process_requests

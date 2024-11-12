@@ -186,8 +186,7 @@
     "/view_service_results": "access",
     "/workflow_builder": "access",
     "/instance_tree_form": "access",
-    "/worker_table": "access",
-    "/download_services": "access"
+    "/worker_table": "access"
   },
   "post_requests": {
     "/add_edge": "access",
