@@ -5,6 +5,7 @@ from datetime import datetime
 from difflib import unified_diff
 from dramatiq import actor
 from flask_login import current_user
+from datetime import datetime
 from functools import wraps
 from git import Repo
 from io import BytesIO, StringIO
@@ -364,9 +365,9 @@ class Controller:
         except UnicodeDecodeError:
             return {"error": "Cannot read file (unsupported type)."}
 
-    def export_service(self, service_id):
+    def export_service(self, service_id, folder=""):
         service = db.fetch("service", id=service_id)
-        path = Path(vs.path / "files" / "services" / service.filename)
+        path = Path(vs.file_path / "services" / folder / service.filename)
         path.mkdir(parents=True, exist_ok=True)
         services = (
             set(service.deep_services) if service.type == "workflow" else [service]
@@ -400,8 +401,17 @@ class Controller:
     def export_services(self, **kwargs):
         if kwargs["parent-filtering"] == "true":
             kwargs["workflows_filter"] = "empty"
+        folder_name = f"bulk_export_{current_user}_{vs.get_time(path=True)}"
+        folder = Path(vs.file_path / "services" / folder_name)
+        folder.mkdir(parents=True, exist_ok=True)
+        service_count = defaultdict(int)  
         for service in self.filtering("service", properties=["id"], form=kwargs):
-            self.export_service(service.id)
+            service_path = self.export_service(service.id, folder)
+            Path(f"{service_path}.tgz").rename(
+                f"{folder}/{Path(service_path).name}_{service_count[service_path]}.tgz"
+            )
+            service_count[service_path] += 1
+        return f"services/{folder_name}"
 
     def filtering_base_constraints(self, model, **kwargs):
         table, constraints = vs.models[model], []

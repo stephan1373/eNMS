@@ -599,13 +599,19 @@ export function runLogic(result) {
 }
 
 export function exportServices(tableId) {
+  let notification =  notify("Preparing your export. This may take a moment depending on the service list. Please wait...", "warning", 0, true);
   call({
     url: `/export_services`,
     form: `search-form-${tableId}`,
-    callback: () => {
-      notify("Services successfully exported.", "success", 5, true);
+    callback: (result) => {
+      notification.dismiss();
+      notify("Services ready for download. Downloading now...", "warning", 5, true);
+      window.location.href = `/download/folder/${result}`;        
     },
-  });
+    errorCallback: ()=> {
+      notification.dismiss();
+    },
+  });  
 }
 
 function pauseTask(id) {

@@ -341,7 +341,7 @@ class Server(Flask):
         @self.process_requests
         def download(type, path):
             db_file = db.fetch(type, path=f"/{path}", allow_none=True)
-            if not db_file:
+            if not db_file and not path.startswith("services/bulk_export"):
                 return {"error": "File not found in database."}
             return_data, full_path = BytesIO(), f"{vs.file_path}/{path}"
             if type == "folder":

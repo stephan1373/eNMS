@@ -44,7 +44,7 @@ class NapalmTracerouteForm(NapalmForm):
     destination_ip = StringField(substitution=True)
     source_ip = StringField(substitution=True)
     ttl = IntegerField(default=255)
-    vrf = StringField(label="VRF", substitution=True)
+    vrf = StringField(label="VRF", substitution=True, help="napalm/vrf")
     groups = {
         "Traceroute Parameters": {
             "commands": ["destination_ip", "source_ip", "timeout", "ttl", "vrf"],

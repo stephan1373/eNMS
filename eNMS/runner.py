@@ -1313,7 +1313,7 @@ class Runner:
             conn_timeout=self.conn_timeout,
             auth_timeout=self.auth_timeout or None,
             banner_timeout=self.banner_timeout,
-            read_timeout_override=self.read_timeout_override,
+            read_timeout_override=self.read_timeout,
             fast_cli=self.fast_cli,
             global_delay_factor=self.global_delay_factor,
             session_log=BytesIO(),

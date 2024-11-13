@@ -1297,7 +1297,6 @@ class NetmikoForm(ConnectionForm):
         default=False,
     )
     read_timeout = FloatField(default=10.0)
-    read_timeout_override = FloatField(default=0.0)
     conn_timeout = FloatField("Connection Timeout", default=10.0)
     auth_timeout = FloatField("Authentication Timeout", default=0.0)
     banner_timeout = FloatField("Banner Timeout", default=15.0)
@@ -1351,7 +1350,6 @@ class NetmikoForm(ConnectionForm):
                 "enable_mode",
                 "config_mode",
                 "read_timeout",
-                "read_timeout_override",
             ],
             "default": "expanded",
         },

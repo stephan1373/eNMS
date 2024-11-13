@@ -284,10 +284,12 @@ class VariableStore:
 
         return old
 
-    def get_time(self, randomize=False):
+    def get_time(self, randomize=False, path=False):
         current_time = str(datetime.now())
         if randomize:
             current_time += f"{randint(1, 99999):05}"
+        if path:
+            current_time = current_time.translate(str.maketrans(":." , "--"))
         return current_time
 
     def str_to_date(self, value):

@@ -291,7 +291,7 @@ Version 5.1.0: Changelog & Workflow Tree
 - When initializing the app, only consider the JSON files in the "setup" folder (otherwise, temporary
   files like *.json.swap files created by vim prevent the app from starting with JSON load exception)
 - Add "cmd_verify" Netmiko parameter to the Netmiko Configuration Service
-- Add "read_timeout_override" Netmiko parameter to all Netmiko services
+- Pass "read_timeout" as "read_timeout_override" when instantiating a Netmiko connection
 - Before setting a run status to "Aborted (RELOAD)" when the app restarts, check whether the run has a
   valid process associated to it and don't do anything if it does: this allows for individual process restart
 - Refactor the Unix Command Service "Approved by an Admin user" mechanism:

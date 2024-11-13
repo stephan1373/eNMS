@@ -155,7 +155,7 @@ export function observeMutations(container, target, callback) {
   }).observe(container, { childList: true, subtree: true });
 }
 
-export const call = function ({ url, data, form, callback }) {
+export const call = function ({ url, data, form, callback, errorCallback }) {
   let params = {
     type: "POST",
     url: url,
@@ -168,6 +168,9 @@ export const call = function ({ url, data, form, callback }) {
         message += " Your session might have expired, try refreshing the page.";
       } else if (error.status == 403) {
         message = "Error 403 - Not Authorized.";
+      }
+      if(errorCallback){
+        errorCallback(error);
       }
       notify(message, "error", 5);
     },
@@ -787,10 +790,14 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         </button>
       </div>`,
     callback: function (panel) {
+      let uiType = type;
       const isService = type == "service" || type in subtypes.service;
       const isDevice = type in subtypes.device;
       const isLink = type in subtypes.link;
-      if (isService) showServicePanel(type, id, mode, tableId);
+      if (isService) {
+        if (type !== "workflow") uiType = `${subtypes.service[type]} Service`;
+        showServicePanel(type, id, mode, tableId);
+      }
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
@@ -806,7 +813,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
             const allowedUser = user.is_admin || ownersNames.includes(user.name);
             $(`#rbac-properties-${id} *`).prop("disabled", !allowedUser);
             const action = mode ? mode.toUpperCase() : "EDIT";
-            panel.setHeaderTitle(`${action} ${type} - ${instance.name}`);
+            panel.setHeaderTitle(`${action} ${uiType} - ${instance.name}`);
             processInstance(type, instance);
             if (isService) loadScript(`/static/js/services/${type}.js`, id);
             if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
@@ -817,7 +824,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       } else if (mode == "bulk-filter") {
         buildBulkFilterPanel(panel, type, formType, tableId);
       } else {
-        panel.setHeaderTitle(`Create a New ${type}`);
+        panel.setHeaderTitle(`Create a New ${uiType}`);
         if (page == "workflow_builder" && creationMode == "create_service") {
           $(`#${type}-workflows`).append(new Option(instance.name, instance.name));
           $(`#${type}-workflows`).val(instance.name).trigger("change");
@@ -1277,7 +1284,7 @@ export function notify(...args) {
     const alert = alerts.length + 1 > 99 ? "99+" : alerts.length + 1;
     $("#alert-number").text(alert);
   }
-  alertify.notify(...args);
+  return alertify.notify(...args);
 }
 
 function showAllAlerts() {

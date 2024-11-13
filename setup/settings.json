@@ -92,7 +92,7 @@
   },
   "files": {
     "monitor_filesystem": true,
-    "ignored_types": [".swp", ".tgz"],
+    "ignored_types": [".swp", ".tgz", "yaml"],
     "upload_timeout": 600000,
     "log_events": true,
     "trash": ""
