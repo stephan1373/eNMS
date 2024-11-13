@@ -1174,6 +1174,7 @@ class Runner:
                 "factory": partial(_self.database_function, "factory"),
                 "fetch": partial(_self.database_function, "fetch"),
                 "fetch_all": partial(_self.database_function, "fetch_all"),
+                "filtering": partial(_self.database_function, "filtering"),
                 "get_all_results": _self.get_all_results,
                 "get_connection": _self.get_connection,
                 "get_result": _self.get_result,
