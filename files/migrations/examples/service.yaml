@@ -619,7 +619,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -748,7 +747,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -872,7 +870,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -1001,7 +998,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -1573,7 +1569,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -1703,7 +1698,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -2037,7 +2031,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -2168,7 +2161,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -2299,7 +2291,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -2849,7 +2840,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -2982,7 +2972,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -3115,7 +3104,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -4778,7 +4766,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "replacements":
   - "pattern": ""
     "replace_with": ""
@@ -5631,7 +5618,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -5762,7 +5748,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -5893,7 +5878,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -6417,7 +6401,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -6908,7 +6891,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -8394,7 +8376,7 @@
   - "Full UI Read + Edit Access"
   "rbac_run":
   - "Full UI Read + Edit Access"
-  "read_timeout_override": ! "0.0"
+  "read_timeout": ! "10.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -8860,7 +8842,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -9104,7 +9085,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -9264,7 +9244,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "replacements":
   - "pattern": ""
     "replace_with": ""
@@ -10354,7 +10333,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -10596,7 +10574,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -10837,7 +10814,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -12602,7 +12578,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -13156,7 +13131,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -13915,7 +13889,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -15456,7 +15429,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -15744,7 +15716,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -18474,7 +18445,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -20025,7 +19995,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -20156,7 +20125,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -20287,7 +20255,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -21073,7 +21040,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -21197,7 +21163,7 @@
   - "Full UI Read + Edit Access"
   "rbac_run":
   - "Full UI Read + Edit Access"
-  "read_timeout_override": ! "0.0"
+  "read_timeout": ! "10.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -21323,7 +21289,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -21453,7 +21418,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -21583,7 +21547,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -21991,7 +21954,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -24462,7 +24424,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -24743,7 +24704,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -24873,7 +24833,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -25003,7 +24962,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -25133,7 +25091,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -25639,7 +25596,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -25770,7 +25726,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -26725,7 +26680,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -33705,7 +33659,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -33837,7 +33790,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -33969,7 +33921,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -40379,7 +40330,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -40522,7 +40472,6 @@
   "rbac_run":
   - "Full UI Read + Edit Access"
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -41045,7 +40994,6 @@
   - "Admin User"
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -41280,7 +41228,6 @@
   - "Admin User"
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -41674,7 +41621,6 @@
   - "Admin User"
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -44280,7 +44226,6 @@
   "rbac_read": []
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -44409,7 +44354,6 @@
   "rbac_read": []
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -44529,7 +44473,6 @@
   "rbac_read": []
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -44646,7 +44589,7 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_run": []
-  "read_timeout_override": ! "0.0"
+  "read_timeout": ! "10.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -44793,7 +44736,6 @@
   "rbac_read": []
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "replacements":
   - "pattern": ""
     "replace_with": ""
@@ -46344,7 +46286,6 @@
   "rbac_read": []
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -48467,7 +48408,7 @@
   "rbac_edit": []
   "rbac_read": []
   "rbac_run": []
-  "read_timeout_override": ! "0.0"
+  "read_timeout": ! "10.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -51282,7 +51223,6 @@
   "rbac_read": []
   "rbac_run": []
   "read_timeout": ! "10.0"
-  "read_timeout_override": ! "0.0"
   "reply_to": ""
   "report": ""
   "report_format": "text"
@@ -51912,6 +51852,213 @@
     result = {}
     results["success"] = True
     results["result"] = result
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "category": "Other"
+  "close_connection": ! "false"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "custom_property": "Default Value"
+  "default_uuid": "592d060e-c1c4-47c4-ae92-0ad6115e367f"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "labels": {}
+  "last_modified": "2024-11-13 01:52:19.851598"
+  "last_modified_by": "admin"
+  "last_run": "2024-11-13 01:53:19.649800"
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "man_minutes": ! "0"
+  "man_minutes_total": ! "0"
+  "man_minutes_type": "workflow"
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "Functions: filtering"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "tthd0qJ43tQ"
+  "positions":
+    "[Functions: filtering] Get Cisco Devices":
+    - ! "201"
+    - ! "-129"
+    "[Shared] End":
+    - ! "500"
+    - ! "0"
+    "[Shared] Start":
+    - ! "0"
+    - ! "0"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "per_service_with_service_targets"
+  "scoped_name": "Functions: filtering"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "services":
+  - "[Functions: filtering] Get Cisco Devices"
+  - "[Shared] End"
+  - "[Shared] Start"
+  "shared": ! "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "workflow"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "7740dc27-4ea5-41e0-9c3a-26b81066767d"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-11-13 01:52:19.851598"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "[Functions: filtering] Get Cisco Devices"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "Kh+1ZOpJN1I"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "once"
+  "scoped_name": "Get Cisco Devices"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "shared": ! "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "result = filtering(\"device\", constraints={\"model\": \"Cisco\"})\r\nresults[\"success\"]
+    = len(result) == 21\r\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
