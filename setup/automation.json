@@ -69,7 +69,8 @@
       "delete": ["device", "link", "pool", "service"],
       "fetch": ["device", "link", "pool", "service", "run"],
       "fetch_all": ["device", "link", "pool", "service", "run"],
-      "factory": ["device", "link", "pool"]
+      "factory": ["device", "link", "pool"],
+      "filtering": ["device", "link", "pool"]
     },
     "mandatory_man_minutes": false,
     "state_properties": {

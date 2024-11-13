@@ -46,6 +46,7 @@ try:
 except ImportError as exc:
     warn(f"Couldn't import napalm module ({exc})")
 
+from eNMS.controller import controller
 from eNMS.database import db
 from eNMS.environment import env
 from eNMS.variables import vs
@@ -1137,11 +1138,14 @@ class Runner:
             raise ImportError(f"Module '{module}' is restricted.")
         return importlib_import(module, *args, **kwargs)
 
-    def database_function(self, func, _model, **kwargs):
+    def internal_function(self, func, _model, **kwargs):
         if _model not in vs.automation["workflow"]["allowed_models"][func]:
             raise db.rbac_error(f"Use of '{func}' not allowed on {_model}s.")
         kwargs.update({"rbac": "edit", "user": self.creator})
-        return getattr(db, func)(_model, **kwargs)
+        if func == "filtering":
+            kwargs["bulk"] = "object"
+        target = controller if func == "filtering" else db
+        return getattr(target, func)(_model, **kwargs)
 
     def prepend_filepath(self, value):
         return f"{vs.file_path}{value}"
@@ -1166,15 +1170,15 @@ class Runner:
         variables.update(
             {
                 "__builtins__": {**builtins, "__import__": _self._import},
-                "delete": partial(_self.database_function, "delete"),
+                "delete": partial(_self.internal_function, "delete"),
                 "devices": _self.target_devices,
                 "dict_to_string": vs.dict_to_string,
                 "dry_run": getattr(_self, "dry_run", False),
                 "encrypt": env.encrypt_password,
-                "factory": partial(_self.database_function, "factory"),
-                "fetch": partial(_self.database_function, "fetch"),
-                "fetch_all": partial(_self.database_function, "fetch_all"),
-                "filtering": partial(_self.database_function, "filtering"),
+                "factory": partial(_self.internal_function, "factory"),
+                "fetch": partial(_self.internal_function, "fetch"),
+                "fetch_all": partial(_self.internal_function, "fetch_all"),
+                "filtering": partial(_self.internal_function, "filtering"),
                 "get_all_results": _self.get_all_results,
                 "get_connection": _self.get_connection,
                 "get_result": _self.get_result,
