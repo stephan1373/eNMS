@@ -26,7 +26,6 @@ class NetmikoPromptsService(ConnectionService):
     conn_timeout = db.Column(Float, default=10.0)
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
-    fast_cli = db.Column(Boolean, default=False)
     global_delay_factor = db.Column(Float, default=1.0)
     cmd_verify = db.Column(Boolean, default=False)
     jump_on_connect = db.Column(Boolean, default=False)

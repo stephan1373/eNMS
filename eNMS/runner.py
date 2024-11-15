@@ -1244,10 +1244,7 @@ class Runner:
         return "".join(input.split())
 
     def update_netmiko_connection(self, connection, device):
-        global_delay_factor = self.service.global_delay_factor
-        if global_delay_factor == 1 and self.service.fast_cli:
-            global_delay_factor = 0.1
-        setattr(connection, "global_delay_factor", global_delay_factor)
+        setattr(connection, "global_delay_factor", self.service.global_delay_factor)
         try:
             if not hasattr(connection, "check_enable_mode"):
                 self.log("error", "Netmiko 'check_enable_mode' method is missing")
@@ -1319,7 +1316,7 @@ class Runner:
             auth_timeout=self.auth_timeout or None,
             banner_timeout=self.banner_timeout,
             read_timeout_override=self.read_timeout,
-            fast_cli=self.fast_cli,
+            fast_cli=False,
             global_delay_factor=self.global_delay_factor,
             session_log=BytesIO(),
             sock=sock,
