@@ -96,7 +96,10 @@ Version 5.2.0: Various Improvements
   of exporting them to the server
 - Fix refresh dropdown bug in the workflow builder (an active search was only working up until the
   next refresh because we empty and rebuild the dropdown list at each refresh)
-  Commit: bcb6bb77e55f938f15b8751853f00158c5849847 
+  Commit: bcb6bb77e55f938f15b8751853f00158c5849847
+- Fast CLI update:
+  - Remove fast_cli from all Netmiko services and from the UI
+  - Pass fast_cli=False to Netmiko ConnectHandler object
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
