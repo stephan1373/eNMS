@@ -94,6 +94,9 @@ Version 5.2.0: Various Improvements
   Commit: 03323f1fb46c9d6b8ce1337da552f4f03ed3d7d4
 - Update the bulk export feature to export services to the user's browser as a .tge archive instead
   of exporting them to the server
+- Fix refresh dropdown bug in the workflow builder (an active search was only working up until the
+  next refresh because we empty and rebuild the dropdown list at each refresh)
+  Commit: bcb6bb77e55f938f15b8751853f00158c5849847 
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
