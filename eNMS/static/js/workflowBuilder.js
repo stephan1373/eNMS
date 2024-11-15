@@ -160,6 +160,7 @@ function updateRuntimes(result) {
   }
   $("#current-runtime").val(currentRuntime || "latest");
   $("#current-runtime").selectpicker("refresh");
+  $("#current-runtime").siblings('.dropdown-menu').find('.bs-searchbox input').trigger('input');
 }
 
 export function showServicePanel(type, id, mode, tableId) {
