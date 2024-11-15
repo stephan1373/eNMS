@@ -25,7 +25,7 @@ class NetmikoFileTransferService(ConnectionService):
     conn_timeout = db.Column(Float, default=10.0)
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
-    global_delay_factor = db.Column(Float, default=1.0)
+    global_delay_factor = db.Column(Float, default=0.1)
     file_system = db.Column(db.SmallString)
     inline_transfer = db.Column(Boolean, default=False)
     overwrite_file = db.Column(Boolean, default=False)
