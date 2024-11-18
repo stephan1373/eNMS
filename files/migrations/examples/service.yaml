@@ -51832,10 +51832,28 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "labels": {}
-  "last_modified": "2024-11-18 07:52:13.632756"
+  "labels":
+    "32264cd9-77a7-4d02-bcfa-9b2ed547268e":
+      "alignment": "left"
+      "content": "filtering(\"device\", constraints={\"model\": \"Cisco\"})\r\nshould
+        return 21 devices. The value of the \"success\r\n key check that there is
+        21 devices indeed."
+      "positions":
+      - ! "125"
+      - ! "-277"
+      "size": ! "14"
+    "eca7bd5a-0005-476a-99cd-4555b2a37e4f":
+      "alignment": "left"
+      "content": "filtering(\"user\", constraints={\"name\": \"a\"})\r\nshould fail
+        because using \"filtering\" on the\r\n\"user\" model is not allowed by default.\r\n(configured
+        in automation.json \"allowed_models\")"
+      "positions":
+      - ! "124"
+      - ! "162"
+      "size": ! "14"
+  "last_modified": "2024-11-18 10:06:39.438810"
   "last_modified_by": "admin"
-  "last_run": "2024-11-13 01:53:19.649800"
+  "last_run": "2024-11-18 10:05:30.701685"
   "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -51868,8 +51886,11 @@
   "persistent_id": "tthd0qJ43tQ"
   "positions":
     "[Functions: filtering] Get Cisco Devices":
-    - ! "254"
-    - ! "-171"
+    - ! "94"
+    - ! "-207"
+    "[Functions: filtering] Get Users":
+    - ! "98"
+    - ! "80"
     "[Shared] End":
     - ! "694"
     - ! "-46"
@@ -51895,6 +51916,7 @@
   "send_notification_method": "mail"
   "services":
   - "[Functions: filtering] Get Cisco Devices"
+  - "[Functions: filtering] Get Users"
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
@@ -51995,6 +52017,100 @@
   "skip_value": "success"
   "source_code": "result = filtering(\"device\", constraints={\"model\": \"Cisco\"})\r\nresults[\"success\"]
     = len(result) == 21\r\nresults[\"result\"] = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "02861116-7640-436a-bfee-7a8d38c16af7"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-11-18 10:05:29.788953"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "[Functions: filtering] Get Users"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "DbatAT9P31g"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "once"
+  "scoped_name": "Get Users"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "shared": ! "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "result = filtering(\"user\", constraints={\"name\": \"a\"})\r\nresult
+    = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
