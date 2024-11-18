@@ -51801,7 +51801,7 @@
   "version": ""
   "waiting_time": ! "0"
 - "admin_only": ! "false"
-  "category": "Other"
+  "category": "Global Variables"
   "close_connection": ! "false"
   "completion_time": ! "1"
   "content_match": ""
@@ -51833,7 +51833,7 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels": {}
-  "last_modified": "2024-11-13 01:52:19.851598"
+  "last_modified": "2024-11-18 07:52:13.632756"
   "last_modified_by": "admin"
   "last_run": "2024-11-13 01:53:19.649800"
   "log_level": ! "1"
@@ -51868,14 +51868,14 @@
   "persistent_id": "tthd0qJ43tQ"
   "positions":
     "[Functions: filtering] Get Cisco Devices":
-    - ! "201"
-    - ! "-129"
+    - ! "254"
+    - ! "-171"
     "[Shared] End":
-    - ! "500"
-    - ! "0"
+    - ! "694"
+    - ! "-46"
     "[Shared] Start":
-    - ! "0"
-    - ! "0"
+    - ! "-132"
+    - ! "-2"
   "postprocessing": ""
   "postprocessing_mode": "success"
   "preprocessing": ""
