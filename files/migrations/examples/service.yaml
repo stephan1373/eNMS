@@ -51839,8 +51839,19 @@
         return 21 devices. The value of the \"success\r\n key check that there is
         21 devices indeed."
       "positions":
-      - ! "125"
-      - ! "-277"
+      - ! "137"
+      - ! "-229"
+      "size": ! "14"
+    "90c0e328-39e9-4e9b-a106-471c66e6281c":
+      "alignment": "left"
+      "content": "This service runs in \"Once per device\" mode.\r\nIt uses log(\"info\",
+        f\"Running 3rd service on {device}\")\r\nin the \"Device Query\" field to
+        define the targets of\r\nthe service based on what \"filtering\" returns.\r\nIt
+        should run on 21 devices because it is the same\r\nquery as the one used in
+        the first service."
+      "positions":
+      - ! "499"
+      - ! "-236"
       "size": ! "14"
     "eca7bd5a-0005-476a-99cd-4555b2a37e4f":
       "alignment": "left"
@@ -51848,12 +51859,12 @@
         because using \"filtering\" on the\r\n\"user\" model is not allowed by default.\r\n(configured
         in automation.json \"allowed_models\")"
       "positions":
-      - ! "124"
-      - ! "162"
+      - ! "119"
+      - ! "226"
       "size": ! "14"
-  "last_modified": "2024-11-18 10:06:39.438810"
+  "last_modified": "2024-11-18 10:15:44.582168"
   "last_modified_by": "admin"
-  "last_run": "2024-11-18 10:05:30.701685"
+  "last_run": "2024-11-18 10:14:19.020351"
   "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -51885,15 +51896,18 @@
   "parameterized_form_template": ""
   "persistent_id": "tthd0qJ43tQ"
   "positions":
+    "[Functions: filtering] Device Query with filtering":
+    - ! "445"
+    - ! "-141"
     "[Functions: filtering] Get Cisco Devices":
-    - ! "94"
-    - ! "-207"
+    - ! "99"
+    - ! "-148"
     "[Functions: filtering] Get Users":
-    - ! "98"
-    - ! "80"
+    - ! "89"
+    - ! "144"
     "[Shared] End":
-    - ! "694"
-    - ! "-46"
+    - ! "734"
+    - ! "-41"
     "[Shared] Start":
     - ! "-132"
     - ! "-2"
@@ -51915,6 +51929,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "services":
+  - "[Functions: filtering] Device Query with filtering"
   - "[Functions: filtering] Get Cisco Devices"
   - "[Functions: filtering] Get Users"
   - "[Shared] End"
@@ -52111,6 +52126,100 @@
   "skip_value": "success"
   "source_code": "result = filtering(\"user\", constraints={\"name\": \"a\"})\r\nresult
     = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "3219f272-6e95-49a1-abb9-d8300ff25151"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": "filtering(\"device\", constraints={\"model\": \"Cisco\"})"
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2024-11-18 10:14:10.073241"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "[Functions: filtering] Device Query with filtering"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "Nabaf4MhsrM"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Device Query with filtering"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "shared": ! "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "log(\"info\", f\"Running 3rd service on {device}\")\r\nresult =
+    {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
