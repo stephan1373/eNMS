@@ -305,8 +305,9 @@ export function savePositions() {
   call({
     url: `/save_positions/${instance.type}/${instance.id}`,
     data: network.getPositions(),
-    callback: function (updateTime) {
+    callback: function ([updateTime, newPositions]) {
       if (updateTime) instance.last_modified = updateTime;
+      instance.positions = newPositions;
       nodes.update(
         Object.entries(positions).map(([id, position]) => ({
           id: isNaN(id) ? id : parseInt(id),

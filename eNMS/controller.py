@@ -1483,7 +1483,7 @@ class Controller:
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
         instance.last_modified = vs.get_time()
-        return instance.last_modified
+        return instance.last_modified, instance.positions
 
     def save_profile(self, **kwargs):
         allow_password_change = vs.settings["authentication"]["allow_password_change"]
