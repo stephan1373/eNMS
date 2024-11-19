@@ -393,11 +393,18 @@ are made available to the user.
         -   `property`: property to update (string).
         -   `value`: value of that property.
 
-- `username`
-    -   **Meaning**: The username that created the run
-    -   **Type**: string
+- `user`
+    -   **Meaning**: The user that created the run
+    -   **Type**: User Object
     -   **Available**: Always
-            
+    -   **Properties**: Member attributes which can be referenced as
+        `{{user.property}}`, such as `{{user.name}}`. Below is
+        a list of some of the properties that can be accessed:
+
+        -   `user.name`: Username (string).
+        -   `user.email`: The user email address (string).
+        -   `user.groups`: The groups a user belongs to (string).
+
 - `workflow`
 
     -   **Meaning**: current workflow.
