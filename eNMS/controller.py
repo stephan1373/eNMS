@@ -404,7 +404,7 @@ class Controller:
         folder_name = f"bulk_export_{current_user}_{vs.get_time(path=True)}"
         folder = Path(vs.file_path / "services" / folder_name)
         folder.mkdir(parents=True, exist_ok=True)
-        service_count = defaultdict(int)  
+        service_count = defaultdict(int)
         for service in self.filtering("service", properties=["id"], form=kwargs):
             service_path = self.export_service(service.id, folder)
             Path(f"{service_path}.tgz").rename(

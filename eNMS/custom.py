@@ -70,7 +70,9 @@ class CustomApp:
         def tuple_constructor(loader, node):
             return tuple(loader.construct_sequence(node))
 
-        yaml.constructor.add_constructor('tag:yaml.org,2002:python/tuple', tuple_constructor)
+        yaml.constructor.add_constructor(
+            "tag:yaml.org,2002:python/tuple", tuple_constructor
+        )
         yaml.representer.add_representer(str, representer)
         yaml.representer.ignore_aliases = lambda *args: True
         return yaml

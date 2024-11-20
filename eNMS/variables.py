@@ -58,6 +58,7 @@ class VariableStore:
             def __getattribute__(self, name):
                 attr = super().__getattribute__(name)
                 if callable(attr):
+
                     def timed_function(*args, **kwargs):
                         start_time = time()
                         result = attr(*args, **kwargs)
@@ -72,10 +73,12 @@ class VariableStore:
                             }
                         data = vs.profiling[path]
                         data["average_time"] = (
-                            (data["average_time"] * data["count"] + elapsed_time) / (data["count"] + 1))
+                            data["average_time"] * data["count"] + elapsed_time
+                        ) / (data["count"] + 1)
                         data["count"] += 1
                         data["combined_time"] += elapsed_time
                         return result
+
                     return timed_function
                 return attr
 
@@ -321,7 +324,7 @@ class VariableStore:
         if randomize:
             current_time += f"{randint(1, 99999):05}"
         if path:
-            current_time = current_time.translate(str.maketrans(":." , "--"))
+            current_time = current_time.translate(str.maketrans(":.", "--"))
         return current_time
 
     def str_to_date(self, value):
