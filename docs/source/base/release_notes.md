@@ -101,6 +101,7 @@ Version 5.2.0: Various Improvements
   - Remove fast_cli from all Netmiko services and from the UI
   - Pass fast_cli=False to Netmiko ConnectHandler object
   - Have Global Delay Factor default to 0.1 (for new services)
+- Add "version" property in service table (via properties.json)
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
