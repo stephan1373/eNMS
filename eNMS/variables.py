@@ -66,7 +66,7 @@ class VariableStore:
                     return timed_function
                 return attr
 
-        self.TimingMixin = TimingMixin
+        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
 
     def custom_function(self, func):
         @wraps(func)
