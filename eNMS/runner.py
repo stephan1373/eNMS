@@ -52,7 +52,7 @@ from eNMS.environment import env
 from eNMS.variables import vs
 
 
-class Runner:
+class Runner(vs.TimingMixin):
     def __init__(self, run, **kwargs):
         self.kwargs = kwargs
         self.parameterized_run = False

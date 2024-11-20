@@ -10,6 +10,7 @@ from pathlib import Path
 from random import randint
 from string import punctuation
 from sys import modules
+from time import time
 from traceback import format_exc
 from warnings import warn
 from wtforms.validators import __all__ as all_validators
@@ -47,7 +48,25 @@ class VariableStore:
         self._set_run_variables()
         self._set_version()
         self._set_plugins_settings()
+        self._set_timing_mixin()
         self._update_rbac_variables()
+
+    def _set_timing_mixin(self):
+        self.timing_data = defaultdict(float)
+
+        class TimingMixin:
+            def __getattribute__(self, name):
+                attr = super().__getattribute__(name)
+                if callable(attr):
+                    def timed_function(*args, **kwargs):
+                        start_time = time()
+                        result = attr(*args, **kwargs)
+                        vs.timing_data[name] += time() - start_time
+                        return result
+                    return timed_function
+                return attr
+
+        self.TimingMixin = TimingMixin
 
     def custom_function(self, func):
         @wraps(func)
