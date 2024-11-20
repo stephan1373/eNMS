@@ -628,6 +628,12 @@
         "visible": false
       },
       {
+        "data": "version",
+        "title": "Version",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "vendor",
         "title": "Vendor",
         "search": "text",
