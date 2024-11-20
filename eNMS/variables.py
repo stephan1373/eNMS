@@ -64,7 +64,7 @@ class VariableStore:
                         result = attr(*args, **kwargs)
                         path = f"{type(self).__name__}_{name}"
                         elapsed_time = time() - start_time
-                        if name not in vs.profiling:
+                        if path not in vs.profiling:
                             vs.profiling[path] = {
                                 "count": 0,
                                 "average_time": 0,
