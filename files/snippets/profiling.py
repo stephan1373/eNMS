@@ -6,7 +6,9 @@
 # - "combined_time": how much time did the function take in total
 SORT_BY = "count"
 
-sorted_data = sorted(vs.profiling.items(), key=lambda item: item[1][SORT_BY], reverse=True)
+sorted_data = sorted(
+    vs.profiling.items(), key=lambda item: item[1][SORT_BY], reverse=True
+)
 
 print(
     "\n\n".join(
