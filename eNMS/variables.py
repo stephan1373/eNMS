@@ -52,7 +52,7 @@ class VariableStore:
         self._update_rbac_variables()
 
     def _set_timing_mixin(self):
-        self.timing_data = defaultdict(float)
+        self.profiling = {}
 
         class TimingMixin:
             def __getattribute__(self, name):
@@ -61,7 +61,20 @@ class VariableStore:
                     def timed_function(*args, **kwargs):
                         start_time = time()
                         result = attr(*args, **kwargs)
-                        vs.timing_data[name] += time() - start_time
+                        path = f"{type(self).__name__}_{name}"
+                        elapsed_time = time() - start_time
+                        if name not in vs.profiling:
+                            vs.profiling[path] = {
+                                "count": 0,
+                                "average_time": 0,
+                                "combined_time": 0,
+                                "class": type(self).__name__,
+                            }
+                        data = vs.profiling[path]
+                        data["average_time"] = (
+                            (data["average_time"] * data["count"] + elapsed_time) / (data["count"] + 1))
+                        data["count"] += 1
+                        data["combined_time"] += elapsed_time
                         return result
                     return timed_function
                 return attr
