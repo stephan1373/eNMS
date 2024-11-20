@@ -50,7 +50,7 @@ from eNMS.database import db
 from eNMS.variables import vs
 
 
-class Environment:
+class Environment(vs.TimingMixin):
     def __init__(self):
         if vs.settings["automation"]["use_task_queue"]:
             self.init_dramatiq()
