@@ -51,39 +51,6 @@ class VariableStore:
         self._set_timing_mixin()
         self._update_rbac_variables()
 
-    def _set_timing_mixin(self):
-        self.profiling = {}
-
-        class TimingMixin:
-            def __getattribute__(self, name):
-                attr = super().__getattribute__(name)
-                if callable(attr):
-
-                    def timed_function(*args, **kwargs):
-                        start_time = time()
-                        result = attr(*args, **kwargs)
-                        path = f"{type(self).__name__}_{name}"
-                        elapsed_time = time() - start_time
-                        if path not in vs.profiling:
-                            vs.profiling[path] = {
-                                "count": 0,
-                                "average_time": 0,
-                                "combined_time": 0,
-                                "class": type(self).__name__,
-                            }
-                        data = vs.profiling[path]
-                        data["average_time"] = (
-                            data["average_time"] * data["count"] + elapsed_time
-                        ) / (data["count"] + 1)
-                        data["count"] += 1
-                        data["combined_time"] += elapsed_time
-                        return result
-
-                    return timed_function
-                return attr
-
-        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
-
     def custom_function(self, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -288,6 +255,39 @@ class VariableStore:
             except Exception:
                 error(f"Could not load plugin settings '{path.stem}':\n{format_exc()}")
                 continue
+
+    def _set_timing_mixin(self):
+        self.profiling = {}
+
+        class TimingMixin:
+            def __getattribute__(self, name):
+                attr = super().__getattribute__(name)
+                if callable(attr):
+
+                    def timed_function(*args, **kwargs):
+                        start_time = time()
+                        result = attr(*args, **kwargs)
+                        path = f"{type(self).__name__}_{name}"
+                        elapsed_time = time() - start_time
+                        if path not in vs.profiling:
+                            vs.profiling[path] = {
+                                "count": 0,
+                                "average_time": 0,
+                                "combined_time": 0,
+                                "class": type(self).__name__,
+                            }
+                        data = vs.profiling[path]
+                        data["average_time"] = (
+                            data["average_time"] * data["count"] + elapsed_time
+                        ) / (data["count"] + 1)
+                        data["count"] += 1
+                        data["combined_time"] += elapsed_time
+                        return result
+
+                    return timed_function
+                return attr
+
+        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
 
     def dict_to_string(self, input, depth=0):
         tab = "\t" * depth
