@@ -39,7 +39,7 @@ from eNMS.environment import env
 from eNMS.variables import vs
 
 
-class Controller:
+class Controller(vs.TimingMixin):
     def _initialize(self, first_init):
         if not first_init:
             return
