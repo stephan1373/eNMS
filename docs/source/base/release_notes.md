@@ -102,6 +102,10 @@ Version 5.2.0: Various Improvements
   - Pass fast_cli=False to Netmiko ConnectHandler object
   - Have Global Delay Factor default to 0.1 (for new services)
 - Add "version" property in service table (via properties.json)
+- Make "controller.filtering" function available in the workflow builder global variables
+  - Typical usage: "filtering("device", constraints={"model": "Cisco"})"
+  - Allow filtering to be used in the Device Query field to define the targets of a service / workflow
+  - Add regression test workflow "Functions: filtering"
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
