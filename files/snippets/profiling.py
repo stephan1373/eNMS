@@ -16,14 +16,13 @@ ORIGIN = ""
 # By default, we only display the 20 largest entries
 LIMIT = 20
 
-sorted_data = sorted(
-    vs.profiling.items(), key=lambda item: item[1][SORT_BY], reverse=True
+data = sorted(
+    [(name, entry) for name, entry in vs.profiling.items() if entry["class"].startswith(ORIGIN)], key=lambda item: item[1][SORT_BY], reverse=True
 )[:LIMIT]
 
 print(
     "\n\n".join(
         f"Function '{name}':\n {vs.dict_to_string(data, depth=2)}"
-        for name, data in sorted_data
-        if data["class"].startswith(ORIGIN)
+        for name, data in data
     )
 )
