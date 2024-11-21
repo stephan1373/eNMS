@@ -106,6 +106,11 @@ Version 5.2.0: Various Improvements
   - Typical usage: "filtering("device", constraints={"model": "Cisco"})"
   - Allow filtering to be used in the Device Query field to define the targets of a service / workflow
   - Add regression test workflow "Functions: filtering"
+- Profiling mechanism:
+  - Monitor the performances of each function of the application, specifically:
+    - "count": how many times a function has been called
+    - "average_time": how long does the function take to execute on average
+    - "combined_time": total time spent running the function
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
