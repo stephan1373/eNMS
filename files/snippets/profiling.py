@@ -17,7 +17,13 @@ ORIGIN = ""
 LIMIT = 20
 
 data = sorted(
-    [(name, entry) for name, entry in vs.profiling.items() if entry["class"].startswith(ORIGIN)], key=lambda item: item[1][SORT_BY], reverse=True
+    [
+        (name, entry)
+        for name, entry in vs.profiling.items()
+        if entry["class"].startswith(ORIGIN)
+    ],
+    key=lambda item: item[1][SORT_BY],
+    reverse=True,
 )[:LIMIT]
 
 print(
