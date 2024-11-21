@@ -12,7 +12,7 @@ from eNMS.environment import env
 from eNMS.variables import vs
 
 
-class CustomApp:
+class CustomApp(vs.TimingMixin):
     def ldap_authentication(self, user, name, password):
         if not hasattr(env, "ldap_servers"):
             env.log("error", "LDAP authentication failed: no server configured")

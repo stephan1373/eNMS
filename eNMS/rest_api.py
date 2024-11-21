@@ -12,7 +12,7 @@ from eNMS.environment import env
 from eNMS.variables import vs
 
 
-class RestApi:
+class RestApi(vs.TimingMixin):
     def __init__(self):
         for endpoint, access_type in vs.rbac["allowed_rest_endpoints"].items():
             vs.rbac["rest_endpoints"]["POST"][endpoint] = endpoint
