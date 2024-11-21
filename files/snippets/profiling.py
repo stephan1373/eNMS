@@ -12,9 +12,13 @@ SORT_BY = "count"
 # "Runner", "CustomApp", "RestApi"
 ORIGIN = ""
 
+# Number of entries to display
+# By default, we only display the 20 largest entries
+LIMIT = 20
+
 sorted_data = sorted(
     vs.profiling.items(), key=lambda item: item[1][SORT_BY], reverse=True
-)
+)[:LIMIT]
 
 print(
     "\n\n".join(
