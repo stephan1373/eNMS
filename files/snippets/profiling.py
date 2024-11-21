@@ -20,6 +20,6 @@ print(
     "\n\n".join(
         f"Function '{name}':\n {vs.dict_to_string(data, depth=2)}"
         for name, data in sorted_data
-     	if data["class"].startswith(ORIGIN)
+        if data["class"].startswith(ORIGIN)
     )
 )
