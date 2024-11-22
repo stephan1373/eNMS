@@ -111,7 +111,10 @@ Version 5.2.0: Various Improvements
     - "count": how many times a function has been called
     - "average_time": how long does the function take to execute on average
     - "combined_time": total time spent running the function
-
+  - Add a troubleshooting snippet to display the results for each function, with the ability to filter
+    per type (count, average time, or combined time), class (e.g Controller, Environment, Runner, etc)
+    and to limit the number of results.
+ 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
   - Normal search versus regex-based search
