@@ -79,7 +79,7 @@ it is recommended to run the application with the following command:
 
 1. In setup/settings.json set `"use_task_queue": true`
 2. Set the `REDIS_ADDR` environment variable and run `dramatiq eNMS` from the project root. 
-    - The number of worker processes and threads can be configured (among other things). Run `dramatiq --help` to see the full list of dramatiq's command-line options.
+    - The number of worker processes and threads can be configured (among other things). Run `dramatiq --help` to see the full list of Dramatiq's command-line options.
 
 ### WebSSH
 
@@ -89,8 +89,8 @@ The SSH_URL can be set to specify which web address to use when connecting to ne
 
 All credentials should be stored in a Hashicorp Vault: the settings
 variable `use_vault : true` under the `vault` section of the
-`setup/settings.json` file tells eNMS that a vault has been setup.
-Follow the manufacturer instructions and options for how to setup a
+`setup/settings.json` file tells eNMS that a vault has been set up.
+Follow the manufacturer instructions and options for how to set up a
 [Hashicorp Vault](https://www.vaultproject.io/)
 
 Tell eNMS how to connect to the Vault with environment variables:
@@ -693,7 +693,7 @@ Control how the app tracks files on the filesystem.
 - `monitor_filesystem` manages the monitoring of file changes on the system
 - `ignored_types` file extensions to exclude from tracking (default: `[".swp"," .tgz"]`)
 - `upload_timeout` (default: `600000`)
-- `log_events` log changes (modify/update/delete) of tracked files to both the console and changelog (defalt: `true`)
+- `log_events` log changes (modify/update/delete) of tracked files to both the console and changelog (default: `true`)
 - `trash` path to the "trash" folder where deleted files are moved
 
 #### `mail` section
@@ -741,7 +741,7 @@ This section is covered in depth in the [administration panel](../administration
 #### `pool` section
 
 - `fast_compute` (default:`true`) use raw SQL queries to empty and insert
-  the object IDs in the pool in order to speed up the pool udpate mechanism
+  the object IDs in the pool in order to speed up the pool update mechanism
 
 #### `redis` section
 
@@ -942,7 +942,7 @@ during automatic synchronizations with the shared remote repository.
 To prevent this, a git merge driver can be used to programmatically
 resolve merge conflicts. Such drivers typically utilize a combination of git
 attributes, configuration instructions, and custom scripts to function.
-Below are all of the components of a proposed driver for the Network Data
+Below are all the components of a proposed driver for the Network Data
 repositories:
 
 ### `network_data/.gitattributes`
@@ -991,6 +991,12 @@ the local `master` branch and the contents of `FETCH_HEAD`, accepting the most
 recent result.
 
 ## Galera Cluster Deployment on Rocky Linux
+
+A clustered deployment (pictured below) makes use of [galera](https://mariadb.com/kb/en/getting-started-with-mariadb-galera-cluster/), [vault HA](https://developer.hashicorp.com/vault/docs/concepts/ha) with a [mysql storage backend](https://developer.hashicorp.com/vault/docs/configuration/storage/mysql), and [redis-sentinel](https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/) to keep the application instances in sync. It's recommended to deploy application instances in odd numbers (3,5,7 etc.) to avoid a split-brain situation with galera. A Load Balancer like HAProxy can utilize either an existing REST API endpoint or add a custom one for the application to identify instances that are ready to be used. Additionally, connecting to REDIS through the Load Balancer can simplify the REDIS client configuration.
+
+
+
+![eNMS Cluster Overview](../_static/cluster_overview.PNG)
 
 ### Step 1: System Update
 

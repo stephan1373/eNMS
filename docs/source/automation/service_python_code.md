@@ -31,33 +31,46 @@ are made available to the user.
         `{{device.ip_address}}`, inside of forms. The following base
         properties are supported:
 
-        - device.name.
-        - device.creator.
-        - device.last_modified.
-        - device.last_modified_by.
-        - device.subtype.
-        - device.description.
-        - device.model.
-        - device.location.
-        - device.vendor.
-        - device.operating_system.
-        - device.os_version.
-        - device.ip_address.
-        - device.latitude.
-        - device.longitude.
-        - device.port.
-        - device.configuration.
-        - device.last_failure (last failure timestamp for
-          configuration collection).
-        - device.last_status (last status timestamp for configuration
-          collection).
-        - device.last_update (last update timestamp for configuration
-          collection).
-        - device.last_runtime (last runtime timestamp for
-          configuration collection).
-        - device.last_duration (last time duration for configuration
-          collection).
-        - [Custom device properties, if implemented](custom_device_properties.md).
+        - device.name
+        - device.creator
+        - device.last_modified
+        - device.last_modified_by
+        - device.subtype
+        - device.description
+        - device.model
+        - device.location
+        - device.vendor
+        - device.operating_system
+        - device.os_version
+        - device.ip_address
+        - device.latitude
+        - device.longitude
+        - device.port
+        - device.configuration
+        - device.operational_data
+        - device.specialized_data_1
+        - device.specialized_data_1
+        - device.last_configuration_status (`Success`, `Failure`, `Never`)
+        - device.last_configuration_update (timestamp)
+        - device.last_configuration_runtime 
+        - device.last_configuration_duration
+        - device.last_configuration_failure (timestamp)
+        - device.last_operational_data_status (`Success`, `Failure`, `Never`)
+        - device.last_operational_data_update
+        - device.last_operational_data_runtime
+        - device.last_operational_data_duration
+        - device.last_operational_data_failure (timestamp)
+        - device.last_specialized_data_1_status (`Success`, `Failure`, `Never`)
+        - device.last_specialized_data_1_update (timestamp)
+        - device.last_specialized_data_1_runtime
+        - device.last_specialized_data_1_duration
+        - device.last_specialized_data_1_failure (timestamp)
+        - device.last_specialized_data_2_status (`Success`, `Failure`, `Never`)
+        - device.last_specialized_data_2_update (timestamp)
+        - device.last_specialized_data_2_runtime
+        - device.last_specialized_data_2_duration
+        - device.last_specialized_data_2_failure (timestamp)        
+        - See also: [Custom device properties](custom_device_properties.md).
 
 - `devices`
     - **Meaning**: The set of target devices for the service or workflow,
@@ -100,7 +113,7 @@ are made available to the user.
     -   **Available**: Always.
 
 - `encrypt()`
-    -   **Meaning**: Encrypt a password string so it can be used in one of the
+    -   **Meaning**: Encrypt a password string so that it can be used in one of the
         password field (and automatically decrypted)
     -   **Type**: Function.
     -   **Available**: Always.
@@ -166,7 +179,7 @@ are made available to the user.
         -   `model`.
         -   `source_name` (source device name).
         -   `destination_name` (destination device name).
-        -   [Custom link properties, if implemented](custom_link_properties.md).
+        -   See also: [Custom link properties](custom_link_properties.md).
 
 - `get_all_results()`
     -   **Meaning**: Fetch all results for the current runtime. Typically used at
@@ -201,7 +214,7 @@ are made available to the user.
             subworkflows, a subworkflow can be specified to get the
             result of the service for a specific subworkflow.
         -   `all_matches`: (**optional**, default=False) When True, returns
-            a list with results for all devices.  Otherwise only the first
+            a list with results for all devices. Otherwise, only the first
             result is returned.
 
 - `get_secret()`
@@ -356,9 +369,36 @@ are made available to the user.
         -   `section`: (**optional**) The value is stored in a specific
             "section".
 
-- `settings`
+-   `send_email()` allows for sending an email with optional attached file. It
+    takes the following parameters:
 
-    -   **Meaning**: eNMS settings, editable from the top-level `Settings`
+    -   `title`: (**string, mandatory**).
+    -   `content`: (**string, mandatory**).
+    -   `sender`: (**string, optional**) Email address of the sender.
+        Defaults to the sender address in eNMS settings.
+    -   `recipients`: (**string, optional**) Mail addresses of the
+        recipients, separated by comma. Defaults to the recipients'
+        addresses in eNMS settings.
+    -   `reply_to`: (**string, optional**) Single mail address for
+        replies to notifications.
+    -   `filename`: (**string, optional**) Name of the attached file.
+    -   `file_content`: (**string, optional**) Content of the attached
+        file.
+
+    ``` 
+    send_email(
+        title,
+        content,
+        sender=sender,
+        recipients=recipients,
+        reply_to=reply_to,
+        filename=filename,
+        file_content=file_content
+    )
+    ```
+-   `settings`
+
+    -   **Meaning**: App settings, editable from the top-level `Settings`
         Icon. It is initially set to the content of `settings.json`, and
         it stays synchronized if the option to write changes back to 
         `settings.json` is used.
@@ -394,17 +434,18 @@ are made available to the user.
         -   `value`: value of that property.
 
 - `user`
-    -   **Meaning**: The user that created the run
-    -   **Type**: User Object
-    -   **Available**: Always
-    -   **Properties**: Member attributes which can be referenced as
-        `{{user.property}}`, such as `{{user.name}}`. Below is
-        a list of some of the properties that can be accessed:
-
-        -   `user.name`: Username (string).
-        -   `user.email`: The user email address (string).
-        -   `user.groups`: The groups a user belongs to (string).
-
+    -   **Meaning**: a dictionary with data about the user that created the run; 
+        e.g., `{ "name": "<username>", "email": "<email>"} ` This is the replacement for 
+        `username`.
+    -   **Type**: Dictionary.
+    -   **Available**: Always.
+            
+- `username`
+    -   **Meaning**: The username that created the run
+    -   **Type**: string
+    -   **Available**: Deprecated - will remove in the next major release; for new 
+        services, please consider using `user["name"]` instead.
+            
 - `workflow`
 
     -   **Meaning**: current workflow.
