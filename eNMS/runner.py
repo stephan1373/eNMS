@@ -381,9 +381,10 @@ class Runner:
         db.try_set(self.main_run, "state", state)
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
-            env.redis("delete", *runtime_keys)
-        vs.run_targets.pop(self.runtime)
-        vs.run_services.pop(self.runtime)
+            if runtime_keys:
+                env.redis("delete", *runtime_keys)
+        vs.run_targets.pop(self.runtime, None)
+        vs.run_services.pop(self.runtime, None)
 
     def end_of_run_transaction(self, results, status=None):
         if not status:
