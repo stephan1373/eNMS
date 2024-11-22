@@ -31,46 +31,34 @@ are made available to the user.
         `{{device.ip_address}}`, inside of forms. The following base
         properties are supported:
 
-        - device.name
-        - device.creator
-        - device.last_modified
-        - device.last_modified_by
-        - device.subtype
-        - device.description
-        - device.model
-        - device.location
-        - device.vendor
-        - device.operating_system
-        - device.os_version
-        - device.ip_address
-        - device.latitude
-        - device.longitude
-        - device.port
-        - device.configuration
-        - device.operational_data
-        - device.specialized_data_1
-        - device.specialized_data_1
-        - device.last_configuration_status (`Success`, `Failure`, `Never`)
-        - device.last_configuration_update (timestamp)
-        - device.last_configuration_runtime 
-        - device.last_configuration_duration
-        - device.last_configuration_failure (timestamp)
-        - device.last_operational_data_status (`Success`, `Failure`, `Never`)
-        - device.last_operational_data_update
-        - device.last_operational_data_runtime
-        - device.last_operational_data_duration
-        - device.last_operational_data_failure (timestamp)
-        - device.last_specialized_data_1_status (`Success`, `Failure`, `Never`)
-        - device.last_specialized_data_1_update (timestamp)
-        - device.last_specialized_data_1_runtime
-        - device.last_specialized_data_1_duration
-        - device.last_specialized_data_1_failure (timestamp)
-        - device.last_specialized_data_2_status (`Success`, `Failure`, `Never`)
-        - device.last_specialized_data_2_update (timestamp)
-        - device.last_specialized_data_2_runtime
-        - device.last_specialized_data_2_duration
-        - device.last_specialized_data_2_failure (timestamp)        
-        - See also: [Custom device properties](custom_device_properties.md).
+        - device.name.
+        - device.creator.
+        - device.last_modified.
+        - device.last_modified_by.
+        - device.subtype.
+        - device.description.
+        - device.model.
+        - device.location.
+        - device.vendor.
+        - device.operating_system.
+        - device.os_version.
+        - device.ip_address.
+        - device.latitude.
+        - device.longitude.
+        - device.port.
+        - device.configuration.
+        - device.last_failure (last failure timestamp for
+          configuration collection).
+        - device.last_status (last status timestamp for configuration
+          collection).
+        - device.last_update (last update timestamp for configuration
+          collection).
+        - device.last_runtime (last runtime timestamp for
+          configuration collection).
+        - device.last_duration (last time duration for configuration
+          collection).
+        - [Custom device properties, if implemented](custom_device_properties.md).
+
 
 - `devices`
     - **Meaning**: The set of target devices for the service or workflow,
