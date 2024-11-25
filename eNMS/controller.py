@@ -1261,10 +1261,18 @@ class Controller(vs.TimingMixin):
 
     def import_services(self, **kwargs):
         file = kwargs["file"]
-        filepath = vs.file_path / "services" / file.filename
-        (vs.file_path / "services").mkdir(parents=True, exist_ok=True)
+        service_path = vs.file_path / "services"
+        filepath = service_path / file.filename
+        service_path.mkdir(parents=True, exist_ok=True)
         file.save(str(filepath))
         with open_tar(filepath) as tar_file:
+            for member in tar_file.getmembers():
+                member_path = (Path(service_path) / member.name).resolve()
+                if service_path not in member_path.parents:
+                    raise ValueError(
+                        "Unsafe path detected when importing service archive "
+                        f"(User: {current_user} - Path: {member_path})"
+                    )
             folder_name = tar_file.getmembers()[0].name
             rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
             tar_file.extractall(path=vs.file_path / "services")
