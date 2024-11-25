@@ -9,7 +9,7 @@ The eNMS changelog is found under `System / Changelog`
 Changelog contains the following searchable information:
 
 -   Object creation, deletion, and modification activity.
--   Running of services / workflows; when they are ran, who ran them.
+-   Running of services / workflows; when they are run, who ran them.
 -   Various administration logs, such as database migration,
     parameter updates, etc.
 -   Custom logs, defined by users in services / workflows.

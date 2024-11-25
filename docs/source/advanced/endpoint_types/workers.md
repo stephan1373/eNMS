@@ -40,23 +40,23 @@ Otherwise the response will look like
 
 ```json
 {
-   "ense-ap-prod-slk-100424-primary-server0 - 1515859": {
+   "app - 1515859": {
         "admin_only": false,
         "current_runs": 0,
         "description": "",
         "id": 89769,
         "last_update": "2024-11-16 05:19:12.637478",
-        "name": "ense-ap-prod-slk-100424-primary-server0 - 1515859",
+        "name": "app - 1515859",
         "owners":[...],
         "process_id": 1515859,
         "rbac_read":[...],
         "runs":[...],
         "server": {...},
         "server_id":1,
-        "server_name": "ense-ap-prod-slk-100424-primary-server0",
+        "server_name": "app",
         "server_properties": {
             "id": 1,
-            "name": "ense-ap-prod-slk-100424-primary-server0",
+            "name": "app",
             "type": "server"
         },
         "subtype": "gunicorn",
