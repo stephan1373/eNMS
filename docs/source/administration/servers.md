@@ -11,7 +11,7 @@
 > * **Secondary**: Secondary server of the cluster
 * **IP Address**: IP Address of the server
 * **Scheduler Address**: Address of the Scheduler used by the Server to run tasks. This property is initialized using the SCHEDULER_ADDR environment variable
-* **Scheduler Active**: Can be used in custom code to determine which server in the cluster is responsible for scheduling tasks. This properties is initialized using the SCHEDULER_ACTIVE environment variable
+* **Scheduler Active**: Can be used in custom code to determine which server in the cluster is responsible for scheduling tasks. This property is initialized using the SCHEDULER_ACTIVE environment variable
 * **Location**: Physical location of the server. This property is initialized using the SERVER_LOCATION environment variable
 * **Version**: eNMS version running on the server, as defined in settings.json > "app" > "version". Updated every time the application starts
 * **Commit SHA**: Commit SHA of the latest git commit in the eNMS repository, updated every time the application starts. This quickly shows if all servers are running the same version of the code, and identifies the exact code being run if they are not

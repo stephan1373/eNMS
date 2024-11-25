@@ -29,7 +29,7 @@ previous run. This is useful if:
     b) there is simply not enough time to re-run all the previous
        services.
   
-Selecting `Restart Workflow from Here` by right clicking on a service 
+Selecting `Restart Workflow from Here` by right-clicking on a service 
 presents the user with a form to select:
 
 - `Restart Runtime`: The previous runtime to use as the payload for
