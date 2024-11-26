@@ -262,7 +262,6 @@
     "/save_positions": "access",
     "/save_profile": "access",
     "/save_settings": "admin",
-    "/scan_cluster": "access",
     "/scan_folder": "access",
     "/scan_playbook_folder": "access",
     "/search_workflow_services": "access",

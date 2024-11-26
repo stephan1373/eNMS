@@ -9,7 +9,6 @@ from datetime import datetime
 from functools import wraps
 from git import Repo
 from io import BytesIO, StringIO
-from ipaddress import IPv4Network
 from json import dump, load
 from logging import info, error
 from operator import attrgetter, itemgetter
@@ -1504,20 +1503,6 @@ class Controller(vs.TimingMixin):
         if kwargs["save"]:
             with open(vs.path / "setup" / "settings.json", "w") as file:
                 dump(kwargs["settings"], file, indent=2)
-
-    def scan_cluster(self, **kwargs):
-        protocol = vs.settings["cluster"]["scan_protocol"]
-        for ip_address in IPv4Network(vs.settings["cluster"]["scan_subnet"]):
-            try:
-                server = http_get(
-                    f"{protocol}://{ip_address}/rest/is_alive",
-                    timeout=vs.settings["cluster"]["scan_timeout"],
-                ).json()
-                if vs.settings["cluster"]["id"] != server.pop("cluster_id"):
-                    continue
-                db.factory("server", **{**server, **{"ip_address": str(ip_address)}})
-            except ConnectionError:
-                continue
 
     def scan_playbook_folder(self):
         playbooks = [
