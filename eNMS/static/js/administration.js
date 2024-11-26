@@ -322,16 +322,6 @@ function getGitContent() {
   });
 }
 
-function scanCluster() {
-  notify("Cluster Scan initiated...", "success", 5, true);
-  call({
-    url: "/scan_cluster",
-    callback: function () {
-      notify("Cluster Scan completed.", "success", 5, true);
-    },
-  });
-}
-
 function editFile(id, filename, filepath) {
   call({
     url: `/edit_file/${filename}`,
@@ -504,7 +494,6 @@ configureNamespace("administration", [
   runDebugCode,
   saveFile,
   saveProfile,
-  scanCluster,
   scanFolder,
   showChangelogDiff,
   showFileUploadPanel,
