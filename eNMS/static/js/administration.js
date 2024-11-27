@@ -12,6 +12,7 @@ import {
   call,
   configureNamespace,
   displayDiff,
+  downloadFile,
   editors,
   initCodeMirror,
   notify,
@@ -86,6 +87,15 @@ function enterFolder({ folder, path, parent }) {
     $("#upward-folder-btn").addClass("disabled");
   }
   displayFolderPath();
+}
+
+function downloadProfilingData() {
+  call({
+    url: "/get_profiling_data",
+    callback: function (data) {
+      downloadFile("profiling_data", JSON.stringify(data, null, 2), "json");
+    },
+  });
 }
 
 function showChangelogDiff(id) {
@@ -484,6 +494,7 @@ function updateDeviceRbac() {
 configureNamespace("administration", [
   databaseDeletion,
   displayFiles,
+  downloadProfilingData,
   editFile,
   enterFolder,
   getClusterStatus,

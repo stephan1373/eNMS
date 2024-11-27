@@ -611,6 +611,9 @@ class Controller(vs.TimingMixin):
     def get_migration_folders(self):
         return listdir(Path(vs.migration_path))
 
+    def get_profiling_data(self):
+        return vs.profiling
+
     def get_properties(self, model, id):
         return db.fetch(model, id=id).get_properties()
 
