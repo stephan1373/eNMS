@@ -612,12 +612,9 @@ export function runLogic(result) {
 }
 
 export function exportServices(tableId) {
-  let notification = notify(
-    "Preparing your export. This may take a moment depending on the service list. Please wait...",
-    "warning",
-    0,
-    true
-  );
+  const logWait = `Preparing your export. This may take a moment depending
+    on the service list. Please wait...`;
+  let notification = notify(logWait, "warning", 0, true);
   call({
     url: `/export_services`,
     form: `search-form-${tableId}`,
