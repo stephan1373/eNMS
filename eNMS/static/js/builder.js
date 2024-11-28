@@ -69,20 +69,20 @@ export function configureGraph(newInstance, graph, options) {
   network.setOptions({ physics: false });
   network.setOptions({ interaction: { zoomSpeed: user.zoom_sensitivity } });
   for (const objectType of ["Node", "Edge"]) {
-    network.on(`hover${objectType}`, function () {
+    network.on(`hover${objectType}`, function() {
       network.canvas.body.container.style.cursor = "pointer";
     });
-    network.on(`blur${objectType}`, function () {
+    network.on(`blur${objectType}`, function() {
       network.canvas.body.container.style.cursor = "default";
     });
   }
-  network.on("select", function () {
+  network.on("select", function() {
     $("#confirmation-builder_deletion").remove();
   });
   network.on("dragStart", () => {
     $("#confirmation-builder_deletion").remove();
   });
-  network.on("oncontext", function (properties) {
+  network.on("oncontext", function(properties) {
     if (triggerMenu) {
       properties.event.preventDefault();
       mousePosition = properties.pointer.canvas;
@@ -108,7 +108,7 @@ export function configureGraph(newInstance, graph, options) {
       properties.event.preventDefault();
     }
   });
-  network.on("doubleClick", function (event) {
+  network.on("doubleClick", function(event) {
     mousePosition = event.pointer.canvas;
   });
   if (!$(`#current-${instance.type} option[value='${instance.id}']`).length) {
@@ -117,7 +117,9 @@ export function configureGraph(newInstance, graph, options) {
       `<option value="${instance.id}">${name}</option>`
     );
   }
-  $(`#current-${instance.type}`).val(instance.id).selectpicker("refresh");
+  $(`#current-${instance.type}`)
+    .val(instance.id)
+    .selectpicker("refresh");
   network.on("dragEnd", (event) => {
     if (network.getNodeAt(event.pointer.DOM)) savePositions();
   });
@@ -130,16 +132,24 @@ export function drawTree(service, data, resultsPanel) {
   const noUpdate = builderTreeData == JSON.stringify(data);
   if (!data) {
     builderTreeData = null;
-    $(treeId).jstree("destroy").off().empty();
+    $(treeId)
+      .jstree("destroy")
+      .off()
+      .empty();
     if (!noUpdate) $(treeId).text("No Results Found.");
     return;
   }
   if (noUpdate && !resultsPanel && $(treeId).children().length > 0) return;
   if ($(treeId).jstree(true) && !resultsPanel) {
     $(treeId).jstree(true).settings.core.data = data;
-    $(treeId).jstree(true).refresh();
+    $(treeId)
+      .jstree(true)
+      .refresh();
   } else {
-    $(treeId).jstree("destroy").off().empty();
+    $(treeId)
+      .jstree("destroy")
+      .off()
+      .empty();
     let tree = $(treeId).jstree({
       core: {
         animation: 100,
@@ -148,7 +158,7 @@ export function drawTree(service, data, resultsPanel) {
       },
       plugins: ["html_row", "types", "wholerow"],
       html_row: {
-        default: function (el, node) {
+        default: function(el, node) {
           if (!node) return;
           const runtime = $(
             service ? `#runtimes-tree-${service}` : "#current-runtime"
@@ -219,7 +229,9 @@ export function drawTree(service, data, resultsPanel) {
             >
               <span class="glyphicon glyphicon-edit"></span>
             </button>`;
-          $(el).find("a").first().append(`
+          $(el)
+            .find("a")
+            .first().append(`
                 ${progressSummary}
                 <div style="position: absolute; top: 0px; right: 20px">
                   <button
@@ -247,7 +259,7 @@ export function drawTree(service, data, resultsPanel) {
         },
       },
     });
-    tree.on("contextmenu", ".jstree-anchor", function (event) {
+    tree.on("contextmenu", ".jstree-anchor", function(event) {
       const tree = $(treeId).jstree(true);
       selectedObject = tree.get_node(event.target).data.properties;
       $(`.menu-entry,.${type}-selection`).hide();
@@ -259,23 +271,27 @@ export function drawTree(service, data, resultsPanel) {
         network.selectNodes([]);
       }
     });
-    tree.on("select_node.jstree", function (_, data) {
+    tree.on("select_node.jstree", function(_, data) {
       network.selectNodes(
         data.selected
           .map((path) => parseInt(path.split(">").pop()))
           .filter((id) => nodes.get(id))
       );
     });
-    tree.unbind("dblclick").on("dblclick", function (event) {
-      highlightNode($(treeId).jstree(true).get_node(event.target).data);
+    tree.unbind("dblclick").on("dblclick", function(event) {
+      highlightNode(
+        $(treeId)
+          .jstree(true)
+          .get_node(event.target).data
+      );
     });
-    tree.bind("loaded.jstree", function () {
+    tree.bind("loaded.jstree", function() {
       createTooltips();
       if (resultsPanel) tree.jstree("open_all");
     });
     $(`#builder,${treeId}`).contextMenu({
       menuSelector: "#contextMenu",
-      menuSelected: function (selectedMenu) {
+      menuSelected: function(selectedMenu) {
         const row = selectedMenu.text();
         action[row](selectedObject);
       },
@@ -305,7 +321,7 @@ export function savePositions() {
   call({
     url: `/save_positions/${instance.type}/${instance.id}`,
     data: network.getPositions(),
-    callback: function ([updateTime, newPositions]) {
+    callback: function([updateTime, newPositions]) {
       if (updateTime) instance.last_modified = updateTime;
       instance.positions = newPositions;
       nodes.update(
@@ -322,7 +338,7 @@ export function showBuilderChangelogPanel(model, global) {
   if (global) {
     call({
       url: `/get_builder_children/${model}/${instance.id}`,
-      callback: function (children) {
+      callback: function(children) {
         const subModel = model == "workflow" ? "service" : "device";
         const constraints = {
           [`${subModel}`]: children,
@@ -391,9 +407,11 @@ function showBuilderSearchPanel() {
         "change",
         func
       );
-      $("#tree-search-mode").selectpicker().on("change", func);
+      $("#tree-search-mode")
+        .selectpicker()
+        .on("change", func);
       let timer = false;
-      document.getElementById("tree-search").addEventListener("keyup", function () {
+      document.getElementById("tree-search").addEventListener("keyup", function() {
         if (timer) clearTimeout(timer);
         timer = setTimeout(func, 500);
       });
@@ -411,7 +429,9 @@ export function showLabelPanel({ label, usePosition }) {
       if (label) {
         $("#label-text").val(label.label);
         $("#label-size").val(label.font.size);
-        $("#label-alignment").val(label.font.align).selectpicker("refresh");
+        $("#label-alignment")
+          .val(label.font.align)
+          .selectpicker("refresh");
         currentLabel = label;
       } else {
         currentLabel = null;
@@ -427,7 +447,7 @@ function createLabel() {
   call({
     url: `/create_label/${labelUrl}/${pos[0]}/${pos[1]}/${currentLabel?.id}`,
     form: "label-form",
-    callback: function (result) {
+    callback: function(result) {
       drawLabel(result.id, result);
       $("#label").remove();
       notify("Label created.", "success", 5);
@@ -464,7 +484,7 @@ function deleteSelection() {
   call({
     url: `/delete_builder_selection/${type}/${instance.id}`,
     data: selection,
-    callback: function (updateTime) {
+    callback: function(updateTime) {
       network.deleteSelected();
       network.setSelection({ nodes: [], edges: [] });
       const edgeType = type == "network" ? "links" : "edges";
@@ -548,14 +568,17 @@ export function updateBuilderBindings(action) {
     Backward: () => switchTo(history[historyPosition - 1], "left"),
     Forward: () => switchTo(history[historyPosition + 1], "right"),
     Upward: () => {
-      const parentPath = currentPath.split(">").slice(0, -1).join(">");
+      const parentPath = currentPath
+        .split(">")
+        .slice(0, -1)
+        .join(">");
       if (parentPath) switchTo(parentPath);
     },
     Changelog: () => showBuilderChangelogPanel(type),
   });
   $("#builder").contextMenu({
     menuSelector: "#contextMenu",
-    menuSelected: function (selectedMenu) {
+    menuSelected: function(selectedMenu) {
       const row = selectedMenu.text();
       action[row](selectedObject);
     },
@@ -593,7 +616,7 @@ export const rectangleSelection = (container, graph, nodes) => {
     );
   };
 
-  container.on("mousedown", function ({ which, pageX, pageY }) {
+  container.on("mousedown", function({ which, pageX, pageY }) {
     const startX = pageX - this.offsetLeft + offsetLeft;
     const startY = pageY - this.offsetTop + offsetTop;
     if (which === 3) {
@@ -607,7 +630,7 @@ export const rectangleSelection = (container, graph, nodes) => {
     }
   });
 
-  container.on("mousemove", function ({ which, pageX, pageY }) {
+  container.on("mousemove", function({ which, pageX, pageY }) {
     if (which === 0 && drag) {
       drag = false;
       graph.redraw();
@@ -620,7 +643,7 @@ export const rectangleSelection = (container, graph, nodes) => {
     }
   });
 
-  container.on("mouseup", function ({ which }) {
+  container.on("mouseup", function({ which }) {
     if (which === 3) {
       drag = false;
       graph.redraw();
@@ -672,7 +695,9 @@ export function switchMode(mode, noNotification) {
   const newLinkMode = type == "network" ? "create_link" : $("#edge-type-dd-list").val();
   currentMode = mode || (currentMode == "motion" ? newLinkMode : "motion");
   if ((oldMode == "motion" || currentMode == "motion") && oldMode != currentMode) {
-    $("#mode-icon").toggleClass("glyphicon-move").toggleClass("glyphicon-random");
+    $("#mode-icon")
+      .toggleClass("glyphicon-move")
+      .toggleClass("glyphicon-random");
   }
   let notification;
   if (currentMode == "motion") {
@@ -691,13 +716,17 @@ export function processBuilderData(newInstance) {
   if (instance) instance.last_modified = newInstance.last_modified;
   if (newInstance.id == instance?.id) {
     instance = newInstance;
-    $(`#current-${type} option:selected`).text(newInstance.name).trigger("change");
+    $(`#current-${type} option:selected`)
+      .text(newInstance.name)
+      .trigger("change");
   }
   if ([`create_${type}`, `duplicate_${type}`].includes(creationMode)) {
     $(`#current-${type}`).append(
       `<option value="${newInstance.id}">${newInstance.name}</option>`
     );
-    $(`#current-${type}`).val(newInstance.id).trigger("change");
+    $(`#current-${type}`)
+      .val(newInstance.id)
+      .trigger("change");
     creationMode = null;
     switchTo(`${newInstance.id}`);
   } else if (
@@ -737,7 +766,7 @@ function updateRightClickBindings() {
 }
 
 export function initBuilder() {
-  vis.Network.prototype.zoom = function (scale) {
+  vis.Network.prototype.zoom = function(scale) {
     const animationOptions = {
       scale: this.getScale() + scale,
       animation: { duration: 300 },
@@ -746,7 +775,7 @@ export function initBuilder() {
   };
   $("#edge-type-dd-list")
     .selectpicker()
-    .on("change", function () {
+    .on("change", function() {
       switchMode(this.value);
     });
   if (type == "network") {
@@ -759,7 +788,7 @@ export function initBuilder() {
   $("#left-arrow,#right-arrow").addClass("disabled");
   call({
     url: `/get_top_level_instances/${type}`,
-    callback: function (result) {
+    callback: function(result) {
       const instanceIds = new Set();
       if (result.Other && Object.keys(result).length == 1) {
         const instances = result.Other.sort((a, b) => a.name.localeCompare(b.name));
@@ -796,7 +825,7 @@ export function initBuilder() {
       }
       $(`#current-${type},#current-runtime`).selectpicker({ liveSearch: true });
       if (type == "workflow") {
-        $("#current-runtime").on("change", function () {
+        $("#current-runtime").on("change", function() {
           getWorkflowState();
         });
         getWorkflowState(true, true);
@@ -805,7 +834,7 @@ export function initBuilder() {
       }
     },
   });
-  $(`#current-${type}`).on("change", function () {
+  $(`#current-${type}`).on("change", function() {
     if (!instance || this.value != instance.id) switchTo(this.value);
   });
   updateRightClickBindings();
@@ -838,7 +867,10 @@ function toggleTree() {
       {
         ...kwargs,
         complete: () => {
-          $("#run-navbar").appendTo(`#${type}-controls`).css({ left: "0px" }).show();
+          $("#run-navbar")
+            .appendTo(`#${type}-controls`)
+            .css({ left: "0px" })
+            .show();
           $(`#${type}-tree`).hide();
         },
       }

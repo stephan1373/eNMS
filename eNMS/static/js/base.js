@@ -80,7 +80,7 @@ const panelThemes = {
 };
 
 $.ajaxSetup({
-  beforeSend: function (xhr, settings) {
+  beforeSend: function(xhr, settings) {
     if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
       xhr.setRequestHeader("X-CSRFToken", csrfToken);
     }
@@ -88,14 +88,14 @@ $.ajaxSetup({
       document.body.style.cursor = "progress";
     }
   },
-  complete: function () {
+  complete: function() {
     document.body.style.cursor = "default";
   },
 });
 
 function loadScript(url, id) {
   let script = document.createElement("script");
-  script.onload = function () {
+  script.onload = function() {
     try {
       job(id);
     } catch (e) {
@@ -111,7 +111,7 @@ export function sanitize(input) {
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
-    '"': "&quot;", /* eslint-disable-line quotes */
+    '"': "&quot;" /* eslint-disable-line quotes */,
     "'": "&#x27;",
     "/": "&#x2F;",
   };
@@ -155,21 +155,21 @@ export function observeMutations(container, target, callback) {
   }).observe(container, { childList: true, subtree: true });
 }
 
-export const call = function ({ url, data, form, callback, errorCallback }) {
+export const call = function({ url, data, form, callback, errorCallback }) {
   let params = {
     type: "POST",
     url: url,
-    success: function (results) {
+    success: function(results) {
       processResults(callback, results);
     },
-    error: function (error) {
+    error: function(error) {
       let message = `Error HTTP ${error.status}: ${error.statusText}.`;
       if (error.status == 400) {
         message += " Your session might have expired, try refreshing the page.";
       } else if (error.status == 403) {
         message = "Error 403 - Not Authorized.";
       }
-      if(errorCallback){
+      if (errorCallback) {
         errorCallback(error);
       }
       notify(message, "error", 5);
@@ -192,7 +192,7 @@ export function serializeForm(form, formDefault, bulkFilter) {
   let result = {};
   let propertiesToKeep = [];
   if (bulkFilter) {
-    $("input[name^='bulk-filter']").each(function (_, el) {
+    $("input[name^='bulk-filter']").each(function(_, el) {
       if ($(el).prop("checked")) {
         const property = $(el).data("property");
         propertiesToKeep.push(property, `${property}_filter`, `${property}_invert`);
@@ -212,7 +212,7 @@ export function serializeForm(form, formDefault, bulkFilter) {
   if (bulkFilter) {
     $(form)
       .find("input:checkbox")
-      .each(function () {
+      .each(function() {
         if (propertiesToKeep.includes(this.name)) {
           result[this.name] = $(this).is(":checked") ? "bool-true" : "bool-false";
         }
@@ -221,10 +221,10 @@ export function serializeForm(form, formDefault, bulkFilter) {
   return result;
 }
 
-const deleteInstance = function (type, id, tableId) {
+const deleteInstance = function(type, id, tableId) {
   call({
     url: `/delete_instance/${type}/${id}`,
-    callback: function (result) {
+    callback: function(result) {
       if (result.delete_aborted) return notify(result.log, result.log_level, 5, true);
       if (type in subtypes.service) {
         type = "service";
@@ -248,7 +248,7 @@ function removeInstance(tableId, instance, relation) {
   call({
     url: "/remove_instance",
     data: { instance, relation },
-    callback: function () {
+    callback: function() {
       refreshTable(tableId, false, true);
       notify(
         `${instance.type.toUpperCase()} '${instance.name}' removed from
@@ -283,8 +283,10 @@ export function downloadFile(name, content, type) {
 export function createTooltips(panel) {
   $(panel || "html")
     .find("[data-tooltip]")
-    .each(function () {
-      const id = `tooltip-${$(this).attr("data-tooltip").replace(/\s/g, "")}`;
+    .each(function() {
+      const id = `tooltip-${$(this)
+        .attr("data-tooltip")
+        .replace(/\s/g, "")}`;
       jsPanel.tooltip.create({
         id: id,
         borderRadius: "10px",
@@ -375,7 +377,7 @@ export function openPanel({
     },
     resizeit: {
       containment: 0,
-      stop: function () {
+      stop: function() {
         if (tableId) refreshTable(tableId);
       },
     },
@@ -386,7 +388,7 @@ export function openPanel({
   } else {
     kwargs.contentAjax = {
       url: url || `/${name}_form`,
-      done: function (_, panel) {
+      done: function(_, panel) {
         panel.content.innerHTML = this.responseText;
         preprocessForm(panel, id, type, duplicate);
         configureForm(name, id, panelId);
@@ -426,7 +428,7 @@ export function showConfirmationPanel({
     size: "auto",
     checkRbac: false,
   });
-  $(".confirmAction").click(function () {
+  $(".confirmAction").click(function() {
     onConfirm();
     $(`#confirmation-${id}`).remove();
   });
@@ -464,7 +466,7 @@ export function createTooltip({
     } else {
       kwargs.contentAjax = {
         url: url,
-        done: function (_, panel) {
+        done: function(_, panel) {
           panel.content.innerHTML = this.responseText;
           preprocessForm(panel);
           configureForm(name, undefined, `tooltip-${name}`);
@@ -478,13 +480,13 @@ export function createTooltip({
       kwargs.header = false;
     }
     if (persistent) {
-      kwargs.onbeforeclose = function () {
+      kwargs.onbeforeclose = function() {
         $(this).hide();
       };
     }
     jsPanel.tooltip.create(kwargs);
     if (persistent) {
-      $(target).on("click", function () {
+      $(target).on("click", function() {
         $(`#tooltip-${name}`).show();
       });
     }
@@ -541,7 +543,7 @@ export function preprocessForm(panel, id, type, duplicate) {
       <button class="icon-button" type="button">
         <span class="glyphicon glyphicon-info-sign"></span>
       </button>
-    `).on("click", function () {
+    `).on("click", function() {
       const helpUrl = $(el).attr("help");
       const propertyName = helpUrl.split("/").at(-1);
       openPanel({
@@ -549,7 +551,7 @@ export function preprocessForm(panel, id, type, duplicate) {
         title: propertyName.replace("_", " "),
         size: "600px auto",
         url: `/help/${helpUrl}`,
-        callback: function (helpPanel) {
+        callback: function(helpPanel) {
           helpPanel.querySelectorAll(".help-snippet").forEach((el) => {
             const editor = CodeMirror.fromTextArea(el, {
               lineNumbers: true,
@@ -602,7 +604,7 @@ export function initSelect(el, model, parentId, single, field) {
       type: "POST",
       delay: 250,
       contentType: "application/json",
-      data: function (params) {
+      data: function(params) {
         return JSON.stringify({
           term: params.term || "",
           page: params.page || 1,
@@ -611,7 +613,7 @@ export function initSelect(el, model, parentId, single, field) {
           multiple: !single,
         });
       },
-      processResults: function (data, params) {
+      processResults: function(data, params) {
         params.page = params.page || 1;
         return {
           results: data.items,
@@ -648,7 +650,7 @@ export function configureForm(form, id, panelId) {
       });
     } else if (field.type == "json") {
       let editor = new JSONEditor(el.next()[0], {
-        onChange: function () {
+        onChange: function() {
           $(el).val(JSON.stringify(editor.get()));
         },
       });
@@ -677,7 +679,7 @@ export function configureForm(form, id, panelId) {
           <span class="glyphicon glyphicon-bold"></span>
         </button>
       `);
-      blackButton.on("click", function () {
+      blackButton.on("click", function() {
         call({
           url: "/format_code_with_black",
           data: { content: editor.getValue() },
@@ -762,7 +764,7 @@ export function showChangelogPanel(id, constraints) {
     id: id,
     tableId: `changelog-${id}`,
     title: "Changelog",
-    callback: function () {
+    callback: function() {
       // eslint-disable-next-line new-cap
       new tables["changelog"](id, constraints);
     },
@@ -789,7 +791,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
           Save
         </button>
       </div>`,
-    callback: function (panel) {
+    callback: function(panel) {
       let uiType = type;
       const isService = type == "service" || type in subtypes.service;
       const isDevice = type in subtypes.device;
@@ -806,7 +808,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         call({
           url: `/get/${type}/${id}`,
           data: { relation_properties: ["id", "type", "name"] },
-          callback: function (instance) {
+          callback: function(instance) {
             const ownersNames = instance.owners
               ? instance.owners.map((user) => user.name)
               : [];
@@ -827,7 +829,9 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         panel.setHeaderTitle(`Create a New ${uiType}`);
         if (page == "workflow_builder" && creationMode == "create_service") {
           $(`#${type}-workflows`).append(new Option(instance.name, instance.name));
-          $(`#${type}-workflows`).val(instance.name).trigger("change");
+          $(`#${type}-workflows`)
+            .val(instance.name)
+            .trigger("change");
         }
         if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
         if (page == "network_builder") updateNetworkPanel(type);
@@ -836,8 +840,8 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       const property = isService
         ? "scoped_name"
         : type == "folder"
-          ? "filename"
-          : "name";
+        ? "filename"
+        : "name";
       $(`#${type}-${property}`).focus();
     },
     type: type,
@@ -887,7 +891,7 @@ function buildBulkEditPanel(panel, type, tableId) {
   call({
     url: `/filtering/${model}`,
     data: { form: form, bulk: "id", rbac: rbac },
-    callback: function (instances) {
+    callback: function(instances) {
       $(`#${type}-id-${tableId}`).val(instances.join("-"));
       $(`#${type}-scoped_name-${tableId},#${type}-name-${tableId}`).val("Bulk Edit");
       const number = instances.length;
@@ -995,8 +999,8 @@ export function displayDiff(type, instanceId, property) {
     instanceId == "none"
       ? $("#configuration-property-diff").val()
       : type.includes("result")
-        ? "result"
-        : type;
+      ? "result"
+      : type;
   const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
   let v1 = $(`input[name=v1${postfix}]:checked`).val();
   let v2 = $(`input[name=v2${postfix}]:checked`).val();
@@ -1048,7 +1052,7 @@ export function displayDiff(type, instanceId, property) {
             formatter: (value) => `Lines of context: ${valueToLabel[value]}`,
             tooltip: "always",
           })
-          .change(function () {
+          .change(function() {
             let value = valueToLabel[this.value];
             if (value == "All") value = 999999;
             call({
@@ -1060,7 +1064,7 @@ export function displayDiff(type, instanceId, property) {
                 }
                 let diff2htmlUi = new Diff2HtmlUI({ diff: result });
                 $(`#diff-type-${cantorId}`)
-                  .on("change", function () {
+                  .on("change", function() {
                     diff2htmlUi.draw(`#content-${cantorId}`, {
                       matching: "lines",
                       drawFileList: true,
@@ -1172,12 +1176,12 @@ function processData(type, id) {
   });
 }
 
-(function ($) {
+(function($) {
   "use strict";
 
-  $.jstree.plugins.html_row = function (options, parent) {
+  $.jstree.plugins.html_row = function(options, parent) {
     // eslint-disable-next-line
-    this.redraw_node = function (nodeId, ...args) {
+    this.redraw_node = function(nodeId, ...args) {
       let el = parent.redraw_node.apply(this, [nodeId, ...args]);
       if (el) {
         let node = this._model.data[nodeId];
@@ -1223,10 +1227,10 @@ export function setTriggerMenu(value) {
   triggerMenu = value;
 }
 
-(function ($, window) {
-  $.fn.contextMenu = function (settings) {
-    return this.each(function () {
-      $(this).on("contextmenu", function (e) {
+(function($, window) {
+  $.fn.contextMenu = function(settings) {
+    return this.each(function() {
+      $(this).on("contextmenu", function(e) {
         if (e.ctrlKey || !triggerMenu) return;
         const $menu = $(settings.menuSelector)
           .show()
@@ -1236,22 +1240,30 @@ export function setTriggerMenu(value) {
             top: getMenuPosition(e.clientY, "height", "scrollTop"),
           })
           .off("click")
-          .on("click", "a", function (e) {
+          .on("click", "a", function(e) {
             $menu.hide();
             const $selectedMenu = $(e.target);
             settings.menuSelected.call(this, $selectedMenu);
           });
         return false;
       });
-      $(".dropdown-submenu a.menu-submenu").on("click", function (e) {
-        const isHidden = $(this).next("ul").is(":hidden");
-        $(".dropdown-submenu a.menu-submenu").next("ul").hide();
-        $(this).next("ul").toggle(isHidden);
+      $(".dropdown-submenu a.menu-submenu").on("click", function(e) {
+        const isHidden = $(this)
+          .next("ul")
+          .is(":hidden");
+        $(".dropdown-submenu a.menu-submenu")
+          .next("ul")
+          .hide();
+        $(this)
+          .next("ul")
+          .toggle(isHidden);
         e.stopPropagation();
         e.preventDefault();
       });
-      $("body").click(function () {
-        $(".dropdown-submenu a.menu-submenu").next("ul").hide();
+      $("body").click(function() {
+        $(".dropdown-submenu a.menu-submenu")
+          .next("ul")
+          .hide();
         $(settings.menuSelector).hide();
       });
     });
@@ -1434,20 +1446,28 @@ function switchTheme(theme) {
 function initSidebar() {
   $("#sidebar-menu")
     .find("a")
-    .on("click", function () {
+    .on("click", function() {
       let $li = $(this).parent();
       if ($li.is(".active")) {
         $li.removeClass("active active-sm");
         $("ul:first", $li).slideUp();
       } else {
         if (!$li.parent().is(".child_menu")) {
-          $("#sidebar-menu").find("li").removeClass("active active-sm");
-          $("#sidebar-menu").find("li ul").slideUp();
+          $("#sidebar-menu")
+            .find("li")
+            .removeClass("active active-sm");
+          $("#sidebar-menu")
+            .find("li ul")
+            .slideUp();
         } else {
           if ($("body").is(".nav-sm")) {
             if (!$li.parent().is(".child_menu")) {
-              $("#sidebar-menu").find("li").removeClass("active active-sm");
-              $("#sidebar-menu").find("li ul").slideUp();
+              $("#sidebar-menu")
+                .find("li")
+                .removeClass("active active-sm");
+              $("#sidebar-menu")
+                .find("li ul")
+                .slideUp();
             }
           }
         }
@@ -1456,24 +1476,39 @@ function initSidebar() {
       }
     });
 
-  let switchMenu = function () {
+  let switchMenu = function() {
     if ($("body").hasClass("nav-sm")) {
       $("#eNMS").css({ "font-size": "17px" });
       $("#eNMS-version").css({ "font-size": "15px" });
-      $("#sidebar-menu").find("li.active ul").hide();
-      $("#sidebar-menu").find("li.active").addClass("active-sm");
-      $("#sidebar-menu").find("li.active").removeClass("active");
+      $("#sidebar-menu")
+        .find("li.active ul")
+        .hide();
+      $("#sidebar-menu")
+        .find("li.active")
+        .addClass("active-sm");
+      $("#sidebar-menu")
+        .find("li.active")
+        .removeClass("active");
     } else {
       $("#eNMS").css({ "font-size": "30px" });
       $("#eNMS-version").css({ "font-size": "20px" });
-      $("#sidebar-menu").find("li.active-sm ul").show();
-      $("#sidebar-menu").find("li.active-sm").addClass("active");
-      $("#sidebar-menu").find("li.active-sm").removeClass("active-sm");
+      $("#sidebar-menu")
+        .find("li.active-sm ul")
+        .show();
+      $("#sidebar-menu")
+        .find("li.active-sm")
+        .addClass("active");
+      $("#sidebar-menu")
+        .find("li.active-sm")
+        .removeClass("active-sm");
       const url = "a[href='" + currentUrl + "']";
-      $("#sidebar-menu").find(url).parent("li").addClass("current-page");
+      $("#sidebar-menu")
+        .find(url)
+        .parent("li")
+        .addClass("current-page");
       $("#sidebar-menu")
         .find("a")
-        .filter(function () {
+        .filter(function() {
           return this.href == currentUrl;
         })
         .parent("li")
@@ -1483,13 +1518,15 @@ function initSidebar() {
         .parent()
         .addClass("active");
     }
-    $(".dataTable").each(function () {
-      $(this).dataTable().fnDraw();
+    $(".dataTable").each(function() {
+      $(this)
+        .dataTable()
+        .fnDraw();
     });
   };
 
   switchMenu();
-  $("#menu_toggle").on("click", function () {
+  $("#menu_toggle").on("click", function() {
     menuIsToggled = !menuIsToggled;
     call({ url: `/switch_menu/${user.id}` });
     $("body").toggleClass("nav-md nav-sm");
@@ -1505,8 +1542,8 @@ export function hideMenu() {
   menuIsHidden = !menuIsHidden;
 }
 
-$(document).ready(function () {
-  $("#eNMS").on("click", function (event) {
+$(document).ready(function() {
+  $("#eNMS").on("click", function(event) {
     if (!event.altKey || !event.shiftKey || !user.is_admin) return;
     openDebugPanel();
   });
@@ -1535,7 +1572,7 @@ $(document).ready(function () {
   createNotificationBanner();
 });
 
-$(window).on("load", function () {
+$(window).on("load", function() {
   NProgress.done();
 });
 

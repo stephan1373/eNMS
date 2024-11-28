@@ -66,10 +66,10 @@ function initLeaflet() {
   layer = L.tileLayer(settings.layers[settings.tile_layer]);
   map
     .addLayer(layer)
-    .on("click", function () {
+    .on("click", function() {
       selectedObject = null;
     })
-    .on("contextmenu", function () {
+    .on("contextmenu", function() {
       if (!selectedObject) {
         $(".menu").hide();
         $(".geo-menu").show();
@@ -106,8 +106,8 @@ function createNode(node) {
       markerType == "Circle Marker"
         ? L.circleMarker([node.latitude, node.longitude])
         : markerType == "Circle"
-          ? L.circle([node.latitude, node.longitude])
-          : L.marker([node.latitude, node.longitude]);
+        ? L.circle([node.latitude, node.longitude])
+        : L.marker([node.latitude, node.longitude]);
   } catch (err) {
     return console.error(`Device '${node.name}' couldn't be loaded (${err})`);
   }
@@ -121,10 +121,10 @@ function createNode(node) {
   marker.bindTooltip(node["name"], { permanent: false });
   marker.node_id = node.id;
   markersArray.push(marker);
-  marker.on("click", function () {
+  marker.on("click", function() {
     leftClickBinding("device", node.id, node.type == "site");
   });
-  marker.on("contextmenu", function () {
+  marker.on("contextmenu", function() {
     $(".menu").hide();
     $(`.rc-${node.type}-menu`).show();
     selectedObject = node;
@@ -150,7 +150,7 @@ function createLink(link) {
   });
   polylinesObjects[link.id] = polyline;
   polyline.link_id = link.id;
-  polyline.on("click", function () {
+  polyline.on("click", function() {
     leftClickBinding("link", this.link_id, link.type == "bundle");
   });
   polyline.on("contextmenu", () => linkRightClickBinding(link));
@@ -259,8 +259,8 @@ function displayNetwork({ direction, noAlert, withCluster } = {}) {
     direction == "left"
       ? history[historyPosition - 1]
       : direction == "right"
-        ? history[historyPosition + 1]
-        : $("#current-pool").val();
+      ? history[historyPosition + 1]
+      : $("#current-pool").val();
   localStorage.setItem(page, currentPath);
   if (
     (direction == "left" && historyPosition == 0) ||
@@ -269,7 +269,9 @@ function displayNetwork({ direction, noAlert, withCluster } = {}) {
     return;
   }
   moveHistory(currentPath, direction);
-  $("#current-pool").val(currentPath).selectpicker("refresh");
+  $("#current-pool")
+    .val(currentPath)
+    .selectpicker("refresh");
   for (let type of ["device", "link"]) {
     let form = serializeForm(`#${type}_filtering-form`, `${type}_filtering`, true);
     if (currentPath) form.intersect = { type: "pool", id: currentPath };
@@ -280,7 +282,7 @@ function displayNetwork({ direction, noAlert, withCluster } = {}) {
   call({
     url: "/view_filtering",
     data: data,
-    callback: function (network) {
+    callback: function(network) {
       processNetwork(network);
       network.devices.map(createNode);
       network.links.map(createLink);
@@ -322,7 +324,7 @@ function showFilteredTable(id, type, constraints) {
     id: id,
     title: `Colocated ${type}s`,
     tableId: `${type}-${id}`,
-    callback: function () {
+    callback: function() {
       // eslint-disable-next-line new-cap
       new tables[type](id, constraints);
     },
@@ -332,7 +334,7 @@ function showFilteredTable(id, type, constraints) {
 export function initVisualization() {
   $("body").contextMenu({
     menuSelector: "#contextMenu",
-    menuSelected: function (selectedMenu) {
+    menuSelected: function(selectedMenu) {
       const row = selectedMenu.text();
       action[row](selectedObject);
       selectedObject = null;
@@ -347,7 +349,7 @@ export function initVisualization() {
   });
   call({
     url: `/get_visualization_pools/${page}`,
-    callback: function (pools) {
+    callback: function(pools) {
       pools.sort((a, b) => a.name.localeCompare(b.name));
       for (let i = 0; i < pools.length; i++) {
         $("#current-pool").append(
@@ -365,7 +367,7 @@ export function initVisualization() {
         }
       }
       $("#current-pool")
-        .on("change", function () {
+        .on("change", function() {
           displayNetwork();
         })
         .selectpicker({
@@ -380,9 +382,15 @@ export function initVisualization() {
 function clearSearch() {
   for (const table of ["device", "link"]) {
     $(`.search-input-${table},.search-list-${table}`).val("");
-    $(".search-relation-dd").val("any").selectpicker("refresh");
-    $(".search-relation").val([]).trigger("change");
-    $(`.search-select-${table}`).val("inclusion").selectpicker("refresh");
+    $(".search-relation-dd")
+      .val("any")
+      .selectpicker("refresh");
+    $(".search-relation")
+      .val([])
+      .trigger("change");
+    $(`.search-select-${table}`)
+      .val("inclusion")
+      .selectpicker("refresh");
   }
   displayNetwork({ noAlert: true });
   notify("Search parameters cleared.", "success", 5);

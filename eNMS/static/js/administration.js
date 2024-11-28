@@ -48,7 +48,7 @@ function displayFiles() {
       </form>`,
     tableId: "file",
     title: "Files",
-    callback: function () {
+    callback: function() {
       // eslint-disable-next-line new-cap
       new tables["file"]();
     },
@@ -75,7 +75,10 @@ export function displayFolderPath() {
 
 function enterFolder({ folder, path, parent }) {
   if (parent) {
-    folderPath = folderPath.split("/").slice(0, -1).join("/");
+    folderPath = folderPath
+      .split("/")
+      .slice(0, -1)
+      .join("/");
   } else {
     folderPath = path || folder ? path || `${folderPath}/${folder}` : "";
   }
@@ -92,7 +95,7 @@ function enterFolder({ folder, path, parent }) {
 function downloadProfilingData() {
   call({
     url: "/get_profiling_data",
-    callback: function (data) {
+    callback: function(data) {
       downloadFile("profiling_data", JSON.stringify(data, null, 2), "json");
     },
   });
@@ -101,7 +104,7 @@ function downloadProfilingData() {
 function showChangelogDiff(id) {
   call({
     url: `/get_changelog_history/${id}`,
-    callback: function (changelog) {
+    callback: function(changelog) {
       openPanel({
         name: "changelog_diff",
         content: `
@@ -143,12 +146,12 @@ function showChangelogDiff(id) {
           </div>`,
         title: "Result",
         id: id,
-        callback: function () {
+        callback: function() {
           const editor = initCodeMirror(`changelog-content-${id}`, "network");
           if (changelog?.history?.properties) {
             $(`#changelog-properties-${id}`)
               .append(`<option value="full_content">Full Content</option>`)
-              .on("change", function () {
+              .on("change", function() {
                 let value = changelog.content;
                 if ($(`#changelog-properties-${id}`).val() != "full_content") {
                   const valueType = $("#diff-value-type").prop("checked")
@@ -164,7 +167,7 @@ function showChangelogDiff(id) {
                 on: "Old Value",
                 off: "New Value",
               })
-              .change(function () {
+              .change(function() {
                 $(`#changelog-properties-${id}`).trigger("change");
               });
             for (const property of Object.keys(changelog.history.properties)) {
@@ -178,7 +181,7 @@ function showChangelogDiff(id) {
           editor.refresh();
           $(`#compare-changelog-${id}-btn`)
             .unbind("click")
-            .on("click", function () {
+            .on("click", function() {
               if ($(`#changelog-properties-${id}`).val() == "full_content") {
                 return notify("A specific property must be selected.", "error", 5);
               }
@@ -195,16 +198,16 @@ export function openDebugPanel() {
     name: "debug",
     title: "Debug Panel",
     size: "1200px 500px",
-    callback: function () {
+    callback: function() {
       call({
         url: "/load_debug_snippets",
-        callback: function (snippets) {
+        callback: function(snippets) {
           for (const name of Object.keys(snippets)) {
             $("#debug-snippets").append(`<option value="${name}">${name}</option>`);
           }
           $("#debug-snippets")
             .val("empty.py")
-            .on("change", function () {
+            .on("change", function() {
               const value = snippets[this.value];
               editors[undefined]["code"].setValue(value);
             })
@@ -219,7 +222,7 @@ function runDebugCode() {
   call({
     url: "/run_debug_code",
     form: "debug-form",
-    callback: function (result) {
+    callback: function(result) {
       $("#debug-output").val(result);
       notify("Code executed successfully.", "success", 5, true);
     },
@@ -229,7 +232,7 @@ function runDebugCode() {
 function getClusterStatus() {
   call({
     url: "/get_cluster_status",
-    callback: function () {
+    callback: function() {
       refreshTable("server");
       setTimeout(getClusterStatus, 15000);
     },
@@ -241,7 +244,7 @@ function migrationsExport() {
   call({
     url: "/migration_export",
     form: "migration-form",
-    callback: function () {
+    callback: function() {
       notify("Migration Export successful.", "success", 5, true);
     },
   });
@@ -250,7 +253,7 @@ function migrationsExport() {
 function scanFolder() {
   call({
     url: `/scan_folder/${folderPath.replace(/\//g, ">")}`,
-    callback: function () {
+    callback: function() {
       refreshTable("file");
       notify("Scan successful.", "success", 5, true);
     },
@@ -265,7 +268,7 @@ function showMigrationPanel() {
     callback: () => {
       call({
         url: "/get_migration_folders",
-        callback: function (folders) {
+        callback: function(folders) {
           let list = document.getElementById("versions");
           folders.forEach((item) => {
             let option = document.createElement("option");
@@ -281,7 +284,7 @@ function showMigrationPanel() {
 function revertChange(id) {
   call({
     url: `/revert_change/${id}`,
-    callback: function () {
+    callback: function() {
       notify("Changes reverted.", "success", 5, true);
     },
   });
@@ -292,7 +295,7 @@ function migrationsImport() {
   call({
     url: "/migration_import",
     form: "migration-form",
-    callback: function (result) {
+    callback: function(result) {
       notify(result, "success", 5, true);
     },
   });
@@ -304,7 +307,7 @@ function databaseDeletion() {
     url: "/database_deletion",
     title: "Database Deletion",
     form: "database_deletion-form",
-    callback: function () {
+    callback: function() {
       notify("Database Deletion done.", "success", 5, true);
       $("#database_deletion").remove();
     },
@@ -316,7 +319,7 @@ function oldInstancesDeletion() {
   call({
     url: "/old_instances_deletion",
     form: "old_instances_deletion-form",
-    callback: function () {
+    callback: function() {
       notify("Log Deletion done.", "success", 5, true);
       $("#old_instances_deletion").remove();
     },
@@ -326,7 +329,7 @@ function oldInstancesDeletion() {
 function getGitContent() {
   call({
     url: "/get_git_content",
-    callback: function () {
+    callback: function() {
       notify("Successfully pulled content from git.", "success", 5, true);
     },
   });
@@ -335,7 +338,7 @@ function getGitContent() {
 function editFile(id, filename, filepath) {
   call({
     url: `/edit_file/${filename}`,
-    callback: function (content) {
+    callback: function(content) {
       if (content.error) {
         refreshTable("file");
         return notify(content.error, "error", 5);
@@ -368,7 +371,7 @@ function saveFile(file) {
   call({
     url: `/save_file/${file}`,
     form: `file-content-form-${file}`,
-    callback: function () {
+    callback: function() {
       notify("File successfully saved.", "success", 5, true);
       $(`[id="file_editor-${file}"`).remove();
       refreshTable("file");
@@ -396,8 +399,8 @@ function showFileUploadPanel(folder) {
           notify("Files successfully uploaded.", "success", 5, true);
           setTimeout(() => refreshTable("file"), 500);
         },
-        init: function () {
-          this.on("addedfile", function (file) {
+        init: function() {
+          this.on("addedfile", function(file) {
             if (dropzone.files.slice(0, -1).some((f) => f.name == file.name)) {
               notify("There is already a file with the same name.", "error", 5);
               dropzone.removeFile(file);
@@ -406,7 +409,7 @@ function showFileUploadPanel(folder) {
         },
         timeout: settings.files.upload_timeout,
       });
-      $(`[id="dropzone-submit-${pathId}"]`).click(function () {
+      $(`[id="dropzone-submit-${pathId}"]`).click(function() {
         $(`[id="folder-${pathId}"]`).val(folder);
         dropzone.processQueue();
       });
@@ -430,7 +433,7 @@ function showProfile() {
       call({
         url: `/get/user/${user.id}`,
         data: { properties_only: true },
-        callback: function (user) {
+        callback: function(user) {
           for (const [page, endpoint] of Object.entries(rbac.all_pages)) {
             if (!user.is_admin && !user.pages.includes(page)) continue;
             const option = `<option value='${endpoint}'>${page}</option>`;
@@ -450,7 +453,7 @@ function saveProfile() {
   call({
     url: "/save_profile",
     form: `profile-form-${user.id}`,
-    callback: function () {
+    callback: function() {
       notify("Profile saved.", "success", 5, true);
       $(`#profile-${user.id}`).remove();
     },
@@ -460,7 +463,7 @@ function saveProfile() {
 export function showCredentialPanel(id) {
   const postfix = id ? `-${id}` : "";
   $(`#credential-subtype${postfix}`)
-    .change(function () {
+    .change(function() {
       if (this.value == "password") {
         $(`#credential-private_key-div${postfix}`).hide();
         $(`#credential-password-div${postfix}`).show();
@@ -475,7 +478,7 @@ export function showCredentialPanel(id) {
 function showServerTime() {
   call({
     url: "/get_time",
-    callback: function (time) {
+    callback: function(time) {
       $("#server-time").html(`Server Time: ${time}`);
     },
   });
@@ -485,7 +488,7 @@ function updateDeviceRbac() {
   notify("RBAC Update Initiated.", "success", 5, true);
   call({
     url: "/update_device_rbac",
-    callback: function () {
+    callback: function() {
       notify("RBAC Update successful", "success", 5, true);
     },
   });
