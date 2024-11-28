@@ -119,6 +119,9 @@ Version 5.2.0: Various Improvements
 - Fix bug 'Object of type datetime is not JSON serializable' when upadting a local file tracked by the
   "monitor_filesystem" function
   Commit: 3e96705dde1869179f0c3e1997949d13479008e7
+- Always consider min refresh rate value when refreshing workflow (previously hardcoded to 5000 in a few
+  places such as refreshService)
+  Commit: f27898da8fbf25a2cbbb5c9bceb6e68e39b3b5bb
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
