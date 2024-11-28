@@ -619,7 +619,8 @@ export function getServiceState(id, first) {
           localStorage.setItem("workflow_path", id);
           localStorage.setItem("workflow", JSON.stringify(result.service));
         }
-        setTimeout(() => getServiceState(id), 5000);
+        const minRefreshRate = automation.workflow.builder_refresh_rate.min;
+        setTimeout(() => getServiceState(id), minRefreshRate);
       } else {
         colorService(id, "#D2E5FF");
       }
@@ -811,7 +812,8 @@ export function getWorkflowState(periodic, first) {
       },
     });
   } else if (periodic) {
-    setTimeout(() => getWorkflowState(true), 5000);
+    const minRefreshRate = automation.workflow.builder_refresh_rate.min;
+    setTimeout(() => getWorkflowState(true), minRefreshRate);
   }
 }
 
