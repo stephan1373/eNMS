@@ -317,9 +317,9 @@ class File(AbstractBase):
         )
         if exists(self.full_path) and not kwargs.get("migration_import"):
             last_modified = datetime.strptime(ctime(getmtime(self.full_path)), "%c")
-            self.last_modified = last_modified
+            self.last_modified = str(last_modified)
         if not kwargs.get("migration_import"):
-            self.last_updated = datetime.strptime(ctime(), "%c")
+            self.last_updated = str(datetime.strptime(ctime(), "%c"))
         self.status = "Updated"
 
     def delete(self):
