@@ -116,6 +116,9 @@ Version 5.2.0: Various Improvements
     and to limit the number of results.
   - Add a troubleshooting snippet to empty the profiling data
   - Add mechanism in admin panel to download the profiling data as .json file
+- Fix bug 'Object of type datetime is not JSON serializable' when upadting a local file tracked by the
+  "monitor_filesystem" function
+  Commit: 3e96705dde1869179f0c3e1997949d13479008e7
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
