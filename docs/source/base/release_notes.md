@@ -114,9 +114,9 @@ Version 5.2.0: Various Improvements
   - Add a troubleshooting snippet to display the results for each function, with the ability to filter
     per type (count, average time, or combined time), class (e.g Controller, Environment, Runner, etc)
     and to limit the number of results.
-  - Add mechanism in admin panel to
-    - Download the profiling data as .json file
- 
+  - Add a troubleshooting snippet to empty the profiling data
+  - Add mechanism in admin panel to download the profiling data as .json file
+
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
   - Normal search versus regex-based search
