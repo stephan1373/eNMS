@@ -122,6 +122,8 @@ Version 5.2.0: Various Improvements
 - Always consider min refresh rate value when refreshing workflow (previously hardcoded to 5000 in a few
   places such as refreshService)
   Commit: f27898da8fbf25a2cbbb5c9bceb6e68e39b3b5bb
+- Fix prettier linting configuration and lint all files with prettier
+  Commit: 073c63625995701825d81d97d76aa305bcfa4f9a
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
