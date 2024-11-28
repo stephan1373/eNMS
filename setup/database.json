@@ -127,8 +127,24 @@
       "users",
       "logs"
     ],
-    "file": ["id", "filename", "folder_path", "full_path", "status", "logs", "folder_id"],
-    "folder": ["id", "filename", "folder_path", "full_path", "status", "logs", "folder_id"],
+    "file": [
+      "id",
+      "filename",
+      "folder_path",
+      "full_path",
+      "status",
+      "logs",
+      "folder_id"
+    ],
+    "folder": [
+      "id",
+      "filename",
+      "folder_path",
+      "full_path",
+      "status",
+      "logs",
+      "folder_id"
+    ],
     "link": [
       "id",
       "pools",
