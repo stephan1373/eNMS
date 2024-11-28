@@ -6,7 +6,7 @@
     "git_repository": "git@github.com:afourmy/gitpython-test.git",
     "max_content_length": 104857600,
     "plugin_path": "eNMS/plugins",
-    "profiling": true,
+    "profiling": false,
     "session_timeout_minutes": 30,
     "startup_migration": "examples",
     "theme": "default",
