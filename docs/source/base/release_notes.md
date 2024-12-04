@@ -124,6 +124,8 @@ Version 5.2.0: Various Improvements
   Commit: f27898da8fbf25a2cbbb5c9bceb6e68e39b3b5bb
 - Fix prettier linting configuration and lint all files with prettier
   Commit: 073c63625995701825d81d97d76aa305bcfa4f9a
+- Improve how errors in user code are returned in workflow logs and results
+  - In Python Snippet Services: Commit 1215ca90f3cbf2587c8312bf9cb680ef8cf2919f
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
