@@ -127,6 +127,7 @@ Version 5.2.0: Various Improvements
 - Improve how errors in user code are returned in workflow logs and results
   - In Python Snippet Services: Commit 1215ca90f3cbf2587c8312bf9cb680ef8cf2919f
   - In substitions / eval (python field and "{{ }}" queries): Commit ece3355fd6ebbf08b36547aee6cba72517c820d5
+- Set rbac to None in workflow builder "get_all_results" to bypass rbac (PR)
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
