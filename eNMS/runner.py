@@ -1131,7 +1131,7 @@ class Runner(vs.TimingMixin):
         return recursive_search(self.main_run)
 
     def get_all_results(self):
-        return db.fetch_all("result", parent_runtime=self.parent_runtime)
+        return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
 
     @staticmethod
     def _import(module, *args, **kwargs):
