@@ -127,6 +127,15 @@ class Server(Flask):
         def not_found_error(error):
             return render_template("error.html", error=404), 404
 
+    def log_user(self, user):
+        if isinstance(user, str):
+            user = db.fetch("user", name=user, rbac=None)
+        login_user(user, remember=False)
+        user.last_login = vs.get_time()[:-7]
+        db.session.commit()
+        session.permanent = True
+        env.log("info", f"USER '{user}' logged in", logger="security")
+
     @staticmethod
     def process_requests(function):
         @wraps(function)
@@ -221,23 +230,17 @@ class Server(Flask):
         @self.process_requests
         def login():
             if request.method == "POST":
-                kwargs, success = request.form.to_dict(), False
+                kwargs = request.form.to_dict()
                 username = kwargs["username"]
                 try:
                     user = env.authenticate_user(**kwargs)
+                    if vs.settings["authentication"]["duo"]["enabled"]:
+                        env.duo_client.health_check()
+                        state = env.duo_client.generate_state()
+                        session.update({"state": state, "username": username})
+                        return redirect(env.duo_client.create_auth_url(username, state))
                     if user:
-                        login_user(user, remember=False)
-                        user.last_login = vs.get_time()[:-7]
-                        db.session.commit()
-                        session.permanent = True
-                        success, log = True, f"USER '{username}' logged in"
-                    else:
-                        log = f"Authentication failed for user '{username}'"
-                except Exception:
-                    log = f"Authentication error for user '{username}' ({format_exc()})"
-                finally:
-                    env.log("info" if success else "warning", log, logger="security")
-                    if success:
+                        self.log_user(user)
                         url = url_for("blueprint.route", page=current_user.landing_page)
                         if "next_url" in request.args:
                             url = request.args.get("next_url")
@@ -245,10 +248,33 @@ class Server(Flask):
                                 abort(404)
                         return redirect(url)
                     else:
-                        abort(403)
+                        log = f"Authentication failed for user '{username}'"
+                        env.log("warning", log, logger="security")
+                except Exception:
+                    log = f"Authentication error for user '{username}' ({format_exc()})"
+                    env.log("error", log, logger="security")
+                abort(403)
             if not current_user.is_authenticated:
                 login_form = vs.form_class["login"](request.form)
                 return render_template("login.html", login_form=login_form)
+            return redirect(url_for("blueprint.route", page=current_user.landing_page))
+
+        @blueprint.route("/duo-callback")
+        def duo_callback():
+            if (
+                "username" not in session
+                or "state" not in session
+                or request.args.get("state") != session["state"]
+            ):
+                abort(403)
+            code, username = request.args.get("duo_code"), session["username"]
+            try:
+                env.duo_client.exchange_authorization_code_for_2fa_result(code, username)
+                self.log_user(username)
+            except Exception:
+                log = f"DUO Authentication error for user '{username}' ({format_exc()})"
+                env.log("error", log, logger="security")
+                abort(403)
             return redirect(url_for("blueprint.route", page=current_user.landing_page))
 
         @blueprint.route("/dashboard")
