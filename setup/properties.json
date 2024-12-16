@@ -1165,6 +1165,13 @@
         "html": true
       },
       {
+        "data": "runs",
+        "title": "Runs",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
         "data": "buttons",
         "width": "230px",
         "orderable": false,

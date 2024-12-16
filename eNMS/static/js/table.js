@@ -1420,6 +1420,9 @@ tables.task = class TaskTable extends Table {
         '${model}', ${row.instance}, {parent: '${this.id}', from: 'tasks',
         to: '${model}s'})">${model.charAt(0).toUpperCase() + model.slice(1)}s</a></b>`;
     }
+    row["runs"] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
+      'run', ${row.instance}, {parent: '${this.id}', from: 'task',
+      to: 'runs'})">Runs</a></b>`;
     return row;
   }
 

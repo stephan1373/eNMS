@@ -405,7 +405,7 @@ class Run(AbstractBase):
     start_service_id = db.Column(Integer, ForeignKey("service.id", ondelete="SET NULL"))
     start_service = relationship("Service", foreign_keys="Run.start_service_id")
     task_id = db.Column(Integer, ForeignKey("task.id", ondelete="SET NULL"))
-    task = relationship("Task", foreign_keys="Run.task_id")
+    task = relationship("Task", back_populates="runs")
     task_name = association_proxy("task", "name")
     worker_id = db.Column(Integer, ForeignKey("worker.id"))
     worker = relationship("Worker", back_populates="runs")
@@ -537,6 +537,7 @@ class Task(AbstractBase):
         "Device", secondary=db.task_device_table, back_populates="tasks"
     )
     pools = relationship("Pool", secondary=db.task_pool_table, back_populates="tasks")
+    runs = relationship("Run", back_populates="task")
     logs = relationship("Changelog", back_populates="task")
     service_id = db.Column(Integer, ForeignKey("service.id"))
     service = relationship("Service", back_populates="tasks")
