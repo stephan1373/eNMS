@@ -131,6 +131,7 @@ Version 5.2.0: Various Improvements
 - Add support for Duo Authentication
   - Configuration in settings.json > "authentication" > "duo" (client ID, host, redirect URI)
   - Secret configured via "DUO_SECRET" environment variable
+- Add 'Runs' link to run relation table in task table
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
