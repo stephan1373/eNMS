@@ -46,6 +46,11 @@ try:
 except ImportError as exc:
     warn(f"Couldn't import tacacs_plus module ({exc})")
 
+try:
+    from duo_universal.client import Client as DuoClient
+except ImportError as exc:
+    warn(f"Couldn't import duo_universal module ({exc})")
+
 from eNMS.database import db
 from eNMS.variables import vs
 
@@ -184,6 +189,11 @@ class Environment(vs.TimingMixin):
                 )
         except NameError as exc:
             warn(f"Module missing ({exc})")
+        if vs.settings["authentication"]["duo"]["enabled"]:
+            self.duo_client = DuoClient(
+                client_secret=getenv("DUO_SECRET"),
+                **vs.settings["authentication"]["duo"]["config"]
+            )
 
     def init_connection_pools(self):
         self.request_session = RequestSession()
