@@ -128,6 +128,9 @@ Version 5.2.0: Various Improvements
   - In Python Snippet Services: Commit 1215ca90f3cbf2587c8312bf9cb680ef8cf2919f
   - In substitions / eval (python field and "{{ }}" queries): Commit ece3355fd6ebbf08b36547aee6cba72517c820d5
 - Set rbac to None in workflow builder "get_all_results" to bypass rbac (PR)
+- Add support for Duo Authentication
+  - Configuration in settings.json > "authentication" > "duo" (client ID, host, redirect URI)
+  - Secret configured via "DUO_SECRET" environment variable
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -147,6 +150,7 @@ Tests:
   everything is properly created / duplicated. Compare workflow duplication time pre and post release
 - Test performance of a workflow with DxD run method and a single python snippet service. Compare 
   performance pre and post release (should be faster because of the neighbors SQL query)
+- Test authentication (with and without Duo)
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
