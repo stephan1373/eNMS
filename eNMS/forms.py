@@ -1056,6 +1056,7 @@ class ServiceForm(BaseForm):
 class SessionForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="session")
+    id = HiddenField()
     timestamp = StringField("Timestamp")
     username = StringField("User")
     content = StringField("Content")
