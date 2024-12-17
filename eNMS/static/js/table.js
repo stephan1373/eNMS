@@ -1826,6 +1826,11 @@ tables.session = class SessionTable extends Table {
             ><span class="glyphicon glyphicon-list"></span
           ></button>
         </li>
+        <li>
+          <button type="button" class="btn btn-sm btn-primary"
+          onclick="eNMS.base.showInstancePanel('session', '${row.id}')"
+          data-tooltip="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+        </li>
       </ul>`,
     ];
   }
