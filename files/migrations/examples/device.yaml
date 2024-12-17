@@ -14,7 +14,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.077593s"
   "last_configuration_failure": "2022-04-18 09:22:24.879569"
   "last_configuration_runtime": "2022-04-18 09:24:51.560542"
@@ -140,7 +140,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.629358s"
   "last_configuration_failure": "2023-05-22 15:27:28.409305"
   "last_configuration_runtime": "2023-05-22 16:58:08.433431"
@@ -203,7 +203,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.498667s"
   "last_configuration_failure": "2024-05-14 06:47:00.584671"
   "last_configuration_runtime": "2024-05-14 06:50:09.418217"
@@ -268,7 +268,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.732281s"
   "last_configuration_failure": "2023-05-22 15:28:01.300812"
   "last_configuration_runtime": "2023-05-22 16:58:06.234369"
@@ -394,7 +394,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.33051s"
   "last_configuration_failure": "2023-05-22 15:29:09.592255"
   "last_configuration_runtime": "2023-05-22 16:58:35.758810"
@@ -457,7 +457,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.327075s"
   "last_configuration_failure": "2023-05-22 15:28:37.920376"
   "last_configuration_runtime": "2023-05-22 16:58:32.446442"
@@ -520,7 +520,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.479185s"
   "last_configuration_failure": "2023-05-22 15:31:31.954024"
   "last_configuration_runtime": "2023-05-22 16:58:31.047182"
@@ -583,7 +583,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "optical_switch"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.295399s"
   "last_configuration_failure": "2023-05-22 15:33:06.259717"
   "last_configuration_runtime": "2023-05-22 16:58:36.782356"
@@ -772,7 +772,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.73253s"
   "last_configuration_failure": "2023-05-22 15:33:17.392502"
   "last_configuration_runtime": "2023-05-22 16:59:27.796215"
@@ -835,7 +835,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.244263s"
   "last_configuration_failure": "2023-05-22 15:27:30.141551"
   "last_configuration_runtime": "2023-05-22 16:58:24.334374"
@@ -962,7 +962,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.001161s"
   "last_configuration_failure": "2023-05-22 15:34:17.479751"
   "last_configuration_runtime": "2023-05-22 16:59:34.391569"
@@ -1025,7 +1025,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.997774s"
   "last_configuration_failure": "2023-05-22 15:34:16.321139"
   "last_configuration_runtime": "2023-05-22 16:58:06.099314"
@@ -1088,7 +1088,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.988973s"
   "last_configuration_failure": "2023-05-22 15:32:25.138974"
   "last_configuration_runtime": "2023-05-22 16:59:34.481183"
@@ -1151,7 +1151,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.426556s"
   "last_configuration_failure": "2023-05-22 15:28:22.492833"
   "last_configuration_runtime": "2023-05-22 16:59:20.623527"
@@ -1214,7 +1214,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "1.344992s"
   "last_configuration_failure": "2023-05-22 15:28:36.802586"
   "last_configuration_runtime": "2023-05-22 16:59:16.171227"
@@ -4112,7 +4112,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.302634s"
   "last_configuration_failure": "2023-05-22 15:32:23.496155"
   "last_configuration_runtime": "2023-05-22 16:58:38.145913"
@@ -4175,7 +4175,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "Never"
   "last_configuration_failure": "Never"
   "last_configuration_runtime": "Never"
@@ -4238,7 +4238,7 @@
   "down": ! "false"
   "gateways": []
   "icon": "router"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "2.155573s"
   "last_configuration_failure": "2022-04-18 09:22:24.067631"
   "last_configuration_runtime": "2022-04-18 09:24:53.652023"
@@ -4528,7 +4528,7 @@
   "gateways":
   - "Gateway 1"
   "icon": "antenna"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "4.447091s"
   "last_configuration_failure": "2023-05-22 15:30:07.256815"
   "last_configuration_runtime": "2023-05-22 16:58:26.506616"
@@ -4766,7 +4766,7 @@
   - "Gateway 2"
   - "Gateway 3"
   "icon": "antenna"
-  "ip_address": "192.168.56.50"
+  "ip_address": "192.168.56.51"
   "last_configuration_duration": "9.071588s"
   "last_configuration_failure": "2023-05-22 15:30:21.289966"
   "last_configuration_runtime": "2023-05-22 16:59:20.914460"
