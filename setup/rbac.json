@@ -343,6 +343,9 @@
     "server": {
       "rbac_read": "Read"
     },
+    "session": {
+      "rbac_read": "Read"
+    },
     "service": {
       "rbac_read": "Read",
       "rbac_edit": "Edit",
