@@ -17,6 +17,7 @@
   "secret_access": []
   "server_access": []
   "service_access": []
+  "session_access": []
   "task_access": []
   "type": "group"
   "users":
@@ -43,6 +44,7 @@
   "secret_access": []
   "server_access": []
   "service_access": []
+  "session_access": []
   "task_access": []
   "type": "group"
   "users":
@@ -90,6 +92,8 @@
   - "/search_form"
   - "/server_table"
   - "/service_table"
+  - "/session_log_form"
+  - "/session_table"
   - "/network_table"
   - "/table_form"
   - "/task_table"
@@ -201,6 +205,7 @@
   "pages":
   - "Files"
   - "Changelog"
+  - "Sessions"
   - "Servers"
   - "Workers"
   - "Secrets"
@@ -253,6 +258,7 @@
   - "/get_result"
   - "/get_view_topology"
   - "/get_service_state"
+  - "/get_session_log"
   - "/get_time"
   - "/get_top_level_instances"
   - "/get_visualization_pools"
@@ -296,6 +302,7 @@
   "secret_access": []
   "server_access": []
   "service_access": []
+  "session_access": []
   "task_access": []
   "type": "group"
   "users":
@@ -343,6 +350,8 @@
   - "/search_form"
   - "/server_table"
   - "/service_table"
+  - "/session_log_form"
+  - "/session_table"
   - "/network_table"
   - "/table_form"
   - "/task_table"
@@ -452,6 +461,7 @@
   "pages":
   - "Files"
   - "Changelog"
+  - "Sessions"
   - "Servers"
   - "Workers"
   - "Secrets"
@@ -504,6 +514,7 @@
   - "/get_result"
   - "/get_view_topology"
   - "/get_service_state"
+  - "/get_session_log"
   - "/get_time"
   - "/get_top_level_instances"
   - "/get_visualization_pools"
@@ -547,6 +558,7 @@
   "secret_access": []
   "server_access": []
   "service_access": []
+  "session_access": []
   "task_access": []
   "type": "group"
   "users":
