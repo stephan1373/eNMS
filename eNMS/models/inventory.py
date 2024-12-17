@@ -367,6 +367,10 @@ class Session(AbstractBase):
     )
     device_name = association_proxy("device", "name")
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.owners = [db.fetch("user", name=self.username)]
+
     def table_properties(self, **kwargs):
         properties = super().table_properties(**kwargs)
         search_properties = super().table_search(("content",), **kwargs)
