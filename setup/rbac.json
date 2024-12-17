@@ -25,7 +25,7 @@
         },
         "Sessions": {
           "endpoint": "/session_table",
-          "rbac": "admin"
+          "rbac": "access"
         }
       }
     },
@@ -174,8 +174,8 @@
     "/search_form": "access",
     "/server_table": "access",
     "/service_table": "access",
-    "/session_log_form": "admin",
-    "/session_table": "admin",
+    "/session_log_form": "access",
+    "/session_table": "access",
     "/network_table": "access",
     "/table_form": "access",
     "/task_table": "access",
@@ -233,7 +233,7 @@
     "/get_runtimes": "all",
     "/get_view_topology": "access",
     "/get_service_state": "access",
-    "/get_session_log": "admin",
+    "/get_session_log": "access",
     "/get_time": "access",
     "/get_top_level_instances": "access",
     "/get_visualization_pools": "access",
@@ -311,7 +311,7 @@
     "update_device_rbac": "access"
   },
   "admin_models": {
-    "read": ["session"],
+    "read": [],
     "edit": ["group", "server", "session", "user", "worker"]
   },
   "rbac_models": {
