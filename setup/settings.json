@@ -175,7 +175,7 @@
   },
   "ssh": {
     "bypass_key_prompt": true,
-    "command": "python3 -m flask run -h 0.0.0.0",
+    "command": "/home/afourmy/venvs/venv/bin/python3 -m flask run -h 0.0.0.0",
     "credentials": {
       "custom": true,
       "named": true,
