@@ -1057,9 +1057,8 @@ class SessionForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="session")
     id = HiddenField()
-    timestamp = StringField("Timestamp")
-    username = StringField("User")
-    content = StringField("Content")
+    timestamp = StringField("Timestamp", render_kw={"readonly": True})
+    username = StringField("User", render_kw={"readonly": True})
 
 
 class TaskForm(BaseForm):

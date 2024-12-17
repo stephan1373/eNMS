@@ -1553,7 +1553,7 @@
       },
       {
         "data": "buttons",
-        "width": "40px",
+        "width": "60px",
         "orderable": false,
         "export": false
       }
