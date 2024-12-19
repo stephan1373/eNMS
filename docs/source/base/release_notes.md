@@ -132,6 +132,11 @@ Version 5.2.0: Various Improvements
   - Configuration in settings.json > "authentication" > "duo" (client ID, host, redirect URI)
   - Secret configured via "DUO_SECRET" environment variable
 - Add 'Runs' link to run relation table in task table
+- Add RBAC to sessions
+  - Previously "admin only", sessions are now RBAC controlled ("read" access only)
+  - By default, the user initiating a session is set as owner of the session object, and the "Read"
+    access field is left empty (no groups)
+  - Add an edit button to the session panel to edit RBAC (the other fields are "read only")
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
