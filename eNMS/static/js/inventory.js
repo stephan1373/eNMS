@@ -207,7 +207,7 @@ function updatePools(pool) {
 function showSessionLog(sessionId) {
   call({
     url: `/get_session_log/${sessionId}`,
-    callback: (log) => {
+    callback: ([log, device]) => {
       if (!log) {
         notify(
           "No log stored (e.g device unreachable or authentication error).",
@@ -219,7 +219,7 @@ function showSessionLog(sessionId) {
         openPanel({
           name: "session_log",
           content: `<div id="content-${sessionId}" style="height:100%"></div>`,
-          title: "Session log",
+          title: `Session Log - Device '${device}'`,
           id: sessionId,
           callback: function() {
             const editor = initCodeMirror(`content-${sessionId}`, "network");

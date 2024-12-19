@@ -725,7 +725,8 @@ class Controller(vs.TimingMixin):
         }
 
     def get_session_log(self, session_id):
-        return db.fetch("session", id=session_id).content
+        session = db.fetch("session", id=session_id)
+        return session.content, session.device_name
 
     def get_network_state(self, path, **kwargs):
         network = db.fetch("network", id=path.split(">")[-1], allow_none=True)
