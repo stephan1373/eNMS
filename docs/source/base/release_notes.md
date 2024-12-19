@@ -157,6 +157,7 @@ Tests:
 - Test performance of a workflow with DxD run method and a single python snippet service. Compare 
   performance pre and post release (should be faster because of the neighbors SQL query)
 - Test authentication (with and without Duo)
+- Test weh SSH sessions, specifically RBAC access for non-admin users
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
