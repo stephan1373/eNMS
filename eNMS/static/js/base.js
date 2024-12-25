@@ -1570,9 +1570,6 @@ $(document).ready(function() {
   detectUserInactivity();
   createTooltips();
   createNotificationBanner();
-});
-
-$(window).on("load", function() {
   NProgress.done();
 });
 
