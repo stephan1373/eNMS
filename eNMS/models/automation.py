@@ -487,6 +487,13 @@ class Run(AbstractBase):
         except (KeyError, TypeError):
             return "N/A"
 
+    def table_properties(self, **kwargs):
+        url = ">".join(
+            db.fetch("service", id=id).persistent_id
+            for id in self.path.split(">")
+        )
+        return {"url": url, **super().table_properties(**kwargs)}
+
     def run(self):
         worker = db.factory(
             "worker",
