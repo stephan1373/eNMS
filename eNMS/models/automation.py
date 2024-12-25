@@ -1,4 +1,4 @@
-from base64 import b64encode
+from base64 import urlsafe_b64encode
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
@@ -135,7 +135,7 @@ class Service(AbstractBase):
         kwargs.pop("status", None)
         super().__init__(**kwargs)
         if not self.persistent_id:
-            self.persistent_id = b64encode(urandom(8)).decode("utf-8").rstrip("=")
+            self.persistent_id = urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
 
     @property
     def base_properties(self):
