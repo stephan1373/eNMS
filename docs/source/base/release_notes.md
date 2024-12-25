@@ -137,6 +137,8 @@ Version 5.2.0: Various Improvements
   - By default, the user initiating a session is set as owner of the session object, and the "Read"
     access field is left empty (no groups)
   - Add an edit button to the session panel to edit RBAC (the other fields are "read only")
+- Fix NProgress bug ("done()" called before "start()": loading never ends)
+  Commit: 65c0972610f39871f06c5707b540669468bd0844
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
