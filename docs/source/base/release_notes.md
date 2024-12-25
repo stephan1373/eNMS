@@ -17,7 +17,8 @@ Version 5.2.0: Various Improvements
   being imported into the existing ones
 - Store the positions of network nodes at network level
 - Make workflow link persistent across releases (with a new property "persistent_id" different
-  from the database ID and exported in the migration files)
+  from the database ID and exported in the migration files / generated with urlsafe_b64encode
+  so the persistent ID can be safely used in URL)
 - Add options for all fields accepting python code to automatically format the code with black.
   Move black to requirements.txt (from requirements_dev.txt)
 - Remove "refetch_after_process_fork" option (always refetch after process fork)
