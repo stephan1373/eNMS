@@ -1038,13 +1038,13 @@ tables.service = class ServiceTable extends Table {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
     if (row.type == "workflow") {
-      row.name = `<b><a href="/workflow_builder/${row.path}">${sanitize(
+      row.name = `<b><a href="/workflow_builder/${row.url}">${sanitize(
         row.name
       )}</a></b>`;
-    } else if (!row.shared && row.workflow_path) {
+    } else if (row.url) {
       row.name =
         row.name.substring(0, row.name.lastIndexOf(row.scoped_name)) +
-        `<b><a href="/workflow_builder/${row.workflow_path}">${sanitize(
+        `<b><a href="/workflow_builder/${row.url}">${sanitize(
           row.scoped_name
         )}</a></b>`;
     }
