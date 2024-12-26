@@ -143,6 +143,10 @@ Version 5.2.0: Various Improvements
 - Add Jinja2 support to the Netmiko Configuration Service
   - Commit: 4caed99b575aa35b06e7c2e0a6e0ee096e7db81c
   - Add regression workflow "(R) Netmiko Configuration with Jinja2 template"
+- Make 'load_known_host_keys' a property in automation.json instead of a service property
+  to remove one of the deviations
+  - Property can be configured in automation.json > "file_transfer" > "load_known_host_keys" (default: false)
+  - Commit: 577f16d1830c7dba1c94e4f3285faa74d0319051
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
