@@ -1,3 +1,4 @@
+from jinja2 import StrictUndefined, Template
 from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from wtforms.widgets import TextArea
 
