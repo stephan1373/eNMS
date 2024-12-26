@@ -140,6 +140,9 @@ Version 5.2.0: Various Improvements
   - Add an edit button to the session panel to edit RBAC (the other fields are "read only")
 - Fix NProgress bug ("done()" called before "start()": loading never ends)
   Commit: 65c0972610f39871f06c5707b540669468bd0844
+- Add Jinja2 support to the Netmiko Configuration Service
+  - Commit: 4caed99b575aa35b06e7c2e0a6e0ee096e7db81c
+  - Add regression workflow "(R) Netmiko Configuration with Jinja2 template"
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
