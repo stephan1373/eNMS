@@ -52384,12 +52384,26 @@
         then\r\nremove them. We check that these VRFs were properly\r\nconfigured
         and deleted with Netmiko commands services."
       "positions":
-      - ! "246"
-      - ! "-143"
+      - ! "162"
+      - ! "-192"
       "size": ! "14"
-  "last_modified": "2024-12-26 15:36:54.324706"
+    "555fa291-8d39-427c-ab4e-1c6a7177730c":
+      "alignment": "left"
+      "content": "Check that the VRF are\r\nconfigured on the router."
+      "positions":
+      - ! "-21"
+      - ! "-122"
+      "size": ! "14"
+    "7f1f2552-ad64-453e-b54c-625b1dcfffd5":
+      "alignment": "left"
+      "content": "Check that the VRF\r\nare not configured\r\non the router."
+      "positions":
+      - ! "-288"
+      - ! "217"
+      "size": ! "14"
+  "last_modified": "2024-12-26 15:45:18.327879"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2024-12-26 15:45:19.691858"
   "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -52422,17 +52436,20 @@
   "persistent_id": "Lx6t8GEo458"
   "positions":
     "[(R) Netmiko Configuration with Jinja2 template] Check VRF not configured":
-    - ! "0"
-    - ! "0"
+    - ! "-279"
+    - ! "141"
+    "[(R) Netmiko Configuration with Jinja2 template] Configure VRF":
+    - ! "-28"
+    - ! "-68"
     "[Shared] End":
     - ! "642"
     - ! "21"
     "[Shared] Start":
-    - ! "-220"
-    - ! "24"
+    - ! "-282"
+    - ! "-172"
   "postprocessing": ""
   "postprocessing_mode": "success"
-  "preprocessing": ""
+  "preprocessing": "set_var(\"vrf_list\", list(range(1, 5)), device=device.name)"
   "priority": ! "10"
   "rbac_edit": []
   "rbac_read": []
@@ -52449,13 +52466,15 @@
   "send_notification_method": "mail"
   "services":
   - "[(R) Netmiko Configuration with Jinja2 template] Check VRF not configured"
+  - "[(R) Netmiko Configuration with Jinja2 template] Configure VRF"
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "target_devices": []
+  "target_devices":
+  - "Washington"
   "target_pools": []
   "time_between_retries": ! "10"
   "type": "workflow"
@@ -52586,6 +52605,121 @@
   "update_target_pools": ! "false"
   "use_genie": ! "false"
   "use_textfsm": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "auth_timeout": ! "0.0"
+  "banner_timeout": ! "15.0"
+  "close_connection": ! "false"
+  "cmd_verify": ! "false"
+  "commit_configuration": ! "false"
+  "completion_time": ! "1"
+  "config_mode": ! "true"
+  "config_mode_command": ""
+  "conn_timeout": ! "10.0"
+  "connection_name": "default"
+  "content": "{%- for vrf in get_var(\"vrf_list\", device=device.name) -%}\r\nvrf
+    instance vrf-jinja-{{ vrf }}\r\n{% endfor %}"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creator": "admin"
+  "credential_type": "any"
+  "credentials": "device"
+  "custom_password": ""
+  "custom_username": ""
+  "default_uuid": "d44f8594-e513-4ae7-8985-8836c9c3f401"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "driver": "device"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "enable_mode": ! "true"
+  "exit_config_mode": ! "true"
+  "global_delay_factor": ! "0.1"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "jinja2_template": ! "true"
+  "last_modified": "2024-12-26 15:45:18.327879"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "[(R) Netmiko Configuration with Jinja2 template] Configure VRF"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": "EOS"
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "1pq3GBLCiig"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "read_timeout": ! "10.0"
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Configure VRF"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "shared": ! "false"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "start_new_connection": ! "false"
+  "strip_command": ! "false"
+  "strip_prompt": ! "false"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "netmiko_configuration_service"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
   "validation_condition": "none"
   "validation_method": "text"
   "validation_section": "results['result']"
