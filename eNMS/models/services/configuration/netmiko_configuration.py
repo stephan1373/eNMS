@@ -13,6 +13,7 @@ class NetmikoConfigurationService(ConnectionService):
     parent_type = "connection_service"
     id = db.Column(Integer, ForeignKey("connection_service.id"), primary_key=True)
     content = db.Column(db.LargeString)
+    jinja2_template = db.Column(Boolean, default=False)
     enable_mode = db.Column(Boolean, default=True)
     config_mode = db.Column(Boolean, default=False)
     driver = db.Column(db.SmallString)
@@ -31,7 +32,13 @@ class NetmikoConfigurationService(ConnectionService):
     __mapper_args__ = {"polymorphic_identity": "netmiko_configuration_service"}
 
     def job(self, run, device):
-        config = run.sub(run.content, locals())
+        local_variables = locals()
+        if self.jinja2_template:
+            config = Template(run.content, undefined=StrictUndefined).render(
+                {**local_variables, **run.global_variables(**local_variables)}
+            )
+        else:
+            config = run.sub(run.content, local_variables)
         log_config = run.safe_log(run.content, config)
         if run.dry_run:
             return {"configuration": log_config}
@@ -63,6 +70,11 @@ class NetmikoConfigurationForm(NetmikoForm):
     form_type = HiddenField(default="netmiko_configuration_service")
     config_mode = BooleanField("Config mode", default=True)
     content = StringField(widget=TextArea(), render_kw={"rows": 5}, substitution=True)
+    jinja2_template = BooleanField(
+        "Interpret Commands as Jinja2 Template",
+        default=False,
+        help="common/commands_jinja",
+    )
     commit_configuration = BooleanField()
     exit_config_mode = BooleanField(default=True)
     strip_prompt = BooleanField()
@@ -73,6 +85,7 @@ class NetmikoConfigurationForm(NetmikoForm):
         "Main Parameters": {
             "commands": [
                 "content",
+                "jinja2_template",
                 "commit_configuration",
                 "exit_config_mode",
                 "config_mode_command",
