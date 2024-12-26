@@ -31,7 +31,6 @@ class GenericFileTransferService(Service):
     source_file = db.Column(db.SmallString)
     destination_file = db.Column(db.SmallString)
     missing_host_key_policy = db.Column(Boolean, default=False)
-    load_known_host_keys = db.Column(Boolean, default=False)
     source_file_includes_globbing = db.Column(Boolean, default=False)
     max_transfer_size = db.Column(Integer, default=2**30)
     window_size = db.Column(Integer, default=2**30)
@@ -48,7 +47,7 @@ class GenericFileTransferService(Service):
         ssh_client = SSHClient()
         if run.missing_host_key_policy:
             ssh_client.set_missing_host_key_policy(AutoAddPolicy())
-        if run.load_known_host_keys:
+        if vs.automation["file_transfer"]["load_known_host_keys"]:
             ssh_client.load_system_host_keys()
         source = run.sub(run.source_file, locals())
         destination = run.sub(run.destination_file, locals())
@@ -93,7 +92,6 @@ class GenericFileTransferForm(ServiceForm):
     source_file = StringField(validators=[InputRequired()], substitution=True)
     destination_file = StringField(validators=[InputRequired()], substitution=True)
     missing_host_key_policy = BooleanField()
-    load_known_host_keys = BooleanField()
     source_file_includes_globbing = BooleanField("Source file includes glob pattern")
     max_transfer_size = IntegerField(default=2**30)
     window_size = IntegerField(default=2**30)

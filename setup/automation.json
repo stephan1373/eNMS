@@ -5,6 +5,9 @@
     "log_level": "warning",
     "raise_exception": false
   },
+  "file_transfer": {
+    "load_known_host_keys": false
+  },
   "napalm": {
     "getters": [
       ["get_arp_table", "ARP table"],
