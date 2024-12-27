@@ -504,18 +504,22 @@ function deleteSelection() {
 
 function openDeletionPanel() {
   if (!instance) return notify(`No ${type} has been created yet.`, "error", 5);
-  const nodeSelection = network.getSelectedNodes().length;
+  const nodes = network.getSelectedNodes();
+  const labelSelection = nodes.filter(node => typeof node === 'string').length;
+  const nodeSelection = nodes.filter(Number.isInteger).length;
   const edgeSelection = network.getSelectedEdges().length;
-  if (!nodeSelection && !edgeSelection) {
+  if (!nodeSelection && !edgeSelection && !labelSelection) {
     notify("Nothing has been selected for deletion.", "error", 5);
   } else {
     const edgeType = type == "network" ? "link" : "edge";
+    const nodeType = type == "network" ? "device" : "service";
     showConfirmationPanel({
       id: "builder_deletion",
       title: `Deletion from ${type}`,
       message: `Are you sure you want to delete the current selection
-      (<b>${nodeSelection} node${nodeSelection > 1 ? "s" : ""}
-      and ${edgeSelection} ${edgeType}${edgeSelection > 1 ? "s" : ""}</b>) ?`,
+      (<b>${nodeSelection} ${nodeType}${nodeSelection > 1 ? "s" : ""},
+      ${edgeSelection} ${edgeType}${edgeSelection > 1 ? "s" : ""},
+      ${labelSelection} label${labelSelection > 1 ? "s" : ""}</b>) ?`,
       confirmButton: "Delete",
       onConfirm: deleteSelection,
     });
