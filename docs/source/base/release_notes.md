@@ -147,6 +147,8 @@ Version 5.2.0: Various Improvements
   to remove one of the deviations
   - Property can be configured in automation.json > "file_transfer" > "load_known_host_keys" (default: false)
   - Commit: 577f16d1830c7dba1c94e4f3285faa74d0319051
+- Improve deletion message in builder to distinguish services/devices and labels
+  Commit: 06b4c8057da254a30f55685fcb03fd4e8fff62a4
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
