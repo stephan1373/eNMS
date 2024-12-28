@@ -149,6 +149,8 @@ Version 5.2.0: Various Improvements
   - Commit: 577f16d1830c7dba1c94e4f3285faa74d0319051
 - Improve deletion message in builder to distinguish services/devices and labels
   Commit: 06b4c8057da254a30f55685fcb03fd4e8fff62a4
+- Update "Copy to Clipboard" mechanism in File Table to copy relative path instead of full path
+  Commit: 152a1bcf7dcab8f3a12c0702b9c33677efef7217
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
