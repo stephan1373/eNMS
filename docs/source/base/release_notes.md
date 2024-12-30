@@ -151,6 +151,8 @@ Version 5.2.0: Various Improvements
   Commit: 06b4c8057da254a30f55685fcb03fd4e8fff62a4
 - Update "Copy to Clipboard" mechanism in File Table to copy relative path instead of full path
   Commit: 152a1bcf7dcab8f3a12c0702b9c33677efef7217
+- Add substitution mechanism to the Git Service 'commit_message' property
+  Commit: 43367981162d2719bb4dc4fadc19fc6ea5342b0e
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
