@@ -1730,7 +1730,7 @@
     "service": ["path", "scoped_name", "mandatory_parametrization"],
     "network": ["path", "scoped_name"],
     "result": ["service_name"],
-    "task": ["frequency", "frequency_unit", "crontab_expression", "is_active"],
+    "task": ["frequency", "frequency_unit", "crontab_expression", "is_active", "service_properties"],
     "worker": ["server_properties"]
   },
   "filtering": {

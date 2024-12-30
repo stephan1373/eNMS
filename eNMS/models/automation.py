@@ -559,8 +559,9 @@ class Task(AbstractBase):
     service_name = association_proxy("service", "name")
     model_properties = {
         "next_run_time": "str",
-        "time_before_next_run": "str",
+        "service_properties": "dict",
         "status": "str",
+        "time_before_next_run": "str",
     }
 
     def update(self, **kwargs):
@@ -571,6 +572,10 @@ class Task(AbstractBase):
 
     def delete(self):
         post(f"{vs.scheduler_address}/delete_job/{self.id}")
+
+    @property
+    def service_properties(self):
+        return self.service.base_properties
 
     @hybrid_property
     def status(self):
