@@ -142,6 +142,7 @@ class Service(AbstractBase):
     def base_properties(self):
         return {
             **super().base_properties,
+            "builder_link": self.builder_link,
             "report_format": self.report_format,
             "scoped_name": self.scoped_name,
         }

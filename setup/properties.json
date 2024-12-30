@@ -1108,10 +1108,11 @@
         "visible": false
       },
       {
-        "data": "service_name",
+        "data": "service_url",
         "title": "Service",
         "search": "text",
-        "orderable": false
+        "orderable": false,
+        "html": true
       },
       {
         "data": "status",

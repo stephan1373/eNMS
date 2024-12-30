@@ -1413,7 +1413,7 @@ tables.task = class TaskTable extends Table {
     row["runs"] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
       'run', ${row.instance}, {parent: '${this.id}', from: 'task',
       to: 'runs'})">Runs</a></b>`;
-    row.service = buildServiceLink(row.service_properties);
+    row.service_url = buildServiceLink(row.service_properties);
     return row;
   }
 
