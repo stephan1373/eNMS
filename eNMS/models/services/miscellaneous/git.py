@@ -39,7 +39,7 @@ class GitService(Service):
         if "add_commit" in self.actions:
             repo.git.add(A=True)
             if repo.head.commit.diff():
-                repo.git.commit(m=f'"{self.commit_message}"')
+                repo.git.commit(m=f'"{run.sub(run.commit_message, locals())}"')
             else:
                 run.log("info", "Commit was aborted: nothing to commit", device)
         if "pull" in self.actions:
@@ -63,4 +63,4 @@ class GitForm(ServiceForm):
     local_repository = StringField("Path to Local Git Repository", substitution=True)
     relative_path = BooleanField("Path is relative to the main application directory")
     remote_repository = StringField("Path to Remote Git Repository", substitution=True)
-    commit_message = StringField("Commit Message")
+    commit_message = StringField("Commit Message", substitution=True)
