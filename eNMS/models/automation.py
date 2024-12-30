@@ -99,6 +99,7 @@ class Service(AbstractBase):
     preprocessing = db.Column(db.LargeString)
     postprocessing = db.Column(db.LargeString)
     postprocessing_mode = db.Column(db.TinyString, default="success")
+    builder_link = db.Column(db.SmallString)
     log_level = db.Column(Integer, default=1)
     service_logs = relationship(
         "ServiceLog",
@@ -145,18 +146,6 @@ class Service(AbstractBase):
             "scoped_name": self.scoped_name,
         }
 
-    def table_properties(self, **kwargs):
-        path_id = (
-            self.path if self.type == "workflow"
-            else self.workflows[0].path if len(self.workflows) == 1
-            else ""
-        )
-        url = ">".join(
-            db.fetch("service", id=id).persistent_id
-            for id in path_id.split(">")
-        ) if path_id else ""
-        return {"url": url, **super().table_properties(**kwargs)}
-
     def delete(self):
         if self.name in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
             return {"log": f"It is not allowed to delete '{self.name}'."}
@@ -180,6 +169,15 @@ class Service(AbstractBase):
         else:
             self.path = str(self.id)
         self.set_name()
+        path_id = (
+            self.path if self.type == "workflow"
+            else self.workflows[0].path if len(self.workflows) == 1
+            else ""
+        )
+        self.builder_link = ">".join(
+            db.fetch("service", id=id, rbac=None).persistent_id
+            for id in path_id.split(">")
+        ) if path_id else ""
         return self.to_dict(include_relations=["services", "workflows"])
 
     def update(self, **kwargs):

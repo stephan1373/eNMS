@@ -2066,12 +2066,12 @@ function copySelectionToClipboard(tableId) {
 
 function buildServiceLink(service) {
   if (service.type == "workflow") {
-    return `<b><a href="/workflow_builder/${service.url}">${sanitize(
+    return `<b><a href="/workflow_builder/${service.builder_link}">${sanitize(
       service.name
     )}</a></b>`;
-  } else if (service.url) {
+  } else if (service.builder_link) {
     return service.name.substring(0, service.name.lastIndexOf(service.scoped_name)) +
-      `<b><a href="/workflow_builder/${service.url}">${sanitize(
+      `<b><a href="/workflow_builder/${service.builder_link}">${sanitize(
         service.scoped_name
       )}</a></b>`;
   } else {
