@@ -1037,17 +1037,7 @@ tables.pool = class PoolTable extends Table {
 tables.service = class ServiceTable extends Table {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
-    if (row.type == "workflow") {
-      row.name = `<b><a href="/workflow_builder/${row.url}">${sanitize(
-        row.name
-      )}</a></b>`;
-    } else if (row.url) {
-      row.name =
-        row.name.substring(0, row.name.lastIndexOf(row.scoped_name)) +
-        `<b><a href="/workflow_builder/${row.url}">${sanitize(
-          row.scoped_name
-        )}</a></b>`;
-    }
+    row.name = buildServiceLink(row);
     for (const model of ["device", "pool"]) {
       row[`${model}s`] = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
         '${model}', ${row.instance}, {parent: '${this.id}', from: 'target_services',
@@ -2071,6 +2061,21 @@ function copySelectionToClipboard(tableId) {
   let table = tableInstances[tableId];
   table.copyClipboard = true;
   refreshTable(tableId);
+}
+
+function buildServiceLink(service) {
+  if (service.type == "workflow") {
+    return `<b><a href="/workflow_builder/${service.url}">${sanitize(
+      service.name
+    )}</a></b>`;
+  } else if (service.url) {
+    return service.name.substring(0, service.name.lastIndexOf(service.scoped_name)) +
+      `<b><a href="/workflow_builder/${service.url}">${sanitize(
+        service.scoped_name
+      )}</a></b>`;
+  } else {
+    return service.name
+  }
 }
 
 function exportTable(tableId) {
