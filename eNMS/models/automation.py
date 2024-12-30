@@ -487,11 +487,7 @@ class Run(AbstractBase):
             return "N/A"
 
     def table_properties(self, **kwargs):
-        url = ">".join(
-            db.fetch("service", id=id).persistent_id
-            for id in self.path.split(">")
-        )
-        return {"url": url, **super().table_properties(**kwargs)}
+        return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
     def run(self):
         worker = db.factory(
