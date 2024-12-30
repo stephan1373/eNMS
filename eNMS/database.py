@@ -495,10 +495,10 @@ class Database:
             except Exception as exc:
                 self.session.rollback()
                 if index == self.retry_fetch_number - 1:
-                    error(f"Fetch n°{index} failed ({format_exc()})")
+                    error(f"Fetch #{index} failed ({format_exc()})")
                     raise exc
                 else:
-                    warning(f"Fetch n°{index} failed ({str(exc)})")
+                    warning(f"Fetch #{index} failed ({str(exc)})")
                 sleep(self.retry_fetch_time * (index + 1))
         if result or allow_none:
             return result
@@ -561,10 +561,10 @@ class Database:
                     and "Duplicate entry" in str(exc)
                     and "for key 'name'" in str(exc)
                 ):
-                    error(f"Commit n°{index + 1} failed ({format_exc()})")
+                    error(f"Commit #{index + 1} failed ({format_exc()})")
                     raise exc
                 else:
-                    warning(f"Commit n°{index + 1} failed ({str(exc)})")
+                    warning(f"Commit #{index + 1} failed ({str(exc)})")
                 sleep(self.retry_commit_time * (index + 1))
         return result
 

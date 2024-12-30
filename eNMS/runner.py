@@ -690,7 +690,7 @@ class Runner(vs.TimingMixin):
             try:
                 if self.number_of_retries - retries:
                     retry = self.number_of_retries - retries
-                    self.log("error", f"RETRY n°{retry}", device)
+                    self.log("error", f"RETRY #{retry}", device)
                 if self.service.preprocessing:
                     try:
                         self.eval(

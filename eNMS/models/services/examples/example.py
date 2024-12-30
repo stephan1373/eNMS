@@ -178,7 +178,7 @@ class ExampleForm(ServiceForm):
 
     # A BooleanField is displayed as a check box.
     boolean1 = BooleanField()
-    boolean2 = BooleanField("Boolean N°1")
+    boolean2 = BooleanField("Boolean #2")
 
     def validate_custom_integer(self, field):
         product = self.an_integer.data * self.a_float.data
