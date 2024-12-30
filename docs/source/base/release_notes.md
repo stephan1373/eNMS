@@ -155,6 +155,8 @@ Version 5.2.0: Various Improvements
   Commit: 43367981162d2719bb4dc4fadc19fc6ea5342b0e
 - Make service column in task table a hyperlink to the workflow builder (when applicable)
 - Replace 'n°' with '#' for numbering fetch, commit, and retry operations
+- Prevent saving the pool form if it contains an invalid regex
+  Commit: 37d5cb64738dffd5d698ba4f8a07e84e262d2a51
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
