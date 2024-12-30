@@ -154,6 +154,7 @@ Version 5.2.0: Various Improvements
 - Add substitution mechanism to the Git Service 'commit_message' property
   Commit: 43367981162d2719bb4dc4fadc19fc6ea5342b0e
 - Make service column in task table a hyperlink to the workflow builder (when applicable)
+- Replace 'n°' with '#' for numbering fetch, commit, and retry operations
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
