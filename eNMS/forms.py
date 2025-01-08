@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from importlib.util import module_from_spec, spec_from_file_location
 from os.path import exists
 from pathlib import Path
+from re import compile, error as re_error
 from traceback import format_exc
 from wtforms.fields.core import UnboundField
 from wtforms.form import FormMeta
@@ -572,6 +573,23 @@ class PoolForm(BaseForm):
                         )
                     ),
                 )
+
+    def validate(self, **_):
+        valid_form = super().validate()
+        for model in self.models:
+            for property in vs.properties["filtering"][model]:
+                regexp_field = getattr(self, f"{model}_{property}")
+                if getattr(self, f"{model}_{property}_match").data != "regex":
+                    continue
+                try:
+                    compile(regexp_field.data)
+                except re_error as exc:
+                    valid_form = False
+                    regexp_field.errors.append(
+                        f"Invalid regular expression for property '{property}'"
+                        f" (input: '{regexp_field.data}', exception: '{exc}')."
+                    )
+        return valid_form
 
 
 class RbacForm(BaseForm):
