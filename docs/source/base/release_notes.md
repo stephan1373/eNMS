@@ -157,6 +157,9 @@ Version 5.2.0: Various Improvements
 - Replace 'n°' with '#' for numbering fetch, commit, and retry operations
 - Prevent saving the pool form if it contains an invalid regex
   Commit: 37d5cb64738dffd5d698ba4f8a07e84e262d2a51
+- Add new "creation_time" property for the following models: device, link, pool, service, user, credential,
+  file, secret, group, task
+  Commit: 6a750a008e28b5dae68da04fbe549a771c0ac8a5
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
