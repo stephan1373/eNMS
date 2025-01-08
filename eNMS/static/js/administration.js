@@ -71,6 +71,7 @@ export function displayFolderPath() {
 }
 
 function enterFolder({ folder, path, parent }) {
+  $("#file_filtering-filename").val('').trigger('keyup');
   if (parent) {
     folderPath = folderPath.split("/").slice(0, -1).join("/");
   } else {
