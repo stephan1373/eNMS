@@ -149,6 +149,7 @@ class Group(AbstractBase):
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     creator = db.Column(db.SmallString)
+    creation_time = db.Column(db.TinyString)
     admin_only = db.Column(Boolean, default=False)
     force_read_access = db.Column(Boolean, default=False)
     description = db.Column(db.LargeString)

@@ -1084,6 +1084,12 @@
         "visible": false
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "admin_only",
         "title": "Admin Only",
         "search": "bool",
