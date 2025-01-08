@@ -32,6 +32,7 @@ class Service(AbstractBase):
     soft_deleted = db.Column(Boolean, default=False)
     shared = db.Column(Boolean, default=False)
     scoped_name = db.Column(db.SmallString, index=True)
+    creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     last_run = db.Column(db.SmallString, info={"log_change": False})

@@ -467,6 +467,7 @@ class FileForm(BaseForm):
     path = StringField("Path", [InputRequired()])
     description = StringField(widget=TextArea(), render_kw={"rows": 8})
     filename = StringField("Filename", render_kw={"readonly": True})
+    creation_time = StringField("Creation Time", render_kw={"readonly": True})
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
     last_updated = StringField("Last Updated", render_kw={"readonly": True})
     status = StringField("Status", render_kw={"readonly": True})

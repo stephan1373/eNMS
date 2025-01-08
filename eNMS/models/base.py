@@ -18,6 +18,8 @@ class AbstractBase(db.base):
     def __init__(self, **kwargs):
         self.update(**kwargs)
         self.update_rbac()
+        if not kwargs.get("migration_import"):
+            self.creation_time = vs.get_time()
 
     def __lt__(self, other):
         return True

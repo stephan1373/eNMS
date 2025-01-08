@@ -185,6 +185,12 @@
         "visible": false
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "last_modified",
         "title": "Last Modified",
         "search": "text",
@@ -463,6 +469,12 @@
         "visible": false
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "last_modified",
         "title": "Last Modified",
         "search": "text",
@@ -537,6 +549,12 @@
       {
         "data": "creator",
         "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "creation_time",
+        "title": "Creation Time",
         "search": "text",
         "visible": false
       },
@@ -649,6 +667,12 @@
         "data": "creator",
         "title": "Creator",
         "search": "text"
+      },
+      {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
       },
       {
         "data": "last_modified",
@@ -1193,6 +1217,12 @@
         "visible": false
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "description",
         "title": "Description",
         "width": "400px",
@@ -1343,6 +1373,12 @@
         "visible": false
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "last_modified",
         "title": "Last Modified",
         "search": "text",
@@ -1456,6 +1492,12 @@
         "search": "text"
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "last_modified",
         "title": "Last Modified",
         "search": "text",
@@ -1487,6 +1529,12 @@
       {
         "data": "creator",
         "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "creation_time",
+        "title": "Creation Time",
         "search": "text",
         "visible": false
       },
