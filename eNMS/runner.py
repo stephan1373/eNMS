@@ -1216,10 +1216,12 @@ class Runner(vs.TimingMixin):
         try:
             results = builtins[function](query, exec_variables) if query else ""
         except Exception as exc:
-            exc.args = ((
-                f"Error when executing user query:\n"
-                f"Query: '{query}'\nError: '{str(exc)}'"
-            ),)
+            exc.args = (
+                (
+                    f"Error when executing user query:\n"
+                    f"Query: '{query}'\nError: '{str(exc)}'"
+                ),
+            )
             raise
         return results, exec_variables
 

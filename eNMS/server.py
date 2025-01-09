@@ -269,7 +269,9 @@ class Server(Flask):
                 abort(403)
             code, username = request.args.get("duo_code"), session["username"]
             try:
-                env.duo_client.exchange_authorization_code_for_2fa_result(code, username)
+                env.duo_client.exchange_authorization_code_for_2fa_result(
+                    code, username
+                )
                 self.log_user(username)
             except Exception:
                 log = f"DUO Authentication error for user '{username}' ({format_exc()})"

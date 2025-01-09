@@ -137,7 +137,9 @@ class Service(AbstractBase):
         kwargs.pop("status", None)
         super().__init__(**kwargs)
         if not self.persistent_id:
-            self.persistent_id = urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
+            self.persistent_id = (
+                urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
+            )
 
     @property
     def base_properties(self):
@@ -172,14 +174,20 @@ class Service(AbstractBase):
             self.path = str(self.id)
         self.set_name()
         path_id = (
-            self.path if self.type == "workflow"
-            else self.workflows[0].path if len(self.workflows) == 1
+            self.path
+            if self.type == "workflow"
+            else self.workflows[0].path
+            if len(self.workflows) == 1
             else ""
         )
-        self.builder_link = ">".join(
-            db.fetch("service", id=id, rbac=None).persistent_id
-            for id in path_id.split(">")
-        ) if path_id else ""
+        self.builder_link = (
+            ">".join(
+                db.fetch("service", id=id, rbac=None).persistent_id
+                for id in path_id.split(">")
+            )
+            if path_id
+            else ""
+        )
         return self.to_dict(include_relations=["services", "workflows"])
 
     def update(self, **kwargs):

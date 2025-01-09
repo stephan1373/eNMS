@@ -192,7 +192,7 @@ class Environment(vs.TimingMixin):
         if vs.settings["authentication"]["duo"]["enabled"]:
             self.duo_client = DuoClient(
                 client_secret=getenv("DUO_SECRET"),
-                **vs.settings["authentication"]["duo"]["config"]
+                **vs.settings["authentication"]["duo"]["config"],
             )
 
     def init_connection_pools(self):
