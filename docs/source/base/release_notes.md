@@ -160,6 +160,10 @@ Version 5.2.0: Various Improvements
 - Add new "creation_time" property for the following models: device, link, pool, service, user, credential,
   file, secret, group, task
   Commit: 6a750a008e28b5dae68da04fbe549a771c0ac8a5
+- Add new "notification" key in automation.json to configure which notification mechanisms
+  are available in Step 4 of the service panel, as well as in the drop-down list of service
+  types in the Workflow Builder and Service Table
+  Commit: 86a5f40dafb4bc08fe8a171ff4f8b236506a13b3
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
