@@ -640,6 +640,8 @@ class Database:
                         continue
                     if not load_examples and "examples" in str(file):
                         continue
+                    if "notification" in str(file) and file.stem.split("_")[0] not in vs.automation["notification"]:
+                        continue
                     info(f"Loading {model}: {file}")
                     spec = spec_from_file_location(file.stem, str(file))
                     try:

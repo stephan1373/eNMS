@@ -764,7 +764,7 @@ class ServiceForm(BaseForm):
     send_notification = BooleanField("Send a notification")
     send_notification_method = SelectField(
         "Notification Method",
-        choices=(("mail", "Mail"), ("slack", "Slack"), ("mattermost", "Mattermost")),
+        choices=vs.automation["notification"].items(),
         no_search=True,
     )
     notification_header = StringField(
