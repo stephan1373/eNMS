@@ -16,7 +16,7 @@ import {
   openPanel,
   processInstance,
 } from "./base.js";
-import { refreshTable, tables, clearSearch } from "./table.js";
+import { clearSearch, refreshTable, tables } from "./table.js";
 
 export let folderPath = localStorage.getItem("folderPath") || "";
 
