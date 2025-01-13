@@ -297,6 +297,11 @@ class WorkflowForm(ServiceForm):
                     " with the 'Service Targets' Run Method."
                 )
             )
+        invalid_superworkflow = str(self.id.data) == str(self.superworkflow.data)
+        if invalid_superworkflow:
+            self.superworkflow.errors.append(
+                "You cannot set a workflow to be its own superworkflow."
+            )
         invalid_targets_error = (
             self.run_method.data == "per_service_with_service_targets"
             and (
@@ -316,6 +321,7 @@ class WorkflowForm(ServiceForm):
             [
                 invalid_man_minutes_type_error,
                 invalid_man_minutes_error,
+                invalid_superworkflow,
                 invalid_targets_error,
             ]
         )
