@@ -68,7 +68,13 @@ class RestApi(vs.TimingMixin):
             return {"error": "Runs from the REST API are not allowed on this server."}
         data = {"trigger": "REST API", "creator": current_user.name, **kwargs}
         errors, devices, pools = [], [], []
-        service = db.fetch("service", name=data.pop("name"), rbac="run")
+        if "persistent_id" in data:
+            service_kwargs = {"persistent_id": data["persistent_id"]}
+        elif "name" in data:
+            service_kwargs = {"name": data["name"]}
+        else:
+            return {"errors": "No identifier (Name or Persistent ID) for the service."}
+        service = db.fetch("service", rbac="run", **service_kwargs)
         if service.disabled:
             return {"error": "The workflow is disabled."}
         service.check_restriction_to_owners("run")
