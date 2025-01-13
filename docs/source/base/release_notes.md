@@ -167,6 +167,8 @@ Version 5.2.0: Various Improvements
 - Enable the "run_service" endpoint in the REST API to support using Persistent ID instead of name
   so that REST calls don't break if the service name changes.
   Commit: 8260e0954647c8283b335bdf9dcfb4b2c6e5f91c
+- Prevent a user from setting a workflow to be its own superworkflow.
+  Commit: f44001a8642f59e2085ce440204a65d435b2ab4a
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
