@@ -164,6 +164,9 @@ Version 5.2.0: Various Improvements
   are available in Step 4 of the service panel, as well as in the drop-down list of service
   types in the Workflow Builder and Service Table
   Commit: 86a5f40dafb4bc08fe8a171ff4f8b236506a13b3
+- Enable the "run_service" endpoint in the REST API to support using Persistent ID instead of name
+  so that REST calls don't break if the service name changes.
+  Commit: 8260e0954647c8283b335bdf9dcfb4b2c6e5f91c
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
