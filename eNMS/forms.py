@@ -718,6 +718,7 @@ class ServiceForm(BaseForm):
     name = StringField("Name", help="common/full_name", ui_name="Full Name")
     creator = StringField(render_kw={"readonly": True})
     type = StringField("Service Type")
+    persistent_id = StringField("Persistent ID", render_kw={"readonly": True})
     shared = BooleanField("Shared", help="common/shared")
     scoped_name = StringField("Scoped Name", [InputRequired()], ui_name="Name")
     version = StringField("Version")
@@ -916,6 +917,7 @@ class ServiceForm(BaseForm):
             "name",
             "creator",
             "type",
+            "persistent_id",
             "disabled",
             "disabled_info",
             "shared",
