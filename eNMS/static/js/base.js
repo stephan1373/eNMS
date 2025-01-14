@@ -1103,17 +1103,18 @@ function updateProperty(instance, el, property, value, type) {
     }
     el.selectpicker("val", value).trigger("change");
     el.selectpicker("render");
-  } else if (["object-list", "object"].includes(propertyType)) {
-    if (propertyType == "object") value = [value];
-    const idProperty = propertyType == "object" ? "id" : "name";
+  } else if (propertyType == "object") {
+    el.append(new Option(value.ui_name || value.name, value.id));
+    el.val(value.id).trigger("change");
+  } else if (propertyType == "object-list") {
     value.forEach((o) => {
       const uiLink = `
       <button type="button" title="" class="btn btn-link btn-select2"
       onclick="eNMS.base.showInstancePanel('${o.type}', '${o.id}')">
       ${o.ui_name || o.name}</button>`;
-      el.append(new Option(uiLink, o[idProperty]));
+      el.append(new Option(uiLink, o.name));
     });
-    el.val(value.map((p) => p[idProperty])).trigger("change");
+    el.val(value.map((p) => p.name)).trigger("change");
   } else if (propertyType == "json") {
     el.val(JSON.stringify(value));
     const editor = jsonEditors[instance.id][property];
