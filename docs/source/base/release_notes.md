@@ -169,6 +169,8 @@ Version 5.2.0: Various Improvements
   Commit: 8260e0954647c8283b335bdf9dcfb4b2c6e5f91c
 - Prevent a user from setting a workflow to be its own superworkflow.
   Commit: f44001a8642f59e2085ce440204a65d435b2ab4a
+- Remove hyperlink for single object select list (panel would pop up unexpectedly)
+  Commit: a8fa8adb875fbdaf373f48bccdee078d81e1f5b3
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
