@@ -171,6 +171,12 @@ Version 5.2.0: Various Improvements
   Commit: f44001a8642f59e2085ce440204a65d435b2ab4a
 - Remove hyperlink for single object select list (panel would pop up unexpectedly)
   Commit: a8fa8adb875fbdaf373f48bccdee078d81e1f5b3
+- In the workflow builder drop-down list of runtimes:
+  - Update the refresh mechanism so that an active search in the runtime drop down list
+    is still considered after refresh
+  - Restore the scroll positition is maintained after triggering the active search
+    with trigger('input')
+  Commit: 9f29eab326616b1c63c27e3c9604bcd3f29a393e
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
