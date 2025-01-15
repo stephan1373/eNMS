@@ -1191,6 +1191,7 @@ class Runner(vs.TimingMixin):
                 "placeholder": _self.main_run.placeholder,
                 "prepend_filepath": _self.prepend_filepath,
                 "remove_note": _self.remove_note,
+                "runtime": _self.main_run.runtime,
                 "send_email": env.send_email,
                 "server": {
                     "ip_address": vs.server_ip,
