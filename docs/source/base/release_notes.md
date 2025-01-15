@@ -177,6 +177,9 @@ Version 5.2.0: Various Improvements
   - Restore the scroll positition is maintained after triggering the active search
     with trigger('input')
   Commit: 9f29eab326616b1c63c27e3c9604bcd3f29a393e
+- Add "runtime" (the parent runtime) to the list of available variables when running
+  a workflow ("global_variables" function)
+  Commit: 25435861f72ff7f6e7259daacd8ba80a8f47c311
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -198,6 +201,8 @@ Tests:
   performance pre and post release (should be faster because of the neighbors SQL query)
 - Test authentication (with and without Duo)
 - Test weh SSH sessions, specifically RBAC access for non-admin users
+- Test that the new global "runtime" variable made available in the workflow builder does
+  interact with the existing user python code
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
