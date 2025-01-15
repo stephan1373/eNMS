@@ -19,7 +19,7 @@ import {
   openPanel,
   processInstance,
 } from "./base.js";
-import { refreshTable, tables } from "./table.js";
+import { clearSearch, refreshTable, tables } from "./table.js";
 
 export let folderPath = localStorage.getItem("folderPath") || "";
 
@@ -74,6 +74,7 @@ export function displayFolderPath() {
 }
 
 function enterFolder({ folder, path, parent }) {
+  clearSearch("file");
   if (parent) {
     folderPath = folderPath
       .split("/")
