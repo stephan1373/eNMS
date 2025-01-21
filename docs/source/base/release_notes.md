@@ -180,6 +180,8 @@ Version 5.2.0: Various Improvements
 - Add "runtime" (the parent runtime) to the list of available variables when running
   a workflow ("global_variables" function)
   Commit: 25435861f72ff7f6e7259daacd8ba80a8f47c311
+- Make Service Logs and Service Reports available via the REST API
+  Commit: dc7d3195b85a03d92532c4844cac9f04a2bce169
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
