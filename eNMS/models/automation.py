@@ -349,7 +349,7 @@ class Result(AbstractBase):
 
 
 class ServiceLog(AbstractBase):
-    __tablename__ = type = "service_log"
+    __tablename__ = type = class_type = "service_log"
     private = True
     log_change = False
     id = db.Column(Integer, primary_key=True)
@@ -357,13 +357,14 @@ class ServiceLog(AbstractBase):
     runtime = db.Column(db.TinyString)
     service_id = db.Column(Integer, ForeignKey("service.id"))
     service = relationship("Service", foreign_keys="ServiceLog.service_id")
+    service_name = association_proxy("service", "name")
 
     def __repr__(self):
         return f"SERVICE '{self.service}' ({self.runtime})"
 
 
 class ServiceReport(AbstractBase):
-    __tablename__ = type = "service_report"
+    __tablename__ = type = class_type = "service_report"
     private = True
     log_change = False
     id = db.Column(Integer, primary_key=True)
@@ -371,6 +372,7 @@ class ServiceReport(AbstractBase):
     runtime = db.Column(db.TinyString, ForeignKey("run.runtime", ondelete="cascade"))
     service_id = db.Column(Integer, ForeignKey("service.id", ondelete="cascade"))
     service = relationship("Service", foreign_keys="ServiceReport.service_id")
+    service_name = association_proxy("service", "name")
 
     def __repr__(self):
         return f"SERVICE REPORT '{self.service}' ({self.runtime})"
