@@ -816,12 +816,17 @@ class Runner(vs.TimingMixin):
         logger=None,
         service_log=True,
         allow_disable=True,
+        user_defined=False,
     ):
         log_level = self.cache["main_run_service"]["log_level"]
         if (
             logger != "security"
             and allow_disable
-            and (log_level == -1 or severity not in vs.log_levels[log_level:])
+            and (
+                log_level == -1
+                or log_level == -2 and not user_defined
+                or log_level >= 0 and severity not in vs.log_levels[log_level:]
+            )
         ):
             return
         if device:
@@ -1185,7 +1190,7 @@ class Runner(vs.TimingMixin):
                 "get_result": _self.get_result,
                 "get_secret": _self.get_secret,
                 "get_var": _self.get_var,
-                "log": _self.log,
+                "log": partial(_self.log, user_defined=True),
                 "parent_device": _self.parent_device or device,
                 "payload": _self.payload,
                 "placeholder": _self.main_run.placeholder,
