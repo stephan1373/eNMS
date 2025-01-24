@@ -186,6 +186,11 @@ Version 5.2.0: Various Improvements
   only display the logs that are user defined (logs that come from the global "log" function
   available in python fields)
   Commit: 5fc5b27640d598b0fd6e5f3c5fd3b4e2d89c402d
+- Don't update the "Last Scheduled By" property of a task when it is paused and resumed by an admin
+  user (e.g., for maintenance):
+    - Prevent the original scheduler's permissions from being affected
+    - The changelog should still display that the task was paused and resumed by the admin user
+  Commit: 84b3cc6de47253310704d0c2db6f460a510ad72e
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
