@@ -220,6 +220,9 @@ Migration
   nodes and networks
 - Run the script to convert credential "groups" property into "rbac_use" (can be done manually by renaming
   "groups" -> "rbac_use" in credential.yaml too)
+- Add information about the sending server in all notifications to quickly identify
+  which server is sending the notification (IP address, name, URL, and role)
+  Commit: 9c01f4eb0f19cdc7684225d9a3c1579aefea0e2b
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
