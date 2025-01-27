@@ -853,6 +853,7 @@ class Runner(vs.TimingMixin):
     def build_notification(self, results):
         notification = {
             "Service": f"{self.service.name} ({self.service.type})",
+            "Server": vs.server_dict,
             "Runtime": self.runtime,
             "Status": "PASS" if results["success"] else "FAILED",
         }
@@ -1198,11 +1199,7 @@ class Runner(vs.TimingMixin):
                 "remove_note": _self.remove_note,
                 "runtime": _self.main_run.runtime,
                 "send_email": env.send_email,
-                "server": {
-                    "ip_address": vs.server_ip,
-                    "name": vs.server,
-                    "url": vs.server_url,
-                },
+                "server": vs.server_dict,
                 "set_note": _self.set_note,
                 "set_var": _self.payload_helper,
                 "trigger": _self.main_run.trigger,

@@ -86,6 +86,12 @@ class VariableStore:
         self.server_location = getenv("SERVER_LOCATION")
         self.server_version = self.settings["app"]["version"]
         self.server_commit_sha = Repo(search_parent_directories=True).head.object.hexsha
+        self.server_dict = {
+            "name": self.server,
+            "url": self.server_url,
+            "ip_address": self.server_ip,
+            "role": self.server_role,
+        }
 
     def _set_automation_variables(self):
         self.ssh_sessions = {}
