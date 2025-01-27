@@ -223,6 +223,8 @@ Migration
 - Add information about the sending server in all notifications to quickly identify
   which server is sending the notification (IP address, name, URL, and role)
   Commit: 9c01f4eb0f19cdc7684225d9a3c1579aefea0e2b
+- fix duplicate 'STARTING' / 'FINISHED' logs in workflow logs when multiprocessing is enabled
+  Commit: 83fdd0c128a3488b7845d474bd609bd004fa7adb
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
