@@ -845,7 +845,7 @@ class Runner(vs.TimingMixin):
                 f" SERVICE {self.cache['service']['scoped_name']} - {log}"
             )
             env.log_queue(self.parent_runtime, self.cache["service"]["id"], run_log)
-            if not self.is_main_run:
+            if self.cache["service"]["id"] != self.cache["main_run_service"]["id"]:
                 env.log_queue(
                     self.parent_runtime, self.cache["main_run_service"]["id"], run_log
                 )
