@@ -1441,8 +1441,7 @@
         "data": "author",
         "title": "Author",
         "search": "text",
-        "width": "100px",
-        "orderable": false
+        "width": "100px"
       },
       {
         "data": "is_reversible",
@@ -1455,8 +1454,7 @@
         "data": "severity",
         "title": "Severity",
         "search": "text",
-        "width": "80px",
-        "orderable": false
+        "width": "80px"
       },
       {
         "data": "target_type",
