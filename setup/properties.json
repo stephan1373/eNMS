@@ -1445,6 +1445,13 @@
         "orderable": false
       },
       {
+        "data": "is_reversible",
+        "title": "Reversible",
+        "search": "bool",
+        "width": "40px",
+        "visible": false
+      },
+      {
         "data": "severity",
         "title": "Severity",
         "search": "text",

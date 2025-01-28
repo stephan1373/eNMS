@@ -241,6 +241,7 @@ class Changelog(AbstractBase):
     severity = db.Column(db.TinyString, default="debug")
     author = db.Column(db.SmallString)
     history = db.Column(JSON, default={})
+    is_reversible = db.Column(Boolean, default=False)
     source = db.Column(db.SmallString)
     target_id = db.Column(Integer)
     target_type = db.Column(db.SmallString)
@@ -271,6 +272,7 @@ class Changelog(AbstractBase):
         if not kwargs.get("author"):
             kwargs["author"] = getattr(current_user, "name", "")
         super().update(**kwargs)
+        self.is_reversible = bool(self.history and self.author)
         self.name = f"{self.target_name} updated by {self.author}"
 
 
