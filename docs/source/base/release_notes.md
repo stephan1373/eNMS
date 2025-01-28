@@ -191,6 +191,14 @@ Version 5.2.0: Various Improvements
     - Prevent the original scheduler's permissions from being affected
     - The changelog should still display that the task was paused and resumed by the admin user
   Commit: 84b3cc6de47253310704d0c2db6f460a510ad72e
+- Add information about the sending server in all notifications to quickly identify
+  which server is sending the notification (IP address, name, URL, and role)
+  Commit: 9c01f4eb0f19cdc7684225d9a3c1579aefea0e2b
+- Fix duplicate 'STARTING' / 'FINISHED' logs in workflow logs when multiprocessing is enabled
+  Commit: 83fdd0c128a3488b7845d474bd609bd004fa7adb
+- Update to the changelog table
+  - Make 'author' and 'severity' properties orderable (3436cc545594b4e9379219cf5651170a8acff892)
+  - Add new 'Reversible' boolean property (af0886d0df5f1c807b353d4f191d8ee9faeddeac)
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -220,11 +228,6 @@ Migration
   nodes and networks
 - Run the script to convert credential "groups" property into "rbac_use" (can be done manually by renaming
   "groups" -> "rbac_use" in credential.yaml too)
-- Add information about the sending server in all notifications to quickly identify
-  which server is sending the notification (IP address, name, URL, and role)
-  Commit: 9c01f4eb0f19cdc7684225d9a3c1579aefea0e2b
-- fix duplicate 'STARTING' / 'FINISHED' logs in workflow logs when multiprocessing is enabled
-  Commit: 83fdd0c128a3488b7845d474bd609bd004fa7adb
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
