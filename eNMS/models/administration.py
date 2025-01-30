@@ -135,7 +135,9 @@ class User(AbstractBase, UserMixin):
     def update(self, **kwargs):
         if not getattr(current_user, "is_admin", True):
             properties = ["is_admin", "groups"]
-            allow_password_change = vs.settings["authentication"]["allow_password_change"]
+            allow_password_change = vs.settings["authentication"][
+                "allow_password_change"
+            ]
             if not allow_password_change or self.authentication != "database":
                 properties.append("password")
             for property in properties:

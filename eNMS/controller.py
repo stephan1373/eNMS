@@ -918,9 +918,7 @@ class Controller(vs.TimingMixin):
                 color = (
                     "#FF1694"
                     if getattr(instance, "shared", False)
-                    else "#E09E2F"
-                    if getattr(instance, "dry_run", False)
-                    else "#6666FF"
+                    else "#E09E2F" if getattr(instance, "dry_run", False) else "#6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_path == path else ""

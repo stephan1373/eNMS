@@ -176,9 +176,7 @@ class Service(AbstractBase):
         path_id = (
             self.path
             if self.type == "workflow"
-            else self.workflows[0].path
-            if len(self.workflows) == 1
-            else ""
+            else self.workflows[0].path if len(self.workflows) == 1 else ""
         )
         self.builder_link = (
             ">".join(
