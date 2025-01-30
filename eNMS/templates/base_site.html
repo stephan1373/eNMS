@@ -309,10 +309,11 @@
           </div>
         </div>
       </div>
-      {% endblock header %} 
+      {% endblock header %}
       <div class="main_frame">
         <div class="left_frame">{% block left_frame %} {% endblock left_frame %}</div>
-        {% set width = 600 if current_user.display_tree and endpoint in ["network_builder", "workflow_builder"] else 0 %}
+        {% set width = 600 if current_user.display_tree and endpoint in
+        ["network_builder", "workflow_builder"] else 0 %}
         <div class="right_frame" style="width: {{ width }}px">
           {% block right_frame %} {% endblock right_frame %}
         </div>

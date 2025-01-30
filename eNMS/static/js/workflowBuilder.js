@@ -160,10 +160,10 @@ function updateRuntimes(result) {
     });
   }
   $("#current-runtime").val(currentRuntime || "latest");
-  const menu = $("#current-runtime").siblings(".dropdown-menu")
+  const menu = $("#current-runtime").siblings(".dropdown-menu");
   const scrollPosition = menu.find(".inner").scrollTop();
   $("#current-runtime").selectpicker("refresh");
-  menu.find(".bs-searchbox input").trigger("input")
+  menu.find(".bs-searchbox input").trigger("input");
   menu.find(".inner").scrollTop(scrollPosition);
 }
 

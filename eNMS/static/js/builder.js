@@ -505,7 +505,7 @@ function deleteSelection() {
 function openDeletionPanel() {
   if (!instance) return notify(`No ${type} has been created yet.`, "error", 5);
   const nodes = network.getSelectedNodes();
-  const labelSelection = nodes.filter(node => typeof node === 'string').length;
+  const labelSelection = nodes.filter((node) => typeof node === "string").length;
   const nodeSelection = nodes.filter(Number.isInteger).length;
   const edgeSelection = network.getSelectedEdges().length;
   if (!nodeSelection && !edgeSelection && !labelSelection) {
@@ -882,7 +882,7 @@ function toggleTree() {
   treeIsDisplayed = !treeIsDisplayed;
   call({
     url: "/save_profile",
-    data: {id: user.id, display_tree: treeIsDisplayed},
+    data: { id: user.id, display_tree: treeIsDisplayed },
   });
 }
 
