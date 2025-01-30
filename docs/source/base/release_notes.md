@@ -199,6 +199,9 @@ Version 5.2.0: Various Improvements
 - Update to the changelog table
   - Make 'author' and 'severity' properties orderable (3436cc545594b4e9379219cf5651170a8acff892)
   - Add new 'Reversible' boolean property (af0886d0df5f1c807b353d4f191d8ee9faeddeac)
+- Display the network/workflow tree by default if it was previously activated.
+  The setting is stored in the database and used to automatically show the tree in the HTML template.
+  Commit: 0513847d23e9bfd31fbfd22cdfe9137faf5de6a0
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
