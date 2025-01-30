@@ -1499,9 +1499,6 @@ class Controller(vs.TimingMixin):
         return instance.last_modified, instance.positions
 
     def save_profile(self, **kwargs):
-        allow_password_change = vs.settings["authentication"]["allow_password_change"]
-        if not allow_password_change or current_user.authentication != "database":
-            kwargs.pop("password", None)
         current_user.update(**kwargs)
 
     def save_settings(self, **kwargs):

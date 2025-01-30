@@ -309,14 +309,14 @@
           </div>
         </div>
       </div>
-      {% endblock header %} {% cache settings["cache"]["timeout"], endpoint %}
+      {% endblock header %} 
       <div class="main_frame">
         <div class="left_frame">{% block left_frame %} {% endblock left_frame %}</div>
-        <div class="right_frame">
+        {% set width = 600 if current_user.display_tree and endpoint in ["network_builder", "workflow_builder"] else 0 %}
+        <div class="right_frame" style="width: {{ width }}px">
           {% block right_frame %} {% endblock right_frame %}
         </div>
       </div>
-      {% endcache %}
     </div>
     {% endblock body %} {% block javascripts %} {% cache settings["cache"]["timeout"] %}
     <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>

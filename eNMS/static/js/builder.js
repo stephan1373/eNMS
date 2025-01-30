@@ -55,7 +55,7 @@ export let instance;
 export let edges;
 export let mousePosition;
 export let nodes;
-export let treeIsDisplayed;
+export let treeIsDisplayed = user.display_tree;
 export let triggerMenu;
 
 export function configureGraph(newInstance, graph, options) {
@@ -857,7 +857,6 @@ function toggleTree() {
         complete: () => {
           $("#run-navbar")
             .appendTo(`#${type}-tree-control`)
-            .css({ left: "60px" })
             .show();
           (type == "workflow" ? getWorkflowState : getNetworkState)();
         },
@@ -873,7 +872,6 @@ function toggleTree() {
         complete: () => {
           $("#run-navbar")
             .appendTo(`#${type}-controls`)
-            .css({ left: "0px" })
             .show();
           $(`#${type}-tree`).hide();
         },
@@ -882,6 +880,10 @@ function toggleTree() {
   }
   $(`#${type}-tree-btn`).toggleClass("active");
   treeIsDisplayed = !treeIsDisplayed;
+  call({
+    url: "/save_profile",
+    data: {id: user.id, display_tree: treeIsDisplayed},
+  });
 }
 
 configureNamespace("builder", [

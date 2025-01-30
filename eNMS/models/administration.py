@@ -103,6 +103,7 @@ class User(AbstractBase, UserMixin):
     landing_page = db.Column(
         db.SmallString, default=vs.settings["authentication"]["landing_page"]
     )
+    display_tree = db.Column(Boolean, default=False)
     password = db.Column(db.SmallString)
     authentication = db.Column(db.TinyString, default="database")
     small_menu = db.Column(Boolean, default=False, info={"log_change": False})
@@ -132,6 +133,13 @@ class User(AbstractBase, UserMixin):
         return self.get_properties()
 
     def update(self, **kwargs):
+        if not getattr(current_user, "is_admin", True):
+            properties = ["is_admin", "groups"]
+            allow_password_change = vs.settings["authentication"]["allow_password_change"]
+            if not allow_password_change or self.authentication != "database":
+                properties.append("password")
+            for property in properties:
+                kwargs.pop(property, None)
         if kwargs.get("password") and not kwargs["password"].startswith("$argon2i"):
             kwargs["password"] = argon2.hash(kwargs["password"])
         super().update(**kwargs)
