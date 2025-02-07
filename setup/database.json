@@ -39,6 +39,7 @@
     }
   },
   "import_export_models": [
+    "data",
     "user",
     "group",
     "device",
@@ -49,11 +50,11 @@
     "workflow_edge",
     "task",
     "credential",
-    "pool",
-    "secret"
+    "pool"
   ],
   "changelog_models": {
     "credential": "Credential",
+    "data": "Data",
     "device": "Device",
     "file": "File",
     "group": "Group",
@@ -209,7 +210,7 @@
       "users",
       "logs"
     ],
-    "secret": ["id"],
+    "data": ["id", "logs"],
     "task": [
       "id",
       "service_name",
@@ -259,6 +260,16 @@
   },
   "relationships": {
     "associations": {
+      "changelog_data": {
+        "model1": {
+          "column": "changelog_id",
+          "foreign_key": "changelog"
+        },
+        "model2": {
+          "column": "data_id",
+          "foreign_key": "data"
+        }
+      },
       "changelog_network": {
         "model1": {
           "column": "changelog_id",

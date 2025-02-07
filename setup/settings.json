@@ -134,6 +134,7 @@
   },
   "paths": {
     "custom_code": "",
+    "custom_datastore": "",
     "custom_devices": "",
     "custom_links": "",
     "custom_services": "",

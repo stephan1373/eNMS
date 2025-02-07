@@ -384,18 +384,19 @@ class Folder(File):
             makedirs(full_path)
 
 
-class Secret(AbstractBase):
-    __tablename__ = type = class_type = "secret"
+class Data(AbstractBase):
+    __tablename__ = type = class_type = "data"
+    type = db.Column(db.SmallString)
+    __mapper_args__ = {"polymorphic_identity": "file", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    description = db.Column(db.LargeString)
-    secret_value = db.Column(db.LargeString)
-
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
+    store_id = db.Column(Integer, ForeignKey("store.id"))
+    store = relationship(
+        "Store", foreign_keys="Store.store_id", back_populates="data"
+    )
+    logs = relationship("Changelog", back_populates="data")

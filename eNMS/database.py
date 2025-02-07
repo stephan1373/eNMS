@@ -629,11 +629,12 @@ class Database:
         return credentials
 
     def register_custom_models(self):
-        for model in ("device", "link", "service"):
-            paths = [vs.path / "eNMS" / "models" / f"{model}s"]
+        for model in ("device", "link", "service", "data"):
+            folder_name = "datastore" if model == "data" else f"{model}s" 
+            paths = [vs.path / "eNMS" / "models" / folder_name]
             load_examples = vs.settings["app"].get("startup_migration") == "examples"
-            if vs.settings["paths"][f"custom_{model}s"]:
-                paths.append(Path(vs.settings["paths"][f"custom_{model}s"]))
+            if vs.settings["paths"][f"custom_{folder_name}"]:
+                paths.append(Path(vs.settings["paths"][f"custom_{folder_name}"]))
             for path in paths:
                 for file in path.glob("**/*.py"):
                     if "init" in str(file):

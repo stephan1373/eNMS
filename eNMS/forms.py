@@ -416,6 +416,18 @@ class DatabaseMigrationsForm(BaseForm):
     )
 
 
+class DataForm(BaseForm):
+    template = "object"
+    form_type = HiddenField(default="data")
+    id = HiddenField()
+    name = StringField("Name", [InputRequired()])
+    creator = StringField(render_kw={"readonly": True})
+    description = StringField(widget=TextArea(), render_kw={"rows": 3})
+    creation_time = StringField("Creation Time", render_kw={"readonly": True})
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
+
+
 class DebugForm(BaseForm):
     template = "debug"
     form_type = HiddenField(default="debug")
@@ -659,15 +671,6 @@ class RunServiceForm(BaseForm):
     targets = HiddenField()
     type = HiddenField()
     service = InstanceField("Services", model="service")
-
-
-class SecretForm(BaseForm):
-    template = "object"
-    form_type = HiddenField(default="secret")
-    id = HiddenField()
-    name = StringField("Name", [InputRequired()])
-    description = StringField(widget=TextArea(), render_kw={"rows": 3})
-    secret_value = PasswordField("Value", widget=TextArea(), render_kw={"rows": 6})
 
 
 class ServerForm(BaseForm):

@@ -335,7 +335,7 @@
       "rbac_read": "Read",
       "rbac_edit": "Edit"
     },
-    "secret": {
+    "data": {
       "rbac_read": "Read",
       "rbac_edit": "Edit",
       "rbac_use": "Use"
