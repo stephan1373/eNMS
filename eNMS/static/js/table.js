@@ -1663,12 +1663,15 @@ tables.data = class DataTable extends Table {
       <ul class="pagination pagination-lg" style="margin: 0px;">
         <li>
           <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('data', '${row.id}')"
-          data-tooltip="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+          onclick="eNMS.base.showInstancePanel('${row.type}', '${
+      row.id
+    }')" data-tooltip="Edit"
+            ><span class="glyphicon glyphicon-edit"></span
+          ></button>
         </li>
         <li>
           <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('data', '${row.id}', 'duplicate')"
+          onclick="eNMS.base.showInstancePanel('${row.type}', '${row.id}', 'duplicate')"
           data-tooltip="Duplicate"
             ><span class="glyphicon glyphicon-duplicate"></span
           ></button>

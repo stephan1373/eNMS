@@ -18,3 +18,4 @@ class Secret(Data):
 class SecretForm(DataForm):
     form_type = HiddenField(default="secret")
     secret_value = PasswordField("Value", widget=TextArea(), render_kw={"rows": 6})
+    properties = ["secret_value"]
