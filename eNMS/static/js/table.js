@@ -1644,6 +1644,14 @@ tables.data = class DataTable extends Table {
       this.refreshTableButton(),
       this.bulkFilteringButton(),
       this.clearSearchButton(),
+      `
+      <button
+        style="background:transparent; border:none; 
+        color:transparent; width: 200px;"
+        type="button"
+      >
+        <select id="data-type-dd-list" class="form-control"></select>
+      </button>`,
       this.createNewButton(),
       this.bulkDeletionButton(),
     ];
@@ -1668,6 +1676,11 @@ tables.data = class DataTable extends Table {
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];
+  }
+
+  postProcessing(...args) {
+    super.postProcessing(...args);
+    loadTypes("data");
   }
 };
 
