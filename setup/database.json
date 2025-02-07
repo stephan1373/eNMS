@@ -47,6 +47,7 @@
     "link",
     "server",
     "service",
+    "store",
     "workflow_edge",
     "task",
     "credential",
