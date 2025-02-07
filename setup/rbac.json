@@ -338,8 +338,7 @@
     },
     "data": {
       "rbac_read": "Read",
-      "rbac_edit": "Edit",
-      "rbac_use": "Use"
+      "rbac_edit": "Edit"
     },
     "server": {
       "rbac_read": "Read"

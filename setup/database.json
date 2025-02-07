@@ -70,6 +70,7 @@
   },
   "dont_migrate": {
     "credential": ["id", "logs"],
+    "data": ["id", "logs"],
     "group": [
       "id",
       "credentials",
@@ -77,6 +78,7 @@
       "rbac_configuration_devices",
       "rbac_connect_devices",
       "rbac_edit_credentials",
+      "rbac_edit_datas",
       "rbac_edit_devices",
       "rbac_edit_files",
       "rbac_edit_links",
@@ -91,6 +93,7 @@
       "rbac_pool_rbac_read",
       "rbac_pool_rbac_target",
       "rbac_read_credentials",
+      "rbac_read_datas",
       "rbac_read_devices",
       "rbac_read_files",
       "rbac_read_links",
@@ -211,7 +214,7 @@
       "users",
       "logs"
     ],
-    "data": ["id", "logs"],
+    "store": ["id", "logs"],
     "task": [
       "id",
       "service_name",
