@@ -2022,7 +2022,16 @@ tables.file = class FileTable extends Table {
 
 tables.store = class StoreTable extends Table {
   get controls() {
-    return [this.columnDisplay(), this.refreshTableButton(), this.clearSearchButton()];
+    return [
+      this.columnDisplay(),
+      this.displayChangelogButton(),
+      this.refreshTableButton(),
+      this.clearSearchButton(),
+      this.createNewButton(),
+      this.bulkEditButton(),
+      this.exportTableButton(),
+      this.bulkDeletionButton(),
+    ];
   }
 
   buttons(row) {
