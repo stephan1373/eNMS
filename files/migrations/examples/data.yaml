@@ -1,4 +1,5 @@
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "description": |-
     Used in the workflow:
@@ -13,6 +14,5 @@
   - "All users"
   "rbac_read":
   - "All users"
-  "rbac_use": []
   "secret_value": "Q29ycmVjdDEyMyE6KSRA"
   "type": "secret"

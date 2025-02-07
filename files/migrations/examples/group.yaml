@@ -1,7 +1,9 @@
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "credential_access": []
   "custom_property": "CP"
+  "data_access": []
   "delete_requests": []
   "description": "All users"
   "device_access": []
@@ -14,7 +16,6 @@
   "pages": []
   "pool_access": []
   "post_requests": []
-  "secret_access": []
   "server_access": []
   "service_access": []
   "session_access": []
@@ -26,9 +27,11 @@
   - "nadmin"
   - "readonly"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "credential_access": []
   "custom_property": "CP"
+  "data_access": []
   "delete_requests": []
   "description": "Admin User"
   "device_access": []
@@ -41,7 +44,6 @@
   "pages": []
   "pool_access": []
   "post_requests": []
-  "secret_access": []
   "server_access": []
   "service_access": []
   "session_access": []
@@ -50,9 +52,11 @@
   "users":
   - "admin"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "credential_access": []
   "custom_property": "CP"
+  "data_access": []
   "delete_requests":
   - "/rest/instance"
   "description": "Full UI Read + Edit Access"
@@ -300,7 +304,6 @@
   - "/rest/update_all_pools"
   - "/rest/update_database_configurations_from_git"
   - "/rest/update_device_rbac"
-  "secret_access": []
   "server_access": []
   "service_access": []
   "session_access": []
@@ -309,9 +312,11 @@
   "users":
   - "nadmin"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "credential_access": []
   "custom_property": "CP"
+  "data_access": []
   "delete_requests":
   - "/rest/instance"
   "description": ""
@@ -557,7 +562,6 @@
   - "/rest/update_all_pools"
   - "/rest/update_database_configurations_from_git"
   - "/rest/update_device_rbac"
-  "secret_access": []
   "server_access": []
   "service_access": []
   "session_access": []

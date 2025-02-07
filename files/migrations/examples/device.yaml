@@ -1,4 +1,5 @@
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -62,6 +63,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -125,6 +127,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -188,6 +191,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -204,18 +208,18 @@
   "gateways": []
   "icon": "router"
   "ip_address": "192.168.56.51"
-  "last_configuration_duration": "2.498667s"
+  "last_configuration_duration": "1.386929s"
   "last_configuration_failure": "2024-05-14 06:47:00.584671"
-  "last_configuration_runtime": "2024-05-14 06:50:09.418217"
+  "last_configuration_runtime": "2024-12-30 12:08:56.740647"
   "last_configuration_status": "Success"
   "last_configuration_update": "2024-05-14 06:48:57.493816"
   "last_modified": "2024-11-11 17:38:32.895355"
   "last_modified_by": "admin"
-  "last_operational_data_duration": "2.387149s"
+  "last_operational_data_duration": "1.462416s"
   "last_operational_data_failure": "2024-05-14 06:46:59.414276"
-  "last_operational_data_runtime": "2024-05-14 06:50:12.625731"
+  "last_operational_data_runtime": "2024-12-30 12:08:58.251463"
   "last_operational_data_status": "Success"
-  "last_operational_data_update": "2024-05-14 06:50:12.625731"
+  "last_operational_data_update": "2024-12-30 12:08:58.251463"
   "last_specialized_data_duration": "3.775398s"
   "last_specialized_data_failure": "Never"
   "last_specialized_data_runtime": "2022-02-14 10:13:39.034416"
@@ -253,6 +257,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -316,6 +321,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -379,6 +385,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -442,6 +449,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -505,6 +513,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -568,6 +577,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -631,6 +641,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -694,6 +705,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -757,6 +769,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -820,6 +833,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -884,6 +898,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -947,6 +962,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1010,6 +1026,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1073,6 +1090,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1136,6 +1154,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1199,6 +1218,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1262,6 +1282,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1325,6 +1346,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1388,6 +1410,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1451,6 +1474,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1514,6 +1538,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1577,6 +1602,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1640,6 +1666,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1703,6 +1730,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1766,6 +1794,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1829,6 +1858,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1892,6 +1922,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -1955,6 +1986,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2018,6 +2050,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2081,6 +2114,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2144,6 +2178,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2207,6 +2242,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2270,6 +2306,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2333,6 +2370,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2396,6 +2434,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2459,6 +2498,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2522,6 +2562,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2585,6 +2626,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2648,6 +2690,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2711,6 +2754,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2774,6 +2818,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2837,6 +2882,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2900,6 +2946,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -2963,6 +3010,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3026,6 +3074,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3089,6 +3138,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3152,6 +3202,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3215,6 +3266,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3278,6 +3330,7 @@
   "type": "device"
   "vendor": "Juniper"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3341,6 +3394,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3404,6 +3458,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3467,6 +3522,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3530,6 +3586,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3593,6 +3650,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3656,6 +3714,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3719,6 +3778,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3782,6 +3842,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3845,6 +3906,7 @@
   "type": "device"
   "vendor": "Linux"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": ""
   "custom_json":
     "a": "c"
@@ -3908,6 +3970,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -3971,6 +4034,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -4034,6 +4098,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -4097,6 +4162,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -4160,6 +4226,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -4223,6 +4290,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -4286,6 +4354,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -4349,6 +4418,7 @@
   "type": "device"
   "vendor": "Cisco"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4405,6 +4475,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4462,6 +4533,7 @@
   "type": "router"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4519,6 +4591,7 @@
   "type": "router"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4577,6 +4650,7 @@
   "type": "router"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4637,6 +4711,7 @@
   "type": "gateway"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4696,6 +4771,7 @@
   "type": "gateway"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4755,6 +4831,7 @@
   "type": "gateway"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4815,6 +4892,7 @@
   "type": "router"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4872,6 +4950,7 @@
   "type": "router"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4929,6 +5008,7 @@
   "type": "router"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -4987,6 +5067,7 @@
   "type": "gateway"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5045,6 +5126,7 @@
   "type": "gateway"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5101,6 +5183,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5159,6 +5242,7 @@
   "type": "gateway"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5216,6 +5300,7 @@
   "type": "router"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5273,6 +5358,7 @@
   "type": "router"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5329,6 +5415,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5385,6 +5472,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5441,6 +5529,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5497,6 +5586,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5553,6 +5643,7 @@
   "type": "device"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -5610,6 +5701,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Display"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -5702,6 +5794,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Subnetwork"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -5783,6 +5876,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": ""
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -5875,6 +5969,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Editing"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -5959,6 +6054,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": ""
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6045,6 +6141,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Editing"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6135,6 +6232,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": ""
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6211,6 +6309,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Display"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6333,6 +6432,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Subnetwork"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6412,6 +6512,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": ""
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6480,6 +6581,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": ""
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6548,6 +6650,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": ""
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6624,6 +6727,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Display"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6700,6 +6804,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Editing"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -6788,6 +6893,7 @@
   "vendor": ""
 - "admin_only": ! "false"
   "category": "Display"
+  "creation_time": ""
   "creator": "admin"
   "custom_json":
     "a": "c"
@@ -7008,6 +7114,7 @@
   "type": "network"
   "vendor": ""
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7061,6 +7168,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7114,6 +7222,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7167,6 +7276,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7220,6 +7330,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7273,6 +7384,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7326,6 +7438,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7379,6 +7492,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7432,6 +7546,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
@@ -7485,6 +7600,7 @@
   "type": "device"
   "vendor": "Arista"
 - "admin_only": ! "false"
+  "creation_time": ""
   "creator": "admin"
   "custom_json": {}
   "custom_multiselect": []
