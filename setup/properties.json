@@ -1543,7 +1543,7 @@
         "title": "Name",
         "className": "dt-body-left",
         "search": "text",
-        "width": "150px",
+        "width": "200px",
         "html": true
       },
       {
