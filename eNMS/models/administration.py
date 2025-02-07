@@ -387,7 +387,7 @@ class Folder(File):
 class Data(AbstractBase):
     __tablename__ = type = class_type = "data"
     type = db.Column(db.SmallString)
-    __mapper_args__ = {"polymorphic_identity": "file", "polymorphic_on": type}
+    __mapper_args__ = {"polymorphic_identity": "data", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     description = db.Column(db.LargeString)
@@ -395,8 +395,18 @@ class Data(AbstractBase):
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    store_id = db.Column(Integer, ForeignKey("store.id"))
-    store = relationship(
-        "Store", foreign_keys="Store.store_id", back_populates="data"
-    )
     logs = relationship("Changelog", back_populates="data")
+
+
+class Store(AbstractBase):
+    __tablename__ = type = class_type = "store"
+    id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.SmallString, unique=True)
+    description = db.Column(db.LargeString)
+    creator = db.Column(db.SmallString)
+    creation_time = db.Column(db.TinyString)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
+    store_id = db.Column(Integer, ForeignKey("store.id"), nullable=True)
+    store = relationship("Store", remote_side=[id], backref="stores")
+    logs = relationship("Changelog", back_populates="store")

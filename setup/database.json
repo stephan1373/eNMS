@@ -63,6 +63,7 @@
     "pool": "Pool",
     "server": "Server",
     "service": "Service",
+    "store": "Store",
     "task": "Task",
     "user": "User",
     "workflow_edge": "WorkflowEdge"
@@ -260,16 +261,6 @@
   },
   "relationships": {
     "associations": {
-      "changelog_data": {
-        "model1": {
-          "column": "changelog_id",
-          "foreign_key": "changelog"
-        },
-        "model2": {
-          "column": "data_id",
-          "foreign_key": "data"
-        }
-      },
       "changelog_network": {
         "model1": {
           "column": "changelog_id",

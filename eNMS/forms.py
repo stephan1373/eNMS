@@ -428,6 +428,18 @@ class DataForm(BaseForm):
     last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
 
 
+class StoreForm(BaseForm):
+    template = "object"
+    form_type = HiddenField(default="store")
+    id = HiddenField()
+    name = StringField("Name", [InputRequired()])
+    creator = StringField(render_kw={"readonly": True})
+    description = StringField(widget=TextArea(), render_kw={"rows": 3})
+    creation_time = StringField("Creation Time", render_kw={"readonly": True})
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
+
+
 class DebugForm(BaseForm):
     template = "debug"
     form_type = HiddenField(default="debug")
