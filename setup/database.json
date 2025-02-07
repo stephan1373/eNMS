@@ -240,6 +240,7 @@
       "services",
       "pages",
       "user_credentials",
+      "user_datas",
       "user_devices",
       "user_files",
       "user_links",
