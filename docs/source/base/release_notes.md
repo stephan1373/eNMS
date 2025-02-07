@@ -93,7 +93,7 @@ Version 5.2.0: Various Improvements
   Commit: fef814960881b48841e4928c5032427769cc8af0
 - Force global_delay_factor to 0.1 in update_netmiko_connection function when fast CLI is enabled
   Commit: 03323f1fb46c9d6b8ce1337da552f4f03ed3d7d4
-- Update the bulk export feature to export services to the user's browser as a .tge archive instead
+- Update the bulk export feature to export services to the user's browser as a .tgz archive instead
   of exporting them to the server
 - Fix refresh dropdown bug in the workflow builder (an active search was only working up until the
   next refresh because we empty and rebuild the dropdown list at each refresh)

@@ -73,7 +73,7 @@ class RestApi(vs.TimingMixin):
         elif "name" in data:
             service_kwargs = {"name": data["name"]}
         else:
-            return {"errors": "No identifier (Name or Persistent ID) for the service."}
+            return {"error": "No identifier (Name or Persistent ID) for the service."}
         service = db.fetch("service", rbac="run", **service_kwargs)
         if service.disabled:
             return {"error": "The workflow is disabled."}
