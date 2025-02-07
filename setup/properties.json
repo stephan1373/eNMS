@@ -1537,7 +1537,7 @@
         "export": false
       }
     ],
-    "secret": [
+    "data": [
       {
         "data": "name",
         "title": "Name",
