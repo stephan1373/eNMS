@@ -8,7 +8,7 @@ from eNMS.models.administration import Data
 
 
 class Secret(Data):
-    __tablename__ = export_type = "secret"
+    __tablename__ = "secret"
     pretty_name = "Secret"
     __mapper_args__ = {"polymorphic_identity": "secret"}
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)

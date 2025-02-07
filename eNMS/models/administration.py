@@ -385,7 +385,7 @@ class Folder(File):
 
 
 class Data(AbstractBase):
-    __tablename__ = type = class_type = "data"
+    __tablename__ = type = class_type = export_type = "data"
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "data", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
