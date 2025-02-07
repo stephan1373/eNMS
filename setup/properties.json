@@ -1815,6 +1815,11 @@
       "username",
       "priority"
     ],
+    "data": [
+      "name",
+      "description",
+      "creator"
+    ],
     "device": [
       "name",
       "description",
