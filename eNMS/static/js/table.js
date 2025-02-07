@@ -2021,6 +2021,16 @@ tables.file = class FileTable extends Table {
 };
 
 tables.store = class StoreTable extends Table {
+  addRow(properties) {
+    let row = super.addRow(properties);
+    row.name = `<a href="#" onclick="eNMS.administration.enterStore
+        ({ store: '${row.name}'})">
+          <span class="glyphicon glyphicon-folder-open" style="margin-left: 8px"></span>
+          <b style="margin-left: 6px">${row.name}</b>
+        </a>`;
+    return row;
+  }
+
   get controls() {
     return [
       this.columnDisplay(),

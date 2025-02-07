@@ -1541,7 +1541,10 @@
       {
         "data": "name",
         "title": "Name",
-        "search": "text"
+        "className": "dt-body-left",
+        "search": "text",
+        "width": "150px",
+        "html": true
       },
       {
         "data": "creator",
