@@ -1537,7 +1537,7 @@
         "export": false
       }
     ],
-    "data": [
+    "store": [
       {
         "data": "name",
         "title": "Name",
