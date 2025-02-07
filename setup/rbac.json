@@ -16,7 +16,7 @@
           "rbac": "all"
         },
         "Data Store": {
-          "endpoint": "/data_table",
+          "endpoint": "/store_table",
           "rbac": "access"
         },
         "Files": {
@@ -141,6 +141,7 @@
     "/confirmation_form": "access",
     "/credential_table": "access",
     "/dashboard": "all",
+    "/data_table": "access",
     "/device_data_form": "access",
     "/device_table": "access",
     "/download": "access",
@@ -176,12 +177,12 @@
     "/service_table": "access",
     "/session_log_form": "access",
     "/session_table": "access",
+    "/store_table": "access",
     "/network_table": "access",
     "/table_form": "access",
     "/task_table": "access",
     "/terminal": "access",
     "/tree_form": "access",
-    "/data_table": "access",
     "/user_table": "admin",
     "/view_service_results": "access",
     "/workflow_builder": "access",

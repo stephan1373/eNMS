@@ -2020,6 +2020,29 @@ tables.file = class FileTable extends Table {
   }
 };
 
+tables.store = class StoreTable extends Table {
+  get controls() {
+    return [this.columnDisplay(), this.refreshTableButton(), this.clearSearchButton()];
+  }
+
+  buttons(row) {
+    return [
+      `
+      <ul class="pagination pagination-lg" style="margin: 0px;">
+        <li>
+          <button type="button" class="btn btn-sm btn-primary"
+          onclick="eNMS.base.showInstancePanel('store', '${
+            row.id
+          }')" data-tooltip="Edit"
+            ><span class="glyphicon glyphicon-edit"></span
+          ></button>
+        </li>
+        ${this.deleteInstanceButton(row)}
+      </ul>`,
+    ];
+  }
+};
+
 tables.worker = class WorkerTable extends Table {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
