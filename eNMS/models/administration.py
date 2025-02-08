@@ -402,6 +402,7 @@ class Store(AbstractBase):
     __tablename__ = type = class_type = "store"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    path = db.Column(db.SmallString, unique=True)
     scoped_name = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
@@ -411,3 +412,7 @@ class Store(AbstractBase):
     store_id = db.Column(Integer, ForeignKey("store.id"), nullable=True)
     store = relationship("Store", remote_side=[id], backref="stores")
     logs = relationship("Changelog", back_populates="store")
+
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        self.name = self.path.replace("/", ">")
