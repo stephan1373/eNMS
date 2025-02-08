@@ -22,7 +22,7 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { displayFolderPath, folderPath } from "./administration.js";
+import { displayFolderPath, displayStorePath, folderPath, storePath } from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -2041,7 +2041,7 @@ tables.store = class StoreTable extends Table {
       <a
         id="upward-folder-btn"
         class="btn btn-info disabled"
-        onclick="eNMS.administration.enterFolder({parent: true})"
+        onclick="eNMS.administration.enterStore({parent: true})"
         type="button"
       >
         <span class="glyphicon glyphicon-chevron-up"></span>
@@ -2050,6 +2050,7 @@ tables.store = class StoreTable extends Table {
       this.bulkEditButton(),
       this.exportTableButton(),
       this.bulkDeletionButton(),
+      `<div id="current-store-path" style="margin-top: 9px; margin-left: 9px"></div>`,
     ];
   }
 
@@ -2068,6 +2069,11 @@ tables.store = class StoreTable extends Table {
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];
+  }
+
+  postProcessing(...args) {
+    super.postProcessing(...args);
+    displayStorePath(storePath);
   }
 };
 

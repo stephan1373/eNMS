@@ -74,6 +74,24 @@ export function displayFolderPath() {
   $("#current-folder-path").html(`<b>Current Folder :</b>${htmlPath.join("")}`);
 }
 
+export function displayStorePath() {
+  let currentPath = "";
+  let htmlPath = [];
+  storePath
+    .split("/")
+    .slice(1)
+    .forEach((store) => {
+      currentPath += `/${store}`;
+      htmlPath.push(`<b> / </b>
+        <button type="button" class="btn btn-xs btn-primary"
+        onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
+          ${store}
+        </button>
+      `);
+    });
+  $("#current-store-path").html(`<b>Current Folder :</b>${htmlPath.join("")}`);
+}
+
 function enterFolder({ folder, path, parent }) {
   clearSearch("file");
   if (parent) {
@@ -92,6 +110,26 @@ function enterFolder({ folder, path, parent }) {
     $("#upward-folder-btn").addClass("disabled");
   }
   displayFolderPath();
+}
+
+function enterStore({ store, path, parent }) {
+  clearSearch("store");
+  if (parent) {
+    storePath = storePath
+      .split("/")
+      .slice(0, -1)
+      .join("/");
+  } else {
+    storePath = path || store ? path || `${storePath}/${store}` : "";
+  }
+  localStorage.setItem("storePath", storePath);
+  refreshTable("file", null, null, true);
+  if (store) {
+    $("#upward-store-btn").removeClass("disabled");
+  } else if (!storePath) {
+    $("#upward-store-btn").addClass("disabled");
+  }
+  displayStorePath();
 }
 
 function downloadProfilingData() {
@@ -502,6 +540,7 @@ configureNamespace("administration", [
   downloadProfilingData,
   editFile,
   enterFolder,
+  enterStore,
   getClusterStatus,
   getGitContent,
   migrationsExport,
