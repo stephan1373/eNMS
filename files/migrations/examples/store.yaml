@@ -3,7 +3,7 @@
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": "/Secrets"
+  "name": ">Secrets"
   "scoped_name": "Secrets"
   "stores": []
   "type": "store"
@@ -12,7 +12,7 @@
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": "/Interfaces"
+  "name": ">Interfaces"
   "scoped_name": "Interfaces"
   "stores": []
   "type": "store"

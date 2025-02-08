@@ -1539,7 +1539,7 @@
     ],
     "store": [
       {
-        "data": "name",
+        "data": "scoped_name",
         "title": "Name",
         "className": "dt-body-left",
         "search": "text",

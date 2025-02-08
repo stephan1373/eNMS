@@ -2023,10 +2023,10 @@ tables.file = class FileTable extends Table {
 tables.store = class StoreTable extends Table {
   addRow(properties) {
     let row = super.addRow(properties);
-    row.name = `<a href="#" onclick="eNMS.administration.enterStore
-        ({ store: '${row.name}'})">
+    row.scoped_name = `<a href="#" onclick="eNMS.administration.enterStore
+        ({ store: '${row.scoped_name}'})">
           <span class="glyphicon glyphicon-book" style="margin-left: 8px"></span>
-          <b style="margin-left: 6px">${row.name}</b>
+          <b style="margin-left: 6px">${row.scoped_name}</b>
         </a>`;
     return row;
   }
