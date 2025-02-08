@@ -124,7 +124,10 @@ function enterStore(data) {
           ></table>
         </form>
       `);
-      new tables[store.type](store.id);
+      new tables[store.data_type](store.id, {
+        store_id: store.id,
+        store_id_filter: "equality",
+      });
       let currentPath = "";
       let htmlPath = [];
       storePath

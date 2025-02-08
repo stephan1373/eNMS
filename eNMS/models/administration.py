@@ -395,30 +395,30 @@ class Data(AbstractBase):
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    stores = relationship(
-        "Store", secondary=db.data_store_table, back_populates="data"
-    )
+    store_id = db.Column(Integer, ForeignKey("store.id", ondelete="cascade"))
+    store = relationship("Store", back_populates="data", foreign_keys="Data.store_id")
     logs = relationship("Changelog", back_populates="data")
 
 
 class Store(Data):
     __tablename__ = "store"
     pretty_name = "Store"
-    __mapper_args__ = {"polymorphic_identity": "store"}
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.SmallString, unique=True)
     scoped_name = db.Column(db.SmallString)
     parent_path = db.Column(db.SmallString, info={"log_change": False})
-    parent_store_id = db.Column(Integer, ForeignKey("store.id"), nullable=True)
-    parent_store = relationship("Store", remote_side=[id], foreign_keys="Store.parent_store_id")
+    logs = relationship("Changelog", back_populates="store")
     data = relationship(
         "Data",
-        secondary=db.data_store_table,
-        back_populates="stores",
-        lazy="joined",
+        back_populates="store",
+        foreign_keys="Data.store_id",
+        cascade="all, delete-orphan",
     )
-    logs = relationship("Changelog", back_populates="store")
+    __mapper_args__ = {
+        "polymorphic_identity": "store",
+        "inherit_condition": id == Data.id,
+    }
 
     def update(self, **kwargs):
         super().update(**kwargs)

@@ -411,16 +411,6 @@
           "foreign_key": "workflow"
         }
       },
-      "data_store": {
-        "model1": {
-          "column": "data_id",
-          "foreign_key": "data"
-        },
-        "model2": {
-          "column": "store_id",
-          "foreign_key": "store"
-        }
-      },
       "task_device": {
         "model1": {
           "column": "task_id",
