@@ -404,6 +404,7 @@ class Store(AbstractBase):
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.SmallString, unique=True)
     scoped_name = db.Column(db.SmallString)
+    parent_path = db.Column(db.SmallString, info={"log_change": False})
     description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
     creation_time = db.Column(db.TinyString)
@@ -416,3 +417,5 @@ class Store(AbstractBase):
     def update(self, **kwargs):
         super().update(**kwargs)
         self.name = self.path.replace("/", ">")
+        *split_store_path, self.scoped_name = self.path.split("/")
+        self.parent_path = "/".join(split_store_path)

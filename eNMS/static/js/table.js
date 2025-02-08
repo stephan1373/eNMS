@@ -2032,6 +2032,7 @@ tables.store = class StoreTable extends Table {
   }
 
   get controls() {
+    const status = storePath == "" ? "disabled" : "";
     return [
       this.columnDisplay(),
       this.displayChangelogButton(),
@@ -2040,7 +2041,7 @@ tables.store = class StoreTable extends Table {
       `
       <a
         id="upward-folder-btn"
-        class="btn btn-info disabled"
+        class="btn btn-info ${status}"
         onclick="eNMS.administration.enterStore({parent: true})"
         type="button"
       >
@@ -2069,6 +2070,10 @@ tables.store = class StoreTable extends Table {
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];
+  }
+
+  get filteringConstraints() {
+    return { parent_path: storePath, parent_path_filter: "equality" };
   }
 
   postProcessing(...args) {
