@@ -25,6 +25,7 @@ import {
   openDebugPanel,
   showCredentialPanel,
   showFolderPanel,
+  showStorePanel,
   storePath,
 } from "./administration.js";
 import { creationMode, initBuilder, instance, processBuilderData } from "./builder.js";
@@ -805,6 +806,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       if (isLink) showLinkPanel(type, id, edge);
       if (type == "credential") showCredentialPanel(id);
       if (type == "folder") showFolderPanel(id);
+      if (type == "store") showStorePanel(id);
       if (id) {
         call({
           url: `/get/${type}/${id}`,

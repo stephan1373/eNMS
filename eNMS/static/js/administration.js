@@ -463,6 +463,12 @@ export function showFolderPanel(id) {
   $(`#folder-filename`).prop("readonly", false);
 }
 
+export function showStorePanel(id) {
+  if (id) return;
+  $("#store-scoped_name").prop("readonly", false);
+  $("#store-path").prop("readonly", true);
+}
+
 function showProfile() {
   openPanel({
     name: "profile",
