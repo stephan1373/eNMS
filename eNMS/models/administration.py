@@ -395,23 +395,29 @@ class Data(AbstractBase):
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
+    stores = relationship(
+        "Store", secondary=db.data_store_table, back_populates="data"
+    )
     logs = relationship("Changelog", back_populates="data")
 
 
-class Store(AbstractBase):
-    __tablename__ = type = class_type = "store"
-    id = db.Column(Integer, primary_key=True)
+class Store(Data):
+    __tablename__ = "store"
+    pretty_name = "Store"
+    __mapper_args__ = {"polymorphic_identity": "store"}
+    id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.SmallString, unique=True)
     scoped_name = db.Column(db.SmallString)
     parent_path = db.Column(db.SmallString, info={"log_change": False})
-    description = db.Column(db.LargeString)
-    creator = db.Column(db.SmallString)
-    creation_time = db.Column(db.TinyString)
-    last_modified = db.Column(db.TinyString, info={"log_change": False})
-    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    store_id = db.Column(Integer, ForeignKey("store.id"), nullable=True)
-    store = relationship("Store", remote_side=[id], backref="stores")
+    parent_store_id = db.Column(Integer, ForeignKey("store.id"), nullable=True)
+    parent_store = relationship("Store", remote_side=[id], foreign_keys="Store.parent_store_id")
+    data = relationship(
+        "Data",
+        secondary=db.data_store_table,
+        back_populates="stores",
+        lazy="joined",
+    )
     logs = relationship("Changelog", back_populates="store")
 
     def update(self, **kwargs):
