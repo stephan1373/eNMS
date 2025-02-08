@@ -215,7 +215,7 @@
       "users",
       "logs"
     ],
-    "store": ["id", "logs"],
+    "store": ["id", "logs", "folder_path"],
     "task": [
       "id",
       "service_name",
