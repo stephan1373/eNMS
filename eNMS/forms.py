@@ -291,26 +291,14 @@ class FormFactory:
             template = "object"
             form_type = HiddenField(default="store")
             id = HiddenField()
-            scoped_name = StringField("Name", [InputRequired()], render_kw={"readonly": True})
-            path = StringField()
+            name = StringField("Name", [InputRequired()])
+            store = InstanceField("Store", model="store")
             data_type = SelectField("Data Type", choices=list(vs.subtypes["data"].items()))
             creator = StringField(render_kw={"readonly": True})
             description = StringField(widget=TextArea(), render_kw={"rows": 3})
             creation_time = StringField("Creation Time", render_kw={"readonly": True})
             last_modified = StringField("Last Modified", render_kw={"readonly": True})
             last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
-
-            def validate(self, **_):
-                valid_form = super().validate()
-                path = self.path.data
-                invalid_path = path.endswith("/") or not path.startswith("/") or "//" in path
-                if invalid_path:
-                    self.path.errors.append("The path is invalid.")
-                existing_store = db.fetch("store", path=path, allow_none=True)
-                path_already_used = existing_store and (str(existing_store.id) != str(self.id.data))
-                if path_already_used:
-                    self.path.errors.append("There is already a store at the specified path.")
-                return valid_form and not invalid_path and not path_already_used
 
     def register_parameterized_form(self, service_id):
         global_variables = {

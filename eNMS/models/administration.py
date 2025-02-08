@@ -405,10 +405,7 @@ class Store(Data):
     pretty_name = "Store"
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
-    path = db.Column(db.SmallString, unique=True)
-    scoped_name = db.Column(db.SmallString)
     data_type = db.Column(db.SmallString, default="store")
-    parent_path = db.Column(db.SmallString, info={"log_change": False})
     logs = relationship("Changelog", back_populates="store")
     data = relationship(
         "Data",
@@ -420,9 +417,3 @@ class Store(Data):
         "polymorphic_identity": "store",
         "inherit_condition": id == Data.id,
     }
-
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        self.name = self.path.replace("/", ">")
-        *split_store_path, self.scoped_name = self.path.split("/")
-        self.parent_path = "/".join(split_store_path)
