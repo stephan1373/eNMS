@@ -22,7 +22,7 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { displayFolderPath, displayStorePath, folderPath, storePath } from "./administration.js";
+import { displayFolderPath, folderPath, storePath } from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -2073,16 +2073,6 @@ tables.store = class StoreTable extends Table {
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];
-  }
-
-  get filteringConstraints() {
-    const filterType  = storePath ? "equality" : "empty";
-    return { parent_path: storePath, parent_path_filter: filterType };
-  }
-
-  postProcessing(...args) {
-    super.postProcessing(...args);
-    displayStorePath(storePath);
   }
 };
 

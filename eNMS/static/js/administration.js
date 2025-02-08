@@ -74,24 +74,6 @@ export function displayFolderPath() {
   $("#current-folder-path").html(`<b>Current Folder :</b>${htmlPath.join("")}`);
 }
 
-export function displayStorePath() {
-  let currentPath = "";
-  let htmlPath = [];
-  storePath
-    .split("/")
-    .slice(1)
-    .forEach((store) => {
-      currentPath += `/${store}`;
-      htmlPath.push(`<b> / </b>
-        <button type="button" class="btn btn-xs btn-primary"
-        onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
-          ${store}
-        </button>
-      `);
-    });
-  $("#current-store-path").html(`<b>Current Folder :</b>${htmlPath.join("")}`);
-}
-
 function enterFolder({ folder, path, parent }) {
   clearSearch("file");
   if (parent) {
@@ -112,40 +94,54 @@ function enterFolder({ folder, path, parent }) {
   displayFolderPath();
 }
 
-function enterStore({ store, path, parent }) {
-  if (parent) {
-    storePath = storePath
-      .split("/")
-      .slice(0, -1)
-      .join("/");
-  } else {
-    storePath = path || store ? path || `${storePath}/${store}` : "";
-  }
-  localStorage.setItem("storePath", storePath);
-  if (store) {
-    $("#upward-store-btn").removeClass("disabled");
-  } else if (!storePath) {
-    $("#upward-store-btn").addClass("disabled");
-  }
-  $("#table-div").empty().html(`
-    <form id="search-form-${store.type}-${store.id}" style="padding: 12px 17px; width: 100%">
-      <div id="tooltip-overlay" class="overlay"></div>
-      <nav
-        id="controls-${store.type}-${store.id}"
-        class="navbar navbar-default nav-controls"
-        role="navigation"
-      ></nav>
-      <table
-        id="table-${store.type}-${store.id}"
-        style="margin-top: 10px"
-        class="table table-striped table-bordered table-hover add-id"
-        cellspacing="0"
-        width="100%"
-      ></table>
-    </form>
-  `);
-  new tables[store.type](store.id);
-  displayStorePath();
+function enterStore(data) {
+  call({
+    url: "/get_store",
+    data: data,
+    callback: function(store) {
+      storePath = store ? store.path : "";
+      localStorage.setItem("storePath", storePath);
+      if (store) {
+        $("#upward-store-btn").removeClass("disabled");
+      } else {
+        $("#upward-store-btn").addClass("disabled");
+      }
+      $("#table-div").empty().html(`
+        <form id="search-form-${store.type}-${store.id}"
+          style="padding: 12px 17px; width: 100%">
+          <div id="tooltip-overlay" class="overlay"></div>
+          <nav
+            id="controls-${store.type}-${store.id}"
+            class="navbar navbar-default nav-controls"
+            role="navigation"
+          ></nav>
+          <table
+            id="table-${store.type}-${store.id}"
+            style="margin-top: 10px"
+            class="table table-striped table-bordered table-hover add-id"
+            cellspacing="0"
+            width="100%"
+          ></table>
+        </form>
+      `);
+      new tables[store.type](store.id);
+      let currentPath = "";
+      let htmlPath = [];
+      storePath
+        .split("/")
+        .slice(1)
+        .forEach((store) => {
+          currentPath += `/${store}`;
+          htmlPath.push(`<b> / </b>
+            <button type="button" class="btn btn-xs btn-primary"
+            onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
+              ${store}
+            </button>
+          `);
+        });
+      $("#current-store-path").html(`<b>Current Folder :</b>${htmlPath.join("")}`);
+    },
+  });
 }
 
 function downloadProfilingData() {
