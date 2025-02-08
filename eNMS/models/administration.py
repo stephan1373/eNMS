@@ -407,6 +407,7 @@ class Store(Data):
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.SmallString, unique=True)
     scoped_name = db.Column(db.SmallString)
+    data_type = db.Column(db.SmallString, default="store")
     parent_path = db.Column(db.SmallString, info={"log_change": False})
     logs = relationship("Changelog", back_populates="store")
     data = relationship(
