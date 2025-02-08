@@ -15,10 +15,6 @@
           "endpoint": "/dashboard",
           "rbac": "all"
         },
-        "Data Store": {
-          "endpoint": "/store_table",
-          "rbac": "access"
-        },
         "Files": {
           "endpoint": "/file_table",
           "rbac": "access"
@@ -75,6 +71,10 @@
         },
         "Configurations": {
           "endpoint": "/configuration_table",
+          "rbac": "access"
+        },
+        "Data Store": {
+          "endpoint": "/store_table",
           "rbac": "access"
         },
         "Links": {
