@@ -306,7 +306,8 @@ class FormFactory:
                 invalid_path = path.endswith("/") or not path.startswith("/") or "//" in path
                 if invalid_path:
                     self.path.errors.append("The path is invalid.")
-                path_already_used = db.fetch("store", path=path, allow_none=True)
+                existing_store = db.fetch("store", path=path, allow_none=True)
+                path_already_used = existing_store and (str(existing_store.id) != str(self.id.data))
                 if path_already_used:
                     self.path.errors.append("There is already a store at the specified path.")
                 return valid_form and not invalid_path and not path_already_used
