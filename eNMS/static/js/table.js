@@ -2037,6 +2037,15 @@ tables.store = class StoreTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.clearSearchButton(),
+      `
+      <a
+        id="upward-folder-btn"
+        class="btn btn-info disabled"
+        onclick="eNMS.administration.enterFolder({parent: true})"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>`,
       this.createNewButton(),
       this.bulkEditButton(),
       this.exportTableButton(),

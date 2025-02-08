@@ -402,6 +402,7 @@ class Store(AbstractBase):
     __tablename__ = type = class_type = "store"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    scoped_name = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
     creation_time = db.Column(db.TinyString)

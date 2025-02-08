@@ -22,6 +22,7 @@ import {
 import { clearSearch, refreshTable, tables } from "./table.js";
 
 export let folderPath = localStorage.getItem("folderPath") || "";
+export let storePath = localStorage.getItem("storePath") || "";
 
 function displayFiles() {
   if ($("#files").length || page == "file_table") {
