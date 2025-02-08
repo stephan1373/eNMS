@@ -3,7 +3,8 @@
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": "Secrets"
+  "name": "/Secrets"
+  "scoped_name": "Secrets"
   "stores": []
   "type": "store"
 - "creation_time": "2025-02-07 08:09:25.594332"
@@ -11,6 +12,7 @@
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": "Interfaces"
+  "name": "/Interfaces"
+  "scoped_name": "Interfaces"
   "stores": []
   "type": "store"
