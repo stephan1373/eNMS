@@ -199,7 +199,7 @@ class VariableStore:
         self.connections_cache = {library: defaultdict(dict) for library in libraries}
         self.service_run_count = defaultdict(int)
 
-    def _initialize(self):
+    def set_subtypes(self):
         self.subtypes = {
             model: {
                 service: service_class.pretty_name
@@ -209,6 +209,8 @@ class VariableStore:
             }
             for model in ("link", "data", "device", "service")
         }
+
+    def set_template_context(self):
         self.template_context = {
             "application_path": str(self.path),
             "file_path": str(self.file_path),

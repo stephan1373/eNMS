@@ -15,9 +15,10 @@ def initialize():
     first_init = db._initialize(env)
     if env.detect_cli():
         return
+    vs.set_subtypes()
     form_factory._initialize()
     controller._initialize(first_init)
-    vs._initialize()
+    vs.set_template_context()
     Runner._initialize()
 
 

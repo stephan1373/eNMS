@@ -183,6 +183,7 @@ class FormFactory:
         self.generate_service_forms()
         self.generate_filtering_forms()
         self.generate_rbac_forms()
+        self.generate_store_form()
 
     def generate_filtering_forms(self):
         for model in vs.properties["filtering"]:
@@ -284,6 +285,31 @@ class FormFactory:
         for file in (vs.path / "eNMS" / "forms").glob("**/*.py"):
             spec = spec_from_file_location(str(file).split("/")[-1][:-3], str(file))
             spec.loader.exec_module(module_from_spec(spec))
+
+    def generate_store_form(self):
+        class StoreForm(BaseForm):
+            template = "object"
+            form_type = HiddenField(default="store")
+            id = HiddenField()
+            scoped_name = StringField("Name", [InputRequired()], render_kw={"readonly": True})
+            path = StringField()
+            data_type = SelectField("Data Type", choices=list(vs.subtypes["data"]))
+            creator = StringField(render_kw={"readonly": True})
+            description = StringField(widget=TextArea(), render_kw={"rows": 3})
+            creation_time = StringField("Creation Time", render_kw={"readonly": True})
+            last_modified = StringField("Last Modified", render_kw={"readonly": True})
+            last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
+
+            def validate(self, **_):
+                valid_form = super().validate()
+                path = self.path.data
+                invalid_path = path.endswith("/") or not path.startswith("/") or "//" in path
+                if invalid_path:
+                    self.path.errors.append("The path is invalid.")
+                path_already_used = db.fetch("store", path=path, allow_none=True)
+                if path_already_used:
+                    self.path.errors.append("There is already a store at the specified path.")
+                return valid_form and not invalid_path and not path_already_used
 
     def register_parameterized_form(self, service_id):
         global_variables = {
@@ -426,30 +452,6 @@ class DataForm(BaseForm):
     creation_time = StringField("Creation Time", render_kw={"readonly": True})
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
     last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
-
-
-class StoreForm(BaseForm):
-    template = "object"
-    form_type = HiddenField(default="store")
-    id = HiddenField()
-    scoped_name = StringField("Name", [InputRequired()], render_kw={"readonly": True})
-    path = StringField()
-    creator = StringField(render_kw={"readonly": True})
-    description = StringField(widget=TextArea(), render_kw={"rows": 3})
-    creation_time = StringField("Creation Time", render_kw={"readonly": True})
-    last_modified = StringField("Last Modified", render_kw={"readonly": True})
-    last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
-
-    def validate(self, **_):
-        valid_form = super().validate()
-        path = self.path.data
-        invalid_path = path.endswith("/") or not path.startswith("/") or "//" in path
-        if invalid_path:
-            self.path.errors.append("The path is invalid.")
-        path_already_used = db.fetch("store", path=path, allow_none=True)
-        if path_already_used:
-            self.path.errors.append("There is already a store at the specified path.")
-        return valid_form and not invalid_path and not path_already_used
 
 
 class DebugForm(BaseForm):
