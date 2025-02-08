@@ -123,7 +123,7 @@ function enterStore({ store, path, parent }) {
     storePath = path || store ? path || `${storePath}/${store}` : "";
   }
   localStorage.setItem("storePath", storePath);
-  refreshTable("file", null, null, true);
+  refreshTable("store", null, null, true);
   if (store) {
     $("#upward-store-btn").removeClass("disabled");
   } else if (!storePath) {
