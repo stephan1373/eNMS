@@ -202,10 +202,10 @@ class VariableStore:
     def set_subtypes(self):
         self.subtypes = {
             model: {
-                service: service_class.pretty_name
-                for service, service_class in sorted(self.models.items())
-                if issubclass(service_class, self.models[model])
-                and hasattr(service_class, "pretty_name")
+                model_name: model_class.pretty_name
+                for model_name, model_class in sorted(self.models.items())
+                if issubclass(model_class, self.models[model])
+                and hasattr(model_class, "pretty_name")
             }
             for model in ("link", "data", "device", "service")
         }
