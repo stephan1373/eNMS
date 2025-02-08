@@ -16,21 +16,29 @@
   - "All users"
   "secret_value": "Q29ycmVjdDEyMyE6KSRA"
   "type": "secret"
-- "creation_time": "2025-02-07 08:09:20.748904"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-07 08:09:20.748904"
   "creator": "admin"
+  "data": []
+  "data_type": "secret"
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "data_type": "secret"
   "name": "Secrets"
-  "stores": []
+  "owners": []
+  "rbac_edit": []
+  "rbac_read": []
   "type": "store"
-- "creation_time": "2025-02-07 08:09:25.594332"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-07 08:09:25.594332"
   "creator": "admin"
+  "data": []
+  "data_type": "interface"
   "description": ""
   "last_modified": ""
-  "data_type": "interface"
   "last_modified_by": ""
   "name": "Interfaces"
-  "stores": []
+  "owners": []
+  "rbac_edit": []
+  "rbac_read": []
   "type": "store"
