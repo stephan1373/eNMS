@@ -2040,7 +2040,7 @@ tables.store = class StoreTable extends Table {
       this.clearSearchButton(),
       `
       <a
-        id="upward-folder-btn"
+        id="upward-store-btn"
         class="btn btn-info ${status}"
         onclick="eNMS.administration.enterStore({parent: true})"
         type="button"
