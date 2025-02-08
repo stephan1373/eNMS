@@ -1799,7 +1799,6 @@
     "service": ["builder_link", "path", "scoped_name", "mandatory_parametrization"],
     "network": ["path", "scoped_name"],
     "result": ["service_name"],
-    "store": ["path"],
     "task": [
       "frequency",
       "frequency_unit",

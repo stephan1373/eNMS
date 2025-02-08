@@ -235,6 +235,7 @@
     "/get_view_topology": "access",
     "/get_service_state": "access",
     "/get_session_log": "access",
+    "/get_store": "access",
     "/get_time": "access",
     "/get_top_level_instances": "access",
     "/get_visualization_pools": "access",

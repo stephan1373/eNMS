@@ -728,6 +728,12 @@ class Controller(vs.TimingMixin):
         session = db.fetch("session", id=session_id)
         return session.content, session.device_name
 
+    def get_store(self, **kwargs):
+        store = None
+        if "id" in kwargs:
+            store = db.fetch("store", id=kwargs["id"])
+        return store.get_properties()
+
     def get_network_state(self, path, **kwargs):
         network = db.fetch("network", id=path.split(">")[-1], allow_none=True)
         if not network:
