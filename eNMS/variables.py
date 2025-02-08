@@ -123,15 +123,6 @@ class VariableStore:
         self.private_properties_set = set(sum(self.private_properties.values(), []))
         self.property_names = {}
         self.relationships = defaultdict(dict)
-        self.subtypes = {
-            model: {
-                service: service_class.pretty_name
-                for service, service_class in sorted(self.models.items())
-                if issubclass(service_class, self.models[model])
-                and hasattr(service_class, "pretty_name")
-            }
-            for model in ("link", "data", "device", "service")
-        }
 
     def _set_custom_variables(self):
         for model, values in self.properties["custom"].items():
@@ -208,7 +199,16 @@ class VariableStore:
         self.connections_cache = {library: defaultdict(dict) for library in libraries}
         self.service_run_count = defaultdict(int)
 
-    def set_template_context(self):
+    def _initialize(self):
+        self.subtypes = {
+            model: {
+                service: service_class.pretty_name
+                for service, service_class in sorted(self.models.items())
+                if issubclass(service_class, self.models[model])
+                and hasattr(service_class, "pretty_name")
+            }
+            for model in ("link", "data", "device", "service")
+        }
         self.template_context = {
             "application_path": str(self.path),
             "file_path": str(self.file_path),

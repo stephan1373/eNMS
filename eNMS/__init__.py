@@ -17,7 +17,7 @@ def initialize():
         return
     form_factory._initialize()
     controller._initialize(first_init)
-    vs.set_template_context()
+    vs._initialize()
     Runner._initialize()
 
 
