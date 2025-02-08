@@ -440,6 +440,17 @@ class StoreForm(BaseForm):
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
     last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
 
+    def validate(self, **_):
+        valid_form = super().validate()
+        path = self.path.data
+        invalid_path = path.endswith("/") or not path.startswith("/") or "//" in path
+        if invalid_path:
+            self.path.errors.append("The path is invalid.")
+        path_already_used = db.fetch("store", path=path, allow_none=True)
+        if path_already_used:
+            self.path.errors.append("There is already a store at the specified path.")
+        return valid_form and not invalid_path and not path_already_used
+
 
 class DebugForm(BaseForm):
     template = "debug"
