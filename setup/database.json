@@ -47,7 +47,6 @@
     "link",
     "server",
     "service",
-    "store",
     "workflow_edge",
     "task",
     "credential",
@@ -64,7 +63,6 @@
     "pool": "Pool",
     "server": "Server",
     "service": "Service",
-    "store": "Store",
     "task": "Task",
     "user": "User",
     "workflow_edge": "WorkflowEdge"
@@ -215,7 +213,7 @@
       "users",
       "logs"
     ],
-    "store": ["id", "logs", "folder_path"],
+    "store": ["id", "logs"],
     "task": [
       "id",
       "service_name",
