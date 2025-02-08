@@ -2073,7 +2073,8 @@ tables.store = class StoreTable extends Table {
   }
 
   get filteringConstraints() {
-    return { parent_path: storePath, parent_path_filter: "equality" };
+    const filterType  = storePath ? "equality" : "empty";
+    return { parent_path: storePath, parent_path_filter: filterType };
   }
 
   postProcessing(...args) {
