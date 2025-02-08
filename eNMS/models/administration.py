@@ -406,7 +406,6 @@ class Store(Data):
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     data_type = db.Column(db.SmallString, default="store")
-    logs = relationship("Changelog", back_populates="store")
     data = relationship(
         "Data",
         back_populates="store",
