@@ -123,6 +123,15 @@ class VariableStore:
         self.private_properties_set = set(sum(self.private_properties.values(), []))
         self.property_names = {}
         self.relationships = defaultdict(dict)
+        self.subtypes = {
+            model: {
+                service: service_class.pretty_name
+                for service, service_class in sorted(self.models.items())
+                if issubclass(service_class, self.models[model])
+                and hasattr(service_class, "pretty_name")
+            }
+            for model in ("link", "data", "device", "service")
+        }
 
     def _set_custom_variables(self):
         for model, values in self.properties["custom"].items():
@@ -209,15 +218,7 @@ class VariableStore:
             "names": self.property_names,
             "rbac": self.rbac,
             "relationships": self.relationships,
-            "subtypes": {
-                model: {
-                    service: service_class.pretty_name
-                    for service, service_class in sorted(self.models.items())
-                    if issubclass(service_class, self.models[model])
-                    and hasattr(service_class, "pretty_name")
-                }
-                for model in ("link", "data", "device", "service")
-            },
+            "subtypes": self.subtypes,
             "server_url": self.server_url,
             "settings": self.settings,
             "ssh_url": self.ssh_url,
