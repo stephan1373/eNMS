@@ -113,7 +113,6 @@ function enterFolder({ folder, path, parent }) {
 }
 
 function enterStore({ store, path, parent }) {
-  clearSearch("store");
   if (parent) {
     storePath = storePath
       .split("/")
@@ -123,12 +122,29 @@ function enterStore({ store, path, parent }) {
     storePath = path || store ? path || `${storePath}/${store}` : "";
   }
   localStorage.setItem("storePath", storePath);
-  refreshTable("store", null, null, true);
   if (store) {
     $("#upward-store-btn").removeClass("disabled");
   } else if (!storePath) {
     $("#upward-store-btn").addClass("disabled");
   }
+  $("#table-div").empty().html(`
+    <form id="search-form-${store.type}-${store.id}" style="padding: 12px 17px; width: 100%">
+      <div id="tooltip-overlay" class="overlay"></div>
+      <nav
+        id="controls-${store.type}-${store.id}"
+        class="navbar navbar-default nav-controls"
+        role="navigation"
+      ></nav>
+      <table
+        id="table-${store.type}-${store.id}"
+        style="margin-top: 10px"
+        class="table table-striped table-bordered table-hover add-id"
+        cellspacing="0"
+        width="100%"
+      ></table>
+    </form>
+  `);
+  new tables[store.type](store.id);
   displayStorePath();
 }
 

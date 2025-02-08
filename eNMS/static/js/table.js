@@ -2022,9 +2022,12 @@ tables.file = class FileTable extends Table {
 
 tables.store = class StoreTable extends Table {
   addRow(properties) {
-    let row = super.addRow(properties);
+    let row = super.addRow({
+      derivedProperties: ["path"],
+      ...properties,
+    });
     row.scoped_name = `<a href="#" onclick="eNMS.administration.enterStore
-        ({ store: '${row.scoped_name}'})">
+        ({ store: ${row.instance}})">
           <span class="glyphicon glyphicon-book" style="margin-left: 8px"></span>
           <b style="margin-left: 6px">${row.scoped_name}</b>
         </a>`;
