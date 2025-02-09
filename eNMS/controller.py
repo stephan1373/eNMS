@@ -732,8 +732,8 @@ class Controller(vs.TimingMixin):
         store = None
         if "id" in kwargs:
             store = db.fetch("store", id=kwargs["id"])
-        elif kwargs.get("parent"):
-            store = db.fetch("store", id=kwargs["store"], allow_none=True).store
+        elif kwargs.get("parent") and kwargs["store"]["store_id"]:
+            store = db.fetch("store", id=kwargs["store"]["store_id"])
         return store.get_properties() if store else None
 
     def get_network_state(self, path, **kwargs):
