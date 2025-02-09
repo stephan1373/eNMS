@@ -107,16 +107,16 @@ function enterStore(data) {
         $("#upward-store-btn").addClass("disabled");
       }
       $("#table-div").empty().html(`
-        <form id="search-form-${store.type}-${store.id}"
+        <form id="search-form-${store.data_type}-${store.id}"
           style="padding: 12px 17px; width: 100%">
           <div id="tooltip-overlay" class="overlay"></div>
           <nav
-            id="controls-${store.type}-${store.id}"
+            id="controls-${store.data_type}-${store.id}"
             class="navbar navbar-default nav-controls"
             role="navigation"
           ></nav>
           <table
-            id="table-${store.type}-${store.id}"
+            id="table-${store.data_type}-${store.id}"
             style="margin-top: 10px"
             class="table table-striped table-bordered table-hover add-id"
             cellspacing="0"
