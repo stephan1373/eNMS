@@ -99,7 +99,7 @@ function enterStore(data) {
     url: "/get_store",
     data: data,
     callback: function(store) {
-      storePath = store ? store.path : "";
+      storePath = store?.path || "";
       localStorage.setItem("storePath", storePath);
       if (store) {
         $("#upward-store-btn").removeClass("disabled");
