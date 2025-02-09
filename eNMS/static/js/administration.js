@@ -106,17 +106,18 @@ function enterStore(data) {
       } else {
         $("#upward-store-btn").addClass("disabled");
       }
+      const tableId = store ? `${store.data_type}-${store.id}` : "store";
       $("#table-div").empty().html(`
-        <form id="search-form-${store.data_type}-${store.id}"
+        <form id="search-form-${tableId}"
           style="padding: 12px 17px; width: 100%">
           <div id="tooltip-overlay" class="overlay"></div>
           <nav
-            id="controls-${store.data_type}-${store.id}"
+            id="controls-${tableId}"
             class="navbar navbar-default nav-controls"
             role="navigation"
           ></nav>
           <table
-            id="table-${store.data_type}-${store.id}"
+            id="table-${tableId}"
             style="margin-top: 10px"
             class="table table-striped table-bordered table-hover add-id"
             cellspacing="0"
@@ -124,10 +125,14 @@ function enterStore(data) {
           ></table>
         </form>
       `);
-      new tables[store.data_type](store.id, {
-        store_id: store.id,
-        store_id_filter: "equality",
-      });
+      if (store) {
+        new tables[store.data_type](store.id, {
+          store_id: store.id,
+          store_id_filter: "equality",
+        });
+      } else {
+        new tables["store"];
+      }
     },
   });
 }
