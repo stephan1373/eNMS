@@ -26,7 +26,6 @@ import {
   showCredentialPanel,
   showFolderPanel,
   showStorePanel,
-  storePath,
 } from "./administration.js";
 import { creationMode, initBuilder, instance, processBuilderData } from "./builder.js";
 import { initDashboard } from "./inventory.js";
@@ -1157,9 +1156,6 @@ function processData(type, id) {
   if (type == "folder" && !id) {
     const filename = $("#folder-filename").val();
     $("#folder-path").val(`${folderPath}/${filename}`);
-  }
-  if (type == "store" && !id) {
-    $("#store-path").val(`${storePath}/${$("#store-scoped_name").val()}`);
   }
   call({
     url: `/update/${type}`,

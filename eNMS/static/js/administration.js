@@ -22,7 +22,7 @@ import {
 import { clearSearch, refreshTable, tables } from "./table.js";
 
 export let folderPath = localStorage.getItem("folderPath") || "";
-export let storePath = localStorage.getItem("storePath") || "";
+export let storeId = localStorage.getItem("storeId") || "";
 
 function displayFiles() {
   if ($("#files").length || page == "file_table") {
@@ -97,10 +97,10 @@ function enterFolder({ folder, path, parent }) {
 function enterStore(data) {
   call({
     url: "/get_store",
-    data: data,
+    data: {store: storeId, ...data},
     callback: function(store) {
-      storePath = store?.path || "";
-      localStorage.setItem("storePath", storePath);
+      storeId = store?.id
+      localStorage.setItem("storeId", storeId);
       if (store) {
         $("#upward-store-btn").removeClass("disabled");
       } else {
@@ -128,21 +128,6 @@ function enterStore(data) {
         store_id: store.id,
         store_id_filter: "equality",
       });
-      let currentPath = "";
-      let htmlPath = [];
-      storePath
-        .split("/")
-        .slice(1)
-        .forEach((store) => {
-          currentPath += `/${store}`;
-          htmlPath.push(`<b> / </b>
-            <button type="button" class="btn btn-xs btn-primary"
-            onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
-              ${store}
-            </button>
-          `);
-        });
-      $("#current-store-path").html(`<b>Current Folder :</b>${htmlPath.join("")}`);
     },
   });
 }

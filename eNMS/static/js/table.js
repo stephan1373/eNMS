@@ -22,7 +22,7 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { displayFolderPath, folderPath, storePath } from "./administration.js";
+import { displayFolderPath, folderPath, storeId } from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -2032,7 +2032,7 @@ tables.store = class StoreTable extends Table {
   }
 
   get controls() {
-    const status = storePath == "" ? "disabled" : "";
+    const status = storeId == "" ? "disabled" : "";
     return [
       this.columnDisplay(),
       this.displayChangelogButton(),
@@ -2080,6 +2080,15 @@ tables.secret = class SecretTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.clearSearchButton(),
+      `
+      <a
+        id="upward-store-btn"
+        class="btn btn-info"
+        onclick="eNMS.administration.enterStore({parent: true})"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>`,
       this.createNewButton(),
       this.bulkEditButton(),
       this.exportTableButton(),
