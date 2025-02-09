@@ -22,7 +22,7 @@ import {
 import { clearSearch, refreshTable, tables } from "./table.js";
 
 export let folderPath = localStorage.getItem("folderPath") || "";
-export let storeId = localStorage.getItem("storeId") || "";
+export let currentStore;
 
 function displayFiles() {
   if ($("#files").length || page == "file_table") {
@@ -97,10 +97,9 @@ function enterFolder({ folder, path, parent }) {
 function enterStore(data) {
   call({
     url: "/get_store",
-    data: {store: storeId, ...data},
+    data: {store: currentStore, ...data},
     callback: function(store) {
-      storeId = store?.id
-      localStorage.setItem("storeId", storeId);
+      currentStore = store;
       if (store) {
         $("#upward-store-btn").removeClass("disabled");
       } else {

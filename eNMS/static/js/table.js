@@ -22,7 +22,7 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { displayFolderPath, folderPath, storeId } from "./administration.js";
+import { currentStore, displayFolderPath, folderPath } from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -2032,7 +2032,7 @@ tables.store = class StoreTable extends Table {
   }
 
   get controls() {
-    const status = storeId == "" ? "disabled" : "";
+    const status = currentStore ? "disabled" : "";
     return [
       this.columnDisplay(),
       this.displayChangelogButton(),
