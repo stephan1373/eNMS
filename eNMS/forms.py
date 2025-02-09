@@ -287,18 +287,11 @@ class FormFactory:
             spec.loader.exec_module(module_from_spec(spec))
 
     def generate_store_form(self):
-        class StoreForm(BaseForm):
+        class StoreForm(DataForm):
             template = "object"
             form_type = HiddenField(default="store")
             id = HiddenField()
-            name = StringField("Name", [InputRequired()])
-            store = InstanceField("Store", model="store")
             data_type = SelectField("Data Type", choices=list(vs.subtypes["data"].items()))
-            creator = StringField(render_kw={"readonly": True})
-            description = StringField(widget=TextArea(), render_kw={"rows": 3})
-            creation_time = StringField("Creation Time", render_kw={"readonly": True})
-            last_modified = StringField("Last Modified", render_kw={"readonly": True})
-            last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
 
     def register_parameterized_form(self, service_id):
         global_variables = {
@@ -436,6 +429,7 @@ class DataForm(BaseForm):
     form_type = HiddenField(default="data")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
+    store = InstanceField("Store", model="store")
     creator = StringField(render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 3})
     creation_time = StringField("Creation Time", render_kw={"readonly": True})
