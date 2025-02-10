@@ -815,7 +815,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       if (id) {
         call({
           url: `/get/${type}/${id}`,
-          data: { relation_properties: ["id", "type", "name"] },
+          data: { relation_properties: ["id", "type", "name", "ui_name"] },
           callback: function(instance) {
             const ownersNames = instance.owners
               ? instance.owners.map((user) => user.name)

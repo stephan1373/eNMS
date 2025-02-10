@@ -400,6 +400,7 @@ class Data(AbstractBase):
     store_id = db.Column(Integer, ForeignKey("store.id", ondelete="cascade"))
     store = relationship("Store", back_populates="data", foreign_keys="Data.store_id")
     logs = relationship("Changelog", back_populates="data")
+    model_properties = {"ui_name": "str"}
 
     def update(self, **kwargs):
         super().update(**kwargs)
@@ -412,6 +413,10 @@ class Data(AbstractBase):
             self.path = f"/{self.scoped_name}"
         self.name = self.path.replace("/", ">")
         return self.get_properties()
+
+    @property
+    def ui_name(self):
+        return self.path
 
 class Store(Data):
     __tablename__ = "store"
