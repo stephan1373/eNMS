@@ -411,6 +411,7 @@ class Data(AbstractBase):
         else:
             self.path = f"/{self.scoped_name}"
         self.name = self.path.replace("/", ">")
+        return self.get_properties()
 
 class Store(Data):
     __tablename__ = "store"
@@ -435,3 +436,4 @@ class Store(Data):
         if migration_import or old_name != self.name:
             for datum in self.data:
                 datum.post_update()
+        return self.get_properties()

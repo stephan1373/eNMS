@@ -2032,7 +2032,7 @@ tables.store = class StoreTable extends Table {
   }
 
   get controls() {
-    const status = currentStore ? "disabled" : "";
+    const status = currentStore ? "" : "disabled";
     return [
       this.columnDisplay(),
       this.displayChangelogButton(),
@@ -2070,6 +2070,10 @@ tables.store = class StoreTable extends Table {
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];
+  }
+
+  get filteringConstraints() {
+    return currentStore ? {} : { store_filter: "empty" };
   }
 };
 
