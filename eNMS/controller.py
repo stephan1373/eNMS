@@ -1234,6 +1234,10 @@ class Controller(vs.TimingMixin):
             for model in ("user", "service", "network"):
                 for instance in store[model].values():
                     instance.post_update()
+            for instance in store["data"].values():
+                if instance.store:
+                    continue
+                instance.post_update(migration_import=True)
             env.log("info", f"Model update done ({datetime.now() - before_time}s)")
         if not kwargs.get("skip_pool_update"):
             before_time = datetime.now()

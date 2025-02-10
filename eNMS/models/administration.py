@@ -403,9 +403,9 @@ class Data(AbstractBase):
 
     def update(self, **kwargs):
         super().update(**kwargs)
-        self.set_name()
+        self.post_update()
 
-    def set_name(self):
+    def post_update(self):
         if self.store:
             self.path = f"{self.store.path}/{self.scoped_name}"
         else:
@@ -429,9 +429,9 @@ class Store(Data):
         "inherit_condition": id == Data.id,
     }
 
-    def set_name(self):
+    def post_update(self, migration_import=False):
         old_name = self.name
-        super().set_name()
-        if old_name != self.name:
+        super().post_update()
+        if migration_import or old_name != self.name:
             for datum in self.data:
-                datum.set_name()
+                datum.post_update()
