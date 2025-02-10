@@ -428,8 +428,9 @@ class DataForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="data")
     id = HiddenField()
-    name = StringField("Name", [InputRequired()])
+    scoped_name = StringField("Name", [InputRequired()])
     store = InstanceField("Store", model="store")
+    path = StringField(render_kw={"readonly": True})
     creator = StringField(render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 3})
     creation_time = StringField("Creation Time", render_kw={"readonly": True})

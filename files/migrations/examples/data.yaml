@@ -7,7 +7,8 @@
     Clear-text value should be: "Correct123!:)$@"
   "last_modified": "2024-03-01 08:37:21.492852"
   "last_modified_by": "admin"
-  "name": "Secret 1"
+  "name": ">Secrets>Secret 1"
+  "scoped_name": "Secret 1"
   "owners":
   - "admin"
   "rbac_edit":
@@ -24,7 +25,8 @@
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": "Secrets"
+  "name": ">Secrets"
+  "scoped_name": "Secrets"
   "owners": []
   "rbac_edit": []
   "rbac_read": []
@@ -37,7 +39,8 @@
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": "Interfaces"
+  "name": ">Interfaces"
+  "scoped_name": "Interfaces"
   "owners": []
   "rbac_edit": []
   "rbac_read": []

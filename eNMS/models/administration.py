@@ -390,6 +390,8 @@ class Data(AbstractBase):
     __mapper_args__ = {"polymorphic_identity": "data", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    path = db.Column(db.SmallString, unique=True)
+    scoped_name = db.Column(db.SmallString, default="")
     description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
     creation_time = db.Column(db.TinyString)
@@ -399,6 +401,16 @@ class Data(AbstractBase):
     store = relationship("Store", back_populates="data", foreign_keys="Data.store_id")
     logs = relationship("Changelog", back_populates="data")
 
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        self.set_name()
+
+    def set_name(self):
+        if self.store:
+            self.path = f"{self.store.path}/{self.scoped_name}"
+        else:
+            self.path = f"/{self.scoped_name}"
+        self.name = self.path.replace("/", ">")
 
 class Store(Data):
     __tablename__ = "store"
@@ -416,3 +428,10 @@ class Store(Data):
         "polymorphic_identity": "store",
         "inherit_condition": id == Data.id,
     }
+
+    def set_name(self):
+        old_name = self.name
+        super().set_name()
+        if old_name != self.name:
+            for datum in self.data:
+                datum.set_name()
