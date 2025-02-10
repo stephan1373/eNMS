@@ -9,6 +9,7 @@
   "last_modified_by": "admin"
   "name": ">Secrets>Secret 1"
   "scoped_name": "Secret 1"
+  "store": ">Secrets"
   "owners":
   - "admin"
   "rbac_edit":
