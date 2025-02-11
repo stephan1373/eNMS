@@ -732,7 +732,7 @@ class Controller(vs.TimingMixin):
         store = None
         if "id" in kwargs:
             store = db.fetch("store", id=kwargs["id"])
-        elif "path" in kwargs:
+        elif kwargs.get("path"):
             store = db.fetch("store", path=kwargs["path"])
         elif kwargs.get("parent") and kwargs["store"]["store_id"]:
             store = db.fetch("store", id=kwargs["store"]["store_id"])

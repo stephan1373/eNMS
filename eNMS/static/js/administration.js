@@ -139,11 +139,10 @@ function enterStore(data) {
 export function displayStorePath() {
   let currentPath = "";
   let htmlPath = [];
-  currentStore.path
+  `Data Store${currentStore.path}`
     .split("/")
-    .slice(1)
     .forEach((store) => {
-      currentPath += `/${store}`;
+      currentPath += store == "Data Store" ? "" : `/${store}`;
       htmlPath.push(`<b> / </b>
         <button type="button" class="btn btn-xs btn-primary"
         onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
