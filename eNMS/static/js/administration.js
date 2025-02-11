@@ -141,6 +141,7 @@ export function displayStorePath() {
   let htmlPath = [];
   currentStore.path
     .split("/")
+    .slice(1)
     .forEach((store) => {
       currentPath += `/${store}`;
       htmlPath.push(`<b> / </b>
