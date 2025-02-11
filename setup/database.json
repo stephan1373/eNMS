@@ -69,7 +69,7 @@
   },
   "dont_migrate": {
     "credential": ["id", "logs"],
-    "data": ["id", "logs"],
+    "data": ["id", "logs", "store_id"],
     "group": [
       "id",
       "credentials",
@@ -213,7 +213,6 @@
       "users",
       "logs"
     ],
-    "store": ["id", "logs"],
     "task": [
       "id",
       "service_name",

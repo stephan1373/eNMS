@@ -8,41 +8,82 @@
   "last_modified": "2024-03-01 08:37:21.492852"
   "last_modified_by": "admin"
   "name": ">Secrets>Secret 1"
-  "scoped_name": "Secret 1"
-  "store": ">Secrets"
   "owners":
   - "admin"
+  "path": "/Secrets/Secret 1"
   "rbac_edit":
   - "All users"
   "rbac_read":
   - "All users"
+  "scoped_name": "Secret 1"
   "secret_value": "Q29ycmVjdDEyMyE6KSRA"
+  "store": ">Secrets"
   "type": "secret"
 - "admin_only": ! "false"
   "creation_time": "2025-02-07 08:09:20.748904"
   "creator": "admin"
-  "data": []
+  "data":
+  - ">Secrets>Secret 1"
   "data_type": "secret"
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
   "name": ">Secrets"
-  "scoped_name": "Secrets"
   "owners": []
+  "path": "/Secrets"
   "rbac_edit": []
   "rbac_read": []
+  "scoped_name": "Secrets"
   "type": "store"
 - "admin_only": ! "false"
-  "creation_time": "2025-02-07 08:09:25.594332"
+  "creation_time": "2025-02-10 23:13:27.003346"
   "creator": "admin"
-  "data": []
-  "data_type": "interface"
+  "data":
+  - ">IPAM>IP Address"
+  - ">IPAM>VLAN"
+  "data_type": "store"
   "description": ""
   "last_modified": ""
   "last_modified_by": ""
-  "name": ">Interfaces"
-  "scoped_name": "Interfaces"
-  "owners": []
+  "name": ">IPAM"
+  "owners":
+  - "admin"
+  "path": "/IPAM"
   "rbac_edit": []
   "rbac_read": []
+  "scoped_name": "IPAM"
+  "type": "store"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-10 23:16:29.024809"
+  "creator": "admin"
+  "data": []
+  "data_type": "store"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">IPAM>IP Address"
+  "owners":
+  - "admin"
+  "path": "/IPAM/IP Address"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "IP Address"
+  "store": ">IPAM"
+  "type": "store"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-10 23:16:59.194400"
+  "creator": "admin"
+  "data": []
+  "data_type": "store"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">IPAM>VLAN"
+  "owners":
+  - "admin"
+  "path": "/IPAM/VLAN"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "VLAN"
+  "store": ">IPAM"
   "type": "store"
