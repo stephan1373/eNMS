@@ -1,4 +1,4 @@
-import { currentStore } from "../administration.js";
+import { currentStore, displayStorePath } from "../administration.js";
 import { Table, tables } from "../table.js";
 
 tables.store = class StoreTable extends Table {
@@ -55,6 +55,11 @@ tables.store = class StoreTable extends Table {
 
   get filteringConstraints() {
     return currentStore ? {} : { store_filter: "empty" };
+  }
+
+  postProcessing(...args) {
+    super.postProcessing(...args);
+    displayStorePath();
   }
 };
 

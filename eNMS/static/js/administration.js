@@ -136,6 +136,23 @@ function enterStore(data) {
   });
 }
 
+export function displayStorePath() {
+  let currentPath = "";
+  let htmlPath = [];
+  currentStore.path
+    .split("/")
+    .forEach((store) => {
+      currentPath += `/${store}`;
+      htmlPath.push(`<b> / </b>
+        <button type="button" class="btn btn-xs btn-primary"
+        onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
+          ${store}
+        </button>
+      `);
+    });
+  $("#current-store-path").html(`<b>Current Store :</b>${htmlPath.join("")}`);
+}
+
 function downloadProfilingData() {
   call({
     url: "/get_profiling_data",
