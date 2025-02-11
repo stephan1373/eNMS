@@ -1,0 +1,32 @@
+from sqlalchemy import ForeignKey, Integer
+from sqlalchemy.orm import relationship
+
+from eNMS.database import db
+from eNMS.forms import DataForm
+from eNMS.fields import HiddenField
+from eNMS.models.administration import Data
+
+class Store(Data):
+    __tablename__ = "store"
+    pretty_name = "Store"
+    id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
+    name = db.Column(db.SmallString, unique=True)
+    data_type = db.Column(db.SmallString, default="store")
+    data = relationship(
+        "Data",
+        back_populates="store",
+        foreign_keys="Data.store_id",
+        cascade="all, delete-orphan",
+    )
+    __mapper_args__ = {
+        "polymorphic_identity": "store",
+        "inherit_condition": id == Data.id,
+    }
+
+    def post_update(self, migration_import=False):
+        old_name = self.name
+        super().post_update()
+        if migration_import or old_name != self.name:
+            for datum in self.data:
+                datum.post_update()
+        return self.get_properties()
