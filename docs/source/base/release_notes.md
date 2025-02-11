@@ -209,6 +209,13 @@ Version 5.2.0: Various Improvements
   - New models can be added as needed: adding a new model means defining a subclass of Data with all its
     custom properties (the python file must be placed in the "models" / "datastore" folder, as well as the
     associated table in the UI (defined in javascript as a file in the "static" / "datastore" folder)
+  - A "Store" is a new model designed to be a container for the data. A store has a "data_type" property
+    that defines the type of data it contains (all data in the store must be of that given type). For example,
+    a store of IP address will only contain IP addresses.
+  - A "Store" is also a subclass of data, and a store can contain other stores (if its datatype is set to
+    "store"), just like a folder can contain subfolders.
+  - Navigating through the data store works just like navigating files: the current path of stores is displayed
+    in the UI as a sequence of hyperlink to each of the store in the path.
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
