@@ -3,8 +3,9 @@ from sqlalchemy.orm import relationship
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import HiddenField
+from eNMS.fields import HiddenField, SelectField
 from eNMS.models.administration import Data
+from eNMS.variables import vs
 
 class Store(Data):
     __tablename__ = "store"
@@ -30,3 +31,13 @@ class Store(Data):
             for datum in self.data:
                 datum.post_update()
         return self.get_properties()
+
+class StoreForm(DataForm):
+    template = "object"
+    form_type = HiddenField(default="store")
+    id = HiddenField()
+    data_type = SelectField("Data Type")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.data_type.choices = list(vs.subtypes["data"].items())

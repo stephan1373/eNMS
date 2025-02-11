@@ -183,7 +183,6 @@ class FormFactory:
         self.generate_service_forms()
         self.generate_filtering_forms()
         self.generate_rbac_forms()
-        self.generate_store_form()
 
     def generate_filtering_forms(self):
         for model in vs.properties["filtering"]:
@@ -285,13 +284,6 @@ class FormFactory:
         for file in (vs.path / "eNMS" / "forms").glob("**/*.py"):
             spec = spec_from_file_location(str(file).split("/")[-1][:-3], str(file))
             spec.loader.exec_module(module_from_spec(spec))
-
-    def generate_store_form(self):
-        class StoreForm(DataForm):
-            template = "object"
-            form_type = HiddenField(default="store")
-            id = HiddenField()
-            data_type = SelectField("Data Type", choices=list(vs.subtypes["data"].items()))
 
     def register_parameterized_form(self, service_id):
         global_variables = {
