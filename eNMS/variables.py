@@ -211,8 +211,10 @@ class VariableStore:
         }
 
     def set_template_context(self):
+        static_path = Path(self.path) / "eNMS" / "static" / "js" / "datastore"
         self.template_context = {
             "application_path": str(self.path),
+            "datastore_files": [file.name for file in static_path.glob("*.js")],
             "file_path": str(self.file_path),
             "automation": self.automation,
             "configuration_properties": self.configuration_properties,
