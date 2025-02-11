@@ -1,3 +1,4 @@
+import { displayStorePath } from "../administration.js";
 import { Table, tables } from "../table.js";
 
 tables.secret = class SecretTable extends Table {
@@ -39,6 +40,11 @@ tables.secret = class SecretTable extends Table {
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];
+  }
+
+  postProcessing(...args) {
+    super.postProcessing(...args);
+    displayStorePath();
   }
 };
 
