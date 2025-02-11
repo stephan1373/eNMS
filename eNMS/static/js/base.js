@@ -804,7 +804,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         showServicePanel(type, id, mode, tableId);
       }
       if (isData && !id) {
-        var newOption = new Option(currentStore.name, currentStore.id, true, true);
+        var newOption = new Option(currentStore.path, currentStore.id, true, true);
         $(`#${type}-store`).append(newOption).trigger("change");
       }
       if (isDevice) showDevicePanel(type, id, mode, tableId);
