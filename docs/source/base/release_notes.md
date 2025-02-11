@@ -202,20 +202,15 @@ Version 5.2.0: Various Improvements
 - Display the network/workflow tree by default if it was previously activated.
   The setting is stored in the database and used to automatically show the tree in the HTML template.
   Commit: 0513847d23e9bfd31fbfd22cdfe9137faf5de6a0
-- Add new Data Store feature:
-  - New "Data Store" page in the inventory menu
-  - A "Data" is a new model used to store any type of data (text, secret value, JSON object, spreadsheet,
-    any DCIM / IPAM type of data such as IP Address, VLAN, cable, etc)
-  - New models can be added as needed: adding a new model means defining a subclass of Data with all its
-    custom properties (the python file must be placed in the "models" / "datastore" folder, as well as the
-    associated table in the UI (defined in javascript as a file in the "static" / "datastore" folder)
-  - A "Store" is a new model designed to be a container for the data. A store has a "data_type" property
-    that defines the type of data it contains (all data in the store must be of that given type). For example,
-    a store of IP address will only contain IP addresses.
-  - A "Store" is also a subclass of data, and a store can contain other stores (if its datatype is set to
-    "store"), just like a folder can contain subfolders.
-  - Navigating through the data store works just like navigating files: the current path of stores is displayed
-    in the UI as a sequence of hyperlink to each of the store in the path.
+- Added new Data Store feature:
+  - A new "Data Store" page in the inventory menu.
+  - "Data" is a new model for storing various types of information (e.g., text, secret values, JSON objects, - spreadsheets, and DCIM/IPAM data like IP addresses, VLANs, cables, etc.).
+  - A "secret" as defined in the previous version is now a subclass of data. The secrets must be migrated
+  via the data.yaml migration file (secret.yaml now longer exists)
+  - New models can be added as needed: to add a model, create a subclass of Data with custom properties. The Python file should be placed in the "models/datastore" folder, and the associated UI table should be defined in JavaScript within the "static/datastore" folder.
+  - A "Store" is a model designed to contain data. Each store has a "data_type" property that specifies the type of data it holds (e.g., a store for IP addresses will only contain IP addresses).
+  - A "Store" is also a subclass of Data and can contain other stores (if its data_type is set to "store"), similar to how a folder can contain subfolders.
+  - Navigating the data store is similar to navigating files: the current path of stores is displayed as a sequence of hyperlinks, each linking to a store in the path.
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
@@ -245,6 +240,7 @@ Migration
   nodes and networks
 - Run the script to convert credential "groups" property into "rbac_use" (can be done manually by renaming
   "groups" -> "rbac_use" in credential.yaml too)
+- Migrate secrets from secret.yaml to data.yaml
 
 Version 5.1.0: Changelog & Workflow Tree
 ----------------------------------------
