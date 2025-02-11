@@ -202,6 +202,13 @@ Version 5.2.0: Various Improvements
 - Display the network/workflow tree by default if it was previously activated.
   The setting is stored in the database and used to automatically show the tree in the HTML template.
   Commit: 0513847d23e9bfd31fbfd22cdfe9137faf5de6a0
+- Add new Data Store feature:
+  - New "Data Store" page in the inventory menu
+  - A "Data" is a new model used to store any type of data (text, secret value, JSON object, spreadsheet,
+    any DCIM / IPAM type of data such as IP Address, VLAN, cable, etc)
+  - New models can be added as needed: adding a new model means defining a subclass of Data with all its
+    custom properties (the python file must be placed in the "models" / "datastore" folder, as well as the
+    associated table in the UI (defined in javascript as a file in the "static" / "datastore" folder)
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
