@@ -204,13 +204,19 @@ Version 5.2.0: Various Improvements
   Commit: 0513847d23e9bfd31fbfd22cdfe9137faf5de6a0
 - Added new Data Store feature:
   - A new "Data Store" page in the inventory menu.
-  - "Data" is a new model for storing various types of information (e.g., text, secret values, JSON objects, - spreadsheets, and DCIM/IPAM data like IP addresses, VLANs, cables, etc.).
-  - A "secret" as defined in the previous version is now a subclass of data. The secrets must be migrated
-  via the data.yaml migration file (secret.yaml now longer exists)
-  - New models can be added as needed: to add a model, create a subclass of Data with custom properties. The Python file should be placed in the "models/datastore" folder, and the associated UI table should be defined in JavaScript within the "static/datastore" folder.
-  - A "Store" is a model designed to contain data. Each store has a "data_type" property that specifies the type of data it holds (e.g., a store for IP addresses will only contain IP addresses).
-  - A "Store" is also a subclass of Data and can contain other stores (if its data_type is set to "store"), similar to how a folder can contain subfolders.
-  - Navigating the data store is similar to navigating files: the current path of stores is displayed as a sequence of hyperlinks, each linking to a store in the path.
+  - "Data" is a new model for storing various types of information (e.g., text, secret values,
+    JSON objects, - spreadsheets, and DCIM/IPAM data like IP addresses, VLANs, cables, etc.).
+  - A "secret," as defined in the previous version, is now a subclass of Data. Secrets must
+    be migrated using the data.yml migration file (secret.yml no longer exists).
+  - New models can be added as needed: to add a model, create a subclass of Data with custom properties.
+    The Python file should be placed in the "models/datastore" folder, and the associated UI table
+    should be defined in JavaScript within the "static/datastore" folder.
+  - A "Store" is a model designed to contain data. Each store has a "data_type" property that specifies
+    the type of data it holds (e.g., a store for IP addresses will only contain IP addresses).
+  - A "Store" is also a subclass of Data and can contain other stores (if its data_type is set to
+    "store"), similar to how a folder can contain subfolders.
+  - Navigating the data store is similar to navigating files: the current path of stores is displayed
+    as a sequence of hyperlinks, each linking to a store in the path.
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
