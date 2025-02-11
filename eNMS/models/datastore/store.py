@@ -40,4 +40,4 @@ class StoreForm(DataForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.data_type.choices = list(vs.subtypes["data"].items())
+        self.data_type.choices = sorted(vs.subtypes["data"].items(), key=lambda x: x[0] != "store")
