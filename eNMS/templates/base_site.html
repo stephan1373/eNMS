@@ -376,7 +376,7 @@
       let csrfToken = "{{ csrf_token() }}";
     </script>
     <script type="module" src="{{ url_for('static', filename='js/base.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/secret.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/datastore/secret.js') }}"></script>
     {% endblock %}
   </body>
 </html>

@@ -1,4 +1,4 @@
-import { Table, tables } from "./table.js";
+import { Table, tables } from "../table.js";
 
 tables.secret = class SecretTable extends Table {
   get controls() {
