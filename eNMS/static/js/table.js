@@ -22,7 +22,7 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { currentStore, displayFolderPath, folderPath } from "./administration.js";
+import { displayFolderPath, displayStorePath, folderPath } from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -1641,19 +1641,23 @@ tables.data = class DataTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
+      this.displayChangelogButton(),
       this.refreshTableButton(),
-      this.bulkFilteringButton(),
       this.clearSearchButton(),
       `
-      <button
-        style="background:transparent; border:none; 
-        color:transparent; width: 200px;"
+      <a
+        id="upward-store-btn"
+        class="btn btn-info"
+        onclick="eNMS.administration.enterStore({parent: true})"
         type="button"
       >
-        <select id="data-type-dd-list" class="form-control"></select>
-      </button>`,
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>`,
       this.createNewButton(),
+      this.bulkEditButton(),
+      this.exportTableButton(),
       this.bulkDeletionButton(),
+      `<div id="current-store-path" style="margin-top: 9px; margin-left: 9px"></div>`,
     ];
   }
 
@@ -1664,16 +1668,9 @@ tables.data = class DataTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-      row.id
-    }')" data-tooltip="Edit"
+            row.id
+          }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
-          ></button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('${row.type}', '${row.id}', 'duplicate')"
-          data-tooltip="Duplicate"
-            ><span class="glyphicon glyphicon-duplicate"></span
           ></button>
         </li>
         ${this.deleteInstanceButton(row)}
@@ -1683,7 +1680,7 @@ tables.data = class DataTable extends Table {
 
   postProcessing(...args) {
     super.postProcessing(...args);
-    loadTypes("data");
+    displayStorePath();
   }
 };
 
