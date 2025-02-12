@@ -27,4 +27,5 @@ class IPAdressForm(DataForm):
             ("anycast", "Anycast"),
         ),
     )
-    vrf_instance = StringField()
+    vrf_instance = StringField("VRF Instance")
+    properties = ["address", "role", "vrf_instance"]
