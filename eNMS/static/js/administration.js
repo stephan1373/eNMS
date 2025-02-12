@@ -139,6 +139,7 @@ function enterStore(data) {
 export function displayStorePath() {
   let currentPath = "";
   let htmlPath = [];
+  if (!currentStore) return;
   `Data Store${currentStore.path}`
     .split("/")
     .forEach((store) => {
