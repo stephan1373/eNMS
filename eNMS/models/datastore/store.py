@@ -11,7 +11,6 @@ class Store(Data):
     __tablename__ = "store"
     pretty_name = "Store"
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
-    name = db.Column(db.SmallString, unique=True)
     data_type = db.Column(db.SmallString, default="store")
     data = relationship(
         "Data",
