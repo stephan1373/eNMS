@@ -22,7 +22,7 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { displayFolderPath, displayStorePath, folderPath } from "./administration.js";
+import { currentStore, displayFolderPath, displayStorePath, folderPath } from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -1639,6 +1639,7 @@ tables.credential = class CredentialTable extends Table {
 
 tables.data = class DataTable extends Table {
   get controls() {
+    const status = currentStore ? "" : "disabled";
     return [
       this.columnDisplay(),
       this.displayChangelogButton(),
@@ -1647,7 +1648,7 @@ tables.data = class DataTable extends Table {
       `
       <a
         id="upward-store-btn"
-        class="btn btn-info"
+        class="btn btn-info ${status}"
         onclick="eNMS.administration.enterStore({parent: true})"
         type="button"
       >

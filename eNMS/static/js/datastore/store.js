@@ -1,7 +1,7 @@
 import { currentStore, displayStorePath } from "../administration.js";
-import { Table, tables } from "../table.js";
+import { tables } from "../table.js";
 
-tables.store = class StoreTable extends Table {
+tables.store = class extends tables.data {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
     row.scoped_name = `<a href="#" onclick="eNMS.administration.enterStore
@@ -10,30 +10,6 @@ tables.store = class StoreTable extends Table {
           <b style="margin-left: 6px">${row.scoped_name}</b>
         </a>`;
     return row;
-  }
-
-  get controls() {
-    const status = currentStore ? "" : "disabled";
-    return [
-      this.columnDisplay(),
-      this.displayChangelogButton(),
-      this.refreshTableButton(),
-      this.clearSearchButton(),
-      `
-      <a
-        id="upward-store-btn"
-        class="btn btn-info ${status}"
-        onclick="eNMS.administration.enterStore({parent: true})"
-        type="button"
-      >
-        <span class="glyphicon glyphicon-chevron-up"></span>
-      </a>`,
-      this.createNewButton(),
-      this.bulkEditButton(),
-      this.exportTableButton(),
-      this.bulkDeletionButton(),
-      `<div id="current-store-path" style="margin-top: 9px; margin-left: 9px"></div>`,
-    ];
   }
 
   buttons(row) {
