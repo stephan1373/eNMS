@@ -397,7 +397,7 @@ class Data(AbstractBase):
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    store_id = db.Column(Integer, ForeignKey("store.id", ondelete="cascade"))
+    store_id = db.Column(Integer, ForeignKey("store.id"))
     store = relationship("Store", back_populates="data", foreign_keys="Data.store_id")
     logs = relationship("Changelog", back_populates="data")
     model_properties = {"ui_name": "str"}

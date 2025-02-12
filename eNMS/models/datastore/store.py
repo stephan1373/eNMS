@@ -16,7 +16,6 @@ class Store(Data):
         "Data",
         back_populates="store",
         foreign_keys="Data.store_id",
-        cascade="all, delete-orphan",
     )
     __mapper_args__ = {
         "polymorphic_identity": "store",
