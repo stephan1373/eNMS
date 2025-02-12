@@ -404,7 +404,8 @@ class Data(AbstractBase):
 
     def update(self, **kwargs):
         super().update(**kwargs)
-        self.post_update()
+        if not kwargs.get("migration_import"):
+            self.post_update()
 
     def post_update(self):
         if self.store:
