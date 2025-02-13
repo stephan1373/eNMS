@@ -389,6 +389,7 @@ class Data(AbstractBase):
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "data", "polymorphic_on": type}
     id = db.Column(Integer, primary_key=True)
+    persistent_id = db.Column(db.TinyString)
     name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.SmallString, unique=True)
     scoped_name = db.Column(db.SmallString, default="")
@@ -401,6 +402,13 @@ class Data(AbstractBase):
     store = relationship("Store", back_populates="data", foreign_keys="Data.store_id")
     logs = relationship("Changelog", back_populates="data")
     model_properties = {"ui_name": "str"}
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        if not self.persistent_id:
+            self.persistent_id = (
+                urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
+            )
 
     def update(self, **kwargs):
         super().update(**kwargs)
