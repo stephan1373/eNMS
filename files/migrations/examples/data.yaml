@@ -11,6 +11,7 @@
   "owners":
   - "admin"
   "path": "/Secrets/Secret 1"
+  "persistent_id": "8Fqgdd6nGcY"
   "rbac_edit":
   - "All users"
   "rbac_read":
@@ -29,6 +30,7 @@
   "name": ">Secrets"
   "owners": []
   "path": "/Secrets"
+  "persistent_id": "sGTmso7JX4Y"
   "rbac_edit": []
   "rbac_read": []
   "scoped_name": "Secrets"
@@ -44,6 +46,7 @@
   "owners":
   - "admin"
   "path": "/IPAM"
+  "persistent_id": "S7lO1QYqpgQ"
   "rbac_edit": []
   "rbac_read": []
   "scoped_name": "IPAM"
@@ -59,6 +62,7 @@
   "owners":
   - "admin"
   "path": "/IPAM/IP Address"
+  "persistent_id": "o6ETxLfRDw0"
   "rbac_edit": []
   "rbac_read": []
   "scoped_name": "IP Address"
@@ -75,6 +79,7 @@
   "owners":
   - "admin"
   "path": "/IPAM/VLAN"
+  "persistent_id": "KO2LR1NX1JM"
   "rbac_edit": []
   "rbac_read": []
   "scoped_name": "VLAN"
@@ -91,6 +96,7 @@
   "owners":
   - "admin"
   "path": "/IPAM/IP Address/IP Address 1"
+  "persistent_id": "wLUaLqeKqOY"
   "rbac_edit": []
   "rbac_read": []
   "role": "loopback"
@@ -109,6 +115,7 @@
   "owners":
   - "admin"
   "path": "/IPAM/IP Address/IP Address 2"
+  "persistent_id": "QTVleMy9ItE"
   "rbac_edit": []
   "rbac_read": []
   "role": "anycast"
