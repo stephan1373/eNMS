@@ -1,3 +1,4 @@
+from base64 import urlsafe_b64encode
 from collections import defaultdict
 from datetime import datetime
 from functools import wraps
@@ -5,7 +6,7 @@ from git import Repo
 from json import load
 from logging import error
 from netmiko.ssh_dispatcher import CLASS_MAPPER
-from os import getenv
+from os import getenv, urandom
 from pathlib import Path
 from random import randint
 from string import punctuation
@@ -329,6 +330,9 @@ class VariableStore:
                     old[key] = value
 
         return old
+
+    def get_persistent_id(self):
+        return urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
 
     def get_time(self, randomize=False, path=False):
         current_time = str(datetime.now())

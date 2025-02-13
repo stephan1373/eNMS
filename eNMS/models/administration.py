@@ -406,9 +406,7 @@ class Data(AbstractBase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         if not self.persistent_id:
-            self.persistent_id = (
-                urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
-            )
+            self.persistent_id = vs.get_persistent_id()
 
     def update(self, **kwargs):
         super().update(**kwargs)

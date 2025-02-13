@@ -1,8 +1,7 @@
-from base64 import urlsafe_b64encode
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
-from os import environ, getpid, urandom
+from os import environ, getpid
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
 from sqlalchemy import and_, Boolean, case, ForeignKey, Integer
@@ -137,9 +136,7 @@ class Service(AbstractBase):
         kwargs.pop("status", None)
         super().__init__(**kwargs)
         if not self.persistent_id:
-            self.persistent_id = (
-                urlsafe_b64encode(urandom(8)).decode("utf-8").rstrip("=")
-            )
+            self.persistent_id = vs.get_persistent_id()
 
     @property
     def base_properties(self):
