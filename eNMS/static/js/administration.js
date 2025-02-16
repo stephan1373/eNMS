@@ -486,9 +486,12 @@ export function showFolderPanel(id) {
 }
 
 export function showStorePanel(id) {
-  if (id) return;
-  $("#store-scoped_name").prop("readonly", false);
-  $("#store-path").prop("readonly", true);
+  if (id) {
+    $(`#store-data_type-${id}`).prop("disabled", true).selectpicker("refresh");
+  } else {
+    $("#store-scoped_name").prop("readonly", false);
+    $("#store-path").prop("readonly", true);
+  }
 }
 
 function showProfile() {
