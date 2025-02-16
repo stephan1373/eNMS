@@ -177,3 +177,42 @@
   "rbac_read": []
   "scoped_name": "JSON"
   "type": "store"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-16 18:40:32.115450"
+  "creator": "admin"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">JSON>JSON 1"
+  "owners":
+  - "admin"
+  "path": "/JSON/JSON 1"
+  "persistent_id": "kpSBMNi61Vk"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "JSON 1"
+  "store": ">JSON"
+  "type": "json"
+  "value":
+    "test": ! "3"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-16 18:41:18.724962"
+  "creator": "admin"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">JSON>JSON 2"
+  "owners":
+  - "admin"
+  "path": "/JSON/JSON 2"
+  "persistent_id": "qK8xmi0SBB0"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "JSON 2"
+  "store": ">JSON"
+  "type": "json"
+  "value":
+    "key1": ! "1"
+    "key2": ! "2"
+    "subdict":
+      "key3": ! "3"
