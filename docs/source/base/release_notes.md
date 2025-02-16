@@ -217,6 +217,9 @@ Version 5.2.0: Various Improvements
     "store"), similar to how a folder can contain subfolders.
   - Navigating the data store is similar to navigating files: the current path of stores is displayed
     as a sequence of hyperlinks, each linking to a store in the path.
+  - Add new persistent ID to all data types so that data can be seamlessly referenced within
+    workflows across releases. The persistent ID can be copied to the clipboard using a button
+    in the data store table.
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
