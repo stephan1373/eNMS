@@ -215,6 +215,8 @@ Version 5.2.0: Various Improvements
     the type of data it holds (e.g., a store for IP addresses will only contain IP addresses).
   - A "Store" is also a subclass of Data and can contain other stores (if its data_type is set to
     "store"), similar to how a folder can contain subfolders.
+  - The data type of a store can only be modified if the store is empty (e.g a store which already
+    contains "VLAN" cannot be changed to data type other than "VLAN"). Enforced through form validation.
   - Navigating the data store is similar to navigating files: the current path of stores is displayed
     as a sequence of hyperlinks, each linking to a store in the path.
   - Add new persistent ID to all data types so that data can be seamlessly referenced within
