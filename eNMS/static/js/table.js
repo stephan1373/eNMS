@@ -1667,6 +1667,14 @@ tables.data = class DataTable extends Table {
       `
       <ul class="pagination pagination-lg" style="margin: 0px;">
         <li>
+          <button type="button" class="btn btn-sm btn-info"
+            onclick="eNMS.base.copyToClipboard({text: '${row.persistent_id}' })"
+            data-tooltip="Copy Persistend ID to clipboard"
+          >
+            <span class="glyphicon glyphicon-copy"></span>
+          </button>
+        </li>
+        <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
             row.id
