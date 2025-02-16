@@ -22,7 +22,12 @@ import {
   showConfirmationPanel,
   userIsActive,
 } from "./base.js";
-import { currentStore, displayFolderPath, displayStorePath, folderPath } from "./administration.js";
+import {
+  currentStore,
+  displayFolderPath,
+  displayStorePath,
+  folderPath,
+} from "./administration.js";
 import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
@@ -1677,8 +1682,8 @@ tables.data = class DataTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-primary"
           onclick="eNMS.base.showInstancePanel('${row.type}', '${
-            row.id
-          }')" data-tooltip="Edit"
+        row.id
+      }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>

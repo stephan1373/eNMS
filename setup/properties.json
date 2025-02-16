@@ -1957,11 +1957,7 @@
       "username",
       "priority"
     ],
-    "data": [
-      "name",
-      "description",
-      "creator"
-    ],
+    "data": ["name", "description", "creator"],
     "device": [
       "name",
       "description",

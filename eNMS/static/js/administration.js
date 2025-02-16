@@ -97,7 +97,7 @@ function enterFolder({ folder, path, parent }) {
 function enterStore(data) {
   call({
     url: "/get_store",
-    data: {store: currentStore, ...data},
+    data: { store: currentStore, ...data },
     callback: function(store) {
       currentStore = store;
       if (store) {
@@ -130,7 +130,7 @@ function enterStore(data) {
           store_id_filter: "equality",
         });
       } else {
-        new tables["store"];
+        new tables["store"]();
       }
     },
   });
@@ -140,17 +140,15 @@ export function displayStorePath() {
   let currentPath = "";
   let htmlPath = [];
   if (!currentStore) return;
-  `Data Store${currentStore.path}`
-    .split("/")
-    .forEach((store) => {
-      currentPath += store == "Data Store" ? "" : `/${store}`;
-      htmlPath.push(`<b> / </b>
+  `Data Store${currentStore.path}`.split("/").forEach((store) => {
+    currentPath += store == "Data Store" ? "" : `/${store}`;
+    htmlPath.push(`<b> / </b>
         <button type="button" class="btn btn-xs btn-primary"
         onclick="eNMS.administration.enterStore({path: '${currentPath}'})">
           ${store}
         </button>
       `);
-    });
+  });
   $("#current-store-path").html(`<b>Current Store :</b>${htmlPath.join("")}`);
 }
 
@@ -487,7 +485,9 @@ export function showFolderPanel(id) {
 
 export function showStorePanel(id) {
   if (id) {
-    $(`#store-data_type-${id}`).prop("disabled", true).selectpicker("refresh");
+    $(`#store-data_type-${id}`)
+      .prop("disabled", true)
+      .selectpicker("refresh");
   } else {
     $("#store-scoped_name").prop("readonly", false);
     $("#store-path").prop("readonly", true);

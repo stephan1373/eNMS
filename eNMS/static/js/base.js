@@ -798,14 +798,16 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
       const isService = type == "service" || type in subtypes.service;
       const isDevice = type in subtypes.device;
       const isLink = type in subtypes.link;
-      const isData = type in subtypes.data
+      const isData = type in subtypes.data;
       if (isService) {
         if (type !== "workflow") uiType = `${subtypes.service[type]} Service`;
         showServicePanel(type, id, mode, tableId);
       }
       if (isData && !id) {
         var newOption = new Option(currentStore.path, currentStore.id, true, true);
-        $(`#${type}-store`).append(newOption).trigger("change");
+        $(`#${type}-store`)
+          .append(newOption)
+          .trigger("change");
       }
       if (isDevice) showDevicePanel(type, id, mode, tableId);
       if (isLink) showLinkPanel(type, id, edge);

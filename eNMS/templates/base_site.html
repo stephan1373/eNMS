@@ -377,8 +377,10 @@
     </script>
     <script type="module" src="{{ url_for('static', filename='js/base.js') }}"></script>
     {% for file in datastore_files %}
-      <script type="module" src="{{ url_for('static', filename='js/datastore/' ~ file) }}"></script>
-    {% endfor %}
-    {% endblock %}
+    <script
+      type="module"
+      src="{{ url_for('static', filename='js/datastore/' ~ file) }}"
+    ></script>
+    {% endfor %} {% endblock %}
   </body>
 </html>
