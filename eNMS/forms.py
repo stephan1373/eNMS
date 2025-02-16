@@ -421,7 +421,6 @@ class DataForm(BaseForm):
     form_type = HiddenField(default="data")
     id = HiddenField()
     scoped_name = StringField("Name", [InputRequired()])
-    store = InstanceField("Store", model="store")
     path = StringField(render_kw={"readonly": True})
     creator = StringField(render_kw={"readonly": True})
     persistent_id = StringField("Persistent ID", render_kw={"readonly": True})

@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import HiddenField, SelectField
+from eNMS.fields import HiddenField, InstanceField, SelectField
 from eNMS.models.administration import Data
 from eNMS.variables import vs
 
@@ -34,6 +34,7 @@ class StoreForm(DataForm):
     template = "object"
     form_type = HiddenField(default="store")
     id = HiddenField()
+    store = InstanceField("Store", model="store", constraints={"data_type": "store"})
     data_type = SelectField("Data Type")
 
     def __init__(self, *args, **kwargs):

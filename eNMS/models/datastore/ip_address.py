@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, Integer
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import HiddenField, SelectField, StringField
+from eNMS.fields import HiddenField, InstanceField, SelectField, StringField
 from eNMS.models.administration import Data
 
 
@@ -18,6 +18,7 @@ class IPAddress(Data):
 
 class IPAdressForm(DataForm):
     form_type = HiddenField(default="ip_address")
+    store = InstanceField("Store", model="store", constraints={"data_type": "ip_address"})
     address = StringField()
     role = SelectField(
         "Role",
