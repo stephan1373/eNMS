@@ -1885,6 +1885,7 @@
   },
   "tables_additional": {
     "changelog": ["history", "target_id"],
+    "data": ["persistent_id"],
     "pool": ["device_number", "link_number"],
     "run": ["path", "server_properties", "service_properties", "worker_properties"],
     "service": ["builder_link", "path", "scoped_name", "mandatory_parametrization"],
