@@ -39,3 +39,11 @@ class StoreForm(DataForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.data_type.choices = sorted(vs.subtypes["data"].items(), key=lambda x: x[0] != "store")
+
+    def validate(self, **_):
+        valid_form = super().validate()
+        current_store = db.fetch("store", id=self.id.data, allow_none=True)
+        invalid_data_type_change = current_store and current_store.data and self.data_type.data != current_store.data_type
+        if invalid_data_type_change:
+            self.data_type.errors.append("The Data Type of a store can only be modified if the store is empty.")
+        return valid_form and not invalid_data_type_change
