@@ -18,7 +18,9 @@ class IPAddress(Data):
 
 class IPAdressForm(DataForm):
     form_type = HiddenField(default="ip_address")
-    store = InstanceField("Store", model="store", constraints={"data_type": "ip_address"})
+    store = InstanceField(
+        "Store", model="store", constraints={"data_type": "ip_address"}
+    )
     address = StringField()
     role = SelectField(
         "Role",

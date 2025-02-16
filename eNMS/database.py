@@ -630,7 +630,7 @@ class Database:
 
     def register_custom_models(self):
         for model in ("device", "link", "service", "data"):
-            folder_name = "datastore" if model == "data" else f"{model}s" 
+            folder_name = "datastore" if model == "data" else f"{model}s"
             paths = [vs.path / "eNMS" / "models" / folder_name]
             load_examples = vs.settings["app"].get("startup_migration") == "examples"
             if vs.settings["paths"][f"custom_{folder_name}"]:

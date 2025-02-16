@@ -7,6 +7,7 @@ from eNMS.fields import HiddenField, InstanceField, SelectField
 from eNMS.models.administration import Data
 from eNMS.variables import vs
 
+
 class Store(Data):
     __tablename__ = "store"
     pretty_name = "Store"
@@ -30,6 +31,7 @@ class Store(Data):
                 datum.post_update()
         return self.get_properties()
 
+
 class StoreForm(DataForm):
     template = "object"
     form_type = HiddenField(default="store")
@@ -39,4 +41,6 @@ class StoreForm(DataForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.data_type.choices = sorted(vs.subtypes["data"].items(), key=lambda x: x[0] != "store")
+        self.data_type.choices = sorted(
+            vs.subtypes["data"].items(), key=lambda x: x[0] != "store"
+        )
