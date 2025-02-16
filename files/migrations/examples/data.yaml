@@ -161,3 +161,19 @@
   "store": ">IPAM>VLAN"
   "type": "vlan"
   "vlan_id": ! "2"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-16 18:38:01.388729"
+  "creator": "admin"
+  "data_type": "json"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">JSON"
+  "owners":
+  - "admin"
+  "path": "/JSON"
+  "persistent_id": "MlA4sizm3tM"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "JSON"
+  "type": "store"
