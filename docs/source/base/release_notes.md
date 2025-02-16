@@ -217,6 +217,8 @@ Version 5.2.0: Various Improvements
     "store"), similar to how a folder can contain subfolders.
   - The Data Type of a Store can only be selected at creation time. The Data Type of an existing Store
     is set to read-only in the form.
+  - The Store of a Data can be modified, but only to a Store of the same Data Type (for example, a
+    data of type "A" can only have a store whose Data Type is set to "A")
   - Navigating the data store is similar to navigating files: the current path of stores is displayed
     as a sequence of hyperlinks, each linking to a store in the path.
   - Add new persistent ID to all data types so that data can be seamlessly referenced within
