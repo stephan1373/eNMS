@@ -3,7 +3,7 @@ from sqlalchemy.types import JSON
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import DictField, HiddenField, InstanceField
+from eNMS.fields import HiddenField, JsonField, InstanceField
 from eNMS.models.administration import Data
 
 
@@ -18,5 +18,5 @@ class JSON(Data):
 class JSONForm(DataForm):
     form_type = HiddenField(default="json")
     store = InstanceField("Store", model="store", constraints={"data_type": "json"})
-    value = DictField(json_only=True)
+    value = JsonField()
     properties = ["value"]
