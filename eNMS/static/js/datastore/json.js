@@ -32,10 +32,14 @@ function showJSONValue(id) {
       call({
         url: `/get/json/${id}`,
         callback: (result) => {
-          new JSONEditor(document.getElementById(`content-${id}`), {
-            mode: "view",
-            modes: ["code", "view"],
-          }, result.value);
+          new JSONEditor(
+            document.getElementById(`content-${id}`),
+            {
+              mode: "view",
+              modes: ["code", "view"],
+            },
+            result.value
+          );
         },
       });
     },
