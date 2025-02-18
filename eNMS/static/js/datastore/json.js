@@ -8,7 +8,7 @@ import { tables } from "../table.js";
 
 tables.json = class extends tables.data {
   rowButtons(row) {
-    return `
+    return super.rowButtons(row).toSpliced(1, 0, `
       <li>
         <button type="button" class="btn btn-sm btn-info"
           onclick="eNMS.datastore.downloadJSONObject('${row.id}')"
@@ -16,9 +16,8 @@ tables.json = class extends tables.data {
         >
           <span class="glyphicon glyphicon-download"></span>
         </button>
-      </li>
-      ${super.rowButtons(row)}
-    `;
+      </li>`
+    );
   }
 };
 
