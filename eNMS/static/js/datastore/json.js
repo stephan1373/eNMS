@@ -3,7 +3,7 @@ global
 JSONEditor: false
 */
 
-import { call, configureNamespace } from "../base.js";
+import { call, configureNamespace, downloadFile } from "../base.js";
 import { tables } from "../table.js";
 
 tables.json = class extends tables.data {
@@ -25,7 +25,7 @@ function downloadJSONObject(id) {
   call({
     url: `/get/json/${id}`,
     callback: (result) => {
-      console.log(result)
+      downloadFile(`json-object-${id}`, JSON.stringify(result.value, null, 2), "json");
     },
   });
 }
