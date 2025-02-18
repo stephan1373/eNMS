@@ -12,9 +12,9 @@ tables.json = class extends tables.data {
       <li>
         <button type="button" class="btn btn-sm btn-info"
           onclick="eNMS.datastore.downloadJSONObject('${row.id}')"
-          data-tooltip="View JSON Value"
+          data-tooltip="Download JSON Object as File"
         >
-          <span class="glyphicon glyphicon-list-alt"></span>
+          <span class="glyphicon glyphicon-download"></span>
         </button>
       </li>
       ${super.rowButtons(row)}
