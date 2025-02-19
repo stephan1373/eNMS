@@ -803,7 +803,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         if (type !== "workflow") uiType = `${subtypes.service[type]} Service`;
         showServicePanel(type, id, mode, tableId);
       }
-      if (isData && !id) {
+      if (isData && currentStore && !id) {
         var newOption = new Option(currentStore.path, currentStore.id, true, true);
         $(`#${type}-store`)
           .append(newOption)
