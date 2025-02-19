@@ -652,6 +652,8 @@ export function configureForm(form, id, panelId) {
       });
     } else if (field.type == "json") {
       let editor = new JSONEditor(el.next()[0], {
+        mode: "code",
+        modes: ["code", "view"],
         onChange: function() {
           $(el).val(JSON.stringify(editor.get()));
         },
