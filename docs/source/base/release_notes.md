@@ -224,6 +224,9 @@ Version 5.2.0: Data Store and Various Improvements
   - Add new persistent ID to all data types so that data can be seamlessly referenced within
     workflows across releases. The persistent ID can be copied to the clipboard using a button
     in the data store table.
+  - Add new JSON object type, with a "value" property to store the JSON object:
+    - the JSON object can be edited from the edit panel
+    - the JSON object can be downloaded as a JSON file from the JSON table
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
