@@ -18,5 +18,5 @@ class JSON(Data):
 class JSONForm(DataForm):
     form_type = HiddenField(default="json")
     store = InstanceField("Store", model="store", constraints={"data_type": "json"})
-    value = JsonField()
+    value = JsonField(collapse=False)
     properties = ["value"]
