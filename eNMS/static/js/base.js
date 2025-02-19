@@ -847,7 +847,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         if (page == "network_builder") updateNetworkPanel(type);
       }
       if (isService && !id) loadScript(`/static/js/services/${type}.js`);
-      const property = isService
+      const property = isService || isData
         ? "scoped_name"
         : type == "folder"
         ? "filename"
