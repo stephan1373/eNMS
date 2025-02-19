@@ -1165,6 +1165,7 @@ function processData(type, id) {
     const filename = $("#folder-filename").val();
     $("#folder-path").val(`${folderPath}/${filename}`);
   }
+  if (type == "store") $(`#store-data_type-${id}`).prop("disabled", false);
   call({
     url: `/update/${type}`,
     form: id ? `${type}-form-${id}` : `${type}-form`,
