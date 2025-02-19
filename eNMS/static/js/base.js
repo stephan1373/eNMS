@@ -1170,7 +1170,10 @@ function processData(type, id) {
     form: id ? `${type}-form-${id}` : `${type}-form`,
     callback: (instance) => {
       if (page.includes("table")) {
-        refreshTable(page.split("_")[0]);
+        const tableId = page != "store_table"
+          ? page.split("_")[0]
+          : `${type}${currentStore ? `-${currentStore.id}` : ""}`;
+        refreshTable(tableId);
       } else if (page.includes("builder")) {
         processBuilderData(instance, id);
       }
