@@ -33,8 +33,9 @@ class VLANForm(DataForm):
             <center>
               <button
                 type="button"
+                class="btn-id"
                 style="width: 90%; margin-top: 5px"
-                onclick="eNMS.datastore.getNextVlanId()">
+                value="eNMS.datastore.getNextVlanId">
                   Get Next ID
               </button>
             </center>
