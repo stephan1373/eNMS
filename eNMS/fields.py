@@ -30,7 +30,7 @@ class MetaField(type):
 
 class FieldMixin(metaclass=MetaField):
     def __init__(self, *args, **kwargs):
-        for property in ("help", "ui_name"):
+        for property in ("help", "ui_name", "layout"):
             if property in kwargs:
                 kwargs.setdefault("render_kw", {})[property] = kwargs.pop(property)
         kwargs.pop("dont_duplicate", None)

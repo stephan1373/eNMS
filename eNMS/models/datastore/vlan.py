@@ -19,7 +19,24 @@ class VLAN(Data):
 class VLANForm(DataForm):
     form_type = HiddenField(default="vlan")
     store = InstanceField("Store", model="store", constraints={"data_type": "vlan"})
-    vlan_id = IntegerField("VLAN ID", default=1)
     role = StringField()
     group = StringField()
     properties = ["vlan_id", "role", "group"]
+
+    @classmethod
+    def form_init(cls):
+        layout = """
+          <div style="float:right; width: 80%;">
+            {field}
+          </div>
+          <div style="float:right; width: 20%;">
+            <center>
+              <button
+                type="button"
+                style="width: 90%; margin-top: 5px"
+                onclick="eNMS.datastore.getNextVlanId()">
+                  Get Next ID
+              </button>
+            </center>
+          </div>"""
+        setattr(cls, "vlan_id", IntegerField("VLAN ID", default=1, layout=layout))
