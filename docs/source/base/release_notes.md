@@ -227,6 +227,11 @@ Version 5.2.0: Data Store and Various Improvements
   - Add new JSON object type, with a "value" property to store the JSON object:
     - the JSON object can be edited from the edit panel
     - the JSON object can be downloaded as a JSON file from the JSON table
+  - Implement "Get Next in Sequence" mechanism:
+    - Add new "layout" keywoard argument to change the layout of a field, for example add a new button
+      at the left or right side of a specific field in the edit panel
+    - Provide an example with the VLAN class: add a button next to the "VLAN ID" field in the form and
+      auto-fill that field with the next available VLAN ID when clicking that button
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
