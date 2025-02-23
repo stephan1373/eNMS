@@ -22,4 +22,4 @@ class PortForm(DataForm):
     label = StringField()
     speed = StringField()
     connected = BooleanField("Connected", default=False)
-    properties = ["port_id", "role", "group"]
+    properties = ["label", "speed", "connected"]
