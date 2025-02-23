@@ -1569,6 +1569,53 @@
         "export": false
       }
     ],
+    "port": [
+      {
+        "data": "scoped_name",
+        "title": "Name",
+        "search": "text",
+        "width": "200px"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "label",
+        "title": "Label",
+        "search": "text"
+      },
+      {
+        "data": "speed",
+        "title": "Speed",
+        "search": "text"
+      },
+      {
+        "data": "connected",
+        "title": "Connected",
+        "search": "bool"
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false
+      }
+    ],
     "store": [
       {
         "data": "scoped_name",
