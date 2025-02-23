@@ -849,11 +849,8 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
         if (page == "network_builder") updateNetworkPanel(type);
       }
       if (isService && !id) loadScript(`/static/js/services/${type}.js`);
-      const property = isService || isData
-        ? "scoped_name"
-        : type == "folder"
-        ? "filename"
-        : "name";
+      const property =
+        isService || isData ? "scoped_name" : type == "folder" ? "filename" : "name";
       $(`#${type}-${property}`).focus();
     },
     type: type,
@@ -1173,9 +1170,10 @@ function processData(type, id) {
     form: id ? `${type}-form-${id}` : `${type}-form`,
     callback: (instance) => {
       if (page.includes("table")) {
-        const tableId = page != "store_table"
-          ? page.split("_")[0]
-          : `${type}${currentStore ? `-${currentStore.id}` : ""}`;
+        const tableId =
+          page != "store_table"
+            ? page.split("_")[0]
+            : `${type}${currentStore ? `-${currentStore.id}` : ""}`;
         refreshTable(tableId);
       } else if (page.includes("builder")) {
         processBuilderData(instance, id);
