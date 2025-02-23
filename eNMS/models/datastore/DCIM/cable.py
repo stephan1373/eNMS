@@ -1,0 +1,25 @@
+from sqlalchemy import Boolean, ForeignKey, Integer
+from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import relationship
+
+from eNMS.database import db
+from eNMS.forms import DataForm
+from eNMS.fields import BooleanField, HiddenField, InstanceField, SelectField, StringField
+from eNMS.models.administration import Data
+
+
+class Cable(Data):
+    __tablename__ = "cable"
+    pretty_name = "Cable"
+    __mapper_args__ = {"polymorphic_identity": "cable"}
+    id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
+    source_port_id = db.Column(Integer, ForeignKey("port.id"))
+    source_port = relationship("Port", backref="cable", foreign_keys=[source_port_id])
+    source_port_name = association_proxy("source_port", "name")
+
+
+class CableForm(DataForm):
+    form_type = HiddenField(default="cable")
+    store = InstanceField("Store", model="store", constraints={"data_type": "cable"})
+    source_port = InstanceField("Port", model="port")
+    properties = ["source_port"]
