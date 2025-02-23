@@ -194,14 +194,12 @@
         "data": "source_port_name",
         "title": "Source Port",
         "search": "text",
-        "width": "120px",
         "orderable": false
       },
       {
         "data": "destination_port_name",
         "title": "Destination Port",
         "search": "text",
-        "width": "120px",
         "orderable": false
       },
       {
