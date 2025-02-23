@@ -20,6 +20,6 @@ class PortForm(DataForm):
     form_type = HiddenField(default="port")
     store = InstanceField("Store", model="store", constraints={"data_type": "port"})
     label = StringField()
-    speed = StringField()
+    speed = SelectField(choices=("10BASE-T", "100BASE-T", "1000BASE-T", "10GBASE-T"))
     connected = BooleanField("Connected", default=False)
     properties = ["label", "speed", "connected"]
