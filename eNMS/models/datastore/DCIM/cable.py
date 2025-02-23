@@ -4,7 +4,14 @@ from sqlalchemy.orm import relationship
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import BooleanField, FloatField, HiddenField, InstanceField, SelectField, StringField
+from eNMS.fields import (
+    BooleanField,
+    FloatField,
+    HiddenField,
+    InstanceField,
+    SelectField,
+    StringField,
+)
 from eNMS.models.administration import Data
 
 
@@ -17,7 +24,9 @@ class Cable(Data):
     source_port = relationship("Port", backref="cable", foreign_keys=[source_port_id])
     source_port_name = association_proxy("source_port", "name")
     destination_port_id = db.Column(Integer, ForeignKey("port.id"))
-    destination_port = relationship("Port", backref="cable", foreign_keys=[destination_port_id])
+    destination_port = relationship(
+        "Port", backref="cable", foreign_keys=[destination_port_id]
+    )
     destination_port_name = association_proxy("destination_port", "name")
     label = db.Column(db.SmallString)
     color = db.Column(db.SmallString)
@@ -31,5 +40,5 @@ class CableForm(DataForm):
     destination_port = InstanceField("Port", model="port")
     label = StringField()
     color = StringField()
-    length = FloatField(default=0.)
+    length = FloatField(default=0.0)
     properties = ["source_port"]

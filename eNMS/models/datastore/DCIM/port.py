@@ -4,7 +4,13 @@ from sqlalchemy.orm import relationship
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import BooleanField, HiddenField, InstanceField, SelectField, StringField
+from eNMS.fields import (
+    BooleanField,
+    HiddenField,
+    InstanceField,
+    SelectField,
+    StringField,
+)
 from eNMS.models.administration import Data
 
 
