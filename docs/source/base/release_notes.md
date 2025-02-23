@@ -4,6 +4,7 @@
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
 
+- Clean up table filters in the "Files" table when entering a folder (PR)
 - Add search mechanism to the session table
   - Make Device.table_properties use the table_properties function from Base class
   - Add new "Session" column to the session table: allows searching through session content
