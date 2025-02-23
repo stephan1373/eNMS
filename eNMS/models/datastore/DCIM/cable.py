@@ -34,9 +34,9 @@ class Cable(Data):
 class CableForm(DataForm):
     form_type = HiddenField(default="cable")
     store = InstanceField("Store", model="store", constraints={"data_type": "cable"})
-    source_port = InstanceField("Port", model="port")
-    destination_port = InstanceField("Port", model="port")
+    source_port = InstanceField("Source Port", model="port")
+    destination_port = InstanceField("Destination Port", model="port")
     label = StringField()
     color = StringField()
     length = FloatField(default=0.0)
-    properties = ["source_port"]
+    properties = ["source_port", "destination_port", "label", "color", "length"]
