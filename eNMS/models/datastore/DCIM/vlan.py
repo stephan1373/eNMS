@@ -11,9 +11,15 @@ class Port(Data):
     pretty_name = "Port"
     __mapper_args__ = {"polymorphic_identity": "port"}
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
+    label = db.Column(db.SmallString)
+    speed = db.Column(db.SmallString)
+    connected = db.Column(Boolean, default=False)
 
 
 class PortForm(DataForm):
     form_type = HiddenField(default="port")
     store = InstanceField("Store", model="store", constraints={"data_type": "port"})
+    label = StringField()
+    speed = StringField()
+    connected = BooleanField("Connected", default=False)
     properties = ["port_id", "role", "group"]
