@@ -215,7 +215,7 @@
       {
         "data": "length",
         "title": "Length",
-        "search": "bool"
+        "search": "text"
       },
       {
         "data": "buttons",
