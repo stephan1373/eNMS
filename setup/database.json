@@ -69,7 +69,7 @@
   },
   "dont_migrate": {
     "credential": ["id", "logs"],
-    "data": ["id", "logs", "store_id", "data"],
+    "data": ["id", "logs", "store_id", "data", "device_name", "device_id"],
     "group": [
       "id",
       "credentials",
