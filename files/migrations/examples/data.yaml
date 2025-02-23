@@ -232,3 +232,20 @@
   "rbac_read": []
   "scoped_name": "DCIM"
   "type": "store"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-22 20:28:13.396152"
+  "creator": "admin"
+  "data_type": "port"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">DCIM>Ports"
+  "owners":
+  - "admin"
+  "path": "/DCIM/Ports"
+  "persistent_id": "Q9zG7tMkTCE"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "Ports"
+  "store": ">DCIM"
+  "type": "store"
