@@ -216,3 +216,19 @@
     "key2": ! "2"
     "subdict":
       "key3": ! "3"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-22 20:10:26.687861"
+  "creator": "admin"
+  "data_type": "store"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">DCIM"
+  "owners":
+  - "admin"
+  "path": "/DCIM"
+  "persistent_id": "K-9RdU52xg0"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "DCIM"
+  "type": "store"
