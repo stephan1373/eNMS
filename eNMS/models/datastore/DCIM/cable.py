@@ -21,11 +21,11 @@ class Cable(Data):
     __mapper_args__ = {"polymorphic_identity": "cable"}
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
     source_port_id = db.Column(Integer, ForeignKey("port.id"))
-    source_port = relationship("Port", backref="cable", foreign_keys=[source_port_id])
+    source_port = relationship("Port", foreign_keys=[source_port_id])
     source_port_name = association_proxy("source_port", "name")
     destination_port_id = db.Column(Integer, ForeignKey("port.id"))
     destination_port = relationship(
-        "Port", backref="cable", foreign_keys=[destination_port_id]
+        "Port", foreign_keys=[destination_port_id]
     )
     destination_port_name = association_proxy("destination_port", "name")
     label = db.Column(db.SmallString)
