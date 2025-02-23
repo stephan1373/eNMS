@@ -1595,6 +1595,13 @@
         "visible": false
       },
       {
+        "data": "device_name",
+        "title": "Device",
+        "search": "text",
+        "width": "120px",
+        "orderable": false
+      },
+      {
         "data": "label",
         "title": "Label",
         "search": "text"
