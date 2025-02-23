@@ -289,3 +289,20 @@
   "speed": "1000BASE-T"
   "store": ">DCIM>Ports"
   "type": "port"
+- "admin_only": ! "false"
+  "creation_time": "2025-02-23 12:46:38.458208"
+  "creator": "admin"
+  "data_type": "cable"
+  "description": ""
+  "last_modified": ""
+  "last_modified_by": ""
+  "name": ">DCIM>Cables"
+  "owners":
+  - "admin"
+  "path": "/DCIM/Cables"
+  "persistent_id": "rxogHXGNNpw"
+  "rbac_edit": []
+  "rbac_read": []
+  "scoped_name": "Cables"
+  "store": ">DCIM"
+  "type": "store"
