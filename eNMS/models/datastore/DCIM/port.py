@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, ForeignKey, Integer
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import HiddenField, InstanceField, StringField
+from eNMS.fields import BooleanField, HiddenField, InstanceField, SelectField, StringField
 from eNMS.models.administration import Data
 
 
