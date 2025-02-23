@@ -165,6 +165,67 @@
     "user": ["is_admin", "groups"]
   },
   "tables": {
+    "cable": [
+      {
+        "data": "scoped_name",
+        "title": "Name",
+        "search": "text",
+        "width": "200px"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "source_port_name",
+        "title": "Source Port",
+        "search": "text",
+        "width": "120px",
+        "orderable": false
+      },
+      {
+        "data": "destination_port_name",
+        "title": "Destination Port",
+        "search": "text",
+        "width": "120px",
+        "orderable": false
+      },
+      {
+        "data": "label",
+        "title": "Label",
+        "search": "text"
+      },
+      {
+        "data": "color",
+        "title": "Color",
+        "search": "text"
+      },
+      {
+        "data": "length",
+        "title": "Length",
+        "search": "bool"
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false
+      }
+    ],
     "device": [
       {
         "data": "name",
