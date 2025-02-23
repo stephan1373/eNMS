@@ -679,9 +679,7 @@ export function configureForm(form, id, panelId) {
       if (!editors[id]) editors[id] = {};
       editors[id][property] = editor;
       const blackButton = $(`
-        <button class="icon-button" type="button" style="margin-left: auto;">
-          <span class="glyphicon glyphicon-bold"></span>
-        </button>
+        <button type="button" style="margin-left: auto">Auto-format</button>
       `);
       blackButton.on("click", function() {
         call({
