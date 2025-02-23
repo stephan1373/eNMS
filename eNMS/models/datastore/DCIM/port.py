@@ -17,7 +17,7 @@ class Port(Data):
     speed = db.Column(db.SmallString)
     connected = db.Column(Boolean, default=False)
     device_id = db.Column(Integer, ForeignKey("device.id"))
-    device = relationship("Device")
+    device = relationship("Device", backref="ports")
     device_name = association_proxy("device", "name")
 
 
