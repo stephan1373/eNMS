@@ -232,6 +232,10 @@ Version 5.2.0: Data Store and Various Improvements
         to the left or right side of a specific field in the edit panel.
       - Provide an example using the VLAN class: add a button next to the "VLAN ID" field in the form that
         auto-fills the field with the next available VLAN ID when clicked.
+  - Implement various models to demonstrate different implementations:
+    - VLAN model to show a "Get Next in Sequence" mechanism.
+    - Port model to show a SQL relationship with an internal eNMS model ("Device").
+    - Cable model to show SQL relationships with a custom Datastore model ("Port").
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
