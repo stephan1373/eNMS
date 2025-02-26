@@ -1001,7 +1001,7 @@ function buildBulkFilterPanel(panel, type, formType, tableId) {
     .text("Bulk Filter");
 }
 
-export function displayDiff(type, instanceId, property) {
+export function displayDiff(type, instanceId, properties) {
   const objectType =
     instanceId == "none"
       ? $("#configuration-property-diff").val()
@@ -1011,17 +1011,17 @@ export function displayDiff(type, instanceId, property) {
   const postfix = instanceId == "none" ? "" : `-${type}-${instanceId}`;
   let v1 = $(`input[name=v1${postfix}]:checked`).val();
   let v2 = $(`input[name=v2${postfix}]:checked`).val();
-  if (type == "changelog") [v1, v2] = [property, "none"];
+  if (type == "changelog") [v1, v2] = [Object.keys(properties)[0], "none"];
   if (!v1 || !v2) {
     notify("Select two versions to compare first.", "error", 5);
   } else if (v1 == v2) {
     notify("You must select two distinct versions.", "error", 5);
   } else {
-    const cantorId = cantorPairing(parseInt(v1), parseInt(v2));
+    const diffId = type == "changelog" ? instanceId : cantorPairing(parseInt(v1), parseInt(v2));
     openPanel({
       name: "compare",
       title: `Compare ${objectType}`,
-      id: cantorId,
+      id: diffId,
       size: "700 500",
       content: `
         <nav
@@ -1030,28 +1030,48 @@ export function displayDiff(type, instanceId, property) {
           style="margin-top: 30px"
         >
           <input
-            id="diff-type-${cantorId}"
+            id="diff-type-${diffId}"
             type="checkbox"
             data-onstyle="info"
             data-offstyle="primary"
           >
           <input
             name="diff-context-lines"
-            id="slider-${cantorId}"
+            id="slider-${diffId}"
             class="slider"
           >
+          <div style="margin-top: 15px">
+          <select
+            id="changelog-properties-${diffId}"
+            name="changelog-properties"
+            class="form-control"
+          ></select>
+          </div>
         </nav>
         <div class="modal-body">
-          <div id="content-${cantorId}" style="height:100%"></div>
+          <div id="content-${diffId}" style="height:100%"></div>
         </div>`,
       callback: () => {
-        $(`#diff-type-${cantorId}`).bootstrapToggle({
+        $(`#diff-type-${diffId}`).bootstrapToggle({
           on: "Side by side",
           off: "Line by line",
           width: "120px",
         });
+        if (type == "changelog") {
+          for (const property of Object.keys(properties)) {
+            $(`#changelog-properties-${diffId}`).append(
+              `<option value="${property}">${property}</option>`
+            );
+          }
+          $(`#changelog-properties-${diffId}`)
+            .selectpicker("refresh")
+            .change(function() {
+              v1 = $(this).val();
+              $(`#slider-${diffId}`).trigger("change");
+          });
+        }
         const valueToLabel = { 0: 1, 1: 3, 2: 10, 3: 100, 4: "All" };
-        $(`#slider-${cantorId}`)
+        $(`#slider-${diffId}`)
           .bootstrapSlider({
             value: 1,
             ticks: [...Array(5).keys()],
@@ -1066,13 +1086,13 @@ export function displayDiff(type, instanceId, property) {
               url: `/compare/${objectType}/${instanceId}/${v1}/${v2}/${value}`,
               callback: (result) => {
                 if (!result) {
-                  $(`#content-${cantorId}`).text("No difference found.");
+                  $(`#content-${diffId}`).text("No difference found.");
                   return;
                 }
                 let diff2htmlUi = new Diff2HtmlUI({ diff: result });
-                $(`#diff-type-${cantorId}`)
+                $(`#diff-type-${diffId}`)
                   .on("change", function() {
-                    diff2htmlUi.draw(`#content-${cantorId}`, {
+                    diff2htmlUi.draw(`#content-${diffId}`, {
                       matching: "lines",
                       drawFileList: true,
                       outputFormat: $(this).prop("checked")

@@ -165,90 +165,24 @@ function showChangelogDiff(id) {
   call({
     url: `/get_changelog_history/${id}`,
     callback: function(changelog) {
-      openPanel({
-        name: "changelog_diff",
-        content: `
-          <div class="modal-body">
-            ${
-              changelog?.history?.properties
-                ? `<nav
-              class="navbar navbar-default nav-controls"
-              role="navigation"
-              style="width: 350px; display: flex;"
-            >
-              <select
-                id="changelog-properties-${id}"
-                name="changelog-properties"
-                class="form-control"
-              ></select>
-              <div style="margin-left:10px;">
-                <input
-                  id="diff-value-type"
-                  style="width: 200px;"
-                  type="checkbox"
-                  data-onstyle="info"
-                  data-offstyle="primary"
-                >
-              </div>
-              <button
-                class="btn btn-info"
-                id="compare-changelog-${id}-btn"
-                data-tooltip="Compare"
-                type="button"
-                style="margin-left:10px;"
-              >
-                <span class="glyphicon glyphicon-adjust"></span>
-              </button>
-            </nav>`
-                : ""
-            }
-            <div id="changelog-content-${id}" style="margin-top: 30px"></div>
-          </div>`,
-        title: "Result",
-        id: id,
-        callback: function() {
-          const editor = initCodeMirror(`changelog-content-${id}`, "network");
-          if (changelog?.history?.properties) {
-            $(`#changelog-properties-${id}`)
-              .append(`<option value="full_content">Full Content</option>`)
-              .on("change", function() {
-                let value = changelog.content;
-                if ($(`#changelog-properties-${id}`).val() != "full_content") {
-                  const valueType = $("#diff-value-type").prop("checked")
-                    ? "old"
-                    : "new";
-                  value = changelog.history.properties[this.value][valueType];
-                }
-                editor.setValue(typeof value === "number" ? value.toString() : value);
-                editor.refresh();
-              });
-            $("#diff-value-type")
-              .bootstrapToggle({
-                on: "Old Value",
-                off: "New Value",
-              })
-              .change(function() {
-                $(`#changelog-properties-${id}`).trigger("change");
-              });
-            for (const property of Object.keys(changelog.history.properties)) {
-              $(`#changelog-properties-${id}`).append(
-                `<option value="${property}">${property}</option>`
-              );
-            }
-            $(`#changelog-properties-${id}`).selectpicker("refresh");
-          }
-          editor.setValue(changelog.content);
-          editor.refresh();
-          $(`#compare-changelog-${id}-btn`)
-            .unbind("click")
-            .on("click", function() {
-              if ($(`#changelog-properties-${id}`).val() == "full_content") {
-                return notify("A specific property must be selected.", "error", 5);
-              }
-              displayDiff("changelog", id, $(`#changelog-properties-${id}`).val());
-            });
-        },
-      });
+      if (changelog?.history?.properties) {
+        displayDiff("changelog", id, changelog.history.properties);
+      } else {
+        openPanel({
+          name: "changelog_diff",
+          content: `
+            <div class="modal-body">
+              <div id="changelog-content-${id}" style="margin-top: 30px"></div>
+            </div>`,
+          title: "Result",
+          id: id,
+          callback: function() {
+            const editor = initCodeMirror(`changelog-content-${id}`, "network");
+            editor.setValue(changelog.content);
+            editor.refresh();
+          },
+        });
+      }
     },
   });
 }
