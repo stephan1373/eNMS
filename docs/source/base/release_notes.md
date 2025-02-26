@@ -183,10 +183,9 @@ Version 5.2.0: Data Store and Various Improvements
   Commit: 25435861f72ff7f6e7259daacd8ba80a8f47c311
 - Make Service Logs and Service Reports available via the REST API
   Commit: dc7d3195b85a03d92532c4844cac9f04a2bce169
-- Add new "User Defined Only" option in the "Log Level" drop-down list of the service panel to
-  only display the logs that are user defined (logs that come from the global "log" function
-  available in python fields)
-  Commit: 5fc5b27640d598b0fd6e5f3c5fd3b4e2d89c402d
+- Add new "Show User Logs" option in the service panel (step 1) to only display the logs that
+  are user defined (logs that come from the global "log" function available in python fields),
+  regardless of their actual log level
 - Don't update the "Last Scheduled By" property of a task when it is paused and resumed by an admin
   user (e.g., for maintenance):
     - Prevent the original scheduler's permissions from being affected
