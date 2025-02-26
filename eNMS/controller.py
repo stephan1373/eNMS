@@ -233,8 +233,8 @@ class Controller(vs.TimingMixin):
             first, second = result1["result"][type], result2["result"][type]
         return "\n".join(
             unified_diff(
-                first.splitlines(),
-                second.splitlines(),
+                str(first).splitlines(),
+                str(second).splitlines(),
                 fromfile=f"V1 ({v1})",
                 tofile=f"V2 ({v2})",
                 lineterm="",
