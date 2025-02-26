@@ -1796,8 +1796,8 @@ tables.changelog = class ChangelogTable extends Table {
         <li>
           <button
             type="button"
-            class="btn btn-sm btn-${row.is_reversible ? "danger" : "dark"}"
-            ${row.is_reversible ? "" : "disabled"}
+            class="btn btn-sm btn-${row.is_revertible ? "danger" : "dark"}"
+            ${row.is_revertible ? "" : "disabled"}
             onclick="eNMS.administration.revertChange(${
               row.id
             })" data-tooltip="Revert Change"

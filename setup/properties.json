@@ -1535,8 +1535,8 @@
         "width": "100px"
       },
       {
-        "data": "is_reversible",
-        "title": "Reversible",
+        "data": "is_revertible",
+        "title": "Revertible",
         "search": "bool",
         "width": "40px",
         "visible": false

@@ -1629,7 +1629,7 @@ class Controller(vs.TimingMixin):
     def revert_change(self, log_id):
         log = db.fetch("changelog", id=log_id)
         if not log.history or not log.author:
-            return {"alert": "This changelog is not reversible."}
+            return {"alert": "This changelog is not revertible."}
         target = db.fetch(
             log.target_type, name=log.target_name, rbac="edit", allow_none=True
         )
