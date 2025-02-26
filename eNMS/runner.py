@@ -82,6 +82,7 @@ class Runner(vs.TimingMixin):
                 "main_run": self.main_run.base_properties,
                 "main_run_service": {
                     "log_level": int(self.main_run.service.log_level),
+                    "show_user_logs": self.main_run.service.show_user_logs,
                     **self.main_run.service.base_properties,
                 },
                 "service": self.service.base_properties,
@@ -823,6 +824,7 @@ class Runner(vs.TimingMixin):
             logger != "security"
             and allow_disable
             and (log_level == -1 or severity not in vs.log_levels[log_level:])
+            and not (user_defined and self.cache["main_run_service"]["show_user_logs"])
         ):
             return
         if device:

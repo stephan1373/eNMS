@@ -101,6 +101,7 @@ class Service(AbstractBase):
     postprocessing_mode = db.Column(db.TinyString, default="success")
     builder_link = db.Column(db.SmallString)
     log_level = db.Column(Integer, default=1)
+    show_user_logs = db.Column(Boolean, default=True)
     service_logs = relationship(
         "ServiceLog",
         foreign_keys="[ServiceLog.service_id]",

@@ -871,6 +871,7 @@ class ServiceForm(BaseForm):
         help="common/logging",
         no_search=True,
     )
+    show_user_logs = BooleanField("Always Show User-Defined Logs", default=True)
     multiprocessing = BooleanField("Multiprocessing", help="common/multiprocessing")
     max_processes = IntegerField("Maximum number of processes", default=15)
     validation_condition = SelectField(
@@ -938,6 +939,7 @@ class ServiceForm(BaseForm):
             "max_number_of_retries",
             "credential_type",
             "log_level",
+            "show_user_logs",
             "disable_result_creation",
             "update_pools_after_running",
         ],
