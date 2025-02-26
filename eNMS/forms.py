@@ -865,11 +865,7 @@ class ServiceForm(BaseForm):
     )
     log_level = SelectField(
         "Logging",
-        choices=(
-            *enumerate(vs.log_levels),
-            (-1, "Disable logging"),
-            (-2, "User Defined Only"),
-        ),
+        choices=(*enumerate(vs.log_levels), (-1, "Disable logging")),
         type="int",
         default=1,
         help="common/logging",

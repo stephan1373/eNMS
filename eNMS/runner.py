@@ -822,13 +822,7 @@ class Runner(vs.TimingMixin):
         if (
             logger != "security"
             and allow_disable
-            and (
-                log_level == -1
-                or log_level == -2
-                and not user_defined
-                or log_level >= 0
-                and severity not in vs.log_levels[log_level:]
-            )
+            and (log_level == -1 or severity not in vs.log_levels[log_level:])
         ):
             return
         if device:
