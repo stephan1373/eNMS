@@ -1092,6 +1092,10 @@ class Runner(vs.TimingMixin):
     def get_var(self, *args, **kwargs):
         return self.payload_helper(*args, operation="get", **kwargs)
 
+    def get_data(self, name=None, persistent_id=None):
+        kwargs = {"name": name} if name else {"persistent_id": persistent_id}
+        return db.fetch("data", user=self.creator, rbac="use", **kwargs)        
+
     def get_secret(self, name):
         secret = db.fetch("secret", name=name, user=self.creator, rbac="use")
         return env.get_password(secret.secret_value)
@@ -1188,6 +1192,7 @@ class Runner(vs.TimingMixin):
                 "get_connection": _self.get_connection,
                 "get_result": _self.get_result,
                 "get_secret": _self.get_secret,
+                "get_data": _self.get_data,
                 "get_var": _self.get_var,
                 "log": partial(_self.log, user_defined=True),
                 "parent_device": _self.parent_device or device,
