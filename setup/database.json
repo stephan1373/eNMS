@@ -119,6 +119,7 @@
       "rbac_schedule_tasks",
       "rbac_target_devices",
       "rbac_use_credentials",
+      "rbac_use_datas",
       "rbac_use_files",
       "rbac_use_secrets",
       "worker_access"
