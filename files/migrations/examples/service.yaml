@@ -54460,14 +54460,14 @@
   "labels":
     "1f6e26a6-126c-4209-9e38-039890f634e3":
       "alignment": "left"
-      "content": "Retrieve an IP address type\r\nof Data by Name"
+      "content": "Retrieve an IP address type\r\nof Data by Path"
       "positions":
-      - ! "-1"
-      - ! "-75"
+      - ! "29"
+      - ! "-139"
       "size": ! "14"
-  "last_modified": "2025-03-11 21:39:50.523462"
+  "last_modified": "2025-03-11 21:45:37.268133"
   "last_modified_by": "admin"
-  "last_run": ""
+  "last_run": "2025-03-11 21:44:54.846949"
   "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -54500,8 +54500,8 @@
   "persistent_id": "iP3eorKKMuE"
   "positions":
     "[Global Variables: get_data (Data Store)] Get Data by Path":
-    - ! "-19"
-    - ! "-20"
+    - ! "20"
+    - ! "-72"
     "[Shared] End":
     - ! "625"
     - ! "99"
@@ -54534,7 +54534,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "target_devices": []
+  "target_devices":
+  - "Washington"
   "target_pools": []
   "time_between_retries": ! "10"
   "type": "workflow"
@@ -54577,7 +54578,7 @@
   "iteration_devices_property": "name"
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
-  "last_modified": "2025-03-11 21:39:50.523462"
+  "last_modified": "2025-03-11 21:43:26.008721"
   "last_modified_by": "admin"
   "last_run": ""
   "log_level": ! "1"
@@ -54629,9 +54630,10 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "get_data(path=\"/IPAM/IP Address/IP Address 1\")\r\n# Click on \"i\"
-    to right of \"Source Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"]
-    = True\r\nresults[\"result\"] = result"
+  "source_code": "ip_address = get_data(path=\"/IPAM/IP Address/IP Address 1\")\r\nlog(\"warning\",
+    f\"IP Address: {ip_address.address}\") \r\n# Click on \"i\" to right of \"Source
+    Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"]
+    = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
