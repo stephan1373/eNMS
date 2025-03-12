@@ -16,6 +16,7 @@
   - "All users"
   "rbac_read":
   - "All users"
+  "rbac_use": []
   "scoped_name": "Secret 1"
   "secret_value": "Q29ycmVjdDEyMyE6KSRA"
   "store": ">Secrets"
@@ -33,6 +34,7 @@
   "persistent_id": "sGTmso7JX4Y"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Secrets"
   "type": "store"
 - "admin_only": ! "false"
@@ -49,6 +51,7 @@
   "persistent_id": "S7lO1QYqpgQ"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "IPAM"
   "type": "store"
 - "admin_only": ! "false"
@@ -65,6 +68,7 @@
   "persistent_id": "o6ETxLfRDw0"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "IP Address"
   "store": ">IPAM"
   "type": "store"
@@ -82,6 +86,7 @@
   "persistent_id": "KO2LR1NX1JM"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "VLAN"
   "store": ">IPAM"
   "type": "store"
@@ -99,6 +104,7 @@
   "persistent_id": "wLUaLqeKqOY"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "role": "loopback"
   "scoped_name": "IP Address 1"
   "store": ">IPAM>IP Address"
@@ -118,6 +124,7 @@
   "persistent_id": "QTVleMy9ItE"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "role": "anycast"
   "scoped_name": "IP Address 2"
   "store": ">IPAM>IP Address"
@@ -137,6 +144,7 @@
   "persistent_id": "2qyq9Ajs97s"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "role": "Default VLAN"
   "scoped_name": "Vlan 1"
   "store": ">IPAM>VLAN"
@@ -156,6 +164,7 @@
   "persistent_id": "85rTbsNxuZg"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "role": "Vlan 2"
   "scoped_name": "Vlan 2"
   "store": ">IPAM>VLAN"
@@ -175,6 +184,7 @@
   "persistent_id": "MlA4sizm3tM"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "JSON"
   "type": "store"
 - "admin_only": ! "false"
@@ -190,6 +200,7 @@
   "persistent_id": "kpSBMNi61Vk"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "JSON 1"
   "store": ">JSON"
   "type": "json"
@@ -208,6 +219,7 @@
   "persistent_id": "qK8xmi0SBB0"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "JSON 2"
   "store": ">JSON"
   "type": "json"
@@ -230,6 +242,7 @@
   "persistent_id": "K-9RdU52xg0"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "DCIM"
   "type": "store"
 - "admin_only": ! "false"
@@ -246,6 +259,7 @@
   "persistent_id": "Q9zG7tMkTCE"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Ports"
   "store": ">DCIM"
   "type": "store"
@@ -265,6 +279,7 @@
   "persistent_id": "3Se-z2S1kTo"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Port 1"
   "speed": "10BASE-T"
   "store": ">DCIM>Ports"
@@ -285,6 +300,7 @@
   "persistent_id": "-GF5oHyBc60"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Port 2"
   "speed": "1000BASE-T"
   "store": ">DCIM>Ports"
@@ -303,6 +319,7 @@
   "persistent_id": "rxogHXGNNpw"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Cables"
   "store": ">DCIM"
   "type": "store"
@@ -323,6 +340,7 @@
   "persistent_id": "zU7kQ0etx7I"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Cable 1"
   "source_port": ">DCIM>Ports>Port 1"
   "store": ">DCIM>Cables"
@@ -344,6 +362,7 @@
   "persistent_id": "JL6c6KobJ5Q"
   "rbac_edit": []
   "rbac_read": []
+  "rbac_use": []
   "scoped_name": "Cable 2"
   "source_port": ">DCIM>Ports>Port 2"
   "store": ">DCIM>Cables"

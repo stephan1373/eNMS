@@ -81,6 +81,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip":
     "(R) Gateway Mechanism (SSH Proxy with Scrapli)": ! "false"
     "Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -185,6 +186,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip":
     "(R) Gateway Mechanism (SSH Proxy with Scrapli)": ! "false"
     "Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -289,6 +291,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -400,6 +403,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -521,6 +525,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Regression Workflow 9: Operational Data Backup": ! "true"
     "Regression Workflow: Operational Data Backup (admin)": ! "true"
@@ -642,6 +647,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -772,6 +778,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -896,6 +903,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1026,6 +1034,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1146,6 +1155,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1256,6 +1266,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1367,6 +1378,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1469,6 +1481,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1608,6 +1621,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1738,6 +1752,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1837,6 +1852,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -1939,6 +1955,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2074,6 +2091,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2205,6 +2223,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2336,6 +2355,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2450,6 +2470,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2556,6 +2577,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2661,6 +2683,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2768,6 +2791,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -2894,6 +2918,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3027,6 +3052,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3160,6 +3186,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3272,6 +3299,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3421,6 +3449,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3603,6 +3632,7 @@
   - "[Shared] Netmiko: Check VRF (Telecom1) does not exist"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3792,6 +3822,7 @@
   - "[Shared] REST API: call *is_alive* endpoint"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -3944,6 +3975,7 @@
   - "[Shared] REST API: call *is_alive* endpoint"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -4117,6 +4149,7 @@
   - "[Shared] REST API: call *is_alive* endpoint"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -4320,6 +4353,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -4461,6 +4495,7 @@
   - "[Shared] REST API: call *is_alive* endpoint"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -4690,6 +4725,7 @@
   - "[Shared] Modify Payload for Iteration"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -4865,6 +4901,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5001,6 +5038,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5123,6 +5161,7 @@
   - "[[DxD and SxS Run Methods] Workflow  in device by device mode] Validation show
     VRF"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5229,6 +5268,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5352,6 +5392,7 @@
   - "[[DxD and SxS Run Methods] Workflow in service by service mode (workflow targets)]
     Validation show VRF"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5458,6 +5499,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5580,6 +5622,7 @@
   - "[[DxD and SxS Run Methods] Workflow in service targets mode] Validation show
     VRF"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5706,6 +5749,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5837,6 +5881,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -5968,6 +6013,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6134,6 +6180,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6254,6 +6301,7 @@
   - "[Shared] Shared Service used Twice in Workflow"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6373,6 +6421,7 @@
   - "[Shared] Shared Service used Twice in Workflow"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6498,6 +6547,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6606,6 +6656,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6762,6 +6813,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -6861,6 +6913,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Regression Workflow: Advanced Iteration Targets": ! "false"
   "skip_query": ""
@@ -6995,6 +7048,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Regression Workflow: Advanced Iteration Targets": ! "false"
   "skip_query": ""
@@ -7187,6 +7241,7 @@
   - "[Workflow and Subworkflow Iteration] Subworkflow Value Iteration"
   - "[Workflow and Subworkflow Iteration] Test Iteration"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7287,6 +7342,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7410,6 +7466,7 @@
   - "[Shared] Start"
   - "[[Workflow and Subworkflow Iteration] Subworkflow Value Iteration] Test Iteration"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7509,6 +7566,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7685,6 +7743,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7789,6 +7848,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7896,6 +7956,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -7997,6 +8058,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "true"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8128,6 +8190,7 @@
   - "[Specific Superworkflow] Post Placeholder Processing"
   - "[Specific Superworkflow] REST API: call to placeholder property"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8286,6 +8349,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8387,6 +8451,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8503,6 +8568,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8621,6 +8687,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8743,6 +8810,7 @@
   - "[Shared] Start"
   - "[Topology Import Services] OpenNMS Import"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8850,6 +8918,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -8976,6 +9045,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9094,6 +9164,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9222,6 +9293,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9406,6 +9478,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9513,6 +9586,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Regression Workflow: Operational Data Backup (admin)": ! "true"
   "skip_query": ""
@@ -9612,6 +9686,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9747,6 +9822,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9858,6 +9934,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -9971,6 +10048,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10086,6 +10164,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10199,6 +10278,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10362,6 +10442,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10488,6 +10569,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10599,6 +10681,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10731,6 +10814,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10843,6 +10927,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -10973,6 +11058,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -11085,6 +11171,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -11241,6 +11328,7 @@
   - "[Skip in SxS with WF targets mode] Partial failure (Washington)"
   - "[Skip in SxS with WF targets mode] Query Skipped Service"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -11342,6 +11430,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -11455,6 +11544,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"PaloAlto\""
   "skip_value": "failure"
@@ -11568,6 +11658,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Regression Workflow R: skip services in service by service mode": ! "true"
     "Skip Mechanism: Skip in SxS mode": ! "true"
@@ -11777,6 +11868,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -11882,6 +11974,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"Washington\""
   "skip_value": "failure"
@@ -11995,6 +12088,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"PaloAlto\""
   "skip_value": "failure"
@@ -12108,6 +12202,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -12221,6 +12316,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -12407,6 +12503,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -12507,6 +12604,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -12636,6 +12734,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -12763,6 +12862,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -12956,6 +13056,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -13057,6 +13158,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -13190,6 +13292,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -13323,6 +13426,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -13427,6 +13531,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name.startswith(\"router\")"
   "skip_value": "discard"
@@ -13621,6 +13726,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -13739,6 +13845,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -13839,6 +13946,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.model != \"Arista\""
   "skip_value": "discard"
@@ -13952,6 +14060,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.model != \"Juniper\""
   "skip_value": "discard"
@@ -14092,6 +14201,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -14210,6 +14320,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "True"
   "skip_value": "discard"
@@ -14371,6 +14482,7 @@
   - "[Skip Query with device in Run Once Mode] Subworkflow in SxS mode - workflow
     targets"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -14495,6 +14607,7 @@
   - "[[Skip Query with device in Run Once Mode] Subworkflow in SxS mode - workflow
     targets] Fail Austin"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"PaloAlto\""
   "skip_value": "discard"
@@ -14593,6 +14706,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"Washington\""
   "skip_value": "failure"
@@ -14698,6 +14812,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -14877,6 +14992,7 @@
   - "[Skip, Discard and Disable Result Creation Mechanism] Workflow in DxD mode"
   - "[Skip, Discard and Disable Result Creation Mechanism] Workflow in SxS mode"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -14979,6 +15095,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -15103,6 +15220,7 @@
   - "[[Skip, Discard and Disable Result Creation Mechanism] Workflow in DxD mode]
     Fail Austin"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"PaloAlto\""
   "skip_value": "failure"
@@ -15223,6 +15341,7 @@
   - "[[Skip, Discard and Disable Result Creation Mechanism] Workflow in SxS mode]
     Fail PaloAlto"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name == \"Austin\""
   "skip_value": "discard"
@@ -15322,6 +15441,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -15425,6 +15545,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -15528,6 +15649,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -15657,6 +15779,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -15819,6 +15942,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -15947,6 +16071,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16123,6 +16248,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16225,6 +16351,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16327,6 +16454,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16432,6 +16560,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16537,6 +16666,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16706,6 +16836,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16806,6 +16937,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -16933,6 +17065,7 @@
   - "[[Workflow and Subworkflow Iteration] Subworkflow Device Iteration] Service that
     does nothing"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17053,6 +17186,7 @@
   - "[[Workflow and Subworkflow Iteration] Subworkflow Device Iteration 2] Service
     that does nothing"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17152,6 +17286,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17258,6 +17393,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17364,6 +17500,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17467,6 +17604,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17625,6 +17763,7 @@
   - "[Target Restriction Mechanism] Direct Target"
   - "[Target Restriction Mechanism] Iteration Targets"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17725,6 +17864,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17832,6 +17972,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -17937,6 +18078,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18101,6 +18243,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18210,6 +18353,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18328,6 +18472,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18446,6 +18591,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18593,6 +18739,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18721,6 +18868,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -18903,6 +19051,7 @@
   - "[Validation Mechanism] Dict Inclusion Validation of new key"
   - "[Validation Mechanism] Nested Result String Validation"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19003,6 +19152,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19111,6 +19261,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19221,6 +19372,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19390,6 +19542,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19502,6 +19655,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19620,6 +19774,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19748,6 +19903,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19866,6 +20022,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -19994,6 +20151,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20167,6 +20325,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20294,6 +20453,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20425,6 +20585,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20556,6 +20717,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20731,6 +20893,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20835,6 +20998,7 @@
   "send_notification": ! "true"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -20945,6 +21109,7 @@
   "send_notification": ! "true"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21055,6 +21220,7 @@
   "send_notification": ! "true"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21225,6 +21391,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21352,6 +21519,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21476,6 +21644,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21603,6 +21772,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21733,6 +21903,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -21863,6 +22034,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22041,6 +22213,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22142,6 +22315,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22275,6 +22449,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22387,6 +22562,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22558,6 +22734,7 @@
   - "[Skip in SxS with service targets and Run Once services] Run Once with Pool"
   - "[Skip in SxS with service targets and Run Once services] Skip Query"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22656,6 +22833,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -22765,6 +22943,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": "device.name in (\"Washington\", \"NewYork\")"
   "skip_value": "success"
@@ -22874,6 +23053,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Regression Workflow: SxS Service Targets with Run Once + Skip": ! "true"
   "skip_query": ""
@@ -22981,6 +23161,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23141,6 +23322,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23240,6 +23422,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23364,6 +23547,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23477,6 +23661,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23590,6 +23775,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23703,6 +23889,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23816,6 +24003,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -23929,6 +24117,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24043,6 +24232,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24149,6 +24339,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24311,6 +24502,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24413,6 +24605,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24551,6 +24744,7 @@
   - "[Shared] Start"
   - "[Superworkflow in SxS w WT with Run Once service] Call to is_alive, Run Once"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24659,6 +24853,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24786,6 +24981,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -24943,6 +25139,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25069,6 +25266,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25199,6 +25397,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25329,6 +25528,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25459,6 +25659,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25624,6 +25825,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25735,6 +25937,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25843,6 +26046,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -25971,6 +26175,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26102,6 +26307,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26297,6 +26503,7 @@
   - "[Shared] Getters Workflow: Interface IP"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26408,6 +26615,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26519,6 +26727,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26628,6 +26837,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26740,6 +26950,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -26943,6 +27154,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27069,6 +27281,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27220,6 +27433,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27325,6 +27539,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27427,6 +27642,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27533,6 +27749,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27635,6 +27852,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27770,6 +27988,7 @@
   - "[Shared] Getters Workflow: Interface IP"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27870,6 +28089,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -27984,6 +28204,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28085,6 +28306,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28228,6 +28450,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28329,6 +28552,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28434,6 +28658,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28536,6 +28761,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28638,6 +28864,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28740,6 +28967,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28842,6 +29070,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -28977,6 +29206,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29109,6 +29339,7 @@
   - "[Shared] Placeholder"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29208,6 +29439,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29314,6 +29546,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29420,6 +29653,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29526,6 +29760,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29632,6 +29867,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29790,6 +30026,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29890,6 +30127,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -29994,6 +30232,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30119,6 +30358,7 @@
   - "[Shared] Start"
   - "[[Functions: get_result and get_var] Subworkflow] Subservice"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30219,6 +30459,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30331,6 +30572,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30444,6 +30686,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30652,6 +30895,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30750,6 +30994,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30856,6 +31101,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -30963,6 +31209,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31065,6 +31312,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31167,6 +31415,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31269,6 +31518,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31376,6 +31626,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31551,6 +31802,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31658,6 +31910,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31766,6 +32019,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31874,6 +32128,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -31983,6 +32238,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32092,6 +32348,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32252,6 +32509,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32362,6 +32620,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32470,6 +32729,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32582,6 +32842,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32752,6 +33013,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32873,6 +33135,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -32991,6 +33254,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33116,6 +33380,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33307,6 +33572,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33417,6 +33683,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33526,6 +33793,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33635,6 +33903,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33744,6 +34013,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -33860,6 +34130,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -34042,6 +34313,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -34167,6 +34439,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "(R) Gateway Mechanism (SSH Proxy with Scrapli)": ! "false"
   "skip_query": ""
@@ -34299,6 +34572,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "(R) Gateway Mechanism (SSH Proxy with Scrapli)": ! "false"
   "skip_query": ""
@@ -34431,6 +34705,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "(R) Gateway Mechanism (SSH Proxy with Scrapli)": ! "false"
   "skip_query": ""
@@ -34572,6 +34847,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -34671,6 +34947,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -34841,6 +35118,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -34941,6 +35219,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -35175,6 +35454,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -35274,6 +35554,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35377,6 +35658,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35480,6 +35762,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35583,6 +35866,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35686,6 +35970,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35789,6 +36074,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35892,6 +36178,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -35995,6 +36282,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36098,6 +36386,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36201,6 +36490,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36304,6 +36594,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36407,6 +36698,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36510,6 +36802,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36613,6 +36906,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36716,6 +37010,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36819,6 +37114,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -36922,6 +37218,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37025,6 +37322,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37128,6 +37426,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37231,6 +37530,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37334,6 +37634,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37437,6 +37738,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37540,6 +37842,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37643,6 +37946,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37746,6 +38050,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37849,6 +38154,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -37952,6 +38258,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -38055,6 +38362,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "[Large Workflow with Large Subworkflows] Large Subworkflow": ! "false"
   "skip_query": ""
@@ -38199,6 +38507,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -38307,6 +38616,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -38444,6 +38754,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -38552,6 +38863,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -38690,6 +39002,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -38790,6 +39103,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -38919,6 +39233,7 @@
   - "[Slack and Mattermost Notifications] Notification in general, once"
   - "[Slack and Mattermost Notifications] Slack in random, per device"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39023,6 +39338,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39124,6 +39440,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39283,6 +39600,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39447,6 +39765,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39641,6 +39960,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39749,6 +40069,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39863,6 +40184,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -39977,6 +40299,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40123,6 +40446,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40251,6 +40575,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40352,6 +40677,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40564,6 +40890,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40684,6 +41011,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40808,6 +41136,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -40949,6 +41278,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41092,6 +41422,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41201,6 +41532,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41334,6 +41666,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41497,6 +41830,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41621,6 +41955,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41726,6 +42061,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -41858,6 +42194,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -42022,6 +42359,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -42129,6 +42467,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -42256,6 +42595,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -42368,6 +42708,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "(R) Credential Object Mechanism": ! "false"
   "skip_query": ""
@@ -42521,6 +42862,7 @@
   - "[Shared] Start"
   - "[Text Reports with Normal Templates] Service"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -42621,6 +42963,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "HTML Reports with Normal Templates": ! "false"
   "skip_query": ""
@@ -42813,6 +43156,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -42913,6 +43257,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "HTML Reports with Normal Templates": ! "false"
   "skip_query": ""
@@ -43101,6 +43446,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43199,6 +43545,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43303,6 +43650,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43407,6 +43755,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43511,6 +43860,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43615,6 +43965,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43831,6 +44182,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -43977,6 +44329,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44074,6 +44427,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44177,6 +44531,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44280,6 +44635,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44383,6 +44739,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44517,6 +44874,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44614,6 +44972,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44776,6 +45135,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -44902,6 +45262,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45033,6 +45394,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45151,6 +45513,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45269,6 +45632,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45441,6 +45805,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45596,6 +45961,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45705,6 +46071,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45820,6 +46187,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -45926,6 +46294,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -46035,6 +46404,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -46143,6 +46513,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -46249,6 +46620,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -46422,6 +46794,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -46531,6 +46904,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
   "skip_query": ""
@@ -46693,6 +47067,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
   "skip_query": ""
@@ -46863,6 +47238,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -46990,6 +47366,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47091,6 +47468,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47241,6 +47619,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47346,6 +47725,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47453,6 +47833,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47555,6 +47936,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47663,6 +48045,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47812,6 +48195,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -47918,6 +48302,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48027,6 +48412,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48137,6 +48523,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48245,6 +48632,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
   "skip_query": ""
@@ -48394,6 +48782,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48496,6 +48885,7 @@
   "send_notification_method": "mail"
   "sender": "sender {{ variable2 }}"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48595,6 +48985,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48693,6 +49084,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48835,6 +49227,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -48933,6 +49326,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49037,6 +49431,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49148,6 +49543,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49337,6 +49733,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49434,6 +49831,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49535,6 +49933,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49640,6 +50039,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49811,6 +50211,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -49920,6 +50321,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -50083,6 +50485,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -50196,6 +50599,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -50343,6 +50747,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -50450,6 +50855,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -50561,6 +50967,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -50715,6 +51122,7 @@
   - "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Commands"
   - "[[Dry Run: Subservice and Subworkflow level Dry Run] DR Subworkflow] Netconf"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -50871,6 +51279,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -50987,6 +51396,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -51101,6 +51511,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -51256,6 +51667,7 @@
   - "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Commands"
   - "[[Dry Run: Subservice and Subworkflow level Dry Run] Non-DR Subworkflow] Netconf"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -51413,6 +51825,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -51530,6 +51943,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -51645,6 +52059,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip":
     "Dry Run: Top-level Workflow Dry Run": ! "false"
     "[Dry Run: Subservice and Subworkflow level Dry Run] Dry Run: Top-level Workflow Dry Run": ! "false"
@@ -51778,6 +52193,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -51875,6 +52291,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52006,6 +52423,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52183,6 +52601,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52280,6 +52699,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52423,6 +52843,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52521,6 +52942,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52624,6 +53046,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52796,6 +53219,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52890,6 +53314,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -52986,6 +53411,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53082,6 +53508,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53178,6 +53605,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53358,6 +53786,7 @@
   - "[Shared] End"
   - "[Shared] Start"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53481,6 +53910,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53600,6 +54030,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53725,6 +54156,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53844,6 +54276,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53969,6 +54402,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "shared": ! "false"
+  "show_user_logs": ! "true"
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
@@ -53983,6 +54417,227 @@
   "update_target_pools": ! "false"
   "use_genie": ! "false"
   "use_textfsm": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "builder_link": "iP3eorKKMuE"
+  "category": "Global Variables"
+  "close_connection": ! "false"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creation_time": "2025-03-11 21:37:37.383246"
+  "creator": "admin"
+  "credential_type": "any"
+  "custom_property": "Default Value"
+  "default_uuid": "2126ad91-f652-4b40-9d7b-b37e84cbec95"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "labels":
+    "1f6e26a6-126c-4209-9e38-039890f634e3":
+      "alignment": "left"
+      "content": "Retrieve an IP address type\r\nof Data by Name"
+      "positions":
+      - ! "-1"
+      - ! "-75"
+      "size": ! "14"
+  "last_modified": "2025-03-11 21:39:50.523462"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "man_minutes": ! "0"
+  "man_minutes_total": ! "0"
+  "man_minutes_type": "workflow"
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "Global Variables: get_data (Data Store)"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "iP3eorKKMuE"
+  "positions":
+    "[Global Variables: get_data (Data Store)] Get Data by Path":
+    - ! "-19"
+    - ! "-20"
+    "[Shared] End":
+    - ! "625"
+    - ! "99"
+    "[Shared] Start":
+    - ! "-181"
+    - ! "105"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Global Variables: get_data (Data Store)"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "services":
+  - "[Global Variables: get_data (Data Store)] Get Data by Path"
+  - "[Shared] End"
+  - "[Shared] Start"
+  "shared": ! "false"
+  "show_user_logs": ! "true"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "workflow"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "builder_link": "iP3eorKKMuE"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creation_time": "2025-03-11 21:37:49.402773"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "91f88bee-223f-4286-bd8a-dfa1e16afcfb"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2025-03-11 21:39:50.523462"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "[Global Variables: get_data (Data Store)] Get Data by Path"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "XWO9OvqMnlA"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Get Data by Path"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "shared": ! "false"
+  "show_user_logs": ! "true"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "get_data(path=\"/IPAM/IP Address/IP Address 1\")\r\n# Click on \"i\"
+    to right of \"Source Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"]
+    = True\r\nresults[\"result\"] = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
   "validation_condition": "none"
   "validation_method": "text"
   "validation_section": "results['result']"
