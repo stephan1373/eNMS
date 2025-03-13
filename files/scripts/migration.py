@@ -117,4 +117,4 @@ def migrate_5_1_to_5_2():
     with open(PATH / FILENAME / "data.yaml", "w") as data_file:
         yaml.dump(data, data_file)
 
-convert_secret()
+migrate_5_1_to_5_2()
