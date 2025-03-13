@@ -96,6 +96,25 @@ def migrate_5_1_to_5_2():
         credential["rbac_use"] = credential.pop("groups")
     with open(PATH / FILENAME / "credential.yaml", "w") as credential_file:
         yaml.dump(credentials, credential_file)
+    with open(PATH / FILENAME / "secret.yaml", "r") as service_file:
+        secrets = yaml.load(service_file)
+    data = [{
+        "admin_only": "false",
+        "creator": "admin",
+        "data_type": "secret",
+        "name": ">Secrets",
+        "path": "/Secrets",
+        "scoped_name": "Secrets",
+        "type": "store",
+    }]
+    for secret in secrets:
+        name = secret["name"]
+        secret["name"] = f">Secrets>{name}"
+        secret["path"] = f"/Secrets/{name}"
+        secret["scoped_name"] = name
+        secret["store"] = ">Secrets"
+        data.append(secret)
+    with open(PATH / FILENAME / "data.yaml", "w") as data_file:
+        yaml.dump(data, data_file)
 
-
-migrate_5_1_to_5_2()
+convert_secret()
