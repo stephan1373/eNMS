@@ -54458,6 +54458,13 @@
   "iteration_values": ""
   "iteration_variable_name": "iteration_value"
   "labels":
+    "1b4847a2-cca5-4b15-9afd-548819b9aede":
+      "alignment": "left"
+      "content": "Retrieve an IP address type\r\nof Data by Persistent ID"
+      "positions":
+      - ! "125"
+      - ! "215"
+      "size": ! "14"
     "1f6e26a6-126c-4209-9e38-039890f634e3":
       "alignment": "left"
       "content": "Retrieve an IP address type\r\nof Data by Path"
@@ -54465,9 +54472,9 @@
       - ! "29"
       - ! "-139"
       "size": ! "14"
-  "last_modified": "2025-03-11 21:45:37.268133"
+  "last_modified": "2025-03-12 22:25:58.129530"
   "last_modified_by": "admin"
-  "last_run": "2025-03-11 21:44:54.846949"
+  "last_run": "2025-03-12 22:26:01.715732"
   "log_level": ! "1"
   "mail_bcc": ""
   "mail_recipient": ""
@@ -54499,12 +54506,15 @@
   "parameterized_form_template": ""
   "persistent_id": "iP3eorKKMuE"
   "positions":
+    "[Global Variables: get_data (Data Store)] Get Data by ID":
+    - ! "121"
+    - ! "145"
     "[Global Variables: get_data (Data Store)] Get Data by Path":
     - ! "20"
     - ! "-72"
     "[Shared] End":
-    - ! "625"
-    - ! "99"
+    - ! "631"
+    - ! "46"
     "[Shared] Start":
     - ! "-181"
     - ! "105"
@@ -54526,6 +54536,7 @@
   "send_notification": ! "false"
   "send_notification_method": "mail"
   "services":
+  - "[Global Variables: get_data (Data Store)] Get Data by ID"
   - "[Global Variables: get_data (Data Store)] Get Data by Path"
   - "[Shared] End"
   - "[Shared] Start"
@@ -54631,6 +54642,105 @@
   "skip_query": ""
   "skip_value": "success"
   "source_code": "ip_address = get_data(path=\"/IPAM/IP Address/IP Address 1\")\r\nlog(\"warning\",
+    f\"IP Address: {ip_address.address}\") \r\n# Click on \"i\" to right of \"Source
+    Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"]
+    = result"
+  "target_devices": []
+  "target_pools": []
+  "time_between_retries": ! "10"
+  "type": "python_snippet_service"
+  "update_pools_after_running": ! "false"
+  "update_target_pools": ! "false"
+  "validation_condition": "none"
+  "validation_method": "text"
+  "validation_section": "results['result']"
+  "vendor": ""
+  "version": ""
+  "waiting_time": ! "0"
+- "admin_only": ! "false"
+  "builder_link": "iP3eorKKMuE"
+  "completion_time": ! "1"
+  "content_match": ""
+  "content_match_regex": ! "false"
+  "conversion_method": "none"
+  "creation_time": "2025-03-12 22:24:31.181296"
+  "creator": "admin"
+  "credential_type": "any"
+  "default_uuid": "b9933085-d248-4dd7-b343-16eb3e4ab851"
+  "definition": "Definition"
+  "delete_spaces_before_matching": ! "false"
+  "description": ""
+  "device_query": ""
+  "device_query_property": "name"
+  "dict_match": {}
+  "disable_result_creation": ! "false"
+  "disabled": ! "false"
+  "disabled_info": ""
+  "display_only_failed_nodes": ! "false"
+  "display_report": ! "false"
+  "dry_run": ! "false"
+  "email_report": ! "false"
+  "impacting": ! "true"
+  "include_device_results": ! "false"
+  "include_link_in_summary": ! "false"
+  "initial_payload": {}
+  "iteration_devices": ""
+  "iteration_devices_property": "name"
+  "iteration_values": ""
+  "iteration_variable_name": "iteration_value"
+  "last_modified": "2025-03-12 22:25:58.129530"
+  "last_modified_by": "admin"
+  "last_run": ""
+  "log_level": ! "1"
+  "mail_bcc": ""
+  "mail_recipient": ""
+  "mail_sender": ""
+  "mail_subject": ""
+  "mandatory_parameter": "Default Value"
+  "mandatory_parametrization": ! "false"
+  "max_number_of_retries": ! "100"
+  "max_processes": ! "15"
+  "maximum_runs": ! "1"
+  "multiprocessing": ! "false"
+  "name": "[Global Variables: get_data (Data Store)] Get Data by ID"
+  "negative_logic": ! "false"
+  "notification_header": ""
+  "number_of_retries": ! "0"
+  "operating_system": ""
+  "owners":
+  - "admin"
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
+    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+    = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
+    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    = IntegerField('Maximum number of processes', default=15)"
+  "parameterized_form_template": ""
+  "persistent_id": "h4vYNajbCss"
+  "postprocessing": ""
+  "postprocessing_mode": "success"
+  "preprocessing": ""
+  "priority": ! "10"
+  "rbac_edit": []
+  "rbac_read": []
+  "rbac_run": []
+  "reply_to": ""
+  "report": ""
+  "report_format": "text"
+  "report_jinja2_template": ! "false"
+  "reserved": ! "false"
+  "restrict_to_owners": []
+  "run_method": "per_device"
+  "scoped_name": "Get Data by ID"
+  "send_notification": ! "false"
+  "send_notification_method": "mail"
+  "shared": ! "false"
+  "show_user_logs": ! "true"
+  "skip": {}
+  "skip_query": ""
+  "skip_value": "success"
+  "source_code": "ip_address = get_data(persistent_id=\"QTVleMy9ItE\")\r\nlog(\"warning\",
     f\"IP Address: {ip_address.address}\") \r\n# Click on \"i\" to right of \"Source
     Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"]
     = result"
