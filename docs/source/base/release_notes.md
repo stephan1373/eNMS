@@ -260,6 +260,7 @@ Tests:
 - Test weh SSH sessions, specifically RBAC access for non-admin users
 - Test that the new global "runtime" variable made available in the workflow builder does
   interact with the existing user python code
+- Test that you can create / edit / delete data from the REST API
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
