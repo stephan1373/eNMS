@@ -444,11 +444,12 @@ export class Table {
       </button>`;
   }
 
-  displayChangelogButton() {
+  displayChangelogButton(type) {
+    const typeVariable = type === undefined ? undefined : `'${type}'`;
     return `
       <button
         class="btn btn-info"
-        onclick="eNMS.table.showTableChangelogPanel('${this.id}')"
+        onclick="eNMS.table.showTableChangelogPanel('${this.id}', ${typeVariable})"
         data-tooltip="Changelog"
         type="button"
       >
@@ -1647,7 +1648,7 @@ tables.data = class DataTable extends Table {
     const status = currentStore ? "" : "disabled";
     return [
       this.columnDisplay(),
-      this.displayChangelogButton(),
+      this.displayChangelogButton("data"),
       this.refreshTableButton(),
       this.clearSearchButton(),
       `
@@ -2127,8 +2128,8 @@ function userFilteringDisplay(tableId) {
   refreshTable(tableId);
 }
 
-function showTableChangelogPanel(tableId) {
-  const type = tableInstances[tableId].type;
+function showTableChangelogPanel(tableId, tableType) {
+  const type = tableType || tableInstances[tableId].type;
   const constraints = { [`${type}_filter`]: "empty", [`${type}_invert`]: true };
   showChangelogPanel(tableId, constraints);
 }
