@@ -42,13 +42,18 @@ class PythonSnippetService(Service):
             pass
         except Exception as exc:
             line_number = extract_tb(exc.__traceback__)[-1][1]
-            error_log = (
-                f"Error when executing user 'Source Code'\n"
-                f"Service Name: '{self.name}' (Python Snippet Service)\n"
-                f"Line Number: {line_number}\n"
-                f"Line Content: '{self.source_code.splitlines()[line_number - 1]}'\n"
-                f"Error: '{str(exc)}'"
-            )
+            code = self.source_code.splitlines()
+            if line_number - 1 < len(code):
+                error_log = (
+                    f"Error when executing user 'Source Code'\n"
+                    f"Service Name: '{self.name}' (Python Snippet Service)\n"
+                    f"Line Number: {line_number}\n"
+                    f"Line Content: '{code[line_number - 1]}'\n"
+                    f"Error: '{str(exc)}'"
+                )
+                
+            else:
+                error_log = format_exc()
             run.log("error", error_log)
             return {
                 "success": False,
