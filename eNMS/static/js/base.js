@@ -1146,7 +1146,7 @@ function updateProperty(instance, el, property, value, type) {
     el.val(JSON.stringify(value));
     const editor = jsonEditors[instance.id][property];
     if (editor) editor.set(value);
-    if (el.attr("class").includes("collapse")) editor.collapseAll();
+    if (el.attr("class").includes("collapse")) editor.collapseAll?.();
   } else if (propertyType == "code") {
     const editor = editors[instance.id][property];
     if (editor) editor.setValue(value);
