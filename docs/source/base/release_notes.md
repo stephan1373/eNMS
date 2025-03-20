@@ -237,6 +237,8 @@ Version 5.2.0: Data Store and Various Improvements
     - VLAN model to show a "Get Next in Sequence" mechanism.
     - Port model to show a SQL relationship with an internal eNMS model ("Device").
     - Cable model to show SQL relationships with a custom Datastore model ("Port").
+  - Add "get_data" global function in the workflow builder to retrieve a data in python, either
+    by its path or by its persistent ID
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
