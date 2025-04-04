@@ -25,7 +25,7 @@ from sqlalchemy import (
     Table,
     Text,
 )
-from sqlalchemy.dialects.mysql.base import MSMediumBlob
+from sqlalchemy.dialects.mysql.base import MSMediumBlob, LONGTEXT, MEDIUMTEXT
 from sqlalchemy.exc import IntegrityError, InvalidRequestError, OperationalError
 from sqlalchemy.ext.associationproxy import AssociationProxyExtensionType
 from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
@@ -172,8 +172,12 @@ class Database:
         if self.dialect == "postgresql":
             self.LargeString = self.MediumString = Text
         else:
-            self.LargeString = Text(self.columns["length"]["large_string"])
-            self.MediumString = Text(self.columns["length"]["medium_string"])
+            self.LargeString = Text(
+                self.columns["length"]["large_string"]
+            ).with_variant(LONGTEXT, "mysql", "mariadb")
+            self.MediumString = Text(
+                self.columns["length"]["medium_string"]
+            ).with_variant(MEDIUMTEXT, "mysql", "mariadb")
         self.SmallString = String(self.columns["length"]["small_string"])
         self.TinyString = String(self.columns["length"]["tiny_string"])
 
