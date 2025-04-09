@@ -826,7 +826,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
             $(`#rbac-properties-${id} *`).prop("disabled", !allowedUser);
             const action = mode ? mode.toUpperCase() : "EDIT";
             panel.setHeaderTitle(`${action} ${uiType} - ${instance.name}`);
-            processInstance(type, instance);
+            processInstance(type, instance, mode);
             if (isService) loadScript(`/static/js/services/${type}.js`, id);
             if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
           },
@@ -1161,7 +1161,7 @@ function updateProperty(instance, el, property, value, type) {
   }
 }
 
-export function processInstance(type, instance) {
+export function processInstance(type, instance, mode) {
   for (const [property, value] of Object.entries(instance)) {
     const el = $(
       instance ? `#${type}-${property}-${instance.id}` : `#${type}-${property}`
@@ -1170,6 +1170,7 @@ export function processInstance(type, instance) {
     if (!el.length && !isList) continue;
     updateProperty(instance, el, property, value, type);
   }
+  if (mode == "duplicate") $(`#${type}-persistent_id-${instance.id}`).val("");
 }
 
 function processData(type, id) {
