@@ -605,6 +605,7 @@ tables.device = class DeviceTable extends Table {
       `
       <button
         class="btn btn-info"
+        id="device-serialized-search-btn"
         onclick="eNMS.table.serializedSearch('device')"
         data-tooltip="Search across all properties"
         type="button"
@@ -1098,6 +1099,7 @@ tables.service = class ServiceTable extends Table {
       `
       <button
         class="btn btn-info"
+        id="service-serialized-search-btn"
         onclick="eNMS.table.serializedSearch('service')"
         data-tooltip="Search across all properties"
         type="button"
@@ -2259,6 +2261,7 @@ function displayRelationTable(type, instance, relation) {
 
 function serializedSearch(type) {
   $("#serialized-search-div").toggle();
+  $(`#${type}-serialized-search-btn`).toggleClass("active");
   if (!$("#serialized-search-div").is(":visible")) {
     $("#serialized-search").val("");
     refreshTable(type);
