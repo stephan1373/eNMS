@@ -1376,7 +1376,6 @@ class Controller(vs.TimingMixin):
                 if property in kwargs.get("form", {}):
                     run_kwargs[property] = kwargs["form"][property]
             service = db.fetch("service", id=service, rbac="run", user=user)
-            service.status = "Running"
             initial_payload = {
                 **service.initial_payload,
                 **kwargs.get("form", {}).get("initial_payload", {}),
