@@ -713,7 +713,7 @@
     "service": [
       {
         "data": "name",
-        "width": "600px",
+        "width": "500px",
         "title": "Name",
         "search": "text",
         "className": "dt-body-left",
