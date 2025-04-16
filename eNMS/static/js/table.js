@@ -2261,7 +2261,7 @@ function displayRelationTable(type, instance, relation) {
 
 function serializedSearch(type) {
   $("#serialized-search-div").toggle();
-  $(`#${type}-serialized-search-btn`).toggleClass("active");
+  $(`#${type}-serialized-search-btn`).toggleClass("btn-pressed");
   if (!$("#serialized-search-div").is(":visible")) {
     $("#serialized-search").val("");
     refreshTable(type);
