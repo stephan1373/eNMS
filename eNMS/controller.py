@@ -1375,6 +1375,8 @@ class Controller(vs.TimingMixin):
             for property in ("name", "labels"):
                 if property in kwargs.get("form", {}):
                     run_kwargs[property] = kwargs["form"][property]
+                else:
+                    run_kwargs.pop(property, None)
             service = db.fetch("service", id=service, rbac="run", user=user)
             initial_payload = {
                 **service.initial_payload,
@@ -1395,6 +1397,7 @@ class Controller(vs.TimingMixin):
                 run_kwargs["restart_run"] = restart_run.id
                 initial_payload = restart_run.payload
             run_kwargs["services"] = [service.id]
+            print("OOO"*200, run_kwargs)
             run_object = db.factory(
                 "run",
                 service=service.id,
