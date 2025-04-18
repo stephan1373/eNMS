@@ -37,6 +37,7 @@ nav:
     - Configurations: inventory/configuration_management.md
     - Links: inventory/links.md
     - Pools: inventory/pools.md
+    - Data Store: inventory/datastore.md
     - Networks: inventory/networks.md
   - Visualization:
     - Geographical View: visualization/geographical_view.md
