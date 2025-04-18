@@ -38,3 +38,40 @@ import { tables } from "../table.js";
 tables.example = class extends tables.data {};
 tables.example.prototype.type = "example";
 ```
+
+- In `setup / properties.json` under the `tables` key, add the table properties:
+
+```
+    "example": [
+      {
+        "data": "scoped_name",
+        "title": "Name",
+        "search": "text",
+        "width": "200px"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+```
