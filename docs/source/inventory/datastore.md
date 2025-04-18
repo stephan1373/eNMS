@@ -17,16 +17,16 @@ from eNMS.fields import HiddenField, InstanceField
 from eNMS.models.administration import Data
 
 class Example(Data):
-    __tablename__ = "iso_address"
+    __tablename__ = "example"
     pretty_name = "ISO Address"
-    __mapper_args__ = {"polymorphic_identity": "iso_address"}
+    __mapper_args__ = {"polymorphic_identity": "example"}
     id = db.Column(Integer, ForeignKey("data.id"), primary_key=True)
 
 
 class ExampleForm(DataForm):
-    form_type = HiddenField(default="iso_address")
+    form_type = HiddenField(default="example")
     store = InstanceField(
-        "Store", model="store", constraints={"data_type": "iso_address"}
+        "Store", model="store", constraints={"data_type": "example"}
     )
 ```
 
@@ -35,6 +35,6 @@ class ExampleForm(DataForm):
 ```
 import { tables } from "../table.js";
 
-tables.iso_address = class extends tables.data {};
-tables.iso_address.prototype.type = "iso_address";
+tables.example = class extends tables.data {};
+tables.example.prototype.type = "example";
 ```
