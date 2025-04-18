@@ -33,7 +33,7 @@ Version 5.2.0: Data Store and Various Improvements
     - When the option is enabled, services that do match are highlighted and services
     that don't are displayed normally.
   - In Tree Search, add support for regular expression search
-- When device filtering is enabled, limit results displayed in result table to the filtered device
+- When device filtering is enabled, limit results displayed in result table to the filtered device (note: device filtering is not compatible with the "Only save failed results" option)
 - Fix table form filtering bug: invert checkbox constraint in table filtering not enforced previously
 - Upgrade JQuery to the latest version v3.7.1
 - Select node in workflow builder from tree left-click selection and allow for multiple selection
