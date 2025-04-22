@@ -165,9 +165,6 @@ class Group(AbstractBase):
     description = db.Column(db.LargeString)
     email = db.Column(db.SmallString)
     users = relationship("User", secondary=db.user_group_table, back_populates="groups")
-    credentials = relationship(
-        "Credential", secondary=db.credential_group_table, back_populates="groups"
-    )
     logs = relationship("Changelog", back_populates="group")
 
     @classmethod
@@ -225,11 +222,6 @@ class Credential(AbstractBase):
         "Pool",
         secondary=db.credential_device_table,
         back_populates="credential_devices",
-    )
-    groups = relationship(
-        "Group",
-        secondary=db.credential_group_table,
-        back_populates="credentials",
     )
     logs = relationship("Changelog", back_populates="credential")
 
