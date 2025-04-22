@@ -213,6 +213,7 @@ class Credential(AbstractBase):
     role = db.Column(db.SmallString, default="read-write")
     subtype = db.Column(db.SmallString, default="password")
     description = db.Column(db.LargeString)
+    admin_credential = db.Column(Boolean, default=False)
     username = db.Column(db.SmallString)
     password = db.Column(db.SmallString)
     private_key = db.Column(db.LargeString)
