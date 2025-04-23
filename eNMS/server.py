@@ -313,7 +313,7 @@ class Server(Flask):
         @self.process_requests
         def builder(type, **kwargs):
             endpoint = f"{type}_builder"
-            if "link_path" in kwargs:
+            if "link_path" in kwargs and type == "workflow":
                 kwargs["link_path"] = ">".join(
                     str(db.fetch("service", persistent_id=persistent_id).id)
                     for persistent_id in kwargs["link_path"].split(">")
