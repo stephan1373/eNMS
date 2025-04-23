@@ -427,7 +427,7 @@ class DataForm(BaseForm):
     description = StringField(widget=TextArea(), render_kw={"rows": 3})
     creation_time = StringField("Creation Time", render_kw={"readonly": True})
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
-    last_modified_by = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
 
 
 class DebugForm(BaseForm):
@@ -541,6 +541,9 @@ class ObjectForm(BaseForm):
     id = HiddenField()
     name = StringField("Name")
     creator = StringField(render_kw={"readonly": True})
+    creation_time = StringField("Creation Time", render_kw={"readonly": True})
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
     type = StringField("Type")
     description = StringField(widget=TextArea(), render_kw={"rows": 3})
     subtype = StringField("Subtype")
