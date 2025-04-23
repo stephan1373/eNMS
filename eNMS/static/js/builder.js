@@ -367,7 +367,7 @@ function showBuilderSearchPanel() {
   const filteringType = type == "workflow" ? "Service" : "Device";
   openPanel({
     name: "search",
-    size: `500 ${type == "workflow" ? "310" : "160"}`,
+    size: `500 ${type == "workflow" ? "310" : "230"}`,
     content: `
       <form id="search-form-${instance.id}" style="margin: 15px">
         <fieldset class="custom-fieldset">
