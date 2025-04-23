@@ -290,6 +290,7 @@ export function getNetworkState(periodic, first) {
         search_value: $("#tree-search").val(),
       },
       callback: function(result) {
+        if (!instance) return;
         if (result.network.last_modified > instance.last_modified) {
           instance.last_modified = result.network.last_modified;
           displayNetwork(result);

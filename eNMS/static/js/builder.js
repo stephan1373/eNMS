@@ -704,6 +704,7 @@ export function switchMode(mode, noNotification) {
       .toggleClass("glyphicon-random");
   }
   let notification;
+  if (!network) return;
   if (currentMode == "motion") {
     network.addNodeMode();
     notification = "Mode: Motion.";
