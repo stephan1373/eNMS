@@ -166,7 +166,7 @@ class Service(AbstractBase):
             raise db.rbac_error("Not Authorized (restricted to owners).")
 
     def post_update(self):
-        if len(self.workflows) == 1 and not self.shared:
+        if len(self.workflows) == 1 and not self.shared and self.workflows[0].path:
             self.path = f"{self.workflows[0].path}>{self.id}"
         else:
             self.path = str(self.id)
@@ -178,7 +178,7 @@ class Service(AbstractBase):
         )
         self.builder_link = (
             ">".join(
-                db.fetch("service", id=self.id, rbac=None).persistent_id
+                db.fetch("service", id=id, rbac=None).persistent_id
                 for id in path_id.split(">")
             )
             if path_id
