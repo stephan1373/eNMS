@@ -230,6 +230,7 @@ class Service(AbstractBase):
             index += 1
         if workflow:
             workflow.services.append(service)
+        service.persistent_id = vs.get_persistent_id()
         service.set_name()
         return service
 
