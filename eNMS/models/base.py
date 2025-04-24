@@ -265,6 +265,7 @@ class AbstractBase(db.base):
             if property not in ("id", "name")
         }
         instance = db.factory(self.type, rbac=None, **{**properties, **kwargs})
+        instance.persistent_id = vs.get_persistent_id()
         return instance
 
     def exclude_soft_deleted(self, property):
