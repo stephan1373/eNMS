@@ -178,7 +178,7 @@ class Service(AbstractBase):
         )
         self.builder_link = (
             ">".join(
-                db.fetch("service", id=id, rbac=None).persistent_id
+                db.fetch("service", id=self.id, rbac=None).persistent_id
                 for id in path_id.split(">")
             )
             if path_id
