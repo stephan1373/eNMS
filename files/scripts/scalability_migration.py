@@ -3,11 +3,12 @@ from ruamel.yaml import YAML
 
 
 FILENAME = "scalability"
-PATH = Path.cwd().parent.parent.parent / "eNMS-prod" / "files" / "migrations"
+PATH = Path.cwd().parent.parent.parent / "eNMS-prod2" / "files" / "migrations"
 PROPERTIES = {
-    "device": ("name", "rbac_read", "rbac_edit"),
+    "device": ("name", "devices", "links", "rbac_read", "rbac_edit"),
     "link": ("name", "source", "destination"),
     "service": ("name", "scoped_name", "shared", "services", "type"),
+    "workflow_edge": ("name", "source", "destination", "type", "workflow"),
 }
 
 
