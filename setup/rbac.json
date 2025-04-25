@@ -135,6 +135,7 @@
     "/": "none",
     "/alerts_table_form": "all",
     "/calendar_form": "all",
+    "/changelog_diff_form": "access",
     "/changelog_table": "access",
     "/compare_form": "access",
     "/configuration_table": "access",
