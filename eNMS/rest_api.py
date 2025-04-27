@@ -171,10 +171,11 @@ class RestApi(vs.TimingMixin):
                 new_name = instance.pop("new_name", None)
                 object_data = controller.objectify(instance_type, instance)
                 instance = db.factory(
-                    instance_type, update_source="ReST API", **object_data
+                    instance_type, commit=True, update_source="ReST API", **object_data
                 )
                 if new_name:
                     instance.name = new_name
+                instance.post_update()
                 result["success"].append(instance.name)
             except Exception:
                 result["failure"].append((instance, format_exc()))
