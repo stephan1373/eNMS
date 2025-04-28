@@ -202,8 +202,7 @@ class Runner(vs.TimingMixin):
     @property
     def service_is_running(self):
         if env.redis_queue:
-            number_of_runs = env.redis("get", f"services/{self.service.id}/runs")
-            return bool(int(number_of_runs) if isinstance(number_of_runs, int) else 0)
+            return bool(int(env.redis("get", f"services/{self.service.id}/runs")))
         else:
             return bool(vs.service_run_count[self.service.id])
 
