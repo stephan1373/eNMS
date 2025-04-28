@@ -514,6 +514,7 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search
         if (rollingWindow && editor.lineCount() > rollingWindow) {
           const cutoffPosition = CodeMirror.Pos(editor.lineCount() - rollingWindow, 0);
           editor.replaceRange("", CodeMirror.Pos(0, 0), cutoffPosition);
+          editor.setOption("firstLineNumber", Math.max(1, line - rollingWindow));
         }
       } else if (first || !result.refresh) {
         editor.setValue(`Gathering logs for '${service.name}'...${result.logs}`);
