@@ -75,6 +75,9 @@ export function displayFolderPath() {
 }
 
 function enterFolder({ folder, path, parent }) {
+  if (!(($("#parent-filtering").val() || "true") == "true")) {
+    return notify("Path only valid in 'Hierarchical Display' mode.", "warning", 5);
+  }
   clearSearch("file");
   if (parent) {
     folderPath = folderPath
