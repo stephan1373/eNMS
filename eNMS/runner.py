@@ -1096,7 +1096,7 @@ class Runner(vs.TimingMixin):
         return db.fetch("data", user=self.creator, rbac="use", **kwargs)        
 
     def get_secret(self, name):
-        secret = db.fetch("secret", name=name, user=self.creator, rbac="use")
+        secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
         return env.get_password(secret.secret_value)
 
     def get_result(
