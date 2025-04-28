@@ -247,6 +247,20 @@ export const showRuntimePanel = function(
               font-size: 20px;
               color: white;"
             >Auto-scroll</label>
+          </div>
+          <div style="float: left;">
+            <input
+              type="checkbox"
+              class="form-control-bool"
+              id="rolling-window-checkbox-${panelId}"
+              style="cursor: pointer;"
+              title="Scroll to bottom automatically when refreshing"
+            >
+            <label
+              style="margin-left: 8px;
+              font-size: 20px;
+              color: white;"
+            >Rolling Window</label>
           </div>`
             : "";
         header = `
@@ -495,7 +509,7 @@ function displayResultsTable(service, runtime, _, type, refresh, fullResult) {
 function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search) {
   if (!$(`#service-logs-${service.id}`).length) return;
   if (runtime != $(`#runtimes-logs-${service.id}`).val()) return;
-  const rollingWindow = automation.workflow.logs_rolling_window;
+  const windowSize = automation.workflow.logs_rolling_window;
   call({
     url: `/get_service_logs/${service.id}/${runtime}`,
     data: {
@@ -511,10 +525,13 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search
         if ($(`#autoscroll-checkbox-logs-${service.id}`).prop("checked")) {
           editor.setCursor(editor.lineCount(), 0);
         }
-        if (rollingWindow && editor.lineCount() > rollingWindow) {
-          const cutoffPosition = CodeMirror.Pos(editor.lineCount() - rollingWindow, 0);
+        if (
+          $(`#rolling-window-checkbox-logs-${service.id}`).prop("checked")
+          && editor.lineCount() > windowSize
+        ) {
+          const cutoffPosition = CodeMirror.Pos(editor.lineCount() - windowSize, 0);
           editor.replaceRange("", CodeMirror.Pos(0, 0), cutoffPosition);
-          editor.setOption("firstLineNumber", Math.max(1, line - rollingWindow));
+          editor.setOption("firstLineNumber", Math.max(1, line - windowSize));
         }
       } else if (first || !result.refresh) {
         editor.setValue(`Gathering logs for '${service.name}'...${result.logs}`);
