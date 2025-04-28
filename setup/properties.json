@@ -1235,7 +1235,7 @@
         "visible": false
       },
       {
-        "data": "service_url",
+        "data": "service_name",
         "title": "Service",
         "search": "text",
         "orderable": false,
