@@ -678,6 +678,7 @@ export function configureForm(form, id, panelId) {
       editor.on("change", () => editor.save());
       if (!editors[id]) editors[id] = {};
       editors[id][property] = editor;
+      if (!field.python) continue;
       const blackButton = $(`
         <button type="button" style="margin-left: auto">Auto-format</button>
       `);

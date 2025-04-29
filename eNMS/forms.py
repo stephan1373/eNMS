@@ -109,6 +109,8 @@ class MetaForm(FormMeta):
                 and field_name not in vs.private_properties_set
             ):
                 vs.private_properties_set.add(field_name)
+            if field.kwargs.get("python"):
+                properties[field_name]["python"] = True
         vs.form_properties[form_type].update(properties)
         for base in form.__bases__:
             if not hasattr(base, "form_type"):
