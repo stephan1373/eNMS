@@ -247,20 +247,6 @@ export const showRuntimePanel = function(
               font-size: 20px;
               color: white;"
             >Auto-scroll</label>
-          </div>
-          <div style="float: left;">
-            <input
-              type="checkbox"
-              class="form-control-bool"
-              id="rolling-window-checkbox-${panelId}"
-              style="cursor: pointer;"
-              title="Scroll to bottom automatically when refreshing"
-            >
-            <label
-              style="margin-left: 8px;
-              font-size: 20px;
-              color: white;"
-            >Rolling Window</label>
           </div>`
             : "";
         header = `
