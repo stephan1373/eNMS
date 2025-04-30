@@ -64,12 +64,6 @@ Version 5.2.0: Data Store and Various Improvements
   edge creation to speed up process
   Commit: dcd119a9e7c19ceb2bd786fd8e25419cdfeceaea
 - Update to the logs window:
-  - Implement a rolling window mechanism when displaying workflow logs in real-time in the front end to
-    limit the number of logs displayed in the browser (and prevent it from crashing if log window left
-    open while the workflow is running)
-    Added a new parameter "logs_rolling_window" under automation.json > "workflow" to define the size
-    of the rolling window. If set to 0, there is no rolling window (old behavior)
-    Commit: 00705dd18d7157769183e7155256935153aee197
   - Fix wrong spacing after 'Gathering logs for' log in logs window when running a service
     Commit: d847bb39f3f33be684f83f7b7e13215a01d196b3
   - Add a new search feature in the logs window to filter the displayed logs
