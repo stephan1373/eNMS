@@ -1080,7 +1080,55 @@ class Controller(vs.TimingMixin):
                 snippets[path.name] = file.read()
         return snippets
 
+    def delete_corrupted_objects(self):
+        number_of_corrupted_services = 0
+        for service in db.fetch_all("service", shared=False):
+            if service.workflows or service.name == service.scoped_name:
+                continue
+            db.session.delete(service)
+            number_of_corrupted_services += 1
+        db.session.commit()
+        env.log(
+            "warning",
+            f"Number of corrupted services deleted: {number_of_corrupted_services}"
+        )
+        edges = set(db.fetch_all("workflow_edge"))
+        duplicated_edges, number_of_corrupted_edges = defaultdict(list), 0
+        for edge in list(edges):
+            services = getattr(edge.workflow, "services", [])
+            if (
+                not edge.source
+                or not edge.destination
+                or not edge.workflow
+                or edge.source not in services
+                or edge.destination not in services
+                or edge.soft_deleted
+            ):
+                edges.remove(edge)
+                db.session.delete(edge)
+                number_of_corrupted_edges += 1
+        db.session.commit()
+        for edge in edges:
+            duplicated_edges[
+                (
+                    edge.source.name,
+                    edge.destination.name,
+                    edge.workflow.name,
+                    edge.subtype,
+                )
+            ].append(edge)
+        for duplicates in duplicated_edges.values():
+            for duplicate in duplicates[1:]:
+                db.session.delete(duplicate)
+                number_of_corrupted_edges += 1
+        db.session.commit()
+        env.log(
+            "warning",
+            f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
+        )
+
     def migration_export(self, **kwargs):
+        self.delete_corrupted_objects()
         yaml = vs.custom.get_yaml_instance()
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
