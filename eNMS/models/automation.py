@@ -618,7 +618,6 @@ class Task(AbstractBase):
         try:
             payload = {"mode": mode, "task": self.get_properties()}
             result = post(f"{vs.scheduler_address}/schedule", json=payload).json()
-            print("TTT"*100, current_user, current_user.is_admin)
             if not current_user.is_admin:
                 self.last_scheduled_by = current_user.name
         except ConnectionError:
