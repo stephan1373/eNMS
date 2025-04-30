@@ -70,9 +70,6 @@ Version 5.2.0: Data Store and Various Improvements
   - Move logs and report control panel in header so that it stays visible at all times (e.g for searching
   and switching runtimes while autoscroll to bottom is on)
     Commit: fcd6af69afa8ce030ecf1b2a2d639db5f15a5295
-  - When refreshing logs with a redis queue, don't always fetch all logs from redis, only fetch the
-  logs up to start_line as provided by the front-end
-    Commit: a6660f78805d9475d68441c0b042d67ce03925e6
   - Add a new 'Autoscroll' feature to the logs window, allowing users to disable automatic scrolling to
   the bottom while logs refresh (to read the logs without being pulled back to the end)
 - Fix bug where the in-workflow "fetch" function in runner.py could not work when filtering by
