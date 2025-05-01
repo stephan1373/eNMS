@@ -230,9 +230,9 @@ Version 5.2.0: Data Store and Various Improvements
     - Cable model to show SQL relationships with a custom Datastore model ("Port").
   - Add "get_data" global function in the workflow builder to retrieve a data in python, either
     by its path or by its persistent ID
-- Update to the REST API "update" POST endoint: always commit when creating or updating the instance,
-  and call the post_update function (e.g compute pool, update service / file / datastore path, etc)
-  Commit: d4cac7362dbb972cc2d6c0cf8dd99b9027e07e01
+- Update to the REST API "update" POST endoint: commit and call the post_update function after the 
+  instances have been created or updated (e.g compute pool, update service / file / datastore path, etc)
+  Commit: aa9d56c25b5b411195e12da70ffbc637a3765ff2
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
