@@ -72,9 +72,9 @@ class Worker(AbstractBase):
     def delete(self):
         try:
             env.log("critical", f"Sending SIGTERM signal to process ID {self.name}")
-            kill(int(self.name), SIGTERM)
+            kill(int(self.process_id), SIGTERM)
         except Exception as exc:
-            return f"Failed to deleted process: {exc}"
+            return {"log": f"Failed to deleted process: {exc}"}
 
     @property
     def server_properties(self):
