@@ -233,6 +233,8 @@ Version 5.2.0: Data Store and Various Improvements
 - Update to the REST API "update" POST endoint: commit and call the post_update function after the 
   instances have been created or updated (e.g compute pool, update service / file / datastore path, etc)
   Commit: aa9d56c25b5b411195e12da70ffbc637a3765ff2
+- Fix worker deletion mechanism (kill process and log message in case or error)
+  Commit: e6bf0506aea88f3a5c43bc00fdd59bae2decfbfb
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
