@@ -162,7 +162,7 @@ class RestApi(vs.TimingMixin):
             return "Topology Export successfully executed."
 
     def update_instance(self, instance_type, list_data=None, **data):
-        result, data = defaultdict(list), list_data or [data]
+        result, data, instances = defaultdict(list), list_data or [data], []
         for instance in data:
             if "name" not in instance:
                 result["failure"].append((instance, "Name is missing"))
@@ -171,12 +171,15 @@ class RestApi(vs.TimingMixin):
                 new_name = instance.pop("new_name", None)
                 object_data = controller.objectify(instance_type, instance)
                 instance = db.factory(
-                    instance_type, commit=True, update_source="ReST API", **object_data
+                    instance_type, update_source="ReST API", **object_data
                 )
                 if new_name:
                     instance.name = new_name
-                instance.post_update()
+                instances.append(instance)
                 result["success"].append(instance.name)
             except Exception:
                 result["failure"].append((instance, format_exc()))
+        db.session.commit()
+        for instance in instances:
+            instance.post_update()
         return result
