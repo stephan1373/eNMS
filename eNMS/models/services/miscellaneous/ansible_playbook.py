@@ -50,7 +50,7 @@ class AnsiblePlaybookService(Service):
         if run.options:
             extra_args.update(run.sub(run.options, locals()))
         if extra_args:
-            command.extend(["-e", f"'{dumps(extra_args)}'"])
+            command.extend(["-e", f'{dumps(extra_args)}'])
         if device:
             command.extend(["-i", device.ip_address + ","])
         command.append(f"{vs.playbook_path}{run.playbook_path}")
@@ -67,9 +67,9 @@ class AnsiblePlaybookService(Service):
             logger="security",
         )
         try:
-            result = check_output(command + arguments, cwd=vs.playbook_path)
-        except Exception:
-            result = "\n".join(format_exc().splitlines())
+            result = check_output(command + arguments, cwd=vs.playbook_path, text=True)
+        except Exception as e:
+            result = "\n".join(format_exc().splitlines()) + f"\n\n{e.output}" if hasattr(e, 'output') else ""
             if password:
                 result = result.replace(password, "*" * 10)
             results = {"success": False, "result": result, "command": full_command}
