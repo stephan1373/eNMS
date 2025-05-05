@@ -68,8 +68,10 @@ class AnsiblePlaybookService(Service):
         )
         try:
             result = check_output(command + arguments, cwd=vs.playbook_path, text=True)
-        except Exception as e:
-            result = "\n".join(format_exc().splitlines()) + f"\n\n{e.output}" if hasattr(e, 'output') else ""
+        except Exception as exc:
+            result = "\n".join(format_exc().splitlines())
+            if hasattr(exc, "output"):
+                result += f"\n\n{exc.output}"
             if password:
                 result = result.replace(password, "*" * 10)
             results = {"success": False, "result": result, "command": full_command}
