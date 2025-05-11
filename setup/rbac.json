@@ -361,5 +361,8 @@
     "worker": {
       "rbac_read": "Read"
     }
+  },
+  "admin_only_bypass": {
+    "credential": ["use"]
   }
 }
