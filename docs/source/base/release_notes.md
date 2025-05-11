@@ -235,6 +235,9 @@ Version 5.2.0: Data Store and Various Improvements
   Commit: aa9d56c25b5b411195e12da70ffbc637a3765ff2
 - Fix worker deletion mechanism (kill process and log message in case or error)
   Commit: e6bf0506aea88f3a5c43bc00fdd59bae2decfbfb
+- Add new 'admin_only_bypass' mechanism in rbac.json and rbac_filter to ignore 'admin_only' flag
+  for specific properties and models (mainly Credential 'use' section)
+  Commit: 3cd8743e2a02646ccda276c34ad49b185a08f42a
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
