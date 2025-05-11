@@ -382,7 +382,6 @@ class CredentialForm(BaseForm):
     password = PasswordField("Password")
     private_key = StringField(widget=TextArea(), render_kw={"rows": 1})
     enable_password = PasswordField("'Enable' Password")
-    admin_credential = BooleanField("Admin Credential")
 
     def validate(self, **_):
         valid_form = super().validate()
