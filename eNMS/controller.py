@@ -1133,7 +1133,7 @@ class Controller(vs.TimingMixin):
 
     def json_export(self, **kwargs):
         for cls_name, cls in vs.models.items():
-            if cls_name in db.json_export["no_export"]:
+            if cls_name in db.json_migration["no_export"]:
                 continue
             model_class = vs.models[cls_name]
             export_type = getattr(cls, "export_type", cls.type)
@@ -1161,12 +1161,12 @@ class Controller(vs.TimingMixin):
             }))
 
     def json_import(self, folder="migrations", **kwargs):
-        for cls_name in db.json_export["clear_on_import"]:
+        for cls_name in db.json_migration["clear_on_import"]:
             model = vs.models[cls_name]
             db.session.execute(model.__table__.delete())
             db.session.commit()
         for cls_name, cls in vs.models.items():
-            if cls_name in db.json_export["no_export"]:
+            if cls_name in db.json_migration["no_export"]:
                 continue
             if cls_name == "user":
                 continue

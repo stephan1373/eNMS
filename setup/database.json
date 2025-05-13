@@ -52,7 +52,7 @@
     "credential",
     "pool"
   ],
-  "json_export": {
+  "json_migration": {
     "no_export": [
       "changelog",
       "connection_service",
