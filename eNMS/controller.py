@@ -1161,14 +1161,24 @@ class Controller(vs.TimingMixin):
             }))
 
     def json_import(self, folder="migrations", **kwargs):
+        for cls_name in db.json_export["clear_on_import"]:
+            model = vs.models[cls_name]
+            db.session.execute(model.__table__.delete())
+            db.session.commit()
         for cls_name, cls in vs.models.items():
             if cls_name in db.json_export["no_export"]:
+                continue
+            if cls_name == "user":
                 continue
             path = Path(vs.migration_path) / kwargs["name"] / f"{cls_name}.json"
             if not exists(path):
                 continue
+            db.session.execute(cls.__table__.delete())
+            db.session.commit()
             with open(path, "rb") as file:
                 instances = loads(file.read())
+            db.session.bulk_insert_mappings(cls, instances)
+            db.session.commit()
 
     def migration_export(self, **kwargs):
         self.delete_corrupted_objects()

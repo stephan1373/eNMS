@@ -70,6 +70,19 @@
       "service_report",
       "session",
       "worker"
+    ],
+    "clear_on_import": [
+      "credential",
+      "connection_service",
+      "data",
+      "device",
+      "group",
+      "link",
+      "pool",
+      "server",
+      "service",
+      "task",
+      "workflow_edge"
     ]
   },
   "changelog_models": {
