@@ -1147,6 +1147,8 @@ class Controller(vs.TimingMixin):
                 dict(row._mapping)
                 for row in db.query(cls_name, properties=properties_to_export, rbac=None).all()
             ]
+            if not instances:
+                continue
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
                 makedirs(path)
