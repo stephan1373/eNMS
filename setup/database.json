@@ -52,6 +52,26 @@
     "credential",
     "pool"
   ],
+  "json_export": {
+    "no_export": [
+      "changelog",
+      "connection_service",
+      "data",
+      "device",
+      "file",
+      "folder",
+      "link",
+      "object",
+      "parameters",
+      "result",
+      "run",
+      "service",
+      "service_log",
+      "service_report",
+      "session",
+      "worker"
+    ]
+  },
   "changelog_models": {
     "credential": "Credential",
     "data": "Data",

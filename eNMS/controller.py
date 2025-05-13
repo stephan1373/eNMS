@@ -1132,26 +1132,27 @@ class Controller(vs.TimingMixin):
         )
 
     def json_export(self, **kwargs):
-        self.delete_corrupted_objects()
-        model_class = vs.models["device"]
-        excluded_properties = db.dont_migrate.get(model_class.export_type, [])
-        properties_to_export = [
-            property for property in vs.model_properties["device"]
-            if property not in excluded_properties
-        ]
-        instances = [
-            dict(row._mapping)
-            for row in db.query("device", properties=properties_to_export, rbac=None).all()
-        ]
-        with open(f"device.json", "wb") as file:
-            file.write(dumps(instances))
-        return
-        for cls_name in kwargs["import_export_types"]:
+        #self.delete_corrupted_objects()
+        for cls_name, cls in vs.models.items():
+            if cls_name in db.json_export["no_export"]:
+                continue
+            model_class = vs.models[cls_name]
+            export_type = getattr(cls, "export_type", cls.type)
+            excluded_properties = set(db.dont_migrate.get(export_type, [])) | {"type"}
+            excluded_properties |= set(getattr(cls, "model_properties", {}))
+            properties_to_export = [
+                property for property in vs.model_properties[cls_name]
+                if property not in excluded_properties
+            ]
+            instances = [
+                dict(row._mapping)
+                for row in db.query(cls_name, properties=properties_to_export, rbac=None).all()
+            ]
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
                 makedirs(path)
-            with open(f"{cls_name}.json", "wb") as f:
-                f.write(orjson.dumps(data))
+            with open(path / f"{cls_name}.json", "wb") as file:
+                file.write(dumps(instances))
         with open("metadata.json", "wb") as f:
             f.write(dumps({
                 "version": vs.server_version,
