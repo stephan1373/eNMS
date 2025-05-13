@@ -1133,6 +1133,19 @@ class Controller(vs.TimingMixin):
 
     def json_export(self, **kwargs):
         self.delete_corrupted_objects()
+        model_class = vs.models["device"]
+        excluded_properties = db.dont_migrate.get(model_class.export_type, [])
+        properties_to_export = [
+            property for property in vs.model_properties["device"]
+            if property not in excluded_properties
+        ]
+        instances = [
+            dict(row._mapping)
+            for row in db.query("device", properties=properties_to_export, rbac=None).all()
+        ]
+        with open(f"device.json", "wb") as file:
+            file.write(dumps(instances))
+        return
         for cls_name in kwargs["import_export_types"]:
             path = Path(vs.migration_path) / kwargs["name"]
             if not exists(path):
