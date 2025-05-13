@@ -4,6 +4,8 @@ Version 5.3: Migration
 - Add new JSON migration mechanism
   - Add new "Generic Device" class and convert all devices of type "device" to this new
     "generic_device" type (impact on migration files)
+- Increase size of 'payload' field in Rest Call Service
+  Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device"
