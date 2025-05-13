@@ -12,6 +12,7 @@ from io import BytesIO, StringIO
 from json import dump, load
 from logging import info, error
 from operator import attrgetter, itemgetter
+from orjson import dumps, loads
 from os import getenv, listdir, makedirs, scandir
 from os.path import exists
 from pathlib import Path
@@ -1129,6 +1130,28 @@ class Controller(vs.TimingMixin):
             "warning",
             f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
         )
+
+    def json_export(self, **kwargs):
+        self.delete_corrupted_objects()
+        for cls_name in kwargs["import_export_types"]:
+            path = Path(vs.migration_path) / kwargs["name"]
+            if not exists(path):
+                makedirs(path)
+            with open(f"{cls_name}.json", "wb") as f:
+                f.write(orjson.dumps(data))
+        with open("metadata.json", "wb") as f:
+            f.write(dumps({
+                "version": vs.server_version,
+                "export_time": datetime.now(),
+            }))
+
+    def json_import(self, folder="migrations", **kwargs):
+        with open(folder_path / "metadata.json", "rb") as metadata_file:
+            metadata = loads(metadata_file.read())
+        for model in models:
+            path = folder_path / f"{model}.json"
+            with open(path, "rb") as migration_file:
+                instances = orjson.loads(migration_file.read())
 
     def migration_export(self, **kwargs):
         self.delete_corrupted_objects()
