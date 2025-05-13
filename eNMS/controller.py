@@ -1132,7 +1132,6 @@ class Controller(vs.TimingMixin):
         )
 
     def json_export(self, **kwargs):
-        #self.delete_corrupted_objects()
         for cls_name, cls in vs.models.items():
             if cls_name in db.json_export["no_export"]:
                 continue
