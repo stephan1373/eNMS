@@ -117,4 +117,16 @@ def migrate_5_1_to_5_2():
     with open(PATH / FILENAME / "data.yaml", "w") as data_file:
         yaml.dump(data, data_file)
 
-migrate_5_1_to_5_2()
+
+def migrate_5_2_to_5_3():
+    yaml = get_yaml_instance()
+    with open(PATH / FILENAME / "device.yaml", "r") as device_file:
+        devices = yaml.load(device_file)
+    for device in devices:
+        if device["type"] == "device":
+            device["type"] = "generic_device"
+    with open(PATH / FILENAME / "device.yaml", "w") as device_file:
+        yaml.dump(devices, device_file)
+
+
+migrate_5_2_to_5_3()
