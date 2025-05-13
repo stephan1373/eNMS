@@ -1159,8 +1159,6 @@ class Controller(vs.TimingMixin):
             }))
 
     def json_import(self, folder="migrations", **kwargs):
-        with open(folder_path / "metadata.json", "rb") as metadata_file:
-            metadata = loads(metadata_file.read())
         for model in models:
             path = folder_path / f"{model}.json"
             with open(path, "rb") as migration_file:
