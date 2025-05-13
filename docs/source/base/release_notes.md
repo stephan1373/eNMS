@@ -1,5 +1,12 @@
-
 # Release Notes
+
+Version 5.3: Migration
+- Add new JSON migration mechanism
+  - Add new "Generic Device" class and convert all devices of type "device" to this new
+    "generic_device" type (impact on migration files)
+
+Migration:
+- Run script to convert all devices from type "device" to "generic_device"
 
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
