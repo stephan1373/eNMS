@@ -1181,6 +1181,8 @@ class Controller(vs.TimingMixin):
             db.session.commit()
 
     def migration_export(self, **kwargs):
+        if kwargs.get("json_migration"):
+            return self.json_export()
         self.delete_corrupted_objects()
         yaml = vs.custom.get_yaml_instance()
         for cls_name in kwargs["import_export_types"]:
@@ -1205,6 +1207,8 @@ class Controller(vs.TimingMixin):
             )
 
     def migration_import(self, folder="migrations", **kwargs):
+        if kwargs.get("json_migration"):
+            return self.json_import()
         env.log("info", "Starting Migration Import")
         env.log_events = False
         status, models = "Import successful", kwargs["import_export_types"]
