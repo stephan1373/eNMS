@@ -2,6 +2,7 @@ from requests.auth import HTTPBasicAuth
 from sqlalchemy import Boolean, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import JSON
+from wtforms.widgets import TextArea
 
 from eNMS.database import db
 from eNMS.environment import env
@@ -82,7 +83,7 @@ class RestCallForm(ServiceForm):
         )
     )
     rest_url = StringField(substitution=True)
-    payload = DictField(json_only=True, substitution=True)
+    payload = DictField(json_only=True, substitution=True, widget=TextArea(), render_kw={"rows": 6})
     params = DictField(substitution=True)
     headers = DictField(substitution=True)
     verify_ssl_certificate = BooleanField("Verify SSL Certificate")
