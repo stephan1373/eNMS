@@ -1159,10 +1159,14 @@ class Controller(vs.TimingMixin):
             }))
 
     def json_import(self, folder="migrations", **kwargs):
-        for model in models:
-            path = folder_path / f"{model}.json"
-            with open(path, "rb") as migration_file:
-                instances = orjson.loads(migration_file.read())
+        for cls_name, cls in vs.models.items():
+            if cls_name in db.json_export["no_export"]:
+                continue
+            path = Path(vs.migration_path) / kwargs["name"] / f"{cls_name}.json"
+            if not exists(path):
+                continue
+            with open(path, "rb") as file:
+                instances = loads(file.read())
 
     def migration_export(self, **kwargs):
         self.delete_corrupted_objects()
