@@ -1094,7 +1094,7 @@ class Controller(vs.TimingMixin):
         db.session.commit()
         env.log(
             "warning",
-            f"Number of corrupted services deleted: {number_of_corrupted_services}"
+            f"Number of corrupted services deleted: {number_of_corrupted_services}",
         )
         edges = set(db.fetch_all("workflow_edge"))
         duplicated_edges, number_of_corrupted_edges = defaultdict(list), 0
@@ -1127,8 +1127,7 @@ class Controller(vs.TimingMixin):
                 number_of_corrupted_edges += 1
         db.session.commit()
         env.log(
-            "warning",
-            f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
+            "warning", f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
         )
 
     def json_export(self, **kwargs):
@@ -1136,12 +1135,15 @@ class Controller(vs.TimingMixin):
         model_class = vs.models["device"]
         excluded_properties = db.dont_migrate.get(model_class.export_type, [])
         properties_to_export = [
-            property for property in vs.model_properties["device"]
+            property
+            for property in vs.model_properties["device"]
             if property not in excluded_properties
         ]
         instances = [
             dict(row._mapping)
-            for row in db.query("device", properties=properties_to_export, rbac=None).all()
+            for row in db.query(
+                "device", properties=properties_to_export, rbac=None
+            ).all()
         ]
         with open(f"device.json", "wb") as file:
             file.write(dumps(instances))
@@ -1153,10 +1155,14 @@ class Controller(vs.TimingMixin):
             with open(f"{cls_name}.json", "wb") as f:
                 f.write(orjson.dumps(data))
         with open("metadata.json", "wb") as f:
-            f.write(dumps({
-                "version": vs.server_version,
-                "export_time": datetime.now(),
-            }))
+            f.write(
+                dumps(
+                    {
+                        "version": vs.server_version,
+                        "export_time": datetime.now(),
+                    }
+                )
+            )
 
     def json_import(self, folder="migrations", **kwargs):
         with open(folder_path / "metadata.json", "rb") as metadata_file:

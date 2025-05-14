@@ -1093,7 +1093,7 @@ class Runner(vs.TimingMixin):
 
     def get_data(self, path=None, persistent_id=None):
         kwargs = {"path": path} if path else {"persistent_id": persistent_id}
-        return db.fetch("data", user=self.creator, rbac="use", **kwargs)        
+        return db.fetch("data", user=self.creator, rbac="use", **kwargs)
 
     def get_secret(self, name):
         secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")

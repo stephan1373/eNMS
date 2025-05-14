@@ -51,7 +51,6 @@ class PythonSnippetService(Service):
                     f"Line Content: '{code[line_number - 1]}'\n"
                     f"Error: '{str(exc)}'"
                 )
-                
             else:
                 error_log = format_exc()
             run.log("error", error_log)
