@@ -98,7 +98,7 @@ class VariableStore:
         self.ssh_sessions = {}
         self.netmiko_drivers = sorted(CLASS_MAPPER)
         self.scrapli_drivers = sorted(CORE_PLATFORM_MAP)
-        self.timestamps = ("status", "update", "failure", "runtime", "duration")
+        self.timestamps = ("status", "update", "failure", "runtime", "duration", "success")
         self.configuration_properties = {
             "configuration": "Configuration",
             "operational_data": "Operational Data",
