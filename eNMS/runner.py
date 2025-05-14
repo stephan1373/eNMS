@@ -1615,6 +1615,7 @@ class Runner(vs.TimingMixin):
             if getattr(kwargs["deferred_device"], property) != kwargs["result"]:
                 setattr(kwargs["deferred_device"], property, kwargs["result"])
                 setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
+            setattr(device, f"last_{property}_success", str(kwargs["runtime"]))
         else:
             setattr(device, f"last_{property}_status", "Failure")
             setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))

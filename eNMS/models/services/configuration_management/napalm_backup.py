@@ -73,6 +73,7 @@ class NapalmBackupService(ConnectionService):
             duration = f"{(datetime.now() - runtime).total_seconds()}s"
             setattr(device, f"last_{self.property}_duration", duration)
             setattr(device, f"last_{self.property}_update", str(runtime))
+            setattr(device, f"last_{self.property}_success", str(runtime))
             run.update_configuration_properties(path, self.property, device)
         except Exception as exc:
             setattr(device, f"last_{self.property}_status", "Failure")
