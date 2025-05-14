@@ -1132,33 +1132,45 @@ class Controller(vs.TimingMixin):
         )
 
     def json_export(self, **kwargs):
-        for cls_name, cls in vs.models.items():
-            if cls_name in db.json_migration["no_export"]:
-                continue
-            model_class = vs.models[cls_name]
-            export_type = getattr(cls, "export_type", cls.type)
-            excluded_properties = set(db.dont_migrate.get(export_type, [])) | {"type"}
-            excluded_properties |= set(getattr(cls, "model_properties", {}))
-            properties_to_export = [
-                property for property in vs.model_properties[cls_name]
-                if property not in excluded_properties
-            ]
-            instances = [
-                dict(row._mapping)
-                for row in db.query(cls_name, properties=properties_to_export, rbac=None).all()
-            ]
-            if not instances:
-                continue
-            path = Path(vs.migration_path) / kwargs["name"]
-            if not exists(path):
-                makedirs(path)
-            with open(path / f"{cls_name}.json", "wb") as file:
-                file.write(dumps(instances))
+        from concurrent.futures import ThreadPoolExecutor
+        path = Path(vs.migration_path) / kwargs["name"]
+        if kwargs.get("multiprocessing"):
+            with ThreadPoolExecutor(max_workers=130) as executor:
+                for cls_name in vs.models:
+                    executor.submit(self.json_export_properties, cls_name, path)
+        else:
+            for cls_name in vs.models:
+                self.json_export_properties(cls_name, path)
+        return
         with open("metadata.json", "wb") as f:
             f.write(dumps({
                 "version": vs.server_version,
                 "export_time": datetime.now(),
             }))
+
+    def json_export_properties(self, cls_name, path):
+        cls = vs.models[cls_name]
+        if cls_name in db.json_migration["no_export"]:
+            return
+        model_class = vs.models[cls_name]
+        export_type = getattr(cls, "export_type", cls.type)
+        excluded_properties = set(db.dont_migrate.get(export_type, [])) | {"type"}
+        excluded_properties |= set(getattr(cls, "model_properties", {}))
+        properties_to_export = [
+            property for property in vs.model_properties[cls_name]
+            if property not in excluded_properties
+        ]
+        instances = [
+            dict(row._mapping)
+            for row in db.query(cls_name, properties=properties_to_export, rbac=None).all()
+        ]
+        if not instances:
+            return
+        
+        if not exists(path):
+            makedirs(path)
+        with open(path / f"{cls_name}.json", "wb") as file:
+            file.write(dumps(instances))
 
     def json_import(self, folder="migrations", **kwargs):
         for cls_name in db.json_migration["clear_on_import"]:
@@ -1182,7 +1194,7 @@ class Controller(vs.TimingMixin):
 
     def migration_export(self, **kwargs):
         if kwargs.get("json_migration"):
-            return self.json_export()
+            return self.json_export(**kwargs)
         self.delete_corrupted_objects()
         yaml = vs.custom.get_yaml_instance()
         for cls_name in kwargs["import_export_types"]:
@@ -1208,7 +1220,7 @@ class Controller(vs.TimingMixin):
 
     def migration_import(self, folder="migrations", **kwargs):
         if kwargs.get("json_migration"):
-            return self.json_import()
+            return self.json_import(**kwargs)
         env.log("info", "Starting Migration Import")
         env.log_events = False
         status, models = "Import successful", kwargs["import_export_types"]
