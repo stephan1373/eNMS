@@ -1,5 +1,6 @@
 from black import format_str, Mode
 from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import redirect_stdout
 from datetime import datetime
 from difflib import unified_diff
@@ -1132,7 +1133,6 @@ class Controller(vs.TimingMixin):
         )
 
     def json_export(self, **kwargs):
-        from concurrent.futures import ThreadPoolExecutor
         path = Path(vs.migration_path) / kwargs["name"]
         if kwargs.get("multiprocessing"):
             with ThreadPoolExecutor(max_workers=130) as executor:
@@ -1141,7 +1141,6 @@ class Controller(vs.TimingMixin):
         else:
             for cls_name in vs.models:
                 self.json_export_properties(cls_name, path)
-        return
         with open("metadata.json", "wb") as f:
             f.write(dumps({
                 "version": vs.server_version,
