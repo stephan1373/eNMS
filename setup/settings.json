@@ -100,7 +100,7 @@
     "workflow_builder": "automation/workflow_builder/"
   },
   "files": {
-    "monitor_filesystem": true,
+    "monitor_filesystem": false,
     "ignored_types": [".swp", ".tgz", "yaml"],
     "upload_timeout": 600000,
     "log_events": true,
