@@ -1137,7 +1137,6 @@ class Controller(vs.TimingMixin):
             if class_name not in db.json_migration["no_export"]
         ]
         path = Path(vs.migration_path) / kwargs["name"]
-        return
         if kwargs.get("multiprocessing"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in export_models:
@@ -1176,7 +1175,11 @@ class Controller(vs.TimingMixin):
                 .join(cls2, getattr(table.c, f"{model2}_id") == cls2.id)
             )
         )
-        results = db.session.execute(stmt).all()    
+        result = db.session.execute(stmt).all()
+        if not result:
+            continue
+        with open(path / f"{association_name}.json", "wb") as file:
+            file.write(dumps(result))
 
     def json_export_scalar(self, cls_name, path):
         for property, relation in vs.relationships[cls_name].items():
