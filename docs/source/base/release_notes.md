@@ -238,6 +238,7 @@ Version 5.2.0: Data Store and Various Improvements
 - Add new 'admin_only_bypass' mechanism in rbac.json and rbac_filter to ignore 'admin_only' flag
   for specific properties and models (mainly Credential 'use' section)
   Commit: 3cd8743e2a02646ccda276c34ad49b185a08f42a
+- Add 'last_success' property for the configuration backup services
 
 Tests:
 - Test that the workflow builder's search functions correctly across all case combinations:
