@@ -1137,31 +1137,20 @@ class Controller(vs.TimingMixin):
             if class_name not in db.json_migration["no_export"]
         ]
         path = Path(vs.migration_path) / kwargs["name"]
-        for association_name, association_table in db.associations.items():
-            table = association_table["table"]
-            model1 = association_table["model1"]["foreign_key"]
-            model2 = association_table["model2"]["foreign_key"]
-            cls1 = aliased(vs.models[model1])
-            cls2 = aliased(vs.models[model2])
-            stmt = (
-                select(getattr(cls1, "name"), getattr(cls2, "name"))
-                .select_from(
-                    table
-                    .join(cls1, getattr(table.c, f"{model1}_id") == cls1.id)
-                    .join(cls2, getattr(table.c, f"{model2}_id") == cls2.id)
-                )
-            )
-            results = db.session.execute(stmt).all()
         return
         if kwargs.get("multiprocessing"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in export_models:
                     executor.submit(self.json_export_properties, cls_name, path)
                     executor.submit(self.json_export_scalar, cls_name, path)
+                for association_name in db.associations:
+                    executor.submit(self.json_export_association, association_name, path)
         else:
             for cls_name in export_models:
                 self.json_export_properties(cls_name, path)
                 self.json_export_scalar(cls_name, path)
+            for association_name in db.associations:
+                self.json_export_association(association_name, path)
         with open("metadata.json", "wb") as f:
             f.write(
                 dumps(
@@ -1171,6 +1160,23 @@ class Controller(vs.TimingMixin):
                     }
                 )
             )
+
+    def json_export_association(self, association_name, path):
+        association_table = db.associations[association_name]
+        table = association_table["table"]
+        model1 = association_table["model1"]["foreign_key"]
+        model2 = association_table["model2"]["foreign_key"]
+        cls1 = aliased(vs.models[model1])
+        cls2 = aliased(vs.models[model2])
+        stmt = (
+            select(getattr(cls1, "name"), getattr(cls2, "name"))
+            .select_from(
+                table
+                .join(cls1, getattr(table.c, f"{model1}_id") == cls1.id)
+                .join(cls2, getattr(table.c, f"{model2}_id") == cls2.id)
+            )
+        )
+        results = db.session.execute(stmt).all()    
 
     def json_export_scalar(self, cls_name, path):
         for property, relation in vs.relationships[cls_name].items():
