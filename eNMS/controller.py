@@ -1227,23 +1227,42 @@ class Controller(vs.TimingMixin):
         for table_properties in db.associations.values():
             db.session.execute(table_properties["table"].delete())
         db.session.commit()
+        path = Path(vs.migration_path) / kwargs["name"]
         for cls_name, cls in vs.models.items():
             if cls_name in db.json_migration["no_export"]:
                 continue
             if cls_name == "user":
                 continue
-            path = Path(vs.migration_path) / kwargs["name"] / f"{cls_name}.json"
-            if not exists(path):
-                continue
+
             db.session.execute(cls.__table__.delete())
             db.session.commit()
-            with open(path, "rb") as file:
+            filepath = path / f"{cls_name}.json"
+            if not exists(filepath):
+                continue
+            with open(filepath, "rb") as file:
                 instances = loads(file.read())
             db.session.bulk_insert_mappings(cls, instances)
             db.session.commit()
+        name_to_id = {}
         for cls_name in db.import_export_models:
             cls = vs.models[cls_name]
-            ids = dict(db.session.execute(select(cls.name, cls.id)).all())
+            name_to_id[cls_name] = dict(db.session.execute(select(cls.name, cls.id)).all())
+        for association_name, properties in db.associations.items():
+            table = properties["table"]
+            filepath = path / f"{association_name}.json"
+            if not exists(filepath):
+                continue
+            with open(filepath, "rb") as file:
+                data = loads(file.read())
+            model1 = properties["model1"]["foreign_key"]
+            model2 = properties["model2"]["foreign_key"]
+            rows = [
+                {
+                    f"{model1}_id": name_to_id[name1],
+                    f"{model2}_id": name_to_id[name2],
+                }
+                for name1, name2 in data
+            ]
 
     def migration_export(self, **kwargs):
         if kwargs.get("json_migration"):
