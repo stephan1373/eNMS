@@ -20,7 +20,7 @@ from pathlib import Path
 from re import search, sub
 from requests import get as http_get
 from shutil import rmtree
-from sqlalchemy import and_, cast, or_, String
+from sqlalchemy import and_, cast, or_, select, String
 from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import aliased
 from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
@@ -1132,13 +1132,31 @@ class Controller(vs.TimingMixin):
         )
 
     def json_export(self, **kwargs):
+        export_models = [
+            class_name for class_name in vs.models
+            if class_name not in db.json_migration["no_export"]
+        ]
+        for cls_name in export_models:
+            for property, relation in vs.relationships[cls_name].items():
+                if relation["list"]:
+                    continue
+                cls = vs.models[cls_name]
+                joined_model = vs.models[relation["model"]]
+                joined_alias = aliased(joined_model, flat=True)
+                statement = (
+                    select(getattr(cls, "name"), getattr(joined_alias, "name"))
+                    .select_from(cls)
+                    .join(joined_alias, getattr(cls, f"{property}_id") == getattr(joined_alias, "id"))
+                )
+                results = db.session.execute(statement).all()
+        return
         path = Path(vs.migration_path) / kwargs["name"]
         if kwargs.get("multiprocessing"):
-            with ThreadPoolExecutor(max_workers=130) as executor:
-                for cls_name in vs.models:
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                for cls_name in export_models:
                     executor.submit(self.json_export_properties, cls_name, path)
         else:
-            for cls_name in vs.models:
+            for cls_name in export_models:
                 self.json_export_properties(cls_name, path)
         with open("metadata.json", "wb") as f:
             f.write(
@@ -1152,8 +1170,6 @@ class Controller(vs.TimingMixin):
 
     def json_export_properties(self, cls_name, path):
         cls = vs.models[cls_name]
-        if cls_name in db.json_migration["no_export"]:
-            return
         model_class = vs.models[cls_name]
         export_type = getattr(cls, "export_type", cls.type)
         excluded_properties = set(db.dont_migrate.get(export_type, [])) | {"type"}
