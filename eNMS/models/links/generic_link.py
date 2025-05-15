@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, Integer
 
 from eNMS.database import db
 from eNMS.forms import LinkForm
-from eNMS.fields import HiddenField, SelectField, StringField
+from eNMS.fields import HiddenField
 from eNMS.models.inventory import Link
 
 
