@@ -1095,7 +1095,7 @@ class Controller(vs.TimingMixin):
         db.session.commit()
         env.log(
             "warning",
-            f"Number of corrupted services deleted: {number_of_corrupted_services}"
+            f"Number of corrupted services deleted: {number_of_corrupted_services}",
         )
         edges = set(db.fetch_all("workflow_edge"))
         duplicated_edges, number_of_corrupted_edges = defaultdict(list), 0
@@ -1128,8 +1128,7 @@ class Controller(vs.TimingMixin):
                 number_of_corrupted_edges += 1
         db.session.commit()
         env.log(
-            "warning",
-            f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
+            "warning", f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
         )
 
     def json_export(self, **kwargs):
@@ -1142,10 +1141,14 @@ class Controller(vs.TimingMixin):
             for cls_name in vs.models:
                 self.json_export_properties(cls_name, path)
         with open("metadata.json", "wb") as f:
-            f.write(dumps({
-                "version": vs.server_version,
-                "export_time": datetime.now(),
-            }))
+            f.write(
+                dumps(
+                    {
+                        "version": vs.server_version,
+                        "export_time": datetime.now(),
+                    }
+                )
+            )
 
     def json_export_properties(self, cls_name, path):
         cls = vs.models[cls_name]

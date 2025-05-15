@@ -136,10 +136,9 @@ class AbstractBase(db.base):
         property = getattr(vs.models[model], f"rbac_{mode}")
         rbac_constraint = property.any(vs.models["group"].id.in_(user_group))
         owners_constraint = vs.models[model].owners.any(id=user.id)
-        if (
-            hasattr(vs.models[model], "admin_only")
-            and mode not in vs.rbac["admin_only_bypass"].get(model, [])
-        ):
+        if hasattr(vs.models[model], "admin_only") and mode not in vs.rbac[
+            "admin_only_bypass"
+        ].get(model, []):
             query = query.filter(vs.models[model].admin_only == false())
         return query.filter(or_(owners_constraint, rbac_constraint))
 

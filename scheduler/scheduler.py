@@ -119,7 +119,9 @@ class Scheduler(Flask):
             )
         else:
             job = self.scheduler.reschedule_job(str(task["id"]), **trigger)
-        return job.next_run_time and job.next_run_time > datetime.now(job.next_run_time.tzinfo)
+        return job.next_run_time and job.next_run_time > datetime.now(
+            job.next_run_time.tzinfo
+        )
 
 
 scheduler = Scheduler()
