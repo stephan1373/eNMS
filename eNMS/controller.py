@@ -1265,6 +1265,8 @@ class Controller(vs.TimingMixin):
                 }
                 for name1, name2 in data
             ]
+            db.session.execute(table.insert(), rows)
+        db.session.commit()
 
     def migration_export(self, **kwargs):
         if kwargs.get("json_migration"):
