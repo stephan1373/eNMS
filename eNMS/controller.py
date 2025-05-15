@@ -1137,9 +1137,7 @@ class Controller(vs.TimingMixin):
             if class_name not in db.json_migration["no_export"]
         ]
         path = Path(vs.migration_path) / kwargs["name"]
-        for cls_name in export_models:
-            self.json_export_scalar(cls_name, path)
-        return
+
         if kwargs.get("multiprocessing"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in export_models:
@@ -1147,6 +1145,8 @@ class Controller(vs.TimingMixin):
         else:
             for cls_name in export_models:
                 self.json_export_properties(cls_name, path)
+            for cls_name in export_models:
+                self.json_export_scalar(cls_name, path)
         with open("metadata.json", "wb") as f:
             f.write(
                 dumps(
@@ -1168,8 +1168,12 @@ class Controller(vs.TimingMixin):
                 .select_from(cls)
                 .join(joined_alias, getattr(cls, f"{property}_id") == getattr(joined_alias, "id"))
             )
+            result = dict(db.session.execute(statement).all()
+            if not result:
+                continue
             with open(path / f"{cls_name}_{property}.json", "wb") as file:
-                file.write(dumps(dict(db.session.execute(statement).all())))
+                file.write(dumps(result))
+
     def json_export_properties(self, cls_name, path):
         cls = vs.models[cls_name]
         model_class = vs.models[cls_name]
@@ -1186,7 +1190,6 @@ class Controller(vs.TimingMixin):
         ]
         if not instances:
             return
-        
         if not exists(path):
             makedirs(path)
         with open(path / f"{cls_name}.json", "wb") as file:
