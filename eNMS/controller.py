@@ -1136,21 +1136,10 @@ class Controller(vs.TimingMixin):
             class_name for class_name in vs.models
             if class_name not in db.json_migration["no_export"]
         ]
-        for cls_name in export_models:
-            for property, relation in vs.relationships[cls_name].items():
-                if relation["list"]:
-                    continue
-                cls = vs.models[cls_name]
-                joined_model = vs.models[relation["model"]]
-                joined_alias = aliased(joined_model, flat=True)
-                statement = (
-                    select(getattr(cls, "name"), getattr(joined_alias, "name"))
-                    .select_from(cls)
-                    .join(joined_alias, getattr(cls, f"{property}_id") == getattr(joined_alias, "id"))
-                )
-                results = db.session.execute(statement).all()
-        return
         path = Path(vs.migration_path) / kwargs["name"]
+        for cls_name in export_models:
+            self.json_export_scalar(cls_name, path)
+        return
         if kwargs.get("multiprocessing"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in export_models:
@@ -1168,6 +1157,19 @@ class Controller(vs.TimingMixin):
                 )
             )
 
+    def json_export_scalar(self, cls_name, path):
+        for property, relation in vs.relationships[cls_name].items():
+            if relation["list"]:
+                continue
+            cls = vs.models[cls_name]
+            joined_alias = aliased(vs.models[relation["model"]], flat=True)
+            statement = (
+                select(getattr(cls, "name"), getattr(joined_alias, "name"))
+                .select_from(cls)
+                .join(joined_alias, getattr(cls, f"{property}_id") == getattr(joined_alias, "id"))
+            )
+            with open(path / f"{cls_name}_{property}.json", "wb") as file:
+                file.write(dumps(dict(db.session.execute(statement).all())))
     def json_export_properties(self, cls_name, path):
         cls = vs.models[cls_name]
         model_class = vs.models[cls_name]
