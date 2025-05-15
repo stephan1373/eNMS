@@ -1241,6 +1241,9 @@ class Controller(vs.TimingMixin):
                 instances = loads(file.read())
             db.session.bulk_insert_mappings(cls, instances)
             db.session.commit()
+        for cls_name in db.import_export_models:
+            cls = vs.models[cls_name]
+            ids = dict(db.session.execute(select(cls.name, cls.id)).all())
 
     def migration_export(self, **kwargs):
         if kwargs.get("json_migration"):
