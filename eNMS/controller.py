@@ -1167,7 +1167,7 @@ class Controller(vs.TimingMixin):
                 .select_from(cls)
                 .join(joined_alias, getattr(cls, f"{property}_id") == getattr(joined_alias, "id"))
             )
-            result = dict(db.session.execute(statement).all()
+            result = dict(db.session.execute(statement).all())
             if not result:
                 continue
             with open(path / f"{cls_name}_{property}.json", "wb") as file:
