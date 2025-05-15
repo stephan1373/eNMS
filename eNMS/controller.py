@@ -1167,7 +1167,7 @@ class Controller(vs.TimingMixin):
         model2 = association_table["model2"]["foreign_key"]
         cls1 = aliased(vs.models[model1])
         cls2 = aliased(vs.models[model2])
-        stmt = (
+        statement = (
             select(getattr(cls1, "name"), getattr(cls2, "name"))
             .select_from(
                 table
@@ -1175,7 +1175,7 @@ class Controller(vs.TimingMixin):
                 .join(cls2, getattr(table.c, f"{model2}_id") == cls2.id)
             )
         )
-        result = db.session.execute(stmt).all()
+        result = db.session.execute(statement).all()
         if not result:
             continue
         with open(path / f"{association_name}.json", "wb") as file:
