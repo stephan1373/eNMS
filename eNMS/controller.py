@@ -1183,7 +1183,6 @@ class Controller(vs.TimingMixin):
             file.write(dumps(result))
 
     def json_export_scalar(self, cls_name, path):
-        return
         for property, relation in vs.relationships[cls_name].items():
             if relation["list"]:
                 continue
@@ -1201,7 +1200,6 @@ class Controller(vs.TimingMixin):
                 file.write(dumps(result))
 
     def json_export_properties(self, cls_name, path):
-        return
         cls = vs.models[cls_name]
         model_class = vs.models[cls_name]
         export_type = getattr(cls, "export_type", cls.type)
