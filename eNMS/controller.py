@@ -1177,11 +1177,11 @@ class Controller(vs.TimingMixin):
             if relation["list"]:
                 continue
             cls = vs.models[cls_name]
-            joined_alias = aliased(vs.models[relation["model"]], flat=True)
+            alias = aliased(vs.models[relation["model"]], flat=True)
             statement = (
-                select(getattr(cls, "name"), getattr(joined_alias, "name"))
+                select(getattr(cls, "name"), getattr(alias, "name"))
                 .select_from(cls)
-                .join(joined_alias, getattr(cls, f"{property}_id") == getattr(joined_alias, "id"))
+                .join(alias, getattr(cls, f"{property}_id") == getattr(alias, "id"))
             )
             result = dict(db.session.execute(statement).all())
             if not result:
