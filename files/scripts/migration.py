@@ -129,6 +129,13 @@ def migrate_5_2_to_5_3():
             device["type"] = "generic_device"
     with open(PATH / FILENAME / "device.yaml", "w") as device_file:
         yaml.dump(devices, device_file)
+    with open(PATH / FILENAME / "link.yaml", "r") as link_file:
+        links = yaml.load(link_file)
+    for link in links:
+        if link["type"] == "link":
+            link["type"] = "generic_link"
+    with open(PATH / FILENAME / "link.yaml", "w") as link_file:
+        yaml.dump(links, link_file)
 
 
 migrate_5_2_to_5_3()
