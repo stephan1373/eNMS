@@ -1225,6 +1225,9 @@ class Controller(vs.TimingMixin):
             model = vs.models[cls_name]
             db.session.execute(model.__table__.delete())
             db.session.commit()
+        for table_properties in db.associations.values():
+            db.session.execute(table_properties["table"].delete())
+        db.session.commit()
         for cls_name, cls in vs.models.items():
             if cls_name in db.json_migration["no_export"]:
                 continue
