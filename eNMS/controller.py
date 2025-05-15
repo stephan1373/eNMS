@@ -1176,7 +1176,7 @@ class Controller(vs.TimingMixin):
                 .join(cls2, getattr(table.c, f"{model2}_id") == cls2.id)
             )
         )
-        result = db.session.execute(statement).all()
+        result = [(row[0], row[1]) for row in db.session.execute(statement).all()]
         if not result:
             return
         with open(path / f"{association_name}.json", "wb") as file:
