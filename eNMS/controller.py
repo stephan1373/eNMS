@@ -1224,7 +1224,6 @@ class Controller(vs.TimingMixin):
         for cls_name in db.json_migration["clear_on_import"]:
             model = vs.models[cls_name]
             db.session.execute(model.__table__.delete())
-            db.session.commit()
         for table_properties in db.associations.values():
             db.session.execute(table_properties["table"].delete())
         db.session.commit()
