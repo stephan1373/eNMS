@@ -1137,15 +1137,14 @@ class Controller(vs.TimingMixin):
             if class_name not in db.json_migration["no_export"]
         ]
         path = Path(vs.migration_path) / kwargs["name"]
-
         if kwargs.get("multiprocessing"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in export_models:
                     executor.submit(self.json_export_properties, cls_name, path)
+                    executor.submit(self.json_export_scalar, cls_name, path)
         else:
             for cls_name in export_models:
                 self.json_export_properties(cls_name, path)
-            for cls_name in export_models:
                 self.json_export_scalar(cls_name, path)
         with open("metadata.json", "wb") as f:
             f.write(
