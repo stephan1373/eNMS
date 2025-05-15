@@ -1256,10 +1256,12 @@ class Controller(vs.TimingMixin):
                 data = loads(file.read())
             model1 = properties["model1"]["foreign_key"]
             model2 = properties["model2"]["foreign_key"]
+            export_model1 = getattr(vs.models[model1], "export_type", model1)
+            export_model2 = getattr(vs.models[model2], "export_type", model2)
             rows = [
                 {
-                    f"{model1}_id": name_to_id[name1],
-                    f"{model2}_id": name_to_id[name2],
+                    f"{model1}_id": name_to_id[export_model1][name1],
+                    f"{model2}_id": name_to_id[export_model2][name2],
                 }
                 for name1, name2 in data
             ]
