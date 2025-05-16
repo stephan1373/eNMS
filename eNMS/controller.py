@@ -1271,13 +1271,13 @@ class Controller(vs.TimingMixin):
             for class_name in vs.models
             if class_name not in db.json_migration["no_export"]
         ]
+        for table_properties in db.associations.values():
+            db.session.execute(table_properties["table"].delete())
         for cls_name in export_models:
             db.session.execute(vs.models[cls_name].__table__.delete())
         for cls_name in db.json_migration["clear_on_import"]:
             model = vs.models[cls_name]
             db.session.execute(model.__table__.delete())
-        for table_properties in db.associations.values():
-            db.session.execute(table_properties["table"].delete())
         db.session.commit()
         path = Path(vs.migration_path) / kwargs["name"]
         if kwargs.get("multithreading"):
