@@ -4,7 +4,7 @@ from random import randrange
 
 PATH = (
     Path.cwd().parent.parent.parent
-    / "eNMS-prod"
+    / "eNMS-prod2"
     / "files"
     / "migrations"
     / "scalability"
@@ -20,7 +20,7 @@ def generate_services():
         }
         for index in range(1, 10000)
     ]
-    with open(PATH / "service.json", "wb") as file:
+    with open(PATH / "netmiko_commands_service.json", "wb") as file:
         file.write(dumps(services))
     workflows = [
         {
