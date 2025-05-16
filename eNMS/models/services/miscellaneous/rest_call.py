@@ -32,7 +32,7 @@ class RestCallService(Service):
     verify_ssl_certificate = db.Column(Boolean, default=True)
     timeout = db.Column(Integer, default=15)
     credentials = db.Column(db.SmallString, default="custom")
-    named_credential_id = db.Column(Integer, ForeignKey("credential.id"))
+    named_credential_id = db.Column(Integer, ForeignKey("credential.id", ondelete="SET NULL"))
     named_credential = relationship("Credential")
     custom_username = db.Column(db.SmallString)
     custom_password = db.Column(db.SmallString)

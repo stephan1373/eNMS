@@ -263,7 +263,7 @@ class Changelog(AbstractBase):
     def database_init(cls):
         for model, class_name in vs.database["changelog_models"].items():
             kwargs = {"back_populates": "logs", "foreign_keys": f"Changelog.{model}_id"}
-            setattr(cls, f"{model}_id", db.Column(Integer, ForeignKey(f"{model}.id")))
+            setattr(cls, f"{model}_id", db.Column(Integer, ForeignKey(f"{model}.id", ondelete="SET NULL")))
             setattr(cls, model, relationship(class_name, **kwargs))
 
     def __repr__(self):
@@ -390,7 +390,7 @@ class Data(AbstractBase):
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    store_id = db.Column(Integer, ForeignKey("store.id"))
+    store_id = db.Column(Integer, ForeignKey("store.id", ondelete="SET NULL"))
     store = relationship("Store", back_populates="data", foreign_keys="Data.store_id")
     logs = relationship("Changelog", back_populates="data")
     model_properties = {"ui_name": "str"}

@@ -165,9 +165,9 @@ class Link(Object):
     id = db.Column(Integer, ForeignKey("object.id"), primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     color = db.Column(db.TinyString, default="#000000")
-    source_id = db.Column(Integer, ForeignKey("device.id"), info={"log_change": False})
+    source_id = db.Column(Integer, ForeignKey("device.id", ondelete="SET NULL"), info={"log_change": False})
     destination_id = db.Column(
-        Integer, ForeignKey("device.id"), info={"log_change": False}
+        Integer, ForeignKey("device.id", ondelete="SET NULL"), info={"log_change": False}
     )
     source = relationship(
         Device,

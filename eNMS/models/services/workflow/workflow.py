@@ -354,7 +354,7 @@ class WorkflowEdge(AbstractBase):
         foreign_keys="WorkflowEdge.destination_id",
         lazy="joined",
     )
-    workflow_id = db.Column(Integer, ForeignKey("workflow.id"))
+    workflow_id = db.Column(Integer, ForeignKey("workflow.id", ondelete="SET NULL"))
     workflow = relationship(
         "Workflow",
         back_populates="edges",
