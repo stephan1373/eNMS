@@ -1293,7 +1293,7 @@ class Controller(vs.TimingMixin):
             for property in vs.relationships[cls_name]:
                 self.json_import_scalar(cls_name, property, name_to_id, path)
         db.session.commit()
-        for association_name, in db.associations:
+        for association_name in db.associations:
             self.json_import_associations(association_name, path)
         db.session.commit()
 
