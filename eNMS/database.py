@@ -405,7 +405,10 @@ class Database:
                 ),
                 Column("user_id", Integer, ForeignKey("user.id"), primary_key=True),
             )
-            association = {"model1": {"foreign_key": model}, "model2": {"foreign_key": "user"}}
+            association = {
+                "model1": {"foreign_key": model},
+                "model2": {"foreign_key": "user"},
+            }
             self.associations[f"{model}_owner_table"] = {"table": table, **association}
             setattr(self, f"{model}_owner_table", table)
             for property in properties:
@@ -425,8 +428,14 @@ class Database:
                         primary_key=True,
                     ),
                 )
-                association = {"model1": {"foreign_key": model}, "model2": {"foreign_key": "group"}}
-                self.associations[f"{model}_{property}_table"] = {"table": table, **association}
+                association = {
+                    "model1": {"foreign_key": model},
+                    "model2": {"foreign_key": "group"},
+                }
+                self.associations[f"{model}_{property}_table"] = {
+                    "table": table,
+                    **association,
+                }
                 setattr(self, f"{model}_{property}_table", table)
         for property in vs.rbac["rbac_models"]["device"]:
             table = Table(
@@ -445,8 +454,14 @@ class Database:
                     primary_key=True,
                 ),
             )
-            association = {"model1": {"foreign_key": "pool"}, "model2": {"foreign_key": "group"}}
-            self.associations[f"pool_group_{property}_table"] = {"table": table, **association}
+            association = {
+                "model1": {"foreign_key": "pool"},
+                "model2": {"foreign_key": "group"},
+            }
+            self.associations[f"pool_group_{property}_table"] = {
+                "table": table,
+                **association,
+            }
             setattr(self, f"pool_group_{property}_table", table)
 
     def query(self, model, rbac="read", user=None, properties=None):

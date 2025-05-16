@@ -1133,7 +1133,8 @@ class Controller(vs.TimingMixin):
 
     def json_export(self, **kwargs):
         export_models = [
-            class_name for class_name in vs.models
+            class_name
+            for class_name in vs.models
             if class_name not in db.json_migration["no_export"]
         ]
         path = Path(vs.migration_path) / kwargs["name"]
@@ -1143,7 +1144,9 @@ class Controller(vs.TimingMixin):
                     executor.submit(self.json_export_properties, cls_name, path)
                     executor.submit(self.json_export_scalar, cls_name, path)
                 for association_name in db.associations:
-                    executor.submit(self.json_export_association, association_name, path)
+                    executor.submit(
+                        self.json_export_association, association_name, path
+                    )
         else:
             for cls_name in export_models:
                 self.json_export_properties(cls_name, path)
@@ -1168,12 +1171,9 @@ class Controller(vs.TimingMixin):
         model2 = association_table["model2"]["foreign_key"]
         cls1 = aliased(vs.models[model1])
         cls2 = aliased(vs.models[model2])
-        statement = (
-            select(getattr(cls1, "name"), getattr(cls2, "name"))
-            .select_from(
-                table
-                .join(cls1, getattr(table.c, f"{model1}_id") == cls1.id)
-                .join(cls2, getattr(table.c, f"{model2}_id") == cls2.id)
+        statement = select(getattr(cls1, "name"), getattr(cls2, "name")).select_from(
+            table.join(cls1, getattr(table.c, f"{model1}_id") == cls1.id).join(
+                cls2, getattr(table.c, f"{model2}_id") == cls2.id
             )
         )
         result = [(row[0], row[1]) for row in db.session.execute(statement).all()]
@@ -1206,12 +1206,15 @@ class Controller(vs.TimingMixin):
         excluded_properties = set(db.dont_migrate.get(export_type, [])) | {"type"}
         excluded_properties |= set(getattr(cls, "model_properties", {}))
         properties_to_export = [
-            property for property in vs.model_properties[cls_name]
+            property
+            for property in vs.model_properties[cls_name]
             if property not in excluded_properties
         ]
         instances = [
             dict(row._mapping)
-            for row in db.query(cls_name, properties=properties_to_export, rbac=None).all()
+            for row in db.query(
+                cls_name, properties=properties_to_export, rbac=None
+            ).all()
         ]
         if not instances:
             return
@@ -1245,7 +1248,9 @@ class Controller(vs.TimingMixin):
         name_to_id = {}
         for cls_name in db.import_export_models:
             cls = vs.models[cls_name]
-            name_to_id[cls_name] = dict(db.session.execute(select(cls.name, cls.id)).all())
+            name_to_id[cls_name] = dict(
+                db.session.execute(select(cls.name, cls.id)).all()
+            )
         for cls_name, cls in vs.models.items():
             for property, relation in vs.relationships[cls_name].items():
                 if relation["list"]:
@@ -1257,9 +1262,14 @@ class Controller(vs.TimingMixin):
                 with open(filepath, "rb") as file:
                     relations = loads(file.read())
                 export_model1 = getattr(vs.models[cls_name], "export_type", cls_name)
-                export_model2 = getattr(vs.models[relation["model"]], "export_type", relation["model"])
+                export_model2 = getattr(
+                    vs.models[relation["model"]], "export_type", relation["model"]
+                )
                 updates = [
-                    {"id": name_to_id[export_model1][source], f"{property}_id": name_to_id[export_model2][destination]}
+                    {
+                        "id": name_to_id[export_model1][source],
+                        f"{property}_id": name_to_id[export_model2][destination],
+                    }
                     for source, destination in relations.items()
                 ]
                 db.session.bulk_update_mappings(vs.models[cls_name], updates)
