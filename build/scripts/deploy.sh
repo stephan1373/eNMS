@@ -39,6 +39,7 @@ function install() {
     sudo -u postgres psql -c "CREATE DATABASE enms;"
     sudo -u postgres psql -c "CREATE USER root WITH PASSWORD 'password';"
     sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE enms TO root;"
+    sudo -u postgres psql -c "ALTER DATABASE enms OWNER TO root;"
   elif [ "$install" = "enms" ]; then
     sudo apt-get install -y python3-pip sshpass npm
     for file in build/requirements/*; do pip3 install -r $file; done
