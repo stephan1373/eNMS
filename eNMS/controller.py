@@ -1216,6 +1216,17 @@ class Controller(vs.TimingMixin):
         with open(path / f"{cls_name}.json", "wb") as file:
             file.write(dumps(instances))
 
+    def json_import_properties(self, cls_name, path):
+        cls = vs.models[cls_name]
+        if cls_name in db.json_migration["no_export"]:
+            continue
+        filepath = path / f"{cls_name}.json"
+        if not exists(filepath):
+            continue
+        with open(filepath, "rb") as file:
+            instances = loads(file.read())
+        db.session.bulk_insert_mappings(cls, instances)
+
     def json_import(self, folder="migrations", **kwargs):
         for cls_name in db.json_migration["clear_on_import"]:
             model = vs.models[cls_name]
@@ -1229,15 +1240,8 @@ class Controller(vs.TimingMixin):
         db.session.commit()
         path = Path(vs.migration_path) / kwargs["name"]
         for cls_name, cls in vs.models.items():
-            if cls_name in db.json_migration["no_export"]:
-                continue
-            filepath = path / f"{cls_name}.json"
-            if not exists(filepath):
-                continue
-            with open(filepath, "rb") as file:
-                instances = loads(file.read())
-            db.session.bulk_insert_mappings(cls, instances)
-            db.session.commit()
+            self.json_import_properties(cls_name, path)
+        db.session.commit()
         name_to_id = {}
         for cls_name in db.import_export_models:
             cls = vs.models[cls_name]
