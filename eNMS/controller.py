@@ -1262,10 +1262,8 @@ class Controller(vs.TimingMixin):
                     {"id": name_to_id[export_model1][source], f"{property}_id": name_to_id[export_model2][destination]}
                     for source, destination in relations.items()
                 ]
-                print(cls_name, updates)
                 db.session.bulk_update_mappings(vs.models[cls_name], updates)
         db.session.commit()
-        return
         for association_name, properties in db.associations.items():
             table = properties["table"]
             filepath = path / f"{association_name}.json"
