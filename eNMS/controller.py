@@ -1298,9 +1298,20 @@ class Controller(vs.TimingMixin):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in vs.models:
                     for property in vs.relationships[cls_name]:
-                        executor.submit(self.json_import_scalar, cls_name, property, name_to_id, path)
+                        executor.submit(
+                            self.json_import_scalar,
+                            cls_name,
+                            property,
+                            name_to_id,
+                            path,
+                        )
                 for association_name in db.associations:
-                    executor.submit(self.json_import_associations, association_name, name_to_id, path)
+                    executor.submit(
+                        self.json_import_associations,
+                        association_name,
+                        name_to_id,
+                        path,
+                    )
         else:
             for cls_name in vs.models:
                 for property in vs.relationships[cls_name]:

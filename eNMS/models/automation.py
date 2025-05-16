@@ -267,7 +267,9 @@ class ConnectionService(Service):
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     parent_type = "service"
     credentials = db.Column(db.SmallString, default="device")
-    named_credential_id = db.Column(Integer, ForeignKey("credential.id", ondelete="SET NULL"))
+    named_credential_id = db.Column(
+        Integer, ForeignKey("credential.id", ondelete="SET NULL")
+    )
     named_credential = relationship("Credential")
     custom_username = db.Column(db.SmallString)
     custom_password = db.Column(db.SmallString)
