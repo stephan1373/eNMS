@@ -1249,7 +1249,7 @@ class Controller(vs.TimingMixin):
         properties = db.associations[association_name]
         filepath = path / f"{association_name}.json"
         if not exists(filepath):
-            continue
+            return
         with open(filepath, "rb") as file:
             data = loads(file.read())
         model1 = properties["model1"]["foreign_key"]
