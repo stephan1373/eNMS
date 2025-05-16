@@ -1230,10 +1230,10 @@ class Controller(vs.TimingMixin):
     def json_import_scalar(self, cls_name, property, path):
         relation = vs.relationships[cls_name][property]
         if relation["list"]:
-            continue
+            return
         filepath = path / f"{cls_name}_{property}.json"
         if not exists(filepath):
-            continue
+            return
         with open(filepath, "rb") as file:
             relations = loads(file.read())
         export_model1 = getattr(vs.models[cls_name], "export_type", cls_name)
