@@ -1,3 +1,4 @@
+from orjson import dumps
 from pathlib import Path
 from random import choice, randrange
 from ruamel.yaml import YAML
@@ -16,10 +17,6 @@ PATH = (
     / "migrations"
     / "model_scalability"
 )
-
-yaml = YAML()
-yaml.default_style = "'"
-
 
 def generate_services():
     services = [
@@ -44,15 +41,13 @@ def generate_services():
             for index in range(1, 5)
         ]
     )
-    with open(PATH / "service.yaml", "w") as migration_file:
-        yaml.dump(services, migration_file)
-
+    with open(PATH / "service.json", "wb") as migration_file:
+        migration_file.write(dumps(services))
 
 def generate_devices():
     devices = [{"name": f"d{index}"} for index in range(1, 80_001)]
-    with open(PATH / "device.yaml", "w") as migration_file:
-        yaml.dump(devices, migration_file)
-
+    with open(PATH / "device.json", "wb") as migration_file:
+        migration_file.write(dumps(devices))
 
 def generate_pools():
     pools = []
@@ -63,7 +58,7 @@ def generate_pools():
         pools.append(
             {
                 "name": f"Pool {index}",
-                "device_name": "d[{}-{}]\d{{3}}".format(max(x - 1, 0), min(x + 1, 9)),
+                "device_name": f"d[{max(x - 1, 0)}-{min(x + 1, 9)}]\\d{{3}}",
                 "device_name_match": "regex",
             }
         )
@@ -75,21 +70,18 @@ def generate_pools():
                 "device_name_match": "regex",
             }
         )
-    with open(PATH / "pool.yaml", "w") as migration_file:
-        yaml.dump(pools, migration_file)
-
+    with open(PATH / "pool.json", "wb") as migration_file:
+        migration_file.write(dumps(pools))
 
 def generate_users():
     users = [{"name": f"user{index}"} for index in range(1, 1_001)]
-    with open(PATH / "user.yaml", "w") as migration_file:
-        yaml.dump(users, migration_file)
-
+    with open(PATH / "user.json", "wb") as migration_file:
+        migration_file.write(dumps(users))
 
 def generate_tasks():
-    users = [{"name": f"task{index}"} for index in range(1, 2_001)]
-    with open(PATH / "task.yaml", "w") as migration_file:
-        yaml.dump(users, migration_file)
-
+    tasks = [{"name": f"task{index}"} for index in range(1, 2_001)]
+    with open(PATH / "task.json", "wb") as migration_file:
+        migration_file.write(dumps(tasks))
 
 def generate_networks():
     networks = [
@@ -99,8 +91,5 @@ def generate_networks():
         }
         for index in range(1, 1_001)
     ]
-    with open(PATH / "network.yaml", "w") as migration_file:
-        yaml.dump(networks, migration_file)
-
-
-generate_networks()
+    with open(PATH / "network.json", "wb") as migration_file:
+        migration_file.write(dumps(networks))
