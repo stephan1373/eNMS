@@ -1247,7 +1247,6 @@ class Controller(vs.TimingMixin):
 
     def json_import_associations(self, association_name, path):
         properties = db.associations[association_name]
-        table = properties["table"]
         filepath = path / f"{association_name}.json"
         if not exists(filepath):
             continue
@@ -1264,7 +1263,7 @@ class Controller(vs.TimingMixin):
             }
             for name1, name2 in data
         ]
-        db.session.execute(table.insert(), rows)
+        db.session.execute(properties["table"].insert(), rows)
 
     def json_import(self, folder="migrations", **kwargs):
         export_models = [
