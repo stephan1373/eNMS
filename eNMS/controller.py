@@ -1154,14 +1154,8 @@ class Controller(vs.TimingMixin):
             for association_name in db.associations:
                 self.json_export_association(association_name, path)
         with open("metadata.json", "wb") as file:
-            file.write(
-                dumps(
-                    {
-                        "version": vs.server_version,
-                        "export_time": datetime.now(),
-                    }
-                )
-            )
+            metadata = {"version": vs.server_version, "export_time": datetime.now()}
+            file.write(dumps(metadata))
 
     def json_export_association(self, association_name, path):
         association_table = db.associations[association_name]
