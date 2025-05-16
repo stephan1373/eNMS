@@ -56,6 +56,7 @@ function run() {
     elif [ "$database" = "pgsql" ]; then
       sudo -u postgres psql -c "DROP DATABASE enms"
       sudo -u postgres psql -c "CREATE DATABASE enms;"
+      sudo -u postgres psql -c "ALTER DATABASE enms OWNER TO root;"
     elif [ "$database" = "mariadb" ]; then
       mysql -u root -e "DROP DATABASE IF EXISTS enms;"
       mysql -u root -e "CREATE DATABASE enms;"
