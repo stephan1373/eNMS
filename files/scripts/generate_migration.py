@@ -7,7 +7,7 @@ PATH = (
     / "eNMS-prod"
     / "files"
     / "migrations"
-    / "model_scalability"
+    / "scalability"
 )
 
 def generate_services():
@@ -22,7 +22,7 @@ def generate_services():
     ]
     with open(PATH / "service.json", "wb") as migration_file:
         migration_file.write(dumps(services))
-    services = [
+    workflows = [
         {
             "name": f"[Shared] w{index}",
             "scoped_name": f"w{index}",
@@ -31,8 +31,8 @@ def generate_services():
         }
         for index in range(1, 2000)
     ]
-    with open(PATH / "service.json", "wb") as migration_file:
-        migration_file.write(dumps(services))
+    with open(PATH / "workflow.json", "wb") as migration_file:
+        migration_file.write(dumps(workflows))
 
 
 def generate_workflow_association_table():
