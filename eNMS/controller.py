@@ -1218,10 +1218,8 @@ class Controller(vs.TimingMixin):
 
     def json_import_properties(self, cls_name, path):
         cls = vs.models[cls_name]
-        if cls_name in db.json_migration["no_export"]:
-            return
         filepath = path / f"{cls_name}.json"
-        if not exists(filepath):
+        if cls_name in db.json_migration["no_export"] or not exists(filepath):
             return
         with open(filepath, "rb") as file:
             instances = loads(file.read())
