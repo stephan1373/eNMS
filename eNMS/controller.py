@@ -1245,6 +1245,27 @@ class Controller(vs.TimingMixin):
         ]
         db.session.bulk_update_mappings(vs.models[cls_name], updates)
 
+    def json_import_associations(self, association_name, path):
+        properties = db.associations[association_name]
+        table = properties["table"]
+        filepath = path / f"{association_name}.json"
+        if not exists(filepath):
+            continue
+        with open(filepath, "rb") as file:
+            data = loads(file.read())
+        model1 = properties["model1"]["foreign_key"]
+        model2 = properties["model2"]["foreign_key"]
+        export_model1 = getattr(vs.models[model1], "export_type", model1)
+        export_model2 = getattr(vs.models[model2], "export_type", model2)
+        rows = [
+            {
+                f"{model1}_id": name_to_id[export_model1][name1],
+                f"{model2}_id": name_to_id[export_model2][name2],
+            }
+            for name1, name2 in data
+        ]
+        db.session.execute(table.insert(), rows)
+
     def json_import(self, folder="migrations", **kwargs):
         export_models = [
             class_name
@@ -1274,24 +1295,7 @@ class Controller(vs.TimingMixin):
                 self.json_import_scalar(cls_name, property, name_to_id, path)
         db.session.commit()
         for association_name, properties in db.associations.items():
-            table = properties["table"]
-            filepath = path / f"{association_name}.json"
-            if not exists(filepath):
-                continue
-            with open(filepath, "rb") as file:
-                data = loads(file.read())
-            model1 = properties["model1"]["foreign_key"]
-            model2 = properties["model2"]["foreign_key"]
-            export_model1 = getattr(vs.models[model1], "export_type", model1)
-            export_model2 = getattr(vs.models[model2], "export_type", model2)
-            rows = [
-                {
-                    f"{model1}_id": name_to_id[export_model1][name1],
-                    f"{model2}_id": name_to_id[export_model2][name2],
-                }
-                for name1, name2 in data
-            ]
-            db.session.execute(table.insert(), rows)
+            self.json_import_associations(association_name, path)
         db.session.commit()
 
     def migration_export(self, **kwargs):
