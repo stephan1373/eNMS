@@ -1,13 +1,6 @@
 from orjson import dumps
 from pathlib import Path
-from random import choice, randrange
-
-service_type = [
-    "swiss_army_knife_service",
-    "napalm_backup_service",
-    "netmiko_configuration_service",
-    "netmiko_commands_service",
-]
+from random import randrange
 
 PATH = (
     Path.cwd().parent.parent.parent
@@ -23,10 +16,26 @@ def generate_services():
             "name": f"[Shared] s{index}",
             "scoped_name": f"s{index}",
             "shared": True,
-            "type": choice(service_type),
+            "type": "netmiko_commands_service",
         }
-        for index in range(1, 30)
+        for index in range(1, 10000)
     ]
+    with open(PATH / "service.json", "wb") as migration_file:
+        migration_file.write(dumps(services))
+    services = [
+        {
+            "name": f"[Shared] w{index}",
+            "scoped_name": f"w{index}",
+            "shared": True,
+            "type": "workflow",
+        }
+        for index in range(1, 2000)
+    ]
+    with open(PATH / "service.json", "wb") as migration_file:
+        migration_file.write(dumps(services))
+
+
+def generate_workflow_association_table():
     services.extend(
         [
             {
@@ -40,12 +49,10 @@ def generate_services():
             for index in range(1, 5)
         ]
     )
-    with open(PATH / "service.json", "wb") as migration_file:
-        migration_file.write(dumps(services))
 
 def generate_devices():
     devices = [{"name": f"d{index}"} for index in range(1, 80_001)]
-    with open(PATH / "device.json", "wb") as migration_file:
+    with open(PATH / "generic_device.json", "wb") as migration_file:
         migration_file.write(dumps(devices))
 
 def generate_pools():
@@ -86,7 +93,7 @@ def generate_networks():
     networks = [
         {
             "name": f"w{index}",
-            "nodes": list(set(f"d{randrange(1, 80_000)}" for _ in range(30))),
+            "devices": list(set(f"d{randrange(1, 80_000)}" for _ in range(30))),
         }
         for index in range(1, 1_001)
     ]
