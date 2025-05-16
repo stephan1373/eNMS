@@ -1138,7 +1138,7 @@ class Controller(vs.TimingMixin):
             if class_name not in db.json_migration["no_export"]
         ]
         path = Path(vs.migration_path) / kwargs["name"]
-        if kwargs.get("multiprocessing"):
+        if kwargs.get("multithreading"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in export_models:
                     executor.submit(self.json_export_properties, cls_name, path)
@@ -1280,7 +1280,7 @@ class Controller(vs.TimingMixin):
             db.session.execute(table_properties["table"].delete())
         db.session.commit()
         path = Path(vs.migration_path) / kwargs["name"]
-        if kwargs.get("multiprocessing"):
+        if kwargs.get("multithreading"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in vs.models:
                     executor.submit(self.json_import_properties, cls_name, path)
@@ -1294,7 +1294,7 @@ class Controller(vs.TimingMixin):
             name_to_id[cls_name] = dict(
                 db.session.execute(select(cls.name, cls.id)).all()
             )
-        if kwargs.get("multiprocessing"):
+        if kwargs.get("multithreading"):
             with ThreadPoolExecutor(max_workers=10) as executor:
                 for cls_name in vs.models:
                     for property in vs.relationships[cls_name]:
