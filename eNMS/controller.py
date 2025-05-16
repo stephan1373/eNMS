@@ -1229,10 +1229,8 @@ class Controller(vs.TimingMixin):
 
     def json_import_scalar(self, cls_name, property, path):
         relation = vs.relationships[cls_name][property]
-        if relation["list"]:
-            return
         filepath = path / f"{cls_name}_{property}.json"
-        if not exists(filepath):
+        if relation["list"] or not exists(filepath):
             return
         with open(filepath, "rb") as file:
             relations = loads(file.read())
