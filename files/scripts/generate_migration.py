@@ -41,7 +41,7 @@ def generate_devices():
 
 
 def generate_links():
-    links = [{"name": f"l{index}"} for index in range(1, 30_001)]
+    links = [{"name": f"l{index}", "model": f"Model{randrange(1, 51)}"} for index in range(1, 30_001)]
     with open(PATH / "generic_link.json", "wb") as file:
         file.write(dumps(links))
 
