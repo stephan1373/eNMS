@@ -20,8 +20,8 @@ def generate_services():
         }
         for index in range(1, 10000)
     ]
-    with open(PATH / "service.json", "wb") as migration_file:
-        migration_file.write(dumps(services))
+    with open(PATH / "service.json", "wb") as file:
+        file.write(dumps(services))
     workflows = [
         {
             "name": f"[Shared] w{index}",
@@ -31,8 +31,8 @@ def generate_services():
         }
         for index in range(1, 2000)
     ]
-    with open(PATH / "workflow.json", "wb") as migration_file:
-        migration_file.write(dumps(workflows))
+    with open(PATH / "workflow.json", "wb") as file:
+        file.write(dumps(workflows))
 
 
 def generate_workflow_association_table():
@@ -52,8 +52,8 @@ def generate_workflow_association_table():
 
 def generate_devices():
     devices = [{"name": f"d{index}"} for index in range(1, 80_001)]
-    with open(PATH / "generic_device.json", "wb") as migration_file:
-        migration_file.write(dumps(devices))
+    with open(PATH / "generic_device.json", "wb") as file:
+        file.write(dumps(devices))
 
 def generate_pools():
     pools = []
@@ -76,18 +76,18 @@ def generate_pools():
                 "device_name_match": "regex",
             }
         )
-    with open(PATH / "pool.json", "wb") as migration_file:
-        migration_file.write(dumps(pools))
+    with open(PATH / "pool.json", "wb") as file:
+        file.write(dumps(pools))
 
 def generate_users():
     users = [{"name": f"user{index}"} for index in range(1, 1_001)]
-    with open(PATH / "user.json", "wb") as migration_file:
-        migration_file.write(dumps(users))
+    with open(PATH / "user.json", "wb") as file:
+        file.write(dumps(users))
 
 def generate_tasks():
     tasks = [{"name": f"task{index}"} for index in range(1, 2_001)]
-    with open(PATH / "task.json", "wb") as migration_file:
-        migration_file.write(dumps(tasks))
+    with open(PATH / "task.json", "wb") as file:
+        file.write(dumps(tasks))
 
 def generate_networks():
     networks = [
@@ -97,5 +97,5 @@ def generate_networks():
         }
         for index in range(1, 1_001)
     ]
-    with open(PATH / "network.json", "wb") as migration_file:
-        migration_file.write(dumps(networks))
+    with open(PATH / "network.json", "wb") as file:
+        file.write(dumps(networks))
