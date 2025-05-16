@@ -892,7 +892,7 @@ class Controller(vs.TimingMixin):
                 for child in instances:
                     if str(child.id) in local_path_ids:
                         continue
-                    if run and child.scoped_name == "Placeholder":
+                    if run and child.scoped_name == "Placeholder" and run.placeholder:
                         child = run.placeholder
                     child_results = rec(child, f"{path}>{child.id}")
                     if run and not child_results:
