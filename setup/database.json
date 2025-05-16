@@ -62,7 +62,6 @@
       "folder",
       "link",
       "object",
-      "parameters",
       "result",
       "run",
       "service",
@@ -217,6 +216,7 @@
       "user_number",
       "logs"
     ],
+    "parameters": ["id"],
     "server": ["id", "current_runs", "logs", "runs", "status", "workers"],
     "service": [
       "children",
