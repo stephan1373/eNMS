@@ -1220,6 +1220,8 @@ class Controller(vs.TimingMixin):
         for cls_name in db.json_migration["clear_on_import"]:
             model = vs.models[cls_name]
             db.session.execute(model.__table__.delete())
+        for cls_name, cls in vs.models.items():
+            db.session.execute(cls.__table__.delete())
         for table_properties in db.associations.values():
             db.session.execute(table_properties["table"].delete())
         db.session.commit()
@@ -1229,8 +1231,6 @@ class Controller(vs.TimingMixin):
                 continue
             if cls_name == "user":
                 continue
-            db.session.execute(cls.__table__.delete())
-            db.session.commit()
             filepath = path / f"{cls_name}.json"
             if not exists(filepath):
                 continue
