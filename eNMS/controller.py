@@ -1153,9 +1153,8 @@ class Controller(vs.TimingMixin):
                 self.json_export_scalar(cls_name, path)
             for association_name in db.associations:
                 self.json_export_association(association_name, path)
-        return
-        with open("metadata.json", "wb") as f:
-            f.write(
+        with open("metadata.json", "wb") as file:
+            file.write(
                 dumps(
                     {
                         "version": vs.server_version,
