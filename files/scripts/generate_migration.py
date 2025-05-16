@@ -99,3 +99,6 @@ def generate_networks():
     ]
     with open(PATH / "network.json", "wb") as file:
         file.write(dumps(networks))
+
+
+generate_services()
