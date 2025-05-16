@@ -1242,6 +1242,10 @@ class Controller(vs.TimingMixin):
                 instances = loads(file.read())
             db.session.bulk_insert_mappings(cls, instances)
             db.session.commit()
+        name_to_id = {}
+        for cls_name in db.import_export_models:
+            cls = vs.models[cls_name]
+            name_to_id[cls_name] = dict(db.session.execute(select(cls.name, cls.id)).all())
         for cls_name, cls in vs.models.items():
             for property, relation in vs.relationships[cls_name].items():
                 if relation["list"]:
@@ -1252,10 +1256,6 @@ class Controller(vs.TimingMixin):
                     continue
                 with open(filepath, "rb") as file:
                     relationships = loads(file.read())
-        name_to_id = {}
-        for cls_name in db.import_export_models:
-            cls = vs.models[cls_name]
-            name_to_id[cls_name] = dict(db.session.execute(select(cls.name, cls.id)).all())
         for association_name, properties in db.associations.items():
             table = properties["table"]
             filepath = path / f"{association_name}.json"
