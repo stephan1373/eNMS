@@ -1273,10 +1273,9 @@ class Controller(vs.TimingMixin):
             name_to_id[cls_name] = dict(
                 db.session.execute(select(cls.name, cls.id)).all()
             )
-        for cls_name, cls in vs.models.items():
-            for property, relation in vs.relationships[cls_name].items():
+        for cls_name in vs.models:
+            for property in vs.relationships[cls_name]:
                 self.json_import_scalar(cls_name, property, path)
-
         db.session.commit()
         for association_name, properties in db.associations.items():
             table = properties["table"]
