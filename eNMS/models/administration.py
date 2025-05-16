@@ -178,7 +178,7 @@ class Group(AbstractBase):
                     cls,
                     f"{property}_{model}s",
                     relationship(
-                        model.capitalize(),
+                        "".join(word.capitalize() for word in model.split("_")),
                         secondary=getattr(db, f"{model}_{property}_table"),
                         back_populates=property,
                     ),
