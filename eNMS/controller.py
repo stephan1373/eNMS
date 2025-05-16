@@ -1245,7 +1245,7 @@ class Controller(vs.TimingMixin):
         ]
         db.session.bulk_update_mappings(vs.models[cls_name], updates)
 
-    def json_import_associations(self, association_name, path):
+    def json_import_associations(self, association_name, name_to_id, path):
         properties = db.associations[association_name]
         filepath = path / f"{association_name}.json"
         if not exists(filepath):
@@ -1294,7 +1294,7 @@ class Controller(vs.TimingMixin):
                 self.json_import_scalar(cls_name, property, name_to_id, path)
         db.session.commit()
         for association_name in db.associations:
-            self.json_import_associations(association_name, path)
+            self.json_import_associations(association_name, name_to_id, path)
         db.session.commit()
 
     def migration_export(self, **kwargs):
