@@ -1227,6 +1227,28 @@ class Controller(vs.TimingMixin):
             instances = loads(file.read())
         db.session.bulk_insert_mappings(cls, instances)
 
+    def json_import_scalar(self, cls_name, property, path):
+        relation = vs.relationships[cls_name][property]
+        if relation["list"]:
+            continue
+        filepath = path / f"{cls_name}_{property}.json"
+        if not exists(filepath):
+            continue
+        with open(filepath, "rb") as file:
+            relations = loads(file.read())
+        export_model1 = getattr(vs.models[cls_name], "export_type", cls_name)
+        export_model2 = getattr(
+            vs.models[relation["model"]], "export_type", relation["model"]
+        )
+        updates = [
+            {
+                "id": name_to_id[export_model1][source],
+                f"{property}_id": name_to_id[export_model2][destination],
+            }
+            for source, destination in relations.items()
+        ]
+        db.session.bulk_update_mappings(vs.models[cls_name], updates)
+
     def json_import(self, folder="migrations", **kwargs):
         export_models = [
             class_name
@@ -1253,25 +1275,8 @@ class Controller(vs.TimingMixin):
             )
         for cls_name, cls in vs.models.items():
             for property, relation in vs.relationships[cls_name].items():
-                if relation["list"]:
-                    continue
-                filepath = path / f"{cls_name}_{property}.json"
-                if not exists(filepath):
-                    continue
-                with open(filepath, "rb") as file:
-                    relations = loads(file.read())
-                export_model1 = getattr(vs.models[cls_name], "export_type", cls_name)
-                export_model2 = getattr(
-                    vs.models[relation["model"]], "export_type", relation["model"]
-                )
-                updates = [
-                    {
-                        "id": name_to_id[export_model1][source],
-                        f"{property}_id": name_to_id[export_model2][destination],
-                    }
-                    for source, destination in relations.items()
-                ]
-                db.session.bulk_update_mappings(vs.models[cls_name], updates)
+                self.json_import_scalar(cls_name, property, path)
+
         db.session.commit()
         for association_name, properties in db.associations.items():
             table = properties["table"]
