@@ -1255,7 +1255,17 @@ class Controller(vs.TimingMixin):
                 if not exists(filepath):
                     continue
                 with open(filepath, "rb") as file:
-                    relationships = loads(file.read())
+                    relations = loads(file.read())
+                export_model1 = getattr(vs.models[cls_name], "export_type", cls_name)
+                export_model2 = getattr(vs.models[relation["model"]], "export_type", relation["model"])
+                updates = [
+                    {"id": name_to_id[export_model1][source], f"{property}_id": name_to_id[export_model2][destination]}
+                    for source, destination in relations.items()
+                ]
+                print(cls_name, updates)
+                db.session.bulk_update_mappings(vs.models[cls_name], updates)
+        db.session.commit()
+        return
         for association_name, properties in db.associations.items():
             table = properties["table"]
             filepath = path / f"{association_name}.json"
