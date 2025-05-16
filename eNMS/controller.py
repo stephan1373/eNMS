@@ -1233,7 +1233,6 @@ class Controller(vs.TimingMixin):
                 continue
             if cls_name == "user":
                 continue
-
             db.session.execute(cls.__table__.delete())
             db.session.commit()
             filepath = path / f"{cls_name}.json"
@@ -1243,6 +1242,16 @@ class Controller(vs.TimingMixin):
                 instances = loads(file.read())
             db.session.bulk_insert_mappings(cls, instances)
             db.session.commit()
+        for cls_name, cls in vs.models.items():
+            for property, relation in vs.relationships[cls_name].items():
+                if relation["list"]:
+                    continue
+                cls = vs.models[cls_name]
+                filepath = path / f"{cls_name}_{property}.json"
+                if not exists(filepath):
+                    continue
+                with open(filepath, "rb") as file:
+                    relationships = loads(file.read())
         name_to_id = {}
         for cls_name in db.import_export_models:
             cls = vs.models[cls_name]
