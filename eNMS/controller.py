@@ -1255,7 +1255,6 @@ class Controller(vs.TimingMixin):
             for property, relation in vs.relationships[cls_name].items():
                 if relation["list"]:
                     continue
-                cls = vs.models[cls_name]
                 filepath = path / f"{cls_name}_{property}.json"
                 if not exists(filepath):
                     continue
