@@ -51,7 +51,7 @@ def generate_workflow_association_table():
     )
 
 def generate_devices():
-    devices = [{"name": f"d{index}"} for index in range(1, 80_001)]
+    devices = [{"name": f"d{index}"} for index in range(1, 150_001)]
     with open(PATH / "generic_device.json", "wb") as file:
         file.write(dumps(devices))
 
@@ -101,4 +101,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_services()
+generate_devices()
