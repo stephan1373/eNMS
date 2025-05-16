@@ -1,7 +1,6 @@
 from orjson import dumps
 from pathlib import Path
 from random import choice, randrange
-from ruamel.yaml import YAML
 
 service_type = [
     "swiss_army_knife_service",
