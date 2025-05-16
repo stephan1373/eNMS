@@ -1228,13 +1228,16 @@ class Controller(vs.TimingMixin):
         db.session.bulk_insert_mappings(cls, instances)
 
     def json_import(self, folder="migrations", **kwargs):
+        export_models = [
+            class_name
+            for class_name in vs.models
+            if class_name not in db.json_migration["no_export"]
+        ]
         for cls_name in db.json_migration["clear_on_import"]:
             model = vs.models[cls_name]
             db.session.execute(model.__table__.delete())
-        for cls_name, cls in vs.models.items():
-            if cls_name in db.json_migration["no_export"]:
-                continue
-            db.session.execute(cls.__table__.delete())
+        for cls_name in export_models:
+            db.session.execute(vs.models[cls_name].__table__.delete())
         for table_properties in db.associations.values():
             db.session.execute(table_properties["table"].delete())
         db.session.commit()
