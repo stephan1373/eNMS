@@ -99,4 +99,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_links()
+generate_workflow_association_table()
