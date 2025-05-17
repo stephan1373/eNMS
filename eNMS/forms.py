@@ -413,7 +413,6 @@ class DatabaseMigrationsForm(BaseForm):
         "Include private properties", default="checked"
     )
     json_migration = BooleanField("JSON Fast Migration", default="checked")
-    multithreading = BooleanField("Multithreading", default="checked")
     import_export_types = SelectMultipleField(
         "Instances to migrate", choices=db.import_export_models
     )
