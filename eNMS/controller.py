@@ -1291,10 +1291,10 @@ class Controller(vs.TimingMixin):
             return self.json_export(**kwargs)
         self.delete_corrupted_objects()
         yaml = vs.custom.get_yaml_instance()
+        path = Path(vs.migration_path) / kwargs["name"]
+        if not exists(path):
+            makedirs(path)
         for cls_name in kwargs["import_export_types"]:
-            path = Path(vs.migration_path) / kwargs["name"]
-            if not exists(path):
-                makedirs(path)
             with open(path / f"{cls_name}.yaml", "w") as migration_file:
                 yaml.dump(
                     db.export(
