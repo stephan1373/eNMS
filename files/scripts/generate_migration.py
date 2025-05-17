@@ -47,8 +47,8 @@ def generate_links():
 def generate_workflow_association_table():
     association_table = [
         [f"[Shared] s{i}", f"[Shared] w{j}"]
-        for i in range(j, j + 30)
         for j in range(1, 2000)
+        for i in range(j, j + 30)
     ]
     with open(PATH / "service_workflow_table.json", "wb") as file:
         file.write(dumps(links))
