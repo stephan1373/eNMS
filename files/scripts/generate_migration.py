@@ -51,7 +51,7 @@ def generate_workflow_association_table():
         for i in range(j, j + 30)
     ]
     with open(PATH / "service_workflow_table.json", "wb") as file:
-        file.write(dumps(links))
+        file.write(dumps(association_table))
 
 def generate_pools():
     pools = []
