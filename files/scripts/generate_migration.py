@@ -39,26 +39,19 @@ def generate_devices():
     with open(PATH / "generic_device.json", "wb") as file:
         file.write(dumps(devices))
 
-
 def generate_links():
     links = [{"name": f"l{index}", "model": f"Model{randrange(1, 51)}"} for index in range(1, 30_001)]
     with open(PATH / "generic_link.json", "wb") as file:
         file.write(dumps(links))
 
 def generate_workflow_association_table():
-    services.extend(
-        [
-            {
-                "name": f"w{index}",
-                "scoped_name": f"w{index}",
-                "type": "workflow",
-                "services": list(
-                    set(f"[Shared] s{randrange(1, 30)}" for _ in range(3))
-                ),
-            }
-            for index in range(1, 5)
-        ]
-    )
+    association_table = [
+        [f"[Shared] s{i}", f"[Shared] w{j}"]
+        for i in range(j, j + 30)
+        for j in range(1, 2000)
+    ]
+    with open(PATH / "service_workflow_table.json", "wb") as file:
+        file.write(dumps(links))
 
 def generate_pools():
     pools = []
