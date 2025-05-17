@@ -6,7 +6,7 @@ from eNMS.fields import HiddenField
 from eNMS.models.inventory import Device
 
 
-class GenricDevice(Device):
+class GenericDevice(Device):
     __tablename__ = "generic_device"
     __mapper_args__ = {"polymorphic_identity": "generic_device"}
     pretty_name = "Generic Device"
