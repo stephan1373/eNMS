@@ -1280,13 +1280,8 @@ class Controller(vs.TimingMixin):
             db.session.execute(model.__table__.delete())
         db.session.commit()
         path = Path(vs.migration_path) / kwargs["name"]
-        if kwargs.get("multithreading"):
-            with ThreadPoolExecutor(max_workers=10) as executor:
-                for cls_name in vs.models:
-                    executor.submit(self.json_import_properties, cls_name, path)
-        else:
-            for cls_name in vs.models:
-                self.json_import_properties(cls_name, path)
+        for cls_name in vs.models:
+            self.json_import_properties(cls_name, path)
         db.session.commit()
         name_to_id = {}
         for cls_name in db.import_export_models:
@@ -1294,30 +1289,11 @@ class Controller(vs.TimingMixin):
             name_to_id[cls_name] = dict(
                 db.session.execute(select(cls.name, cls.id)).all()
             )
-        if kwargs.get("multithreading"):
-            with ThreadPoolExecutor(max_workers=10) as executor:
-                for cls_name in vs.models:
-                    for property in vs.relationships[cls_name]:
-                        executor.submit(
-                            self.json_import_scalar,
-                            cls_name,
-                            property,
-                            name_to_id,
-                            path,
-                        )
-                for association_name in db.associations:
-                    executor.submit(
-                        self.json_import_associations,
-                        association_name,
-                        name_to_id,
-                        path,
-                    )
-        else:
-            for cls_name in vs.models:
-                for property in vs.relationships[cls_name]:
-                    self.json_import_scalar(cls_name, property, name_to_id, path)
-            for association_name in db.associations:
-                self.json_import_associations(association_name, name_to_id, path)
+        for cls_name in vs.models:
+            for property in vs.relationships[cls_name]:
+                self.json_import_scalar(cls_name, property, name_to_id, path)
+        for association_name in db.associations:
+            self.json_import_associations(association_name, name_to_id, path)
         db.session.commit()
 
     def migration_export(self, **kwargs):
