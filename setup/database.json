@@ -58,6 +58,7 @@
       "connection_service",
       "data",
       "device",
+      "file",
       "link",
       "object",
       "result",
@@ -73,6 +74,7 @@
       "connection_service",
       "data",
       "device",
+      "file",
       "group",
       "link",
       "pool",
@@ -175,18 +177,12 @@
     ],
     "file": [
       "id",
-      "filename",
-      "folder_path",
-      "full_path",
       "status",
       "logs",
       "folder_id"
     ],
     "folder": [
       "id",
-      "filename",
-      "folder_path",
-      "full_path",
       "status",
       "logs",
       "folder_id"
