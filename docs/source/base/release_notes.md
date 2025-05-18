@@ -8,6 +8,8 @@ Version 5.3: Migration
     "generic_device" type (impact on migration files)
   - Add new "Generic Link" class and convert all devices of type "link" to this new
     "generic_link" type (impact on migration files)
+  - Add new "Generic File" class and convert all devices of type "file" to this new
+    "generic_file" type (impact on migration files)
   - Add ondelete="SET NULL" constraint for the following foreign keys:
     - Changelog.model_id for all models
     - Data.store_id
@@ -16,6 +18,7 @@ Version 5.3: Migration
     - RestCallService.named_credential_id
     - WorkflowEdge.workflow_id
     - Commit: 801da3b267df05a3474547330a356577526b8b78
+  - Remove "filename", "folder_path", "full_path" from the "no_migrate" section in database.json (= start migrating them)
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 
