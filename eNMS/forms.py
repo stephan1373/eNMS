@@ -504,6 +504,10 @@ class FileForm(BaseForm):
         return valid_form and not invalid_path and not path_already_used
 
 
+class GenericFileForm(FileForm):
+    form_type = HiddenField(default="generic_file")
+
+
 class FolderForm(FileForm):
     form_type = HiddenField(default="folder")
     filename = StringField("Folder Name", render_kw={"readonly": True})

@@ -292,7 +292,7 @@ class Parameters(AbstractBase):
 
 
 class File(AbstractBase):
-    __tablename__ = type = class_type = export_type = "file"
+    __tablename__ = class_type = export_type = "file"
     log_change = vs.settings["files"]["log_events"]
     type = db.Column(db.SmallString)
     __mapper_args__ = {"polymorphic_identity": "file", "polymorphic_on": type}
@@ -357,10 +357,17 @@ class File(AbstractBase):
                 move(self.full_path, f"{trash}/{filename}")
 
 
+class GenericFile(File):
+    __tablename__ = "generic_file"
+    __mapper_args__ = {"polymorphic_identity": "generic_file"}
+    pretty_name = "Generic File"
+    parent_type = "file"
+    id = db.Column(Integer, ForeignKey("file.id"), primary_key=True)
+
+
 class Folder(File):
     __tablename__ = "folder"
     pretty_name = "Folder"
-    parent_type = "file"
     id = db.Column(Integer, ForeignKey("file.id"), primary_key=True)
     files = relationship(
         "File",
