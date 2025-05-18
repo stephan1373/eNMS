@@ -23,7 +23,8 @@ Version 5.3: Migration
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 
 Migration:
-- Run script to convert all devices from type "device" to "generic_device"
+- Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
+  and all files from type "file" to "generic_file"
 
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
