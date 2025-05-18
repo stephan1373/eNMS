@@ -1160,7 +1160,7 @@ class Controller(vs.TimingMixin):
                 cls2, getattr(table.c, f"{model2}_id") == cls2.id
             )
         )
-        result = [(row[0], row[1]) for row in db.session.execute(statement).all()]
+        result = sorted((row[0], row[1]) for row in db.session.execute(statement).all())
         if not result:
             return
         with open(path / f"{association_name}.json", "wb") as file:
