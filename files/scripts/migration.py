@@ -136,6 +136,13 @@ def migrate_5_2_to_5_3():
             link["type"] = "generic_link"
     with open(PATH / FILENAME / "link.yaml", "w") as link_file:
         yaml.dump(links, link_file)
+    with open(PATH / FILENAME / "file.yaml", "r") as file_file:
+        files = yaml.load(file_file)
+    for file in files:
+        if file["type"] == "file":
+            file["type"] = "generic_file"
+    with open(PATH / FILENAME / "file.yaml", "w") as file_file:
+        yaml.dump(files, file_file)
 
 
 migrate_5_2_to_5_3()
