@@ -47,6 +47,7 @@ class Controller(vs.TimingMixin):
         self.migration_import(
             name=vs.settings["app"].get("startup_migration", "default"),
             import_export_types=db.import_export_models,
+            json_migration=vs.settings["app"].get("json_migration"),
         )
         self.get_git_content(force_update=True)
         self.scan_folder()
