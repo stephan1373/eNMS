@@ -104,4 +104,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_devices()
+generate_links()
