@@ -53,7 +53,7 @@ def generate_workflows():
             "positions": positions,
             "scoped_name": f"w{index}",
             "shared": True,
-        }
+        })
     with open(PATH / "workflow.json", "wb") as file:
         file.write(dumps(workflows))
 
