@@ -21,6 +21,9 @@ Version 5.3: Migration
   - Remove "filename", "folder_path", "full_path" from the "no_migrate" section in database.json (= start migrating them)
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
+- Performance Optimization
+  - Update "counters" function to improve dashboard display time by using low-level SQL query
+    Commit: a01d175e5f4c66c29d250de67fe24cc0b530ec38
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
