@@ -92,7 +92,7 @@ class Device(Object):
         if not kwargs.get("migration_import") and self.name != old_name:
             for network in self.networks:
                 network.positions[self.name] = network.positions.pop(old_name, [0, 0])
-        self.serialized = str(self.get_properties()).lower()
+        self.serialized = str(self.get_properties().values())
 
     def post_update(self):
         return self.to_dict(include_relations=["networks"])

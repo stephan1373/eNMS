@@ -200,9 +200,7 @@ class Service(AbstractBase):
             self.update_last_modified_properties()
             for workflow in self.workflows:
                 workflow.positions[self.name] = workflow.positions.pop(old_name, [0, 0])
-        self.serialized = str(
-            self.to_dict(relation_properties=["name"], exclude=["positions"]).values()
-        ).lower()
+        self.serialized = str(self.get_properties().values())
 
     def update_last_modified_properties(self):
         super().update_last_modified_properties()

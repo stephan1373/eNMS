@@ -857,7 +857,7 @@ class Controller(vs.TimingMixin):
                 is_match = (
                     search(value, instance.serialized)
                     if is_regex_search
-                    else value.lower() in instance.serialized
+                    else value.lower() in instance.serialized.lower()
                 )
             if is_match:
                 highlight.append(instance.id)
