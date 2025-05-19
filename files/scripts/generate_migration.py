@@ -33,24 +33,24 @@ def generate_services():
             }
         ]))
     with open(PATH / "python_snippet_service.json", "wb") as file:
-        file.write(dumps([{
+        file.write(dumps([
+            {
                 "name": f"[Shared] s{index}",
                 "model": f"Model{randrange(1, 21)}",
                 "scoped_name": f"s{index}",
                 "shared": True
             } for index in range(9_997)
         ]))
-    workflows = [
+
+def generate_workflows():
+    with open(PATH / "workflow.json", "wb") as file:
+        file.write(dumps([
         {
             "name": f"[Shared] w{index}",
             "scoped_name": f"w{index}",
             "shared": True,
-            "type": "workflow",
-        }
-        for index in range(2_000)
-    ]
-    with open(PATH / "workflow.json", "wb") as file:
-        file.write(dumps(workflows))
+        } for index in range(2_000)
+    ]))
 
 def generate_devices():
     with open(PATH / "generic_device.json", "wb") as file:
