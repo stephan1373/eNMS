@@ -19,7 +19,7 @@ def generate_services():
             "shared": True,
             "type": "python_snippet_service",
         }
-        for index in range(10_000)
+        for index in range(9_998)
     ]
     with open(PATH / "python_snippet_service.json", "wb") as file:
         file.write(dumps(services))
