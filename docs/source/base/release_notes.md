@@ -33,6 +33,8 @@ Version 5.2.0: Data Store and Various Improvements
     - When the option is enabled, services that do match are highlighted and services
     that don't are displayed normally.
   - In Tree Search, add support for regular expression search
+  - Update 'serialized' property to be case sensitive for network and workflow search, and remove the
+    relationships from serialized
 - When device filtering is enabled, limit results displayed in result table to the filtered device (note: device filtering is not compatible with the "Only save failed results" option)
 - Fix table form filtering bug: invert checkbox constraint in table filtering not enforced previously
 - Upgrade JQuery to the latest version v3.7.1
