@@ -46,8 +46,8 @@ def generate_workflows():
         positions = {"[Shared] Start": [0, 0], "[Shared] End": [1100, 200]}
         for i in range(10):
             positions[f"[Shared] s{index + i}"] = ((i + 1) * 200, 0)
-            positions[f"[Shared] s{index + i + 10}"] = (1000 - 200 * i, 200)
-            positions[f"[Shared] s{index + i + 20}"] = ((i + 1) * 400, 400)
+            positions[f"[Shared] s{index + i + 10}"] = (2000 - 200 * i, 200)
+            positions[f"[Shared] s{index + i + 20}"] = ((i + 1) * 200, 400)
         workflows.append({
             "name": f"[Shared] w{index}",
             "positions": positions,
