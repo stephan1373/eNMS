@@ -51,6 +51,7 @@ def generate_workflows():
         workflows.append({
             "name": f"[Shared] w{index}",
             "positions": positions,
+            "vendor": choice(["Cisco", "Juniper", "Arista"]),
             "scoped_name": f"w{index}",
             "shared": True,
         })
