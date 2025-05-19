@@ -1567,7 +1567,7 @@ class Runner(vs.TimingMixin):
         for send, expect in commands:
             if not send:
                 continue
-            log_command = "jump on connect password" if send == password else send
+            log_command = "jump on connect password" if password and send == password else send
             self.log("info", f"Sent '{log_command}'" f", waiting for '{expect}'")
             connection.send_command(
                 send,
