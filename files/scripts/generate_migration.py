@@ -14,13 +14,14 @@ def generate_services():
     services = [
         {
             "name": f"[Shared] s{index}",
+            "model": f"Model{randrange(1, 21)}",
             "scoped_name": f"s{index}",
             "shared": True,
-            "type": "netmiko_commands_service",
+            "type": "python_snippet_service",
         }
-        for index in range(1, 10000)
+        for index in range(1, 10_001)
     ]
-    with open(PATH / "netmiko_commands_service.json", "wb") as file:
+    with open(PATH / "python_snippet_service.json", "wb") as file:
         file.write(dumps(services))
     workflows = [
         {
@@ -29,7 +30,7 @@ def generate_services():
             "shared": True,
             "type": "workflow",
         }
-        for index in range(1, 2000)
+        for index in range(1, 2_001)
     ]
     with open(PATH / "workflow.json", "wb") as file:
         file.write(dumps(workflows))
