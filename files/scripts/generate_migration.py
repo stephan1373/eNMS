@@ -11,7 +11,7 @@ PATH = (
 )
 
 def generate_services():
-    with open(PATH / "swiss_army_knife_service", "wb") as file:
+    with open(PATH / "swiss_army_knife_service.json", "wb") as file:
         file.write(dumps([
             {
                 "name": "[Shared] Start",
