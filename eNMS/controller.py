@@ -16,7 +16,7 @@ from orjson import dumps, loads
 from os import getenv, listdir, makedirs, scandir
 from os.path import exists
 from pathlib import Path
-from re import search, sub
+from re import compile, search, sub
 from requests import get as http_get
 from shutil import rmtree
 from sqlalchemy import and_, cast, or_, String
@@ -702,6 +702,11 @@ class Controller(vs.TimingMixin):
                 )
             }
         kwargs["runtime"] = getattr(run, "runtime", None)
+        if kwargs.get("search_value") and kwargs.get("regex_search"):
+            try:
+                compile(kwargs["search_value"])
+            except Exception as exc:
+                return {"alert": f"Invalid Regular Expression ('{exc}')"}
         if kwargs.get("get_tree") or kwargs.get("search_value"):
             output.update(self.get_instance_tree("workflow", path, **kwargs))
         serialized_service = service.to_dict(include_relations=["superworkflow"])
