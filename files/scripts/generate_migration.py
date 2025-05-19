@@ -13,13 +13,27 @@ PATH = (
 def generate_services():
     services = [
         {
+            "name": "[Shared] Start",
+            "model": f"Model{randrange(1, 21)}",
+            "scoped_name": "Start",
+            "shared": True,
+            "type": "swiss_army_knife_service",
+        },
+        {
+            "name": "[Shared] End",
+            "model": f"Model{randrange(1, 21)}",
+            "scoped_name": "End",
+            "shared": True,
+            "type": "swiss_army_knife_service",
+        }
+        *({
             "name": f"[Shared] s{index}",
             "model": f"Model{randrange(1, 21)}",
             "scoped_name": f"s{index}",
             "shared": True,
             "type": "python_snippet_service",
         }
-        for index in range(9_998)
+        for index in range(9_998))
     ]
     with open(PATH / "python_snippet_service.json", "wb") as file:
         file.write(dumps(services))
