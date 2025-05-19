@@ -1,6 +1,6 @@
 from orjson import dumps
 from pathlib import Path
-from random import randrange
+from random import choice, randrange
 
 PATH = (
     Path.cwd().parent.parent.parent
@@ -15,19 +15,16 @@ def generate_services():
         file.write(dumps([
             {
                 "name": "[Shared] Start",
-                "model": f"Model{randrange(1, 21)}",
                 "scoped_name": "Start",
                 "shared": True,
             },
             {
                 "name": "[Shared] End",
-                "model": f"Model{randrange(1, 21)}",
                 "scoped_name": "End",
                 "shared": True,
             },
             {
                 "name": "[Shared] Placeholder",
-                "model": f"Model{randrange(1, 21)}",
                 "scoped_name": "Placeholder",
                 "shared": True,
             }
@@ -37,6 +34,7 @@ def generate_services():
             {
                 "name": f"[Shared] s{index}",
                 "model": f"Model{randrange(1, 21)}",
+                "vendor": choice(["Cisco", "Juniper", "Arista"]),
                 "scoped_name": f"s{index}",
                 "shared": True
             } for index in range(9_997)
