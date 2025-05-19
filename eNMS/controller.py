@@ -20,7 +20,7 @@ from pathlib import Path
 from re import search, sub
 from requests import get as http_get
 from shutil import rmtree
-from sqlalchemy import and_, cast, or_, select, String
+from sqlalchemy import and_, cast, func, or_, select, String
 from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import aliased
 from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
@@ -296,7 +296,11 @@ class Controller(vs.TimingMixin):
         }
 
     def counters(self, property, model):
-        return Counter(v for v, in db.query(model, properties=[property], rbac=None))
+        return dict(
+            db.query(model, rbac=None)
+            .with_entities(getattr(vs.models[model], property), func.count())
+            .group_by(getattr(vs.models[model], property))
+        )
 
     def create_label(self, type, id, x, y, label_id, **kwargs):
         workflow = db.fetch(type, id=id, rbac="edit")
