@@ -41,14 +41,21 @@ def generate_services():
         ]))
 
 def generate_workflows():
-    with open(PATH / "workflow.json", "wb") as file:
-        file.write(dumps([
-        {
+    workflows = []
+    for index in range(2_000):
+        positions = {"[Shared] Start": [0, 0], "[Shared] End": [1100, 200]}
+        for i in range(1, 11):
+            positions[f"[Shared] s{index + i - 1}"] = (i * 100, 0)
+            positions[f"[Shared] s{index + i + 10 - 1}"] = (1000 - 100 * (i - 1), 100)
+            positions[f"[Shared] s{index + i + 20 - 1}"] = (i * 100, 200)
+        workflows.append({
             "name": f"[Shared] w{index}",
+            "positions": positions,
             "scoped_name": f"w{index}",
             "shared": True,
-        } for index in range(2_000)
-    ]))
+        }
+    with open(PATH / "workflow.json", "wb") as file:
+        file.write(dumps(workflows))
 
 def generate_devices():
     with open(PATH / "generic_device.json", "wb") as file:
@@ -67,7 +74,7 @@ def generate_links():
 def generate_workflow_association_table():
     association_table = [
         [f"[Shared] s{i}", f"[Shared] w{j}"]
-        for j in range(1, 2000)
+        for j in range(2000)
         for i in range(j, j + 30)
     ]
     with open(PATH / "service_workflow_table.json", "wb") as file:
