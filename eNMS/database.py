@@ -709,7 +709,7 @@ class Database:
                     table,
                     f"user_{rbac_model}s",
                     relationship(
-                        rbac_model.capitalize(),
+                        "".join(word.capitalize() for word in rbac_model.split("_")),
                         secondary=getattr(self, f"{rbac_model}_owner_table"),
                         back_populates="owners",
                     ),
