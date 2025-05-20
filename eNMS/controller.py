@@ -1196,7 +1196,7 @@ class Controller(vs.TimingMixin):
         cls = vs.models[cls_name]
         model_class = vs.models[cls_name]
         export_type = getattr(cls, "export_type", cls.type)
-        excluded_properties = set(db.dont_migrate.get(export_type, [])) | {"type"}
+        excluded_properties = set(db.json_migration["dont_migrate"].get(export_type, [])) | {"type"}
         excluded_properties |= set(getattr(cls, "model_properties", {}))
         properties_to_export = [
             property
