@@ -113,11 +113,6 @@
         "status",
         "folder_id"
       ],
-      "folder": [
-        "id",
-        "status",
-        "folder_id"
-      ],
       "link": [
         "id",
         "destination_id",
@@ -143,16 +138,6 @@
         "status",
         "superworkflow_id",
         "soft_deleted"
-      ],
-      "network": [
-        "id",
-        "configuration",
-        "operational_data",
-        "specialized_data",
-        "source_id",
-        "destination_id",
-        "path",
-        "serialized"
       ],
       "task": [
         "id",
