@@ -114,79 +114,48 @@
       "file": [
         "id",
         "status",
-        "logs",
         "folder_id"
       ],
       "folder": [
         "id",
         "status",
-        "logs",
         "folder_id"
       ],
       "link": [
         "id",
-        "pools",
-        "networks",
-        "users",
         "destination_id",
         "destination_name",
         "source_id",
-        "source_name",
-        "logs"
+        "source_name"
       ],
       "pool": [
-        "credential_devices",
         "device_number",
         "id",
         "link_number",
-        "runs",
         "service_number",
-        "services",
         "network_number",
-        "user_number",
-        "logs"
+        "user_number"
       ],
       "parameters": ["id"],
-      "server": ["id", "current_runs", "logs", "runs", "status", "workers"],
+      "server": ["id", "current_runs", "status"],
       "service": [
-        "children",
         "id",
-        "sources",
-        "destinations",
         "named_credential_id",
         "path",
-        "runs",
         "serialized",
         "status",
         "superworkflow_id",
-        "tasks",
-        "workflows",
-        "tasks",
-        "edges",
-        "logs",
-        "service_changelogs",
         "soft_deleted"
       ],
       "network": [
         "id",
-        "device_changelogs",
         "configuration",
         "operational_data",
         "specialized_data",
-        "services",
         "source_id",
-        "source",
-        "destination",
         "destination_id",
         "path",
-        "pools",
-        "networks",
-        "serialized",
-        "runs",
-        "target_services",
-        "tasks",
-        "users",
-        "logs"
+        "serialized"
       ],
       "task": [
         "id",
@@ -194,10 +163,8 @@
         "service_id",
         "next_run_time",
         "is_active",
-        "runs",
         "time_before_next_run",
-        "status",
-        "logs"
+        "status"
       ],
       "user": [
         "id",
