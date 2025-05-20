@@ -249,6 +249,23 @@ export const showRuntimePanel = function(
             >Auto-scroll</label>
           </div>`
             : "";
+        const searchButton = 
+          panelType == "logs"
+          ? `
+            <div style="width: 30px; float: left; margin-left: 15px;">
+              <button
+                id="search-button-${panelId}"
+                class="btn btn-default pull-right"
+                data-tooltip="Search"
+                type="button"
+              >
+                <span
+                  class="glyphicon glyphicon-search"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </div>`
+          : "";
         header = `
         <div class="modal-body centered" >
           <nav
@@ -277,19 +294,7 @@ export const showRuntimePanel = function(
                 ></span>
               </button>
             </div>
-            <div style="width: 30px; float: left; margin-left: 15px;">
-              <button
-                id="search-button-${panelId}"
-                class="btn btn-default pull-right"
-                data-tooltip="Search"
-                type="button"
-              >
-                <span
-                  class="glyphicon glyphicon-search"
-                  aria-hidden="true"
-                ></span>
-              </button>
-            </div>
+            ${searchButton}
             ${autoscrollBox}
           </nav>
           <div id="search-logs-${panelId}" style="display: none">
