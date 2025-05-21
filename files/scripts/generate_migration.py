@@ -90,11 +90,20 @@ def generate_tasks():
         ]))
 
 def generate_pools():
+    pools = []
+    for index in range(2_000):
+        if index < 1000:
+            pools.append({"name": f"Pool{index}", "manually_defined": True})
+        else:
+            pools.append(
+                {
+                    "name": f"Pool {index}",
+                    "device_name": ".*",
+                    "device_name_match": "regex",
+                }
+            )
     with open(PATH / "pool.json", "wb") as file:
-        file.write(dumps([
-            {"name": f"Pool{index}", "manually_defined": True}
-            for index in range(2_000)
-        ]))
+        file.write(dumps(pools))
 
 def generate_users():
     users = [{"name": f"user{index}"} for index in range(1, 1_001)]
@@ -113,4 +122,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_pools()
+generate_tasks()
