@@ -75,8 +75,8 @@ def generate_workflows():
 def generate_workflow_association_table():
     association_table = []
     for j in range(2000):
-        association_table.append(["[Shared] Start", f"[Shared] w{j}"])
-        association_table.append(["[Shared] End", f"[Shared] w{j}"])
+        association_table.append(["[Shared] Start", f"[Shared] Workflow{j}"])
+        association_table.append(["[Shared] End", f"[Shared] Workflow{j}"])
         for i in range(j, j + 30):
             association_table.append([f"[Shared] Service{i}", f"[Shared] Workflow{j}"]) 
     with open(PATH / "service_workflow_table.json", "wb") as file:
@@ -122,4 +122,8 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_pools()
+generate_devices()
+generate_links()
+generate_services()
+generate_workflows()
+generate_workflow_association_table()
