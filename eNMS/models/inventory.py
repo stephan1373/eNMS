@@ -351,7 +351,7 @@ class Pool(AbstractBase):
                                 {"pool_id": self.id, f"{model}_id": instance.id}
                                 for instance in instances
                             ]
-                            db.session.execute(table.insert().values(values))
+                            db.session.execute(table.insert(), values)
                     else:
                         setattr(self, f"{model}s", instances)
                 else:
