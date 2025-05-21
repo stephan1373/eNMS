@@ -99,7 +99,7 @@ def generate_pools():
             pools.append(
                 {
                     "name": f"Pool{index}",
-                    "device_name": f"Device{start_range}\d{3}",
+                    "device_name": f"Device{start_range}\\d{{3}}",
                     "device_name_match": "regex",
                 }
             )
@@ -123,8 +123,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_devices()
-generate_links()
-generate_services()
-generate_workflows()
-generate_workflow_association_table()
+generate_pools()
