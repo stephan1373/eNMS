@@ -78,7 +78,7 @@ def generate_workflow_association_table():
         association_table.append(["[Shared] Start", f"[Shared] Workflow{j}"])
         association_table.append(["[Shared] End", f"[Shared] Workflow{j}"])
         for i in range(j, j + 30):
-            association_table.append([f"[Shared] Service{i}", f"[Shared] Workflow{j}"]) 
+            association_table.append([f"[Shared] Service{i}", f"[Shared] Workflow{j}"])
     with open(PATH / "service_workflow_table.json", "wb") as file:
         file.write(dumps(association_table))
 
@@ -105,6 +105,15 @@ def generate_pools():
             )
     with open(PATH / "pool.json", "wb") as file:
         file.write(dumps(pools))
+
+def generate_pool_association_table():
+    association_table = [
+        [f"Device{i}", f"[Shared] Pool{j}"]
+        for j in range(1000)
+        for i in range(j // 10, j // 10 + 1000)
+    ]
+    with open(PATH / "pool_device_table.json", "wb") as file:
+        file.write(dumps(association_table))
 
 def generate_users():
     users = [{"name": f"user{index}"} for index in range(1, 1_001)]
