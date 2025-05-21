@@ -24,6 +24,10 @@ Version 5.3: Migration
 - Performance Optimization
   - Update "counters" function to improve dashboard display time by using low-level SQL query
     Commit: a01d175e5f4c66c29d250de67fe24cc0b530ec38
+  - Update pool mechanism optimization:
+    - Replace "db.session.execute(table.insert().values(values))" with
+      "db.session.execute(table.insert(), values)" (the update can fail with first option)
+      Commit: 94d3ee1828d8ec4b51cd97eb154ed9b15528d4c0
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
