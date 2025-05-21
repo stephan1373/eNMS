@@ -118,11 +118,6 @@ def generate_users():
     with open(PATH / "user.json", "wb") as file:
         file.write(dumps(users))
 
-def generate_tasks():
-    tasks = [{"name": f"task{index}"} for index in range(1, 2_001)]
-    with open(PATH / "task.json", "wb") as file:
-        file.write(dumps(tasks))
-
 def generate_networks():
     networks = [
         {
