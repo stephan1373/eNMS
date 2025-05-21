@@ -10,6 +10,20 @@ PATH = (
     / "scalability"
 )
 
+def generate_devices():
+    with open(PATH / "generic_device.json", "wb") as file:
+        file.write(dumps([
+        {"name": f"d{index}", "model": f"Model{randrange(1, 21)}"}
+        for index in range(150_000)
+    ]))
+
+def generate_links():
+    with open(PATH / "generic_link.json", "wb") as file:
+        file.write(dumps([
+            {"name": f"l{index}", "model": f"Model{randrange(1, 51)}"}
+            for index in range(30_000)
+        ]))
+
 def generate_services():
     with open(PATH / "swiss_army_knife_service.json", "wb") as file:
         file.write(dumps([
@@ -57,20 +71,6 @@ def generate_workflows():
         })
     with open(PATH / "workflow.json", "wb") as file:
         file.write(dumps(workflows))
-
-def generate_devices():
-    with open(PATH / "generic_device.json", "wb") as file:
-        file.write(dumps([
-        {"name": f"d{index}", "model": f"Model{randrange(1, 21)}"}
-        for index in range(150_000)
-    ]))
-
-def generate_links():
-    with open(PATH / "generic_link.json", "wb") as file:
-        file.write(dumps([
-            {"name": f"l{index}", "model": f"Model{randrange(1, 51)}"}
-            for index in range(30_000)
-        ]))
 
 def generate_workflow_association_table():
     association_table = [
