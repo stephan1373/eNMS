@@ -82,6 +82,13 @@ def generate_workflow_association_table():
     with open(PATH / "service_workflow_table.json", "wb") as file:
         file.write(dumps(association_table))
 
+def generate_tasks():
+    with open(PATH / "task.json", "wb") as file:
+        file.write(dumps([
+            {"name": f"Task{index}", "status": choice(["Active", "Inactive"])}
+            for index in range(2_000)
+        ]))
+
 def generate_pools():
     pools = []
     for index in range(1, 1_001):
@@ -128,4 +135,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_workflows()
+generate_tasks()
