@@ -12,7 +12,6 @@ from io import BytesIO, StringIO
 from json import dump, load
 from logging import info, error
 from operator import attrgetter, itemgetter
-from orjson import dumps, loads
 from os import getenv, listdir, makedirs, scandir
 from os.path import exists
 from pathlib import Path
@@ -29,6 +28,7 @@ from tarfile import open as open_tar
 from threading import Thread
 from traceback import format_exc
 from uuid import uuid4
+from warnings import warn
 from xlrd import open_workbook
 from xlrd.biffh import XLRDError
 from xlwt import Workbook
@@ -37,6 +37,11 @@ from eNMS.database import db
 from eNMS.forms import form_factory
 from eNMS.environment import env
 from eNMS.variables import vs
+
+try:
+    from orjson import dumps, loads
+except ImportError as exc:
+    warn(f"Couldn't import orjson module ({exc})")
 
 
 class Controller(vs.TimingMixin):
