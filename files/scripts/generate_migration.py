@@ -108,9 +108,9 @@ def generate_pools():
 
 def generate_pool_association_table():
     association_table = [
-        [f"Device{i}", f"Pool{j}"]
+        [f"Pool{j}", f"Device{i}"]
         for j in range(1000)
-        for i in range(j // 10, j // 10 + 1000)
+        for i in range(j * 100, j * 100 + 100)
     ]
     with open(PATH / "pool_device_table.json", "wb") as file:
         file.write(dumps(association_table))
