@@ -108,7 +108,7 @@ def generate_pools():
 
 def generate_pool_association_table():
     association_table = [
-        [f"Device{i}", f"[Shared] Pool{j}"]
+        [f"Device{i}", f"Pool{j}"]
         for j in range(1000)
         for i in range(j // 10, j // 10 + 1000)
     ]
@@ -132,4 +132,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_pools()
+generate_pool_association_table()
