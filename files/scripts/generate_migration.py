@@ -85,7 +85,7 @@ def generate_workflow_association_table():
 def generate_tasks():
     with open(PATH / "task.json", "wb") as file:
         file.write(dumps([
-            {"name": f"Task{index}", "status": choice(["Active", "Inactive"])}
+            {"name": f"Task{index}", "is_active": choice([True, False])}
             for index in range(2_000)
         ]))
 
