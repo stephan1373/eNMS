@@ -97,7 +97,7 @@ def generate_pools():
         else:
             pools.append(
                 {
-                    "name": f"Pool {index}",
+                    "name": f"Pool{index}",
                     "device_name": ".*",
                     "device_name_match": "regex",
                 }
@@ -122,4 +122,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_tasks()
+generate_pools()
