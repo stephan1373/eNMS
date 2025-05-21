@@ -95,10 +95,11 @@ def generate_pools():
         if index < 1000:
             pools.append({"name": f"Pool{index}", "manually_defined": True})
         else:
+            start_range = randrange(1, 150)
             pools.append(
                 {
                     "name": f"Pool{index}",
-                    "device_name": ".*",
+                    "device_name": f"Device{start_range}\d{3}",
                     "device_name_match": "regex",
                 }
             )
