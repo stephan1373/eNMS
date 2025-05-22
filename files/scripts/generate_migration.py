@@ -92,7 +92,7 @@ def generate_tasks():
 def generate_task_service():
     with open(PATH / "task_service.json", "wb") as file:
         file.write(dumps({
-            f"Task{index}": f"Workflow{index // 10}"
+            f"Task{index}": f"[Shared] Workflow{index // 10}"
             for index in range(2_000)
         }))
 
