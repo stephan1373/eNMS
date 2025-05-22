@@ -146,7 +146,7 @@ def generate_workflow_edges():
         workflow_edge_destination[f"Start Edge {j}"] = f"[Shared] Service{j}"
         workflow_edge_workflow[f"Start Edge {j}"] = f"[Shared] Workflow{j}"
         # Edge to End
-        workflow_edges.append({"name": f"End Edge {j}",, **edge_kwargs})
+        workflow_edges.append({"name": f"End Edge {j}", **edge_kwargs})
         workflow_edge_source[f"End Edge {j}"] = f"[Shared] Service{j + 29}"
         workflow_edge_destination[f"End Edge {j}"] = "[Shared] End"
         workflow_edge_workflow[f"End Edge {j}"] = f"[Shared] Workflow{j}"
