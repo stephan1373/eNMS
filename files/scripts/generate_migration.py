@@ -133,7 +133,7 @@ def generate_users():
     with open(PATH / "user.json", "wb") as file:
         file.write(dumps(users))
 
-def add_edge(edge=edge, source=source, destination=destination, workflow=workflow):
+def add_edge(edge="", source="", destination="", workflow=""):
     workflow_edge.append({"name": edge, "subtype": "success"})
     workflow_edge_source[edge] = source
     workflow_edge_destination[edge] = destination
