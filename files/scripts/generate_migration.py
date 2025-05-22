@@ -169,7 +169,7 @@ def generate_servers():
     servers = [{
         "name":"eNMS Server",
         "allowed_automation": ["scheduler", "rest_api", "application"]
-    }] + [{"name": f"Server{i}"} for i in range(1, 1_1000)]
+    }] + [{"name": f"Server{i}"} for i in range(1, 1_000)]
     with open(PATH / "server.json", "wb") as file:
         file.write(dumps(servers))
 
@@ -177,4 +177,4 @@ def generate_networks():
     pass
 
 
-def generate_servers()
+generate_servers()
