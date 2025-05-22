@@ -140,18 +140,18 @@ def generate_workflow_edges():
     workflow_edge_workflow = {}
     for j in range(2000):
         # Edge from Start
-        workflow_edge.append({"name": f"Start Edge {j}", "subtype": "success"})
+        workflow_edges.append({"name": f"Start Edge {j}", "subtype": "success"})
         workflow_edge_source[f"Start Edge {j}"] = "[Shared] Start"
         workflow_edge_destination[f"Start Edge {j}"] = f"[Shared] Service{j}"
         workflow_edge_workflow[f"Start Edge {j}"] = f"[Shared] Workflow{j}"
         # Edge to End
-        workflow_edge.append({"name": f"End Edge {j}", "subtype": "success"})
+        workflow_edges.append({"name": f"End Edge {j}", "subtype": "success"})
         workflow_edge_source[f"End Edge {j}"] = f"[Shared] Service{j + 29}"
         workflow_edge_destination[f"End Edge {j}"] = "[Shared] End"
         workflow_edge_workflow[f"End Edge {j}"] = f"[Shared] Workflow{j}"
         for i in range(j, j + 29):
             # Edge between Services
-            workflow_edge.append({"name": f"Edge {j} - {i}", "subtype": "success"})
+            workflow_edges.append({"name": f"Edge {j} - {i}", "subtype": "success"})
             workflow_edge_source[f"Edge {j} - {i}"] = f"[Shared] Service{j}"
             workflow_edge_destination[f"Edge {j} - {i}"] = f"[Shared] Service{j + 1}"
             workflow_edge_workflow[f"Edge {j} - {i}"] = f"[Shared] Workflow{j}"
