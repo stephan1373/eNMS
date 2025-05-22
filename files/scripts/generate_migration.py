@@ -116,7 +116,10 @@ def generate_pool_association_table():
         file.write(dumps(association_table))
 
 def generate_users():
-    users = [{"name": f"user{index}"} for index in range(1, 1_001)]
+    password = "JGFyZ29uMmlkJHY9MTkkbT0xMDI0MDAsdD0yLHA9OCRNaWFrOVA3Zit6OW5qSEd1RmVLOGR3JEhLWk5VWnVpMnlObkt5QnRHNFR4WEE="
+    users = [{"name": "admin", "is_admin": True, "password": password}]
+    for i in range(1, 1000):
+        users.append({"name": f"User{i}", "is_admin": i < 100, "password": password})
     with open(PATH / "user.json", "wb") as file:
         file.write(dumps(users))
 
