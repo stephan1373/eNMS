@@ -116,7 +116,10 @@ def generate_pool_association_table():
         file.write(dumps(association_table))
 
 def generate_users():
-    password = "JGFyZ29uMmlkJHY9MTkkbT0xMDI0MDAsdD0yLHA9OCRNaWFrOVA3Zit6OW5qSEd1RmVLOGR3JEhLWk5VWnVpMnlObkt5QnRHNFR4WEE="
+    password = (
+        "JGFyZ29uMmlkJHY9MTkkbT0xMDI0MDAsdD0yLHA9OCRNaWFrOVA3Z"
+        "it6OW5qSEd1RmVLOGR3JEhLWk5VWnVpMnlObkt5QnRHNFR4WEE="
+    )
     users = [{"name": "admin", "is_admin": True, "password": password}]
     for i in range(1, 1000):
         users.append({"name": f"User{i}", "is_admin": i < 100, "password": password})
