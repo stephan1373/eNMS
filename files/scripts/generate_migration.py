@@ -133,40 +133,30 @@ def generate_users():
     with open(PATH / "user.json", "wb") as file:
         file.write(dumps(users))
 
-def add_edge(edge="", source="", destination="", workflow=""):
-    workflow_edge.append({"name": edge, "subtype": "success"})
-    workflow_edge_source[edge] = source
-    workflow_edge_destination[edge] = destination
-    workflow_edge_workflow[edge] = workflow
-
 def generate_workflow_edges():
     workflow_edges = []
     workflow_edge_source = {}
     workflow_edge_destination = {}
     workflow_edge_workflow = {}
     for j in range(2000):
-        add_edge(
-            edge=f"Start Edge {j}",
-            source="[Shared] Start",
-            destination=f"[Shared] Service{j}",
-            workflow=f"[Shared] Workflow{j}"
-        )
-        add_edge(
-            edge=f"End Edge {j}",
-            source=f"[Shared] Service{j + 29}",
-            destination="[Shared] End",
-            workflow=f"[Shared] Workflow{j}"
-        )
+        # Edge from Start
+        workflow_edge.append({"name": f"Start Edge {j}", "subtype": "success"})
+        workflow_edge_source[f"Start Edge {j}"] = "[Shared] Start"
+        workflow_edge_destination[f"Start Edge {j}"] = f"[Shared] Service{j}"
+        workflow_edge_workflow[f"Start Edge {j}"] = f"[Shared] Workflow{j}"
+        # Edge to End
+        workflow_edge.append({"name": f"End Edge {j}", "subtype": "success"})
+        workflow_edge_source[f"End Edge {j}"] = f"[Shared] Service{j + 29}"
+        workflow_edge_destination[f"End Edge {j}"] = "[Shared] End"
+        workflow_edge_workflow[f"End Edge {j}"] = f"[Shared] Workflow{j}"
         for i in range(j, j + 29):
-            add_edge(
-                edge=f"Edge {j} - {i}",
-                source=f"[Shared] Service{j}",
-                destination=f"[Shared] Service{j + 1}",
-                workflow=f"[Shared] Workflow{j}"
-            )
+            # Edge between Services
+            workflow_edge.append({"name": f"Edge {j} - {i}", "subtype": "success"})
+            workflow_edge_source[f"Edge {j} - {i}"] = f"[Shared] Service{j}"
+            workflow_edge_destination[f"Edge {j} - {i}"] = f"[Shared] Service{j + 1}"
+            workflow_edge_workflow[f"Edge {j} - {i}"] = f"[Shared] Workflow{j}"
     with open(PATH / "workflow_edge.json", "wb") as file:
         file.write(dumps(workflow_edges))
-
 
 def generate_networks():
     pass
