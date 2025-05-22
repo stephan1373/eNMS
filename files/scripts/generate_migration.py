@@ -149,14 +149,20 @@ def generate_workflow_edges():
         workflow_edge_source[f"End Edge {j}"] = f"[Shared] Service{j + 29}"
         workflow_edge_destination[f"End Edge {j}"] = "[Shared] End"
         workflow_edge_workflow[f"End Edge {j}"] = f"[Shared] Workflow{j}"
-        for i in range(j, j + 29):
+        for i in range(j, j + 30):
             # Edge between Services
             workflow_edges.append({"name": f"Edge {j} - {i}", "subtype": "success"})
-            workflow_edge_source[f"Edge {j} - {i}"] = f"[Shared] Service{j}"
-            workflow_edge_destination[f"Edge {j} - {i}"] = f"[Shared] Service{j + 1}"
+            workflow_edge_source[f"Edge {j} - {i}"] = f"[Shared] Service{i}"
+            workflow_edge_destination[f"Edge {j} - {i}"] = f"[Shared] Service{i + 1}"
             workflow_edge_workflow[f"Edge {j} - {i}"] = f"[Shared] Workflow{j}"
     with open(PATH / "workflow_edge.json", "wb") as file:
         file.write(dumps(workflow_edges))
+    with open(PATH / "workflow_edge_source.json", "wb") as file:
+        file.write(dumps(workflow_edge_source))
+    with open(PATH / "workflow_edge_destination.json", "wb") as file:
+        file.write(dumps(workflow_edge_destination))
+    with open(PATH / "workflow_edge_workflow.json", "wb") as file:
+        file.write(dumps(workflow_edge_workflow))
 
 def generate_networks():
     pass
