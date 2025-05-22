@@ -166,10 +166,12 @@ def generate_workflow_edges():
         file.write(dumps(workflow_edge_workflow))
 
 def generate_servers():
-    server = [{
+    servers = [{
         "name":"eNMS Server",
         "allowed_automation": ["scheduler", "rest_api", "application"]
-    }]
+    }] + [{"name": f"Server{i}"} for i in range(1, 1_1000)]
+    with open(PATH / "server.json", "wb") as file:
+        file.write(dumps(servers))
 
 def generate_networks():
     pass
