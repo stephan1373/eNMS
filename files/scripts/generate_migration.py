@@ -135,9 +135,9 @@ def generate_users():
 
 def add_edge(edge, source, destination, workflow):
     workflow_edge.append({"name": edge, "subtype": "success"})
-    workflow_edge_source[f"Start Edge {j}"] = "[Shared] Start"
-    workflow_edge_destination[f"Start Edge {j}"] = f"[Shared] Service{j}"
-    workflow_edge_workflow[f"Start Edge {j}"] = f"[Shared] Workflow{j}"
+    workflow_edge_source[edge] = source
+    workflow_edge_destination[edge] = destination
+    workflow_edge_workflow[edge] = workflow
 
 def generate_workflow_edges():
     workflow_edges = []
@@ -145,17 +145,20 @@ def generate_workflow_edges():
     workflow_edge_destination = {}
     workflow_edge_workflow = {}
     for j in range(2000):
-        workflow_edge.extend(
-            {"name": f"Start Edge {j}", "subtype": "success"},
-            {"name": f"End Edge {j}", "subtype": "success"}
+        add_edge(
+            f"Start Edge {j}",
+            "[Shared] Start",
+            f"[Shared] Service{j}",
+            f"[Shared] Workflow{j}"
         )
-        workflow_edge_source[f"Start Edge {j}"] = "[Shared] Start"
-        workflow_edge_destination[f"Start Edge {j}"] = f"[Shared] Service{j}"
-        workflow_edge_workflow[f"Start Edge {j}"] = f"[Shared] Workflow{j}"
-        association_table.append(["[Shared] Start", ])
-        association_table.append(["[Shared] End", f"[Shared] Workflow{j}"])
-        for i in range(j, j + 30):
-            association_table.append([f"[Shared] Service{i}", f"[Shared] Workflow{j}"])
+        add_edge(
+            f"End Edge {j}",
+            f"[Shared] Service{j + 29}",
+            "[Shared] End",
+            f"[Shared] Workflow{j}"
+        )
+        for i in range(j, j + 29):
+            add_edge(f"Edge {j} - {i}", f"[Shared] Service{j}", f"[Shared] Service{j + 1}", f"[Shared] Workflow{j}")
     with open(PATH / "workflow_edge.json", "wb") as file:
         file.write(dumps([
             {"name": f"WorkflowEdge{index}", "subtype": "success"}
