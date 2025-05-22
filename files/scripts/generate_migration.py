@@ -165,8 +165,14 @@ def generate_workflow_edges():
     with open(PATH / "workflow_edge_workflow.json", "wb") as file:
         file.write(dumps(workflow_edge_workflow))
 
+def generate_servers():
+    server = [{
+        "name":"eNMS Server",
+        "allowed_automation": ["scheduler", "rest_api", "application"]
+    }]
+
 def generate_networks():
     pass
 
 
-generate_workflow_edges()
+def generate_servers()
