@@ -135,4 +135,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_pool_association_table()
+generate_users()
