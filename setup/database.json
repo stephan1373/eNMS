@@ -84,7 +84,7 @@
       "workflow_edge"
     ],
     "dont_migrate": {
-      "credential": ["id", "logs"],
+      "credential": ["id"],
       "data": [
         "id",
         "store_id",
@@ -105,8 +105,7 @@
         "operational_data",
         "specialized_data",
         "source_id",
-        "destination_id",
-        "serialized"
+        "destination_id"
       ],
       "file": [
         "id",
@@ -121,12 +120,7 @@
         "source_name"
       ],
       "pool": [
-        "device_number",
-        "id",
-        "link_number",
-        "service_number",
-        "network_number",
-        "user_number"
+        "id"
       ],
       "parameters": ["id"],
       "server": ["id", "status"],
@@ -134,7 +128,6 @@
         "id",
         "named_credential_id",
         "path",
-        "serialized",
         "status",
         "superworkflow_id",
         "soft_deleted"
@@ -150,12 +143,7 @@
       ],
       "user": [
         "id",
-        "last_login",
-        "menu",
-        "delete_requests",
-        "get_requests",
-        "post_requests",
-        "pages"
+        "last_login"
       ],
       "workflow_edge": [
         "id",
