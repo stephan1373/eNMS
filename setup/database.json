@@ -129,8 +129,7 @@
         "named_credential_id",
         "path",
         "status",
-        "superworkflow_id",
-        "soft_deleted"
+        "superworkflow_id"
       ],
       "task": [
         "id",
@@ -149,8 +148,7 @@
         "id",
         "source_id",
         "destination_id",
-        "workflow_id",
-        "soft_deleted"
+        "workflow_id"
       ]
     }
   },
