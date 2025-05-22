@@ -89,10 +89,17 @@ def generate_tasks():
             for index in range(2_000)
         ]))
 
+def generate_task_service():
+    with open(PATH / "task_service.json", "wb") as file:
+        file.write(dumps({
+            f"Task{i}": f"Workflow{index // 10}"
+            for index in range(2_000)
+        }))
+
 def generate_pools():
     pools = []
     for index in range(2_000):
-        if index < 1000:
+        if index < 1_000:
             pools.append({"name": f"Pool{index}", "manually_defined": True})
         else:
             start_range = randrange(1, 150)
@@ -138,4 +145,4 @@ def generate_networks():
         file.write(dumps(networks))
 
 
-generate_users()
+generate_task_service()
