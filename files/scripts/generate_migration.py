@@ -160,7 +160,7 @@ def generate_workflow_edges():
         workflow_edge_source[f"End Edge {j}"] = f"[Shared] Service{j + 29}"
         workflow_edge_destination[f"End Edge {j}"] = "[Shared] End"
         workflow_edge_workflow[f"End Edge {j}"] = f"[Shared] Workflow{j}"
-        for i in range(j, j + 30):
+        for i in range(j, j + 29):
             # Edge between Services
             workflow_edges.append({"name": f"Edge {j} - {i}", **edge_kwargs})
             workflow_edge_source[f"Edge {j} - {i}"] = f"[Shared] Service{i}"
@@ -187,4 +187,4 @@ def generate_networks():
     pass
 
 
-generate_services()
+generate_workflow_edges()
