@@ -28,6 +28,9 @@ Version 5.3: Migration
     - Replace "db.session.execute(table.insert().values(values))" with
       "db.session.execute(table.insert(), values)" (the update can fail with first option)
       Commit: 94d3ee1828d8ec4b51cd97eb154ed9b15528d4c0
+  - Use orjson.dumps instead of flask.jsonify to increase function call response time when transfering a lot of
+    data to the front-end (e.g 'get_workflow_services' endpoint)
+    Commit: 8442ac89436a2802698f12e47b559ef57ce4dda0
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
