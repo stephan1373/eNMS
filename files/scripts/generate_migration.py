@@ -49,6 +49,7 @@ def generate_services():
                 "name": f"[Shared] Service{index}",
                 "model": f"Model{randrange(1, 21)}",
                 "vendor": choice(["Cisco", "Juniper", "Arista"]),
+                "source_code": 'results["success"] = True',
                 "scoped_name": f"Service{index}",
                 "shared": True
             } for index in range(9_997)
@@ -186,4 +187,4 @@ def generate_networks():
     pass
 
 
-generate_service_target_table()
+generate_services()
