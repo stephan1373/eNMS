@@ -1,4 +1,5 @@
 from builtins import __dict__ as builtins
+from collections import defaultdict
 from copy import deepcopy
 from datetime import datetime
 from functools import partial
@@ -20,7 +21,7 @@ from sys import getsizeof
 from threading import Thread
 from time import sleep
 from traceback import format_exc
-from types import GeneratorType
+from types import GeneratorType, SimpleNamespace
 from warnings import warn
 from xmltodict import parse
 from xml.parsers.expat import ExpatError
@@ -87,6 +88,7 @@ class Runner(vs.TimingMixin):
                 },
                 "service": self.service.base_properties,
             }
+            self.get_topology()
         else:
             self.cache = {**run.cache, "service": self.service.base_properties}
         if self.service.id not in vs.run_services[self.parent_runtime]:
@@ -154,6 +156,35 @@ class Runner(vs.TimingMixin):
             return getattr(self.service, key)
         else:
             raise AttributeError
+
+    def get_topology(self):
+        self.topology = {
+            "services": {},
+            "edges": {},
+            "name_to_dict": defaultdict(dict),
+            "neighbors": defaultdict(set),
+        }
+
+        def rec(instance):
+            if instance.type == "workflow_edge":
+                edge = SimpleNamespace(**instance.get_properties())
+                self.topology["edges"][instance.id] = edge
+                key = (instance.workflow_id, instance.source_id, instance.subtype)
+                neighbor = (instance.id, instance.destination_id)
+                self.topology["neighbors"][key].add(neighbor)
+                self.topology["name_to_dict"]["edges"][instance.name] = edge
+            else:
+                service_properties = instance.get_properties(exclude=["positions"])
+                service = SimpleNamespace(**service_properties)
+                self.topology["services"][instance.id] = service
+                self.topology["name_to_dict"]["services"][instance.name] = service
+            if instance.type == "workflow":
+                for instance in instance.services + instance.edges:
+                    if instance.soft_deleted:
+                        continue
+                    rec(instance)
+
+        rec(self.service)
 
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:

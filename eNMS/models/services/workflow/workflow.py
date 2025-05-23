@@ -150,26 +150,27 @@ class Workflow(Service):
 
     def job(self, run, device=None):
         number_of_runs = defaultdict(int)
-        start = db.fetch("service", scoped_name="Start", rbac=None)
-        end = db.fetch("service", scoped_name="End", rbac=None)
+        start = run.topology["name_to_dict"]["services"]["[Shared] Start"]
+        end = run.topology["name_to_dict"]["services"]["[Shared] End"]
         services, targets = [], defaultdict(set)
         start_targets = [device] if device else run.target_devices
         for service_id in run.start_services or [start.id]:
-            service = db.fetch("service", id=service_id, rbac=None)
+            service = run.topology["services"][service_id]
             targets[service.name] |= {device.name for device in start_targets}
-            heappush(services, (1 / service.priority, service))
+            heappush(services, (1 / service.priority, service.id))
         visited, restart_run = set(), run.restart_run
         tracking_bfs = run.run_method == "per_service_with_workflow_targets"
         device_store = {device.name: device for device in start_targets}
         while services:
             if run.stop:
                 return {"success": False, "result": "Aborted"}
-            _, service = heappop(services)
+            _, service_id = heappop(services)
+            service = run.topology["services"][service_id]
             if number_of_runs[service.name] >= service.maximum_runs:
                 continue
             number_of_runs[service.name] += 1
-            visited.add(service)
-            if service in (start, end) or service.skip.get(self.name, False):
+            visited.add(service_id)
+            if service_id in (start.id, end.id) or service.skip.get(self.name, False):
                 success = service.skip_value == "success"
                 results = {"result": "skipped", "success": success}
                 if tracking_bfs or device:
@@ -182,7 +183,7 @@ class Workflow(Service):
                     "service": (
                         run.placeholder
                         if service.scoped_name == "Placeholder"
-                        else service
+                        else db.fetch("service", id=service_id, rbac=None)
                     ),
                     "workflow": self,
                     "restart_run": restart_run,
@@ -212,25 +213,26 @@ class Workflow(Service):
                     continue
                 if (tracking_bfs or device) and not summary.get(edge_type):
                     continue
-                for edge in service.neighbors(self, edge_type):
-                    successor = edge.destination
+                neighbors = run.topology["neighbors"][(self.id, service.id, edge_type)]
+                for (edge_id, successor_id) in neighbors:
+                    successor = run.topology["services"][successor_id]
                     if successor.soft_deleted:
                         continue
                     if tracking_bfs or device:
                         targets[successor.name] |= set(summary[edge_type])
-                    heappush(services, ((1 / successor.priority, successor)))
+                    heappush(services, ((1 / successor.priority, successor_id)))
                     if tracking_bfs or device:
                         run.write_state(
-                            f"edges/{edge.id}", len(summary[edge_type]), "increment"
+                            f"edges/{edge_id}", len(summary[edge_type]), "increment"
                         )
                     else:
-                        run.write_state(f"edges/{edge.id}", "DONE")
+                        run.write_state(f"edges/{edge_id}", "DONE")
         if tracking_bfs or device:
             failed = list(targets[start.name] - targets[end.name])
             summary = {"success": list(targets[end.name]), "failure": failed}
             results = {"success": not failed, "summary": summary}
         else:
-            results = {"success": end in visited}
+            results = {"success": end.id in visited}
         run.restart_run = restart_run
         return results
 
