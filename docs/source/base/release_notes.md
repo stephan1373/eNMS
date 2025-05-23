@@ -37,9 +37,13 @@ Version 5.3: Migration
     - Remove lazy join of Workflow.services and Workflow.edges to speed up db.fetch("workflow") query
       Commit: 0932e2eb7281a6b3755d9a21c7f124b4555c1287
   - Update to the Runner mechanism:
-    - generate the workflow topology graph at the beginning and reuse in workflow job function to reduce the number of SQL queries,
+    - Generate the workflow topology graph at the beginning and reuse in workflow job function to reduce the number of SQL queries,
       and remove the neighbors SQL query to get next services in Dijkstra.
       Commit: 6adb7b7cded5484a83de497757edcd2bf6313e55
+    - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every time the 'global_variables'
+      function is called.
+      Commit: fd356528ca691e263be0ced18cdf5038a237d752
+
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
