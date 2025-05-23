@@ -34,6 +34,8 @@ Version 5.3: Migration
       Commit: 8442ac89436a2802698f12e47b559ef57ce4dda0
     - Query properties ("id", "name", "scoped_name") instead of bulk objects to speed up database query execution time
       Commit: 299a85c52ad6749155b1acab215d30f9ec4241da
+    - Remove lazy join of Workflow.services and Workflow.edges to speed up db.fetch("workflow") query
+      Commit: 0932e2eb7281a6b3755d9a21c7f124b4555c1287
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
