@@ -78,8 +78,12 @@ class Runner(vs.TimingMixin):
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
         self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
+        creator = db.fetch("user", name=self.main_run.creator, rbac=None)
+        self.is_admin_run = creator.is_admin
+        self.creator_dict = {"name": creator.name, "email": creator.email}
         if self.is_main_run:
             self.cache = {
+                "global_variables": self.cache_global_variables(),
                 "main_run": self.main_run.base_properties,
                 "main_run_service": {
                     "log_level": int(self.main_run.service.log_level),
@@ -95,9 +99,6 @@ class Runner(vs.TimingMixin):
             vs.run_services[self.parent_runtime].add(self.service.id)
             if self.service not in self.main_run.services:
                 self.main_run.services.append(self.service)
-        creator = db.fetch("user", name=self.main_run.creator, rbac=None)
-        self.is_admin_run = creator.is_admin
-        self.creator_dict = {"name": creator.name, "email": creator.email}
         if "in_process" in kwargs:
             self.path = run.path
         elif not self.is_main_run:
@@ -156,6 +157,43 @@ class Runner(vs.TimingMixin):
             return getattr(self.service, key)
         else:
             raise AttributeError
+
+    def cache_global_variables(self):
+        default_variables = {
+            "__builtins__": {**builtins, "__import__": self._import},
+            "delete": partial(self.internal_function, "delete"),
+            "dict_to_string": vs.dict_to_string,
+            "dry_run": getattr(self, "dry_run", False),
+            "encrypt": env.encrypt_password,
+            "factory": partial(self.internal_function, "factory"),
+            "fetch": partial(self.internal_function, "fetch"),
+            "fetch_all": partial(self.internal_function, "fetch_all"),
+            "filtering": partial(self.internal_function, "filtering"),
+            "get_all_results": self.get_all_results,
+            "get_connection": self.get_connection,
+            "get_result": self.get_result,
+            "get_secret": self.get_secret,
+            "get_data": self.get_data,
+            "get_var": self.get_var,
+            "log": partial(self.log, user_defined=True),
+            "placeholder": self.main_run.placeholder,
+            "prepend_filepath": self.prepend_filepath,
+            "remove_note": self.remove_note,
+            "runtime": self.main_run.runtime,
+            "send_email": env.send_email,
+            "server": vs.server_dict,
+            "set_note": self.set_note,
+            "set_var": self.payload_helper,
+            "trigger": self.main_run.trigger,
+            "try_commit": db.try_commit,
+            "try_set": db.try_set,
+            "user": self.creator_dict,
+            "workflow": self.workflow,
+            **vs.custom.runner_global_variables(),
+        }
+        if self.is_admin_run:
+            default_variables["get_credential"] = self.get_credential
+        return default_variables
 
     def get_topology(self):
         self.topology = {
@@ -1206,45 +1244,12 @@ class Runner(vs.TimingMixin):
         variables.update(payload.get("variables", {}))
         if device and "devices" in payload.get("variables", {}):
             variables.update(payload["variables"]["devices"].get(device.name, {}))
-        variables.update(
-            {
-                "__builtins__": {**builtins, "__import__": _self._import},
-                "delete": partial(_self.internal_function, "delete"),
-                "devices": _self.target_devices,
-                "dict_to_string": vs.dict_to_string,
-                "dry_run": getattr(_self, "dry_run", False),
-                "encrypt": env.encrypt_password,
-                "factory": partial(_self.internal_function, "factory"),
-                "fetch": partial(_self.internal_function, "fetch"),
-                "fetch_all": partial(_self.internal_function, "fetch_all"),
-                "filtering": partial(_self.internal_function, "filtering"),
-                "get_all_results": _self.get_all_results,
-                "get_connection": _self.get_connection,
-                "get_result": _self.get_result,
-                "get_secret": _self.get_secret,
-                "get_data": _self.get_data,
-                "get_var": _self.get_var,
-                "log": partial(_self.log, user_defined=True),
-                "parent_device": _self.parent_device or device,
-                "payload": _self.payload,
-                "placeholder": _self.main_run.placeholder,
-                "prepend_filepath": _self.prepend_filepath,
-                "remove_note": _self.remove_note,
-                "runtime": _self.main_run.runtime,
-                "send_email": env.send_email,
-                "server": vs.server_dict,
-                "set_note": _self.set_note,
-                "set_var": _self.payload_helper,
-                "trigger": _self.main_run.trigger,
-                "try_commit": db.try_commit,
-                "try_set": db.try_set,
-                "user": _self.creator_dict,
-                "workflow": _self.workflow,
-                **vs.custom.runner_global_variables(),
-            }
-        )
-        if _self.is_admin_run:
-            variables["get_credential"] = _self.get_credential
+        variables.update({
+            "devices": _self.target_devices,
+            "parent_device": _self.parent_device or device,
+            "payload": _self.payload,
+            **_self.cache["global_variables"]
+        })
         return variables
 
     def eval(_self, query, function="eval", **locals):  # noqa: N805
