@@ -36,13 +36,11 @@ class Workflow(Service):
         "Service",
         secondary=db.service_workflow_table,
         back_populates="workflows",
-        lazy="joined",
     )
     edges = relationship(
         "WorkflowEdge",
         back_populates="workflow",
         cascade="all, delete-orphan",
-        lazy="joined",
     )
     superworkflow_id = db.Column(
         Integer, ForeignKey("workflow.id", ondelete="SET NULL")
