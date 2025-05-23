@@ -91,7 +91,7 @@ class Service(AbstractBase):
     parameterized_form_template = db.Column(db.LargeString)
     skip = db.Column(db.Dict)
     skip_query = db.Column(db.LargeString)
-    skip_value = db.Column(db.SmallString, default="True")
+    skip_value = db.Column(db.SmallString, default="success")
     iteration_values = db.Column(db.LargeString)
     iteration_variable_name = db.Column(db.SmallString, default="iteration_value")
     iteration_devices = db.Column(db.LargeString)
