@@ -19,7 +19,7 @@ from functools import wraps
 from importlib import import_module
 from io import BytesIO
 from logging import info
-from orjson import dumps
+from orjson import dumps, OPT_NON_STR_KEYS
 from os import getenv, remove
 from pathlib import Path
 from tarfile import open as open_tar
@@ -447,7 +447,7 @@ class Server(Flask):
                 kwargs = request.form
             with db.session_scope():
                 return Response(
-                    response=dumps(getattr(controller, endpoint)(*args, **kwargs)),
+                    response=dumps(getattr(controller, endpoint)(*args, **kwargs), option=OPT_NON_STR_KEYS),
                     status=200,
                     mimetype="application/json"
                 )
