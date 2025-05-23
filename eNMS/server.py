@@ -8,6 +8,7 @@ from flask import (
     render_template,
     render_template_string,
     request,
+    Response,
     send_file,
     url_for,
     session,
@@ -18,6 +19,7 @@ from functools import wraps
 from importlib import import_module
 from io import BytesIO
 from logging import info
+from orjson import dumps
 from os import getenv, remove
 from pathlib import Path
 from tarfile import open as open_tar
@@ -420,7 +422,11 @@ class Server(Flask):
                 kwargs = request.args.to_dict()
             with db.session_scope():
                 endpoint = vs.rbac["rest_endpoints"][method][endpoint]
-                return jsonify(getattr(self.rest_api, endpoint)(*args, **kwargs))
+                return Response(
+                    response=dumps(getattr(self.rest_api, endpoint)(*args, **kwargs)),
+                    status=200,
+                    mimetype="application/json"
+                )
 
         @blueprint.route("/", methods=["POST"])
         @blueprint.route("/<path:page>", methods=["POST"])
@@ -440,7 +446,11 @@ class Server(Flask):
             else:
                 kwargs = request.form
             with db.session_scope():
-                return jsonify(getattr(controller, endpoint)(*args, **kwargs))
+                return Response(
+                    response=dumps(getattr(controller, endpoint)(*args, **kwargs)),
+                    status=200,
+                    mimetype="application/json"
+                )
 
         self.register_blueprint(blueprint)
 
