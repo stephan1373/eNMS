@@ -987,10 +987,10 @@ class Controller(vs.TimingMixin):
         )
 
     def get_workflow_services(self, id, node):
-        parents = db.fetch("workflow", id=id).get_ancestors()
+        parents = {workflow.name for workflow in db.fetch("workflow", id=id).get_ancestors()}
         if node == "all":
             workflows = self.filtering(
-                "workflow", bulk="object", constraints={"workflows_filter": "empty"}
+                "workflow", properties=["id", "name"], constraints={"workflows_filter": "empty"}
             )
             return (
                 [
@@ -1029,9 +1029,9 @@ class Controller(vs.TimingMixin):
                             "text": workflow.name,
                             "children": True,
                             "type": "workflow",
-                            "state": {"disabled": workflow in parents},
+                            "state": {"disabled": workflow.name in parents},
                             "a_attr": {
-                                "class": "no_checkbox" if workflow in parents else "",
+                                "class": "no_checkbox" if workflow.name in parents else "",
                                 "style": "color: #6666FF; width: 100%",
                             },
                         }
@@ -1042,7 +1042,7 @@ class Controller(vs.TimingMixin):
             )
         elif node == "standalone":
             constraints = {"workflows_filter": "empty", "type": "service"}
-            services = self.filtering("service", bulk="object", constraints=constraints)
+            services = self.filtering("service", properties=["id", "scoped_name"], constraints=constraints)
             return sorted(
                 (
                     {
@@ -1056,7 +1056,7 @@ class Controller(vs.TimingMixin):
             )
         elif node == "shared":
             constraints = {"shared": "bool-true"}
-            services = self.filtering("service", bulk="object", constraints=constraints)
+            services = self.filtering("service", properties=["id", "scoped_name"], constraints=constraints)
             return sorted(
                 (
                     {
