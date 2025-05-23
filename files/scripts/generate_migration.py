@@ -87,8 +87,8 @@ def generate_service_target_table():
         file.write(dumps([[f"[Shared] Service{i}", "Pool0"] for i in range(9_997)]))
     with open(PATH / "service_target_device_table.json", "wb") as file:
         file.write(dumps(
-            sum([[f"[Shared] Workflow{i}", f"Device{j}"] for i in range(2_000)]
-            for j in range(100), [])
+            sum([[[f"[Shared] Workflow{i}", f"Device{j}"] for i in range(2_000)]
+            for j in range(100)], [])
         ))
 
 def generate_tasks():
