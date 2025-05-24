@@ -540,7 +540,8 @@ class Runner(vs.TimingMixin):
         return service_run.results["success"]
 
     def device_run(self):
-        self.target_devices = self.compute_devices()
+        if not self.target_devices:
+            self.target_devices = self.compute_devices()
         summary = {"failure": [], "success": [], "discard": []}
         if self.iteration_devices and not self.iteration_run:
             if not self.workflow:
