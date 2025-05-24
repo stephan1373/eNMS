@@ -150,12 +150,13 @@ class Workflow(Service):
 
     def job(self, run, device=None):
         number_of_runs = defaultdict(int)
-        start = run.topology["name_to_dict"]["services"]["[Shared] Start"]
-        end = run.topology["name_to_dict"]["services"]["[Shared] End"]
+        topology = run.cache["topology"]
+        start = topology["name_to_dict"]["services"]["[Shared] Start"]
+        end = topology["name_to_dict"]["services"]["[Shared] End"]
         services, targets = [], defaultdict(set)
         start_targets = [device] if device else run.target_devices
         for service_id in run.start_services or [start.id]:
-            service = run.topology["services"][service_id]
+            service = topology["services"][service_id]
             targets[service.name] |= {device.name for device in start_targets}
             heappush(services, (1 / service.priority, service.id))
         visited, restart_run = set(), run.restart_run
@@ -165,7 +166,7 @@ class Workflow(Service):
             if run.stop:
                 return {"success": False, "result": "Aborted"}
             _, service_id = heappop(services)
-            service = run.topology["services"][service_id]
+            service = topology["services"][service_id]
             if number_of_runs[service.name] >= service.maximum_runs:
                 continue
             number_of_runs[service.name] += 1
@@ -213,9 +214,9 @@ class Workflow(Service):
                     continue
                 if (tracking_bfs or device) and not summary.get(edge_type):
                     continue
-                neighbors = run.topology["neighbors"][(self.id, service.id, edge_type)]
+                neighbors = topology["neighbors"][(self.id, service.id, edge_type)]
                 for (edge_id, successor_id) in neighbors:
-                    successor = run.topology["services"][successor_id]
+                    successor = topology["services"][successor_id]
                     if successor.soft_deleted:
                         continue
                     if tracking_bfs or device:

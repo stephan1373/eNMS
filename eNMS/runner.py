@@ -91,8 +91,8 @@ class Runner(vs.TimingMixin):
                     **self.main_run.service.base_properties,
                 },
                 "service": self.service.base_properties,
+                "topology": self.get_topology(),
             }
-            self.get_topology()
         else:
             self.cache = {**run.cache, "service": self.service.base_properties}
         if self.service.id not in vs.run_services[self.parent_runtime]:
@@ -196,33 +196,33 @@ class Runner(vs.TimingMixin):
         return default_variables
 
     def get_topology(self):
-        self.topology = {
+        topology = {
             "services": {},
             "edges": {},
             "name_to_dict": defaultdict(dict),
             "neighbors": defaultdict(set),
         }
-
-        def rec(instance):
+        instances, visited = {self.service}, set()
+        while instances:
+            instance = instances.pop()
+            if instance in visited or instance.soft_deleted:
+                continue
+            visited.add(instance)
             if instance.type == "workflow_edge":
                 edge = SimpleNamespace(**instance.get_properties())
-                self.topology["edges"][instance.id] = edge
+                topology["edges"][instance.id] = edge
                 key = (instance.workflow_id, instance.source_id, instance.subtype)
                 neighbor = (instance.id, instance.destination_id)
-                self.topology["neighbors"][key].add(neighbor)
-                self.topology["name_to_dict"]["edges"][instance.name] = edge
+                topology["neighbors"][key].add(neighbor)
+                topology["name_to_dict"]["edges"][instance.name] = edge
             else:
                 service_properties = instance.get_properties(exclude=["positions"])
                 service = SimpleNamespace(**service_properties)
-                self.topology["services"][instance.id] = service
-                self.topology["name_to_dict"]["services"][instance.name] = service
+                topology["services"][instance.id] = service
+                topology["name_to_dict"]["services"][instance.name] = service
             if instance.type == "workflow":
-                for instance in instance.services + instance.edges:
-                    if instance.soft_deleted:
-                        continue
-                    rec(instance)
-
-        rec(self.service)
+                instances |= set(instance.services) | set(instance.edges)
+        return topology
 
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:
