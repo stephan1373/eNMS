@@ -43,7 +43,8 @@ Version 5.3: Migration
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every time the 'global_variables'
       function is called.
       Commit: fd356528ca691e263be0ced18cdf5038a237d752
-
+    - Don't compute "target_devices" if it has already been defined as an arguement of the Runner class
+      Commit: d46230319af9e3a76313584a93e59ac8835efedb
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
