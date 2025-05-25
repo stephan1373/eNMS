@@ -61,6 +61,8 @@
       "file",
       "link",
       "object",
+      "result",
+      "run",
       "service",
       "service_log",
       "service_report",
