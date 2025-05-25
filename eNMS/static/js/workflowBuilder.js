@@ -450,53 +450,50 @@ export function drawWorkflowEdge(edge) {
   };
 }
 
+function drawServiceTree(search) {
+  $("#service-tree").jstree({
+    core: {
+      animation: 200,
+      themes: { stripes: true },
+      data: {
+        url: function(node) {
+          const nodeId = node.id == "#" ? "all" : node.data.id;
+          return `/get_workflow_services/${workflow.id}/${nodeId}`;
+        },
+        data: {search: search},
+        type: "POST",
+      },
+    },
+    plugins: ["checkbox", "search", "types", "wholerow"],
+    checkbox: {
+      three_state: false,
+    },
+    types: {
+      category: {
+        icon: "fa fa-folder",
+      },
+      default: {
+        icon: "glyphicon glyphicon-file",
+      },
+      workflow: {
+        icon: "fa fa-sitemap fa-rotate-270",
+      },
+    },
+  });
+}
+
 function addServicePanel() {
   openPanel({
     name: "add_services_to_workflow",
     title: "Add Services to Workflow",
     callback: function() {
-      $("#service-tree").jstree({
-        core: {
-          animation: 200,
-          themes: { stripes: true },
-          data: {
-            url: function(node) {
-              const nodeId = node.id == "#" ? "all" : node.data.id;
-              return `/get_workflow_services/${workflow.id}/${nodeId}`;
-            },
-            type: "POST",
-          },
-        },
-        plugins: ["checkbox", "search", "types", "wholerow"],
-        checkbox: {
-          three_state: false,
-        },
-        search: {
-          show_only_matches: true,
-          ajax: {
-            type: "POST",
-            url: "/search_workflow_services",
-          },
-        },
-        types: {
-          category: {
-            icon: "fa fa-folder",
-          },
-          default: {
-            icon: "glyphicon glyphicon-file",
-          },
-          workflow: {
-            icon: "fa fa-sitemap fa-rotate-270",
-          },
-        },
-      });
+      drawServiceTree();
       let timer = false;
       $("#add-services-search").keyup(function() {
         if (timer) clearTimeout(timer);
         timer = setTimeout(function() {
-          $("#service-tree")
-            .jstree(true)
-            .search($("#add-services-search").val());
+          $("#service-tree").jstree("destroy").empty();
+          drawServiceTree($("#add-services-search").val());
         }, 500);
       });
     },

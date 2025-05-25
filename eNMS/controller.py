@@ -986,9 +986,9 @@ class Controller(vs.TimingMixin):
             db.fetch("service", id=id).persistent_id for id in path.split(">")
         )
 
-    def get_workflow_services(self, id, node):
+    def get_workflow_services(self, id, node, search=None):
         parents = {workflow.name for workflow in db.fetch("workflow", id=id).get_ancestors()}
-        if node == "all":
+        if node == "all" and not search:
             workflows = self.filtering(
                 "workflow", properties=["id", "name"], constraints={"workflows_filter": "empty"}
             )
@@ -1040,6 +1040,44 @@ class Controller(vs.TimingMixin):
                     key=itemgetter("text"),
                 )
             )
+        elif node == "all" and search:
+            services = self.filtering(
+                "service",
+                properties=["id", "scoped_name", "type", "name", "shared"],
+                constraints={"name": search, "soft_deleted": "bool-false"}
+            )
+            result = defaultdict(list)
+            for service in services:
+                if service.type != "workflow" and service.shared:
+                    result["Shared services"].append(service)
+                elif service.type != "workflow" and service.name == service.scoped_name:
+                    result["Standalone services"].append(service)
+                else:
+                    if service.name != service.scoped_name:
+                        name = service.name.replace(f" {service.scoped_name}", "")[1:-1]
+                    else:
+                        name = service.name
+                    result[name].append(service)
+            return [
+                {
+                    "text": key,
+                    "type": "category",
+                    "state": {"opened": True, "disabled": True},
+                    "a_attr": {"class": "no_checkbox"},
+                    "children": [
+                        {
+                            "id": service.name,
+                            "data": {"id": service.id},
+                            "text": service.scoped_name,
+                            "a_attr": {
+                                "style": "color: #6666FF; width: 100%",
+                            },
+                            "type": "workflow" if service.type == "workflow" else "service",
+                        }
+                        for service in value
+                    ]
+                } for key, value in result.items()
+            ]
         elif node == "standalone":
             constraints = {"workflows_filter": "empty", "type": "service"}
             services = self.filtering("service", properties=["id", "scoped_name"], constraints=constraints)
