@@ -282,6 +282,7 @@ class Result(AbstractBase):
     private = True
     log_change = False
     id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.SmallString)
     path = db.Column(db.SmallString)
     success = db.Column(Boolean, default=False)
     labels = db.Column(db.LargeString)
@@ -331,6 +332,7 @@ class Result(AbstractBase):
             setattr(self, key, kwargs["result"][key])
         self.path = kwargs["path"]
         super().__init__(**kwargs)
+        self.name = f"{vs.get_persistent_id()} - {self.parent_runtime} - {self.runtime}"
 
     def __repr__(self):
         return f"SERVICE '{self.service}' - DEVICE '{self.device} ({self.runtime})"

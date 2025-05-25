@@ -61,8 +61,6 @@
       "file",
       "link",
       "object",
-      "result",
-      "run",
       "service",
       "service_log",
       "service_report",
@@ -123,6 +121,21 @@
         "id"
       ],
       "parameters": ["id"],
+      "result": [
+        "id",
+        "run_id",
+        "parent_service_id",
+        "parent_device_id",
+        "device_id",
+        "service_id",
+        "workflow_id",
+        "parent_service_name",
+        "parent_device_name",
+        "device_name",
+        "service_name",
+        "workflow_name"
+      ],
+      "run": [],
       "server": ["id", "status"],
       "service": [
         "id",
