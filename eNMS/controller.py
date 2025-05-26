@@ -990,7 +990,9 @@ class Controller(vs.TimingMixin):
         parents = {workflow.name for workflow in db.fetch("workflow", id=id).get_ancestors()}
         if node == "all" and not search:
             workflows = self.filtering(
-                "workflow", properties=["id", "name"], constraints={"workflows_filter": "empty"}
+                "workflow",
+                properties=["id", "name"],
+                constraints={"workflows_filter": "empty"}
             )
             return (
                 [
@@ -1082,8 +1084,15 @@ class Controller(vs.TimingMixin):
                 } for key, services in result.items()
             ]
         elif node == "standalone":
-            constraints = {"workflows_filter": "empty", "type": "service", "shared": "bool-false"}
-            services = self.filtering("service", properties=["id", "scoped_name"], constraints=constraints)
+            services = self.filtering(
+                "service",
+                properties=["id", "scoped_name"],
+                constraints={
+                    "workflows_filter": "empty",
+                    "type": "service",
+                    "shared": "bool-false"
+                }
+            )
             return sorted(
                 (
                     {
@@ -1096,8 +1105,11 @@ class Controller(vs.TimingMixin):
                 key=itemgetter("text"),
             )
         elif node == "shared":
-            constraints = {"shared": "bool-true"}
-            services = self.filtering("service", properties=["id", "scoped_name"], constraints=constraints)
+            services = self.filtering(
+                "service",
+                properties=["id", "scoped_name"],
+                constraints={"shared": "bool-true"}
+            )
             return sorted(
                 (
                     {
