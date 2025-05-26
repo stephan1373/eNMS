@@ -28,10 +28,11 @@ Version 5.3: Migration
       "db.session.execute(table.insert(), values)" (the update can fail with first option)
       Commit: 94d3ee1828d8ec4b51cd97eb154ed9b15528d4c0
   - Update "get_workflow_services" function (used to copy existing services into a workflow)
-    - Use orjson.dumps instead of flask.jsonify to increase function call response time when transfering a lot of
-      data to the front-end (e.g 'get_workflow_services' endpoint)
+    - Use orjson.dumps instead of flask.jsonify to increase function call response time when
+      transfering a lot of data to the front-end (e.g 'get_workflow_services' endpoint)
       Commit: 8442ac89436a2802698f12e47b559ef57ce4dda0
-    - Query properties ("id", "name", "scoped_name") instead of bulk objects to speed up database query execution time
+    - Query properties ("id", "name", "scoped_name") instead of bulk objects to speed up database
+      query execution time
       Commit: 299a85c52ad6749155b1acab215d30f9ec4241da
     - Remove lazy join of Workflow.services and Workflow.edges to speed up db.fetch("workflow") query
       Commit: 0932e2eb7281a6b3755d9a21c7f124b4555c1287
@@ -39,18 +40,22 @@ Version 5.3: Migration
       remove the associated "search_workflow_services" function
       Commit: e5b70fb411cfe1d8f1dd42df324a275eb2404946 + 9c62edd8a58cb9dc3a748044a31b0eaa8c26c3d6
   - Update to the Runner mechanism:
-    - Generate the workflow topology graph at the beginning and reuse in workflow job function to reduce the number of SQL queries,
-      and remove the neighbors SQL query to get next services in Dijkstra.
+    - Generate the workflow topology graph at the beginning and reuse in workflow job function to
+      reduce the number of SQL queries, and remove the neighbors SQL query to get next services in Dijkstra.
       Commit: 6adb7b7cded5484a83de497757edcd2bf6313e55 + bf4293d49690429ec1b4c74f6289d652fddf89f4
-    - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every time the 'global_variables'
-      function is called.
+    - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
+      time the 'global_variables' function is called.
       Commit: fd356528ca691e263be0ced18cdf5038a237d752
     - Don't compute "target_devices" if it has already been defined as an arguement of the Runner class
       Commit: d46230319af9e3a76313584a93e59ac8835efedb
 
 Migration:
-- Run script to convert all devices from type "device" to "generic_device", all links from type "link" to "generic_link",
-  and all files from type "file" to "generic_file"
+- Run script to convert all devices from type "device" to "generic_device", all links from type "link"
+  to "generic_link", and all files from type "file" to "generic_file"
+
+Tests:
+- Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
+  Search mechanism)
 
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
@@ -86,7 +91,8 @@ Version 5.2.0: Data Store and Various Improvements
   - In Tree Search, add support for regular expression search
   - Update 'serialized' property to be case sensitive for network and workflow search, and remove the
     relationships from serialized
-- When device filtering is enabled, limit results displayed in result table to the filtered device (note: device filtering is not compatible with the "Only save failed results" option)
+- When device filtering is enabled, limit results displayed in result table to the filtered device
+  (note: device filtering is not compatible with the "Only save failed results" option)
 - Fix table form filtering bug: invert checkbox constraint in table filtering not enforced previously
 - Upgrade JQuery to the latest version v3.7.1
 - Select node in workflow builder from tree left-click selection and allow for multiple selection
@@ -461,7 +467,8 @@ Version 5.1.0: Changelog & Workflow Tree
   - The global variables contain a new "dry_run" property in order to determine in python
   (e.g. preprocessing, post-processing, python snippet service) whether the service is
   currently running in Dry Run mode or not
-  - A workflow also has a "Dry Run" property: when turned on, everything inside the workflow (including subworkflows) will be considered as running in dry run mode
+  - A workflow also has a "Dry Run" property: when turned on, everything inside the workflow
+    (including subworkflows) will be considered as running in dry run mode
   - Add support for using "Dry Run" mode from the parameterized form
   - Add special color for services in "Dry Run" mode:
     - In "Normal display": whether the "Dry Run" mode is enabled for a service
@@ -474,8 +481,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Add new freeform "version" property in the service class and form (edit panel step 1)
 - Unpin ruamel version:
   - Add quotes as "default_style"
-  - Add custom representer to fix bug where line are broken inside a return carriage (\r...\n): all strings that contain a line break are now
-    treated as a literal block.
+  - Add custom representer to fix bug where line are broken inside a return carriage (\r...\n): all strings
+    that contain a line break are now treated as a literal block.
   - Preserve order in object properties (OrderedDict) and relationships (sorted)
   - Forbid references (e.g. &id000) in yaml files with representer.ignore_aliases to avoid change of id number
   - Refactor get_yaml_instance to use the "typ='safe'" keyword because of database corruption issue by ruamel
