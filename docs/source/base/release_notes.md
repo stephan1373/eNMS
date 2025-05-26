@@ -35,6 +35,9 @@ Version 5.3: Migration
       Commit: 299a85c52ad6749155b1acab215d30f9ec4241da
     - Remove lazy join of Workflow.services and Workflow.edges to speed up db.fetch("workflow") query
       Commit: 0932e2eb7281a6b3755d9a21c7f124b4555c1287
+    - Refactor the search to no longer use jstree search mechanism (one ajax call per workflow match), and
+      remove the associated "search_workflow_services" function
+      Commit: e5b70fb411cfe1d8f1dd42df324a275eb2404946 + 9c62edd8a58cb9dc3a748044a31b0eaa8c26c3d6
   - Update to the Runner mechanism:
     - Generate the workflow topology graph at the beginning and reuse in workflow job function to reduce the number of SQL queries,
       and remove the neighbors SQL query to get next services in Dijkstra.
