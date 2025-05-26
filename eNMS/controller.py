@@ -1070,16 +1070,19 @@ class Controller(vs.TimingMixin):
                             "data": {"id": service.id},
                             "text": service.scoped_name,
                             "a_attr": {
-                                "style": "color: #6666FF; width: 100%",
+                                "style": (
+                                    f"color: #{'FF1694' if service.shared else '6666FF'}"
+                                    "; width: 100%"
+                                ),
                             },
                             "type": "workflow" if service.type == "workflow" else "service",
                         }
-                        for service in value
+                        for service in services
                     ]
-                } for key, value in result.items()
+                } for key, services in result.items()
             ]
         elif node == "standalone":
-            constraints = {"workflows_filter": "empty", "type": "service"}
+            constraints = {"workflows_filter": "empty", "type": "service", "shared": "bool-false"}
             services = self.filtering("service", properties=["id", "scoped_name"], constraints=constraints)
             return sorted(
                 (
@@ -1797,18 +1800,6 @@ class Controller(vs.TimingMixin):
     def scheduler_action(self, mode, **kwargs):
         for task in self.filtering("task", properties=["id"], form=kwargs):
             self.task_action(mode, task.id)
-
-    def search_workflow_services(self, **kwargs):
-        service_alias = aliased(vs.models["service"])
-        workflows = [
-            workflow.name
-            for workflow in db.query("workflow", properties=["name"])
-            .join(service_alias, vs.models["workflow"].services)
-            .filter(service_alias.scoped_name.contains(kwargs["str"].lower()))
-            .distinct()
-            .all()
-        ]
-        return ["standalone", "shared", *workflows]
 
     def skip_services(self, workflow_id, service_ids):
         services = [db.fetch("service", id=id) for id in service_ids.split("-")]

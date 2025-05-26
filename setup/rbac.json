@@ -268,7 +268,6 @@
     "/save_settings": "admin",
     "/scan_folder": "access",
     "/scan_playbook_folder": "access",
-    "/search_workflow_services": "access",
     "/skip_services": "access",
     "/stop_run": "access",
     "/switch_menu": "all",
