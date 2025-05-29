@@ -1433,7 +1433,7 @@ export function createAlerts() {
 }
 
 export function configureNamespace(namespace, functions) {
-  eNMS[namespace] = {};
+  if (eNMS[namespace] === undefined) eNMS[namespace] = {};
   functions.forEach((f) => (eNMS[namespace][f.name] = f));
 }
 
