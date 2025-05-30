@@ -1340,7 +1340,7 @@ class Controller(vs.TimingMixin):
                 for instance in store[model].values():
                     instance.post_update()
             for instance in store["data"].values():
-                if instance.store:
+                if instance.type != "store" or instance.store:
                     continue
                 instance.post_update(migration_import=True)
             env.log("info", f"Model update done ({datetime.now() - before_time}s)")
