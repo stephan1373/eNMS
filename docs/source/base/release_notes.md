@@ -48,6 +48,9 @@ Version 5.3: Migration
       Commit: fd356528ca691e263be0ced18cdf5038a237d752
     - Don't compute "target_devices" if it has already been defined as an arguement of the Runner class
       Commit: d46230319af9e3a76313584a93e59ac8835efedb
+  Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
+- Minor update to configureNamespace function
+  Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link"
