@@ -215,7 +215,7 @@ class Workflow(Service):
                 if (tracking_bfs or device) and not summary.get(edge_type):
                     continue
                 neighbors = topology["neighbors"][(self.id, service.id, edge_type)]
-                for (edge_id, successor_id) in neighbors:
+                for edge_id, successor_id in neighbors:
                     successor = topology["services"][successor_id]
                     if successor.soft_deleted:
                         continue
