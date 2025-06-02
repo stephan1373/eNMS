@@ -692,7 +692,7 @@ export function configureForm(form, id, panelId) {
           },
         });
       });
-      $(`label[help="${el.attr("help")}"]`)
+      $(`#${panelId} label[help="${el.attr("help")}"]`)
         .css({
           display: "flex",
           "justify-content": "space-between",
