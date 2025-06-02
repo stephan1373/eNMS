@@ -316,14 +316,16 @@ class File(AbstractBase):
     def update(self, move_file=True, **kwargs):
         old_path = self.full_path
         self.full_path = f"{vs.file_path}{kwargs['path']}"
-        if not str(Path(self.full_path).resolve()).startswith(f"{vs.file_path}/"):
-            raise Exception("The path resolves outside of the files folder.")
         super().update(**kwargs)
-        if exists(str(old_path)) and not exists(self.full_path) and move_file:
-            move(old_path, self.full_path)
         self.name = self.path.replace("/", ">")
         *split_folder_path, self.filename = self.full_path.split("/")
         self.folder_path = "/".join(split_folder_path)
+        if kwargs.get("migration_import"):
+            return
+        if not str(Path(self.full_path).resolve()).startswith(f"{vs.file_path}/"):
+            raise Exception("The path resolves outside of the files folder.")
+        if exists(str(old_path)) and not exists(self.full_path) and move_file:
+            move(old_path, self.full_path)
         self.folder = db.fetch(
             "folder", full_path=self.folder_path, allow_none=True, rbac=None
         )
