@@ -37,7 +37,7 @@ import {
   showDevicePanel,
   updateNetworkPanel,
 } from "./networkBuilder.js";
-import { showServicePanel } from "./workflowBuilder.js";
+import { servicePanelUpdate, showServicePanel } from "./workflowBuilder.js";
 
 const currentUrl = `${location.origin}/${page}`;
 const pageHistory = ["workflow_builder", "service_table", "network_table"];
@@ -828,6 +828,7 @@ export function showInstancePanel(type, id, mode, tableId, edge, hideButton) {
             const action = mode ? mode.toUpperCase() : "EDIT";
             panel.setHeaderTitle(`${action} ${uiType} - ${instance.name}`);
             processInstance(type, instance, mode);
+            if (isService && mode == "duplicate") servicePanelUpdate(type, id);
             if (isService) loadScript(`/static/js/services/${type}.js`, id);
             if (!user.is_admin) $("[name='admin_only']").prop("disabled", true);
           },
