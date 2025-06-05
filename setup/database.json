@@ -53,6 +53,22 @@
     "pool"
   ],
   "json_migration": {
+    "import_export_models": [
+      "data",
+      "user",
+      "group",
+      "device",
+      "file",
+      "link",
+      "result",
+      "run",
+      "server",
+      "service",
+      "workflow_edge",
+      "task",
+      "credential",
+      "pool"
+    ],
     "no_export": [
       "changelog",
       "connection_service",
@@ -61,8 +77,6 @@
       "file",
       "link",
       "object",
-      "result",
-      "run",
       "service",
       "service_log",
       "service_report",
@@ -123,6 +137,35 @@
         "id"
       ],
       "parameters": ["id"],
+      "result": [
+        "id",
+        "run_id",
+        "parent_service_id",
+        "parent_device_id",
+        "device_id",
+        "service_id",
+        "workflow_id",
+        "parent_service_name",
+        "parent_device_name",
+        "device_name",
+        "service_name",
+        "workflow_name"
+      ],
+      "run": [
+        "id",
+        "restart_run_id",
+        "start_services",
+        "server_id",
+        "service_id",
+        "service_name",
+        "placeholder_id",
+        "start_service_id",
+        "task_id",
+        "worker_id",
+        "server_name",
+        "task_name",
+        "worker_name"
+      ],
       "server": ["id", "status"],
       "service": [
         "id",

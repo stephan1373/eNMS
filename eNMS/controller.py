@@ -1342,7 +1342,7 @@ class Controller(vs.TimingMixin):
             self.json_import_properties(cls_name, path)
         db.session.commit()
         name_to_id = {}
-        for cls_name in db.import_export_models:
+        for cls_name in db.json_migration["import_export_models"]:
             cls = vs.models[cls_name]
             name_to_id[cls_name] = dict(
                 db.session.execute(select(cls.name, cls.id)).all()

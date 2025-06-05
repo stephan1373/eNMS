@@ -282,6 +282,7 @@ class Result(AbstractBase):
     private = True
     log_change = False
     id = db.Column(Integer, primary_key=True)
+    name = db.Column(db.SmallString, unique=True)
     path = db.Column(db.SmallString)
     success = db.Column(Boolean, default=False)
     labels = db.Column(db.LargeString)
@@ -330,6 +331,7 @@ class Result(AbstractBase):
         for key in ("duration", "runtime", "success"):
             setattr(self, key, kwargs["result"][key])
         self.path = kwargs["path"]
+        self.name = f"{self.runtime} - {vs.get_persistent_id()}"
         super().__init__(**kwargs)
 
     def __repr__(self):
