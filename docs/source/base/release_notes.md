@@ -18,6 +18,9 @@ Version 5.3: Migration
     - RestCallService.named_credential_id
     - WorkflowEdge.workflow_id
     - Commit: 801da3b267df05a3474547330a356577526b8b78
+  - Refactor runs and results to store state with persistent ID instead of ID to be able to
+    persist the state when exporting runs and results as JSON
+    Commit: c81c3aceb345134a20c33a389de3eda2fac0cb15
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 - Performance Optimization
