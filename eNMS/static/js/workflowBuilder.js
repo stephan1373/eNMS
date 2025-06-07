@@ -91,11 +91,16 @@ let placeholder;
 let isSuperworkflow;
 let startId;
 let endId;
+let pidToId;
+let idToPid;
 
 export function displayWorkflow(workflowData, workflowSwitch) {
   workflow = workflowData.service;
   placeholder = null;
-  currentPlaceholder = workflowData.state?.[currentPath]?.placeholder;
+  pidToId = { [workflow.persistent_id]: workflow.id};
+  idToPid = { [workflow.id]: workflow.persistent_id};
+  const statePath = currentPath.split(">").map(id => idToPid[id]).join(">");
+  currentPlaceholder = workflowData.state?.[statePath]?.placeholder;
   isSuperworkflow = false;
   graph = configureGraph(
     workflow,
@@ -137,7 +142,8 @@ export function updateRuntimeVariable(runtime) {
 }
 
 function updateRuntimes(result) {
-  currentPlaceholder = result.state?.[currentPath]?.placeholder;
+  const statePath = currentPath.split(">").map(id => idToPid[id]).join(">");
+  currentPlaceholder = result.state?.[statePath]?.placeholder;
   if (!currentRuntime) currentRuntime = $("#current-runtime").val();
   const displayedRuntimes = result.runtimes.map((runtime) => runtime[0]);
   if (
@@ -365,6 +371,8 @@ export function drawWorkflowNode(service) {
     placeholder = service;
   }
   const defaultService = ["Start", "End"].includes(service.scoped_name);
+  pidToId[service.persistent_id] = service.id;
+  idToPid[service.id] = service.persistent_id;
   if (defaultService) {
     ends.add(service.id);
     if (service.scoped_name == "Start") {
@@ -678,7 +686,7 @@ function displayWorkflowState(result, workflowSwitch) {
   }
   const serviceIds = workflow.services.map((s) => s.id);
   for (let [path, state] of Object.entries(result.state)) {
-    const id = parseInt(path.split(">").slice(-1)[0]);
+    const id = pidToId[path.split(">").slice(-1)[0]];
     if (ends.has(id) || !serviceIds.includes(id)) continue;
     let label = `<b>${nodes.get(id).name}</b>\n`;
     colorService(id, state.dry_run ? "#EDC582" : state.success ? "#32CD32" : "#FF6666");
@@ -736,7 +744,8 @@ function displayWorkflowState(result, workflowSwitch) {
     });
   }
   nodes.update(nodeUpdates);
-  const state = result.state[currentPath];
+  const statePath = currentPath.split(">").map(id => idToPid[id]).join(">");
+  const state = result.state[statePath];
   if (state?.edges) {
     for (let [id, devices] of Object.entries(state.edges)) {
       if (!edges.get(parseInt(id))) continue;

@@ -443,6 +443,10 @@ class Run(AbstractBase):
         super().__init__(**kwargs)
         if not self.name:
             self.name = f"{self.runtime} ({self.creator})"
+        self.path = ">".join(
+            db.fetch("service", id=id, rbac=None).persistent_id
+            for id in self.path.split(">")
+        )
         self.service_name = (self.placeholder or self.service).name
 
     def __repr__(self):

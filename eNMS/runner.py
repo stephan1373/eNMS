@@ -102,7 +102,7 @@ class Runner(vs.TimingMixin):
         if "in_process" in kwargs:
             self.path = run.path
         elif not self.is_main_run:
-            self.path = f"{run.path}>{self.service.id}"
+            self.path = f"{run.path}>{self.service.persistent_id}"
         db.session.commit()
 
     @staticmethod

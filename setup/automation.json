@@ -86,6 +86,7 @@
       "service": [
         "dry_run",
         "id",
+        "persistent_id",
         "name",
         "scoped_name",
         "type",

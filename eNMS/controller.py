@@ -846,6 +846,11 @@ class Controller(vs.TimingMixin):
 
     def get_instance_tree(self, type, full_path, runtime=None, **kwargs):
         path_id = full_path.split(">")
+        path_pid = [
+            db.fetch("service", id=id, rbac=None).persistent_id
+            for id in path_id
+        ]
+        full_ppath = ">".join(path_pid)
         run = db.fetch("run", runtime=runtime) if runtime else None
         state = {}
         if "state" in kwargs:
@@ -890,7 +895,7 @@ class Controller(vs.TimingMixin):
                     return
                 elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
                     instance = db.fetch(type, id=path_id[1])
-                    path = f"{path.split('>')[0]}>{path_id[1]}"
+                    path = f"{path.split('>')[0]}>{instance.persistent_id}"
             if active_search and instance.type != type:
                 if match(instance, **kwargs):
                     style = "font-weight: bold; color: #BABA06"
@@ -905,11 +910,11 @@ class Controller(vs.TimingMixin):
                 )
                 children_results = []
                 for child in instances:
-                    if str(child.id) in local_path_ids:
+                    if str(child.persistent_id) in local_path_ids:
                         continue
                     if run and child.scoped_name == "Placeholder" and run.placeholder:
                         child = run.placeholder
-                    child_results = rec(child, f"{path}>{child.id}")
+                    child_results = rec(child, f"{path}>{child.persistent_id}")
                     if run and not child_results:
                         continue
                     children_results.append(child_results)
@@ -948,7 +953,7 @@ class Controller(vs.TimingMixin):
                     else "#E09E2F" if getattr(instance, "dry_run", False) else "#6666FF"
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
-            attr_class = "jstree-wholerow-clicked" if full_path == path else ""
+            attr_class = "jstree-wholerow-clicked" if full_ppath == path else ""
             return {
                 "runtime": state[path]["result"]["runtime"] if state else None,
                 "data": {
@@ -957,7 +962,7 @@ class Controller(vs.TimingMixin):
                     **progress_data,
                 },
                 "id": path,
-                "state": {"opened": full_path.startswith(path)},
+                "state": {"opened": full_ppath.startswith(path)},
                 "text": text if len(text) < 45 else f"{text[:45]}...",
                 "children": children,
                 "a_attr": {
@@ -971,11 +976,11 @@ class Controller(vs.TimingMixin):
         # as root of the tree. In case of restart run from a subworkflow or from a
         # workflow that has a superworkflow, we use the last service as root.
         if run:
-            has_root_state = str(path_id[0]) in state
+            has_root_state = str(path_pid[0]) in state
             root_id = path_id[0] if has_root_state else path_id[-1]
-            root_path = str(path_id[0]) if has_root_state else full_path
+            root_path = str(path_pid[0]) if has_root_state else full_ppath
         else:
-            root_id, root_path = path_id[0], str(path_id[0])
+            root_id, root_path = path_id[0], str(path_pid[0])
         return {
             "tree": rec(db.fetch(type, id=root_id), root_path),
             "highlight": highlight,
