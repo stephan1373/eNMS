@@ -224,10 +224,10 @@ class Workflow(Service):
                     heappush(services, ((1 / successor.priority, successor_id)))
                     if tracking_bfs or device:
                         run.write_state(
-                            f"edges/{edge_id}", len(summary[edge_type]), "increment"
+                            f"edges/{edge_id}", len(summary[edge_type]), "increment", top_level=True
                         )
                     else:
-                        run.write_state(f"edges/{edge_id}", "DONE")
+                        run.write_state(f"edges/{edge_id}", "DONE", top_level=True)
         if tracking_bfs or device:
             failed = list(targets[start.name] - targets[end.name])
             summary = {"success": list(targets[end.name]), "failure": failed}

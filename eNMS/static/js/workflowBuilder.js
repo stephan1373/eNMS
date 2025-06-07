@@ -744,10 +744,8 @@ function displayWorkflowState(result, workflowSwitch) {
     });
   }
   nodes.update(nodeUpdates);
-  const statePath = currentPath.split(">").map(id => idToPid[id]).join(">");
-  const state = result.state[statePath];
-  if (state?.edges) {
-    for (let [id, devices] of Object.entries(state.edges)) {
+  if (result.state?.edges) {
+    for (let [id, devices] of Object.entries(result.state.edges)) {
       if (!edges.get(parseInt(id))) continue;
       edgeUpdates.push({
         id: parseInt(id),
