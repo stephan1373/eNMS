@@ -20,7 +20,8 @@ Version 5.3: Migration
     - Commit: 801da3b267df05a3474547330a356577526b8b78
   - Refactor runs and results to store state with persistent ID instead of ID to be able to
     persist the state when exporting runs and results as JSON
-    Commit: c81c3aceb345134a20c33a389de3eda2fac0cb15
+    Commit: c81c3aceb345134a20c33a389de3eda2fac0cb15 (update state to use persistent ID)
+    Commit: e6cac0d8439442ba858d764b135057b8e8b63f9a (move edges to top-level state)
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 - Performance Optimization
