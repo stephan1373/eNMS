@@ -207,13 +207,19 @@ class Runner(vs.TimingMixin):
             instance = instances.pop()
             if instance in visited or instance.soft_deleted:
                 continue
+            if instance.name == "[Shared] Placeholder":
+                instance = self.placeholder
             visited.add(instance)
             if instance.type == "workflow_edge":
                 edge = SimpleNamespace(**instance.get_properties())
                 topology["edges"][instance.id] = edge
-                key = (instance.workflow_id, instance.source_id, instance.subtype)
-                neighbor = (instance.id, instance.destination_id)
-                topology["neighbors"][key].add(neighbor)
+                source_id, destination_id = instance.source_id, instance.destination_id
+                if instance.source.name == "[Shared] Placeholder":
+                    source_id = self.placeholder.id
+                elif instance.destination.name == "[Shared] Placeholder":
+                    destination_id = self.placeholder.id
+                key = (instance.workflow_id, source_id, instance.subtype)
+                topology["neighbors"][key].add((instance.id, destination_id))
                 topology["name_to_dict"]["edges"][instance.name] = edge
             else:
                 service_properties = instance.get_properties(exclude=["positions"])
