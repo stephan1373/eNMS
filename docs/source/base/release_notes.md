@@ -45,7 +45,10 @@ Version 5.3: Migration
   - Update to the Runner mechanism:
     - Generate the workflow topology graph at the beginning and reuse in workflow job function to
       reduce the number of SQL queries, and remove the neighbors SQL query to get next services in Dijkstra.
-      Commit: 6adb7b7cded5484a83de497757edcd2bf6313e55 + bf4293d49690429ec1b4c74f6289d652fddf89f4
+      Commit:
+        - 6adb7b7cded5484a83de497757edcd2bf6313e55
+        - bf4293d49690429ec1b4c74f6289d652fddf89f4
+        - f8182fcda6c2a97db0429173a2d35942834373f5
       Side-effect: because the workflow topology is saved when the workflow runs, any changes made
       afterward (such as removing an edge or a service) won't affect that workflow run.
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
