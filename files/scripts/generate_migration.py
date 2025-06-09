@@ -46,9 +46,10 @@ def generate_services():
     with open(PATH / "python_snippet_service.json", "wb") as file:
         file.write(dumps([
             {
+                "persistent_id": f"Service{index}",
                 "name": f"[Shared] Service{index}",
                 "model": f"Model{randrange(1, 21)}",
-                "vendor": choice(["Cisco", "Juniper", "Arista"]),
+                "vendor": ["Cisco", "Juniper", "Arista"][index % 3],
                 "source_code": 'results["success"] = True',
                 "scoped_name": f"Service{index}",
                 "shared": True
@@ -64,9 +65,10 @@ def generate_workflows():
             positions[f"[Shared] Service{index + i + 10}"] = (2000 - 200 * i, 200)
             positions[f"[Shared] Service{index + i + 20}"] = ((i + 1) * 200, 400)
         workflows.append({
+            "persistent_id": f"Workflow{index}",
             "name": f"[Shared] Workflow{index}",
             "positions": positions,
-            "vendor": choice(["Cisco", "Juniper", "Arista"]),
+            "vendor": ["Cisco", "Juniper", "Arista"][index % 3],
             "scoped_name": f"Workflow{index}",
             "shared": True,
         })
