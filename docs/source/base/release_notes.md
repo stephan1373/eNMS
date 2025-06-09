@@ -68,6 +68,8 @@ Migration:
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
   Search mechanism)
+- Check that all services have a unique persistent ID across all services (mandatory now that results display
+  rely on persistent ID instead of ID previously)
 
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
