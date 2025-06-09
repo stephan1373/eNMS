@@ -189,4 +189,4 @@ def generate_networks():
     pass
 
 
-generate_workflow_edges()
+generate_workflows()
