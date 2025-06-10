@@ -43,6 +43,9 @@ Version 5.3: Migration
     - Refactor the search to no longer use jstree search mechanism (one ajax call per workflow match), and
       remove the associated "search_workflow_services" function
       Commit: e5b70fb411cfe1d8f1dd42df324a275eb2404946 + 9c62edd8a58cb9dc3a748044a31b0eaa8c26c3d6
+  - Optimize call to "filtering/run" when loading the results table, or the device results table
+    by removing the lazy joining of Devices in the Result class (Result.device)
+    Commit: 9a543b326d83ec3be08e5f98d9be8ee10680d00b
   - Update "get_service_state" function:
     - Optimize the function when a workflow has many runs by only fetching the runs name and runtime
       properties, not the full SQLalchemy objects for all runs (fetch the SQL object only for
