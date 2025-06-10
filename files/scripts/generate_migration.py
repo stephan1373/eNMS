@@ -66,6 +66,7 @@ def generate_workflows():
             positions[f"[Shared] Service{index + i + 20}"] = ((i + 1) * 200, 400)
         workflows.append({
             "persistent_id": f"Workflow{index}",
+            "builder_link": f"Workflow{index}",
             "name": f"[Shared] Workflow{index}",
             "positions": positions,
             "vendor": ["Cisco", "Juniper", "Arista"][index % 3],
@@ -264,4 +265,4 @@ def generate_networks():
     pass
 
 
-generate_runs()
+generate_workflows()
