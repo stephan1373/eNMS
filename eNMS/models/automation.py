@@ -307,7 +307,6 @@ class Result(AbstractBase):
         "Device",
         uselist=False,
         foreign_keys=device_id,
-        lazy="joined",
         backref=backref("results", cascade="all,delete"),
     )
     device_name = association_proxy("device", "name")
