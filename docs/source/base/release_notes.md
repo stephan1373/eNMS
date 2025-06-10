@@ -43,6 +43,11 @@ Version 5.3: Migration
     - Refactor the search to no longer use jstree search mechanism (one ajax call per workflow match), and
       remove the associated "search_workflow_services" function
       Commit: e5b70fb411cfe1d8f1dd42df324a275eb2404946 + 9c62edd8a58cb9dc3a748044a31b0eaa8c26c3d6
+  - Update "get_service_state" function:
+    - Optimize the function when a workflow has many runs by only fetching the runs name and runtime
+      properties, not the full SQLalchemy objects for all runs (fetch the SQL object only for
+      currently displayed runtime instead)
+      Commit: 7fe70bc8cf5f453bb45d75878fa070e9800f9edb
   - Update to the Runner mechanism:
     - Generate the workflow topology graph at the beginning and reuse in workflow job function to
       reduce the number of SQL queries, and remove the neighbors SQL query to get next services in Dijkstra.
