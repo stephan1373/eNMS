@@ -77,13 +77,15 @@ class Runner(vs.TimingMixin):
         self.dry_run = getattr(run, "dry_run", False) or self.get("dry_run")
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
-        self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
-        creator = db.fetch("user", name=self.main_run.creator, rbac=None)
-        self.is_admin_run = creator.is_admin
-        self.creator_dict = {"name": creator.name, "email": creator.email}
         if self.is_main_run:
+            self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
+            creator = db.fetch("user", name=self.creator, rbac=None)
             self.cache = {
-                "global_variables": self.cache_global_variables(),
+                "creator": {
+                    "name": creator.name,
+                    "email": creator.email,
+                    "is_admin": creator.is_admin,
+                },
                 "main_run": self.main_run.base_properties,
                 "main_run_service": {
                     "log_level": int(self.main_run.service.log_level),
@@ -93,7 +95,9 @@ class Runner(vs.TimingMixin):
                 "service": self.service.base_properties,
                 "topology": self.get_topology(),
             }
+            self.cache["global_variables"] = self.cache_global_variables()
         else:
+            self.main_run = run.main_run
             self.cache = {**run.cache, "service": self.service.base_properties}
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
@@ -187,11 +191,11 @@ class Runner(vs.TimingMixin):
             "trigger": self.main_run.trigger,
             "try_commit": db.try_commit,
             "try_set": db.try_set,
-            "user": self.creator_dict,
+            "user": self.cache["creator"],
             "workflow": self.workflow,
             **vs.custom.runner_global_variables(),
         }
-        if self.is_admin_run:
+        if self.cache["creator"]["is_admin"]:
             default_variables["get_credential"] = self.get_credential
         return default_variables
 
