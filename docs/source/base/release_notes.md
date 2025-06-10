@@ -68,6 +68,8 @@ Version 5.3: Migration
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
+    - Reduce numnber of unnecessary calls to db.fetch in Runner initialization
+      Commit: c7847256a06b7c12207a6db7b8f60719ff8f2403
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
 - Minor update to configureNamespace function
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
