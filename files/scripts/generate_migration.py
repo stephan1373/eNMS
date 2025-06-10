@@ -200,7 +200,8 @@ def generate_runs():
             },
             "progress": {"device": {"total": 1,"success": 1}}
         }
-        state = {f"Workflow0": = inner_state}
+        state = {"Workflow0": inner_state}
+        run_service_table.append([runtime, f"[Shared] Workflow0"])
         for service_index in range(30):
             state[f"Workflow0>Service{service_index}"] = inner_state
             run_service_table.append([runtime, f"[Shared] Service{service_index}"])
@@ -264,4 +265,3 @@ def generate_networks():
 
 
 generate_runs()
-generate_results()
