@@ -405,7 +405,7 @@ class Run(AbstractBase):
     server_version = db.Column(db.TinyString)
     server_commit_sha = db.Column(db.TinyString)
     service_id = db.Column(Integer, ForeignKey("service.id", ondelete="cascade"))
-    service = relationship("Service", foreign_keys="Run.service_id", lazy="joined")
+    service = relationship("Service", foreign_keys="Run.service_id")
     service_name = db.Column(db.SmallString)
     services = relationship(
         "Service", secondary=db.run_service_table, back_populates="runs"
