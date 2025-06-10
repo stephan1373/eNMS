@@ -691,7 +691,7 @@ class Controller(vs.TimingMixin):
             path_id = path.split(">")
         if not service:
             raise db.rbac_error
-        runs = db.query("run", rbac=None).filter(
+        runs = db.query("run", properties=["name", "runtime"], rbac=None).filter(
             vs.models["run"].service_id.in_(path_id)
         )
         if display == "user":
@@ -699,9 +699,8 @@ class Controller(vs.TimingMixin):
         runs = runs.all()
         if runtime != "normal" and runs:
             if runtime == "latest":
-                run = sorted(runs, key=attrgetter("runtime"), reverse=True)[0]
-            else:
-                run = db.fetch("run", allow_none=True, runtime=runtime)
+                runtime = sorted(run.runtime for run in runs)[-1]
+            run = db.fetch("run", allow_none=True, runtime=runtime)
             state = kwargs["state"] = run.get_state() if run else None
         if kwargs.get("device") and run:
             output["device_state"] = kwargs["device_state"] = {
