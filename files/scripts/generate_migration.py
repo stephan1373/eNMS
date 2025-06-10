@@ -185,8 +185,83 @@ def generate_servers():
     with open(PATH / "server.json", "wb") as file:
         file.write(dumps(servers))
 
+def generate_runs():
+    runs = []
+    run_service = {}
+    run_service_table = []
+    for index in range(1000):
+        runtime = f"2000-00-00 00:00:00.{index}"
+        inner_state = {
+            "success": True,
+            "status": "Running",
+            "result": {
+                "runtime": runtime,
+                "success": True
+            },
+            "progress": {"device": {"total": 1,"success": 1}}
+        }
+        state = {f"Workflow0": = inner_state}
+        for service_index in range(30):
+            state[f"Workflow0>Service{service_index}"] = inner_state
+            run_service_table.append([runtime, f"[Shared] Service{service_index}"])
+        runs.append({
+            "name": runtime,
+            "creator": "admin",
+            "success": True,
+            "status": "Completed",
+            "runtime": runtime,
+            "duration": "0:00:01",
+            "path":"Workflow0",
+            "state": state
+        })
+        run_service[runtime] = "[Shared] Workflow0"
+    with open(PATH / "run.json", "wb") as file:
+        file.write(dumps(runs))
+    with open(PATH / "run_service.json", "wb") as file:
+        file.write(dumps(run_service))
+    with open(PATH / "run_service_table.json", "wb") as file:
+        file.write(dumps(run_service_table))
+
+def generate_results():
+    results = []
+    result_workflow = {}
+    result_service = {}
+    result_run = {}
+    result_device = {}
+    for run in range(1000):
+        runtime = f"2000-00-00 00:00:00.{run}"
+        for service in range(30):
+            for device in range(10):
+                result_name = f"Run{run} - Service{service} - Device{device}"
+                result_workflow[result_name] = "[Shared] Workflow0"
+                result_service[result_name] = f"[Shared] Service{service}"
+                result_run[result_name] = runtime
+                result_device[result_name] = f"Device{device}"
+                results.append({
+                    "name": result_name,
+                    "path": f"Workflow0>Service{service}",
+                    "success": True,
+                    "runtime": runtime,
+                    "result": {
+                        "runtime": runtime,
+                        "success": True,
+                    },
+                    "parent_runtime": runtime
+                })
+    with open(PATH / "result.json", "wb") as file:
+        file.write(dumps(results))
+    with open(PATH / "result_workflow.json", "wb") as file:
+        file.write(dumps(result_workflow))
+    with open(PATH / "result_service.json", "wb") as file:
+        file.write(dumps(result_service))
+    with open(PATH / "result_run.json", "wb") as file:
+        file.write(dumps(result_run))
+    with open(PATH / "result_device.json", "wb") as file:
+        file.write(dumps(result_device))
+
 def generate_networks():
     pass
 
 
-generate_workflows()
+generate_runs()
+generate_results()
