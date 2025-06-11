@@ -58,18 +58,26 @@ Version 5.3: Migration
     - Don't compute "target_devices" if it has already been defined as an arguement of the Runner class
       Commit: d46230319af9e3a76313584a93e59ac8835efedb
     - SQLectomy:
-      - Part 1 (non optional): generate the workflow topology graph at the beginning and reuse in
+      - Part 1 (non optional): Generate the workflow topology graph at the beginning and reuse in
         workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
         query to get next services in Dijkstra.
         Commit:
           - 6adb7b7cded5484a83de497757edcd2bf6313e55
           - bf4293d49690429ec1b4c74f6289d652fddf89f4
           - f8182fcda6c2a97db0429173a2d35942834373f5
-        Side-effect: because the workflow topology is saved when the workflow runs, any changes made
+        Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
         afterward (such as removing an edge or a service) won't affect that workflow run.
-        - Part 2 (optional): store results in a dict and create them in the end of run transaction.
+        - Part 2 (optional): Store results in a dict and create them in the end of run transaction.
           Only active when the "Legacy Run" option is unchecked.
           Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
+        - Part 3 (optional):
+        SQLectomy part 3:
+          - Use service namespace instead of service SQL object for Runner.service
+          - Convert all jobs to @staticmethod so it can be called without service SQL object
+          - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
+          - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
+          - In the workflow, fetch the device with db.fetch or use the device namespace depending on the value of Legacy Run
+          Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
@@ -88,6 +96,8 @@ Tests:
   Search mechanism)
 - Check that all services have a unique persistent ID across all services (mandatory now that results display
   rely on persistent ID instead of ID previously)
+- Test the Ansible Playbook Service (exit codes no longer available directly)
+- Test Workflow with a superworkflow
 
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
