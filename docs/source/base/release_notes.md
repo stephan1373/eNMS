@@ -86,6 +86,8 @@ Version 5.3: Migration
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
 - Minor update to configureNamespace function
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
+- Refactor the SQL query monitoring to compute the query duration without execution it twice
+  Commit: 65fe27e2f97cb79828ef5d35a4d69f01dda6c2ea
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link"
