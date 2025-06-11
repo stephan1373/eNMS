@@ -88,6 +88,10 @@ Version 5.3: Migration
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
 - Refactor the SQL query monitoring to compute the query duration without executing it twice
   Commit: 65fe27e2f97cb79828ef5d35a4d69f01dda6c2ea
+- Remove lazy join for workflow edges and servers
+    - WorkflowEdge.source, WorkflowEdge.destination, WorkflowEdge.workflow
+    - Server.workers
+  Commit: df2b92f8de2a1b23b1387f4596c07379a8c6e450
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link"
