@@ -20,6 +20,7 @@ class GitService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "git_service"}
 
+    @staticmethod
     def job(self, run, device=None):
         local_path = run.sub(run.local_repository, locals())
         remote_path = run.sub(run.remote_repository, locals())

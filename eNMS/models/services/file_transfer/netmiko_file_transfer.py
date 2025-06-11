@@ -32,6 +32,7 @@ class NetmikoFileTransferService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "netmiko_file_transfer_service"}
 
+    @staticmethod
     def job(self, run, device):
         source = run.sub(run.source_file, locals())
         destination = run.sub(run.destination_file, locals())

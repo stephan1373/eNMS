@@ -17,6 +17,7 @@ class NapalmRollbackService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "napalm_rollback_service"}
 
+    @staticmethod
     def job(self, run, device):
         if run.dry_run:
             return {}

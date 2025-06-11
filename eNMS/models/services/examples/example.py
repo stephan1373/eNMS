@@ -66,9 +66,7 @@ class ExampleService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "example_service"}
 
-    # Some services will take action or interrogate a device. The job method
-    # can also take device as a parameter for these types of services.
-    # def job(self, device, payload):
+    @staticmethod
     def job(self, run, device=None):
         run.log("info", "Logs displayed in real-time as service runs", device)
         # The "job" function is called when the service is executed.

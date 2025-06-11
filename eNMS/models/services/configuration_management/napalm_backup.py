@@ -34,6 +34,7 @@ class NapalmBackupService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "napalm_backup_service"}
 
+    @staticmethod
     def job(self, run, device):
         local_path = run.sub(run.local_path, locals())
         if run.dry_run:

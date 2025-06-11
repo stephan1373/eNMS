@@ -14,6 +14,7 @@ class DataValidationService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "data_validation_service"}
 
+    @staticmethod
     def job(self, run, device=None):
         return {"query": run.query, "result": run.eval(run.query, **locals())[0]}
 

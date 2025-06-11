@@ -22,6 +22,7 @@ class PingService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "ping_service"}
 
+    @staticmethod
     def job(self, run, device=None):
         ip_address = run.sub(run.ip_address, locals()) or device.ip_address
         if run.dry_run:

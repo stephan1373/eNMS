@@ -29,6 +29,7 @@ class UnixShellScriptService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "unix_shell_script_service"}
 
+    @staticmethod
     def job(self, run, device):
         source_code = run.sub(run.source_code, locals())
         if run.dry_run:

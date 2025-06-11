@@ -15,6 +15,7 @@ class SwissArmyKnifeService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "swiss_army_knife_service"}
 
+    @staticmethod
     def job(self, *args, **kwargs):
         return getattr(self, self.scoped_name)(*args, **kwargs)
 

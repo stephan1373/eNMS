@@ -25,6 +25,7 @@ class ScrapliService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "scrapli_service"}
 
+    @staticmethod
     def job(self, run, device):
         local_variables = locals()
         if self.jinja2_template:

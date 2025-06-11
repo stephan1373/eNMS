@@ -18,6 +18,7 @@ class MattermostNotificationService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "mattermost_notification_service"}
 
+    @staticmethod
     def job(self, run, device=None):
         channel = run.sub(run.channel, locals()) or vs.settings["mattermost"]["channel"]
         message = run.sub(run.body, locals())

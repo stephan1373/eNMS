@@ -41,6 +41,7 @@ class RestCallService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "rest_call_service"}
 
+    @staticmethod
     def job(self, run, device=None):
         local_variables = locals()
         rest_url = run.sub(run.rest_url, local_variables)

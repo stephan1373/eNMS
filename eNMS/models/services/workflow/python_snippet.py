@@ -17,6 +17,7 @@ class PythonSnippetService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "python_snippet_service"}
 
+    @staticmethod
     def job(self, run, device=None):
         try:
             code_object = compile(run.source_code, "user_python_code", "exec")

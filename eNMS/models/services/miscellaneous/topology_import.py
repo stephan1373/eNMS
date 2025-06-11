@@ -31,6 +31,7 @@ class TopologyImportService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "topology_import_service"}
 
+    @staticmethod
     def job(self, run):
         if run.dry_run:
             return {}

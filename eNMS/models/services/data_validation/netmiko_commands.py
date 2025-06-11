@@ -43,6 +43,7 @@ class NetmikoValidationService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "netmiko_commands_service"}
 
+    @staticmethod
     def job(self, run, device):
         local_variables = locals()
         if self.jinja2_template:

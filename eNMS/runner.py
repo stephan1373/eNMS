@@ -78,6 +78,7 @@ class Runner(vs.TimingMixin):
         self.dry_run = getattr(run, "dry_run", False) or self.get("dry_run")
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
+        service_properties = self.get_service_properties()
         if self.is_main_run:
             self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
             creator = db.fetch("user", name=self.creator, rbac=None)
@@ -92,26 +93,30 @@ class Runner(vs.TimingMixin):
                     "legacy_run": self.main_run.service.legacy_run,
                     "log_level": int(self.main_run.service.log_level),
                     "show_user_logs": self.main_run.service.show_user_logs,
-                    **self.main_run.service.base_properties,
+                    **service_properties,
                 },
-                "service": self.service.base_properties,
+                "service": service_properties,
                 "topology": self.get_topology(),
             }
             self.cache["global_variables"] = self.cache_global_variables()
         else:
             self.main_run = run.main_run
-            self.cache = {**run.cache, "service": self.service.base_properties}
+            self.cache = {**run.cache, "service": service_properties}
         self.is_legacy_run = self.cache["main_run_service"]["legacy_run"]
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
-            if self.service not in self.main_run.services:
-                self.main_run.services.append(self.service)
         if "in_process" in kwargs:
             self.path = run.path
         elif not self.is_main_run:
             self.path = f"{run.path}>{self.service.persistent_id}"
         if self.is_legacy_run:
             db.session.commit()
+
+    def get_service_properties(self):
+        return {
+            property: getattr(self.service, property)
+            for property in ("id", "name", "scoped_name", "type")
+        }
 
     @staticmethod
     def _initialize():
@@ -205,6 +210,8 @@ class Runner(vs.TimingMixin):
 
     def get_topology(self):
         topology = {
+            "devices": {},
+            "pools": {},
             "services": {},
             "edges": {},
             "name_to_dict": defaultdict(dict),
@@ -232,6 +239,13 @@ class Runner(vs.TimingMixin):
             else:
                 service_properties = instance.get_properties(exclude=["positions"])
                 service = SimpleNamespace(**service_properties)
+                service.target_devices = []
+                for model in ("devices", "pools"):
+                    setattr(service, f"target_{model}", [])
+                    for target in getattr(instance, f"target_{model}"):
+                        target_namespace = SimpleNamespace(**target.get_properties())
+                        topology[model][target.id] = target_namespace
+                        getattr(service, f"target_{model}").append(target_namespace)
                 topology["services"][instance.id] = service
                 topology["name_to_dict"]["services"][instance.name] = service
             if instance.type == "workflow":
@@ -443,7 +457,11 @@ class Runner(vs.TimingMixin):
             now = datetime.now().replace(microsecond=0)
             results["duration"] = str(now - start)
             self.write_state("result/success", results["success"])
-            results["properties"] = self.service.get_properties(exclude=["positions"])
+            if isinstance(self.service, SimpleNamespace):
+                properties = vars(self.service)
+            else:
+                properties = self.service.get_properties(exclude=["positions"])
+            results["properties"] = properties
             results["trigger"] = self.main_run.trigger
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
@@ -472,7 +490,19 @@ class Runner(vs.TimingMixin):
             if runtime_keys:
                 env.redis("delete", *runtime_keys)
         vs.run_targets.pop(self.runtime, None)
-        vs.run_services.pop(self.runtime, None)
+        run_services = vs.run_services.pop(self.runtime, [])
+        db.try_commit(self.run_service_table_transaction, run_services)
+
+    def run_service_table_transaction(self, run_services):
+        table = db.run_service_table
+        db.session.execute(
+            table.delete().where(table.c.run_id == self.main_run.id)
+        )
+        values = [
+            {"run_id": self.main_run.id, "service_id": id}
+            for id in run_services
+        ]
+        db.session.execute(table.insert(), values)
 
     def end_of_run_transaction(self, results, status=None):
         if not status:
@@ -804,7 +834,8 @@ class Runner(vs.TimingMixin):
                     except SystemExit:
                         pass
                 try:
-                    results = self.service.job(self, *args)
+                    model = vs.models[self.service.type]
+                    results = model.job(self.service, self, *args)
                 except Exception:
                     result = "\n".join(format_exc().splitlines())
                     self.log("error", result, device)

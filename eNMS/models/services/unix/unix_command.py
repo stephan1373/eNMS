@@ -22,6 +22,7 @@ class UnixCommandService(Service):
             kwargs["approved_by_admin"] = False
         super().update(**kwargs)
 
+    @staticmethod
     def job(self, run, device=None):
         command = run.sub(run.command, locals())
         log_command = run.safe_log(run.command, command)

@@ -24,6 +24,7 @@ class ConfigureBgpService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "configure_bgp_service"}
 
+    @staticmethod
     def job(self, run, device):
         napalm_connection = run.napalm_connection(device)
         config = f"""

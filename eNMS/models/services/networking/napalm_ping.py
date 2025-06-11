@@ -24,6 +24,7 @@ class NapalmPingService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "napalm_ping_service"}
 
+    @staticmethod
     def job(self, run, device):
         source = run.sub(run.source_ip, locals())
         destination = run.sub(run.destination_ip, locals())

@@ -33,6 +33,7 @@ class ScrapliBackupService(ConnectionService):
 
     __mapper_args__ = {"polymorphic_identity": "scrapli_backup_service"}
 
+    @staticmethod
     def job(self, run, device):
         local_path = run.sub(run.local_path, locals())
         commands = run.sub(self.commands, locals())

@@ -148,6 +148,7 @@ class Workflow(Service):
         ]
         return sum(edges, [])
 
+    @staticmethod
     def job(self, run, device=None):
         number_of_runs = defaultdict(int)
         topology = run.cache["topology"]
@@ -180,12 +181,14 @@ class Workflow(Service):
                         "failure": [],
                     }
             else:
+                if service.scoped_name == "Placeholder":
+                    sql_service = run.placeholder
+                elif run.is_legacy_run:
+                    sql_service = db.fetch("service", id=service_id, rbac=None)
+                else:
+                    sql_service = topology["services"][service_id]
                 kwargs = {
-                    "service": (
-                        run.placeholder
-                        if service.scoped_name == "Placeholder"
-                        else db.fetch("service", id=service_id, rbac=None)
-                    ),
+                    "service": sql_service,
                     "workflow": self,
                     "restart_run": restart_run,
                     "parent": run,
