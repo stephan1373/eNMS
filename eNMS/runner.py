@@ -239,17 +239,14 @@ class Runner(vs.TimingMixin):
             else:
                 service_properties = instance.get_properties(exclude=["positions"])
                 service = SimpleNamespace(**service_properties)
-                service.target_devices = []
-                for model in ("devices", "pools"):
-                    setattr(service, f"target_{model}", [])
-                    for target in getattr(instance, f"target_{model}"):
-                        target_namespace = SimpleNamespace(**target.get_properties())
-                        topology[model][target.id] = target_namespace
-                        getattr(service, f"target_{model}").append(target_namespace)
+                service.target_devices = instance.target_devices
+                service.target_pools = instance.target_pools
                 topology["services"][instance.id] = service
                 topology["name_to_dict"]["services"][instance.name] = service
             if instance.type == "workflow":
                 instances |= set(instance.services) | set(instance.edges)
+        if not self.service.legacy_run:
+            self.service = topology["services"][self.service.id]
         return topology
 
     def get(self, property):
