@@ -71,13 +71,16 @@ Version 5.3: Migration
           Only active when the "Legacy Run" option is unchecked.
           Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
         - Part 3 (optional):
-        SQLectomy part 3:
           - Use service namespace instead of service SQL object for Runner.service
           - Convert all jobs to @staticmethod so it can be called without service SQL object
           - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
           - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
           - In the workflow, fetch the device with db.fetch or use the device namespace depending on the value of Legacy Run
           Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
+        - Part 4:
+          - All Services are Namespaces
+          - All Devices are SQLAlchemy objects
+          Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
