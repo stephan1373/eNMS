@@ -52,19 +52,24 @@ Version 5.3: Migration
       currently displayed runtime instead)
       Commit: 7fe70bc8cf5f453bb45d75878fa070e9800f9edb
   - Update to the Runner mechanism:
-    - Generate the workflow topology graph at the beginning and reuse in workflow job function to
-      reduce the number of SQL queries, and remove the neighbors SQL query to get next services in Dijkstra.
-      Commit:
-        - 6adb7b7cded5484a83de497757edcd2bf6313e55
-        - bf4293d49690429ec1b4c74f6289d652fddf89f4
-        - f8182fcda6c2a97db0429173a2d35942834373f5
-      Side-effect: because the workflow topology is saved when the workflow runs, any changes made
-      afterward (such as removing an edge or a service) won't affect that workflow run.
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
       time the 'global_variables' function is called.
       Commit: fd356528ca691e263be0ced18cdf5038a237d752
     - Don't compute "target_devices" if it has already been defined as an arguement of the Runner class
       Commit: d46230319af9e3a76313584a93e59ac8835efedb
+    - SQLectomy:
+      - Part 1 (non optional): generate the workflow topology graph at the beginning and reuse in
+        workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
+        query to get next services in Dijkstra.
+        Commit:
+          - 6adb7b7cded5484a83de497757edcd2bf6313e55
+          - bf4293d49690429ec1b4c74f6289d652fddf89f4
+          - f8182fcda6c2a97db0429173a2d35942834373f5
+        Side-effect: because the workflow topology is saved when the workflow runs, any changes made
+        afterward (such as removing an edge or a service) won't affect that workflow run.
+        - Part 2 (optional): store results in a dict and create them in the end of run transaction.
+          Only active when the "Legacy Run" option is unchecked.
+          Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
