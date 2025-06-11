@@ -357,15 +357,20 @@ class Database:
             self.orm_statements_runtime = defaultdict(timedelta)
             self.monitor_orm_statements = False
 
-            @event.listens_for(self.session, "do_orm_execute")
-            def _do_orm_execute(orm_execute_state):
+            @event.listens_for(self.engine, "before_cursor_execute")
+            def before_cursor_execute(*args):
                 if not self.monitor_orm_statements:
                     return
-                statement = str(orm_execute_state.statement)
+                args[4]._start = datetime.now()
+
+            @event.listens_for(self.engine, "after_cursor_execute") 
+            def after_cursor_execute(*args):
+                statement, context = args[2], args[4]
+                if not self.monitor_orm_statements or not hasattr(context, "_start"):
+                    return
+                runtime = datetime.now() - context._start
                 self.orm_statements[statement] += 1
-                start = datetime.now()
-                orm_execute_state.invoke_statement()
-                self.orm_statements_runtime[statement] += datetime.now() - start
+                self.orm_statements_runtime[statement] += runtime
 
     def configure_associations(self):
         self.associations = {}
