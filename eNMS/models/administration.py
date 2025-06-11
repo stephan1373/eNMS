@@ -61,7 +61,7 @@ class Worker(AbstractBase):
     last_update = db.Column(db.TinyString)
     runs = relationship("Run", back_populates="worker")
     server_id = db.Column(Integer, ForeignKey("server.id"))
-    server = relationship("Server", back_populates="workers", lazy="joined")
+    server = relationship("Server", back_populates="workers")
     server_name = association_proxy("server", "name")
     model_properties = {"current_runs": "str", "server_properties": "dict"}
 

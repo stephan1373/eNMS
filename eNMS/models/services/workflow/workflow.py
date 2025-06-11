@@ -348,7 +348,6 @@ class WorkflowEdge(AbstractBase):
         primaryjoin="Service.id == WorkflowEdge.source_id",
         backref=backref("destinations", cascade="all, delete-orphan"),
         foreign_keys="WorkflowEdge.source_id",
-        lazy="joined",
     )
     destination_id = db.Column(Integer, ForeignKey("service.id"))
     destination = relationship(
@@ -356,14 +355,12 @@ class WorkflowEdge(AbstractBase):
         primaryjoin="Service.id == WorkflowEdge.destination_id",
         backref=backref("sources", cascade="all, delete-orphan"),
         foreign_keys="WorkflowEdge.destination_id",
-        lazy="joined",
     )
     workflow_id = db.Column(Integer, ForeignKey("workflow.id", ondelete="SET NULL"))
     workflow = relationship(
         "Workflow",
         back_populates="edges",
         foreign_keys="WorkflowEdge.workflow_id",
-        lazy="joined",
     )
     logs = relationship("Changelog", back_populates="workflow_edge")
     __table_args__ = (
