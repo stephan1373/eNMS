@@ -736,6 +736,7 @@ class ServiceForm(BaseForm):
     shared = BooleanField("Shared", help="common/shared")
     scoped_name = StringField("Scoped Name", [InputRequired()], ui_name="Name")
     version = StringField("Version")
+    legacy_run = BooleanField("Legacy Run (with SQLAlchemy)")
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     device_query = StringField(
         "Device Query",
@@ -933,6 +934,7 @@ class ServiceForm(BaseForm):
             "creator",
             "type",
             "persistent_id",
+            "legacy_run",
             "disabled",
             "disabled_info",
             "shared",

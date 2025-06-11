@@ -38,6 +38,7 @@ class Service(AbstractBase):
     version = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
     priority = db.Column(Integer, default=10)
+    legacy_run = db.Column(Boolean, default=False)
     number_of_retries = db.Column(Integer, default=0)
     time_between_retries = db.Column(Integer, default=10)
     max_number_of_retries = db.Column(Integer, default=100)

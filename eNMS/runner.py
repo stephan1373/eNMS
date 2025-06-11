@@ -11,6 +11,7 @@ from json.decoder import JSONDecodeError
 from multiprocessing.pool import ThreadPool
 from netmiko import ConnectHandler
 from operator import attrgetter
+from orjson import dumps as or_dumps, loads as or_loads
 from os import getenv
 from paramiko import AutoAddPolicy, RSAKey, SFTPClient, SSHClient
 from re import compile, search
@@ -88,6 +89,7 @@ class Runner(vs.TimingMixin):
                 },
                 "main_run": self.main_run.base_properties,
                 "main_run_service": {
+                    "legacy_run": self.main_run.service.legacy_run,
                     "log_level": int(self.main_run.service.log_level),
                     "show_user_logs": self.main_run.service.show_user_logs,
                     **self.main_run.service.base_properties,
@@ -99,6 +101,7 @@ class Runner(vs.TimingMixin):
         else:
             self.main_run = run.main_run
             self.cache = {**run.cache, "service": self.service.base_properties}
+        self.is_legacy_run = self.cache["main_run_service"]["legacy_run"]
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
             if self.service not in self.main_run.services:
@@ -107,7 +110,8 @@ class Runner(vs.TimingMixin):
             self.path = run.path
         elif not self.is_main_run:
             self.path = f"{run.path}>{self.service.persistent_id}"
-        db.session.commit()
+        if self.is_legacy_run:
+            db.session.commit()
 
     @staticmethod
     def _initialize():
@@ -417,13 +421,14 @@ class Runner(vs.TimingMixin):
             self.log("error", result)
             results.update({"success": False, "result": result})
         finally:
-            try:
-                db.session.commit()
-            except Exception:
-                db.session.rollback()
-                error = "\n".join(format_exc().splitlines())
-                self.log("error", error)
-                results.update({"success": False, "error": error})
+            if self.is_legacy_run:
+                try:
+                    db.session.commit()
+                except Exception:
+                    db.session.rollback()
+                    error = "\n".join(format_exc().splitlines())
+                    self.log("error", error)
+                    results.update({"success": False, "error": error})
             if self.update_pools_after_running:
                 for pool in db.fetch_all("pool", user=self.creator, rbac="edit"):
                     pool.compute_pool()
@@ -438,16 +443,16 @@ class Runner(vs.TimingMixin):
             now = datetime.now().replace(microsecond=0)
             results["duration"] = str(now - start)
             self.write_state("result/success", results["success"])
-            if self.is_main_run:
-                self.success = results["success"]
-                self.update_service_count(-1)
-                self.payload = self.make_json_compliant(self.payload)
-                db.try_commit(self.end_of_run_transaction, results)
             results["properties"] = self.service.get_properties(exclude=["positions"])
             results["trigger"] = self.main_run.trigger
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
+            if self.is_main_run:
+                self.success = results["success"]
+                self.update_service_count(-1)
+                self.payload = self.make_json_compliant(self.payload)
+                db.try_commit(self.end_of_run_transaction, results)
             vs.custom.run_post_processing(self, results)
             if self.is_main_run:
                 self.end_of_run_cleanup()
@@ -476,6 +481,8 @@ class Runner(vs.TimingMixin):
         self.main_run.status = status
         self.main_run.payload = self.payload
         self.create_logs()
+        if not self.is_legacy_run:
+            self.create_all_results()
         if getattr(self, "man_minutes", None) and "summary" in results:
             self.main_run.service.man_minutes_total += (
                 len(results["summary"]["success"]) * self.man_minutes
@@ -712,6 +719,18 @@ class Runner(vs.TimingMixin):
                 rbac=None,
             )
 
+    def create_all_results(self):
+        results = [
+            or_loads(result)
+            for device_results in vs.service_result[self.parent_runtime].values()
+            for result in device_results.values()
+        ]
+        db.session.bulk_insert_mappings(vs.models["result"], results)
+
+    def create_transient_result(self, result, device):
+        device_key = device.id if device else None
+        vs.service_result[self.parent_runtime][self.service.id][device_key] = or_dumps(result)
+
     def create_result(self, results, device=None, commit=True, run_result=False):
         self.success = results["success"]
         result_kw = {
@@ -742,20 +761,26 @@ class Runner(vs.TimingMixin):
         create_failed_results = self.disable_result_creation and not self.success
         results = self.make_json_compliant(results)
         results = self.check_size_before_commit(results, "result")
+        result_kw["memory_size"] = results["memory_size"]
+        result_kw["result"] = results
         if not self.disable_result_creation or create_failed_results or run_result:
             self.has_result = True
-            try:
-                db.factory(
-                    "result",
-                    memory_size=results["memory_size"],
-                    result=results,
-                    commit=vs.automation["advanced"]["always_commit"] or commit,
-                    rbac=None,
-                    **result_kw,
-                )
-            except Exception:
-                self.log("critical", f"Failed to commit result:\n{format_exc()}")
-                db.session.rollback()
+            if self.is_legacy_run:
+                try:
+                    db.factory(
+                        "result",
+                        commit=vs.automation["advanced"]["always_commit"] or commit,
+                        rbac=None,
+                        **result_kw,
+                    )
+                except Exception:
+                    self.log("critical", f"Failed to commit result:\n{format_exc()}")
+                    db.session.rollback()
+            else:
+                for key in ("duration", "runtime", "success"):
+                    result_kw[key] = results[key]
+                result_kw["name"] = f"{results['runtime']} - {vs.get_persistent_id()}"
+                self.create_transient_result(result_kw, device)
         return results
 
     def run_service_job(self, device):
