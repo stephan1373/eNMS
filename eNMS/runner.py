@@ -317,18 +317,7 @@ class Runner(vs.TimingMixin):
                 pool.compute_pool()
             devices |= set(pool.devices)
         db.session.commit()
-        restricted_devices = set(
-            device
-            for device in devices
-            if device.id not in vs.run_allowed_targets[self.parent_runtime]
-        )
-        if restricted_devices:
-            result = (
-                f"Error 403: User '{self.creator}' is not allowed to use these"
-                f" devices as targets: {', '.join(map(str, restricted_devices))}"
-            )
-            self.log("info", result, logger="security")
-        return list(devices - restricted_devices)
+        return devices
 
     def init_state(self):
         if not env.redis_queue:
@@ -546,6 +535,18 @@ class Runner(vs.TimingMixin):
     def device_run(self):
         if not self.run_targets:
             self.run_targets = self.compute_devices()
+        restricted_devices = set(
+            device
+            for device in self.run_targets
+            if device.id not in vs.run_allowed_targets[self.parent_runtime]
+        )
+        if restricted_devices:
+            result = (
+                f"Error 403: User '{self.creator}' is not allowed to use these"
+                f" devices as targets: {', '.join(map(str, restricted_devices))}"
+            )
+            self.log("info", result, logger="security")
+        self.run_targets = list(devices - restricted_devices)
         summary = {"failure": [], "success": [], "discard": []}
         if self.iteration_devices and not self.iteration_run:
             if not self.workflow:
