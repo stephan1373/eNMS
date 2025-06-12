@@ -1,7 +1,7 @@
 # Release Notes
 
-Version 5.3: Migration
-----------------------
+Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
+---------------------------------------------------------------------------
 
 - Add new JSON migration mechanism
   - Add new "Generic Device" class and convert all devices of type "device" to this new
@@ -122,7 +122,7 @@ Notes:
 - The "Legacy Run" flag comes from the superworkflow if there is one.
 
 Version 5.2.0: Data Store and Various Improvements
------------------------------------
+--------------------------------------------------
 
 - Clean up table filters in the "Files" table when entering a folder (PR)
 - Add search mechanism to the session table
