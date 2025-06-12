@@ -155,7 +155,7 @@ class Workflow(Service):
         start = topology["name_to_dict"]["services"]["[Shared] Start"]
         end = topology["name_to_dict"]["services"]["[Shared] End"]
         services, targets = [], defaultdict(set)
-        start_targets = [device] if device else run.target_devices
+        start_targets = [device] if device else run.run_targets
         for service_id in run.start_services or [start.id]:
             service = topology["services"][service_id]
             targets[service.name] |= {device.name for device in start_targets}
@@ -196,11 +196,11 @@ class Workflow(Service):
                     "workflow_run_method": run.run_method,
                 }
                 if tracking_bfs or device:
-                    kwargs["target_devices"] = []
+                    kwargs["run_targets"] = []
                     for name in targets[service.name]:
                         if name not in device_store:
                             device_store[name] = db.fetch("device", name=name)
-                        kwargs["target_devices"].append(device_store[name])
+                        kwargs["run_targets"].append(device_store[name])
                 if run.parent_device:
                     kwargs["parent_device"] = run.parent_device
                 service_run = Runner(run, payload=run.payload, **kwargs)

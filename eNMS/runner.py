@@ -69,6 +69,7 @@ class Runner(vs.TimingMixin):
         self.parent_runtime = kwargs.get("parent_runtime")
         self.runtime = self.parent_runtime if self.is_main_run else vs.get_time()
         self.has_result = False
+        self.run_targets = []
         vs.run_instances[self.runtime] = self
         for key, value in kwargs.items():
             setattr(self, key, value)
@@ -461,7 +462,7 @@ class Runner(vs.TimingMixin):
             results["properties"] = properties
             results["trigger"] = self.main_run.trigger
             must_have_results = not self.has_result and not self.iteration_devices
-            if self.is_main_run or len(self.target_devices) > 1 or must_have_results:
+            if self.is_main_run or len(self.run_targets) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
             if self.is_main_run:
                 self.success = results["success"]
@@ -573,7 +574,7 @@ class Runner(vs.TimingMixin):
             iteration_run=True,
             payload=self.payload,
             service=self.service,
-            target_devices=derived_devices,
+            run_targets=derived_devices,
             workflow=self.workflow,
             parent_device=device,
             restart_run=self.restart_run,
@@ -584,17 +585,17 @@ class Runner(vs.TimingMixin):
         return service_run.results["success"]
 
     def device_run(self):
-        if not self.target_devices:
-            self.target_devices = self.compute_devices()
+        if not self.run_targets:
+            self.run_targets = self.compute_devices()
         summary = {"failure": [], "success": [], "discard": []}
         if self.iteration_devices and not self.iteration_run:
             if not self.workflow:
                 result = "Device iteration not allowed outside of a workflow"
                 return {"success": False, "result": result, "runtime": self.runtime}
             self.write_state(
-                "progress/device/total", len(self.target_devices), "increment"
+                "progress/device/total", len(self.run_targets), "increment"
             )
-            for device in self.target_devices:
+            for device in self.run_targets:
                 key = "success" if self.device_iteration(device) else "failure"
                 self.write_state(f"progress/device/{key}", 1, "increment")
                 summary[key].append(device.name)
@@ -604,7 +605,7 @@ class Runner(vs.TimingMixin):
                 "runtime": self.runtime,
             }
         self.write_state(
-            f"{self.progress_key}/total", len(self.target_devices), "increment"
+            f"{self.progress_key}/total", len(self.run_targets), "increment"
         )
         non_skipped_targets, skipped_targets, results = [], [], []
         skip_service = self.skip.get(getattr(self.workflow, "name", None))
@@ -612,7 +613,7 @@ class Runner(vs.TimingMixin):
             self.write_state("status", "Skipped")
         if (
             self.run_method == "once"
-            and not self.target_devices
+            and not self.run_targets
             and self.eval(self.skip_query, **locals())[0]
         ):
             self.write_state("status", "Skipped")
@@ -621,7 +622,7 @@ class Runner(vs.TimingMixin):
                 "result": "skipped",
                 "runtime": self.runtime,
             }
-        for device in self.target_devices:
+        for device in self.run_targets:
             skip_device = skip_service
             if not skip_service and self.skip_query:
                 skip_device = self.eval(self.skip_query, **locals())[0]
@@ -642,8 +643,8 @@ class Runner(vs.TimingMixin):
                 results.append(device_results)
             else:
                 non_skipped_targets.append(device)
-        all_skipped = self.target_devices and not non_skipped_targets
-        self.target_devices = non_skipped_targets
+        all_skipped = self.run_targets and not non_skipped_targets
+        self.run_targets = non_skipped_targets
         if self.run_method != "per_device":
             if all_skipped:
                 summary[self.skip_value] = skipped_targets
@@ -651,7 +652,7 @@ class Runner(vs.TimingMixin):
             results = self.get_results()
             if "summary" not in results:
                 summary_key = "success" if results["success"] else "failure"
-                device_names = [device.name for device in self.target_devices]
+                device_names = [device.name for device in self.run_targets]
                 summary[summary_key].extend(device_names)
                 results["summary"] = summary
             for key in ("success", "failure"):
@@ -663,7 +664,7 @@ class Runner(vs.TimingMixin):
             summary[self.skip_value].extend(skipped_targets)
             return results
         else:
-            if self.is_main_run and not self.target_devices:
+            if self.is_main_run and not self.run_targets:
                 error = (
                     "The service 'Run method' is set to 'Per device' mode, "
                     "but no targets have been selected (in Step 3 > Targets)"
@@ -1035,7 +1036,7 @@ class Runner(vs.TimingMixin):
         file_content = deepcopy(notification)
         if self.include_device_results:
             file_content["Device Results"] = {}
-            for device in self.target_devices:
+            for device in self.run_targets:
                 device_result = db.fetch(
                     "result",
                     service_id=self.service.id,
@@ -1309,7 +1310,7 @@ class Runner(vs.TimingMixin):
         if device and "devices" in payload.get("variables", {}):
             variables.update(payload["variables"]["devices"].get(device.name, {}))
         variables.update({
-            "devices": _self.target_devices,
+            "devices": _self.run_targets,
             "parent_device": _self.parent_device or device,
             "payload": _self.payload,
             **_self.cache["global_variables"]
