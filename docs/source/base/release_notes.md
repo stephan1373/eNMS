@@ -131,6 +131,7 @@ Tests:
 - Test that all device connections are properly closed at the end of a run
 
 Notes:
+- Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
 - The "Legacy Run" flag comes from the superworkflow if there is one.
 - With non-legacy runs, results cannot be read until the workflow has completed.
 
