@@ -46,6 +46,9 @@ Version 5.3: Migration
   - Optimize call to "filtering/run" when loading the results table, or the device results table
     by removing the lazy joining of Devices in the Result class (Result.device)
     Commit: 9a543b326d83ec3be08e5f98d9be8ee10680d00b
+  - Optimize call to "run_service" (slow response when many runs (>1k) because of 'to_dict()' call
+    without argument)
+    Commit: ecc22a0fecd18c559db9d2414e6c968dca6efd93
   - Update "get_service_state" function:
     - Optimize the function when a workflow has many runs by only fetching the runs name and runtime
       properties, not the full SQLalchemy objects for all runs (fetch the SQL object only for
