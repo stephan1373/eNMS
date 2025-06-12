@@ -114,6 +114,9 @@ Tests:
 - Test the Ansible Playbook Service (exit codes no longer available directly)
 - Test Workflow with a superworkflow
 
+Notes:
+- The "Legacy Run" flag comes from the superworkflow if there is one.
+
 Version 5.2.0: Data Store and Various Improvements
 -----------------------------------
 
