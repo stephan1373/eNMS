@@ -217,6 +217,19 @@ def generate_runs():
             "state": state
         })
         run_service[runtime] = "[Shared] Workflow0"
+    for index in range(1000, 10000):
+        runtime = f"1000-00-00 00:00:00.{index}"
+        runs.append({
+            "name": runtime,
+            "creator": "admin",
+            "success": True,
+            "status": "Completed",
+            "runtime": runtime,
+            "duration": "0:00:01",
+            "path": "Workflow1",
+        })
+        run_service[runtime] = "[Shared] Workflow1"
+        run_service_table.append([runtime, f"[Shared] Workflow1"])
     with open(PATH / "run.json", "wb") as file:
         file.write(dumps(runs))
     with open(PATH / "run_service.json", "wb") as file:
@@ -265,4 +278,4 @@ def generate_networks():
     pass
 
 
-generate_workflows()
+generate_runs()
