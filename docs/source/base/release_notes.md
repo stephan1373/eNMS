@@ -127,6 +127,7 @@ Tests:
 - Test the Ansible Playbook Service (exit codes no longer available directly)
 - Test Workflow with a superworkflow
 - Test running services from the REST API with both devices and pools
+- Test that all device connections are properly closed at the end of a run
 
 Notes:
 - The "Legacy Run" flag comes from the superworkflow if there is one.
