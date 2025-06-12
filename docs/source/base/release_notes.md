@@ -107,6 +107,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: df2b92f8de2a1b23b1387f4596c07379a8c6e450
 - Run Targets Devices and Pools association and Run Allowed Targets Update:
   - Rename "vs.run_targets" to "vs.run_allowed_targets": Commit 267a3fe7abd2bf196139d2cc8828e864acc7ce46
+  - Move the restricted target computation outside of the compute_devices query so it works for
+    workflow targets and iteration targets too
+    Commit: 29c07275f935dae159eff80fff298e5dcdcde31d 
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link"
