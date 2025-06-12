@@ -129,6 +129,8 @@ Tests:
 - Test Workflow with a superworkflow
 - Test running services from the REST API with both devices and pools
 - Test that all device connections are properly closed at the end of a run
+- Test Parameterized Runs (with and without custom targets)
+- Test Restart Run, specifically that new runs can fetch the results from old runs
 
 Notes:
 - Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
