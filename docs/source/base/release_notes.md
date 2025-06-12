@@ -122,9 +122,11 @@ Tests:
   rely on persistent ID instead of ID previously)
 - Test the Ansible Playbook Service (exit codes no longer available directly)
 - Test Workflow with a superworkflow
+- Test running services from the REST API with both devices and pools
 
 Notes:
 - The "Legacy Run" flag comes from the superworkflow if there is one.
+- With non-legacy runs, results cannot be read until the workflow has completed.
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------

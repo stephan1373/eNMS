@@ -2,6 +2,7 @@ from collections import defaultdict
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
+from orjson import loads
 from os import environ, getpid
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
@@ -238,6 +239,19 @@ class Service(AbstractBase):
     @property
     def filename(self):
         return vs.strip_all(self.name)
+
+    @property
+    def is_running(self):
+        if env.redis_queue:
+            return bool(int(env.redis("get", f"services/{self.id}/runs")))
+        else:
+            return bool(vs.service_run_count[self.id])
+
+    def update_count(self, count):
+        if env.redis_queue:
+            env.redis("incr", f"services/{self.id}/runs", count)
+        else:
+            vs.service_run_count[self.id] += count
 
     def set_name(self, name=None):
         if self.shared:
@@ -544,7 +558,76 @@ class Run(AbstractBase):
                 instances |= set(instance.services) | set(instance.edges)
         return topology
 
-    def run(self):
+    def create_all_results(self):
+        results = [
+            loads(result)
+            for device_results in vs.service_result[self.runtime].values()
+            for result in device_results.values()
+        ]
+        db.session.bulk_insert_mappings(vs.models["result"], results)
+
+    def create_logs(self):
+        services = {service.id for service in self.services}
+        for service_id in services:
+            logs = env.log_queue(self.runtime, service_id, mode="get")
+            content = "\n".join(logs or [])
+            content = self.service_run.check_size_before_commit(content, "log")
+            db.factory(
+                "service_log",
+                runtime=self.runtime,
+                service=service_id,
+                content=content,
+                rbac=None,
+            )
+
+    def run_service_table_transaction(self):
+        run_services = vs.run_services.pop(self.runtime, [])
+        table = db.run_service_table
+        db.session.execute(
+            table.delete().where(table.c.run_id == self.id)
+        )
+        values = [
+            {"run_id": self.id, "service_id": id}
+            for id in run_services
+        ]
+        db.session.execute(table.insert(), values)
+
+    def end_of_run_transaction(self):
+        status = "Aborted" if self.service_run.stop else "Completed"
+        results = self.service_run.results
+        self.success = results["success"]
+        self.duration = results["duration"]
+        self.status = status
+        self.payload = self.service_run.make_json_compliant(self.service_run.payload)
+        state = self.get_state()
+        self.memory_size = state["memory_size"]
+        self.state = state
+        if getattr(self, "man_minutes", None) and "summary" in results:
+            self.service.man_minutes_total += (
+                len(results["summary"]["success"]) * self.service.man_minutes
+                if self.service.man_minutes_type == "device"
+                else self.service.man_minutes * results["success"]
+            )
+        if self.task and not (self.task.frequency or self.task.crontab_expression):
+            self.task.is_active = False
+        if not self.service.is_running:
+            self.service.status = "Idle"
+
+    def clean_stored_data(self):
+        if env.redis_queue:
+            runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
+            if runtime_keys:
+                env.redis("delete", *runtime_keys)
+        vs.run_allowed_targets.pop(self.runtime, None)
+
+    def catch_commit_exception(self, function_name):
+        try:
+            db.try_commit(getattr(self, function_name))
+        except Exception:
+            log = f"'{function_name}' failed for {self.name}:\n{format_exc()}"
+            env.log("error", log)
+
+    def start_run(self):
         worker = db.factory(
             "worker",
             name=f"{vs.server} - {getpid()}",
@@ -561,6 +644,7 @@ class Run(AbstractBase):
                 "device", properties=["id"], rbac="target", user=self.creator
             )
         )
+        self.service.update_count(1)
         if not self.trigger:
             run_type = "Parameterized" if self.parameterized_run else "Regular"
             self.trigger = f"{run_type} Run"
@@ -584,6 +668,20 @@ class Run(AbstractBase):
             trigger=self.trigger,
         )
         self.service_run.start_run()
+
+    def run(self):
+        try:
+            self.start_run()
+            results = self.service_run.results
+        except Exception:
+            env.log(f"Run '{self.name}' failed to run:\n{format_exc()}")
+        if not self.service.legacy_run:
+            self.catch_commit_exception("create_all_results")
+        self.catch_commit_exception("create_logs")
+        self.catch_commit_exception("end_of_run_transaction")
+        self.catch_commit_exception("run_service_table_transaction")
+        self.service.update_count(-1)
+        self.clean_stored_data()
         return self.service_run.results
 
 

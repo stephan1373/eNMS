@@ -135,29 +135,6 @@ class Runner(vs.TimingMixin):
             db.try_set(run.service, "status", "Idle")
             if not env.redis_queue:
                 continue
-            runner_object = Runner(
-                run,
-                payload={},
-                service=run.service,
-                is_main_run=True,
-                parent_runtime=run.runtime,
-                path=run.path,
-            )
-            results = {
-                "success": False,
-                "result": "Interrupted by application reloading",
-                "duration": "Unknown",
-                "runtime": run.runtime,
-            }
-            db.try_commit(
-                runner_object.end_of_run_transaction, results, status=run.status
-            )
-            try:
-                runner_object.create_result(results, run_result=True)
-                runner_object.end_of_run_cleanup()
-            except Exception:
-                run_log = f"Run data recovery failed for {run.runtime}:\n{format_exc()}"
-                env.log("error", run_log)
         if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
             env.redis_queue.flushdb()
 
@@ -246,19 +223,6 @@ class Runner(vs.TimingMixin):
             return self.__dict__.get(property, [])
         else:
             return getattr(self.main_run.placeholder or self.service, property)
-
-    def update_service_count(self, count):
-        if env.redis_queue:
-            env.redis("incr", f"services/{self.service.id}/runs", count)
-        else:
-            vs.service_run_count[self.service.id] += count
-
-    @property
-    def service_is_running(self):
-        if env.redis_queue:
-            return bool(int(env.redis("get", f"services/{self.service.id}/runs")))
-        else:
-            return bool(vs.service_run_count[self.service.id])
 
     @property
     def stop(self):
@@ -372,8 +336,6 @@ class Runner(vs.TimingMixin):
         start = datetime.now().replace(microsecond=0)
         results = {"runtime": self.runtime, "success": True}
         self.write_state("result/runtime", self.runtime)
-        if self.is_main_run:
-            self.update_service_count(1)
         try:
             results.update(self.device_run())
         except Exception:
@@ -412,65 +374,11 @@ class Runner(vs.TimingMixin):
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.run_targets) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
-            if self.is_main_run:
-                self.success = results["success"]
-                self.update_service_count(-1)
-                self.payload = self.make_json_compliant(self.payload)
-                db.try_commit(self.end_of_run_transaction, results)
             vs.custom.run_post_processing(self, results)
             if self.is_main_run:
-                self.end_of_run_cleanup()
+                self.close_remaining_connections()
         self.results = results
         vs.run_instances.pop(self.runtime)
-
-    def end_of_run_cleanup(self):
-        try:
-            self.close_remaining_connections()
-        except Exception:
-            env.log("error", format_exc())
-        state = self.main_run.get_state()
-        db.try_set(self.main_run, "memory_size", state["memory_size"])
-        db.try_set(self.main_run, "state", state)
-        if env.redis_queue:
-            runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
-            if runtime_keys:
-                env.redis("delete", *runtime_keys)
-        vs.run_allowed_targets.pop(self.runtime, None)
-        run_services = vs.run_services.pop(self.runtime, [])
-        db.try_commit(self.run_service_table_transaction, run_services)
-
-    def run_service_table_transaction(self, run_services):
-        table = db.run_service_table
-        db.session.execute(
-            table.delete().where(table.c.run_id == self.main_run.id)
-        )
-        values = [
-            {"run_id": self.main_run.id, "service_id": id}
-            for id in run_services
-        ]
-        db.session.execute(table.insert(), values)
-
-    def end_of_run_transaction(self, results, status=None):
-        if not status:
-            status = "Aborted" if self.stop else "Completed"
-        self.main_run.duration = results["duration"]
-        self.main_run.status = status
-        self.main_run.payload = self.payload
-        self.create_logs()
-        if not self.is_legacy_run:
-            self.create_all_results()
-        if getattr(self, "man_minutes", None) and "summary" in results:
-            self.main_run.service.man_minutes_total += (
-                len(results["summary"]["success"]) * self.man_minutes
-                if self.man_minutes_type == "device"
-                else self.man_minutes * results["success"]
-            )
-        if self.main_run.task and not (
-            self.main_run.task.frequency or self.main_run.task.crontab_expression
-        ):
-            self.main_run.task.is_active = False
-        if not self.service_is_running:
-            self.service.status = "Idle"
 
     def make_json_compliant(self, input):
         def rec(value):
@@ -693,28 +601,6 @@ class Runner(vs.TimingMixin):
             if size_percentage > 50:
                 self.log("warning", log)
         return data
-
-    def create_logs(self):
-        services = {service.id for service in self.main_run.services}
-        for service_id in services:
-            logs = env.log_queue(self.parent_runtime, service_id, mode="get")
-            content = "\n".join(logs or [])
-            content = self.check_size_before_commit(content, "log")
-            db.factory(
-                "service_log",
-                runtime=self.parent_runtime,
-                service=service_id,
-                content=content,
-                rbac=None,
-            )
-
-    def create_all_results(self):
-        results = [
-            or_loads(result)
-            for device_results in vs.service_result[self.parent_runtime].values()
-            for result in device_results.values()
-        ]
-        db.session.bulk_insert_mappings(vs.models["result"], results)
 
     def create_transient_result(self, result, device):
         device_key = device.id if device else None
@@ -1578,19 +1464,23 @@ class Runner(vs.TimingMixin):
                 self.disconnect(library, device, connection)
 
     def close_remaining_connections(self):
-        threads = []
-        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-            device_connections = vs.connections_cache[library][self.parent_runtime]
-            for device, connections in list(device_connections.items()):
-                for connection in list(connections.values()):
-                    args = (library, device, connection)
-                    thread = Thread(target=self.disconnect, args=args)
-                    thread.start()
-                    threads.append(thread)
-        for thread in threads:
-            thread.join(timeout=vs.automation["advanced"]["disconnect_thread_timeout"])
-        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-            vs.connections_cache[library].pop(self.parent_runtime)
+        try:
+            threads = []
+            for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+                device_connections = vs.connections_cache[library][self.parent_runtime]
+                for device, connections in list(device_connections.items()):
+                    for connection in list(connections.values()):
+                        args = (library, device, connection)
+                        thread = Thread(target=self.disconnect, args=args)
+                        thread.start()
+                        threads.append(thread)
+            timeout = vs.automation["advanced"]["disconnect_thread_timeout"]
+            for thread in threads:
+                thread.join(timeout=timeout)
+            for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+                vs.connections_cache[library].pop(self.parent_runtime)
+        except Exception:
+            env.log("error", format_exc())
 
     def disconnect(self, library, device, connection):
         connection_log = f"{library} connection '{connection.connection_name}'"

@@ -1696,22 +1696,6 @@ class Controller(vs.TimingMixin):
         except Exception:
             db.session.rollback()
             env.log("critical", f"{runtime} - {format_exc()}")
-            if run_object:
-                run_object.service_run.log("critical", format_exc())
-                db.try_set(run_object, "status", "Failed")
-                results = {
-                    "success": False,
-                    "result": format_exc(),
-                    "duration": str(datetime.now().replace(microsecond=0) - start),
-                    "runtime": runtime,
-                }
-                db.try_commit(run_object.service_run.end_of_run_transaction, results)
-                try:
-                    run_object.service_run.create_result(results, run_result=True)
-                except Exception:
-                    env.log("critical", f"{runtime} - {format_exc()}")
-                run_object.service_run.end_of_run_cleanup()
-            db.session.commit()
             return {"success": False, "result": format_exc()}
 
     def run_debug_code(self, **kwargs):
