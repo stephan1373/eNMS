@@ -239,6 +239,7 @@ class Runner(vs.TimingMixin):
         elif self.is_main_run and (
             self.main_run.target_devices or self.main_run.target_pools
         ):
+            print("test"*500)
             return getattr(self.main_run, property, [])
         elif self.workflow_run_method == "per_service_with_service_targets":
             return getattr(self.service, property)
@@ -535,18 +536,19 @@ class Runner(vs.TimingMixin):
     def device_run(self):
         if not self.run_targets:
             self.run_targets = self.compute_devices()
-        restricted_devices = set(
-            device
-            for device in self.run_targets
-            if device.id not in vs.run_allowed_targets[self.parent_runtime]
-        )
+        allowed_devices, restricted_devices = [], []
+        for device in self.run_targets:
+            if device.id in vs.run_allowed_targets[self.parent_runtime]:
+                allowed_devices.append(device)
+            else:
+                restricted_devices.append(device.name)
         if restricted_devices:
             result = (
                 f"Error 403: User '{self.creator}' is not allowed to use these"
-                f" devices as targets: {', '.join(map(str, restricted_devices))}"
+                f" devices as targets: {', '.join(restricted_devices)}"
             )
             self.log("info", result, logger="security")
-        self.run_targets = list(devices - restricted_devices)
+        self.run_targets = allowed_devices
         summary = {"failure": [], "success": [], "discard": []}
         if self.iteration_devices and not self.iteration_run:
             if not self.workflow:
