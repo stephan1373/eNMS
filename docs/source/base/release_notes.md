@@ -55,8 +55,11 @@ Version 5.3: Migration
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
       time the 'global_variables' function is called.
       Commit: fd356528ca691e263be0ced18cdf5038a237d752
-    - Don't compute "target_devices" if it has already been defined as an arguement of the Runner class
+    - Don't compute "target_devices" if it has already been defined as an argument of the Runner class
       Commit: d46230319af9e3a76313584a93e59ac8835efedb
+    - Replace - rename "target_devices" with "run_targets" in Runner to prevent confusion between
+      run.service.target_devices and run.target_devices.
+      Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
     - SQLectomy:
       - Part 1 (non optional): Generate the workflow topology graph at the beginning and reuse in
         workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
@@ -67,24 +70,20 @@ Version 5.3: Migration
           - f8182fcda6c2a97db0429173a2d35942834373f5
         Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
         afterward (such as removing an edge or a service) won't affect that workflow run.
-        - Part 2 (optional): Store results in a dict and create them in the end of run transaction.
-          Only active when the "Legacy Run" option is unchecked.
-          Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
-        - Part 3 (optional):
-          - Use service namespace instead of service SQL object for Runner.service
-          - Convert all jobs to @staticmethod so it can be called without service SQL object
-          - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
-          - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
-          - In the workflow, fetch the device with db.fetch or use the device namespace depending on the value of Legacy Run
-          Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
-        - Part 4:
-          - All Services are Namespaces
-          - All Devices are SQLAlchemy objects
-          Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
-        - Part 5: Replace self.target_devices with self.run_targets in run to prevent confusion between
-          run.service.target_devices and run.target_devices.
-          Don't run "compute_devices" if "run_targets" already non-empty.
-          Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
+      - Part 2 (optional): Store results in a dict and create them in the end of run transaction.
+        Only active when the "Legacy Run" option is unchecked.
+        Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
+      - Part 3 (optional):
+        - Use service namespace instead of service SQL object for Runner.service
+        - Convert all jobs to @staticmethod so it can be called without service SQL object
+        - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
+        - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
+        - In the workflow, fetch the device with db.fetch or use the device namespace depending on the value of Legacy Run
+        Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
+      - Part 4:
+        - All Services are Namespaces
+        - All Devices are SQLAlchemy objects
+        Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
