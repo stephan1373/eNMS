@@ -262,20 +262,6 @@ class Service(AbstractBase):
             workflow = f"[{self.workflows[0].name}] "
         self.name = f"{workflow}{name or self.scoped_name}"
 
-    def neighbors(self, workflow, subtype):
-        return (
-            db.query("workflow_edge", rbac=None)
-            .filter(
-                and_(
-                    vs.models["workflow_edge"].source == self,
-                    vs.models["workflow_edge"].workflow == workflow,
-                    vs.models["workflow_edge"].subtype == subtype,
-                    vs.models["workflow_edge"].soft_deleted == False,
-                )
-            )
-            .all()
-        )
-
 
 class ConnectionService(Service):
     __tablename__ = "connection_service"
