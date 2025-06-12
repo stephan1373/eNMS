@@ -78,7 +78,7 @@ def generate_workflows():
 
 def generate_workflow_association_table():
     association_table = []
-    for j in range(2000):
+    for j in range(2_000):
         association_table.append(["[Shared] Start", f"[Shared] Workflow{j}"])
         association_table.append(["[Shared] End", f"[Shared] Workflow{j}"])
         for i in range(j, j + 30):
@@ -90,10 +90,17 @@ def generate_service_target_table():
     with open(PATH / "service_target_pool_table.json", "wb") as file:
         file.write(dumps([[f"[Shared] Service{i}", "Pool0"] for i in range(9_997)]))
     with open(PATH / "service_target_device_table.json", "wb") as file:
-        file.write(dumps(
-            sum([[[f"[Shared] Workflow{i}", f"Device{j}"] for i in range(2_000)]
-            for j in range(100)], [])
-        ))
+        device_targets = []
+        for i in range(2_000):
+            if i in (2, 3):
+                continue
+            for j in range(100):
+                device_targets.append([f"[Shared] Workflow{i}", f"Device{j}"])
+        for j in range(1_000):
+            device_targets.append(["[Shared] Workflow2", f"Device{j}"])
+        for j in range(10_000):
+            device_targets.append(["[Shared] Workflow3", f"Device{j}"])
+        file.write(dumps(device_targets))
 
 def generate_tasks():
     with open(PATH / "task.json", "wb") as file:
@@ -278,4 +285,4 @@ def generate_networks():
     pass
 
 
-generate_runs()
+generate_service_target_table()
