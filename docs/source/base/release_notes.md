@@ -110,6 +110,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Move the restricted target computation outside of the compute_devices query so it works for
     workflow targets and iteration targets too
     Commit: 29c07275f935dae159eff80fff298e5dcdcde31d + 9bb96827e7f5bd09c79834b68b31cc3943165a24
+- Refactoring of Runner and Run class:
+  - Move all functions related to the main run in the Run class (end of run transaction,
+    end of run cleanup, etc)
+    Commit: 6b0c37bcfc2f1ee3c99006331c9a3de9e5885b7f
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link"
