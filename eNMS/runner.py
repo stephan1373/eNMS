@@ -320,7 +320,7 @@ class Runner(vs.TimingMixin):
         restricted_devices = set(
             device
             for device in devices
-            if device.id not in vs.run_targets[self.parent_runtime]
+            if device.id not in vs.run_allowed_targets[self.parent_runtime]
         )
         if restricted_devices:
             result = (
@@ -446,7 +446,7 @@ class Runner(vs.TimingMixin):
             runtime_keys = env.redis("keys", f"{self.parent_runtime}/*") or []
             if runtime_keys:
                 env.redis("delete", *runtime_keys)
-        vs.run_targets.pop(self.runtime, None)
+        vs.run_allowed_targets.pop(self.runtime, None)
         run_services = vs.run_services.pop(self.runtime, [])
         db.try_commit(self.run_service_table_transaction, run_services)
 

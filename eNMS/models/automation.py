@@ -555,7 +555,7 @@ class Run(AbstractBase):
             commit=True,
         )
         self.worker = worker
-        vs.run_targets[self.runtime] = set(
+        vs.run_allowed_targets[self.runtime] = set(
             device.id
             for device in controller.filtering(
                 "device", properties=["id"], rbac="target", user=self.creator
