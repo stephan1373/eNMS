@@ -1,3 +1,4 @@
+from collections import defaultdict
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
@@ -8,6 +9,7 @@ from sqlalchemy import and_, Boolean, case, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, deferred, relationship
+from types import SimpleNamespace
 
 from eNMS.controller import controller
 from eNMS.database import db
@@ -503,6 +505,45 @@ class Run(AbstractBase):
     def table_properties(self, **kwargs):
         return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
+    def get_topology(self):
+        topology = {
+            "devices": {},
+            "pools": {},
+            "services": {},
+            "edges": {},
+            "name_to_dict": defaultdict(dict),
+            "neighbors": defaultdict(set),
+        }
+        instances, visited = {self.service}, set()
+        while instances:
+            instance = instances.pop()
+            if instance in visited or instance.soft_deleted:
+                continue
+            if instance.name == "[Shared] Placeholder":
+                instance = self.placeholder
+            visited.add(instance)
+            if instance.type == "workflow_edge":
+                edge = SimpleNamespace(**instance.get_properties())
+                topology["edges"][instance.id] = edge
+                source_id, destination_id = instance.source_id, instance.destination_id
+                if instance.source.name == "[Shared] Placeholder":
+                    source_id = self.placeholder.id
+                elif instance.destination.name == "[Shared] Placeholder":
+                    destination_id = self.placeholder.id
+                key = (instance.workflow_id, source_id, instance.subtype)
+                topology["neighbors"][key].add((instance.id, destination_id))
+                topology["name_to_dict"]["edges"][instance.name] = edge
+            else:
+                service_properties = instance.get_properties(exclude=["positions"])
+                service = SimpleNamespace(**service_properties)
+                service.target_devices = instance.target_devices
+                service.target_pools = instance.target_pools
+                topology["services"][instance.id] = service
+                topology["name_to_dict"]["services"][instance.name] = service
+            if instance.type == "workflow":
+                instances |= set(instance.services) | set(instance.edges)
+        return topology
+
     def run(self):
         worker = db.factory(
             "worker",
@@ -523,10 +564,13 @@ class Run(AbstractBase):
         if not self.trigger:
             run_type = "Parameterized" if self.parameterized_run else "Regular"
             self.trigger = f"{run_type} Run"
+        legacy_run = self.service.legacy_run
+        topology = self.get_topology()
+        service = self.service if legacy_run else topology["services"][self.service.id]
         self.service_run = Runner(
             self,
             payload=deepcopy(self.payload),
-            service=self.service,
+            service=service,
             is_main_run=True,
             restart_run=self.restart_run,
             parameterized_run=self.parameterized_run,
@@ -536,6 +580,7 @@ class Run(AbstractBase):
             properties=self.properties,
             start_services=self.start_services,
             task=self.task,
+            topology=topology,
             trigger=self.trigger,
         )
         self.service_run.start_run()

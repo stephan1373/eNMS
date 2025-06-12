@@ -97,7 +97,7 @@ class Runner(vs.TimingMixin):
                     **service_properties,
                 },
                 "service": service_properties,
-                "topology": self.get_topology(),
+                "topology": self.topology,
             }
             self.cache["global_variables"] = self.cache_global_variables()
         else:
@@ -208,47 +208,6 @@ class Runner(vs.TimingMixin):
         if self.cache["creator"]["is_admin"]:
             default_variables["get_credential"] = self.get_credential
         return default_variables
-
-    def get_topology(self):
-        topology = {
-            "devices": {},
-            "pools": {},
-            "services": {},
-            "edges": {},
-            "name_to_dict": defaultdict(dict),
-            "neighbors": defaultdict(set),
-        }
-        instances, visited = {self.service}, set()
-        while instances:
-            instance = instances.pop()
-            if instance in visited or instance.soft_deleted:
-                continue
-            if instance.name == "[Shared] Placeholder":
-                instance = self.placeholder
-            visited.add(instance)
-            if instance.type == "workflow_edge":
-                edge = SimpleNamespace(**instance.get_properties())
-                topology["edges"][instance.id] = edge
-                source_id, destination_id = instance.source_id, instance.destination_id
-                if instance.source.name == "[Shared] Placeholder":
-                    source_id = self.placeholder.id
-                elif instance.destination.name == "[Shared] Placeholder":
-                    destination_id = self.placeholder.id
-                key = (instance.workflow_id, source_id, instance.subtype)
-                topology["neighbors"][key].add((instance.id, destination_id))
-                topology["name_to_dict"]["edges"][instance.name] = edge
-            else:
-                service_properties = instance.get_properties(exclude=["positions"])
-                service = SimpleNamespace(**service_properties)
-                service.target_devices = instance.target_devices
-                service.target_pools = instance.target_pools
-                topology["services"][instance.id] = service
-                topology["name_to_dict"]["services"][instance.name] = service
-            if instance.type == "workflow":
-                instances |= set(instance.services) | set(instance.edges)
-        if not self.service.legacy_run:
-            self.service = topology["services"][self.service.id]
-        return topology
 
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:
