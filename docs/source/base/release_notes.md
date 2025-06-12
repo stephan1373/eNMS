@@ -100,8 +100,11 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
 - Minor update to configureNamespace function
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
-- Refactor the SQL query monitoring to compute the query duration without executing it twice
-  Commit: 65fe27e2f97cb79828ef5d35a4d69f01dda6c2ea
+- Refactor the SQL query monitoring mechnaism:
+  - Compute the query duration without executing it twice
+    Commit: 65fe27e2f97cb79828ef5d35a4d69f01dda6c2ea
+  - Add traceback to find out which line of code sent the query
+    Commit: 4becbb44f6194be2ecdd9e68eb1a94f074d98f4e
 - Remove lazy join for workflow edges and servers
     - WorkflowEdge.source, WorkflowEdge.destination, WorkflowEdge.workflow
     - Server.workers
