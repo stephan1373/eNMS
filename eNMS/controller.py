@@ -1760,7 +1760,7 @@ class Controller(vs.TimingMixin):
         else:
             service.run(runtime=runtime)
         return {
-            "service": service.to_dict(),
+            "service": service.to_dict(include_relations=["superworkflow"]),
             "runtime": runtime,
             "restart": "restart_runtime" in kwargs,
             "user": current_user.name,
