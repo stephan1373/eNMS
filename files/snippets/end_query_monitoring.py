@@ -6,8 +6,9 @@
 print(f"Number of Queries: {db.orm_statements.total()}\n")
 
 for query, count in db.orm_statements.most_common():
-    print(f"{count}: {query}")
+    print(f"{count}: {query}\n")
     query_time = db.orm_statements_runtime[query]
-    print(f"Execution time ({count} query): {query_time}\n\n")
+    print(f"Execution time ({count} query): {query_time}\n")
+    print(f"Traceback:\n{db.orm_statements_traceback[query]}\n\n")
 
 db.monitor_orm_statements = False

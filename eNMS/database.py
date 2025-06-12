@@ -39,7 +39,7 @@ from sqlalchemy.orm import (
 from sqlalchemy.orm.collections import InstrumentedList
 from sqlalchemy.types import JSON
 from time import sleep
-from traceback import format_exc
+from traceback import extract_stack, format_exc
 from uuid import getnode
 
 from eNMS.variables import vs
@@ -355,6 +355,8 @@ class Database:
         if vs.settings["app"]["config_mode"].lower() == "debug":
             self.orm_statements = Counter()
             self.orm_statements_runtime = defaultdict(timedelta)
+            self.orm_statements_traceback = {}
+
             self.monitor_orm_statements = False
 
             @event.listens_for(self.engine, "before_cursor_execute")
@@ -370,7 +372,12 @@ class Database:
                     return
                 runtime = datetime.now() - context._start
                 self.orm_statements[statement] += 1
-                self.orm_statements_runtime[statement] += runtime
+                self.orm_statements_runtime[statement] += runtime 
+                self.orm_statements_traceback[statement] = "\n".join(
+                    f"{frame.filename}:{frame.lineno} in {frame.name}"
+                    for frame in extract_stack()
+                    if 'enms' in frame.filename.lower()
+                )
 
     def configure_associations(self):
         self.associations = {}
