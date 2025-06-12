@@ -658,18 +658,21 @@ function displayWorkflowState(result, workflowSwitch) {
     $(".hidden-scrollbar").scrollTop(0);
   }
   drawTree(null, result.tree);
+  let nodeUpdates = [];
+  let edgeUpdates = [];
   if (result.highlight) {
-    result.highlight.forEach((node) => colorService(node, "#EFFD5F"));
+    result.highlight.forEach((node) => {
+      nodeUpdates.push({ id: node, color: "#EFFD5F" });
+    })
   }
   if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
     for (const [serviceId, color] of Object.entries(result.device_state)) {
-      colorService(parseInt(serviceId), color);
+      nodeUpdates.push({ id: parseInt(serviceId), color: color });
     }
+    nodes.update(nodeUpdates);
     return;
   }
-  let nodeUpdates = [];
-  let edgeUpdates = [];
   const cache = result.state?.connections || {};
   Object.entries(cache).forEach(([library, connections]) => {
     if (connections === 0) delete cache[library];
@@ -689,7 +692,6 @@ function displayWorkflowState(result, workflowSwitch) {
     const id = pidToId[path.split(">").slice(-1)[0]];
     if (ends.has(id) || !serviceIds.includes(id)) continue;
     let label = `<b>${nodes.get(id).name}</b>\n`;
-    colorService(id, state.dry_run ? "#EDC582" : state.success ? "#32CD32" : "#FF6666");
     let first = true;
     for (const progressKey of ["device", "iteration_device"]) {
       if (state.progress?.[progressKey]) {
@@ -697,9 +699,9 @@ function displayWorkflowState(result, workflowSwitch) {
         const success = parseInt(state.progress?.[progressKey]?.success) || 0;
         const skipped = parseInt(state.progress?.[progressKey]?.skipped) || 0;
         const failure = parseInt(state.progress?.[progressKey]?.failure) || 0;
-        colorService(
-          id,
-          state.status == "Skipped" || (total && skipped == total)
+        nodeUpdates.push({
+          id: id,
+          color: state.status == "Skipped" || (total && skipped == total)
             ? "#D3D3D3"
             : success + failure + skipped < total
             ? "#89CFF0"
@@ -710,7 +712,7 @@ function displayWorkflowState(result, workflowSwitch) {
             : state.success === true
             ? "#32CD32"
             : "#00CCFF"
-        );
+        });
         if (total) {
           const prefix = progressKey == "device" ? "Devices" : "Iteration";
           let progressLabel = `${prefix} - ${success + failure + skipped}/${total}`;
@@ -728,6 +730,7 @@ function displayWorkflowState(result, workflowSwitch) {
     }
     nodeUpdates.push({
       id: id,
+      color: state.dry_run ? "#EDC582" : state.success ? "#32CD32" : "#FF6666",
       label: label,
     });
   }
