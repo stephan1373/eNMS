@@ -199,7 +199,7 @@ def generate_runs():
                 "runtime": runtime,
                 "success": True
             },
-            "progress": {"device": {"total": 1,"success": 1}}
+            "progress": {"device": {"total": 1, "success": 1}}
         }
         state = {"Workflow0": inner_state}
         run_service_table.append([runtime, f"[Shared] Workflow0"])
@@ -213,7 +213,7 @@ def generate_runs():
             "status": "Completed",
             "runtime": runtime,
             "duration": "0:00:01",
-            "path":"Workflow0",
+            "path": "Workflow0",
             "state": state
         })
         run_service[runtime] = "[Shared] Workflow0"
