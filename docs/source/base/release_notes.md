@@ -81,6 +81,10 @@ Version 5.3: Migration
           - All Services are Namespaces
           - All Devices are SQLAlchemy objects
           Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
+        - Part 5: Replace self.target_devices with self.run_targets in run to prevent confusion between
+          run.service.target_devices and run.target_devices.
+          Don't run "compute_devices" if "run_targets" already non-empty.
+          Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
