@@ -239,7 +239,6 @@ class Runner(vs.TimingMixin):
         elif self.is_main_run and (
             self.main_run.target_devices or self.main_run.target_pools
         ):
-            print("test"*500)
             return getattr(self.main_run, property, [])
         elif self.workflow_run_method == "per_service_with_service_targets":
             return getattr(self.service, property)
