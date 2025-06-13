@@ -71,7 +71,6 @@ class Service(AbstractBase):
         "Pool", secondary=db.service_target_pool_table, back_populates="target_services"
     )
     update_target_pools = db.Column(Boolean, default=False)
-    update_pools_after_running = db.Column(Boolean, default=False)
     report = db.Column(db.LargeString)
     report_format = db.Column(db.TinyString, default="text")
     report_jinja2_template = db.Column(Boolean, default=False)

@@ -761,7 +761,6 @@ class ServiceForm(BaseForm):
     disable_result_creation = BooleanField("Save only failed results")
     target_pools = MultipleInstanceField("Pools", model="pool")
     update_target_pools = BooleanField("Update target pools before running")
-    update_pools_after_running = BooleanField("Update pools after running")
     workflows = MultipleInstanceField("Workflows", model="workflow")
     waiting_time = IntegerField(
         "Time to Wait before next service is started (in seconds)", default=0
@@ -952,7 +951,6 @@ class ServiceForm(BaseForm):
             "log_level",
             "show_user_logs",
             "disable_result_creation",
-            "update_pools_after_running",
         ],
         "step1-2": [
             "mandatory_parametrization",
