@@ -10,6 +10,7 @@ from sqlalchemy import and_, Boolean, case, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, deferred, relationship
+from time import perf_counter
 from traceback import format_exc
 from types import SimpleNamespace
 
@@ -508,6 +509,7 @@ class Run(AbstractBase):
     def process(commit=False, raise_exception=False):
         def decorator(func):
             def wrapper(self, *args, **kwargs):
+                start_time = perf_counter()
                 try:
                     if commit:
                         db.try_commit(func, self, *args, **kwargs)
@@ -518,6 +520,10 @@ class Run(AbstractBase):
                     env.log("error", log)
                     if raise_exception:
                         raise
+                finally:
+                    elapsed = perf_counter() - start_time
+                    log = f"'{func.__name__}' took {elapsed:.3f}s for {self.name}"
+                    env.log("info", log) 
             return wrapper
         return decorator
 
