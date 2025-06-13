@@ -578,7 +578,7 @@ class Database:
                 result = transaction(*args, **kwargs)
                 self.session.commit()
                 break
-            except (ValueError, IntegrityError, self.rbac_error):
+            except (AttributeError, ValueError, IntegrityError, self.rbac_error):
                 raise
             except Exception as exc:
                 self.session.rollback()
