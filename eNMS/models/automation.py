@@ -505,6 +505,23 @@ class Run(AbstractBase):
     def table_properties(self, **kwargs):
         return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
+    def process(commit=False, raise_exception=False):
+        def decorator(func):
+            def wrapper(self, *args, **kwargs):
+                try:
+                    if commit:
+                        db.try_commit(func, self, *args, **kwargs)
+                    else:
+                        func(self, *args, **kwargs)
+                except Exception:
+                    log = f"'{func.__name__}' failed for {self.name}:\n{format_exc()}"
+                    env.log("error", log)
+                    if raise_exception:
+                        raise
+            return wrapper
+        return decorator
+
+    @process(raise_exception=True)
     def get_topology(self):
         self.topology = {
             "devices": {},
@@ -543,6 +560,7 @@ class Run(AbstractBase):
             if instance.type == "workflow":
                 instances |= set(instance.services) | set(instance.edges)
 
+    @process(commit=True)
     def create_all_results(self):
         results = [
             loads(result)
@@ -551,6 +569,7 @@ class Run(AbstractBase):
         ]
         db.session.bulk_insert_mappings(vs.models["result"], results)
 
+    @process(commit=True)
     def create_logs(self):
         services = {service.id for service in self.services}
         for service_id in services:
@@ -565,6 +584,7 @@ class Run(AbstractBase):
                 rbac=None,
             )
 
+    @process(commit=True)
     def run_service_table_transaction(self):
         run_services = vs.run_services.pop(self.runtime, [])
         table = db.run_service_table
@@ -577,6 +597,7 @@ class Run(AbstractBase):
         ]
         db.session.execute(table.insert(), values)
 
+    @process(commit=True)
     def end_of_run_transaction(self):
         status = "Aborted" if self.service_run.stop else "Completed"
         results = self.service_run.results
@@ -598,6 +619,7 @@ class Run(AbstractBase):
         if not self.service.is_running:
             self.service.status = "Idle"
 
+    @process()
     def clean_stored_data(self):
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
@@ -605,15 +627,7 @@ class Run(AbstractBase):
                 env.redis("delete", *runtime_keys)
         vs.run_allowed_targets.pop(self.runtime, None)
 
-    def catch_commit_exception(self, function_name, raise_exception=False):
-        try:
-            db.try_commit(getattr(self, function_name))
-        except Exception:
-            log = f"'{function_name}' failed for {self.name}:\n{format_exc()}"
-            env.log("error", log)
-            if raise_exception:
-                raise
-
+    @process(raise_exception=True)
     def update_target_pools(self):
         for service in self.topology["services"].values():
             if service.update_target_pools and service.target_pools:
@@ -648,7 +662,7 @@ class Run(AbstractBase):
             service = self.service
         else:
             service = self.topology["services"][self.service.id]
-            self.catch_commit_exception("update_target_pools", raise_exception=True)
+            self.update_target_pools()
         self.service_run = Runner(
             self,
             payload=deepcopy(self.payload),
@@ -674,10 +688,10 @@ class Run(AbstractBase):
         except Exception:
             env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
         if not self.legacy_run:
-            self.catch_commit_exception("create_all_results")
-        self.catch_commit_exception("create_logs")
-        self.catch_commit_exception("end_of_run_transaction")
-        self.catch_commit_exception("run_service_table_transaction")
+            self.create_all_results()
+        self.create_logs()
+        self.end_of_run_transaction()
+        self.run_service_table_transaction()
         self.service.update_count(-1)
         self.clean_stored_data()
         return self.service_run.results
