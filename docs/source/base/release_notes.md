@@ -123,6 +123,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Move all functions related to the main run in the Run class (end of run transaction,
     end of run cleanup, etc)
     Commit: 6b0c37bcfc2f1ee3c99006331c9a3de9e5885b7f
+- Remove update all pools after running option (unused, not scalable)
+  Commit: 0e0192e48819890de590d83f494ef9a05d5b8e17
 
 Migration:
 - Run script to convert all devices from type "device" to "generic_device", all links from type "link"
@@ -139,6 +141,7 @@ Tests:
 - Test that all device connections are properly closed at the end of a run
 - Test Parameterized Runs (with and without custom targets)
 - Test Restart Run, specifically that new runs can fetch the results from old runs
+- Test the "Update Target Pools" mechanism
 
 Notes:
 - Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
