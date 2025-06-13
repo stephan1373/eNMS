@@ -1950,7 +1950,7 @@ class Controller(vs.TimingMixin):
 
     def update_all_pools(self):
         for pool in db.fetch_all("pool", rbac="edit"):
-            pool.compute_pool()
+            pool.compute_pool(commit=True)
 
     def update_database_configurations_from_git(self, force_update=False):
         path = vs.path / "network_data"
