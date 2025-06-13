@@ -92,6 +92,11 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         - All Services are Namespaces
         - All Devices are SQLAlchemy objects
         Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
+      - Part 5:
+        - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services
+          in non-legacy mode (no change in legacy mode)
+        - Make commit optional and False by default in compute_pool
+        Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
