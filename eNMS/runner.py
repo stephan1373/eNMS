@@ -273,14 +273,17 @@ class Runner(vs.TimingMixin):
                 self.get_target_property("device_query"),
                 self.get_target_property("device_query_property"),
             )
-        if self.is_main_run:
-            self.main_run.target_devices = list(devices)
-            self.main_run.target_pools = list(pools)
-        for pool in pools:
-            if self.update_target_pools:
-                pool.compute_pool()
-            devices |= set(pool.devices)
-        db.session.commit()
+        if self.is_legacy_run:
+            if self.is_main_run:
+                self.main_run.target_devices = list(devices)
+                self.main_run.target_pools = list(pools)
+            for pool in pools:
+                if self.update_target_pools:
+                    pool.compute_pool()
+                devices |= set(pool.devices)
+                db.session.commit()
+        else:
+            devices |= set().union(*(pool.devices for pool in pools))
         return devices
 
     def init_state(self):

@@ -10,6 +10,7 @@ from sqlalchemy import and_, Boolean, case, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, deferred, relationship
+from traceback import format_exc
 from types import SimpleNamespace
 
 from eNMS.controller import controller
@@ -506,7 +507,7 @@ class Run(AbstractBase):
         return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
     def get_topology(self):
-        topology = {
+        self.topology = {
             "devices": {},
             "pools": {},
             "services": {},
@@ -524,25 +525,24 @@ class Run(AbstractBase):
             visited.add(instance)
             if instance.type == "workflow_edge":
                 edge = SimpleNamespace(**instance.get_properties())
-                topology["edges"][instance.id] = edge
+                self.topology["edges"][instance.id] = edge
                 source_id, destination_id = instance.source_id, instance.destination_id
                 if instance.source.name == "[Shared] Placeholder":
                     source_id = self.placeholder.id
                 elif instance.destination.name == "[Shared] Placeholder":
                     destination_id = self.placeholder.id
                 key = (instance.workflow_id, source_id, instance.subtype)
-                topology["neighbors"][key].add((instance.id, destination_id))
-                topology["name_to_dict"]["edges"][instance.name] = edge
+                self.topology["neighbors"][key].add((instance.id, destination_id))
+                self.topology["name_to_dict"]["edges"][instance.name] = edge
             else:
                 service_properties = instance.get_properties(exclude=["positions"])
                 service = SimpleNamespace(**service_properties)
                 service.target_devices = instance.target_devices
                 service.target_pools = instance.target_pools
-                topology["services"][instance.id] = service
-                topology["name_to_dict"]["services"][instance.name] = service
+                self.topology["services"][instance.id] = service
+                self.topology["name_to_dict"]["services"][instance.name] = service
             if instance.type == "workflow":
                 instances |= set(instance.services) | set(instance.edges)
-        return topology
 
     def create_all_results(self):
         results = [
@@ -606,12 +606,21 @@ class Run(AbstractBase):
                 env.redis("delete", *runtime_keys)
         vs.run_allowed_targets.pop(self.runtime, None)
 
-    def catch_commit_exception(self, function_name):
+    def catch_commit_exception(self, function_name, raise_exception=False):
         try:
             db.try_commit(getattr(self, function_name))
         except Exception:
             log = f"'{function_name}' failed for {self.name}:\n{format_exc()}"
             env.log("error", log)
+            if raise_exception:
+                raise
+
+    def update_target_pools(self):
+        for service in self.topology["services"].values():
+            if service.update_target_pools and service.target_pools:
+                for pool in service.target_pools:
+                    pool.compute_pool()
+        db.session.commit()
 
     def start_run(self):
         worker = db.factory(
@@ -634,9 +643,13 @@ class Run(AbstractBase):
         if not self.trigger:
             run_type = "Parameterized" if self.parameterized_run else "Regular"
             self.trigger = f"{run_type} Run"
-        legacy_run = self.service.legacy_run
-        topology = self.get_topology()
-        service = self.service if legacy_run else topology["services"][self.service.id]
+        self.legacy_run = self.service.legacy_run
+        self.get_topology()
+        if self.legacy_run:
+            service = self.service
+        else:
+            service = self.topology["services"][self.service.id]
+            self.catch_commit_exception("update_target_pools", raise_exception=True)
         self.service_run = Runner(
             self,
             payload=deepcopy(self.payload),
@@ -650,7 +663,7 @@ class Run(AbstractBase):
             properties=self.properties,
             start_services=self.start_services,
             task=self.task,
-            topology=topology,
+            topology=self.topology,
             trigger=self.trigger,
         )
         self.service_run.start_run()
@@ -660,8 +673,8 @@ class Run(AbstractBase):
             self.start_run()
             results = self.service_run.results
         except Exception:
-            env.log(f"Run '{self.name}' failed to run:\n{format_exc()}")
-        if not self.service.legacy_run:
+            env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
+        if not self.legacy_run:
             self.catch_commit_exception("create_all_results")
         self.catch_commit_exception("create_logs")
         self.catch_commit_exception("end_of_run_transaction")

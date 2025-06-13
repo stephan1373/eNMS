@@ -312,7 +312,7 @@ class Pool(AbstractBase):
         if not kwargs.get("migration_import"):
             self.update_last_modified_properties()
 
-    def compute_pool(self):
+    def compute_pool(self, commit=False):
         def transaction():
             for model in self.models:
                 if not self.manually_defined:
@@ -358,7 +358,10 @@ class Pool(AbstractBase):
                     instances = getattr(self, f"{model}s")
                 setattr(self, f"{model}_number", len(instances))
 
-        db.try_commit(transaction)
+        if commit:
+            db.try_commit(transaction)
+        else:
+            transaction()
 
 
 class Session(AbstractBase):
