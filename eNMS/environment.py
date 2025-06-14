@@ -1,5 +1,6 @@
 from base64 import b64decode, b64encode
 from click import get_current_context
+from contextlib import contextmanager
 from cryptography.fernet import Fernet
 from dramatiq import set_broker
 from dramatiq.brokers.redis import RedisBroker
@@ -26,6 +27,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
 from sys import path as sys_path, stderr
 from threading import Thread
+from time import perf_counter
 from traceback import format_exc, print_exc
 from warnings import warn
 from watchdog.observers.polling import PollingObserver
@@ -406,6 +408,12 @@ class Environment(vs.TimingMixin):
             all_recipients = recipients.split(",") if recipients else []
             all_recipients += bcc.split(",") if bcc else []
             server.sendmail(sender, all_recipients, message.as_string())
+
+    @contextmanager
+    def timer(self, description):
+        start = perf_counter()
+        yield
+        self.log("debug", f"{description}: {perf_counter() - start:.3f}s")
 
 
 env = Environment()

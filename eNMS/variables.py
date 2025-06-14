@@ -1,6 +1,5 @@
 from base64 import urlsafe_b64encode
 from collections import defaultdict
-from contextlib import contextmanager
 from datetime import datetime
 from functools import wraps
 from git import Repo
@@ -18,7 +17,6 @@ from warnings import warn
 from wtforms.validators import __all__ as all_validators
 from wtforms.widgets.core import __all__ as all_widgets
 from textwrap import indent
-from time import perf_counter
 
 try:
     from scrapli import Scrapli
@@ -358,12 +356,6 @@ class VariableStore:
 
     def strip_all(self, input):
         return input.translate(str.maketrans("", "", f"{punctuation} "))
-
-    @contextmanager
-    def timer(self, description):
-        start = perf_counter()
-        yield
-        print(f"{description}: {perf_counter() - start:.3f}s")
 
 
 vs = VariableStore()
