@@ -1157,6 +1157,17 @@ class Controller(vs.TimingMixin):
                 snippets[path.name] = file.read()
         return snippets
 
+    def delete_soft_deleted_objects(self):
+        soft_deleted_edges = db.fetch_all("workflow_edge", soft_deleted=True)
+        for edge in soft_deleted_edges:
+            db.delete_instance(edge)
+        db.session.commit()
+        soft_deleted_services = db.fetch_all("service", soft_deleted=True)
+        for service in soft_deleted_services:
+            db.delete_instance(service)
+        db.session.commit()
+        env.log("warning", f"Soft-deleted objects successfully deleted")
+
     def delete_corrupted_objects(self):
         number_of_corrupted_services = 0
         for service in db.fetch_all("service", shared=False):
@@ -1361,6 +1372,7 @@ class Controller(vs.TimingMixin):
     def migration_export(self, **kwargs):
         if kwargs.get("json_migration"):
             return self.json_export(**kwargs)
+        self.delete_soft_deleted_objects()
         self.delete_corrupted_objects()
         yaml = vs.custom.get_yaml_instance()
         path = Path(vs.migration_path) / kwargs["name"]
