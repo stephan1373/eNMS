@@ -167,6 +167,12 @@ function updateRuntimes(result) {
   menu.find(".inner").scrollTop(scrollPosition);
 }
 
+export function servicePanelUpdate(type, id) {
+  $(`#${type}-workflows-${id}`)
+    .val(page == "workflow_builder" ? [workflow.name] : [])
+    .trigger("change")
+}
+
 export function showServicePanel(type, id, mode, tableId) {
   const postfix = tableId ? `-${tableId}` : "";
   const prefix = mode == "bulk-filter" ? `${type}_filtering` : type;
@@ -175,12 +181,6 @@ export function showServicePanel(type, id, mode, tableId) {
   $(id ? `#${type}-name-${id}` : `#${type}-name`).prop("disabled", true);
   if (id && mode == "duplicate" && type == "workflow") $(`#copy-${id}`).val(id);
   const workflowId = id ? `#${type}-workflows-${id}` : `#${type}-workflows${postfix}`;
-  if (id && mode == "duplicate") {
-    const value = page == "workflow_builder" ? [workflow.name] : [];
-    $(workflowId)
-      .val(value)
-      .trigger("change");
-  }
   if (!id && workflow && page == "workflow_builder") {
     $(`#${type}-vendor`)
       .val(workflow.vendor)
