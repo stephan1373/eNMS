@@ -1344,29 +1344,34 @@ class Controller(vs.TimingMixin):
             for class_name in vs.models
             if class_name not in db.json_migration["no_export"]
         ]
-        for table_properties in db.associations.values():
-            db.session.execute(table_properties["table"].delete())
-        for cls_name in export_models:
-            db.session.execute(vs.models[cls_name].__table__.delete())
-        for cls_name in db.json_migration["clear_on_import"]:
-            model = vs.models[cls_name]
-            db.session.execute(model.__table__.delete())
-        db.session.commit()
+        with vs.timer("Clean Database Before Importing"):
+            for table_properties in db.associations.values():
+                db.session.execute(table_properties["table"].delete())
+            for cls_name in export_models:
+                db.session.execute(vs.models[cls_name].__table__.delete())
+            for cls_name in db.json_migration["clear_on_import"]:
+                model = vs.models[cls_name]
+                db.session.execute(model.__table__.delete())
+            db.session.commit()
         path = Path(vs.migration_path) / kwargs["name"]
-        for cls_name in vs.models:
-            self.json_import_properties(cls_name, path)
-        db.session.commit()
-        name_to_id = {}
-        for cls_name in db.json_migration["import_export_models"]:
-            cls = vs.models[cls_name]
-            name_to_id[cls_name] = dict(
-                db.session.execute(select(cls.name, cls.id)).all()
-            )
-        for cls_name in vs.models:
-            for property in vs.relationships[cls_name]:
-                self.json_import_scalar(cls_name, property, name_to_id, path)
-        for association_name in db.associations:
-            self.json_import_associations(association_name, name_to_id, path)
+        with vs.timer("Import Properties"):
+            for cls_name in vs.models:
+                self.json_import_properties(cls_name, path)
+            db.session.commit()
+        with vs.timer("Name to ID Assocation"):
+            name_to_id = {}
+            for cls_name in db.json_migration["import_export_models"]:
+                cls = vs.models[cls_name]
+                name_to_id[cls_name] = dict(
+                    db.session.execute(select(cls.name, cls.id)).all()
+                )
+        with vs.timer("Import Scalar Properties"):
+            for cls_name in vs.models:
+                for property in vs.relationships[cls_name]:
+                    self.json_import_scalar(cls_name, property, name_to_id, path)
+        with vs.timer("Import Associations"):
+            for association_name in db.associations:
+                self.json_import_associations(association_name, name_to_id, path)
         db.session.commit()
 
     def migration_export(self, **kwargs):

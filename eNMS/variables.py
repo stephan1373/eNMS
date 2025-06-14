@@ -360,7 +360,7 @@ class VariableStore:
         return input.translate(str.maketrans("", "", f"{punctuation} "))
 
     @contextmanager
-    def timer(description):
+    def timer(self, description):
         start = perf_counter()
         yield
         print(f"{description}: {perf_counter() - start:.3f}s")
