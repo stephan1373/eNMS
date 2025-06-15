@@ -22,6 +22,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     persist the state when exporting runs and results as JSON
     Commit: c81c3aceb345134a20c33a389de3eda2fac0cb15 (update state to use persistent ID)
     Commit: e6cac0d8439442ba858d764b135057b8e8b63f9a (move edges to top-level state)
+  - Replace legacy bulk_update_mappings and bulk_insert_mappings by new SQLAlchemy syntax
+    Commit: 76e9d55829b31ed39ca96cbc62bfb6fb9f54ee29
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 - Performance Optimization
