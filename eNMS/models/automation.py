@@ -573,7 +573,7 @@ class Run(AbstractBase):
             loads(result)
             for device_results in vs.service_result[self.runtime].values()
             for result in device_results.values()
-        ), 1000):
+        ), vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models["result"]), batch)
 
     @process(commit=True)

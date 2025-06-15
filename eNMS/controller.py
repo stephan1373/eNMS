@@ -10,6 +10,7 @@ from datetime import datetime
 from functools import wraps
 from git import Repo
 from io import BytesIO, StringIO
+from itertools import batched
 from json import dump, load
 from logging import info, error
 from operator import attrgetter, itemgetter
@@ -1296,9 +1297,7 @@ class Controller(vs.TimingMixin):
             return
         with open(filepath, "rb") as file:
             instances = loads(file.read())
-        batch_size = vs.database["json_migration"]["batch_size"]
-        for index in range(0, len(instances), batch_size):
-            batch = instances[index:index + batch_size]
+        for batch in batched(instances, vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models[cls_name]), batch)
 
     def json_import_scalar(self, cls_name, property, name_to_id, path):
@@ -1312,17 +1311,14 @@ class Controller(vs.TimingMixin):
         export_model2 = getattr(
             vs.models[relation["model"]], "export_type", relation["model"]
         )
-        updates = [
+        for batch in batched((
             {
                 "id": name_to_id[export_model1][source],
                 f"{property}_id": name_to_id[export_model2][destination],
             }
             for source, destination in relations.items()
-        ]
-        batch_size = vs.database["json_migration"]["batch_size"]
-        for index in range(0, len(updates), batch_size):
-            batch = updates[index:index + batch_size]
-            db.session.execute(update(vs.models[cls_name]), batch)
+        ), vs.database["transactions"]["batch_size"]):
+            db.session.execute(update(vs.models[cls_name]), list(batch))
 
     def json_import_associations(self, association_name, name_to_id, path):
         properties = db.associations[association_name]
@@ -1335,14 +1331,14 @@ class Controller(vs.TimingMixin):
         model2 = properties["model2"]["foreign_key"]
         export_model1 = getattr(vs.models[model1], "export_type", model1)
         export_model2 = getattr(vs.models[model2], "export_type", model2)
-        rows = [
+        for batch in batched((
             {
                 f"{model1}_id": name_to_id[export_model1][name1],
                 f"{model2}_id": name_to_id[export_model2][name2],
             }
             for name1, name2 in data
-        ]
-        db.session.execute(properties["table"].insert(), rows)
+        ), vs.database["transactions"]["batch_size"]):
+            db.session.execute(properties["table"].insert(), batch)
 
     def json_import(self, folder="migrations", **kwargs):
         export_models = [
