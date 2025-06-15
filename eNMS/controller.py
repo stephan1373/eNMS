@@ -1296,7 +1296,10 @@ class Controller(vs.TimingMixin):
             return
         with open(filepath, "rb") as file:
             instances = loads(file.read())
-        db.session.execute(insert(vs.models[cls_name]), instances)
+        batch_size = vs.database["json_migration"]["batch_size"]
+        for index in range(0, len(instances), batch_size):
+            batch = instances[index:index + batch_size]
+            db.session.execute(insert(vs.models[cls_name]), batch)
 
     def json_import_scalar(self, cls_name, property, name_to_id, path):
         relation = vs.relationships[cls_name][property]
@@ -1316,7 +1319,10 @@ class Controller(vs.TimingMixin):
             }
             for source, destination in relations.items()
         ]
-        db.session.execute(update(vs.models[cls_name]), updates)
+        batch_size = vs.database["json_migration"]["batch_size"]
+        for index in range(0, len(updates), batch_size):
+            batch = updates[index:index + batch_size]
+            db.session.execute(update(vs.models[cls_name]), batch)
 
     def json_import_associations(self, association_name, name_to_id, path):
         properties = db.associations[association_name]

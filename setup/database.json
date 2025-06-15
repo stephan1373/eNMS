@@ -53,6 +53,7 @@
     "pool"
   ],
   "json_migration": {
+    "batch_size": 1000,
     "import_export_models": [
       "data",
       "user",
