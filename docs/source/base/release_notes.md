@@ -102,6 +102,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
           in non-legacy mode (no change in legacy mode)
         - Make commit optional and False by default in compute_pool
         Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
+      - Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
+        Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
