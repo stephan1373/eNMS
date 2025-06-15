@@ -413,7 +413,7 @@ class Environment(vs.TimingMixin):
     def timer(self, description):
         start = perf_counter()
         yield
-        self.log("debug", f"{description}: {perf_counter() - start:.3f}s")
+        self.log("debug", f"{description}: {perf_counter() - start:.3f}s", change_log=False)
 
 
 env = Environment()
