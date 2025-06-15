@@ -2,6 +2,7 @@ from collections import defaultdict
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
+from itertools import batched
 from orjson import loads
 from os import environ, getpid
 from requests import get, post
@@ -568,12 +569,12 @@ class Run(AbstractBase):
 
     @process(commit=True)
     def create_all_results(self):
-        results = [
+        for batch in batched((
             loads(result)
             for device_results in vs.service_result[self.runtime].values()
             for result in device_results.values()
-        ]
-        db.session.execute(insert(vs.models["result"]), results)
+        ), 1000):
+            db.session.execute(insert(vs.models["result"]), batch)
 
     @process(commit=True)
     def create_logs(self):
