@@ -25,8 +25,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Replace legacy bulk_update_mappings and bulk_insert_mappings by new SQLAlchemy syntax
     Commit: 76e9d55829b31ed39ca96cbc62bfb6fb9f54ee29
   - Add batch mechanism for creating and updating DB records in batches during the migration import
-    Configured via database.json > "json_migration" > "batch_size" (default: 1000)
-    Commit: 982c58959f7a68dd8d52ad6ee9001b3f912ac914
+    Configured via database.json > "transactions" > "batch_size" (default: 1000)
+    Commit: 80e11132115e76c4eab2aa0a5cd0f8361d3c0adc 
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 - Performance Optimization
@@ -103,6 +103,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         - Make commit optional and False by default in compute_pool
         Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
       - Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
+        Configured via database.json > "transactions" > "batch_size" (default: 1000)
         Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
