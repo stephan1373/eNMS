@@ -719,10 +719,6 @@ Deviations:
 - Deviation 25: custom branding (see release notes above)
   Partial merge of original deviation
 
-Deviations not merged:
-- Database._initialize "if env.detect_cli(additional_apps=["dramatiq"]):": missing "additional_apps"
-  in original detect_cli function
-
 Migration:
 - network.yaml must be merge into device.yaml:
   - replace "nodes" with "devices"
@@ -833,13 +829,6 @@ Version 5.0: Clustering
 
 Migration:
 - Update properties.json > "properly_list" with new format
-
-Test:
-- Test that the new configuration properties diff mechanism hasn't impacted the
-  existing diff:
-  - Diff between different commits of a configuration property
-  - Diff between two results
-- Test that logs and results are always available when a run is interrupted
 
 Version 4.5.0: Custom Parameterized Form, Bulk Filtering & File Management
 --------------------------------------------------------------------------
@@ -969,19 +958,6 @@ Migration:
 - in service.yaml, ansible playbook services are now used the scoped path to the playbook
   instead of the full path (path to playbook folder + scoped path). The path to the playbook
   folder must be trimmed from all ansible services.
-
-Tests:
-- Everything about files is impacted and must be tested again
-- Impact of migration import refactoring on migration files import and service import
-- Impact of removing payload in workflow results
-- Test service form because of Jinja2 Template refactoring
-- Test runtimes displayed in WB and logs/results panel (get_runtimes function was refactored)
-- Test skip of run once services when all devices are skipped
-- Test new trash mechanism for files
-- Test ansible playbook service (scoped path instead of full path)
-
-Todo:
-- Add context help for custom parameterized form
 
 Version 4.4.0: RBAC and Credentials
 -----------------------------------
