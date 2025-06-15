@@ -392,30 +392,6 @@ Version 5.2.0: Data Store and Various Improvements
   Commit: 3cd8743e2a02646ccda276c34ad49b185a08f42a
 - Add 'last_success' property for the configuration backup services
 
-Tests:
-- Test that the workflow builder's search functions correctly across all case combinations:
-  - Normal search versus regex-based search
-  - Search by names versus search across all properties
-  - Display all services versus only matching services
-- Test the REST API get instance endpoint ("to_dict" function)
-- Test that when double-clicking in the workflow tree on a service in a different workflow than the one
-  displayed, the display correctly switches to the new workflow then zooms in on that service.
-- Test that there are no PendingRollbackError at the end of a run due to the multithreaded "disconnect"
-  mechanism at the end of a run.
-  - Look at 2b624a314d112388b6974e1cd71e8a972366de18 to see the exact change (log_level now cached)
-  - Find PendingRollbackError threads on Slack for details
-- Test that retrieving credentials via "db.get_credential" still works correctly (tests with different
-  RBAC type (any, read-write, ...), priorities, credential types (object, device, SSH key, etc)
-- Test workflow duplication for simple workflows and workflows with subworkflows, and make sure that
-  everything is properly created / duplicated. Compare workflow duplication time pre and post release
-- Test performance of a workflow with DxD run method and a single python snippet service. Compare 
-  performance pre and post release (should be faster because of the neighbors SQL query)
-- Test authentication (with and without Duo)
-- Test weh SSH sessions, specifically RBAC access for non-admin users
-- Test that the new global "runtime" variable made available in the workflow builder does
-  interact with the existing user python code
-- Test that you can create / edit / delete data from the REST API
-
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
   nodes and networks
