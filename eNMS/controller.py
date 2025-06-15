@@ -19,7 +19,7 @@ from pathlib import Path
 from re import compile, search, sub
 from requests import get as http_get
 from shutil import rmtree
-from sqlalchemy import and_, cast, func, or_, select, String
+from sqlalchemy import and_, cast, func, insert, or_, select, String, update
 from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import aliased
 from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
@@ -1296,7 +1296,7 @@ class Controller(vs.TimingMixin):
             return
         with open(filepath, "rb") as file:
             instances = loads(file.read())
-        db.session.bulk_insert_mappings(cls, instances)
+        db.session.execute(insert(vs.models[cls_name]), instances)
 
     def json_import_scalar(self, cls_name, property, name_to_id, path):
         relation = vs.relationships[cls_name][property]
@@ -1316,7 +1316,7 @@ class Controller(vs.TimingMixin):
             }
             for source, destination in relations.items()
         ]
-        db.session.bulk_update_mappings(vs.models[cls_name], updates)
+        db.session.execute(update(vs.models[cls_name]), updates)
 
     def json_import_associations(self, association_name, name_to_id, path):
         properties = db.associations[association_name]
