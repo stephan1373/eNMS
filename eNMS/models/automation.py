@@ -6,7 +6,7 @@ from orjson import loads
 from os import environ, getpid
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
-from sqlalchemy import and_, Boolean, case, ForeignKey, Integer
+from sqlalchemy import and_, Boolean, case, ForeignKey, insert, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, deferred, relationship
@@ -573,7 +573,7 @@ class Run(AbstractBase):
             for device_results in vs.service_result[self.runtime].values()
             for result in device_results.values()
         ]
-        db.session.bulk_insert_mappings(vs.models["result"], results)
+        db.session.execute(insert(vs.models["result"]), results)
 
     @process(commit=True)
     def create_logs(self):
