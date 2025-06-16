@@ -144,10 +144,14 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 0e0192e48819890de590d83f494ef9a05d5b8e17
 
 Motivation for Run Refactoring:
+- Committing changes one by one takes more time (in particular, every result is created and committed in its
+  own transaction)
 - Every commit during a run makes the SQLAlchemy session expires, along with all objects attached to that session:
   - The next time an object is used (e.g "device.id", "device.name"), a SQL query is sent to the database
     under the hood to refetch the object. The number of refetch during a run becomes
     "number of commit" * "number of objects used"
+  - If multithreading is used, the commit of a shared session will result in "Out of Session" errors and cause
+    the workflow to fail
   - For a single run with ~ 1000 device targets, we can get up to 1M SQL query to the database
 - Users should not have access to SQLAlchemy objects (e.g device via the substitution mechanism or any of the
   python field), because they can then modify them in a way that we cannot control ("device.property = ...")
