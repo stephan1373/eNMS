@@ -140,6 +140,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Move all functions related to the main run in the Run class (end of run transaction,
     end of run cleanup, etc)
     Commit: 6b0c37bcfc2f1ee3c99006331c9a3de9e5885b7f
+  - Remove duplicate progress function in Runner class and use Persistent ID to retrieve device progress
+    Commit: 4ac0d4ce9f0f2113e1a5dfd8d3f242f70c520718
 - Remove update all pools after running option (unused, not scalable)
   Commit: 0e0192e48819890de590d83f494ef9a05d5b8e17
 
