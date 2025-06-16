@@ -158,6 +158,9 @@ Motivation for Run Refactoring:
 - Separate the code that pertains to the main run (executed only for the top-level instance of Runner, therefore
   it makes more sense for it to belong to the Run class) from the code that is executed for every instance of Runner.
 
+Open Questions:
+- What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
+
 Migration:
 - Run migration script to:
   - Convert all devices from type "device" to "generic_device"
