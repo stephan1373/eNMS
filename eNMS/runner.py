@@ -79,30 +79,10 @@ class Runner(vs.TimingMixin):
         self.dry_run = getattr(run, "dry_run", False) or self.get("dry_run")
         device_progress = "iteration_device" if self.iteration_run else "device"
         self.progress_key = f"progress/{device_progress}"
-        service_properties = self.get_service_properties()
+        self.cache = {**run.cache, "service": self.get_service_properties()}
+        self.main_run = run if self.is_main_run else run.main_run
         if self.is_main_run:
-            self.main_run = db.fetch("run", runtime=self.parent_runtime, rbac=None)
-            creator = db.fetch("user", name=self.creator, rbac=None)
-            self.cache = {
-                "creator": {
-                    "name": creator.name,
-                    "email": creator.email,
-                    "is_admin": creator.is_admin,
-                },
-                "main_run": self.main_run.base_properties,
-                "main_run_service": {
-                    "legacy_run": self.main_run.service.legacy_run,
-                    "log_level": int(self.main_run.service.log_level),
-                    "show_user_logs": self.main_run.service.show_user_logs,
-                    **service_properties,
-                },
-                "service": service_properties,
-                "topology": self.topology,
-            }
             self.cache["global_variables"] = self.cache_global_variables()
-        else:
-            self.main_run = run.main_run
-            self.cache = {**run.cache, "service": service_properties}
         self.is_legacy_run = self.cache["main_run_service"]["legacy_run"]
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)

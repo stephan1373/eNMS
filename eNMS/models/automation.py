@@ -653,6 +653,25 @@ class Run(AbstractBase):
                     pool.compute_pool()
         db.session.commit()
 
+    @property
+    def cache(self):
+        creator = db.fetch("user", name=self.creator, rbac=None)
+        return {
+            "creator": {
+                "name": creator.name,
+                "email": creator.email,
+                "is_admin": creator.is_admin,
+            },
+            "main_run": self.base_properties,
+            "main_run_service": {
+                "legacy_run": self.service.legacy_run,
+                "log_level": int(self.service.log_level),
+                "show_user_logs": self.service.show_user_logs,
+                "id": self.service.id,
+            },
+            "topology": self.topology,
+        }
+
     def start_run(self):
         worker = db.factory(
             "worker",
@@ -683,6 +702,7 @@ class Run(AbstractBase):
             self.update_target_pools()
         self.service_run = Runner(
             self,
+            cache=self.cache,
             payload=deepcopy(self.payload),
             service=service,
             is_main_run=True,
