@@ -165,6 +165,7 @@ Motivation for Run Refactoring:
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
 - Are the "device" or "devices" used in python code field to set a variable (write change to DB) or only to read ?
+- Do the configuration backup workflows update pools after fetching the configuration ?
 
 Migration:
 - Run migration script to:
