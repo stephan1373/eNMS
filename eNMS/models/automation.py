@@ -493,7 +493,7 @@ class Run(AbstractBase):
 
     @property
     def progress(self):
-        progress = self.get_state().get(str(self.service_id), {}).get("progress")
+        progress = self.get_state().get(self.service.persistent_id, {}).get("progress")
         if not progress:
             return
         try:

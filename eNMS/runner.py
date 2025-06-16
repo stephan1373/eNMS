@@ -211,17 +211,6 @@ class Runner(vs.TimingMixin):
         else:
             return vs.run_stop[self.parent_runtime]
 
-    @property
-    def progress(self):
-        progress = self.main_run.get_state().get(self.path, {}).get("progress")
-        try:
-            progress = progress["device"]
-            failure = int(progress.get("failure", 0))
-            success = int(progress.get("success", 0))
-            return f"{success + failure}/{progress['total']} ({failure} failed)"
-        except (KeyError, TypeError):
-            return "N/A"
-
     def compute_devices_from_query(_self, query, property, **locals):  # noqa: N805
         values = _self.eval(query, **locals)[0]
         devices, not_found = set(), []
