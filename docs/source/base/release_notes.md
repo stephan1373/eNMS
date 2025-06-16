@@ -107,6 +107,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
       - Part 7: Remove task from the argument of Runner (no longer used)
         Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
+      - Part 8 (optional): Create all reports after the main run in the Run class in non-legacy mode
+        Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
