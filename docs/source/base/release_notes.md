@@ -109,6 +109,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
       - Part 8 (optional): Create all reports after the main run in the Run class in non-legacy mode
         Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
+      - Part 9 (optional): Implement in-memory get transient result function and convert devices to
+        namespace in topology cache
+        Commit: 1b403f8b2f93e0ab37baea5738b36ad9493612f1
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
