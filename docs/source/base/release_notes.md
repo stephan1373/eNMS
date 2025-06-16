@@ -144,6 +144,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     Commit: 4ac0d4ce9f0f2113e1a5dfd8d3f242f70c520718
 - Remove update all pools after running option (unused, not scalable)
   Commit: 0e0192e48819890de590d83f494ef9a05d5b8e17
+- Set netmiko log level to 'info' in logging.json > 'external_loggers'
+  Commit: 0fd78af2824b8e2c6904085f27387a53824d44d1
 
 Motivation for Run Refactoring:
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
