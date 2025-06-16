@@ -444,9 +444,13 @@ class Runner(vs.TimingMixin):
         if not self.run_targets:
             self.run_targets = self.compute_devices()
         allowed_devices, restricted_devices = [], []
+        device_cache = self.cache["topology"]["name_to_dict"]["devices"]
         for device in self.run_targets:
             if device.id in vs.run_allowed_targets[self.parent_runtime]:
                 allowed_devices.append(device)
+                if not self.is_legacy_run and device.name not in device_cache:
+                    device_namespace = SimpleNamespace(**device.get_properties())
+                    device_cache[device.name] = device_namespace
             else:
                 restricted_devices.append(device.name)
         if restricted_devices:
@@ -604,7 +608,7 @@ class Runner(vs.TimingMixin):
 
     def create_transient_result(self, result, device):
         device_key = device.id if device else None
-        vs.service_result[self.parent_runtime][self.service.id][device_key] = or_dumps(result)
+        vs.service_result[self.parent_runtime][self.service.id][device_key].append(or_dumps(result))
 
     def create_result(self, results, device=None, commit=True, run_result=False):
         self.success = results["success"]
@@ -1097,9 +1101,39 @@ class Runner(vs.TimingMixin):
             )
             return query.all()
 
+        def get_transient_results():
+            results_store =  vs.service_result.get(runtime or self.parent_runtime)
+            if not results_store:
+                return
+            scoped_name_cache = self.cache["topology"]["scoped_name_to_dict"]
+            service_cache = self.cache["topology"]["name_to_dict"]["services"]
+            if service_ns := scoped_name_cache.get(service_name):
+                service_key = service_ns.id
+            elif service_ns := service_cache.get(service_name):
+                service_key = service_ns.id
+            else:
+                return
+            results_store = results_store.get(service_key)
+            if not results_store:
+                return
+            device_cache = self.cache["topology"]["name_to_dict"]["devices"]
+            if device:
+                if device not in device_cache:
+                    return
+                results = results_store.get(device_cache[device].id, [])
+            else:
+                results = sum(results_store.values(), [])
+            if all_matches:
+                return [or_loads(result)["result"] for result in results]
+            else:
+                return or_loads(results[0]["result"]) if results else None
+
         def recursive_search(run):
             if not run:
                 return None
+            if not self.is_legacy_run and run == self.main_run:
+                if results := get_transient_results():
+                    return results
             query = db.session.query(vs.models["result"]).filter(
                 vs.models["result"].parent_runtime == (runtime or run.runtime)
             )

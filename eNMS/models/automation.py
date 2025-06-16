@@ -536,6 +536,7 @@ class Run(AbstractBase):
             "services": {},
             "edges": {},
             "name_to_dict": defaultdict(dict),
+            "scoped_name_to_dict": {},
             "neighbors": defaultdict(set),
         }
         instances, visited = {self.service}, set()
@@ -563,6 +564,7 @@ class Run(AbstractBase):
                 service.target_devices = instance.target_devices
                 service.target_pools = instance.target_pools
                 self.topology["services"][instance.id] = service
+                self.topology["scoped_name_to_dict"][instance.scoped_name] = service
                 self.topology["name_to_dict"]["services"][instance.name] = service
             if instance.type == "workflow":
                 instances |= set(instance.services) | set(instance.edges)
@@ -572,7 +574,8 @@ class Run(AbstractBase):
         for batch in batched((
             loads(result)
             for device_results in vs.service_result[self.runtime].values()
-            for result in device_results.values()
+            for result_list in device_results.values()
+            for result in result_list
         ), vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models["result"]), batch)
 
