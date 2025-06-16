@@ -151,8 +151,11 @@ Motivation for Run Refactoring:
   python field), because they can then modify them in a way that we cannot control ("device.property = ...")
 
 Migration:
-- Run script to convert all devices from type "device" to "generic_device", all links from type "link"
-  to "generic_link", and all files from type "file" to "generic_file"
+- Run migration script to:
+  - Convert all devices from type "device" to "generic_device"
+  - Convert all links from type "link" to "generic_link"
+  - Convert all files from type "file" to "generic_file"
+  - Set the "legacy_run" flag to "True" for all services
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
@@ -166,6 +169,10 @@ Tests:
 - Test Parameterized Runs (with and without custom targets)
 - Test Restart Run, specifically that new runs can fetch the results from old runs
 - Test the "Update Target Pools" mechanism
+- Test that the get_result function work like it used to with "Legacy Run" option set to False,
+  with all possible combinations of parameters (with device, without device, with scoped name and
+  full name for the service, with "all_matches" set to True and False)
+  The output of "get_result" should be the same regardless of the value of "Legacy Run"
 
 Notes:
 - Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
