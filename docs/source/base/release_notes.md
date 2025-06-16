@@ -91,7 +91,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         - Convert all jobs to @staticmethod so it can be called without service SQL object
         - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
         - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
-        - In the workflow, fetch the device with db.fetch or use the device namespace depending on the value of Legacy Run
+        - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of Legacy Run
         Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
       - Part 4:
         - All Services are Namespaces
@@ -105,6 +105,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       - Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
         Configured via database.json > "transactions" > "batch_size" (default: 1000)
         Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
+      - Part 7: Remove task from the argument of Runner (no longer used)
+        Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
