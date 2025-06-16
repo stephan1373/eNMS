@@ -682,7 +682,6 @@ class Run(AbstractBase):
             placeholder=self.placeholder,
             properties=self.properties,
             start_services=self.start_services,
-            task=self.task,
             topology=self.topology,
             trigger=self.trigger,
         )
