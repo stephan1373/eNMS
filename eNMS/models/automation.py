@@ -577,6 +577,14 @@ class Run(AbstractBase):
             db.session.execute(insert(vs.models["result"]), batch)
 
     @process(commit=True)
+    def create_all_reports(self):
+        for batch in batched((
+            {"runtime": self.runtime, "service_id": service_id, "content": report}
+            for service_id, report in vs.service_report[self.runtime].items()
+        ), vs.database["transactions"]["batch_size"]):
+            db.session.execute(insert(vs.models["service_report"]), batch)
+
+    @process(commit=True)
     def create_logs(self):
         services = {service.id for service in self.services}
         for service_id in services:
@@ -695,6 +703,7 @@ class Run(AbstractBase):
             env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
         if not self.legacy_run:
             self.create_all_results()
+            self.create_all_reports()
         self.create_logs()
         self.end_of_run_transaction()
         self.run_service_table_transaction()

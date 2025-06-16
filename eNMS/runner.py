@@ -849,6 +849,9 @@ class Runner(vs.TimingMixin):
             notification["Results"] = results["result"]
         return notification
 
+    def create_transient_report(self, report):
+        vs.service_report[self.parent_runtime][self.service.id] = report
+
     def generate_report(self, results):
         try:
             report = ""
@@ -867,14 +870,17 @@ class Runner(vs.TimingMixin):
             self.log("error", f"Failed to build report:\n{report}")
         if report:
             self.check_size_before_commit(report, "report")
-            db.factory(
-                "service_report",
-                runtime=self.parent_runtime,
-                service=self.service.id,
-                content=report,
-                commit=vs.automation["advanced"]["always_commit"],
-                rbac=None,
-            )
+            if self.is_legacy_run:
+                db.factory(
+                    "service_report",
+                    runtime=self.parent_runtime,
+                    service=self.service.id,
+                    content=report,
+                    commit=vs.automation["advanced"]["always_commit"],
+                    rbac=None,
+                )
+            else:
+                self.create_transient_report(report)
         return report
 
     def notify(self, results, report):

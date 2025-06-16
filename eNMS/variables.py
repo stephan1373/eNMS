@@ -206,6 +206,7 @@ class VariableStore:
         libraries = ("netmiko", "napalm", "scrapli", "ncclient")
         self.connections_cache = {library: defaultdict(dict) for library in libraries}
         self.service_run_count = defaultdict(int)
+        self.service_report = defaultdict(dict)
         self.service_result = defaultdict(lambda: defaultdict(dict))
 
     def set_subtypes(self):
