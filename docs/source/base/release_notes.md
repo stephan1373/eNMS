@@ -173,6 +173,7 @@ Tests:
   with all possible combinations of parameters (with device, without device, with scoped name and
   full name for the service, with "all_matches" set to True and False)
   The output of "get_result" should be the same regardless of the value of "Legacy Run"
+- Test that the "Report" mechanism works correctly regardless of the value of "Legacy Run"
 
 Notes:
 - Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
