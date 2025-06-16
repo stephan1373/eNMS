@@ -42,15 +42,7 @@ class CustomApp(vs.TimingMixin):
         return
 
     def run_post_processing(self, run, run_result):
-        if run.is_main_run:
-            env.log(
-                "info",
-                (
-                    f"RUNTIME {run_result['runtime']} - USER {run.creator} -"
-                    f"SERVICE '{run_result['properties']['scoped_name']}' - "
-                    f"Completed in {run_result['duration']}"
-                ),
-            )
+        return
 
     def runner_global_variables(self):
         return {}

@@ -156,8 +156,7 @@ Motivation for Run Refactoring:
 - Users should not have access to SQLAlchemy objects (e.g device via the substitution mechanism or any of the
   python field), because they can then modify them in a way that we cannot control ("device.property = ...")
 - Separate the code that pertains to the main run (executed only for the top-level instance of Runner, therefore
-  it makes more sense for it to belong to the Run class) from the code that is executed for every instance of
-  Runner.
+  it makes more sense for it to belong to the Run class) from the code that is executed for every instance of Runner.
 
 Migration:
 - Run migration script to:
