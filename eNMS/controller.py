@@ -1300,24 +1300,26 @@ class Controller(vs.TimingMixin):
         for batch in batched(instances, vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models[cls_name]), batch)
 
-    def json_import_scalar(self, cls_name, property, name_to_id, path):
-        relation = vs.relationships[cls_name][property]
-        filepath = path / f"{cls_name}_{property}.json"
-        if relation["list"] or not exists(filepath):
-            return
-        with open(filepath, "rb") as file:
-            relations = loads(file.read())
+    def json_import_scalar(self, cls_name, name_to_id, path):
+        updates = defaultdict(dict)
         export_model1 = getattr(vs.models[cls_name], "export_type", cls_name)
-        export_model2 = getattr(
-            vs.models[relation["model"]], "export_type", relation["model"]
-        )
-        for batch in batched((
-            {
-                "id": name_to_id[export_model1][source],
-                f"{property}_id": name_to_id[export_model2][destination],
-            }
-            for source, destination in relations.items()
-        ), vs.database["transactions"]["batch_size"]):
+        for property, relation in vs.relationships[cls_name].items():
+            filepath = path / f"{cls_name}_{property}.json"
+            if relation["list"] or not exists(filepath):
+                continue
+            with open(filepath, "rb") as file:
+                relations = loads(file.read())
+            export_model2 = getattr(
+                vs.models[relation["model"]], "export_type", relation["model"]
+            )
+            for source, destination in relations.items():
+                source_id = name_to_id[export_model1][source]
+                destination_id = name_to_id[export_model2][destination]
+                updates[source_id][f"{property}_id"] = destination_id
+        for batch in batched(
+            ({"id": id, **values} for id, values in updates.items()),
+            vs.database["transactions"]["batch_size"]
+        ):
             db.session.execute(update(vs.models[cls_name]), list(batch))
 
     def json_import_associations(self, association_name, name_to_id, path):
@@ -1369,8 +1371,7 @@ class Controller(vs.TimingMixin):
                 )
         with env.timer("Import Scalar Properties"):
             for cls_name in vs.models:
-                for property in vs.relationships[cls_name]:
-                    self.json_import_scalar(cls_name, property, name_to_id, path)
+                self.json_import_scalar(cls_name, name_to_id, path)
         with env.timer("Import Associations"):
             for association_name in db.associations:
                 self.json_import_associations(association_name, name_to_id, path)
