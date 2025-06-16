@@ -112,6 +112,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       - Part 9 (optional): Implement in-memory get transient result function and convert devices to
         namespace in topology cache
         Commit: 1b403f8b2f93e0ab37baea5738b36ad9493612f1
+      - Part 10: Move the initialization of the main run cache in the Run class
+        Commit: eb66e66689e8e39ab523575e79badb379b3ed370
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
