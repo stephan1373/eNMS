@@ -1126,7 +1126,7 @@ class Runner(vs.TimingMixin):
             if all_matches:
                 return [or_loads(result)["result"] for result in results]
             else:
-                return or_loads(results[0]["result"]) if results else None
+                return or_loads(results[0])["result"] if results else None
 
         def recursive_search(run):
             if not run:
