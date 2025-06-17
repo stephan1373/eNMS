@@ -116,6 +116,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         Commit: eb66e66689e8e39ab523575e79badb379b3ed370
       - Part 11 (optional): Don't Refetch after Fork when multithreading is enabled
         Commit: 1b8da3627b841dfae90f3dc5f44a829f451c99c8
+      - Part 12 (optional): Update Runner.log and env.log to not create a changelog object with factory
+        during a run if the run is in no SQL mode (logs are stored in memory in vs.service_changelog)
+        Commit: c2bb5b7698c63a938a020bd7b6f6302486f2035d
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
