@@ -163,6 +163,10 @@ Motivation for Run Refactoring:
   python field), because they can then modify them in a way that we cannot control ("device.property = ...")
 - Separate the code that pertains to the main run (executed only for the top-level instance of Runner, therefore
   it makes more sense for it to belong to the Run class) from the code that is executed for every instance of Runner.
+- The threaded SQL ("refetch after fork") causes two major issues:
+  - It limits the number of threads that can be spawned (must be less than currently available pool connections).
+  - Pool connections are not properly released after a thread ends, so a "QueuePool limit reached" exception is
+    raised after multithreading has exhausted all connections.
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
