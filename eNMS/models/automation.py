@@ -524,7 +524,7 @@ class Run(AbstractBase):
                 finally:
                     elapsed = perf_counter() - start_time
                     log = f"'{func.__name__}' took {elapsed:.3f}s for {self.name}"
-                    env.log("info", log)
+                    env.log("info", log, change_log=False)
 
             return wrapper
 
