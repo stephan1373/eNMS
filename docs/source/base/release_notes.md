@@ -166,6 +166,8 @@ Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
 - Are the "device" or "devices" used in python code field to set a variable (write change to DB) or only to read ?
 - Do the configuration backup workflows update pools after fetching the configuration ?
+- What arguments are used for "pool_size" and "max_overflow", and how many threads is the
+  configuration backup workflow configured with
 
 Migration:
 - Run migration script to:
