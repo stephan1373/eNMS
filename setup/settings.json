@@ -48,7 +48,7 @@
     }
   },
   "automation": {
-    "max_process": 100,
+    "max_process": 1000,
     "use_task_queue": false
   },
   "cache": {
