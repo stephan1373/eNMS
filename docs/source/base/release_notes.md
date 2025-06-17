@@ -148,6 +148,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 0e0192e48819890de590d83f494ef9a05d5b8e17
 - Set netmiko log level to 'info' in logging.json > 'external_loggers'
   Commit: 0fd78af2824b8e2c6904085f27387a53824d44d1
+- Increase maximum number of threads to 1000 (in no SQL mode, it is no longer limit by the number of available
+  connections in the SQL connection pool)
 
 Motivation for Run Refactoring:
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
