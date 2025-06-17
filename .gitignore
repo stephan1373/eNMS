@@ -15,6 +15,9 @@ files/services/*
 !files/services/.gitkeep
 *.tgz
 
+# ignore json migration_files in examples
+files/migration/examples/*.json
+
 # venv
 env
 venv
