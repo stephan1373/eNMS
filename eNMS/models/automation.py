@@ -524,8 +524,10 @@ class Run(AbstractBase):
                 finally:
                     elapsed = perf_counter() - start_time
                     log = f"'{func.__name__}' took {elapsed:.3f}s for {self.name}"
-                    env.log("info", log) 
+                    env.log("info", log)
+
             return wrapper
+
         return decorator
 
     @process(raise_exception=True)
@@ -571,20 +573,26 @@ class Run(AbstractBase):
 
     @process(commit=True)
     def create_all_results(self):
-        for batch in batched((
-            loads(result)
-            for device_results in vs.service_result[self.runtime].values()
-            for result_list in device_results.values()
-            for result in result_list
-        ), vs.database["transactions"]["batch_size"]):
+        for batch in batched(
+            (
+                loads(result)
+                for device_results in vs.service_result[self.runtime].values()
+                for result_list in device_results.values()
+                for result in result_list
+            ),
+            vs.database["transactions"]["batch_size"],
+        ):
             db.session.execute(insert(vs.models["result"]), batch)
 
     @process(commit=True)
     def create_all_reports(self):
-        for batch in batched((
-            {"runtime": self.runtime, "service_id": service_id, "content": report}
-            for service_id, report in vs.service_report[self.runtime].items()
-        ), vs.database["transactions"]["batch_size"]):
+        for batch in batched(
+            (
+                {"runtime": self.runtime, "service_id": service_id, "content": report}
+                for service_id, report in vs.service_report[self.runtime].items()
+            ),
+            vs.database["transactions"]["batch_size"],
+        ):
             db.session.execute(insert(vs.models["service_report"]), batch)
 
     @process(commit=True)
@@ -612,13 +620,8 @@ class Run(AbstractBase):
     def run_service_table_transaction(self):
         run_services = vs.run_services.pop(self.runtime, [])
         table = db.run_service_table
-        db.session.execute(
-            table.delete().where(table.c.run_id == self.id)
-        )
-        values = [
-            {"run_id": self.id, "service_id": id}
-            for id in run_services
-        ]
+        db.session.execute(table.delete().where(table.c.run_id == self.id))
+        values = [{"run_id": self.id, "service_id": id} for id in run_services]
         db.session.execute(table.insert(), values)
 
     @process(commit=True)

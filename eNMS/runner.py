@@ -380,7 +380,9 @@ class Runner(vs.TimingMixin):
             device = db.fetch("device", name=device_name, rbac=None)
             for key, value in run.kwargs.items():
                 try:
-                    run_kwargs[key] = db.fetch(value.type, id=refetch_ids[key], rbac=None)
+                    run_kwargs[key] = db.fetch(
+                        value.type, id=refetch_ids[key], rbac=None
+                    )
                 except Exception as exc:
                     if isinstance(exc, SQLAlchemyError):
                         db.session.rollback()
@@ -583,7 +585,9 @@ class Runner(vs.TimingMixin):
 
     def create_transient_result(self, result, device):
         device_key = device.id if device else None
-        vs.service_result[self.parent_runtime][self.service.id][device_key].append(or_dumps(result))
+        vs.service_result[self.parent_runtime][self.service.id][device_key].append(
+            or_dumps(result)
+        )
 
     def create_result(self, results, device=None, commit=True, run_result=False):
         self.success = results["success"]
@@ -795,7 +799,12 @@ class Runner(vs.TimingMixin):
         )
         runtime = self.parent_runtime if not self.is_legacy_run else None
         settings = env.log(
-            severity, full_log, user=self.creator, change_log=change_log, logger=logger, runtime=runtime
+            severity,
+            full_log,
+            user=self.creator,
+            change_log=change_log,
+            logger=logger,
+            runtime=runtime,
         )
         if service_log or logger and settings.get("service_log"):
             run_log = (
@@ -1078,7 +1087,7 @@ class Runner(vs.TimingMixin):
             return query.all()
 
         def get_transient_results():
-            results_store =  vs.service_result.get(runtime or self.parent_runtime)
+            results_store = vs.service_result.get(runtime or self.parent_runtime)
             if not results_store:
                 return
             scoped_name_cache = self.cache["topology"]["scoped_name_to_dict"]
@@ -1172,12 +1181,14 @@ class Runner(vs.TimingMixin):
         variables.update(payload.get("variables", {}))
         if device and "devices" in payload.get("variables", {}):
             variables.update(payload["variables"]["devices"].get(device.name, {}))
-        variables.update({
-            "devices": _self.run_targets,
-            "parent_device": _self.parent_device or device,
-            "payload": _self.payload,
-            **_self.cache["global_variables"]
-        })
+        variables.update(
+            {
+                "devices": _self.run_targets,
+                "parent_device": _self.parent_device or device,
+                "payload": _self.payload,
+                **_self.cache["global_variables"],
+            }
+        )
         return variables
 
     def eval(_self, query, function="eval", **locals):  # noqa: N805
@@ -1535,7 +1546,9 @@ class Runner(vs.TimingMixin):
         for send, expect in commands:
             if not send:
                 continue
-            log_command = "jump on connect password" if password and send == password else send
+            log_command = (
+                "jump on connect password" if password and send == password else send
+            )
             self.log("info", f"Sent '{log_command}'" f", waiting for '{expect}'")
             connection.send_command(
                 send,

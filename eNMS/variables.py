@@ -207,7 +207,9 @@ class VariableStore:
         self.connections_cache = {library: defaultdict(dict) for library in libraries}
         self.service_run_count = defaultdict(int)
         self.service_report = defaultdict(dict)
-        self.service_result = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
+        self.service_result = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(list))
+        )
         self.service_changelog = defaultdict(list)
 
     def set_subtypes(self):

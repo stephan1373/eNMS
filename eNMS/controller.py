@@ -847,8 +847,7 @@ class Controller(vs.TimingMixin):
     def get_instance_tree(self, type, full_path, runtime=None, **kwargs):
         path_id = full_path.split(">")
         path_pid = [
-            db.fetch("service", id=id, rbac=None).persistent_id
-            for id in path_id
+            db.fetch("service", id=id, rbac=None).persistent_id for id in path_id
         ]
         full_ppath = ">".join(path_pid)
         run = db.fetch("run", runtime=runtime) if runtime else None
@@ -992,12 +991,14 @@ class Controller(vs.TimingMixin):
         )
 
     def get_workflow_services(self, id, node, search=None):
-        parents = {workflow.name for workflow in db.fetch("workflow", id=id).get_ancestors()}
+        parents = {
+            workflow.name for workflow in db.fetch("workflow", id=id).get_ancestors()
+        }
         if node == "all" and not search:
             workflows = self.filtering(
                 "workflow",
                 properties=["id", "name"],
-                constraints={"workflows_filter": "empty"}
+                constraints={"workflows_filter": "empty"},
             )
             return (
                 [
@@ -1038,7 +1039,9 @@ class Controller(vs.TimingMixin):
                             "type": "workflow",
                             "state": {"disabled": workflow.name in parents},
                             "a_attr": {
-                                "class": "no_checkbox" if workflow.name in parents else "",
+                                "class": (
+                                    "no_checkbox" if workflow.name in parents else ""
+                                ),
                                 "style": "color: #6666FF; width: 100%",
                             },
                         }
@@ -1051,7 +1054,7 @@ class Controller(vs.TimingMixin):
             services = self.filtering(
                 "service",
                 properties=["id", "scoped_name", "type", "name", "shared"],
-                constraints={"name": search, "soft_deleted": "bool-false"}
+                constraints={"name": search, "soft_deleted": "bool-false"},
             )
             result = defaultdict(list)
             for service in services:
@@ -1082,11 +1085,14 @@ class Controller(vs.TimingMixin):
                                     "; width: 100%"
                                 ),
                             },
-                            "type": "workflow" if service.type == "workflow" else "service",
+                            "type": (
+                                "workflow" if service.type == "workflow" else "service"
+                            ),
                         }
                         for service in services
-                    ]
-                } for key, services in result.items()
+                    ],
+                }
+                for key, services in result.items()
             ]
         elif node == "standalone":
             services = self.filtering(
@@ -1095,8 +1101,8 @@ class Controller(vs.TimingMixin):
                 constraints={
                     "workflows_filter": "empty",
                     "type": "service",
-                    "shared": "bool-false"
-                }
+                    "shared": "bool-false",
+                },
             )
             return sorted(
                 (
@@ -1113,7 +1119,7 @@ class Controller(vs.TimingMixin):
             services = self.filtering(
                 "service",
                 properties=["id", "scoped_name"],
-                constraints={"shared": "bool-true"}
+                constraints={"shared": "bool-true"},
             )
             return sorted(
                 (
@@ -1270,7 +1276,9 @@ class Controller(vs.TimingMixin):
         cls = vs.models[cls_name]
         model_class = vs.models[cls_name]
         export_type = getattr(cls, "export_type", cls.type)
-        excluded_properties = set(db.json_migration["dont_migrate"].get(export_type, [])) | {"type"}
+        excluded_properties = set(
+            db.json_migration["dont_migrate"].get(export_type, [])
+        ) | {"type"}
         excluded_properties |= set(getattr(cls, "model_properties", {}))
         properties_to_export = [
             property
@@ -1318,7 +1326,7 @@ class Controller(vs.TimingMixin):
                 updates[source_id][f"{property}_id"] = destination_id
         for batch in batched(
             ({"id": id, **values} for id, values in updates.items()),
-            vs.database["transactions"]["batch_size"]
+            vs.database["transactions"]["batch_size"],
         ):
             db.session.execute(update(vs.models[cls_name]), list(batch))
 
@@ -1333,13 +1341,16 @@ class Controller(vs.TimingMixin):
         model2 = properties["model2"]["foreign_key"]
         export_model1 = getattr(vs.models[model1], "export_type", model1)
         export_model2 = getattr(vs.models[model2], "export_type", model2)
-        for batch in batched((
-            {
-                f"{model1}_id": name_to_id[export_model1][name1],
-                f"{model2}_id": name_to_id[export_model2][name2],
-            }
-            for name1, name2 in data
-        ), vs.database["transactions"]["batch_size"]):
+        for batch in batched(
+            (
+                {
+                    f"{model1}_id": name_to_id[export_model1][name1],
+                    f"{model2}_id": name_to_id[export_model2][name2],
+                }
+                for name1, name2 in data
+            ),
+            vs.database["transactions"]["batch_size"],
+        ):
             db.session.execute(properties["table"].insert(), batch)
 
     def json_import(self, folder="migrations", **kwargs):

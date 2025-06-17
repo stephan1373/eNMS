@@ -425,7 +425,7 @@ class Server(Flask):
                 return Response(
                     response=dumps(getattr(self.rest_api, endpoint)(*args, **kwargs)),
                     status=200,
-                    mimetype="application/json"
+                    mimetype="application/json",
                 )
 
         @blueprint.route("/", methods=["POST"])
@@ -447,9 +447,12 @@ class Server(Flask):
                 kwargs = request.form
             with db.session_scope():
                 return Response(
-                    response=dumps(getattr(controller, endpoint)(*args, **kwargs), option=OPT_NON_STR_KEYS),
+                    response=dumps(
+                        getattr(controller, endpoint)(*args, **kwargs),
+                        option=OPT_NON_STR_KEYS,
+                    ),
                     status=200,
-                    mimetype="application/json"
+                    mimetype="application/json",
                 )
 
         self.register_blueprint(blueprint)

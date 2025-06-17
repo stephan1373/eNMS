@@ -227,7 +227,10 @@ class Workflow(Service):
                     heappush(services, ((1 / successor.priority, successor_id)))
                     if tracking_bfs or device:
                         run.write_state(
-                            f"edges/{edge_id}", len(summary[edge_type]), "increment", top_level=True
+                            f"edges/{edge_id}",
+                            len(summary[edge_type]),
+                            "increment",
+                            top_level=True,
                         )
                     else:
                         run.write_state(f"edges/{edge_id}", "DONE", top_level=True)

@@ -365,18 +365,18 @@ class Database:
                     return
                 args[4]._start = datetime.now()
 
-            @event.listens_for(self.engine, "after_cursor_execute") 
+            @event.listens_for(self.engine, "after_cursor_execute")
             def after_cursor_execute(*args):
                 statement, context = args[2], args[4]
                 if not self.monitor_orm_statements or not hasattr(context, "_start"):
                     return
                 runtime = datetime.now() - context._start
                 self.orm_statements[statement] += 1
-                self.orm_statements_runtime[statement] += runtime 
+                self.orm_statements_runtime[statement] += runtime
                 self.orm_statements_traceback[statement] = "\n".join(
                     f"{frame.filename}:{frame.lineno} in {frame.name}"
                     for frame in extract_stack()
-                    if 'enms' in frame.filename.lower()
+                    if "enms" in frame.filename.lower()
                 )
 
     def configure_associations(self):
