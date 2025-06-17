@@ -793,8 +793,9 @@ class Runner(vs.TimingMixin):
             f"RUNTIME {self.parent_runtime} - USER {self.creator} -"
             f" SERVICE '{self.cache['service']['name']}' - {log}"
         )
+        runtime = self.parent_runtime if not self.is_legacy_run else None
         settings = env.log(
-            severity, full_log, user=self.creator, change_log=change_log, logger=logger
+            severity, full_log, user=self.creator, change_log=change_log, logger=logger, runtime=runtime
         )
         if service_log or logger and settings.get("service_log"):
             run_log = (

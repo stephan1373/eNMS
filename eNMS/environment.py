@@ -331,23 +331,25 @@ class Environment(vs.TimingMixin):
         logger="root",
         instance=None,
         history=None,
+        runtime=None,
         source=None,
     ):
         logger_settings = vs.logging["loggers"].get(logger, {})
         if logger:
             getattr(getLogger(logger), severity)(content)
         if change_log or logger and logger_settings.get("change_log"):
-            db.factory(
-                "changelog",
-                **{
-                    "severity": severity,
-                    "content": content,
-                    "author": user,
-                    "history": history,
-                    "source": source,
-                    **(instance.get_changelog_kwargs() if instance else {}),
-                },
-            )
+            kwargs = {
+                "severity": severity,
+                "content": content,
+                "author": user,
+                "history": history,
+                "source": source,
+                **(instance.get_changelog_kwargs() if instance else {}),
+            }
+            if runtime:
+                vs.service_changelog[runtime].append({"time": vs.get_time(), **kwargs})
+            else:
+                db.factory("changelog", **kwargs)
         vs.custom.log_post_processing(**locals())
         return logger_settings
 

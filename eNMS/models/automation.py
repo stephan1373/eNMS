@@ -588,6 +588,12 @@ class Run(AbstractBase):
             db.session.execute(insert(vs.models["service_report"]), batch)
 
     @process(commit=True)
+    def create_all_changelogs(self):
+        changelogs = vs.service_changelog.pop(self.runtime, [])
+        for batch in batched(changelogs, vs.database["transactions"]["batch_size"]):
+            db.session.execute(insert(vs.models["changelog"]), batch)
+
+    @process(commit=True)
     def create_logs(self):
         services = {service.id for service in self.services}
         for service_id in services:
@@ -727,6 +733,7 @@ class Run(AbstractBase):
         if not self.legacy_run:
             self.create_all_results()
             self.create_all_reports()
+            self.create_all_changelogs()
         self.create_logs()
         self.end_of_run_transaction()
         self.run_service_table_transaction()
