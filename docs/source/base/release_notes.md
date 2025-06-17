@@ -205,7 +205,7 @@ Tests:
 Notes:
 - Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
 - The "Legacy Run" flag comes from the superworkflow if there is one.
-- With non-legacy runs, results cannot be read until the workflow has completed.
+- With non-legacy runs, results cannot be read from the UI until the workflow has completed.
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------
