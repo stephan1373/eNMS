@@ -561,8 +561,10 @@ class Run(AbstractBase):
                 self.topology["neighbors"][key].add((instance.id, destination_id))
                 self.topology["name_to_dict"]["edges"][instance.name] = edge
             else:
-                service_properties = instance.get_properties(exclude=["positions"])
-                service = SimpleNamespace(**service_properties)
+                service = SimpleNamespace(**instance.get_properties(
+                    exclude=["positions"],
+                    private_properties=True
+                ))
                 service.target_devices = instance.target_devices
                 service.target_pools = instance.target_pools
                 self.topology["services"][instance.id] = service
