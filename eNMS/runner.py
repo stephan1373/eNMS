@@ -18,8 +18,8 @@ from re import compile, search
 from requests import post
 from scp import SCPClient
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import selectinload
 from sys import getsizeof
-from threading import Thread
 from time import sleep
 from traceback import format_exc
 from types import GeneratorType, SimpleNamespace
@@ -377,8 +377,8 @@ class Runner(vs.TimingMixin):
     def get_device_result(args):
         device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
-        device = db.fetch("device", id=device_id, rbac=None)
         if not run.no_sql_run:
+            device = db.fetch("device", id=device_id, rbac=None)
             run_kwargs = {"in_process": True}
             for key, value in run.kwargs.items():
                 try:
@@ -392,6 +392,9 @@ class Runner(vs.TimingMixin):
             if isinstance(run, vs.models["run"]):
                 run = db.fetch("run", runtime=run.runtime, rbac=None)
         else:
+            device = db.session.query(vs.models["device"]).options(
+                selectinload(vs.models["device"].gateways)
+            ).filter(vs.models["device"].id == device_id).one()
             run_kwargs = {"in_process": True, **run.kwargs}
             db.session.remove()
         results.append(Runner(run, **run_kwargs).get_results(device))
