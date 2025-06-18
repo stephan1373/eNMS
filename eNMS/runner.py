@@ -344,8 +344,6 @@ class Runner(vs.TimingMixin):
             if self.is_main_run or len(self.run_targets) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
             vs.custom.run_post_processing(self, results)
-            if self.is_main_run:
-                self.close_remaining_connections()
         self.results = results
         vs.run_instances.pop(self.runtime)
 
@@ -1483,25 +1481,6 @@ class Runner(vs.TimingMixin):
             connection = self.get_connection(library, device)
             if connection:
                 self.disconnect(library, device, connection)
-
-    def close_remaining_connections(self):
-        try:
-            threads = []
-            for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-                device_connections = vs.connections_cache[library][self.parent_runtime]
-                for device, connections in list(device_connections.items()):
-                    for connection in list(connections.values()):
-                        args = (library, device, connection)
-                        thread = Thread(target=self.disconnect, args=args)
-                        thread.start()
-                        threads.append(thread)
-            timeout = vs.automation["advanced"]["disconnect_thread_timeout"]
-            for thread in threads:
-                thread.join(timeout=timeout)
-            for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-                vs.connections_cache[library].pop(self.parent_runtime)
-        except Exception:
-            env.log("error", format_exc())
 
     def disconnect(self, library, device, connection):
         connection_log = f"{library} connection '{connection.connection_name}'"

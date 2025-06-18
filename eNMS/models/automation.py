@@ -662,6 +662,23 @@ class Run(AbstractBase):
                     pool.compute_pool()
         db.session.commit()
 
+    @process()
+    def close_remaining_connections(self):
+        threads = []
+        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+            device_connections = vs.connections_cache[library][self.runtime]
+            for device, connections in list(device_connections.items()):
+                for connection in list(connections.values()):
+                    args = (library, device, connection)
+                    thread = Thread(target=self.service_run.disconnect, args=args)
+                    thread.start()
+                    threads.append(thread)
+        timeout = vs.automation["advanced"]["disconnect_thread_timeout"]
+        for thread in threads:
+            thread.join(timeout=timeout)
+        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+            vs.connections_cache[library].pop(self.runtime)
+
     @property
     def cache(self):
         creator = db.fetch("user", name=self.creator, rbac=None)
@@ -737,6 +754,7 @@ class Run(AbstractBase):
             self.create_all_reports()
             self.create_all_changelogs()
         self.create_logs()
+        self.close_remaining_connections()
         self.end_of_run_transaction()
         self.run_service_table_transaction()
         self.service.update_count(-1)
