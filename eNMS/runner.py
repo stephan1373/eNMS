@@ -83,14 +83,14 @@ class Runner(vs.TimingMixin):
         self.main_run = run if self.is_main_run else run.main_run
         if self.is_main_run:
             self.cache["global_variables"] = self.cache_global_variables()
-        self.is_legacy_run = self.cache["main_run_service"]["legacy_run"]
+        self.no_sql_run = self.cache["main_run_service"]["no_sql_run"]
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
         if "in_process" in kwargs:
             self.path = run.path
         elif not self.is_main_run:
             self.path = f"{run.path}>{self.service.persistent_id}"
-        if self.is_legacy_run:
+        if not self.no_sql_run:
             db.session.commit()
 
     def get_service_properties(self):
@@ -242,7 +242,7 @@ class Runner(vs.TimingMixin):
                 self.get_target_property("device_query"),
                 self.get_target_property("device_query_property"),
             )
-        if self.is_legacy_run:
+        if not self.no_sql_run:
             if self.is_main_run:
                 self.main_run.target_devices = list(devices)
                 self.main_run.target_pools = list(pools)
@@ -315,7 +315,7 @@ class Runner(vs.TimingMixin):
             self.log("error", result)
             results.update({"success": False, "result": result})
         finally:
-            if self.is_legacy_run:
+            if not self.no_sql_run:
                 try:
                     db.session.commit()
                 except Exception:
@@ -419,7 +419,7 @@ class Runner(vs.TimingMixin):
         for device in self.run_targets:
             if device.id in vs.run_allowed_targets[self.parent_runtime]:
                 allowed_devices.append(device)
-                if not self.is_legacy_run and device.name not in device_cache:
+                if self.no_sql_run and device.name not in device_cache:
                     device_namespace = SimpleNamespace(**device.get_properties())
                     device_cache[device.name] = device_namespace
             else:
@@ -617,7 +617,7 @@ class Runner(vs.TimingMixin):
         result_kw["result"] = results
         if not self.disable_result_creation or create_failed_results or run_result:
             self.has_result = True
-            if self.is_legacy_run:
+            if not self.no_sql_run:
                 try:
                     db.factory(
                         "result",
@@ -791,7 +791,7 @@ class Runner(vs.TimingMixin):
             f"RUNTIME {self.parent_runtime} - USER {self.creator} -"
             f" SERVICE '{self.cache['service']['name']}' - {log}"
         )
-        runtime = self.parent_runtime if not self.is_legacy_run else None
+        runtime = self.parent_runtime if self.no_sql_run else None
         settings = env.log(
             severity,
             full_log,
@@ -853,7 +853,7 @@ class Runner(vs.TimingMixin):
             self.log("error", f"Failed to build report:\n{report}")
         if report:
             self.check_size_before_commit(report, "report")
-            if self.is_legacy_run:
+            if not self.no_sql_run:
                 db.factory(
                     "service_report",
                     runtime=self.parent_runtime,
@@ -1110,7 +1110,7 @@ class Runner(vs.TimingMixin):
         def recursive_search(run):
             if not run:
                 return None
-            if not self.is_legacy_run and run == self.main_run:
+            if self.no_sql_run and run == self.main_run:
                 if results := get_transient_results():
                     return results
             query = db.session.query(vs.models["result"]).filter(

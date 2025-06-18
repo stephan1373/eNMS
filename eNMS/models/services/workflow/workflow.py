@@ -183,7 +183,7 @@ class Workflow(Service):
             else:
                 if service.scoped_name == "Placeholder":
                     sql_service = run.placeholder
-                elif run.is_legacy_run:
+                elif not run.no_sql_run:
                     sql_service = db.fetch("service", id=service_id, rbac=None)
                 else:
                     sql_service = topology["services"][service_id]

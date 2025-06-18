@@ -44,7 +44,7 @@ class Service(AbstractBase):
     version = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
     priority = db.Column(Integer, default=10)
-    legacy_run = db.Column(Boolean, default=False)
+    no_sql_run = db.Column(Boolean, default=False)
     number_of_retries = db.Column(Integer, default=0)
     time_between_retries = db.Column(Integer, default=10)
     max_number_of_retries = db.Column(Integer, default=100)
@@ -673,7 +673,7 @@ class Run(AbstractBase):
             },
             "main_run": self.base_properties,
             "main_run_service": {
-                "legacy_run": self.service.legacy_run,
+                "no_sql_run": self.service.no_sql_run,
                 "log_level": int(self.service.log_level),
                 "show_user_logs": self.service.show_user_logs,
                 "id": self.service.id,
@@ -702,13 +702,12 @@ class Run(AbstractBase):
         if not self.trigger:
             run_type = "Parameterized" if self.parameterized_run else "Regular"
             self.trigger = f"{run_type} Run"
-        self.legacy_run = self.service.legacy_run
         self.get_topology()
-        if self.legacy_run:
-            service = self.service
-        else:
+        if self.service.no_sql_run:
             service = self.topology["services"][self.service.id]
             self.update_target_pools()
+        else:
+            service = self.service
         self.service_run = Runner(
             self,
             cache=self.cache,
@@ -733,7 +732,7 @@ class Run(AbstractBase):
             results = self.service_run.results
         except Exception:
             env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
-        if not self.legacy_run:
+        if self.service.no_sql_run:
             self.create_all_results()
             self.create_all_reports()
             self.create_all_changelogs()

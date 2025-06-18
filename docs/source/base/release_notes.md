@@ -84,22 +84,21 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
         afterward (such as removing an edge or a service) won't affect that workflow run.
       - Part 2 (optional): Store results in a dict and create them in the end of run transaction.
-        Only active when the "Legacy Run" option is unchecked.
+        Only active when the "No SQL Run" option is checked.
         Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
       - Part 3 (optional):
         - Use service namespace instead of service SQL object for Runner.service
         - Convert all jobs to @staticmethod so it can be called without service SQL object
         - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
         - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
-        - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of Legacy Run
+        - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of "No SQL Run"
         Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
       - Part 4:
         - All Services are Namespaces
         - All Devices are SQLAlchemy objects
         Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
       - Part 5:
-        - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services
-          in non-legacy mode (no change in legacy mode)
+        - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services "No SQL Run"
         - Make commit optional and False by default in compute_pool
         Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
       - Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
@@ -107,7 +106,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
       - Part 7: Remove task from the argument of Runner (no longer used)
         Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
-      - Part 8 (optional): Create all reports after the main run in the Run class in non-legacy mode
+      - Part 8 (optional): Create all reports after the main run in the Run class in
+        "No SQL Run" mode
         Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
       - Part 9 (optional): Implement in-memory get transient result function and convert devices to
         namespace in topology cache
@@ -185,7 +185,6 @@ Migration:
   - Convert all devices from type "device" to "generic_device"
   - Convert all links from type "link" to "generic_link"
   - Convert all files from type "file" to "generic_file"
-  - Set the "legacy_run" flag to "True" for all services
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
@@ -199,16 +198,16 @@ Tests:
 - Test Parameterized Runs (with and without custom targets)
 - Test Restart Run, specifically that new runs can fetch the results from old runs
 - Test the "Update Target Pools" mechanism
-- Test that the get_result function work like it used to with "Legacy Run" option set to False,
-  with all possible combinations of parameters (with device, without device, with scoped name and
-  full name for the service, with "all_matches" set to True and False)
-  The output of "get_result" should be the same regardless of the value of "Legacy Run"
-- Test that the "Report" mechanism works correctly regardless of the value of "Legacy Run"
+- Test that the get_result function work like it used to with all possible combinations of parameters
+  (with device, without device, with scoped name and full name for the service, with "all_matches" set
+  to True and False) regardless of the value of "No SQL Run"
+  The output of "get_result" should be the same regardless of the value of "No SQL Run"
+- Test that the "Report" mechanism works correctly regardless of the value of "No SQL Run"
 
 Notes:
-- Everything in the "Tests" section should be tested with both "Legacy Run" checked and unchecked
-- The "Legacy Run" flag comes from the superworkflow if there is one.
-- With non-legacy runs, results cannot be read from the UI until the workflow has completed.
+- Everything in the "Tests" section should be tested with both "No SQL Run" checked and unchecked
+- The "No SQL Run" flag comes from the superworkflow if there is one.
+- With No SQL runs, results cannot be read from the UI until the workflow has completed.
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------
