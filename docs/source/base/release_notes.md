@@ -123,6 +123,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       - Part 13: Close the threaded session used to refetch after fork immediately after refetching to
         avoid blocking the session until the end of the thread
         Commit: 8d62843fb91525a7a4569b42d2e5382029859d4f
+      - Part 14 (optional): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
+        and remove the placeholder argument
+        Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
