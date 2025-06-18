@@ -26,11 +26,16 @@ class RestApi(vs.TimingMixin):
         return getattr(db.fetch("device", name=device_name), property)
 
     def get_instance(self, instance_type, name, **_):
-        return db.fetch(instance_type, name=name).to_dict(
-            relation_names_only=True, exclude=["positions"]
-        )
+        if not (
+            hasattr(vs.models[instance_type], "persistent_id")
+            and (obj := db.fetch(instance_type, persistent_id=name, allow_none=True))
+        ):
+            obj = db.fetch(instance_type, name=name)
+        return obj.to_dict(relation_names_only=True, exclude=["positions"])
 
     def get_result(self, name, runtime, **_):
+        if service := db.fetch("service", persistent_id=name, allow_none=True):
+            name = service.name
         run = db.fetch("run", service_name=name, runtime=runtime, allow_none=True)
         if not run:
             error_message = (
