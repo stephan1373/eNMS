@@ -128,6 +128,11 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
       - Part 15 (optional): Don't refetch after fork in no SQL run mode
         Commit: f4b1f8e7f1b78bbcb81b35c81b31d34fb2af9be0
+      - Part 16:
+        - (optional) Don't pass reference to restart_run as Runner arg in no SQL mode
+        - Remove references to restart_run in Workflow.job
+        - (optional) Compute targets at the end of run in no SQL mode
+        Commit: 54e548559fa8722580c934858547a852b237ccda
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
