@@ -748,7 +748,6 @@ class Run(AbstractBase):
     def run(self):
         try:
             self.start_run()
-            results = self.service_run.results
         except Exception:
             env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
         if self.service.no_sql_run:
