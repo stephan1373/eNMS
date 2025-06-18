@@ -157,10 +157,10 @@ class Workflow(Service):
         services, targets = [], defaultdict(set)
         start_targets = [device] if device else run.run_targets
         for service_id in run.start_services or [start.id]:
-            service = topology["services"][service_id]
+            service = topology["services"][int(service_id)]
             targets[service.name] |= {device.name for device in start_targets}
-            heappush(services, (1 / service.priority, service.id))
-        visited, restart_run = set(), run.restart_run
+            heappush(services, (1 / service.priority, int(service.id)))
+        visited = set()
         tracking_bfs = run.run_method == "per_service_with_workflow_targets"
         device_store = {device.name: device for device in start_targets}
         while services:
@@ -188,7 +188,6 @@ class Workflow(Service):
                 kwargs = {
                     "service": sql_service,
                     "workflow": self,
-                    "restart_run": restart_run,
                     "parent": run,
                     "parent_runtime": run.parent_runtime,
                     "workflow_run_method": run.run_method,
@@ -238,7 +237,6 @@ class Workflow(Service):
             results = {"success": not failed, "summary": summary}
         else:
             results = {"success": end.id in visited}
-        run.restart_run = restart_run
         return results
 
 

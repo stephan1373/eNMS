@@ -175,7 +175,7 @@ class Runner(vs.TimingMixin):
     def get_target_property(self, property):
         if (
             self.is_main_run
-            and self.restart_run
+            and self.main_run.restart_run
             and self.payload["targets"] != "Workflow"
         ):
             if property not in ("target_devices", "target_pools"):
@@ -186,7 +186,7 @@ class Runner(vs.TimingMixin):
                     model, self.payload[f"restart_{model}s"], user=self.creator
                 )
             elif self.payload["targets"] == "Restart run":
-                return getattr(self.restart_run, property)
+                return getattr(self.main_run.restart_run, property)
         elif self.parameterized_run and property in self.payload["form"]:
             value = self.payload["form"][property]
             if property in ("target_devices", "target_pools"):
@@ -252,6 +252,11 @@ class Runner(vs.TimingMixin):
                 devices |= set(pool.devices)
                 db.session.commit()
         else:
+            if self.is_main_run:
+                vs.run_targets[self.runtime] = {
+                    "devices": [device.id for device in devices],
+                    "pools": [pool.id for pool in pools],
+                }
             devices |= set().union(*(pool.devices for pool in pools))
         return devices
 
@@ -405,7 +410,6 @@ class Runner(vs.TimingMixin):
             run_targets=derived_devices,
             workflow=self.workflow,
             parent_device=device,
-            restart_run=self.restart_run,
             parent=self,
             parent_runtime=self.parent_runtime,
         )

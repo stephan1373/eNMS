@@ -625,6 +625,20 @@ class Run(AbstractBase):
         db.session.execute(table.delete().where(table.c.run_id == self.id))
         values = [{"run_id": self.id, "service_id": id} for id in run_services]
         db.session.execute(table.insert(), values)
+        if self.service.no_sql_run:
+            run_targets = vs.run_targets.pop(self.runtime, {})
+            run_device_association = [
+                {"run_id": self.id, "device_id": device_id}
+                for device_id in run_targets.get("devices", [])
+            ]
+            if run_device_association:
+                db.session.execute(db.run_device_table.insert(), run_device_association)
+            run_pool_association = [
+                {"run_id": self.id, "pool_id": pool_id}
+                for pool_id in run_targets.get("pools", [])
+            ]
+            if run_pool_association:
+                db.session.execute(db.run_pool_table.insert(), run_pool_association)
 
     @process(commit=True)
     def end_of_run_transaction(self):
@@ -726,7 +740,6 @@ class Run(AbstractBase):
             "cache": self.cache,
             "payload": deepcopy(self.payload),
             "is_main_run": True,
-            "restart_run": self.restart_run,
             "parameterized_run": self.parameterized_run,
             "parent_runtime": self.runtime,
             "path": self.path,
@@ -740,6 +753,7 @@ class Run(AbstractBase):
             main_run = SimpleNamespace(**self.get_properties())
             main_run.target_devices = self.target_devices
             main_run.target_pools = self.target_pools
+            main_run.restart_run = self.restart_run
             main_run.cache = self.cache
             main_run.service = self.topology["services"][self.service_id]
             main_run.placeholder = self.topology["services"].get(self.placeholder_id)
@@ -748,6 +762,7 @@ class Run(AbstractBase):
             kwargs["service"] = self.service
             main_run = self
             kwargs["placeholder"] = self.placeholder
+            kwargs["restart_run"] = self.restart_run
         self.service_run = Runner(main_run, **kwargs)
         self.service_run.start_run()
 
