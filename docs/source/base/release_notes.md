@@ -133,6 +133,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
         - Remove references to restart_run in Workflow.job
         - (optional) Compute targets at the end of run in no SQL mode
         Commit: 54e548559fa8722580c934858547a852b237ccda
+      - Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
+        to the connection pool
+        Commit: 265dee6193b907a7f85f361916379a6eede5a826
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
