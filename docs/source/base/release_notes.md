@@ -136,8 +136,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       - Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
         to the connection pool
         Commit: 265dee6193b907a7f85f361916379a6eede5a826
-      - Part 18: Add db.session.remove() in db.get_credential to close the SQLAconnection after fetching
-        the credential object, and prevent leaking SQLAlchemy connections when the connection setup fails
+      - Part 18 (major bug fix): Add db.session.remove() in db.get_credential to close the SQLAconnection
+        after fetching the credential object, and prevent leaking SQLAlchemy connections when the connection
+        setup fails
         Commit: 26d8584ba7f2ea55fe8b7386e329e43e4ef14af3
       - Part 19 (optional): Fetch device with selectinload gateways to prevent refetch in connection functions 
         Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
@@ -227,6 +228,7 @@ Tests:
   to True and False) regardless of the value of "No SQL Run"
   The output of "get_result" should be the same regardless of the value of "No SQL Run"
 - Test that the "Report" mechanism works correctly regardless of the value of "No SQL Run"
+- Test the Restart From mechanism, with all possible target origins, with both "No SQL Run" enabled and disabled
 
 Notes:
 - Everything in the "Tests" section should be tested with both "No SQL Run" checked and unchecked
