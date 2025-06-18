@@ -1728,6 +1728,8 @@ class Controller(vs.TimingMixin):
             db.session.rollback()
             env.log("critical", f"{runtime} - {format_exc()}")
             return {"success": False, "result": format_exc()}
+        finally:
+            db.session.remove()
 
     def run_debug_code(self, **kwargs):
         result = StringIO()
