@@ -388,6 +388,7 @@ class Runner(vs.TimingMixin):
             parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
         if run.no_sql_run:
             run_kwargs["service"] = run.service
+            db.session.remove()
         results.append(Runner(parent_run, **run_kwargs).get_results(device))
 
     def device_iteration(self, device):
