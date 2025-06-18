@@ -120,6 +120,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       - Part 12: Move 'close_remaining_connections' function in the Run class (it is executed after the
         main run has done running)
         Commit: 3ba8f7ee6c5c7cb874e80c7d28b6f253605ebc46
+      - Part 13: Close the threaded session used to refetch after fork immediately after refetching to
+        avoid blocking the session until the end of the thread
+        Commit: 8d62843fb91525a7a4569b42d2e5382029859d4f
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
