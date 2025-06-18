@@ -181,9 +181,7 @@ class Workflow(Service):
                         "failure": [],
                     }
             else:
-                if service.scoped_name == "Placeholder":
-                    sql_service = run.placeholder
-                elif not run.no_sql_run:
+                if not run.no_sql_run:
                     sql_service = db.fetch("service", id=service_id, rbac=None)
                 else:
                     sql_service = topology["services"][service_id]

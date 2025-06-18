@@ -722,27 +722,33 @@ class Run(AbstractBase):
             run_type = "Parameterized" if self.parameterized_run else "Regular"
             self.trigger = f"{run_type} Run"
         self.get_topology()
+        kwargs = {
+            "cache": self.cache,
+            "payload": deepcopy(self.payload),
+            "is_main_run": True,
+            "restart_run": self.restart_run,
+            "parameterized_run": self.parameterized_run,
+            "parent_runtime": self.runtime,
+            "path": self.path,
+            "properties": self.properties,
+            "start_services": self.start_services,
+            "topology": self.topology,
+            "trigger": self.trigger,
+        }
         if self.service.no_sql_run:
-            service = self.topology["services"][self.service.id]
+            kwargs["service"] = self.topology["services"][self.service.id]
+            main_run = SimpleNamespace(**self.get_properties())
+            main_run.target_devices = self.target_devices
+            main_run.target_pools = self.target_pools
+            main_run.cache = self.cache
+            main_run.service = self.topology["services"][self.service_id]
+            main_run.placeholder = self.topology["services"].get(self.placeholder_id)
             self.update_target_pools()
         else:
-            service = self.service
-        self.service_run = Runner(
-            self,
-            cache=self.cache,
-            payload=deepcopy(self.payload),
-            service=service,
-            is_main_run=True,
-            restart_run=self.restart_run,
-            parameterized_run=self.parameterized_run,
-            parent_runtime=self.runtime,
-            path=self.path,
-            placeholder=self.placeholder,
-            properties=self.properties,
-            start_services=self.start_services,
-            topology=self.topology,
-            trigger=self.trigger,
-        )
+            kwargs["service"] = self.service
+            main_run = self
+            kwargs["placeholder"] = self.placeholder
+        self.service_run = Runner(main_run, **kwargs)
         self.service_run.start_run()
 
     def run(self):
