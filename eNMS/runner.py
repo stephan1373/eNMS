@@ -372,28 +372,22 @@ class Runner(vs.TimingMixin):
 
     @staticmethod
     def get_device_result(args):
-        device_name, runtime, results, refetch_ids = args
+        device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
         parent_run = run
         run_kwargs = {"in_process": True}
-        if run.is_legacy_run:
-            device = db.fetch("device", name=device_name, rbac=None)
-            for key, value in run.kwargs.items():
-                try:
-                    run_kwargs[key] = db.fetch(
-                        value.type, id=refetch_ids[key], rbac=None
-                    )
-                except Exception as exc:
-                    if isinstance(exc, SQLAlchemyError):
-                        db.session.rollback()
-                    run_kwargs[key] = value
-            parent_run = run
-            if isinstance(run, vs.models["run"]):
-                parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
-        else:
-            device_cache = run.cache["topology"]["name_to_dict"]["devices"]
-            device = device_cache[device_name]
-            run_kwargs.update(parent_run.kwargs)
+        device = db.fetch("device", id=device_id, rbac=None)
+        for key, value in run.kwargs.items():
+            try:
+                run_kwargs[key] = db.fetch(
+                    value.type, id=refetch_ids[key], rbac=None
+                )
+            except Exception as exc:
+                if isinstance(exc, SQLAlchemyError):
+                    db.session.rollback()
+                run_kwargs[key] = value
+        if isinstance(run, vs.models["run"]):
+            parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
         results.append(Runner(parent_run, **run_kwargs).get_results(device))
 
     def device_iteration(self, device):
@@ -534,7 +528,7 @@ class Runner(vs.TimingMixin):
                     if hasattr(value, "id")
                 }
                 process_args = [
-                    (device.name, self.runtime, results, refetch_ids)
+                    (device.id, self.runtime, results, refetch_ids)
                     for device in non_skipped_targets
                 ]
                 self.log("info", f"Starting a pool of {processes} threads")
