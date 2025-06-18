@@ -372,24 +372,24 @@ class Runner(vs.TimingMixin):
     def get_device_result(args):
         device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
-        parent_run = run
-        run_kwargs = {"in_process": True}
         device = db.fetch("device", id=device_id, rbac=None)
-        for key, value in run.kwargs.items():
-            try:
-                run_kwargs[key] = db.fetch(
-                    value.type, id=refetch_ids[key], rbac=None
-                )
-            except Exception as exc:
-                if isinstance(exc, SQLAlchemyError):
-                    db.session.rollback()
-                run_kwargs[key] = value
-        if isinstance(run, vs.models["run"]):
-            parent_run = db.fetch("run", runtime=run.runtime, rbac=None)
-        if run.no_sql_run:
-            run_kwargs["service"] = run.service
+        if not run.no_sql_run:
+            run_kwargs = {"in_process": True}
+            for key, value in run.kwargs.items():
+                try:
+                    run_kwargs[key] = db.fetch(
+                        value.type, id=refetch_ids[key], rbac=None
+                    )
+                except Exception as exc:
+                    if isinstance(exc, SQLAlchemyError):
+                        db.session.rollback()
+                    run_kwargs[key] = value
+            if isinstance(run, vs.models["run"]):
+                run = db.fetch("run", runtime=run.runtime, rbac=None)
+        else:
+            run_kwargs = {"in_process": True, **run.kwargs}
             db.session.remove()
-        results.append(Runner(parent_run, **run_kwargs).get_results(device))
+        results.append(Runner(run, **run_kwargs).get_results(device))
 
     def device_iteration(self, device):
         derived_devices = self.compute_devices_from_query(
