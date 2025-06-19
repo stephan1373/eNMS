@@ -9,6 +9,7 @@ flask_wtf
 gitpython
 gunicorn
 netmiko
+orjson
 passlib
 redis
 requests

@@ -5,7 +5,6 @@ hvac
 ldap3
 napalm
 ncclient
-orjson
 pynetbox
 scrapli
 scrapli-netconf

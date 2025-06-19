@@ -14,6 +14,7 @@ from itertools import batched
 from json import dump, load
 from logging import info, error
 from operator import attrgetter, itemgetter
+from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
 from os import getenv, listdir, makedirs, scandir
 from os.path import exists
 from pathlib import Path
@@ -39,11 +40,6 @@ from eNMS.database import db
 from eNMS.forms import form_factory
 from eNMS.environment import env
 from eNMS.variables import vs
-
-try:
-    from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
-except ImportError as exc:
-    warn(f"Couldn't import orjson module ({exc})")
 
 
 class Controller(vs.TimingMixin):
