@@ -178,7 +178,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 0bb00e8de45da0cb88777f0fc5df3bc2323b0986
 - Increase maximum number of threads to 1000
 
-Motivation for Run Refactoring:
+Key Points about the refactoring of runner.py:
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
   own transaction)
 - Every commit during a run makes the SQLAlchemy session expires, along with all objects attached to that session:
@@ -197,6 +197,10 @@ Motivation for Run Refactoring:
   - Pool connections are not properly released after a thread ends, so a "QueuePool limit reached" exception is
     raised after multithreading has exhausted all connections. The number of available connections in the SQL
     connection pool should not determine the number of threads that can be used in multiprocessing mode.
+  - Objects attached to a session expire on commit (default SQLAlchemy setting),but they don't expire on remove,
+    so fetching an object, calling db.session.remove() and accessing object properties should not trigger a refetch.
+    In refetch after fork with "No SQL Run" enabled, we refetch the devices, then remove the session; everything else
+    is a namespace
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
