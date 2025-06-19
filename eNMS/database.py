@@ -651,7 +651,6 @@ class Database:
         if credential_type != "any":
             query = query.filter(vs.models["credential"].role == credential_type)
         credentials = max(query.all(), key=attrgetter("priority"), default=None)
-        db.session.remove()
         if not credentials and not optional:
             raise Exception(f"No matching credentials found for DEVICE '{device.name}'")
         return credentials

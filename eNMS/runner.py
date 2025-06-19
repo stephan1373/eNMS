@@ -937,6 +937,8 @@ class Runner(vs.TimingMixin):
                 credential_type=credential_type,
                 optional=self.credentials != "device",
             )
+            if self.no_sql_run and self.in_process:
+                db.session.remove()
         if credential:
             device_log = f" for '{device.name}'" if device else ""
             if self.credentials == "custom":
