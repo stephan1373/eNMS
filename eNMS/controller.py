@@ -41,7 +41,7 @@ from eNMS.environment import env
 from eNMS.variables import vs
 
 try:
-    from orjson import dumps, loads
+    from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
 except ImportError as exc:
     warn(f"Couldn't import orjson module ({exc})")
 
@@ -1227,17 +1227,18 @@ class Controller(vs.TimingMixin):
             for class_name in vs.models
             if class_name not in db.json_migration["no_export"]
         ]
+        option = OPT_INDENT_2 | OPT_SORT_KEYS
         path = Path(vs.migration_path) / kwargs["name"]
         for cls_name in export_models:
-            self.json_export_properties(cls_name, path)
-            self.json_export_scalar(cls_name, path)
+            self.json_export_properties(cls_name, path, option)
+            self.json_export_scalar(cls_name, path, option)
         for association_name in db.associations:
-            self.json_export_association(association_name, path)
+            self.json_export_association(association_name, path, option)
         with open("metadata.json", "wb") as file:
             metadata = {"version": vs.server_version, "export_time": datetime.now()}
             file.write(dumps(metadata))
 
-    def json_export_association(self, association_name, path):
+    def json_export_association(self, association_name, path, option):
         association_table = db.associations[association_name]
         table = association_table["table"]
         model1 = association_table["model1"]["foreign_key"]
@@ -1253,9 +1254,9 @@ class Controller(vs.TimingMixin):
         if not result:
             return
         with open(path / f"{association_name}.json", "wb") as file:
-            file.write(dumps(result))
+            file.write(dumps(result, option=option))
 
-    def json_export_scalar(self, cls_name, path):
+    def json_export_scalar(self, cls_name, path, option):
         for property, relation in vs.relationships[cls_name].items():
             if relation["list"]:
                 continue
@@ -1270,9 +1271,9 @@ class Controller(vs.TimingMixin):
             if not result:
                 continue
             with open(path / f"{cls_name}_{property}.json", "wb") as file:
-                file.write(dumps(result))
+                file.write(dumps(result, option=option))
 
-    def json_export_properties(self, cls_name, path):
+    def json_export_properties(self, cls_name, path, option):
         cls = vs.models[cls_name]
         model_class = vs.models[cls_name]
         export_type = getattr(cls, "export_type", cls.type)
@@ -1296,7 +1297,7 @@ class Controller(vs.TimingMixin):
         if not exists(path):
             makedirs(path)
         with open(path / f"{cls_name}.json", "wb") as file:
-            file.write(dumps(instances))
+            file.write(dumps(instances, option=option))
 
     def json_import_properties(self, cls_name, path):
         cls = vs.models[cls_name]

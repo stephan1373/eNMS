@@ -1,1 +1,26 @@
-[["(R) Credentials (Password & Key, Priority Mechanism)","Credentials pool - Austin devices"],["Large Device Configuration and Operational Data","All Devices"],["Parameterized Multiprocessing","Datacenter San Francisco"],["Parameterized Run with a Superworkflow","Washington"],["Parameterized Targets","Washington"],["[Skip in SxS with service targets and Run Once services] Run Once with Pool","All Devices"]]
+[
+  [
+    "(R) Credentials (Password & Key, Priority Mechanism)",
+    "Credentials pool - Austin devices"
+  ],
+  [
+    "Large Device Configuration and Operational Data",
+    "All Devices"
+  ],
+  [
+    "Parameterized Multiprocessing",
+    "Datacenter San Francisco"
+  ],
+  [
+    "Parameterized Run with a Superworkflow",
+    "Washington"
+  ],
+  [
+    "Parameterized Targets",
+    "Washington"
+  ],
+  [
+    "[Skip in SxS with service targets and Run Once services] Run Once with Pool",
+    "All Devices"
+  ]
+]

@@ -1,1 +1,6 @@
-{">IPAM>IP Address":">IPAM",">IPAM>VLAN":">IPAM",">DCIM>Ports":">DCIM",">DCIM>Cables":">DCIM"}
+{
+  ">DCIM>Cables": ">DCIM",
+  ">DCIM>Ports": ">DCIM",
+  ">IPAM>IP Address": ">IPAM",
+  ">IPAM>VLAN": ">IPAM"
+}
