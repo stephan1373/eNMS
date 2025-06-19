@@ -131,6 +131,9 @@ Key Ideas about the refactoring of runner.py and "No SQL Run":
     so fetching an object, calling db.session.remove() and accessing object properties should not trigger a refetch.
     In refetch after fork with "No SQL Run" enabled, we refetch the devices, then remove the session; everything else
     is a namespace
+- In "No SQL mode", every transaction that happens after forking should have a clear beginning and end, otherwise the
+  session is never closed until the end of the thread, and a workflow that uses 25 threads will use 25 SQL session
+  until the end of the wokrflow.
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
