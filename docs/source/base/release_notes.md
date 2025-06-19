@@ -72,76 +72,6 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     - Replace - rename "target_devices" with "run_targets" in Runner to prevent confusion between
       run.service.target_devices and run.target_devices.
       Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
-    - SQLectomy:
-      - Part 1 (non optional): Generate the workflow topology graph at the beginning and reuse in
-        workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
-        query to get next services in Dijkstra.
-        Commit:
-          - 6adb7b7cded5484a83de497757edcd2bf6313e55
-          - bf4293d49690429ec1b4c74f6289d652fddf89f4
-          - f8182fcda6c2a97db0429173a2d35942834373f5
-          - d55771ef9a515f76ab04df6f248ab78733c6a23c
-        Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
-        afterward (such as removing an edge or a service) won't affect that workflow run.
-      - Part 2 (optional): Store results in a dict and create them in the end of run transaction.
-        Only active when the "No SQL Run" option is checked.
-        Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
-      - Part 3 (optional):
-        - Use service namespace instead of service SQL object for Runner.service
-        - Convert all jobs to @staticmethod so it can be called without service SQL object
-        - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
-        - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
-        - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of "No SQL Run"
-        Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
-      - Part 4:
-        - All Services are Namespaces
-        - All Devices are SQLAlchemy objects
-        Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
-      - Part 5:
-        - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services "No SQL Run"
-        - Make commit optional and False by default in compute_pool
-        Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
-      - Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
-        Configured via database.json > "transactions" > "batch_size" (default: 1000)
-        Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
-      - Part 7: Remove task from the argument of Runner (no longer used)
-        Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
-      - Part 8 (optional): Create all reports after the main run in the Run class in
-        "No SQL Run" mode
-        Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
-      - Part 9 (optional): Implement in-memory get transient result function and convert devices to
-        namespace in topology cache
-        Commit: 1b403f8b2f93e0ab37baea5738b36ad9493612f1
-      - Part 10: Move the initialization of the main run cache in the Run class
-        Commit: eb66e66689e8e39ab523575e79badb379b3ed370
-      - Part 11 (optional): Update Runner.log and env.log to not create a changelog object with factory
-        during a run if the run is in no SQL mode (logs are stored in memory in vs.service_changelog)
-        Commit: c2bb5b7698c63a938a020bd7b6f6302486f2035d
-      - Part 12: Move 'close_remaining_connections' function in the Run class (it is executed after the
-        main run has done running)
-        Commit: 3ba8f7ee6c5c7cb874e80c7d28b6f253605ebc46
-      - Part 13: Close the threaded session used to refetch after fork immediately after refetching to
-        avoid blocking the session until the end of the thread
-        Commit: 8d62843fb91525a7a4569b42d2e5382029859d4f
-      - Part 14 (optional): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
-        and remove the placeholder argument
-        Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
-      - Part 15 (optional): Don't refetch after fork in no SQL run mode
-        Commit: f4b1f8e7f1b78bbcb81b35c81b31d34fb2af9be0
-      - Part 16:
-        - (optional) Don't pass reference to restart_run as Runner arg in no SQL mode
-        - Remove references to restart_run in Workflow.job
-        - (optional) Compute targets at the end of run in no SQL mode
-        Commit: 54e548559fa8722580c934858547a852b237ccda
-      - Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
-        to the connection pool
-        Commit: 265dee6193b907a7f85f361916379a6eede5a826
-      - Part 18 (major bug fix): Add db.session.remove() in db.get_credential to close the SQLAconnection
-        after fetching the credential object, and prevent leaking SQLAlchemy connections when the connection
-        setup fails
-        Commit: 26d8584ba7f2ea55fe8b7386e329e43e4ef14af3
-      - Part 19 (optional): Fetch device with selectinload gateways to prevent refetch in connection functions 
-        Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
@@ -178,7 +108,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 0bb00e8de45da0cb88777f0fc5df3bc2323b0986
 - Increase maximum number of threads to 1000
 
-Key Points about the refactoring of runner.py:
+Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
   own transaction)
 - Every commit during a run makes the SQLAlchemy session expires, along with all objects attached to that session:
@@ -201,6 +131,77 @@ Key Points about the refactoring of runner.py:
     so fetching an object, calling db.session.remove() and accessing object properties should not trigger a refetch.
     In refetch after fork with "No SQL Run" enabled, we refetch the devices, then remove the session; everything else
     is a namespace
+
+Main Commits:
+- Part 1 (non optional): Generate the workflow topology graph at the beginning and reuse in
+  workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
+  query to get next services in Dijkstra.
+  Commit:
+    - 6adb7b7cded5484a83de497757edcd2bf6313e55
+    - bf4293d49690429ec1b4c74f6289d652fddf89f4
+    - f8182fcda6c2a97db0429173a2d35942834373f5
+    - d55771ef9a515f76ab04df6f248ab78733c6a23c
+  Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
+  afterward (such as removing an edge or a service) won't affect that workflow run.
+- Part 2 (optional): Store results in a dict and create them in the end of run transaction.
+  Only active when the "No SQL Run" option is checked.
+  Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
+- Part 3 (optional):
+  - Use service namespace instead of service SQL object for Runner.service
+  - Convert all jobs to @staticmethod so it can be called without service SQL object
+  - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
+  - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
+  - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of "No SQL Run"
+  Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
+- Part 4:
+  - All Services are Namespaces
+  - All Devices are SQLAlchemy objects
+  Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
+- Part 5:
+  - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services "No SQL Run"
+  - Make commit optional and False by default in compute_pool
+  Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
+- Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
+  Configured via database.json > "transactions" > "batch_size" (default: 1000)
+  Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
+- Part 7: Remove task from the argument of Runner (no longer used)
+  Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
+- Part 8 (optional): Create all reports after the main run in the Run class in
+  "No SQL Run" mode
+  Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
+- Part 9 (optional): Implement in-memory get transient result function and convert devices to
+  namespace in topology cache
+  Commit: 1b403f8b2f93e0ab37baea5738b36ad9493612f1
+- Part 10: Move the initialization of the main run cache in the Run class
+  Commit: eb66e66689e8e39ab523575e79badb379b3ed370
+- Part 11 (optional): Update Runner.log and env.log to not create a changelog object with factory
+  during a run if the run is in no SQL mode (logs are stored in memory in vs.service_changelog)
+  Commit: c2bb5b7698c63a938a020bd7b6f6302486f2035d
+- Part 12: Move 'close_remaining_connections' function in the Run class (it is executed after the
+  main run has done running)
+  Commit: 3ba8f7ee6c5c7cb874e80c7d28b6f253605ebc46
+- Part 13: Close the threaded session used to refetch after fork immediately after refetching to
+  avoid blocking the session until the end of the thread
+  Commit: 8d62843fb91525a7a4569b42d2e5382029859d4f
+- Part 14 (optional): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
+  and remove the placeholder argument
+  Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
+- Part 15 (optional): Don't refetch after fork in no SQL run mode
+  Commit: f4b1f8e7f1b78bbcb81b35c81b31d34fb2af9be0
+- Part 16:
+  - (optional) Don't pass reference to restart_run as Runner arg in no SQL mode
+  - Remove references to restart_run in Workflow.job
+  - (optional) Compute targets at the end of run in no SQL mode
+  Commit: 54e548559fa8722580c934858547a852b237ccda
+- Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
+  to the connection pool
+  Commit: 265dee6193b907a7f85f361916379a6eede5a826
+- Part 18 (major bug fix): Add db.session.remove() in db.get_credential to close the SQLAconnection
+  after fetching the credential object, and prevent leaking SQLAlchemy connections when the connection
+  setup fails
+  Commit: 26d8584ba7f2ea55fe8b7386e329e43e4ef14af3
+- Part 19 (optional): Fetch device with selectinload gateways to prevent refetch in connection functions 
+  Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
