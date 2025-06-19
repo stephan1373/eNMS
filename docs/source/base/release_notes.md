@@ -107,6 +107,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Set scrapli and paramiko.transport log level to 'info' in logging.json > 'external_loggers'
   Commit: 0bb00e8de45da0cb88777f0fc5df3bc2323b0986
 - Increase maximum number of threads to 1000
+- Make the orjson library mandatory (move from requirements_optional.txt to requirement.txt)
+  Commit: 9f30e17d5c5a2d52b7a63bcb2b7b0a3068a36fce
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
