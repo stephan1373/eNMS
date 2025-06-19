@@ -199,10 +199,10 @@ Main Commits:
 - Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
   to the connection pool
   Commit: 265dee6193b907a7f85f361916379a6eede5a826
-- Part 18 (major bug fix): Add db.session.remove() in db.get_credential to close the SQLAconnection
-  after fetching the credential object, and prevent leaking SQLAlchemy connections when the connection
-  setup fails
-  Commit: 26d8584ba7f2ea55fe8b7386e329e43e4ef14af3
+- Part 18 (no SQL only, major issue): Add db.session.remove() after calling db.get_credential to close the SQLAconnection
+  after fetching the credential object in a thread, and prevent leaking SQLAlchemy connections when the connection
+  setup fails (only applicable if multiprocessing is enabled)
+  Commit: 0522ca6131d6679f827b6a8ff18b536960ec1766
 - Part 19 (no SQL only): Fetch device with selectinload gateways to prevent refetch in connection functions 
   Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
 
