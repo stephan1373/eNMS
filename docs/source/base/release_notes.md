@@ -133,7 +133,7 @@ Key Ideas about the refactoring of runner.py and "No SQL Run":
     is a namespace
 
 Main Commits:
-- Part 1 (non optional): Generate the workflow topology graph at the beginning and reuse in
+- Part 1: Generate the workflow topology graph at the beginning and reuse in
   workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
   query to get next services in Dijkstra.
   Commit:
@@ -143,10 +143,10 @@ Main Commits:
     - d55771ef9a515f76ab04df6f248ab78733c6a23c
   Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
   afterward (such as removing an edge or a service) won't affect that workflow run.
-- Part 2 (optional): Store results in a dict and create them in the end of run transaction.
+- Part 2 (no SQL only): Store results in a dict and create them in the end of run transaction.
   Only active when the "No SQL Run" option is checked.
   Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
-- Part 3 (optional):
+- Part 3 (no SQL only):
   - Use service namespace instead of service SQL object for Runner.service
   - Convert all jobs to @staticmethod so it can be called without service SQL object
   - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
@@ -166,15 +166,15 @@ Main Commits:
   Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
 - Part 7: Remove task from the argument of Runner (no longer used)
   Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
-- Part 8 (optional): Create all reports after the main run in the Run class in
+- Part 8 (no SQL only): Create all reports after the main run in the Run class in
   "No SQL Run" mode
   Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
-- Part 9 (optional): Implement in-memory get transient result function and convert devices to
+- Part 9 (no SQL only): Implement in-memory get transient result function and convert devices to
   namespace in topology cache
   Commit: 1b403f8b2f93e0ab37baea5738b36ad9493612f1
 - Part 10: Move the initialization of the main run cache in the Run class
   Commit: eb66e66689e8e39ab523575e79badb379b3ed370
-- Part 11 (optional): Update Runner.log and env.log to not create a changelog object with factory
+- Part 11 (no SQL only): Update Runner.log and env.log to not create a changelog object with factory
   during a run if the run is in no SQL mode (logs are stored in memory in vs.service_changelog)
   Commit: c2bb5b7698c63a938a020bd7b6f6302486f2035d
 - Part 12: Move 'close_remaining_connections' function in the Run class (it is executed after the
@@ -183,15 +183,15 @@ Main Commits:
 - Part 13: Close the threaded session used to refetch after fork immediately after refetching to
   avoid blocking the session until the end of the thread
   Commit: 8d62843fb91525a7a4569b42d2e5382029859d4f
-- Part 14 (optional): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
+- Part 14 (no SQL only): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
   and remove the placeholder argument
   Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
-- Part 15 (optional): Don't refetch after fork in no SQL run mode
+- Part 15 (no SQL only): Don't refetch after fork in no SQL run mode
   Commit: f4b1f8e7f1b78bbcb81b35c81b31d34fb2af9be0
 - Part 16:
-  - (optional) Don't pass reference to restart_run as Runner arg in no SQL mode
+  - (no SQL only) Don't pass reference to restart_run as Runner arg in no SQL mode
   - Remove references to restart_run in Workflow.job
-  - (optional) Compute targets at the end of run in no SQL mode
+  - (no SQL only) Compute targets at the end of run in no SQL mode
   Commit: 54e548559fa8722580c934858547a852b237ccda
 - Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
   to the connection pool
@@ -200,7 +200,7 @@ Main Commits:
   after fetching the credential object, and prevent leaking SQLAlchemy connections when the connection
   setup fails
   Commit: 26d8584ba7f2ea55fe8b7386e329e43e4ef14af3
-- Part 19 (optional): Fetch device with selectinload gateways to prevent refetch in connection functions 
+- Part 19 (no SQL only): Fetch device with selectinload gateways to prevent refetch in connection functions 
   Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
 
 Open Questions:
