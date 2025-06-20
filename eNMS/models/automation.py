@@ -605,19 +605,18 @@ class Run(AbstractBase):
             db.session.execute(insert(vs.models["changelog"]), batch)
 
     @process(commit=True)
-    def create_logs(self):
-        services = {service.id for service in self.services}
-        for service_id in services:
-            logs = env.log_queue(self.runtime, service_id, mode="get")
-            content = "\n".join(logs or [])
-            content = self.service_run.check_size_before_commit(content, "log")
-            db.factory(
-                "service_log",
-                runtime=self.runtime,
-                service=service_id,
-                content=content,
-                rbac=None,
-            )
+    def create_all_logs(self):
+        db.session.execute(insert(vs.models["service_log"]), [
+            {
+                "runtime": self.runtime,
+                "service_id": service.id,
+                "content": self.service_run.check_size_before_commit(
+                    "\n".join(env.log_queue(self.runtime, service.id, mode="get") or []),
+                    "log",
+                )
+            }
+            for service in self.services
+        ])
 
     @process(commit=True)
     def run_service_table_transaction(self):
@@ -776,7 +775,7 @@ class Run(AbstractBase):
             self.create_all_results()
             self.create_all_reports()
             self.create_all_changelogs()
-        self.create_logs()
+        self.create_all_logs()
         self.close_remaining_connections()
         self.end_of_run_transaction()
         self.run_service_table_transaction()
