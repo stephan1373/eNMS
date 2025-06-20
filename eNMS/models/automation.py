@@ -702,15 +702,17 @@ class Run(AbstractBase):
 
     def get_run_targets(self):
         devices, pools = [], []
-        if self.restart_run and self.payload["targets"] == "Manually Defined":
+        if self.restart_run and self.payload["targets"] == "Manually defined":
             devices = db.objectify("device", self.payload[f"restart_devices"], user=self.creator)
-            pools = db.objectify("pool", self.payload[f"restart_devices"], user=self.creator)
+            pools = db.objectify("pool", self.payload[f"restart_pools"], user=self.creator)
         elif self.restart_run and self.payload["targets"] == "Restart run":
             devices = self.restart_run.target_devices
             pools = self.restart_run.target_pools
         elif self.parameterized_run:
             device_ids = self.payload["form"].get("target_devices", [])
             pool_ids = self.payload["form"].get("target_pools", [])
+            devices = set(db.objectify("device", device_ids, user=self.creator))
+            pools = db.objectify("pool", pool_ids, user=self.creator)
             query = self.payload["form"].get("device_query")
             if query:
                 property = self.payload["form"].get("device_query_property", "name")
@@ -720,7 +722,7 @@ class Run(AbstractBase):
         else:
             devices = getattr(self.placeholder or self.service, "target_devices")
             pools = getattr(self.placeholder or self.service, "target_pools")
-        self.target_devices, self.target_pools = devices, pools
+        self.target_devices, self.target_pools = list(devices), list(pools)
         db.session.commit()
         return set(devices) | set().union(*(pool.devices for pool in pools))
 
