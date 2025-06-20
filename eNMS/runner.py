@@ -252,11 +252,6 @@ class Runner(vs.TimingMixin):
                 devices |= set(pool.devices)
                 db.session.commit()
         else:
-            if self.is_main_run:
-                vs.run_targets[self.runtime] = {
-                    "devices": [device.id for device in devices],
-                    "pools": [pool.id for pool in pools],
-                }
             devices |= set().union(*(pool.devices for pool in pools))
         return devices
 

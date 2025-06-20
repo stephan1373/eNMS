@@ -610,7 +610,7 @@ class Run(AbstractBase):
             {
                 "runtime": self.runtime,
                 "service_id": service.id,
-                "content": self.service_run.check_size_before_commit(
+                "content": self.runner.check_size_before_commit(
                     "\n".join(env.log_queue(self.runtime, service.id, mode="get") or []),
                     "log",
                 )
@@ -625,29 +625,15 @@ class Run(AbstractBase):
         db.session.execute(table.delete().where(table.c.run_id == self.id))
         values = [{"run_id": self.id, "service_id": id} for id in run_services]
         db.session.execute(table.insert(), values)
-        if self.service.no_sql_run:
-            run_targets = vs.run_targets.pop(self.runtime, {})
-            run_device_association = [
-                {"run_id": self.id, "device_id": device_id}
-                for device_id in run_targets.get("devices", [])
-            ]
-            if run_device_association:
-                db.session.execute(db.run_device_table.insert(), run_device_association)
-            run_pool_association = [
-                {"run_id": self.id, "pool_id": pool_id}
-                for pool_id in run_targets.get("pools", [])
-            ]
-            if run_pool_association:
-                db.session.execute(db.run_pool_table.insert(), run_pool_association)
 
     @process(commit=True)
     def end_of_run_transaction(self):
-        status = "Aborted" if self.service_run.stop else "Completed"
-        results = self.service_run.results
+        status = "Aborted" if self.runner.stop else "Completed"
+        results = self.runner.results
         self.success = results["success"]
         self.duration = results["duration"]
         self.status = status
-        self.payload = self.service_run.make_json_compliant(self.service_run.payload)
+        self.payload = self.runner.make_json_compliant(self.runner.payload)
         state = self.get_state()
         self.memory_size = state["memory_size"]
         self.state = state
@@ -686,7 +672,7 @@ class Run(AbstractBase):
             for device, connections in list(device_connections.items()):
                 for connection in list(connections.values()):
                     args = (library, device, connection)
-                    thread = Thread(target=self.service_run.disconnect, args=args)
+                    thread = Thread(target=self.runner.disconnect, args=args)
                     thread.start()
                     threads.append(thread)
         timeout = vs.automation["advanced"]["disconnect_thread_timeout"]
@@ -713,6 +699,30 @@ class Run(AbstractBase):
             },
             "topology": self.topology,
         }
+
+    def get_run_targets(self):
+        devices, pools = [], []
+        if self.restart_run and self.payload["targets"] == "Manually Defined":
+            devices = db.objectify("device", self.payload[f"restart_devices"], user=self.creator)
+            pools = db.objectify("pool", self.payload[f"restart_devices"], user=self.creator)
+        elif self.restart_run and self.payload["targets"] == "Restart run":
+            devices = self.restart_run.target_devices
+            pools = self.restart_run.target_pools
+        elif self.parameterized_run:
+            device_ids = self.payload["form"].get("target_devices", [])
+            pool_ids = self.payload["form"].get("target_pools", [])
+            query = self.payload["form"].get("device_query")
+            if query:
+                property = self.payload["form"].get("device_query_property", "name")
+                devices |= self.runner.compute_devices_from_query(query, property)
+        elif self.target_devices or self.target_pools:
+            devices, pools = self.target_devices, self.target_pools
+        else:
+            devices = getattr(self.placeholder or self.service, "target_devices")
+            pools = getattr(self.placeholder or self.service, "target_pools")
+        self.target_devices, self.target_pools = devices, pools
+        db.session.commit()
+        return set(devices) | set().union(*(pool.devices for pool in pools))
 
     def start_run(self):
         worker = db.factory(
@@ -751,8 +761,6 @@ class Run(AbstractBase):
         if self.service.no_sql_run:
             kwargs["service"] = self.topology["services"][self.service.id]
             main_run = SimpleNamespace(**self.get_properties())
-            main_run.target_devices = self.target_devices
-            main_run.target_pools = self.target_pools
             main_run.restart_run = self.restart_run
             main_run.cache = self.cache
             main_run.service = self.topology["services"][self.service_id]
@@ -763,8 +771,10 @@ class Run(AbstractBase):
             main_run = self
             kwargs["placeholder"] = self.placeholder
             kwargs["restart_run"] = self.restart_run
-        self.service_run = Runner(main_run, **kwargs)
-        self.service_run.start_run()
+        self.runner = Runner(main_run, **kwargs)
+        if self.service.no_sql_run:
+            self.runner.run_targets = self.get_run_targets()
+        self.runner.start_run()
 
     def run(self):
         try:
@@ -781,7 +791,7 @@ class Run(AbstractBase):
         self.run_service_table_transaction()
         self.service.update_count(-1)
         self.clean_stored_data()
-        return self.service_run.results
+        return self.runner.results
 
 
 class Task(AbstractBase):
