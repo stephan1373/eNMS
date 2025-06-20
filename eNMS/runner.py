@@ -1574,6 +1574,7 @@ class Runner(vs.TimingMixin):
             dump(data, file, indent=4)
 
     def configuration_transaction(self, property, device, **kwargs):
+        setattr(device, f"last_{self.property}_runtime", str(kwargs["runtime"]))
         if kwargs["success"]:
             setattr(device, f"last_{property}_status", "Success")
             duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"

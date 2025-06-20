@@ -41,9 +41,8 @@ class ScrapliBackupService(ConnectionService):
             return {"local_path": local_path, "commands": commands}
         path = Path.cwd() / local_path / device.name
         path.mkdir(parents=True, exist_ok=True)
+        kwargs = {"success": True, "runtime": datetime.now()}
         try:
-            runtime = datetime.now()
-            setattr(device, f"last_{self.property}_runtime", str(runtime))
             scrapli_connection = run.scrapli_connection(device)
             result = []
             for command in commands:
@@ -81,10 +80,10 @@ class ScrapliBackupService(ConnectionService):
             if getattr(deferred_device, self.property) != result:
                 with open(path / self.property, "w") as file:
                     file.write(result)
-            kwargs = {"deferred_device": deferred_device, "success": True}
+            kwargs["deferred_device"] = deferred_device
         except Exception:
-            result, kwargs = format_exc(), {"success": False}
-        kwargs.update({"result": result, "runtime": runtime})
+            result, kwargs["success"] = format_exc(), False
+        kwargs["result"] = result
         db.try_commit(run.configuration_transaction, self.property, device, **kwargs)
         if kwargs["success"]:
             run.update_configuration_properties(path, self.property, device)
