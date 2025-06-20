@@ -209,6 +209,9 @@ Main Commits:
   Commit: 0522ca6131d6679f827b6a8ff18b536960ec1766
 - Part 19 (no SQL only): Fetch device with selectinload gateways to prevent refetch in connection functions 
   Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
+- Part 20 (no SQL only): Refactor the "compute devices" mechanism and "get_target_property" so that targets are
+  computed in the Run class whenever possible (e.g parameterized form, restart run, etc)
+  Commit: 5929b7ed82aa0c4f56c08a64182c6040319e8e5b
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
