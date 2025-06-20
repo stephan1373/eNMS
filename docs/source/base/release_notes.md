@@ -109,6 +109,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Increase maximum number of threads to 1000
 - Make the orjson library mandatory (move from requirements_optional.txt to requirement.txt)
   Commit: 9f30e17d5c5a2d52b7a63bcb2b7b0a3068a36fce
+- Refactor netmiko and scrapli backup services to move the 'last_property_runtime update in the SQL transaction
+  Commit: 2f3071e4bddf26a9c7ffbc56950d819b0328f96f
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
