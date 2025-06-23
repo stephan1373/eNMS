@@ -776,6 +776,7 @@ class Run(AbstractBase):
         self.runner = Runner(main_run, **kwargs)
         if self.service.no_sql_run:
             self.runner.run_targets = self.get_run_targets()
+        self.runner.cache["global_variables"] = self.runner.cache_global_variables()
         self.runner.start_run()
 
     def run(self):

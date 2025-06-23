@@ -81,8 +81,6 @@ class Runner(vs.TimingMixin):
         self.progress_key = f"progress/{device_progress}"
         self.cache = {**run.cache, "service": self.get_service_properties()}
         self.main_run = run if self.is_main_run else run.main_run
-        if self.is_main_run:
-            self.cache["global_variables"] = self.cache_global_variables()
         self.no_sql_run = self.cache["main_run_service"]["no_sql_run"]
         if self.service.id not in vs.run_services[self.parent_runtime]:
             vs.run_services[self.parent_runtime].add(self.service.id)
