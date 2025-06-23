@@ -66,7 +66,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Update to the Runner mechanism:
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
       time the 'global_variables' function is called.
-      Commit: fd356528ca691e263be0ced18cdf5038a237d752
+      Commit:
+        - fd356528ca691e263be0ced18cdf5038a237d752
+        - 2f2786f38eb29ba75ac9e2d4eb616c0c7aeef2b4
     - Don't compute "target_devices" if it has already been defined as an argument of the Runner class
       Commit: d46230319af9e3a76313584a93e59ac8835efedb
     - Replace - rename "target_devices" with "run_targets" in Runner to prevent confusion between
