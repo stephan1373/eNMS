@@ -1137,7 +1137,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             match = self.sub(self.content_match, locals())
             str_section = str(section)
             if self.delete_spaces_before_matching:
-                match, str_section = map(self.space_deleter, (match, str_section))
+                match, str_section = map(vs.space_deleter, (match, str_section))
             success = (
                 self.content_match_regex
                 and bool(search(match, str_section))
@@ -1227,9 +1227,6 @@ class Runner(GlobalVariables, vs.TimingMixin):
                 return input
 
         return rec(input)
-
-    def space_deleter(self, input):
-        return "".join(input.split())
 
     def update_netmiko_connection(self, connection, device):
         setattr(connection, "global_delay_factor", self.service.global_delay_factor)

@@ -358,6 +358,9 @@ class VariableStore:
         milliseconds = ".%f" if "." in value else ""
         return datetime.strptime(value, f"%Y-%m-%d %H:%M:%S{milliseconds}")
 
+    def space_deleter(self, input):
+        return "".join(input.split())
+
     def strip_all(self, input):
         return input.translate(str.maketrans("", "", f"{punctuation} "))
 

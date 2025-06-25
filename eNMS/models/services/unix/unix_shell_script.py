@@ -35,7 +35,7 @@ class UnixShellScriptService(ConnectionService):
         if run.dry_run:
             return {"source_code": source_code}
         netmiko_connection = run.netmiko_connection(device)
-        script_file_name = f"{run.space_deleter(vs.get_time())}.sh"
+        script_file_name = f"{vs.space_deleter(vs.get_time())}.sh"
         run.log("info", f"Sending shell script '{script_file_name}'", device)
         expect_string = run.sub(run.expect_string, locals())
         command_list = (
