@@ -550,7 +550,7 @@ class Runner(vs.TimingMixin):
                 "runtime": self.runtime,
             }
 
-    def check_size_before_commit(self, data, data_type):
+    def check_size(self, data, data_type):
         column_type = "pickletype" if data_type == "result" else "large_string"
         data_size = getsizeof(str(data))
         self.write_state("memory_size", data_size, "increment", top_level=True)
@@ -612,7 +612,7 @@ class Runner(vs.TimingMixin):
             results.pop("payload", None)
         create_failed_results = self.disable_result_creation and not self.success
         results = self.make_json_compliant(results)
-        results = self.check_size_before_commit(results, "result")
+        results = self.check_size(results, "result")
         result_kw["memory_size"] = results["memory_size"]
         result_kw["result"] = results
         if not self.disable_result_creation or create_failed_results or run_result:
@@ -852,7 +852,7 @@ class Runner(vs.TimingMixin):
             report = "\n".join(format_exc().splitlines())
             self.log("error", f"Failed to build report:\n{report}")
         if report:
-            self.check_size_before_commit(report, "report")
+            self.check_size(report, "report")
             if not self.no_sql_run:
                 db.factory(
                     "service_report",

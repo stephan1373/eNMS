@@ -609,7 +609,7 @@ class Run(AbstractBase):
             {
                 "runtime": self.runtime,
                 "service_id": service.id,
-                "content": self.runner.check_size_before_commit(
+                "content": self.runner.check_size(
                     "\n".join(env.log_queue(self.runtime, service.id, mode="get") or []),
                     "log",
                 )
