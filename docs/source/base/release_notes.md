@@ -220,6 +220,8 @@ Main Commits:
   Commit: 0f124252bb253de4d826162fd3610233db745741
 - Part 23: Move Runner._initialize in the Run class and refactor the aborted run logs and results creation process
   Commit: dec10325858094969cefb6e1931987729ac04aac
+- Part 24: Fix run_services association and subsequent creation of subservice logs in case a run is interrupted by app reload
+  Commit: b851cd930490cf589520edc70135256af8f4399d
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
