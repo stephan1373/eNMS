@@ -216,6 +216,8 @@ Main Commits:
   Commit: 5929b7ed82aa0c4f56c08a64182c6040319e8e5b
 - Part 21: Move all the global variables function in their own class, parent class of Runner
   Commit: 80684829483cdb8157993087d80b2ab960195201
+- Part 22: Move the 'space_deleter' function to the Variable Store
+  Commit: 0f124252bb253de4d826162fd3610233db745741
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
