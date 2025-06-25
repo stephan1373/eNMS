@@ -2,7 +2,7 @@ from collections import defaultdict
 from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
-from itertools import batched
+from itertools import batched, chain
 from orjson import loads
 from os import environ, getpid
 from requests import get, post
@@ -596,7 +596,10 @@ class Run(AbstractBase):
         if env.redis_queue:
             results = (
                 loads(result)
-                for result in sum((env.redis("lrange", key, 0, -1) for key in env.redis("keys", f"{self.runtime}/results/*")), [])
+                for result in chain.from_iterable(
+                    env.redis("lrange", key, 0, -1)
+                    for key in env.redis("keys", f"{self.runtime}/results/*")
+                )
             )
         else:
             results = (
@@ -605,9 +608,7 @@ class Run(AbstractBase):
                 for result_list in device_results.values()
                 for result in result_list
             )
-        for batch in batched(results,
-            vs.database["transactions"]["batch_size"],
-        ):
+        for batch in batched(results, vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models["result"]), batch)
 
     @process(commit=True)
