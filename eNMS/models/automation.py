@@ -620,26 +620,26 @@ class Run(AbstractBase):
             db.session.execute(insert(vs.models["changelog"]), batch)
 
     @process(commit=True)
-    def create_all_logs(self):
-        db.session.execute(insert(vs.models["service_log"]), [
-            {
-                "runtime": self.runtime,
-                "service_id": service.id,
-                "content": self.runner.check_size(
-                    "\n".join(env.log_queue(self.runtime, service.id, mode="get") or []),
-                    "log",
-                )
-            }
-            for service in self.services
-        ])
+    def create_all_logs(self, app_reloaded):
+        logs = []
+        for service in self.services:
+            content = "\n".join(env.log_queue(self.runtime, service.id, mode="get") or [])
+            if not app_reloaded:
+                content = self.runner.check_size(content, "log")
+            logs.append(
+                {"runtime": self.runtime, "service_id": service.id, "content": content}
+            )
+            print("test", service)
+        db.session.execute(insert(vs.models["service_log"]), logs)
 
     @process(commit=True)
     def run_service_table_transaction(self):
         run_services = vs.run_services.pop(self.runtime, [])
-        table = db.run_service_table
-        db.session.execute(table.delete().where(table.c.run_id == self.id))
-        values = [{"run_id": self.id, "service_id": id} for id in run_services]
-        db.session.execute(table.insert(), values)
+        if run_services:
+            table = db.run_service_table
+            values = [{"run_id": self.id, "service_id": id} for id in run_services]
+            db.session.execute(table.delete().where(table.c.run_id == self.id))
+            db.session.execute(table.insert(), values)
 
     @process(commit=True)
     def end_of_run_transaction(self, app_reloaded):
@@ -803,7 +803,7 @@ class Run(AbstractBase):
             self.create_all_results()
             self.create_all_reports()
             self.create_all_changelogs()
-        self.create_all_logs()
+        self.create_all_logs(app_reloaded)
         self.close_remaining_connections()
         self.end_of_run_transaction(app_reloaded)
         self.run_service_table_transaction()
