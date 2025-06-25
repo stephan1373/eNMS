@@ -131,7 +131,6 @@ class Runner(vs.TimingMixin):
             "__builtins__": {**builtins, "__import__": self._import},
             "delete": partial(self.internal_function, "delete"),
             "dict_to_string": vs.dict_to_string,
-            "dry_run": getattr(self, "dry_run", False),
             "encrypt": env.encrypt_password,
             "factory": partial(self.internal_function, "factory"),
             "fetch": partial(self.internal_function, "fetch"),
@@ -1179,6 +1178,7 @@ class Runner(vs.TimingMixin):
         variables.update(
             {
                 "devices": _self.run_targets,
+                "dry_run": getattr(self, "dry_run", False),
                 "parent_device": _self.parent_device or device,
                 "payload": _self.payload,
                 "workflow": self.workflow,
