@@ -11,6 +11,7 @@ from json.decoder import JSONDecodeError
 from multiprocessing.pool import ThreadPool
 from netmiko import ConnectHandler
 from operator import attrgetter
+from orjson import dumps as or_dumps, loads as or_loads
 from os import getenv
 from paramiko import AutoAddPolicy, RSAKey, SFTPClient, SSHClient
 from re import compile, search
@@ -721,9 +722,13 @@ class Runner(GlobalVariables, vs.TimingMixin):
 
     def create_transient_result(self, result, device):
         device_key = device.id if device else None
-        vs.service_result[self.parent_runtime][self.service.id][device_key].append(
-            result
-        )
+        if env.redis_queue:
+            path = f"{self.parent_runtime}/results/{self.service.id}/{device_key}"
+            env.redis("lpush", path, or_dumps(result))
+        else:
+            vs.service_result[self.parent_runtime][self.service.id][device_key].append(
+                result
+            )
 
     def create_result(self, results, device=None, commit=True, run_result=False):
         self.success = results["success"]
