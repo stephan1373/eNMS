@@ -218,6 +218,8 @@ Main Commits:
   Commit: 80684829483cdb8157993087d80b2ab960195201
 - Part 22: Move the 'space_deleter' function to the Variable Store
   Commit: 0f124252bb253de4d826162fd3610233db745741
+- Part 23: Move Runner._initialize in the Run class and refactor the aborted run logs and results creation process
+  Commit: dec10325858094969cefb6e1931987729ac04aac
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
