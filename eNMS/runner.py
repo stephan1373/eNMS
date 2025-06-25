@@ -295,25 +295,6 @@ class Runner(GlobalVariables, vs.TimingMixin):
             for property in ("id", "name", "scoped_name", "type")
         }
 
-    @staticmethod
-    def _initialize():
-        for run in db.fetch(
-            "run",
-            all_matches=True,
-            allow_none=True,
-            status="Running",
-            server_id=vs.server_id,
-            rbac=None,
-        ):
-            if run.worker:
-                continue
-            db.try_set(run, "status", "Aborted (RELOAD)")
-            db.try_set(run.service, "status", "Idle")
-            if not env.redis_queue:
-                continue
-        if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
-            env.redis_queue.flushdb()
-
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
 

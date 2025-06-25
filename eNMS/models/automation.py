@@ -507,6 +507,22 @@ class Run(AbstractBase):
     def table_properties(self, **kwargs):
         return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
+    @staticmethod
+    def _initialize():
+        for run in db.fetch(
+            "run",
+            all_matches=True,
+            allow_none=True,
+            status="Running",
+            server_id=vs.server_id,
+            rbac=None,
+        ):
+            if run.worker:
+                continue
+            run.finalize_run(app_reloaded=True)
+        if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
+            env.redis_queue.flushdb()
+
     def process(commit=False, raise_exception=False):
         def decorator(func):
             def wrapper(self, *args, **kwargs):
@@ -626,26 +642,30 @@ class Run(AbstractBase):
         db.session.execute(table.insert(), values)
 
     @process(commit=True)
-    def end_of_run_transaction(self):
-        status = "Aborted" if self.runner.stop else "Completed"
-        results = self.runner.results
-        self.success = results["success"]
-        self.duration = results["duration"]
-        self.status = status
-        self.payload = self.runner.make_json_compliant(self.runner.payload)
+    def end_of_run_transaction(self, app_reloaded):
+        if app_reloaded:
+            self.status = "Aborted (reload)"
+            self.success = False
+            self.service.status = "Idle"
+        else:
+            results = self.runner.results
+            self.success = results["success"]
+            self.duration = results["duration"]
+            self.status = "Aborted" if self.runner.stop else "Completed"
+            self.payload = self.runner.make_json_compliant(self.runner.payload)
+            if getattr(self, "man_minutes", None) and "summary" in results:
+                self.service.man_minutes_total += (
+                    len(results["summary"]["success"]) * self.service.man_minutes
+                    if self.service.man_minutes_type == "device"
+                    else self.service.man_minutes * results["success"]
+                )
+            if not self.service.is_running:
+                self.service.status = "Idle"
         state = self.get_state()
-        self.memory_size = state["memory_size"]
+        self.memory_size = state.get("memory_size", "Unkown")
         self.state = state
-        if getattr(self, "man_minutes", None) and "summary" in results:
-            self.service.man_minutes_total += (
-                len(results["summary"]["success"]) * self.service.man_minutes
-                if self.service.man_minutes_type == "device"
-                else self.service.man_minutes * results["success"]
-            )
         if self.task and not (self.task.frequency or self.task.crontab_expression):
             self.task.is_active = False
-        if not self.service.is_running:
-            self.service.status = "Idle"
 
     @process()
     def clean_stored_data(self):
@@ -778,21 +798,24 @@ class Run(AbstractBase):
         self.runner.cache["global_variables"] = self.runner.cache_global_variables()
         self.runner.start_run()
 
-    def run(self):
-        try:
-            self.start_run()
-        except Exception:
-            env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
+    def finalize_run(self, app_reloaded=False):
         if self.service.no_sql_run:
             self.create_all_results()
             self.create_all_reports()
             self.create_all_changelogs()
         self.create_all_logs()
         self.close_remaining_connections()
-        self.end_of_run_transaction()
+        self.end_of_run_transaction(app_reloaded)
         self.run_service_table_transaction()
         self.service.update_count(-1)
         self.clean_stored_data()
+
+    def run(self):
+        try:
+            self.start_run()
+        except Exception:
+            env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
+        self.finalize_run()
         return self.runner.results
 
 
