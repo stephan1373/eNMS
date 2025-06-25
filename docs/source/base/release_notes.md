@@ -222,6 +222,9 @@ Main Commits:
   Commit: dec10325858094969cefb6e1931987729ac04aac
 - Part 24: Fix run_services association and subsequent creation of subservice logs in case a run is interrupted by app reload
   Commit: b851cd930490cf589520edc70135256af8f4399d
+- Part 25: Store transient results in the redis queue if there is one, and recreate all results from the redis queue
+  (even if the run is interrupted by application reload)
+  Commit: a153abc049f28e998bf7a40648c85c5ce23bea46
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
