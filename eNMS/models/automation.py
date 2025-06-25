@@ -3,7 +3,6 @@ from copy import deepcopy
 from flask_login import current_user
 from functools import wraps
 from itertools import batched
-from orjson import loads
 from os import environ, getpid
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
@@ -578,7 +577,7 @@ class Run(AbstractBase):
     def create_all_results(self):
         for batch in batched(
             (
-                loads(result)
+                result
                 for device_results in vs.service_result[self.runtime].values()
                 for result_list in device_results.values()
                 for result in result_list

@@ -11,7 +11,6 @@ from json.decoder import JSONDecodeError
 from multiprocessing.pool import ThreadPool
 from netmiko import ConnectHandler
 from operator import attrgetter
-from orjson import dumps as or_dumps, loads as or_loads
 from os import getenv
 from paramiko import AutoAddPolicy, RSAKey, SFTPClient, SSHClient
 from re import compile, search
@@ -581,7 +580,7 @@ class Runner(vs.TimingMixin):
     def create_transient_result(self, result, device):
         device_key = device.id if device else None
         vs.service_result[self.parent_runtime][self.service.id][device_key].append(
-            or_dumps(result)
+            result
         )
 
     def create_result(self, results, device=None, commit=True, run_result=False):
@@ -1106,9 +1105,9 @@ class Runner(vs.TimingMixin):
             else:
                 results = sum(results_store.values(), [])
             if all_matches:
-                return [or_loads(result)["result"] for result in results]
+                return [result["result"] for result in results]
             else:
-                return or_loads(results[0])["result"] if results else None
+                return results[0]["result"] if results else None
 
         def recursive_search(run):
             if not run:
