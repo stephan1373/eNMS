@@ -214,6 +214,8 @@ Main Commits:
 - Part 20 (no SQL only): Refactor the "compute devices" mechanism and "get_target_property" so that targets are
   computed in the Run class whenever possible (e.g parameterized form, restart run, etc)
   Commit: 5929b7ed82aa0c4f56c08a64182c6040319e8e5b
+- Part 21: Move all the global variables function in their own class, parent class of Runner
+  Commit: 80684829483cdb8157993087d80b2ab960195201
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
