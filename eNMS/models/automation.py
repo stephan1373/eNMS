@@ -636,7 +636,10 @@ class Run(AbstractBase):
 
     @process(commit=True)
     def run_service_table_transaction(self):
-        run_services = vs.run_services.pop(self.runtime, [])
+        if env.redis_queue:
+            run_services = env.redis("smembers", f"{self.runtime}/services")
+        else:
+            run_services = vs.run_services.pop(self.runtime, [])
         if run_services:
             table = db.run_service_table
             values = [{"run_id": self.id, "service_id": id} for id in run_services]
@@ -805,6 +808,7 @@ class Run(AbstractBase):
         self.runner.start_run()
 
     def finalize_run(self, app_reloaded=False):
+        self.run_service_table_transaction()
         if self.service.no_sql_run:
             self.create_all_results()
             self.create_all_reports()
@@ -812,7 +816,6 @@ class Run(AbstractBase):
         self.create_all_logs(app_reloaded)
         self.close_remaining_connections()
         self.end_of_run_transaction(app_reloaded)
-        self.run_service_table_transaction()
         self.service.update_count(-1)
         self.clean_stored_data()
 

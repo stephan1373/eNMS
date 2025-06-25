@@ -280,7 +280,9 @@ class Runner(GlobalVariables, vs.TimingMixin):
         self.cache = {**run.cache, "service": self.get_service_properties()}
         self.main_run = run if self.is_main_run else run.main_run
         self.no_sql_run = self.cache["main_run_service"]["no_sql_run"]
-        if self.service.id not in vs.run_services[self.parent_runtime]:
+        if env.redis_queue:
+            env.redis("sadd", f"{self.parent_runtime}/services", self.service.id)
+        else:
             vs.run_services[self.parent_runtime].add(self.service.id)
         if "in_process" in kwargs:
             self.path = run.path
