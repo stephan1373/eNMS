@@ -521,9 +521,12 @@ class Runner(GlobalVariables, vs.TimingMixin):
             if isinstance(run, vs.models["run"]):
                 run = db.fetch("run", runtime=run.runtime, rbac=None)
         else:
-            device = db.session.query(vs.models["device"]).options(
-                selectinload(vs.models["device"].gateways)
-            ).filter(vs.models["device"].id == device_id).one()
+            device = (
+                db.session.query(vs.models["device"])
+                .options(selectinload(vs.models["device"].gateways))
+                .filter(vs.models["device"].id == device_id)
+                .one()
+            )
             run_kwargs = {"in_process": True, **run.kwargs}
             db.session.remove()
         results.append(Runner(run, **run_kwargs).get_results(device))

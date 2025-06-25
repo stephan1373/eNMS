@@ -577,10 +577,11 @@ class Run(AbstractBase):
                 self.topology["neighbors"][key].add((instance.id, destination_id))
                 self.topology["name_to_dict"]["edges"][instance.name] = edge
             else:
-                service = SimpleNamespace(**instance.get_properties(
-                    exclude=["positions"],
-                    private_properties=True
-                ))
+                service = SimpleNamespace(
+                    **instance.get_properties(
+                        exclude=["positions"], private_properties=True
+                    )
+                )
                 service.target_devices = instance.target_devices
                 service.target_pools = instance.target_pools
                 self.topology["services"][instance.id] = service
@@ -623,13 +624,14 @@ class Run(AbstractBase):
     def create_all_logs(self, app_reloaded):
         logs = []
         for service in self.services:
-            content = "\n".join(env.log_queue(self.runtime, service.id, mode="get") or [])
+            content = "\n".join(
+                env.log_queue(self.runtime, service.id, mode="get") or []
+            )
             if not app_reloaded:
                 content = self.runner.check_size(content, "log")
             logs.append(
                 {"runtime": self.runtime, "service_id": service.id, "content": content}
             )
-            print("test", service)
         db.session.execute(insert(vs.models["service_log"]), logs)
 
     @process(commit=True)
@@ -722,8 +724,12 @@ class Run(AbstractBase):
     def get_run_targets(self):
         devices, pools = [], []
         if self.restart_run and self.payload["targets"] == "Manually defined":
-            devices = db.objectify("device", self.payload[f"restart_devices"], user=self.creator)
-            pools = db.objectify("pool", self.payload[f"restart_pools"], user=self.creator)
+            devices = db.objectify(
+                "device", self.payload[f"restart_devices"], user=self.creator
+            )
+            pools = db.objectify(
+                "pool", self.payload[f"restart_pools"], user=self.creator
+            )
         elif self.restart_run and self.payload["targets"] == "Restart run":
             devices = self.restart_run.target_devices
             pools = self.restart_run.target_pools
