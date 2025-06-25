@@ -53,7 +53,206 @@ from eNMS.environment import env
 from eNMS.variables import vs
 
 
-class Runner(vs.TimingMixin):
+class GlobalVariables:
+    def cache_global_variables(self):
+        default_variables = {
+            "__builtins__": {**builtins, "__import__": self._import},
+            "delete": partial(self.internal_function, "delete"),
+            "dict_to_string": vs.dict_to_string,
+            "encrypt": env.encrypt_password,
+            "factory": partial(self.internal_function, "factory"),
+            "fetch": partial(self.internal_function, "fetch"),
+            "fetch_all": partial(self.internal_function, "fetch_all"),
+            "filtering": partial(self.internal_function, "filtering"),
+            "get_all_results": self.get_all_results,
+            "get_connection": self.get_connection,
+            "get_result": self.get_result,
+            "get_secret": self.get_secret,
+            "get_data": self.get_data,
+            "get_var": self.get_var,
+            "log": partial(self.log, user_defined=True),
+            "placeholder": self.main_run.placeholder,
+            "prepend_filepath": self.prepend_filepath,
+            "remove_note": self.remove_note,
+            "runtime": self.main_run.runtime,
+            "send_email": env.send_email,
+            "server": vs.server_dict,
+            "set_note": self.set_note,
+            "set_var": self.payload_helper,
+            "trigger": self.main_run.trigger,
+            "try_commit": db.try_commit,
+            "try_set": db.try_set,
+            "user": self.cache["creator"],
+            **vs.custom.runner_global_variables(),
+        }
+        if self.cache["creator"]["is_admin"]:
+            default_variables["get_credential"] = self.get_credential
+        return default_variables
+
+    def global_variables(_self, **locals):  # noqa: N805
+        payload, device = _self.payload, locals.get("device")
+        variables = {**locals, **payload.get("form", {})}
+        variables.update(payload.get("variables", {}))
+        if device and "devices" in payload.get("variables", {}):
+            variables.update(payload["variables"]["devices"].get(device.name, {}))
+        variables.update(
+            {
+                "devices": _self.run_targets,
+                "dry_run": getattr(_self, "dry_run", False),
+                "parent_device": _self.parent_device or device,
+                "payload": _self.payload,
+                "workflow": _self.workflow,
+                **_self.cache["global_variables"],
+            }
+        )
+        return variables
+
+    @staticmethod
+    def _import(module, *args, **kwargs):
+        if module in vs.settings["security"]["forbidden_python_libraries"]:
+            raise ImportError(f"Module '{module}' is restricted.")
+        return importlib_import(module, *args, **kwargs)
+
+    def internal_function(self, func, _model, **kwargs):
+        if _model not in vs.automation["workflow"]["allowed_models"][func]:
+            raise db.rbac_error(f"Use of '{func}' not allowed on {_model}s.")
+        kwargs.update({"rbac": "edit", "user": self.creator})
+        if func == "filtering":
+            kwargs["bulk"] = "object"
+        target = controller if func == "filtering" else db
+        return getattr(target, func)(_model, **kwargs)
+
+    def get_all_results(self):
+        return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
+
+    def get_credential(self, **kwargs):
+        credential = db.get_credential(self.creator, **kwargs)
+        credential_dict = {"username": credential.username}
+        if credential.subtype == "password":
+            credential_dict["password"] = env.get_password(credential.password)
+        else:
+            private_key = env.get_password(credential.private_key)
+            credential_dict["pkey"] = RSAKey.from_private_key(StringIO(private_key))
+        credential_dict["secret"] = env.get_password(credential.enable_password)
+        return credential_dict
+
+    def get_data(self, path=None, persistent_id=None):
+        kwargs = {"path": path} if path else {"persistent_id": persistent_id}
+        return db.fetch("data", user=self.creator, rbac="use", **kwargs)
+
+    def get_result(
+        self, service_name, device=None, workflow=None, runtime=None, all_matches=False
+    ):
+        def filter_run(query, property):
+            query = query.filter(
+                vs.models["result"].service.has(
+                    getattr(vs.models["service"], property) == service_name
+                )
+            )
+            return query.all()
+
+        def get_transient_results():
+            results_store = vs.service_result.get(runtime or self.parent_runtime)
+            if not results_store:
+                return
+            scoped_name_cache = self.cache["topology"]["scoped_name_to_dict"]
+            service_cache = self.cache["topology"]["name_to_dict"]["services"]
+            if service_ns := scoped_name_cache.get(service_name):
+                service_key = service_ns.id
+            elif service_ns := service_cache.get(service_name):
+                service_key = service_ns.id
+            else:
+                return
+            results_store = results_store.get(service_key)
+            if not results_store:
+                return
+            device_cache = self.cache["topology"]["name_to_dict"]["devices"]
+            if device:
+                if device not in device_cache:
+                    return
+                results = results_store.get(device_cache[device].id, [])
+            else:
+                results = sum(results_store.values(), [])
+            if all_matches:
+                return [result["result"] for result in results]
+            else:
+                return results[0]["result"] if results else None
+
+        def recursive_search(run):
+            if not run:
+                return None
+            if self.no_sql_run and run == self.main_run:
+                if results := get_transient_results():
+                    return results
+            query = db.session.query(vs.models["result"]).filter(
+                vs.models["result"].parent_runtime == (runtime or run.runtime)
+            )
+            if workflow:
+                query = query.filter(
+                    vs.models["result"].workflow.has(
+                        vs.models["workflow"].name == workflow
+                    )
+                )
+            if device:
+                query = query.filter(
+                    vs.models["result"].device.has(vs.models["device"].name == device)
+                )
+            results = filter_run(query, "scoped_name") or filter_run(query, "name")
+            if not results:
+                return recursive_search(run.restart_run)
+            else:
+                if all_matches:
+                    return [result.result for result in results]
+                else:
+                    return results.pop().result
+
+        return recursive_search(self.main_run)
+
+    def get_secret(self, name):
+        secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
+        return env.get_password(secret.secret_value)
+
+    def get_var(self, *args, **kwargs):
+        return self.payload_helper(*args, operation="get", **kwargs)
+
+    def payload_helper(
+        self,
+        name,
+        value=None,
+        device=None,
+        section=None,
+        operation="__setitem__",
+        allow_none=False,
+        default=None,
+    ):
+        payload = self.payload.setdefault("variables", {})
+        if device:
+            payload = payload.setdefault("devices", {})
+            payload = payload.setdefault(device, {})
+        if section:
+            payload = payload.setdefault(section, {})
+        if value is None:
+            value = default
+        if operation in ("get", "__setitem__", "setdefault"):
+            value = getattr(payload, operation)(name, value)
+        else:
+            getattr(payload[name], operation)(value)
+        if operation == "get" and not allow_none and value is None:
+            raise Exception(f"Payload Editor: {name} not found in {payload}.")
+        else:
+            return value
+
+    def prepend_filepath(self, value):
+        return f"{vs.file_path}{value}"
+
+    def remove_note(self, x, y):
+        self.write_state(f"notes/{x}_{y}", "", top_level=True, method="delete")
+
+    def set_note(self, x, y, content):
+        self.write_state(f"notes/{x}_{y}", content, top_level=True)
+
+
+class Runner(GlobalVariables, vs.TimingMixin):
     def __init__(self, run, **kwargs):
         self.kwargs = kwargs
         self.parameterized_run = False
@@ -125,41 +324,6 @@ class Runner(vs.TimingMixin):
             return getattr(self.service, key)
         else:
             raise AttributeError
-
-    def cache_global_variables(self):
-        default_variables = {
-            "__builtins__": {**builtins, "__import__": self._import},
-            "delete": partial(self.internal_function, "delete"),
-            "dict_to_string": vs.dict_to_string,
-            "encrypt": env.encrypt_password,
-            "factory": partial(self.internal_function, "factory"),
-            "fetch": partial(self.internal_function, "fetch"),
-            "fetch_all": partial(self.internal_function, "fetch_all"),
-            "filtering": partial(self.internal_function, "filtering"),
-            "get_all_results": self.get_all_results,
-            "get_connection": self.get_connection,
-            "get_result": self.get_result,
-            "get_secret": self.get_secret,
-            "get_data": self.get_data,
-            "get_var": self.get_var,
-            "log": partial(self.log, user_defined=True),
-            "placeholder": self.main_run.placeholder,
-            "prepend_filepath": self.prepend_filepath,
-            "remove_note": self.remove_note,
-            "runtime": self.main_run.runtime,
-            "send_email": env.send_email,
-            "server": vs.server_dict,
-            "set_note": self.set_note,
-            "set_var": self.payload_helper,
-            "trigger": self.main_run.trigger,
-            "try_commit": db.try_commit,
-            "try_set": db.try_set,
-            "user": self.cache["creator"],
-            **vs.custom.runner_global_variables(),
-        }
-        if self.cache["creator"]["is_admin"]:
-            default_variables["get_credential"] = self.get_credential
-        return default_variables
 
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:
@@ -290,12 +454,6 @@ class Runner(vs.TimingMixin):
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def set_note(self, x, y, content):
-        self.write_state(f"notes/{x}_{y}", content, top_level=True)
-
-    def remove_note(self, x, y):
-        self.write_state(f"notes/{x}_{y}", "", top_level=True, method="delete")
 
     def start_run(self):
         self.init_state()
@@ -1030,162 +1188,6 @@ class Runner(vs.TimingMixin):
             ) as scp:
                 for source, destination in files:
                     getattr(scp, self.direction)(source, destination)
-
-    def payload_helper(
-        self,
-        name,
-        value=None,
-        device=None,
-        section=None,
-        operation="__setitem__",
-        allow_none=False,
-        default=None,
-    ):
-        payload = self.payload.setdefault("variables", {})
-        if device:
-            payload = payload.setdefault("devices", {})
-            payload = payload.setdefault(device, {})
-        if section:
-            payload = payload.setdefault(section, {})
-        if value is None:
-            value = default
-        if operation in ("get", "__setitem__", "setdefault"):
-            value = getattr(payload, operation)(name, value)
-        else:
-            getattr(payload[name], operation)(value)
-        if operation == "get" and not allow_none and value is None:
-            raise Exception(f"Payload Editor: {name} not found in {payload}.")
-        else:
-            return value
-
-    def get_var(self, *args, **kwargs):
-        return self.payload_helper(*args, operation="get", **kwargs)
-
-    def get_data(self, path=None, persistent_id=None):
-        kwargs = {"path": path} if path else {"persistent_id": persistent_id}
-        return db.fetch("data", user=self.creator, rbac="use", **kwargs)
-
-    def get_secret(self, name):
-        secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
-        return env.get_password(secret.secret_value)
-
-    def get_result(
-        self, service_name, device=None, workflow=None, runtime=None, all_matches=False
-    ):
-        def filter_run(query, property):
-            query = query.filter(
-                vs.models["result"].service.has(
-                    getattr(vs.models["service"], property) == service_name
-                )
-            )
-            return query.all()
-
-        def get_transient_results():
-            results_store = vs.service_result.get(runtime or self.parent_runtime)
-            if not results_store:
-                return
-            scoped_name_cache = self.cache["topology"]["scoped_name_to_dict"]
-            service_cache = self.cache["topology"]["name_to_dict"]["services"]
-            if service_ns := scoped_name_cache.get(service_name):
-                service_key = service_ns.id
-            elif service_ns := service_cache.get(service_name):
-                service_key = service_ns.id
-            else:
-                return
-            results_store = results_store.get(service_key)
-            if not results_store:
-                return
-            device_cache = self.cache["topology"]["name_to_dict"]["devices"]
-            if device:
-                if device not in device_cache:
-                    return
-                results = results_store.get(device_cache[device].id, [])
-            else:
-                results = sum(results_store.values(), [])
-            if all_matches:
-                return [result["result"] for result in results]
-            else:
-                return results[0]["result"] if results else None
-
-        def recursive_search(run):
-            if not run:
-                return None
-            if self.no_sql_run and run == self.main_run:
-                if results := get_transient_results():
-                    return results
-            query = db.session.query(vs.models["result"]).filter(
-                vs.models["result"].parent_runtime == (runtime or run.runtime)
-            )
-            if workflow:
-                query = query.filter(
-                    vs.models["result"].workflow.has(
-                        vs.models["workflow"].name == workflow
-                    )
-                )
-            if device:
-                query = query.filter(
-                    vs.models["result"].device.has(vs.models["device"].name == device)
-                )
-            results = filter_run(query, "scoped_name") or filter_run(query, "name")
-            if not results:
-                return recursive_search(run.restart_run)
-            else:
-                if all_matches:
-                    return [result.result for result in results]
-                else:
-                    return results.pop().result
-
-        return recursive_search(self.main_run)
-
-    def get_all_results(self):
-        return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
-
-    @staticmethod
-    def _import(module, *args, **kwargs):
-        if module in vs.settings["security"]["forbidden_python_libraries"]:
-            raise ImportError(f"Module '{module}' is restricted.")
-        return importlib_import(module, *args, **kwargs)
-
-    def internal_function(self, func, _model, **kwargs):
-        if _model not in vs.automation["workflow"]["allowed_models"][func]:
-            raise db.rbac_error(f"Use of '{func}' not allowed on {_model}s.")
-        kwargs.update({"rbac": "edit", "user": self.creator})
-        if func == "filtering":
-            kwargs["bulk"] = "object"
-        target = controller if func == "filtering" else db
-        return getattr(target, func)(_model, **kwargs)
-
-    def prepend_filepath(self, value):
-        return f"{vs.file_path}{value}"
-
-    def get_credential(self, **kwargs):
-        credential = db.get_credential(self.creator, **kwargs)
-        credential_dict = {"username": credential.username}
-        if credential.subtype == "password":
-            credential_dict["password"] = env.get_password(credential.password)
-        else:
-            private_key = env.get_password(credential.private_key)
-            credential_dict["pkey"] = RSAKey.from_private_key(StringIO(private_key))
-        credential_dict["secret"] = env.get_password(credential.enable_password)
-        return credential_dict
-
-    def global_variables(_self, **locals):  # noqa: N805
-        payload, device = _self.payload, locals.get("device")
-        variables = {**locals, **payload.get("form", {})}
-        variables.update(payload.get("variables", {}))
-        if device and "devices" in payload.get("variables", {}):
-            variables.update(payload["variables"]["devices"].get(device.name, {}))
-        variables.update(
-            {
-                "devices": _self.run_targets,
-                "dry_run": getattr(self, "dry_run", False),
-                "parent_device": _self.parent_device or device,
-                "payload": _self.payload,
-                "workflow": self.workflow,
-                **_self.cache["global_variables"],
-            }
-        )
-        return variables
 
     def eval(_self, query, function="eval", **locals):  # noqa: N805
         exec_variables = _self.global_variables(**locals)
