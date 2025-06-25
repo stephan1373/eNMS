@@ -156,7 +156,6 @@ class Runner(vs.TimingMixin):
             "try_commit": db.try_commit,
             "try_set": db.try_set,
             "user": self.cache["creator"],
-            "workflow": self.workflow,
             **vs.custom.runner_global_variables(),
         }
         if self.cache["creator"]["is_admin"]:
@@ -1182,6 +1181,7 @@ class Runner(vs.TimingMixin):
                 "devices": _self.run_targets,
                 "parent_device": _self.parent_device or device,
                 "payload": _self.payload,
+                "workflow": self.workflow,
                 **_self.cache["global_variables"],
             }
         )
