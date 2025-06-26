@@ -14634,17 +14634,26 @@
         "alignment": "left",
         "content": "Second restart: create the following result key:\r\nresults[\"result\"] = (\r\n  get_result(\"First\", device=device.name)[\"result\"] +\r\n  get_result(\"Second\", device=device.name)[\"result\"] +\r\n  \"c\"\r\n)",
         "positions": [
-          174,
-          131
+          185,
+          194
         ],
         "size": 14
       },
       "1e8e5b45-b577-4b3d-9978-ed162b5c8523": {
         "alignment": "left",
-        "content": "This workflow tests that get_result is able to go through the chain of restart runs\r\nto get access to the previous results. It is made to be run the following way:\r\n1) Run the workflow without changing anything: only \"First\" run.\r\n2) Delete the workflow edge from Start to First, and add one from Start to Second. Run the workflow.\r\nThe expected result of Second is \"ab\". It re-uses \"a\" from the previous run.\r\n3) Delete edge from Start to Second and add one from Start to Third. Expected result: \"abc\"\r\n4) Delete edge from Start to Third and add one from Start to Fourth. Expected result: \"abcd\"",
+        "content": "This workflow tests that get_result is able to go through the chain of restart runs\r\nto get access to the previous results. It is made to be run the following way:\r\n1) Run the workflow without changing anything: only \"First\" run.\r\n2) Delete the workflow edge from Start to First, and add one from Start to Second. Run the workflow.\r\nThe expected result of Second is \"ab\". It re-uses \"a\" from the previous run.\r\n3) Delete edge from Start to Second and add one from Start to Third. Expected result: \"abc\"\r\n4) Delete edge from Start to Third and add one from Start to Fourth. Expected result: \"abcd\"\r\n\r\nMust be tested:\r\n- in DxD and SxS with workflow targets.\r\n- with and without multiprocessing\r\n- in normal as well as in \"No SQL\" mode",
         "positions": [
-          226,
-          -180
+          479,
+          -124
+        ],
+        "size": 14
+      },
+      "4af1566d-4955-487f-a1b1-74b61ecdad1a": {
+        "alignment": "left",
+        "content": "Third restart: create the following result key:\r\nresults[\"result\"] = (\r\n  get_result(\"First\", device=device.name)[\"result\"] +\r\n  get_result(\"Second\", device=device.name)[\"result\"] +\r\n  get_result(\"Third\", device=device.name)[\"result\"] +\r\n  \"d\"\r\n)",
+        "positions": [
+          175,
+          308
         ],
         "size": 14
       },
@@ -14661,13 +14670,13 @@
         "alignment": "left",
         "content": "First restart: creates the following result key:\r\nget_result(\"First\", device=device.name)[\"result\"] + \"b\"",
         "positions": [
-          180,
-          32
+          194,
+          73
         ],
         "size": 14
       }
     },
-    "last_modified": "2025-06-26 00:04:56.551921",
+    "last_modified": "2025-06-26 00:08:33.417865",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -14695,20 +14704,24 @@
     "persistent_id": "MSuF25h2V4U",
     "positions": {
       "[Functions: get_result and Restart Run with recursive access to previous results] First": [
-        -118,
-        -66
+        -107,
+        -38
+      ],
+      "[Functions: get_result and Restart Run with recursive access to previous results] Fourth": [
+        -115,
+        298
       ],
       "[Functions: get_result and Restart Run with recursive access to previous results] Second": [
-        -115,
-        34
+        -111,
+        71
       ],
       "[Functions: get_result and Restart Run with recursive access to previous results] Third": [
-        -114,
-        135
+        -111,
+        183
       ],
       "[Shared] End": [
-        698,
-        57
+        717,
+        138
       ],
       "[Shared] Start": [
         -500,
