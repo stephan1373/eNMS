@@ -604,7 +604,7 @@ class Run(AbstractBase):
         else:
             results = (
                 result
-                for device_results in vs.service_result[self.runtime].values()
+                for device_results in vs.service_result.pop(self.runtime, {}).values()
                 for result_list in device_results.values()
                 for result in result_list
             )
@@ -613,10 +613,11 @@ class Run(AbstractBase):
 
     @process(commit=True)
     def create_all_reports(self):
+        reports = vs.service_report.pop(self.runtime, {})
         for batch in batched(
             (
                 {"runtime": self.runtime, "service_id": service_id, "content": report}
-                for service_id, report in vs.service_report[self.runtime].items()
+                for service_id, report in reports.items()
             ),
             vs.database["transactions"]["batch_size"],
         ):
@@ -681,11 +682,15 @@ class Run(AbstractBase):
 
     @process()
     def clean_stored_data(self):
+        vs.run_allowed_targets.pop(self.runtime, None)
+        vs.run_states.pop(self.runtime, None)
+        vs.run_logs.pop(self.runtime, None)
+        vs.run_stops.pop(self.runtime, None)
+        vs.run_instances.pop(self.runtime, None)
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
             if runtime_keys:
                 env.redis("delete", *runtime_keys)
-        vs.run_allowed_targets.pop(self.runtime, None)
 
     @process(raise_exception=True)
     def update_target_pools(self):
