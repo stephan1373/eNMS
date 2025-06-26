@@ -685,7 +685,7 @@ class Run(AbstractBase):
         vs.run_allowed_targets.pop(self.runtime, None)
         vs.run_states.pop(self.runtime, None)
         vs.run_logs.pop(self.runtime, None)
-        vs.run_stops.pop(self.runtime, None)
+        vs.run_stop.pop(self.runtime, None)
         vs.run_instances.pop(self.runtime, None)
         if env.redis_queue:
             runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
