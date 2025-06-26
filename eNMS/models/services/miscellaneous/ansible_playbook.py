@@ -40,8 +40,8 @@ class AnsiblePlaybookService(Service):
 
     __mapper_args__ = {"polymorphic_identity": "ansible_playbook_service"}
 
-    @staticmethod
-    def job(self, run, device=None):
+    @classmethod
+    def job(cls, self, run, device=None):
         arguments = run.sub(run.arguments, locals()).split()
         command, extra_args = ["ansible-playbook"], {}
         if run.pass_device_properties:
@@ -78,7 +78,7 @@ class AnsiblePlaybookService(Service):
             results = {"success": False, "result": result, "command": full_command}
             exit_code = search(r"exit status (\d+)", result)
             if exit_code:
-                results["exit_code"] = self.exit_codes[exit_code.group(1)]
+                results["exit_code"] = cls.exit_codes[exit_code.group(1)]
             return results
         try:
             result = result.decode("utf-8")
