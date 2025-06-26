@@ -225,6 +225,8 @@ Main Commits:
 - Part 25: Store transient results in the redis queue if there is one, and recreate all results from the redis queue
   (even if the run is interrupted by application reload)
   Commit: a153abc049f28e998bf7a40648c85c5ce23bea46
+- Part 26: Remove 'trigger' property from the results
+  Commit: f0396da7ad4a64bc53dfb0bf955c4c355773e30f
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
