@@ -14593,5 +14593,143 @@
     "vendor": "",
     "version": "",
     "waiting_time": 0
+  },
+  {
+    "admin_only": false,
+    "builder_link": "MSuF25h2V4U",
+    "category": "Other",
+    "close_connection": false,
+    "completion_time": 1,
+    "content_match": "",
+    "content_match_regex": false,
+    "conversion_method": "none",
+    "creation_time": "2025-06-25 23:55:08.094012",
+    "creator": "admin",
+    "credential_type": "any",
+    "custom_property": "Default Value",
+    "default_uuid": "0fe6e7ce-1775-4aa1-a3c8-443941189461",
+    "definition": "Definition",
+    "delete_spaces_before_matching": false,
+    "description": "",
+    "device_query": "",
+    "device_query_property": "name",
+    "dict_match": {},
+    "disable_result_creation": false,
+    "disabled": false,
+    "disabled_info": "",
+    "display_only_failed_nodes": false,
+    "display_report": false,
+    "dry_run": false,
+    "email_report": false,
+    "impacting": true,
+    "include_device_results": false,
+    "include_link_in_summary": false,
+    "initial_payload": {},
+    "iteration_devices": "",
+    "iteration_devices_property": "name",
+    "iteration_values": "",
+    "iteration_variable_name": "iteration_value",
+    "labels": {
+      "1e8e5b45-b577-4b3d-9978-ed162b5c8523": {
+        "alignment": "left",
+        "content": "This workflow tests that get_result is able to go through the chain of restart runs\r\nto get access to the previous results. It is made to be run the following way:\r\n- First, ",
+        "positions": [
+          252,
+          -146
+        ],
+        "size": 14
+      },
+      "947c7714-0b89-4956-970e-3593bc854166": {
+        "alignment": "left",
+        "content": "Create a first result\r\n{\"result\": a\"}",
+        "positions": [
+          -167,
+          17
+        ],
+        "size": 14
+      },
+      "df92553f-7105-4622-90e3-3bbc3a284a2f": {
+        "alignment": "left",
+        "content": "First restart: creates the following result key:\r\nget_result(\"First\", device=device.name)[\"result\"] + \"b\"",
+        "positions": [
+          59,
+          190
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-06-25 23:57:58.812630",
+    "last_modified_by": "admin",
+    "last_run": "",
+    "log_level": 1,
+    "mail_bcc": "",
+    "mail_recipient": "",
+    "mail_sender": "",
+    "mail_subject": "",
+    "man_minutes": 0,
+    "man_minutes_total": 0,
+    "man_minutes_type": "workflow",
+    "mandatory_parameter": "Default Value",
+    "mandatory_parametrization": false,
+    "max_number_of_retries": 100,
+    "max_processes": 15,
+    "maximum_runs": 1,
+    "multiprocessing": false,
+    "name": "Functions: get_result and Restart Run with recursive access to previous results",
+    "negative_logic": false,
+    "no_sql_run": false,
+    "notification_header": "",
+    "number_of_retries": 0,
+    "operating_system": "",
+    "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes = IntegerField('Maximum number of processes', default=15)",
+    "parameterized_form_template": "",
+    "persistent_id": "MSuF25h2V4U",
+    "positions": {
+      "[Functions: get_result and Restart Run with recursive access to previous results] First": [
+        -174,
+        85
+      ],
+      "[Functions: get_result and Restart Run with recursive access to previous results] Second": [
+        31,
+        82
+      ],
+      "[Shared] End": [
+        732,
+        85
+      ],
+      "[Shared] Start": [
+        -331,
+        91
+      ]
+    },
+    "postprocessing": "",
+    "postprocessing_mode": "success",
+    "preprocessing": "",
+    "priority": 10,
+    "reply_to": "",
+    "report": "",
+    "report_format": "text",
+    "report_jinja2_template": false,
+    "reserved": false,
+    "restrict_to_owners": [],
+    "run_method": "per_device",
+    "scoped_name": "Functions: get_result and Restart Run with recursive access to previous results",
+    "send_notification": false,
+    "send_notification_method": "mail",
+    "serialized": "dict_values([False, '', '', False, 1, 'Other', 'workflow', 'success', 1, False, 15, {}, False, None, False, False, '', {}, False, '', 'Functions: get_result and Restart Run with recursive access to previous results', False, 'name', True, False, '2025-06-25 23:55:08.090536', None, False, '', 'workflow', 'success', None, False, 'iteration_value', [], None, True, None, 'name', 'Default Value', None, '', 'Functions: get_result and Restart Run with recursive access to previous results', False, 10, '', False, False, False, '', 'any', '', {}, 'per_device', '', False, 0, None, 0, None, None, False, False, 10, '0fe6e7ce-1775-4aa1-a3c8-443941189461', False, None, \"results['result']\", False, '', '', '', 'none', None, None, 'text', 'admin', 0, 'mail', \"name = StringField('Name', [InputRequired()])\\r\\ninitial_payload = DictField()\\r\\ntarget_devices = MultipleInstanceField('Devices', model='device')\\r\\ntarget_pools = MultipleInstanceField('Pools', model='pool')\\r\\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\\r\\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\\r\\nmultiprocessing = BooleanField('Multiprocessing', default=False)\\r\\nmax_processes = IntegerField('Maximum number of processes', default=15)\", '', '', '', 'Definition', 1, '', '', 0, 100, 'none', 'text', 'admin', '', False, 'Default Value'])",
+    "shared": false,
+    "show_user_logs": true,
+    "skip": {},
+    "skip_query": "",
+    "skip_value": "success",
+    "soft_deleted": false,
+    "time_between_retries": 10,
+    "update_target_pools": false,
+    "validation_condition": "none",
+    "validation_method": "text",
+    "validation_section": "results['result']",
+    "vendor": "",
+    "version": "",
+    "waiting_time": 0
   }
 ]

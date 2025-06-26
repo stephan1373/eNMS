@@ -776,6 +776,14 @@
     "Functions: filtering"
   ],
   [
+    "[Functions: get_result and Restart Run with recursive access to previous results] First",
+    "Functions: get_result and Restart Run with recursive access to previous results"
+  ],
+  [
+    "[Functions: get_result and Restart Run with recursive access to previous results] Second",
+    "Functions: get_result and Restart Run with recursive access to previous results"
+  ],
+  [
     "[Functions: get_result and get_var] After Run Once",
     "Functions: get_result and get_var"
   ],
@@ -1473,6 +1481,10 @@
   ],
   [
     "[Shared] End",
+    "Functions: get_result and Restart Run with recursive access to previous results"
+  ],
+  [
+    "[Shared] End",
     "Functions: get_result and get_var"
   ],
   [
@@ -1970,6 +1982,10 @@
   [
     "[Shared] Start",
     "Functions: filtering"
+  ],
+  [
+    "[Shared] Start",
+    "Functions: get_result and Restart Run with recursive access to previous results"
   ],
   [
     "[Shared] Start",

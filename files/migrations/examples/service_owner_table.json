@@ -64,6 +64,10 @@
     "admin"
   ],
   [
+    "Functions: get_result and Restart Run with recursive access to previous results",
+    "admin"
+  ],
+  [
     "Global Variables: get_data (Data Store)",
     "admin"
   ],
@@ -321,6 +325,14 @@
   ],
   [
     "[Functions: filtering] Regex-based filtering on names",
+    "admin"
+  ],
+  [
+    "[Functions: get_result and Restart Run with recursive access to previous results] First",
+    "admin"
+  ],
+  [
+    "[Functions: get_result and Restart Run with recursive access to previous results] Second",
     "admin"
   ],
   [
