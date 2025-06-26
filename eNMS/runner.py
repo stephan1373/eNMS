@@ -476,7 +476,6 @@ class Runner(GlobalVariables, vs.TimingMixin):
             else:
                 properties = self.service.get_properties(exclude=["positions"])
             results["properties"] = properties
-            results["trigger"] = self.main_run.trigger
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.run_targets) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
