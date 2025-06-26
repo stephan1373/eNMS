@@ -1675,58 +1675,51 @@ class Controller(vs.TimingMixin):
     @staticmethod
     @actor(max_retries=0, time_limit=float("inf"))
     def run(service, **kwargs):
-        try:
-            start = datetime.now().replace(microsecond=0)
-            run_object, runtime, user = None, kwargs["runtime"], kwargs["creator"]
-            if "path" not in kwargs:
-                kwargs["path"] = str(service)
-            keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
-            run_kwargs = {key: kwargs.pop(key) for key in keys if kwargs.get(key)}
-            run_kwargs["is_async"] = kwargs.get("async", True)
-            for property in ("name", "labels"):
-                if property in kwargs.get("form", {}):
-                    run_kwargs[property] = kwargs["form"][property]
-                else:
-                    run_kwargs.pop(property, None)
-            service = db.fetch("service", id=service, rbac="run", user=user)
-            initial_payload = {
-                **service.initial_payload,
-                **kwargs.get("form", {}).get("initial_payload", {}),
-            }
-            restart_runtime = kwargs.get("restart_runtime")
-            restart_run = db.fetch(
-                "run", allow_none=True, runtime=restart_runtime, user=user
-            )
-            if service.type == "workflow" and service.superworkflow and not restart_run:
-                run_kwargs["placeholder"] = run_kwargs["start_service"] = service.id
-                run_kwargs["path"] = str(service.superworkflow.id)
-                service = service.superworkflow
-                initial_payload.update(service.initial_payload)
+        start = datetime.now().replace(microsecond=0)
+        run_object, runtime, user = None, kwargs["runtime"], kwargs["creator"]
+        if "path" not in kwargs:
+            kwargs["path"] = str(service)
+        keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
+        run_kwargs = {key: kwargs.pop(key) for key in keys if kwargs.get(key)}
+        run_kwargs["is_async"] = kwargs.get("async", True)
+        for property in ("name", "labels"):
+            if property in kwargs.get("form", {}):
+                run_kwargs[property] = kwargs["form"][property]
             else:
-                run_kwargs["start_service"] = service.id
-            if restart_run:
-                run_kwargs["restart_run"] = restart_run.id
-                initial_payload = restart_run.payload
-            run_kwargs["services"] = [service.id]
-            run_object = db.factory(
-                "run",
-                service=service.id,
-                commit=True,
-                must_be_new=True,
-                rbac=None,
-                **run_kwargs,
-            )
-            db.try_set(service, "status", "Running")
-            db.try_set(service, "last_run", vs.get_time())
-            run_object.properties = kwargs
-            run_object.payload = {**initial_payload, **kwargs}
-            return run_object.run()
-        except Exception:
-            db.session.rollback()
-            env.log("critical", f"{runtime} - {format_exc()}")
-            return {"success": False, "result": format_exc()}
-        finally:
-            db.session.remove()
+                run_kwargs.pop(property, None)
+        service = db.fetch("service", id=service, rbac="run", user=user)
+        initial_payload = {
+            **service.initial_payload,
+            **kwargs.get("form", {}).get("initial_payload", {}),
+        }
+        restart_runtime = kwargs.get("restart_runtime")
+        restart_run = db.fetch(
+            "run", allow_none=True, runtime=restart_runtime, user=user
+        )
+        if service.type == "workflow" and service.superworkflow and not restart_run:
+            run_kwargs["placeholder"] = run_kwargs["start_service"] = service.id
+            run_kwargs["path"] = str(service.superworkflow.id)
+            service = service.superworkflow
+            initial_payload.update(service.initial_payload)
+        else:
+            run_kwargs["start_service"] = service.id
+        if restart_run:
+            run_kwargs["restart_run"] = restart_run.id
+            initial_payload = restart_run.payload
+        run_kwargs["services"] = [service.id]
+        run_object = db.factory(
+            "run",
+            service=service.id,
+            commit=True,
+            must_be_new=True,
+            rbac=None,
+            **run_kwargs,
+        )
+        db.try_set(service, "status", "Running")
+        db.try_set(service, "last_run", vs.get_time())
+        run_object.properties = kwargs
+        run_object.payload = {**initial_payload, **kwargs}
+        return run_object.run()
 
     def run_debug_code(self, **kwargs):
         result = StringIO()

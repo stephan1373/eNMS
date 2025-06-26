@@ -629,13 +629,13 @@ class Run(AbstractBase):
             db.session.execute(insert(vs.models["changelog"]), batch)
 
     @process(commit=True)
-    def create_all_logs(self, app_reloaded):
+    def create_all_logs(self):
         logs = []
         for service in self.services:
             content = "\n".join(
                 env.log_queue(self.runtime, service.id, mode="get") or []
             )
-            if not app_reloaded:
+            if hasattr(self, "runner"):
                 content = self.runner.check_size(content, "log")
             logs.append(
                 {"runtime": self.runtime, "service_id": service.id, "content": content}
@@ -659,8 +659,7 @@ class Run(AbstractBase):
         if app_reloaded:
             self.status = "Aborted (reload)"
             self.success = False
-            self.service.status = "Idle"
-        else:
+        elif hasattr(self, "runner"):
             results = self.runner.results
             self.success = results["success"]
             self.duration = results["duration"]
@@ -672,8 +671,8 @@ class Run(AbstractBase):
                     if self.service.man_minutes_type == "device"
                     else self.service.man_minutes * results["success"]
                 )
-            if not self.service.is_running:
-                self.service.status = "Idle"
+        if app_reloaded or not self.service.is_running:
+            self.service.status = "Idle"
         state = self.get_state()
         self.memory_size = state.get("memory_size", "Unkown")
         self.state = state
@@ -821,7 +820,7 @@ class Run(AbstractBase):
             self.create_all_results()
             self.create_all_reports()
             self.create_all_changelogs()
-        self.create_all_logs(app_reloaded)
+        self.create_all_logs()
         self.close_remaining_connections()
         self.end_of_run_transaction(app_reloaded)
         self.service.update_count(-1)
@@ -833,7 +832,10 @@ class Run(AbstractBase):
         except Exception:
             env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
         self.finalize_run()
-        return self.runner.results
+        if hasattr(self, "runner"):
+            return self.runner.results
+        else:
+            return {"success": False, "result": "Missing 'Runner' object"}
 
 
 class Task(AbstractBase):
