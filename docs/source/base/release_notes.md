@@ -260,6 +260,7 @@ Tests:
   The output of "get_result" should be the same regardless of the value of "No SQL Run"
 - Test that the "Report" mechanism works correctly regardless of the value of "No SQL Run"
 - Test the Restart From mechanism, with all possible target origins, with both "No SQL Run" enabled and disabled
+- Test the Ansible Playbook Service
 
 Notes:
 - Everything in the "Tests" section should be tested with both "No SQL Run" checked and unchecked
