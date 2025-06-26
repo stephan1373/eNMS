@@ -14632,10 +14632,10 @@
     "labels": {
       "1a28b5a5-6481-4f6d-bbce-031d377e7f4c": {
         "alignment": "left",
-        "content": "Second restart: create the following result key:\r\nresults[\"result\"] = (\r\n  get_result(\"First\", device=device.name)[\"result\"] +\r\n  get_result(\"Second\", device=device.name)[\"result\"] +\r\n  \"c\"\r\n)",
+        "content": "Second restart: create the following result key:\r\nresults[\"result\"] = (\r\n  get_result(\"First\", device=device.name)[\"result\"] +\r\n  get_result(\"Second\", device=device.name)[\"result\"] +\r\n  \"c\"\r\n)\r\nExpected: \"aabc\"",
         "positions": [
-          185,
-          194
+          168,
+          178
         ],
         "size": 14
       },
@@ -14650,10 +14650,10 @@
       },
       "4af1566d-4955-487f-a1b1-74b61ecdad1a": {
         "alignment": "left",
-        "content": "Third restart: create the following result key:\r\nresults[\"result\"] = (\r\n  get_result(\"First\", device=device.name)[\"result\"] +\r\n  get_result(\"Second\", device=device.name)[\"result\"] +\r\n  get_result(\"Third\", device=device.name)[\"result\"] +\r\n  \"d\"\r\n)",
+        "content": "Third restart: create the following result key:\r\nresults[\"result\"] = (\r\n  get_result(\"First\", device=device.name)[\"result\"] +\r\n  get_result(\"Second\", device=device.name)[\"result\"] +\r\n  get_result(\"Third\", device=device.name)[\"result\"] +\r\n  \"d\"\r\n)\r\nExpected: \"aabaabcd\"",
         "positions": [
-          175,
-          308
+          166,
+          317
         ],
         "size": 14
       },
@@ -14668,15 +14668,15 @@
       },
       "df92553f-7105-4622-90e3-3bbc3a284a2f": {
         "alignment": "left",
-        "content": "First restart: creates the following result key:\r\nget_result(\"First\", device=device.name)[\"result\"] + \"b\"",
+        "content": "First restart: creates the following result key:\r\nget_result(\"First\", device=device.name)[\"result\"] + \"b\"\r\nExpected: \"ab\"",
         "positions": [
-          194,
-          73
+          169,
+          76
         ],
         "size": 14
       }
     },
-    "last_modified": "2025-06-26 00:09:42.096943",
+    "last_modified": "2025-06-26 00:13:14.274313",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
