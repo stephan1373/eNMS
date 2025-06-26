@@ -238,6 +238,9 @@ Migration:
   - Convert all devices from type "device" to "generic_device"
   - Convert all links from type "link" to "generic_link"
   - Convert all files from type "file" to "generic_file"
+- All custom services must be updated: the job function can become either a classmethod if the
+  function need to use class attributes (see Ansible Playbook Service), or a staticmethod (see any
+  other services)
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
