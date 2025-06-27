@@ -162,7 +162,12 @@ class BaseForm(FlaskForm, metaclass=MetaForm):
             if field["type"] in ("object-list", "multiselect"):
                 value = form_data.getlist(property)
                 if field["type"] == "object-list":
-                    value = [db.fetch(field["model"], name=name).id for name in value]
+                    value = [
+                        row.id
+                        for row in db.fetch_all(
+                            field["model"], name_in=value, properties=["id"]
+                        )
+                    ]
                 data[property] = value
             elif field["type"] == "object":
                 data[property] = form_data.get(property)

@@ -502,11 +502,12 @@ class Database:
         instance_type,
         allow_none=False,
         all_matches=False,
+        properties=None,
         rbac="read",
         user=None,
         **kwargs,
     ):
-        query = self.query(instance_type, rbac, user=user)
+        query = self.query(instance_type, rbac, user=user, properties=properties)
         if not query:
             return
         query = query.filter(
