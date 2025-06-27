@@ -227,6 +227,9 @@ Main Commits:
   Commit: a153abc049f28e998bf7a40648c85c5ce23bea46
 - Part 26: Remove 'trigger' property from the results
   Commit: f0396da7ad4a64bc53dfb0bf955c4c355773e30f
+- Part 27: return results in 'start_run' instead of storing them in 'self.results' and add the device
+  results to the main results in the Run class (in case the trigger is REST API and mode is no SQL)
+  Commit: b559794d79e9d3599631f2b8a409a90d78911f30
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
