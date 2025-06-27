@@ -847,9 +847,10 @@ class Run(AbstractBase):
         try:
             results = self.start_run()
         except Exception:
-            result = f"Run '{self.name}' failed to run:\n{format_exc()}"
-            results = {"success": False, "result": result}
-            env.log("critical", result)
+            log = f"Run '{self.name}' failed to run:\n{format_exc()}"
+            results = {"success": False, "result": log}
+            log_function = self.runner.log if hasattr(self, "runner") else env.log
+            log_function("critical", log)
         results["duration"] = str(datetime.now() - start_time)
         return self.finalize_run(results)
 
