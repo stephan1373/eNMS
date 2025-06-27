@@ -117,6 +117,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Add support for properties in fetch function
   - Use 'in_' query to convert names to ID in form_postprocessing function
   Commit: 14664e221fc19829ef6f0e39ed3c41d9becea241
+  - Update fetch to support 'in_' queries
+  - Update objectify to use 'in_' query via fetch_all instead of fetch in a loop
+  - Don't call objectify in Base.update if value is empty
+  Commit: 53a24913d886c0e6ce96aa747802b6c51b30604f
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
