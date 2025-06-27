@@ -204,11 +204,8 @@ class MultipleInstanceField(FieldMixin, WtformsSelectMultipleField):
         self.choices = ()
 
     def pre_validate(self, _):
-        not_found = [
-            name
-            for name in self.data
-            if not db.fetch(self.model, rbac=None, name=name, allow_none=True)
-        ]
+        rows = db.fetch_all(self.model, name_in=self.data, properties=["name"])
+        not_found = set(self.data) - {instance.name for instance in rows}
         if len(set(self.data)) != len(self.data):
             raise ValidationError(f"Duplicated {self.model}s selected.")
         if not_found:
