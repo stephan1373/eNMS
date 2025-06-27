@@ -113,6 +113,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 9f30e17d5c5a2d52b7a63bcb2b7b0a3068a36fce
 - Refactor netmiko and scrapli backup services to move the 'last_property_runtime update in the SQL transaction
   Commit: 2f3071e4bddf26a9c7ffbc56950d819b0328f96f
+- Refactoring of objectify:
+  - Add support for properties in fetch function
+  - Use 'in_' query to convert names to ID in form_postprocessing function
+  Commit: 14664e221fc19829ef6f0e39ed3c41d9becea241
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
