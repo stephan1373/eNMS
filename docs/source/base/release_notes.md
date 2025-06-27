@@ -123,6 +123,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 53a24913d886c0e6ce96aa747802b6c51b30604f
   - In form MultipleInsanceField validation, use in_ query instead of fetching objects in a loop
   Commit: 956f796b6e282fe31d446d5022f17858b646d719
+  Performance speedup: edit object ("Save" button in Edit Panel) about 10x faster
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
