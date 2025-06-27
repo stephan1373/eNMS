@@ -480,8 +480,8 @@ class Runner(GlobalVariables, vs.TimingMixin):
             if self.is_main_run or len(self.run_targets) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
             vs.custom.run_post_processing(self, results)
-        self.results = results
         vs.run_instances.pop(self.runtime)
+        return results
 
     def make_json_compliant(self, input):
         def rec(value):
@@ -550,8 +550,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             parent=self,
             parent_runtime=self.parent_runtime,
         )
-        service_run.start_run()
-        return service_run.results["success"]
+        return service_run.start_run()["success"]
 
     def device_run(self):
         if not self.run_targets:
@@ -748,7 +747,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             result_kw["device_id"] = device.id
         if self.is_main_run and not device:
             results["payload"] = self.payload
-            if self.main_run.trigger == "REST API":
+            if self.main_run.trigger == "REST API" and not self.no_sql_run:
                 results["devices"] = {}
                 for result in self.main_run.results:
                     if not result.device:

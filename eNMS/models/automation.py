@@ -1,5 +1,6 @@
 from collections import defaultdict
 from copy import deepcopy
+from datetime import datetime
 from flask_login import current_user
 from functools import wraps
 from itertools import batched, chain
@@ -520,7 +521,8 @@ class Run(AbstractBase):
         ):
             if run.worker:
                 continue
-            run.finalize_run(app_reloaded=True)
+            results = {"success": False, "result": "Aborted (reload)"}
+            run.finalize_run(results, app_reloaded=True)
         if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
             env.redis_queue.flushdb()
 
@@ -656,22 +658,20 @@ class Run(AbstractBase):
             db.session.execute(table.insert(), values)
 
     @process(commit=True)
-    def end_of_run_transaction(self, app_reloaded):
+    def end_of_run_transaction(self, results, app_reloaded):
         if app_reloaded:
             self.status = "Aborted (reload)"
-            self.success = False
         elif hasattr(self, "runner"):
-            results = self.runner.results
-            self.success = results["success"]
-            self.duration = results["duration"]
             self.status = "Aborted" if self.runner.stop else "Completed"
             self.payload = self.runner.make_json_compliant(self.runner.payload)
-            if getattr(self, "man_minutes", None) and "summary" in results:
-                self.service.man_minutes_total += (
-                    len(results["summary"]["success"]) * self.service.man_minutes
-                    if self.service.man_minutes_type == "device"
-                    else self.service.man_minutes * results["success"]
-                )
+        if getattr(self, "man_minutes", None) and "summary" in results:
+            self.service.man_minutes_total += (
+                len(results["summary"]["success"]) * self.service.man_minutes
+                if self.service.man_minutes_type == "device"
+                else self.service.man_minutes * results["success"]
+            )
+        self.success = results["success"]
+        self.duration = results.get("duration", "Unknown")
         if app_reloaded or not self.service.is_running:
             self.service.status = "Idle"
         state = self.get_state()
@@ -817,9 +817,18 @@ class Run(AbstractBase):
         if self.service.no_sql_run:
             self.runner.run_targets = self.get_run_targets()
         self.runner.cache["global_variables"] = self.runner.cache_global_variables()
-        self.runner.start_run()
+        return self.runner.start_run()
 
-    def finalize_run(self, app_reloaded=False):
+    def post_process_results(self, results):
+        if self.trigger == "REST API" and self.service.no_sql_run:
+            results["devices"] = {}
+            for result in self.results:
+                if not result.device:
+                    continue
+                results["devices"][result.device.name] = result.result
+        return results
+
+    def finalize_run(self, results, app_reloaded=False):
         self.run_service_table_transaction()
         if self.service.no_sql_run:
             self.create_all_results()
@@ -827,20 +836,21 @@ class Run(AbstractBase):
             self.create_all_changelogs()
         self.create_all_logs()
         self.close_remaining_connections()
-        self.end_of_run_transaction(app_reloaded)
+        self.end_of_run_transaction(results, app_reloaded)
         self.service.update_count(-1)
         self.clean_stored_data()
+        return self.post_process_results(results)
 
     def run(self):
+        start_time = datetime.now()
         try:
-            self.start_run()
+            results = self.start_run()
         except Exception:
-            env.log("critical", f"Run '{self.name}' failed to run:\n{format_exc()}")
-        self.finalize_run()
-        if hasattr(self, "runner"):
-            return self.runner.results
-        else:
-            return {"success": False, "result": "Missing 'Runner' object"}
+            result = f"Run '{self.name}' failed to run:\n{format_exc()}"
+            results = {"success": False, "result": result}
+            env.log("critical", result)
+        results["duration"] = str(datetime.now() - start_time)
+        return self.finalize_run(results)
 
 
 class Task(AbstractBase):
