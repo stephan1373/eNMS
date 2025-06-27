@@ -473,6 +473,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             self.write_state("result/success", results["success"])
             if isinstance(self.service, SimpleNamespace):
                 properties = vars(self.service)
+                properties.update({"target_devices": None, "target_pools": None})
             else:
                 properties = self.service.get_properties(exclude=["positions"])
             results["properties"] = properties
