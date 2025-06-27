@@ -82,7 +82,7 @@ class AbstractBase(db.base):
                 continue
             property_type = vs.model_properties[self.__tablename__].get(property, None)
             if property in relation:
-                if relation[property]["list"]:
+                if relation[property]["list"] and value:
                     value = db.objectify(relation[property]["model"], value, rbac=None)
                 elif value:
                     value = db.fetch(relation[property]["model"], id=value, rbac=None)

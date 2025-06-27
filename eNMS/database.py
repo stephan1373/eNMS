@@ -511,7 +511,9 @@ class Database:
             return
         query = query.filter(
             *(
-                getattr(vs.models[instance_type], key) == value
+                getattr(vs.models[instance_type], key[:-3]).in_(value)
+                if key.endswith("_in")
+                else getattr(vs.models[instance_type], key) == value
                 for key, value in kwargs.items()
             )
         )
@@ -544,7 +546,7 @@ class Database:
         return self.fetch(model, allow_none=True, all_matches=True, **kwargs)
 
     def objectify(self, model, object_list, **kwargs):
-        return [self.fetch(model, id=object_id, **kwargs) for object_id in object_list]
+        return self.fetch_all(model, id_in=object_list, **kwargs)
 
     def delete_instance(self, instance, call_delete=True):
         abort_delete = False
