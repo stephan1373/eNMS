@@ -803,6 +803,7 @@ class Run(AbstractBase):
         if self.service.no_sql_run:
             kwargs["service"] = self.topology["services"][self.service.id]
             main_run = SimpleNamespace(**self.get_properties())
+            main_run.target_devices, main_run.target_pools = None, None
             main_run.restart_run = self.restart_run
             main_run.cache = self.cache
             main_run.service = self.topology["services"][self.service_id]
