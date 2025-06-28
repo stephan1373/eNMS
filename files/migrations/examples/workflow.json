@@ -3645,19 +3645,19 @@
     "labels": {
       "276a5b4a-720e-457a-8d66-6c49d03c937d": {
         "alignment": "left",
-        "content": "Delete the device \"No-{{ device.id }}\" that was\ncreated by the factory function.",
+        "content": "Delete the device \"New-{{ device.id }}\" that was\r\ncreated by the factory function.",
         "positions": [
-          184,
-          216
+          187,
+          225
         ],
         "size": 14
       },
       "50a94bb5-ad54-4164-92a3-b4022d43de4d": {
         "alignment": "left",
-        "content": "Test fetch and fetch_all.\nChange name of device \"New-{device.id}\" to \"No-{device.id}\".\nService is configured to update pools after running:\nThe device should be removed from the pool San Francisco.",
+        "content": "Test fetch and fetch_all for devices and pools.",
         "positions": [
-          95,
-          -44
+          48,
+          -23
         ],
         "size": 14
       },
@@ -3687,7 +3687,7 @@
         ]
       }
     },
-    "last_modified": "2022-12-04 07:43:47.542354",
+    "last_modified": "2025-06-28 11:06:05.404554",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
