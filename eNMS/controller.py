@@ -1384,6 +1384,7 @@ class Controller(vs.TimingMixin):
             for association_name in db.associations:
                 self.json_import_associations(association_name, name_to_id, path)
         db.session.commit()
+        return "Import successful."
 
     def migration_export(self, **kwargs):
         if kwargs.get("json_migration"):
@@ -1417,7 +1418,7 @@ class Controller(vs.TimingMixin):
             return self.json_import(**kwargs)
         env.log("info", "Starting Migration Import")
         env.log_events = False
-        status, models = "Import successful", kwargs["import_export_types"]
+        status, models = "Import successful.", kwargs["import_export_types"]
         empty_database = kwargs.get("empty_database_before_import", False)
         service_import = kwargs.get("service_import", False)
         if empty_database:
