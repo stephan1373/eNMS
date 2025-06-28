@@ -54,7 +54,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Optimize call to "run_service" (slow response when many runs (>1k) because of 'to_dict()' call
     without argument)
     Commit: ecc22a0fecd18c559db9d2414e6c968dca6efd93
-  - Optimize the workflow builder refrehs mechanism to update service color in bulk via nodeUpdates
+  - Optimize the workflow builder refresh mechanism to update service color in bulk via nodeUpdates
     When refreshing a large workflow with a set runtime (i.e not in Normal Display), the update would
     cause the UI to freeze for a few seconds. Should be instantaneous now.
     Commit: 5476991c10f91b0e8a3836d3ace7cbbc102616ea
