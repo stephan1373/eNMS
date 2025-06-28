@@ -135,6 +135,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     Commit: 659cbc3302f769e425fd103aff3e3877669d8e38
   - Use session_scope in runner code to remove session after fetch
     Commit: b2e827b832c0470527f0f66ebe188995fe1727fd
+  - Update 'get_data' to return data as a namespace instead of a SQL alchemy object, and add session_scope
+    context_manager to remove SQLAlchemy session in no SQL mode for 'get_data' and 'get_credential'
+    global functions
+    Commit: 82f5add1f5e1a465561857a1ab6ea218b1bbb00e
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
