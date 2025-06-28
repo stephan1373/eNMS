@@ -130,6 +130,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: b7839556dc70844af5efe3c851e2b69ee41ec0eb
 - Change memory_size from an Integer to a String in database (to avoid integer overflow issue)
   Commit: 9d4ff3f4e78a2db97c7c2937160a65f91f07737c
+- Update to the session_scope context manager:
+  - Call session.remove() instead of session.close() (because db.session is a scoped_session)
+    Commit: 659cbc3302f769e425fd103aff3e3877669d8e38
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
