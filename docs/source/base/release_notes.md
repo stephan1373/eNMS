@@ -139,6 +139,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     context_manager to remove SQLAlchemy session in no SQL mode for 'get_data' and 'get_credential'
     global functions
     Commit: 82f5add1f5e1a465561857a1ab6ea218b1bbb00e
+  - Refactor 'get_result' to use db.session_scope to remove the SQL session after fetching the results
+    in no SQL mode
+    Commit: 90e5405e465da2f9e3b8a12fdeb8ac29e40ce828
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
