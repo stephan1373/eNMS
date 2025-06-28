@@ -142,6 +142,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Refactor 'get_result' to use db.session_scope to remove the SQL session after fetching the results
     in no SQL mode
     Commit: 90e5405e465da2f9e3b8a12fdeb8ac29e40ce828
+  - Update 'get_secret' to use a session_scope to fetch the secret object
+    Commit: 9fa66c3842d55ca1c0ff0235ebb399d1f46164f9
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
