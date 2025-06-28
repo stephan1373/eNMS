@@ -188,27 +188,26 @@ class GlobalVariables:
             if self.no_sql_run and run == self.main_run:
                 if results := get_transient_results():
                     return results
-            query = db.session.query(vs.models["result"]).filter(
-                vs.models["result"].parent_runtime == (runtime or run.runtime)
-            )
-            if workflow:
-                query = query.filter(
-                    vs.models["result"].workflow.has(
-                        vs.models["workflow"].name == workflow
+            with db.session_scope(remove=self.no_sql_run):
+                query = db.session.query(vs.models["result"]).filter(
+                    vs.models["result"].parent_runtime == (runtime or run.runtime)
+                )
+                if workflow:
+                    query = query.filter(
+                        vs.models["result"].workflow.has(
+                            vs.models["workflow"].name == workflow
+                        )
                     )
-                )
-            if device:
-                query = query.filter(
-                    vs.models["result"].device.has(vs.models["device"].name == device)
-                )
-            results = filter_run(query, "scoped_name") or filter_run(query, "name")
+                if device:
+                    query = query.filter(
+                        vs.models["result"].device.has(vs.models["device"].name == device)
+                    )
+                results = filter_run(query, "scoped_name") or filter_run(query, "name")
+                results = [result.result for result in results]
             if not results:
                 return recursive_search(run.restart_run)
             else:
-                if all_matches:
-                    return [result.result for result in results]
-                else:
-                    return results.pop().result
+                return results if all_matches else results[0]
 
         return recursive_search(self.main_run)
 
