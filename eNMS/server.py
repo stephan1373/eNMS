@@ -420,7 +420,7 @@ class Server(Flask):
                     kwargs.update(payload or {})
             else:
                 kwargs = request.args.to_dict()
-            with db.session_scope(commit=True):
+            with db.session_scope(commit=True, remove=True):
                 endpoint = vs.rbac["rest_endpoints"][method][endpoint]
                 return Response(
                     response=dumps(getattr(self.rest_api, endpoint)(*args, **kwargs)),
@@ -445,7 +445,7 @@ class Server(Flask):
                 kwargs = form.form_postprocessing(request.form)
             else:
                 kwargs = request.form
-            with db.session_scope(commit=True):
+            with db.session_scope(commit=True, remove=True):
                 return Response(
                     response=dumps(
                         getattr(controller, endpoint)(*args, **kwargs),

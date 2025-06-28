@@ -524,14 +524,14 @@ class Runner(GlobalVariables, vs.TimingMixin):
             if isinstance(run, vs.models["run"]):
                 run = db.fetch("run", runtime=run.runtime, rbac=None)
         else:
-            device = (
-                db.session.query(vs.models["device"])
-                .options(selectinload(vs.models["device"].gateways))
-                .filter(vs.models["device"].id == device_id)
-                .one()
-            )
+            with db.session_scope(remove=True):
+                device = (
+                    db.session.query(vs.models["device"])
+                    .options(selectinload(vs.models["device"].gateways))
+                    .filter(vs.models["device"].id == device_id)
+                    .one()
+                )
             run_kwargs = {"in_process": True, **run.kwargs}
-            db.session.remove()
         results.append(Runner(run, **run_kwargs).get_results(device))
 
     def device_iteration(self, device):
@@ -1069,14 +1069,13 @@ class Runner(GlobalVariables, vs.TimingMixin):
         if self.credentials == "object":
             credential = self.named_credential
         elif self.credentials == "device" or add_secret:
-            credential = db.get_credential(
-                self.creator,
-                device=device,
-                credential_type=credential_type,
-                optional=self.credentials != "device",
-            )
-            if self.no_sql_run and self.in_process:
-                db.session.remove()
+            with db.session_scope(remove=self.no_sql_run and self.in_process):
+                credential = db.get_credential(
+                    self.creator,
+                    device=device,
+                    credential_type=credential_type,
+                    optional=self.credentials != "device",
+                )
         if credential:
             device_log = f" for '{device.name}'" if device else ""
             if self.credentials == "custom":

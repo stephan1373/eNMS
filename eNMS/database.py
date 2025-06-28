@@ -684,7 +684,7 @@ class Database:
                         error(f"Error loading {model} '{file}'\n{format_exc()}")
 
     @contextmanager
-    def session_scope(self, commit=False):
+    def session_scope(self, commit=False, remove=False):
         try:
             yield self.session
             if commit:
@@ -693,7 +693,8 @@ class Database:
             self.session.rollback()
             raise
         finally:
-            self.session.remove()
+            if remove:
+                self.session.remove()
 
     def set_custom_properties(self, table):
         model = getattr(table, "__tablename__", None)
