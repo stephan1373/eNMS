@@ -877,18 +877,18 @@
     ],
     "run": [
       {
-        "data": "name",
-        "title": "Name",
-        "search": "text",
-        "width": "250px",
-        "html": true
-      },
-      {
         "data": "runtime",
         "title": "Runtime",
         "search": "text",
         "width": "200px",
         "visible": false
+      },
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text",
+        "width": "250px",
+        "html": true
       },
       {
         "data": "is_async",
