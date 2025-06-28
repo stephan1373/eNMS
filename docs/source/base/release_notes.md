@@ -133,6 +133,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Update to the session_scope context manager:
   - Call session.remove() instead of session.close() (because db.session is a scoped_session)
     Commit: 659cbc3302f769e425fd103aff3e3877669d8e38
+  - Use session_scope in runner code to remove session after fetch
+    Commit: b2e827b832c0470527f0f66ebe188995fe1727fd
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
