@@ -297,7 +297,7 @@ class Result(AbstractBase):
     duration = db.Column(db.TinyString)
     result = deferred(db.Column(db.Dict))
     creator = db.Column(db.SmallString)
-    memory_size = db.Column(Integer, default=0)
+    memory_size = db.Column(db.SmallString)
     run_id = db.Column(Integer, ForeignKey("run.id", ondelete="cascade"))
     run = relationship("Run", back_populates="results", foreign_keys="Result.run_id")
     parent_runtime = db.Column(db.TinyString, index=True)
@@ -404,7 +404,7 @@ class Run(AbstractBase):
     duration = db.Column(db.TinyString)
     trigger = db.Column(db.TinyString)
     path = db.Column(db.TinyString)
-    memory_size = db.Column(Integer, default=0)
+    memory_size = db.Column(db.SmallString)
     parameterized_run = db.Column(Boolean, default=False)
     server_id = db.Column(Integer, ForeignKey("server.id"))
     server = relationship("Server", back_populates="runs")
@@ -675,7 +675,7 @@ class Run(AbstractBase):
         if app_reloaded or not self.service.is_running:
             self.service.status = "Idle"
         state = self.get_state()
-        self.memory_size = state.get("memory_size", "Unkown")
+        self.memory_size = state.get("memory_size", "Unknown")
         self.state = state
         if self.task and not (self.task.frequency or self.task.crontab_expression):
             self.task.is_active = False
