@@ -127,7 +127,8 @@ class GlobalVariables:
         return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
 
     def get_credential(self, **kwargs):
-        credential = db.get_credential(self.creator, **kwargs)
+        with db.session_scope(remove=self.no_sql_run):
+            credential = db.get_credential(self.creator, **kwargs)
         credential_dict = {"username": credential.username}
         if credential.subtype == "password":
             credential_dict["password"] = env.get_password(credential.password)
@@ -139,7 +140,9 @@ class GlobalVariables:
 
     def get_data(self, path=None, persistent_id=None):
         kwargs = {"path": path} if path else {"persistent_id": persistent_id}
-        return db.fetch("data", user=self.creator, rbac="use", **kwargs)
+        with db.session_scope(remove=self.no_sql_run):
+            data = db.fetch("data", user=self.creator, rbac="use", **kwargs)
+            return SimpleNamespace(**data.get_properties())
 
     def get_result(
         self, service_name, device=None, workflow=None, runtime=None, all_matches=False
