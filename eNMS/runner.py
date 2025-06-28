@@ -121,13 +121,26 @@ class GlobalVariables:
         if func == "filtering":
             kwargs["bulk"] = "object"
         target = controller if func == "filtering" else db
-        return getattr(target, func)(_model, **kwargs)
+        if self.no_sql_run:
+            with db.session_scope(commit=func == "factory", remove=self.in_process):
+                result = getattr(target, func)(_model, **kwargs)
+                if func == "delete":
+                    return result
+                elif isinstance(result, list):
+                    return [
+                        SimpleNamespace(**instance.get_properties())
+                        for instance in result
+                    ]
+                else:
+                    return SimpleNamespace(**result.get_properties())
+        else:
+            return getattr(target, func)(_model, **kwargs)
 
     def get_all_results(self):
         return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
 
     def get_credential(self, **kwargs):
-        with db.session_scope(remove=self.no_sql_run):
+        with db.session_scope(remove=self.no_sql_run and self.in_process):
             credential = db.get_credential(self.creator, **kwargs)
         credential_dict = {"username": credential.username}
         if credential.subtype == "password":
@@ -140,7 +153,7 @@ class GlobalVariables:
 
     def get_data(self, path=None, persistent_id=None):
         kwargs = {"path": path} if path else {"persistent_id": persistent_id}
-        with db.session_scope(remove=self.no_sql_run):
+        with db.session_scope(remove=self.no_sql_run and self.in_process):
             data = db.fetch("data", user=self.creator, rbac="use", **kwargs)
             return SimpleNamespace(**data.get_properties())
 
@@ -188,7 +201,7 @@ class GlobalVariables:
             if self.no_sql_run and run == self.main_run:
                 if results := get_transient_results():
                     return results
-            with db.session_scope(remove=self.no_sql_run):
+            with db.session_scope(remove=self.no_sql_run and self.in_process):
                 query = db.session.query(vs.models["result"]).filter(
                     vs.models["result"].parent_runtime == (runtime or run.runtime)
                 )
@@ -212,7 +225,7 @@ class GlobalVariables:
         return recursive_search(self.main_run)
 
     def get_secret(self, name):
-        with db.session_scope(remove=self.no_sql_run):
+        with db.session_scope(remove=self.no_sql_run and self.in_process):
             secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
             return env.get_password(secret.secret_value)
 
