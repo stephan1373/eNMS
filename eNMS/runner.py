@@ -212,8 +212,9 @@ class GlobalVariables:
         return recursive_search(self.main_run)
 
     def get_secret(self, name):
-        secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
-        return env.get_password(secret.secret_value)
+        with db.session_scope(remove=self.no_sql_run):
+            secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
+            return env.get_password(secret.secret_value)
 
     def get_var(self, *args, **kwargs):
         return self.payload_helper(*args, operation="get", **kwargs)
@@ -1018,7 +1019,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
         self.log("info", f"Sending {self.send_notification_method} notification...")
         notification = self.build_notification(results)
         file_content = deepcopy(notification)
-        if self.include_device_results:
+        if self.include_device_results and not self.no_sql_run:
             file_content["Device Results"] = {}
             for device in self.run_targets:
                 device_result = db.fetch(
