@@ -684,15 +684,16 @@ class Database:
                         error(f"Error loading {model} '{file}'\n{format_exc()}")
 
     @contextmanager
-    def session_scope(self):
+    def session_scope(self, commit=False):
         try:
             yield self.session
-            self.session.commit()
+            if commit:
+                self.session.commit()
         except Exception:
             self.session.rollback()
             raise
         finally:
-            self.session.close()
+            self.session.remove()
 
     def set_custom_properties(self, table):
         model = getattr(table, "__tablename__", None)
