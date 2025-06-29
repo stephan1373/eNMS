@@ -812,7 +812,7 @@ class Controller(vs.TimingMixin):
                     folders.add(file)
                 scoped_path = str(file).replace(str(vs.file_path), "")
                 filetype = "folder" if file.is_dir() else "file"
-                db.factory(filetype, commit=True, path=scoped_path)
+                db.factory(filetype, commit=True, path=scoped_path, rbac=None)
         env.log("info", "Scan of Files Successful")
 
     def get_visualization_pools(self, view):
