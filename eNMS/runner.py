@@ -153,27 +153,32 @@ class GlobalVariables:
             return query.all()
 
         def get_transient_results():
-            results_store = vs.service_result.get(runtime or self.parent_runtime)
-            if not results_store:
-                return
             scoped_name_cache = self.cache["topology"]["scoped_name_to_dict"]
             service_cache = self.cache["topology"]["name_to_dict"]["services"]
+            device_cache = self.cache["topology"]["name_to_dict"]["devices"]
             if service_ns := scoped_name_cache.get(service_name):
                 service_key = service_ns.id
             elif service_ns := service_cache.get(service_name):
                 service_key = service_ns.id
             else:
                 return
-            results_store = results_store.get(service_key)
-            if not results_store:
-                return
-            device_cache = self.cache["topology"]["name_to_dict"]["devices"]
+            device_key = None
             if device:
                 if device not in device_cache:
                     return
-                results = results_store.get(device_cache[device].id, [])
+                device_key = device_cache[device].id
+            device_key = device_cache[device].id if device in device_cache else None
+            if env.redis_queue:
+                path = f"{self.parent_runtime}/results/{service_key}/{device_key}"
+                results = list(map(or_loads, env.redis("lrange", path, 0, -1)))
             else:
-                results = sum(results_store.values(), [])
+                results_store = vs.service_result.get(runtime or self.parent_runtime)
+                if not env.redis_queue and not results_store:
+                    return
+                results_store = results_store.get(service_key)
+                if not results_store:
+                    return
+                results = results_store.get(device_key, [])
             if all_matches:
                 return [result["result"] for result in results]
             else:
