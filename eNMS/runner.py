@@ -268,7 +268,6 @@ class Runner(GlobalVariables, vs.TimingMixin):
         self.run_targets = []
         vs.run_instances[self.runtime] = self
         for key, value in kwargs.items():
-            print(key)
             setattr(self, key, value)
         if self.service.soft_deleted:
             raise Exception(f"Service '{self.service}' is soft-deleted.")
