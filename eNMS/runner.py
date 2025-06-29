@@ -167,10 +167,17 @@ class GlobalVariables:
                 if device not in device_cache:
                     return
                 device_key = device_cache[device].id
-            device_key = device_cache[device].id if device in device_cache else None
+            device_key = device_cache[device].id if device in device_cache else "*"
             if env.redis_queue:
                 path = f"{self.parent_runtime}/results/{service_key}/{device_key}"
-                results = list(map(or_loads, env.redis("lrange", path, 0, -1)))
+                if device:
+                    results = list(map(or_loads, env.redis("lrange", path, 0, -1)))
+                else:
+                    results = [
+                        or_loads(result)
+                        for key in env.redis("keys", path)
+                        for result in env.redis("lrange", key, 0, -1)
+                    ]
             else:
                 results_store = vs.service_result.get(runtime or self.parent_runtime)
                 if not env.redis_queue and not results_store:
@@ -178,7 +185,10 @@ class GlobalVariables:
                 results_store = results_store.get(service_key)
                 if not results_store:
                     return
-                results = results_store.get(device_key, [])
+                if device:
+                    results = results_store.get(device_key, [])
+                else:
+                    results = sum(results_store.values(), [])
             if all_matches:
                 return [result["result"] for result in results]
             else:
