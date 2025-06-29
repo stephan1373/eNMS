@@ -55,22 +55,6 @@ from eNMS.variables import vs
 
 
 class GlobalVariables:
-    def cache_global_variables(self):
-        return {
-            "__builtins__": {**builtins, "__import__": self._import},
-            "dict_to_string": vs.dict_to_string,
-            "encrypt": env.encrypt_password,
-            "placeholder": self.main_run.placeholder,
-            "prepend_filepath": vs.prepend_filepath,
-            "runtime": self.main_run.runtime,
-            "send_email": env.send_email,
-            "server": vs.server_dict,
-            "trigger": self.main_run.trigger,
-            "try_commit": db.try_commit,
-            "try_set": db.try_set,
-            "user": self.cache["creator"],
-        }
-
     def global_variables(_self, **locals):  # noqa: N805
         payload, device = _self.payload, locals.get("device")
         variables = {**locals, **payload.get("form", {})}
@@ -79,6 +63,7 @@ class GlobalVariables:
             variables.update(payload["variables"]["devices"].get(device.name, {}))
         variables.update(
             {
+                "__builtins__": {**builtins, "__import__": _self._import},
                 "delete": partial(_self.internal_function, "delete"),
                 "devices": _self.run_targets,
                 "dry_run": getattr(_self, "dry_run", False),
@@ -283,6 +268,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
         self.run_targets = []
         vs.run_instances[self.runtime] = self
         for key, value in kwargs.items():
+            print(key)
             setattr(self, key, value)
         if self.service.soft_deleted:
             raise Exception(f"Service '{self.service}' is soft-deleted.")

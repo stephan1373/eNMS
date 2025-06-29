@@ -734,6 +734,23 @@ class Run(AbstractBase):
                 "id": self.service.id,
             },
             "topology": self.topology,
+            "global_variables": {
+                "dict_to_string": vs.dict_to_string,
+                "encrypt": env.encrypt_password,
+                "placeholder": self.topology["services"].get(self.placeholder_id),
+                "prepend_filepath": vs.prepend_filepath,
+                "runtime": self.runtime,
+                "send_email": env.send_email,
+                "server": vs.server_dict,
+                "trigger": self.trigger,
+                "try_commit": db.try_commit,
+                "try_set": db.try_set,
+                "user": {
+                    "name": creator.name,
+                    "email": creator.email,
+                    "is_admin": creator.is_admin,
+                },
+            },
         }
 
     def get_run_targets(self):
@@ -805,7 +822,7 @@ class Run(AbstractBase):
             main_run = SimpleNamespace(**self.get_properties())
             main_run.target_devices, main_run.target_pools = None, None
             main_run.restart_run = self.restart_run
-            main_run.cache = self.cache
+            main_run.cache = kwargs["cache"]
             main_run.service = self.topology["services"][self.service_id]
             main_run.placeholder = self.topology["services"].get(self.placeholder_id)
             self.update_target_pools()
@@ -817,7 +834,6 @@ class Run(AbstractBase):
         self.runner = Runner(main_run, **kwargs)
         if self.service.no_sql_run:
             self.runner.run_targets = self.get_run_targets()
-        self.runner.cache["global_variables"] = self.runner.cache_global_variables()
         return self.runner.start_run()
 
     def post_process_results(self, results):
