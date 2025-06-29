@@ -512,9 +512,11 @@ class Database:
             return
         query = query.filter(
             *(
-                getattr(vs.models[instance_type], key[:-3]).in_(value)
-                if key.endswith("_in")
-                else getattr(vs.models[instance_type], key) == value
+                (
+                    getattr(vs.models[instance_type], key[:-3]).in_(value)
+                    if key.endswith("_in")
+                    else getattr(vs.models[instance_type], key) == value
+                )
                 for key, value in kwargs.items()
             )
         )

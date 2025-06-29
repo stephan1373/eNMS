@@ -197,7 +197,9 @@ class GlobalVariables:
                     )
                 if device:
                     query = query.filter(
-                        vs.models["result"].device.has(vs.models["device"].name == device)
+                        vs.models["result"].device.has(
+                            vs.models["device"].name == device
+                        )
                     )
                 results = filter_run(query, "scoped_name") or filter_run(query, "name")
                 results = [result.result for result in results]
