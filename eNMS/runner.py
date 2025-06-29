@@ -61,7 +61,7 @@ class GlobalVariables:
             "dict_to_string": vs.dict_to_string,
             "encrypt": env.encrypt_password,
             "placeholder": self.main_run.placeholder,
-            "prepend_filepath": self.prepend_filepath,
+            "prepend_filepath": vs.prepend_filepath,
             "runtime": self.main_run.runtime,
             "send_email": env.send_email,
             "server": vs.server_dict,
@@ -257,9 +257,6 @@ class GlobalVariables:
             raise Exception(f"Payload Editor: {name} not found in {payload}.")
         else:
             return value
-
-    def prepend_filepath(self, value):
-        return f"{vs.file_path}{value}"
 
     def remove_note(self, x, y):
         self.write_state(f"notes/{x}_{y}", "", top_level=True, method="delete")

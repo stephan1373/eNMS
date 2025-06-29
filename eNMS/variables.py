@@ -354,6 +354,9 @@ class VariableStore:
             current_time = current_time.translate(str.maketrans(":.", "--"))
         return current_time
 
+    def prepend_filepath(self, value):
+        return f"{self.file_path}{value}"
+
     def str_to_date(self, value):
         milliseconds = ".%f" if "." in value else ""
         return datetime.strptime(value, f"%Y-%m-%d %H:%M:%S{milliseconds}")
