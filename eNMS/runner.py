@@ -56,28 +56,20 @@ from eNMS.variables import vs
 
 class GlobalVariables:
     def cache_global_variables(self):
-        default_variables = {
+        return {
             "__builtins__": {**builtins, "__import__": self._import},
             "dict_to_string": vs.dict_to_string,
             "encrypt": env.encrypt_password,
-            "get_all_results": self.get_all_results,
-            "get_connection": self.get_connection,
-            "get_var": self.get_var,
             "placeholder": self.main_run.placeholder,
             "prepend_filepath": self.prepend_filepath,
             "runtime": self.main_run.runtime,
             "send_email": env.send_email,
             "server": vs.server_dict,
-            "set_var": self.payload_helper,
             "trigger": self.main_run.trigger,
             "try_commit": db.try_commit,
             "try_set": db.try_set,
             "user": self.cache["creator"],
-            **vs.custom.runner_global_variables(),
         }
-        if self.cache["creator"]["is_admin"]:
-            default_variables["get_credential"] = self.get_credential
-        return default_variables
 
     def global_variables(_self, **locals):  # noqa: N805
         payload, device = _self.payload, locals.get("device")
@@ -90,6 +82,9 @@ class GlobalVariables:
                 "delete": partial(_self.internal_function, "delete"),
                 "devices": _self.run_targets,
                 "dry_run": getattr(_self, "dry_run", False),
+                "get_all_results": _self.get_all_results,
+                "get_connection": _self.get_connection,
+                "get_var": _self.get_var,
                 "factory": partial(_self.internal_function, "factory"),
                 "fetch": partial(_self.internal_function, "fetch"),
                 "fetch_all": partial(_self.internal_function, "fetch_all"),
@@ -102,10 +97,14 @@ class GlobalVariables:
                 "payload": _self.payload,
                 "remove_note": _self.remove_note,
                 "set_note": _self.set_note,
+                "set_var": _self.payload_helper,
                 "workflow": _self.workflow,
                 **_self.cache["global_variables"],
+                **vs.custom.runner_global_variables(_self),
             }
         )
+        if _self.cache["creator"]["is_admin"]:
+            variables["get_credential"] = _self.get_credential
         return variables
 
     @staticmethod

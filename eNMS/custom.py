@@ -44,7 +44,7 @@ class CustomApp(vs.TimingMixin):
     def run_post_processing(self, run, run_result):
         return
 
-    def runner_global_variables(self):
+    def runner_global_variables(self, run):
         return {}
 
     def server_template_context(self):
