@@ -1,6 +1,7 @@
 apscheduler
 argon2-cffi
 black
+dramatiq
 flask
 flask_caching
 flask_login
