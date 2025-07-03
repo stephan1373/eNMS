@@ -1584,5 +1584,5 @@ class GlobalVariables:
         self.write_state(f"notes/{x}_{y}", content, top_level=True)
 
 
-class Runner(RunEngine, GlobalVariables, vs.TimingMixin):
+class Runner(GlobalVariables, NetworkManagement, RunEngine, vs.TimingMixin):
     pass
