@@ -864,45 +864,6 @@ class RunEngine:
         results["notification"] = {"success": True, "result": result}
         return results
 
-    def get_credentials(self, device, add_secret=True):
-        result, credential_type = {}, self.main_run.service.credential_type
-        credential = None
-        if self.credentials == "object":
-            credential = self.named_credential
-        elif self.credentials == "device" or add_secret:
-            with db.session_scope(remove=self.no_sql_run and self.in_process):
-                credential = db.get_credential(
-                    self.creator,
-                    device=device,
-                    credential_type=credential_type,
-                    optional=self.credentials != "device",
-                )
-        if credential:
-            device_log = f" for '{device.name}'" if device else ""
-            if self.credentials == "custom":
-                device_log += " (for 'enable' / 'secret' password only, if needed)"
-            self.log("info", f"Using '{credential.name}' credential{device_log}")
-        if add_secret and device and credential:
-            result["secret"] = env.get_password(credential.enable_password)
-        if self.credentials in ("device", "object"):
-            result["username"] = credential.username
-            if credential.subtype == "password":
-                result["password"] = env.get_password(credential.password)
-            else:
-                private_key = env.get_password(credential.private_key)
-                result["pkey"] = RSAKey.from_private_key(StringIO(private_key))
-        else:
-            result["username"] = self.sub(self.custom_username, locals())
-            self.log("info", f"Using Custom Credentials (user: {result['username']})")
-            password = env.get_password(self.custom_password)
-            substituted_password = self.sub(password, locals())
-            if password != substituted_password:
-                if substituted_password.startswith("b'"):
-                    substituted_password = substituted_password[2:-1]
-                password = env.get_password(substituted_password)
-            result["password"] = password
-        return result
-
     def convert_result(self, result):
         if self.conversion_method == "none" or "result" not in result:
             return result
@@ -962,23 +923,6 @@ class RunEngine:
                     self.match_dictionary(item, copy, False)
             return not copy
 
-    def transfer_file(self, ssh_client, files):
-        if self.protocol == "sftp":
-            with SFTPClient.from_transport(
-                ssh_client.get_transport(),
-                window_size=self.window_size,
-                max_packet_size=self.max_transfer_size,
-            ) as sftp:
-                sftp.get_channel().settimeout(self.timeout)
-                for source, destination in files:
-                    getattr(sftp, self.direction)(source, destination)
-        else:
-            with SCPClient(
-                ssh_client.get_transport(), socket_timeout=self.timeout
-            ) as scp:
-                for source, destination in files:
-                    getattr(scp, self.direction)(source, destination)
-
     def eval(_self, query, function="eval", **locals):  # noqa: N805
         exec_variables = _self.global_variables(**locals)
         try:
@@ -1018,6 +962,8 @@ class RunEngine:
 
         return rec(input)
 
+
+class NetworkManagement:
     def update_netmiko_connection(self, connection, device):
         setattr(connection, "global_delay_factor", self.service.global_delay_factor)
         try:
@@ -1046,6 +992,62 @@ class RunEngine:
         except Exception as exc:
             self.log("error", f"Failed to honor the config mode ({exc})", device)
         return connection
+
+    def get_credentials(self, device, add_secret=True):
+        result, credential_type = {}, self.main_run.service.credential_type
+        credential = None
+        if self.credentials == "object":
+            credential = self.named_credential
+        elif self.credentials == "device" or add_secret:
+            with db.session_scope(remove=self.no_sql_run and self.in_process):
+                credential = db.get_credential(
+                    self.creator,
+                    device=device,
+                    credential_type=credential_type,
+                    optional=self.credentials != "device",
+                )
+        if credential:
+            device_log = f" for '{device.name}'" if device else ""
+            if self.credentials == "custom":
+                device_log += " (for 'enable' / 'secret' password only, if needed)"
+            self.log("info", f"Using '{credential.name}' credential{device_log}")
+        if add_secret and device and credential:
+            result["secret"] = env.get_password(credential.enable_password)
+        if self.credentials in ("device", "object"):
+            result["username"] = credential.username
+            if credential.subtype == "password":
+                result["password"] = env.get_password(credential.password)
+            else:
+                private_key = env.get_password(credential.private_key)
+                result["pkey"] = RSAKey.from_private_key(StringIO(private_key))
+        else:
+            result["username"] = self.sub(self.custom_username, locals())
+            self.log("info", f"Using Custom Credentials (user: {result['username']})")
+            password = env.get_password(self.custom_password)
+            substituted_password = self.sub(password, locals())
+            if password != substituted_password:
+                if substituted_password.startswith("b'"):
+                    substituted_password = substituted_password[2:-1]
+                password = env.get_password(substituted_password)
+            result["password"] = password
+        return result
+
+    def transfer_file(self, ssh_client, files):
+        if self.protocol == "sftp":
+            with SFTPClient.from_transport(
+                ssh_client.get_transport(),
+                window_size=self.window_size,
+                max_packet_size=self.max_transfer_size,
+            ) as sftp:
+                sftp.get_channel().settimeout(self.timeout)
+                for source, destination in files:
+                    getattr(sftp, self.direction)(source, destination)
+        else:
+            with SCPClient(
+                ssh_client.get_transport(), socket_timeout=self.timeout
+            ) as scp:
+                for source, destination in files:
+                    getattr(scp, self.direction)(source, destination)
 
     def netmiko_connection(self, device):
         connection = self.get_or_close_connection("netmiko", device.name)
