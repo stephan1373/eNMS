@@ -391,7 +391,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             raise Exception(f"Device query invalid targets: {', '.join(not_found)}")
         return devices
 
-    def compute_devices(self):
+    def compute_run_targets(self):
         devices = set(self.get_target_property("target_devices"))
         pools = self.get_target_property("target_pools")
         if self.get_target_property("device_query"):
@@ -520,7 +520,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             return {"error": log}
 
     @staticmethod
-    def get_device_result(args):
+    def get_device_result_in_process(args):
         device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
         if not run.no_sql_run:
@@ -546,7 +546,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
                     .one()
                 )
             run_kwargs = {"in_process": True, **run.kwargs}
-        results.append(Runner(run, **run_kwargs).get_results(device))
+        results.append(Runner(run, **run_kwargs).run_job_and_collect_results(device))
 
     def device_iteration(self, device):
         derived_devices = self.compute_devices_from_query(
@@ -569,7 +569,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
 
     def device_run(self):
         if not self.run_targets:
-            self.run_targets = self.compute_devices()
+            self.run_targets = self.compute_run_targets()
         allowed_devices, restricted_devices = [], []
         device_cache = self.cache["topology"]["name_to_dict"]["devices"]
         for device in self.run_targets:
@@ -649,7 +649,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
             if all_skipped:
                 summary[self.skip_value] = skipped_targets
                 return {"success": self.skip_value == "success", "summary": summary}
-            results = self.get_results()
+            results = self.run_job_and_collect_results()
             if "summary" not in results:
                 summary_key = "success" if results["success"] else "failure"
                 device_names = [device.name for device in self.run_targets]
@@ -689,11 +689,11 @@ class Runner(GlobalVariables, vs.TimingMixin):
                 ]
                 self.log("info", f"Starting a pool of {processes} threads")
                 with ThreadPool(processes=processes) as pool:
-                    pool.map(self.get_device_result, process_args)
+                    pool.map(self.get_device_result_in_process, process_args)
             else:
                 results.extend(
                     [
-                        self.get_results(device, commit=False)
+                        self.run_job_and_collect_results(device, commit=False)
                         for device in non_skipped_targets
                     ]
                 )
@@ -873,7 +873,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
                 results = {"success": False, "result": result}
         return results
 
-    def get_results(self, device=None, commit=True):
+    def run_job_and_collect_results(self, device=None, commit=True):
         self.log("info", "STARTING", device)
         start = datetime.now().replace(microsecond=0)
         results = {"device_target": getattr(device, "name", None)}

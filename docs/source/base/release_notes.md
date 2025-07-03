@@ -147,6 +147,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Add session_scope context_manager in internal_function (factory, fetch, fetch_all and delete) in
     no SQL mode
     Commit: 737bfb4ecb3297c1113d23440341e39e8bd07383
+- Rename function in runner.py
+  - get_results: run_job_and_collect_results
+  - compute_devices: compute_run_targets
+  - get_device_result: get_device_result_in_process
 
 Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
