@@ -1787,7 +1787,7 @@ Version 3.21
 - Syntax highlight option: ability to highlight certain keywords based on regular expression match,
   defined in eNMS/static/lib/codemirror/logsMode. Can be customized.
 - New logging property to configure log level for a service or disable logging.
-- Fix bug when typing invalid regex for table search (eg "(" )
+- Fix bug when typing invalid regex for table search (eg "(" ))
 - Dont display Start / End services in service table
 - Make configuration search case-insensitive for inclusion ("Search" REST endpoint + UI)
 - Use log level of top-level workflow for all services.
