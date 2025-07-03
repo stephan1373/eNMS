@@ -460,7 +460,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
         results = {"runtime": self.runtime, "success": True}
         self.write_state("result/runtime", self.runtime)
         try:
-            results.update(self.device_run())
+            results.update(self.compute_targets_and_collect_results())
         except Exception:
             result = "\n".join(format_exc().splitlines())
             self.log("error", result)
@@ -567,7 +567,7 @@ class Runner(GlobalVariables, vs.TimingMixin):
         )
         return service_run.start_run()["success"]
 
-    def device_run(self):
+    def compute_targets_and_collect_results(self):
         if not self.run_targets:
             self.run_targets = self.compute_run_targets()
         allowed_devices, restricted_devices = [], []
