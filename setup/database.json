@@ -82,7 +82,8 @@
       "service_log",
       "service_report",
       "session",
-      "worker"
+      "worker",
+      "run_worker"
     ],
     "clear_on_import": [
       "credential",

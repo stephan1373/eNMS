@@ -1257,6 +1257,8 @@ class Controller(vs.TimingMixin):
         for property, relation in vs.relationships[cls_name].items():
             if relation["list"]:
                 continue
+            if f"{cls_name}_{property}" in db.json_migration["no_export"]:
+                continue
             cls = vs.models[cls_name]
             alias = aliased(vs.models[relation["model"]], flat=True)
             statement = (
