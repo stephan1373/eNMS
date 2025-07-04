@@ -51,7 +51,8 @@ class Controller(vs.TimingMixin):
             json_migration=vs.settings["app"].get("json_migration"),
         )
         self.get_git_content(force_update=True)
-        self.scan_folder()
+        if vs.settings["app"].get("scan_folder_on_startup"):
+            self.scan_folder()
 
     def _register_endpoint(self, func):
         setattr(self, func.__name__, func)

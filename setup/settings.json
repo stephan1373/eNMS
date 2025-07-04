@@ -9,6 +9,7 @@
     "profiling": false,
     "session_timeout_minutes": 30,
     "startup_migration": "examples",
+    "scar_folder_on_startup": false,
     "json_migration": true,
     "theme": "default",
     "version": 5.1
