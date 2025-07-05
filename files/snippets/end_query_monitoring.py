@@ -9,6 +9,10 @@ for query, count in db.orm_statements.most_common():
     print(f"{count}: {query}\n")
     query_time = db.orm_statements_runtime[query]
     print(f"Execution time ({count} query): {query_time}\n")
-    print(f"Traceback:\n{db.orm_statements_traceback[query]}\n\n")
+    tracebacks = "\n\n".join(
+        f"{count}: {traceback}"
+        for traceback, count in db.orm_statements_tracebacks[query].items()
+    )
+    print(f"Tracebacks:\n{tracebacks}\n\n")
 
 db.monitor_orm_statements = False

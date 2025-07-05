@@ -355,7 +355,7 @@ class Database:
         if vs.settings["app"]["config_mode"].lower() == "debug":
             self.orm_statements = Counter()
             self.orm_statements_runtime = defaultdict(timedelta)
-            self.orm_statements_traceback = {}
+            self.orm_statements_tracebacks = defaultdict(lambda: defaultdict(int))
 
             self.monitor_orm_statements = False
 
@@ -373,11 +373,12 @@ class Database:
                 runtime = datetime.now() - context._start
                 self.orm_statements[statement] += 1
                 self.orm_statements_runtime[statement] += runtime
-                self.orm_statements_traceback[statement] = "\n".join(
+                traceback = "\n".join(
                     f"{frame.filename}:{frame.lineno} in {frame.name}"
                     for frame in extract_stack()
                     if "enms" in frame.filename.lower()
                 )
+                self.orm_statements_tracebacks[statement][traceback] += 1
 
     def configure_associations(self):
         self.associations = {}
