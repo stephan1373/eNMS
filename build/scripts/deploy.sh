@@ -35,7 +35,7 @@ function install() {
     # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
   elif [ "$install" = "postgresql" ]; then
     sudo apt-get install -y postgresql libpq-dev postgresql-client
-    sudo apt install build-essential python3-dev libpq-dev
+    sudo apt-get install build-essential python3-dev libpq-dev
     sudo pip3 install psycopg2
     sudo -u postgres psql -c "CREATE DATABASE enms;"
     sudo -u postgres psql -c "CREATE USER root WITH PASSWORD 'password';"
