@@ -26,7 +26,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     Commit: 76e9d55829b31ed39ca96cbc62bfb6fb9f54ee29
   - Add batch mechanism for creating and updating DB records in batches during the migration import
     Configured via database.json > "transactions" > "batch_size" (default: 1000)
-    Commit: 80e11132115e76c4eab2aa0a5cd0f8361d3c0adc 
+    Commit: 80e11132115e76c4eab2aa0a5cd0f8361d3c0adc
+- Make Service.name a SmallString, otherwise mysql fails to initialize with the following error:
+  "MySQLdb.OperationalError: (1170, BLOB/TEXT column 'name' used in key specification without a key length)"
+  Commit: 82154c0830f1cae60ea7a81732478c302767145b
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035 
 - Performance Optimization
