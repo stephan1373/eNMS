@@ -86,20 +86,13 @@
       "run_worker"
     ],
     "clear_on_import": [
-      "credential",
       "connection_service",
       "data",
       "device",
       "file",
-      "folder",
-      "group",
       "link",
-      "pool",
-      "server",
       "service",
-      "task",
-      "worker",
-      "workflow_edge"
+      "worker"
     ],
     "dont_migrate": {
       "credential": ["id"],

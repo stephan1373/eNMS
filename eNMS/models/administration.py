@@ -306,7 +306,7 @@ class File(AbstractBase):
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_updated = db.Column(db.TinyString)
     status = db.Column(db.TinyString)
-    folder_id = db.Column(Integer, ForeignKey("folder.id"))
+    folder_id = db.Column(Integer, ForeignKey("folder.id", ondelete="cascade"))
     folder = relationship(
         "Folder", foreign_keys="Folder.folder_id", back_populates="files"
     )

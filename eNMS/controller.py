@@ -1365,8 +1365,7 @@ class Controller(vs.TimingMixin):
             for cls_name in export_models:
                 db.session.execute(vs.models[cls_name].__table__.delete())
             for cls_name in db.json_migration["clear_on_import"]:
-                model = vs.models[cls_name]
-                db.session.execute(model.__table__.delete())
+                db.session.execute(vs.models[cls_name].__table__.delete())
             db.session.commit()
         path = Path(vs.migration_path) / kwargs["name"]
         with env.timer("Import Properties"):
