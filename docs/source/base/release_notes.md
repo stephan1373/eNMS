@@ -18,6 +18,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     - RestCallService.named_credential_id
     - WorkflowEdge.workflow_id
     - Commit: 801da3b267df05a3474547330a356577526b8b78
+  - Add cascade delete between file and folder to fix json migration import for mysql
+    Commit: bc9fe7e3b7bc6938f9ecbc20fb2254d3a4ee6898
   - Refactor runs and results to store state with persistent ID instead of ID to be able to
     persist the state when exporting runs and results as JSON
     Commit: c81c3aceb345134a20c33a389de3eda2fac0cb15 (update state to use persistent ID)
