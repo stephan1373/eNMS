@@ -370,7 +370,7 @@ class GenericFile(File):
 class Folder(File):
     __tablename__ = "folder"
     pretty_name = "Folder"
-    id = db.Column(Integer, ForeignKey("file.id"), primary_key=True)
+    id = db.Column(Integer, ForeignKey("file.id", ondelete="cascade"), primary_key=True)
     files = relationship(
         "File",
         back_populates="folder",
