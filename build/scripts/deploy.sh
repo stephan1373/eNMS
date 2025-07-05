@@ -26,7 +26,7 @@ function install() {
     # export VAULT_TOKEN=token
     # vault secrets enable -version=1 -path=secret kv
   elif [ "$install" = "mysql" ]; then
-    sudo apt install -y mysql-server libmysqlclient-dev python3-mysqldb
+    sudo apt install -y pkg-config mysql-server libmysqlclient-dev python3-mysqldb
     sudo pip3 install mysqlclient
     sudo mysql -u root --password=password -e 'CREATE DATABASE enms;'
     sudo mysql -u root --password=password -e 'set global max_connections = 2000;'
