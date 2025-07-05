@@ -307,7 +307,12 @@ class Database:
                         if hasattr(deleted[0], "class_type"):
                             history["scalars"][attr.key] = deleted[0].base_properties
                         else:
-                            if isinstance(added[0], str) and isinstance(deleted[0], str) and vs.normalize_newlines(added[0]) == vs.normalize_newlines(deleted[0]):
+                            if (
+                                isinstance(added[0], str)
+                                and isinstance(deleted[0], str)
+                                and vs.normalize_newlines(added[0])
+                                == vs.normalize_newlines(deleted[0])
+                            ):
                                 continue
                             change_dict = {"old": deleted[0], "new": added[0]}
                             history["properties"][attr.key] = change_dict

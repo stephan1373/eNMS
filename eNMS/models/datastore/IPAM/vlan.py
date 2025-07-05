@@ -19,7 +19,10 @@ class VLAN(Data):
 class VLANForm(DataForm):
     form_type = HiddenField(default="vlan")
     store = InstanceField("Store", model="store", constraints={"data_type": "vlan"})
-    vlan_id = IntegerField("VLAN ID", default=1, layout="""
+    vlan_id = IntegerField(
+        "VLAN ID",
+        default=1,
+        layout="""
         <div style="float:right; width: 80%;">
           {field}
         </div>
@@ -33,7 +36,7 @@ class VLANForm(DataForm):
                 Get Next ID
             </button>
           </center>
-        </div>"""
+        </div>""",
     )
     role = StringField()
     group = StringField()
