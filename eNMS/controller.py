@@ -1387,6 +1387,8 @@ class Controller(vs.TimingMixin):
             for association_name in db.associations:
                 self.json_import_associations(association_name, name_to_id, path)
         db.session.commit()
+        server = db.fetch("server", name=vs.server, rbac=None, allow_none=True)
+        vs.server_id = getattr(server, "id", None)
         return "Import successful."
 
     def migration_export(self, **kwargs):
