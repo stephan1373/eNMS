@@ -91,12 +91,14 @@
       "data",
       "device",
       "file",
+      "folder",
       "group",
       "link",
       "pool",
       "server",
       "service",
       "task",
+      "worker",
       "workflow_edge"
     ],
     "dont_migrate": {
