@@ -50,11 +50,13 @@ class Controller(vs.TimingMixin):
             import_export_types=db.import_export_models,
             json_migration=vs.settings["app"].get("json_migration"),
         )
-        on_startup = vs.settings["app"].get("on_startup", {})
+        on_startup = vs.settings.get("on_startup", {})
         if on_startup.get("get_git_content"):
             self.get_git_content(force_update=True)
         if on_startup.get("scan_folder"):
             self.scan_folder()
+        if on_startup.get("create_fake_logs"):
+            vs.custom.create_fake_logs()
 
     def _register_endpoint(self, func):
         setattr(self, func.__name__, func)
