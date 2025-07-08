@@ -192,6 +192,9 @@ Key Ideas about the refactoring of runner.py and "No SQL Run":
 - Make 'get_git_content' and 'scan_folder' optional on app startup with new optional "on_startup" key
   in settings.json
   Commit: 4341a0feebed970625e677a85c52a7a0f29d6d7a
+- Add mechanism to create fake changelogs on app startup via 'create_fake_logs' key in settings (the value
+  must be set to the number of changelogs to create, by default it's 0)
+  Commit: a302b25ed825dc967c4db61a29f32367ee4ccf33
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
