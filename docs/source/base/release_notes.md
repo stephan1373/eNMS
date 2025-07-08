@@ -189,6 +189,9 @@ Key Ideas about the refactoring of runner.py and "No SQL Run":
 - In "No SQL mode", every transaction that happens after forking should have a clear beginning and end, otherwise the
   session is never closed until the end of the thread, and a workflow that uses 25 threads will use 25 SQL session
   until the end of the wokrflow.
+- Make 'get_git_content' and 'scan_folder' optional on app startup with new optional "on_startup" key
+  in settings.json
+  Commit: 4341a0feebed970625e677a85c52a7a0f29d6d7a
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
