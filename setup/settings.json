@@ -9,10 +9,13 @@
     "profiling": false,
     "session_timeout_minutes": 30,
     "startup_migration": "examples",
-    "scan_folder_on_startup": false,
     "json_migration": true,
     "theme": "default",
     "version": 5.1
+  },
+  "on_startup": {
+    "get_git_content": false,
+    "scan_folder": false
   },
   "authentication": {
     "default": "database",
