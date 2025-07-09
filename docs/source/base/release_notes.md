@@ -129,7 +129,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Update objectify to use 'in_' query via fetch_all instead of fetch in a loop
   - Don't call objectify in Base.update if value is empty
   Commit: 53a24913d886c0e6ce96aa747802b6c51b30604f
-  - In form MultipleInsanceField validation, use in_ query instead of fetching objects in a loop
+  - In form MultipleInstanceField validation, use in_ query instead of fetching objects in a loop
   Commit: 956f796b6e282fe31d446d5022f17858b646d719
   Performance speedup: edit object ("Save" button in Edit Panel) about 10x faster for a workflow
   with 1k target devices
