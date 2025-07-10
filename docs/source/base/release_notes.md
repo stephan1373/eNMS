@@ -160,7 +160,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Add new "scan_folder_on_startup" option to make calling "scan_folder" on first app init optional
   Commit: 0378806a6d42aa1ab6fc349e37dd3389bcf8f722
 
-Key Ideas about the refactoring of runner.py and "No SQL Run":
+Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
   own transaction)
 - Every commit during a run makes the SQLAlchemy session expires, along with all objects attached to that session:
@@ -181,7 +181,7 @@ Key Ideas about the refactoring of runner.py and "No SQL Run":
     connection pool should not determine the number of threads that can be used in multiprocessing mode.
   - Objects attached to a session expire on commit (default SQLAlchemy setting),but they don't expire on remove,
     so fetching an object, calling db.session.remove() and accessing object properties should not trigger a refetch.
-    In refetch after fork with "No SQL Run" enabled, we refetch the devices, then remove the session; everything else
+    In refetch after fork with "High Performance" enabled, we refetch the devices, then remove the session; everything else
     is a namespace
 - In "No SQL mode", every transaction that happens after forking should have a clear beginning and end, otherwise the
   session is never closed until the end of the thread, and a workflow that uses 25 threads will use 25 SQL session
@@ -205,21 +205,21 @@ Main Commits:
   Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
   afterward (such as removing an edge or a service) won't affect that workflow run.
 - Part 2 (no SQL only): Store results in a dict and create them in the end of run transaction.
-  Only active when the "No SQL Run" option is checked.
+  Only active when the "High Performance" option is checked.
   Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
 - Part 3 (no SQL only):
   - Use service namespace instead of service SQL object for Runner.service
   - Convert all jobs to @staticmethod so it can be called without service SQL object
   - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
   - Move the run_service_table update in the end_of_run_cleanup function and use try_commit along with low level SQL to make it faster
-  - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of "No SQL Run"
+  - In the workflow, fetch the service with db.fetch or use the service namespace depending on the value of "High Performance"
   Commit: c4110615e6c36832d183ad0edf37a595cbc39ea6
 - Part 4:
   - All Services are Namespaces
   - All Devices are SQLAlchemy objects
   Commit: 71bf1a7b7a226eb48aa015cc07ed3deff7978b1e
 - Part 5:
-  - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services "No SQL Run"
+  - Refactor "Compute Target Pools" mechanism: pools are updated before the main run starts for all services "High Performance"
   - Make commit optional and False by default in compute_pool
   Commit: 1e47b0aef2587055e02f849c45f96a294aff62e9
 - Part 6: Use itertools.batched for creating results in batch with bulk insert at the end of a run
@@ -228,7 +228,7 @@ Main Commits:
 - Part 7: Remove task from the argument of Runner (no longer used)
   Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
 - Part 8 (no SQL only): Create all reports after the main run in the Run class in
-  "No SQL Run" mode
+  "High Performance" mode
   Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
 - Part 9 (no SQL only): Implement in-memory get transient result function and convert devices to
   namespace in topology cache
@@ -247,7 +247,7 @@ Main Commits:
 - Part 14 (no SQL only): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
   and remove the placeholder argument
   Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
-- Part 15 (no SQL only): Don't refetch after fork in no SQL run mode
+- Part 15 (no SQL only): Don't refetch after fork in "High Performance" mode
   Commit: f4b1f8e7f1b78bbcb81b35c81b31d34fb2af9be0
 - Part 16:
   - (no SQL only) Don't pass reference to restart_run as Runner arg in no SQL mode
@@ -316,17 +316,17 @@ Tests:
 - Test the "Update Target Pools" mechanism
 - Test that the get_result function work like it used to with all possible combinations of parameters
   (with device, without device, with scoped name and full name for the service, with "all_matches" set
-  to True and False) regardless of the value of "No SQL Run"
-  The output of "get_result" should be the same regardless of the value of "No SQL Run"
-- Test that the "Report" mechanism works correctly regardless of the value of "No SQL Run"
-- Test the Restart From mechanism, with all possible target origins, with both "No SQL Run" enabled and disabled
+  to True and False) regardless of the value of "High Performance"
+  The output of "get_result" should be the same regardless of the value of "High Performance"
+- Test that the "Report" mechanism works correctly regardless of the value of "High Performance"
+- Test the Restart From mechanism, with all possible target origins, with both "High Performance" enabled and disabled
 - Test the Ansible Playbook Service
 
 Notes:
-- Everything in the "Tests" section should be tested with both "No SQL Run" checked and unchecked
-- The "No SQL Run" flag comes from the superworkflow if there is one.
+- Everything in the "Tests" section should be tested with both "High Performance" checked and unchecked
+- The "High Performance" flag comes from the superworkflow if there is one.
 - Modifying a workflow (updating services, removing or adding edges, etc) will no longer affect on-going runs as the topology is saved before the run begins
-- With No SQL runs, results cannot be read from the UI until the workflow has completed.
+- In "High Performance" mode, results cannot be read from the UI until the workflow has completed.
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------

@@ -81,7 +81,7 @@ class RunEngine:
         self.progress_key = f"progress/{device_progress}"
         self.cache = {**run.cache, "service": self.get_service_properties()}
         self.main_run = run if self.is_main_run else run.main_run
-        self.no_sql_run = self.cache["main_run_service"]["no_sql_run"]
+        self.high_performance = self.cache["main_run_service"]["high_performance"]
         if env.redis_queue:
             env.redis("sadd", f"{self.parent_runtime}/services", self.service.id)
         else:
@@ -90,7 +90,7 @@ class RunEngine:
             self.path = run.path
         elif not self.is_main_run:
             self.path = f"{run.path}>{self.service.persistent_id}"
-        if not self.no_sql_run:
+        if not self.high_performance:
             db.session.commit()
 
     def get_service_properties(self):
@@ -186,7 +186,7 @@ class RunEngine:
                 self.get_target_property("device_query"),
                 self.get_target_property("device_query_property"),
             )
-        if not self.no_sql_run:
+        if not self.high_performance:
             if self.is_main_run:
                 self.main_run.target_devices = list(devices)
                 self.main_run.target_pools = list(pools)
@@ -253,7 +253,7 @@ class RunEngine:
             self.log("error", result)
             results.update({"success": False, "result": result})
         finally:
-            if not self.no_sql_run:
+            if not self.high_performance:
                 try:
                     db.session.commit()
                 except Exception:
@@ -310,7 +310,7 @@ class RunEngine:
     def get_device_result_in_process(args):
         device_id, runtime, results, refetch_ids = args
         run = vs.run_instances[runtime]
-        if not run.no_sql_run:
+        if not run.high_performance:
             device = db.fetch("device", id=device_id, rbac=None)
             run_kwargs = {"in_process": True}
             for key, value in run.kwargs.items():
@@ -362,7 +362,7 @@ class RunEngine:
         for device in self.run_targets:
             if device.id in vs.run_allowed_targets[self.parent_runtime]:
                 allowed_devices.append(device)
-                if self.no_sql_run and device.name not in device_cache:
+                if self.high_performance and device.name not in device_cache:
                     device_namespace = SimpleNamespace(**device.get_properties())
                     device_cache[device.name] = device_namespace
             else:
@@ -549,7 +549,7 @@ class RunEngine:
             result_kw["device_id"] = device.id
         if self.is_main_run and not device:
             results["payload"] = self.payload
-            if self.main_run.trigger == "REST API" and not self.no_sql_run:
+            if self.main_run.trigger == "REST API" and not self.high_performance:
                 results["devices"] = {}
                 for result in self.main_run.results:
                     if not result.device:
@@ -564,7 +564,7 @@ class RunEngine:
         result_kw["result"] = results
         if not self.disable_result_creation or create_failed_results or run_result:
             self.has_result = True
-            if not self.no_sql_run:
+            if not self.high_performance:
                 try:
                     db.factory(
                         "result",
@@ -738,7 +738,7 @@ class RunEngine:
             f"RUNTIME {self.parent_runtime} - USER {self.creator} -"
             f" SERVICE '{self.cache['service']['name']}' - {log}"
         )
-        runtime = self.parent_runtime if self.no_sql_run else None
+        runtime = self.parent_runtime if self.high_performance else None
         settings = env.log(
             severity,
             full_log,
@@ -800,7 +800,7 @@ class RunEngine:
             self.log("error", f"Failed to build report:\n{report}")
         if report:
             self.check_size(report, "report")
-            if not self.no_sql_run:
+            if not self.high_performance:
                 db.factory(
                     "service_report",
                     runtime=self.parent_runtime,
@@ -817,7 +817,7 @@ class RunEngine:
         self.log("info", f"Sending {self.send_notification_method} notification...")
         notification = self.build_notification(results)
         file_content = deepcopy(notification)
-        if self.include_device_results and not self.no_sql_run:
+        if self.include_device_results and not self.high_performance:
             file_content["Device Results"] = {}
             for device in self.run_targets:
                 device_result = db.fetch(
@@ -999,7 +999,7 @@ class NetworkManagement:
         if self.credentials == "object":
             credential = self.named_credential
         elif self.credentials == "device" or add_secret:
-            with db.session_scope(remove=self.no_sql_run and self.in_process):
+            with db.session_scope(remove=self.high_performance and self.in_process):
                 credential = db.get_credential(
                     self.creator,
                     device=device,
@@ -1422,7 +1422,7 @@ class GlobalVariables:
         if func == "filtering":
             kwargs["bulk"] = "object"
         target = controller if func == "filtering" else db
-        if self.no_sql_run:
+        if self.high_performance:
             with db.session_scope(commit=func == "factory", remove=self.in_process):
                 result = getattr(target, func)(_model, **kwargs)
                 if func == "delete":
@@ -1441,7 +1441,7 @@ class GlobalVariables:
         return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
 
     def get_credential(self, **kwargs):
-        with db.session_scope(remove=self.no_sql_run and self.in_process):
+        with db.session_scope(remove=self.high_performance and self.in_process):
             credential = db.get_credential(self.creator, **kwargs)
         credential_dict = {"username": credential.username}
         if credential.subtype == "password":
@@ -1454,7 +1454,7 @@ class GlobalVariables:
 
     def get_data(self, path=None, persistent_id=None):
         kwargs = {"path": path} if path else {"persistent_id": persistent_id}
-        with db.session_scope(remove=self.no_sql_run and self.in_process):
+        with db.session_scope(remove=self.high_performance and self.in_process):
             data = db.fetch("data", user=self.creator, rbac="use", **kwargs)
             return SimpleNamespace(**data.get_properties())
 
@@ -1514,10 +1514,10 @@ class GlobalVariables:
         def recursive_search(run):
             if not run:
                 return None
-            if self.no_sql_run and run == self.main_run:
+            if self.high_performance and run == self.main_run:
                 if results := get_transient_results():
                     return results
-            with db.session_scope(remove=self.no_sql_run and self.in_process):
+            with db.session_scope(remove=self.high_performance and self.in_process):
                 query = db.session.query(vs.models["result"]).filter(
                     vs.models["result"].parent_runtime == (runtime or run.runtime)
                 )
@@ -1543,7 +1543,7 @@ class GlobalVariables:
         return recursive_search(self.main_run)
 
     def get_secret(self, name):
-        with db.session_scope(remove=self.no_sql_run and self.in_process):
+        with db.session_scope(remove=self.high_performance and self.in_process):
             secret = db.fetch("secret", scoped_name=name, user=self.creator, rbac="use")
             return env.get_password(secret.secret_value)
 

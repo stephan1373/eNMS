@@ -181,7 +181,7 @@ class Workflow(Service):
                         "failure": [],
                     }
             else:
-                if not run.no_sql_run:
+                if not run.high_performance:
                     sql_service = db.fetch("service", id=service_id, rbac=None)
                 else:
                     sql_service = topology["services"][service_id]

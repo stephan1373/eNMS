@@ -55,7 +55,7 @@
     "multiprocessing": false,
     "name": "[Dry Run: Napalm Services] Ping",
     "negative_logic": false,
-    "no_sql_run": false,
+    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",

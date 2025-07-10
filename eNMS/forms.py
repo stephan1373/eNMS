@@ -741,7 +741,7 @@ class ServiceForm(BaseForm):
     shared = BooleanField("Shared", help="common/shared")
     scoped_name = StringField("Scoped Name", [InputRequired()], ui_name="Name")
     version = StringField("Version")
-    no_sql_run = BooleanField("No SQL Run")
+    high_performance = BooleanField("High Performance")
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     device_query = StringField(
         "Device Query",
@@ -938,7 +938,7 @@ class ServiceForm(BaseForm):
             "creator",
             "type",
             "persistent_id",
-            "no_sql_run",
+            "high_performance",
             "disabled",
             "disabled_info",
             "shared",

@@ -46,7 +46,7 @@ class Service(AbstractBase):
     version = db.Column(db.SmallString)
     description = db.Column(db.LargeString)
     priority = db.Column(Integer, default=10)
-    no_sql_run = db.Column(Boolean, default=False)
+    high_performance = db.Column(Boolean, default=False)
     number_of_retries = db.Column(Integer, default=0)
     time_between_retries = db.Column(Integer, default=10)
     max_number_of_retries = db.Column(Integer, default=100)
@@ -728,7 +728,7 @@ class Run(AbstractBase):
             },
             "main_run": self.base_properties,
             "main_run_service": {
-                "no_sql_run": self.service.no_sql_run,
+                "high_performance": self.service.high_performance,
                 "log_level": int(self.service.log_level),
                 "show_user_logs": self.service.show_user_logs,
                 "id": self.service.id,
@@ -817,7 +817,7 @@ class Run(AbstractBase):
             "topology": self.topology,
             "trigger": self.trigger,
         }
-        if self.service.no_sql_run:
+        if self.service.high_performance:
             kwargs["service"] = self.topology["services"][self.service.id]
             main_run = SimpleNamespace(**self.get_properties())
             main_run.target_devices, main_run.target_pools = None, None
@@ -832,12 +832,12 @@ class Run(AbstractBase):
             kwargs["placeholder"] = self.placeholder
             kwargs["restart_run"] = self.restart_run
         self.runner = Runner(main_run, **kwargs)
-        if self.service.no_sql_run:
+        if self.service.high_performance:
             self.runner.run_targets = self.get_run_targets()
         return self.runner.start_run()
 
     def post_process_results(self, results):
-        if self.trigger == "REST API" and self.service.no_sql_run:
+        if self.trigger == "REST API" and self.service.high_performance:
             results["devices"] = {}
             for result in self.results:
                 if not result.device:
@@ -847,7 +847,7 @@ class Run(AbstractBase):
 
     def finalize_run(self, results, app_reloaded=False):
         self.run_service_table_transaction()
-        if self.service.no_sql_run:
+        if self.service.high_performance:
             self.create_all_results()
             self.create_all_reports()
             self.create_all_changelogs()

@@ -58,7 +58,7 @@
     "multiprocessing": false,
     "name": "[Shared] Example Service (does nothing)",
     "negative_logic": false,
-    "no_sql_run": false,
+    "high_performance": false,
     "notification_header": "",
     "number_in_range": 7,
     "number_of_retries": 0,
