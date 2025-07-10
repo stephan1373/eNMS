@@ -34,9 +34,6 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 82154c0830f1cae60ea7a81732478c302767145b
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
-- Don't create a changelog for string field update where two strings are equal module newlines, for example
-  "\r\n" versus "\n"
-  Commit: 14ccd5f17b66505dd62b2794da988dc2de364287
 - Performance Optimization
   - Update "counters" function to improve dashboard display time by using low-level SQL query
     Commit: a01d175e5f4c66c29d250de67fe24cc0b530ec38

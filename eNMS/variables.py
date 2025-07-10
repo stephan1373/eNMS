@@ -354,9 +354,6 @@ class VariableStore:
             current_time = current_time.translate(str.maketrans(":.", "--"))
         return current_time
 
-    def normalize_newlines(self, input):
-        return input.replace("\r\n", "\n").replace("\r", "\n")
-
     def prepend_filepath(self, value):
         return f"{self.file_path}{value}"
 
