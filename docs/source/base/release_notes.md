@@ -325,6 +325,7 @@ Tests:
 Notes:
 - Everything in the "Tests" section should be tested with both "No SQL Run" checked and unchecked
 - The "No SQL Run" flag comes from the superworkflow if there is one.
+- Modifying a workflow (updating services, removing or adding edges, etc) will no longer affect on-going runs as the topology is saved before the run begins
 - With No SQL runs, results cannot be read from the UI until the workflow has completed.
 
 Version 5.2.0: Data Store and Various Improvements
