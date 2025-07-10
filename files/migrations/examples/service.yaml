@@ -53105,8 +53105,8 @@
   "labels":
     "32264cd9-77a7-4d02-bcfa-9b2ed547268e":
       "alignment": "left"
-      "content": "filtering(\"device\", constraints={\"model\": \"Cisco\"})\r\nshould
-        return 21devices. The value of the \"success\r\n key check that there is 21
+      "content": "filtering(\"device\", constraints={\"model\": \"Cisco\"})\nshould
+        return 21devices. The value of the \"success\n key check that there is 21
         devices indeed."
       "positions":
       - ! "111"
@@ -53114,10 +53114,10 @@
       "size": ! "14"
     "90c0e328-39e9-4e9b-a106-471c66e6281c":
       "alignment": "left"
-      "content": "This service runs in \"Once per device\" mode.\r\nIt uses log(\"info\",
-        f\"Running 3rd service on {device}\")\r\nin the \"Device Query\" field to
-        define the targets of\r\nthe service based on what \"filtering\" returns.\r\nIt
-        should run on 21 devices because it is the same\r\nquery as the one used in
+      "content": "This service runs in \"Once per device\" mode.\nIt uses log(\"info\",
+        f\"Running 3rd service on {device}\")\nin the \"Device Query\" field to
+        define the targets of\nthe service based on what \"filtering\" returns.\nIt
+        should run on 21 devices because it is the same\nquery as the one used in
         the first service."
       "positions":
       - ! "499"
@@ -53126,8 +53126,8 @@
     "bc889ba2-4fa5-4ce9-8f24-0aa23b9292a3":
       "alignment": "left"
       "content": "filtering(\"device\", constraints={\"name\": \"A.*n\", \"name_filter\":
-        \"regex\"})\r\nshould return 6 devices (devices whose name matches the regex
-        \"A.*n\".\r\nThe value of the \"success\" key check that there is 6 devices
+        \"regex\"})\nshould return 6 devices (devices whose name matches the regex
+        \"A.*n\".\nThe value of the \"success\" key check that there is 6 devices
         indeed."
       "positions":
       - ! "568"
@@ -53135,8 +53135,8 @@
       "size": ! "14"
     "eca7bd5a-0005-476a-99cd-4555b2a37e4f":
       "alignment": "left"
-      "content": "filtering(\"user\", constraints={\"name\": \"a\"})\r\nshould fail
-        because using \"filtering\" on the\r\n\"user\" model is not allowed by default.\r\n(configured
+      "content": "filtering(\"user\", constraints={\"name\": \"a\"})\nshould fail
+        because using \"filtering\" on the\n\"user\" model is not allowed by default.\n(configured
         in automation.json \"allowed_models\")"
       "positions":
       - ! "119"
@@ -53166,12 +53166,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "8x7zx96VHzI"
@@ -53287,12 +53287,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "6kD_om37Z1Q"
@@ -53318,8 +53318,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "result = filtering(\"device\", constraints={\"model\": \"Cisco\"})\r\nresults[\"success\"]
-    = len(result) == 21\r\nresults[\"result\"] = result"
+  "source_code": "result = filtering(\"device\", constraints={\"model\": \"Cisco\"})\nresults[\"success\"]
+    = len(result) == 21\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
@@ -53384,12 +53384,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "B7__EpZP3LU"
@@ -53415,8 +53415,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "result = filtering(\"user\", constraints={\"name\": \"a\"})\r\nresult
-    = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
+  "source_code": "result = filtering(\"user\", constraints={\"name\": \"a\"})\nresult
+    = {}\nresults[\"success\"] = True\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
@@ -53481,12 +53481,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "L2ns3GAyWzU"
@@ -53512,8 +53512,8 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "log(\"info\", f\"Running 3rd service on {device}\")\r\nresult =
-    {}\r\nresults[\"success\"] = True\r\nresults[\"result\"] = result"
+  "source_code": "log(\"info\", f\"Running 3rd service on {device}\")\nresult =
+    {}\nresults[\"success\"] = True\nresults[\"result\"] = result"
   "target_devices": []
   "target_pools": []
   "time_between_retries": ! "10"
@@ -53578,12 +53578,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "_IJRh9-32N8"
@@ -53610,7 +53610,7 @@
   "skip_query": ""
   "skip_value": "success"
   "source_code": "result = filtering(\"device\", constraints={\"name\": \"A.*n\",
-    \"name_filter\": \"regex\"})\r\nresults[\"success\"] = len(result) == 6\r\nresults[\"result\"]
+    \"name_filter\": \"regex\"})\nresults[\"success\"] = len(result) == 6\nresults[\"result\"]
     = result"
   "target_devices": []
   "target_pools": []
@@ -53661,16 +53661,16 @@
   "labels":
     "4a510c6a-2e69-43c8-bf19-41b44e7ae6f3":
       "alignment": "left"
-      "content": "Check that the VRF are\r\nconfigured on the router."
+      "content": "Check that the VRF are\nconfigured on the router."
       "positions":
       - ! "9"
       - ! "204"
       "size": ! "14"
     "4fb61dbb-7916-4461-b03d-9c575ec27a5a":
       "alignment": "left"
-      "content": "This workflow uses Jinja2 to configure the following\r\nVRFs on
-        the router:\r\n\"vrf-jinja-1\", \"vrf-jinja-2\", \"vrf-jinja-3\", \"vrf-jinja-1\"
-        then\r\nremove them. We check that these VRFs were properly\r\nconfigured
+      "content": "This workflow uses Jinja2 to configure the following\nVRFs on
+        the router:\n\"vrf-jinja-1\", \"vrf-jinja-2\", \"vrf-jinja-3\", \"vrf-jinja-1\"
+        then\nremove them. We check that these VRFs were properly\nconfigured
         and deleted with Netmiko commands services."
       "positions":
       - ! "162"
@@ -53678,14 +53678,14 @@
       "size": ! "14"
     "555fa291-8d39-427c-ab4e-1c6a7177730c":
       "alignment": "left"
-      "content": "Check that the VRF are\r\nconfigured on the router."
+      "content": "Check that the VRF are\nconfigured on the router."
       "positions":
       - ! "-21"
       - ! "-122"
       "size": ! "14"
     "78185200-aa76-4eec-ab6f-6b056c7c6d73":
       "alignment": "left"
-      "content": "Same as first service:\r\nCheck that the VRF\r\nare not configured\r\non
+      "content": "Same as first service:\nCheck that the VRF\nare not configured\non
         the router."
       "positions":
       - ! "395"
@@ -53693,14 +53693,14 @@
       "size": ! "14"
     "7f1f2552-ad64-453e-b54c-625b1dcfffd5":
       "alignment": "left"
-      "content": "Check that the VRF\r\nare not configured\r\non the router."
+      "content": "Check that the VRF\nare not configured\non the router."
       "positions":
       - ! "-288"
       - ! "217"
       "size": ! "14"
     "ae8c7c39-d8ba-4565-bc8e-46ac12eaa6d7":
       "alignment": "left"
-      "content": "Delete the VRF that are\r\nconfigured on the router."
+      "content": "Delete the VRF that are\nconfigured on the router."
       "positions":
       - ! "289"
       - ! "-120"
@@ -53729,12 +53729,12 @@
   "operating_system": "EOS"
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "Lx6t8GEo458"
@@ -53880,12 +53880,12 @@
   "operating_system": "EOS"
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "r6NemFRFHKU"
@@ -53943,8 +53943,8 @@
   "config_mode_command": ""
   "conn_timeout": ! "10.0"
   "connection_name": "default"
-  "content": "{%- for vrf in get_var(\"vrf_list\", device=device.name) -%}\r\nvrf
-    instance vrf-jinja-{{ vrf }}\r\n{% endfor %}"
+  "content": "{%- for vrf in get_var(\"vrf_list\", device=device.name) -%}\nvrf
+    instance vrf-jinja-{{ vrf }}\n{% endfor %}"
   "content_match": ""
   "content_match_regex": ! "false"
   "conversion_method": "none"
@@ -54002,12 +54002,12 @@
   "operating_system": "EOS"
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "1pq3GBLCiig"
@@ -54126,12 +54126,12 @@
   "operating_system": "EOS"
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "SN3Pfobsx_Y"
@@ -54189,8 +54189,8 @@
   "config_mode_command": ""
   "conn_timeout": ! "10.0"
   "connection_name": "default"
-  "content": "{%- for vrf in get_var(\"vrf_list\", device=device.name) -%}\r\nno vrf
-    instance vrf-jinja-{{ vrf }}\r\n{% endfor %}"
+  "content": "{%- for vrf in get_var(\"vrf_list\", device=device.name) -%}\nno vrf
+    instance vrf-jinja-{{ vrf }}\n{% endfor %}"
   "content_match": ""
   "content_match_regex": ! "false"
   "conversion_method": "none"
@@ -54248,12 +54248,12 @@
   "operating_system": "EOS"
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "Pr0ERMsE4Cg"
@@ -54372,12 +54372,12 @@
   "operating_system": "EOS"
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "-OkeEhqllzU"
@@ -54467,14 +54467,14 @@
       "size": ! "14"
     "1b4847a2-cca5-4b15-9afd-548819b9aede":
       "alignment": "left"
-      "content": "Retrieve an IP address type\r\nof Data by Persistent ID"
+      "content": "Retrieve an IP address type\nof Data by Persistent ID"
       "positions":
       - ! "46"
       - ! "277"
       "size": ! "14"
     "1f6e26a6-126c-4209-9e38-039890f634e3":
       "alignment": "left"
-      "content": "Retrieve an IP address type\r\nof Data by Path"
+      "content": "Retrieve an IP address type\nof Data by Path"
       "positions":
       - ! "-61"
       - ! "-39"
@@ -54517,12 +54517,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "iP3eorKKMuE"
@@ -54643,12 +54643,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "XWO9OvqMnlA"
@@ -54674,9 +54674,9 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "ip_address = get_data(path=\"/IPAM/IP Address/IP Address 1\")\r\nlog(\"warning\",
-    f\"IP Address: {ip_address.address}\") \r\n# Click on \"i\" to right of \"Source
-    Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"]
+  "source_code": "ip_address = get_data(path=\"/IPAM/IP Address/IP Address 1\")\nlog(\"warning\",
+    f\"IP Address: {ip_address.address}\") \n# Click on \"i\" to right of \"Source
+    Code\" for examples.\n\nresult = {}\nresults[\"success\"] = True\nresults[\"result\"]
     = result"
   "target_devices": []
   "target_pools": []
@@ -54742,12 +54742,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "persistent_id": "h4vYNajbCss"
@@ -54773,9 +54773,9 @@
   "skip": {}
   "skip_query": ""
   "skip_value": "success"
-  "source_code": "ip_address = get_data(persistent_id=\"QTVleMy9ItE\")\r\nlog(\"warning\",
-    f\"IP Address: {ip_address.address}\") \r\n# Click on \"i\" to right of \"Source
-    Code\" for examples.\r\n\r\nresult = {}\r\nresults[\"success\"] = True\r\nresults[\"result\"]
+  "source_code": "ip_address = get_data(persistent_id=\"QTVleMy9ItE\")\nlog(\"warning\",
+    f\"IP Address: {ip_address.address}\") \n# Click on \"i\" to right of \"Source
+    Code\" for examples.\n\nresult = {}\nresults[\"success\"] = True\nresults[\"result\"]
     = result"
   "target_devices": []
   "target_pools": []
@@ -54846,12 +54846,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "params": {}
@@ -54956,12 +54956,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "params": {}
@@ -55062,12 +55062,12 @@
   "operating_system": ""
   "owners":
   - "admin"
-  "parameterized_form": "name = StringField('Name', [InputRequired()])\r\ninitial_payload
-    = DictField()\r\ntarget_devices = MultipleInstanceField('Devices', model='device')\r\ntarget_pools
-    = MultipleInstanceField('Pools', model='pool')\r\ndevice_query = StringField('Device
-    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\r\ndevice_query_property
+  "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload
+    = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools
+    = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device
+    Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property
     = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address',
-    'IP address')))\r\nmultiprocessing = BooleanField('Multiprocessing', default=False)\r\nmax_processes
+    'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes
     = IntegerField('Maximum number of processes', default=15)"
   "parameterized_form_template": ""
   "params": {}
