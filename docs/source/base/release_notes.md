@@ -298,9 +298,12 @@ Migration:
   - Convert all devices from type "device" to "generic_device"
   - Convert all links from type "link" to "generic_link"
   - Convert all files from type "file" to "generic_file"
-- All custom services must be updated: the job function can become either a classmethod if the
-  function need to use class attributes (see Ansible Playbook Service), or a staticmethod (see any
-  other services)
+- All custom services must be updated:
+  - The job function can become either a classmethod if the function need to use class attributes (see
+    Ansible Playbook Service), or a staticmethod (see any other services)
+  - All custom services that make database update (e.g using db.fetch, db.factory, device.property = value, etc)
+    must be updated to use the session_scope so that the SQLAlchemy session is removed at the end of the
+    transaction
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
