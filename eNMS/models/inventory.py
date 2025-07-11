@@ -1,3 +1,4 @@
+from itertools import batched
 from sqlalchemy import and_, Boolean, event, ForeignKey, Integer, or_
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import backref, deferred, relationship
@@ -351,7 +352,8 @@ class Pool(AbstractBase):
                                 {"pool_id": self.id, f"{model}_id": instance.id}
                                 for instance in instances
                             ]
-                            db.session.execute(table.insert(), values)
+                            for batch in batched(values, vs.database["transactions"]["batch_size"]):
+                                db.session.execute(table.insert(), batch)
                     else:
                         setattr(self, f"{model}s", instances)
                 else:
