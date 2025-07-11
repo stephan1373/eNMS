@@ -167,6 +167,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Update to the Excel topology import mechanism:
   - Don't call to_dict() after creating an object
   - Don't update pools after the topology import
+  Commit: 52243ef833579e31ff631d9b70b739aa5ce201ac
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
