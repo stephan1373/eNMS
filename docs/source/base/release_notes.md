@@ -132,6 +132,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     with 1k target devices
   - Remove all references to objectify and replace them with 'fetch_all' with 'in_' query
     Commit: c6a070a45816b1146cb9fc3ec3b5930e404c685f
+  - Refactor the update_instance REST endpoint: move controller.objectify in update_instance function and use
+    db.fetch_all with 'in_' query instead of fetch in a loop
+    Commit: fbfdf587b0ed5a2c99246cc85ee87ed517b696de
 - Move the 'runtime' property to the first column of the Run ('Results') table so that runs are always
   sorted by runtime, even when they have custom names via parameterized form.
   Commit: b7839556dc70844af5efe3c851e2b69ee41ec0eb
