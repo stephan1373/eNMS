@@ -308,9 +308,12 @@ Open Questions:
 - What arguments are used for "pool_size" and "max_overflow", and how many threads is the
   configuration backup workflow configured with
 
-Benchmark needed for:
+Benchmark needed for (comparison last release versus new release):
   - Workflow runs
   - Add Services to Workflow Panel ("get_workflow_services" endpoint)
+  - Update pool:
+    - Update 1 pool with 50k devices
+    - Update all pools (the pools must be the same in last release and new release)
 
 Migration:
 - Run migration script to:
