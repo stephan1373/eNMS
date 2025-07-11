@@ -49,7 +49,7 @@ that:
 - Install containerlab: `curl -sL https://containerlab.dev/setup | sudo -E bash -s "all"``
 - Download Arista cEOS image, then import it (`docker import cEOS64-lab-4.32.0F.tar.xz ceos:4.32.0F`)
 - Check that the image exists: `docker images | grep ceos`
-- Add yaml and config files in folder
+- Add the yaml file `lab.clab.yaml` and the config files in `eNMS` / `files` / `lab` to lab folder
 - Deploy with `sudo containerlab deploy` (check: `sudo containerlab inspect`)
 - Destroy the lab: `sudo containerlab destroy`
 
