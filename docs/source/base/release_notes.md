@@ -79,6 +79,17 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     - Replace - rename "target_devices" with "run_targets" in Runner to prevent confusion between
       run.service.target_devices and run.target_devices.
       Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
+  - Remove calls to "to_dict()" with empty parameters (gets all relationships - not scalable)
+    - Update to the Excel topology import mechanism:
+      - Don't call to_dict() after creating an object
+      - Don't update pools after the topology import
+      Commit: 52243ef833579e31ff631d9b70b739aa5ce201ac
+    - Use 'get_properties' instead of 'to_dict()' in the add_objects_to_network function
+      Commit: 2747699d47a6443e712ce2f4490c06536c7daed7
+    - Use 'get_properties' instead of 'to_dict()' in copy_service_in_workflow function
+      Commit: 00603dac5d6131c6c3289de764ee98d4db4af866
+    - Call 'get_properties' instead of 'to_dict()' in db.delete_instance (and therefore db.delete)
+      Commit: 84acd8d02c69bdb8bc75daf44771cec72a202c2c
   - Other SQL optimizations:
     - Remove Run.service lazy join (workflows run slightly faster)
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
@@ -164,17 +175,6 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - device_run: compute_targets_and_collect_results
 - Add new "scan_folder_on_startup" option to make calling "scan_folder" on first app init optional
   Commit: 0378806a6d42aa1ab6fc349e37dd3389bcf8f722
-- Remove calls to "to_dict()" with empty parameters (gets all relationships - not scalable)
-  - Update to the Excel topology import mechanism:
-    - Don't call to_dict() after creating an object
-    - Don't update pools after the topology import
-    Commit: 52243ef833579e31ff631d9b70b739aa5ce201ac
-  - Use 'get_properties' instead of 'to_dict()' in the add_objects_to_network function
-    Commit: 2747699d47a6443e712ce2f4490c06536c7daed7
-  - Use 'get_properties' instead of 'to_dict()' in copy_service_in_workflow function
-    Commit: 00603dac5d6131c6c3289de764ee98d4db4af866
-  - Call 'get_properties' instead of 'to_dict()' in db.delete_instance (and therefore db.delete)
-    Commit: 84acd8d02c69bdb8bc75daf44771cec72a202c2c
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
