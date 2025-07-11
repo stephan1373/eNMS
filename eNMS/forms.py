@@ -1069,13 +1069,12 @@ class ServiceForm(BaseForm):
                 f"The validation method is set to '{self.validation_method.data}'"
                 f" and the matching value is empty: these do no match."
             )
-        too_many_threads_error = (
-            self.max_processes.data > vs.settings["automation"]["max_process"]
-        )
+        max_process = vs.settings["automation"]["max_process"] * (10 if self.high_performance.data else 1)
+        too_many_threads_error = self.max_processes.data > max_process
         if too_many_threads_error:
             self.max_processes.errors.append(
                 "The number of threads used for multiprocessing must be "
-                f"less than {vs.settings['automation']['max_process']}."
+                f"less than {max_process}."
             )
         shared_service_error = not self.shared.data and len(self.workflows.data) > 1
         if shared_service_error:
