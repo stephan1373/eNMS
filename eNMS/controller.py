@@ -271,7 +271,7 @@ class Controller(vs.TimingMixin):
         workflow.update_last_modified_properties()
         db.session.commit()
         return {
-            "services": [service.to_dict() for service in services],
+            "services": [service.get_properties() for service in services],
             "update_time": workflow.last_modified,
         }
 
