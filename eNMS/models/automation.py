@@ -756,11 +756,11 @@ class Run(AbstractBase):
     def get_run_targets(self):
         devices, pools = [], []
         if self.restart_run and self.payload["targets"] == "Manually defined":
-            devices = db.objectify(
-                "device", self.payload[f"restart_devices"], user=self.creator
+            devices = db.fetch_all(
+                "device", in_in=self.payload[f"restart_devices"], user=self.creator
             )
-            pools = db.objectify(
-                "pool", self.payload[f"restart_pools"], user=self.creator
+            pools = db.fetch_all(
+                "pool", in_in=self.payload[f"restart_pools"], user=self.creator
             )
         elif self.restart_run and self.payload["targets"] == "Restart run":
             devices = self.restart_run.target_devices
@@ -768,8 +768,8 @@ class Run(AbstractBase):
         elif self.parameterized_run:
             device_ids = self.payload["form"].get("target_devices", [])
             pool_ids = self.payload["form"].get("target_pools", [])
-            devices = set(db.objectify("device", device_ids, user=self.creator))
-            pools = db.objectify("pool", pool_ids, user=self.creator)
+            devices = set(db.fetch_all("device", in_in=device_ids, user=self.creator))
+            pools = db.fetch_all("pool", in_in=pool_ids, user=self.creator)
             query = self.payload["form"].get("device_query")
             if query:
                 property = self.payload["form"].get("device_query_property", "name")

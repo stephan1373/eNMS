@@ -551,9 +551,6 @@ class Database:
     def fetch_all(self, model, **kwargs):
         return self.fetch(model, allow_none=True, all_matches=True, **kwargs)
 
-    def objectify(self, model, object_list, **kwargs):
-        return self.fetch_all(model, id_in=object_list, **kwargs)
-
     def delete_instance(self, instance, call_delete=True):
         abort_delete = False
         if call_delete:

@@ -126,8 +126,8 @@ class RunEngine:
                 return None
             if self.payload["targets"] == "Manually defined":
                 model = "pool" if property == "target_pools" else "device"
-                return db.objectify(
-                    model, self.payload[f"restart_{model}s"], user=self.creator
+                return db.fetch_all(
+                    model, id_in=self.payload[f"restart_{model}s"], user=self.creator
                 )
             elif self.payload["targets"] == "Restart run":
                 return getattr(self.main_run.restart_run, property)
@@ -135,7 +135,7 @@ class RunEngine:
             value = self.payload["form"][property]
             if property in ("target_devices", "target_pools"):
                 model = "pool" if property == "target_pools" else "device"
-                value = db.objectify(model, value, user=self.creator)
+                value = db.fetch_all(model, id_in=value, user=self.creator)
             return value
         elif self.is_main_run and (
             self.main_run.target_devices or self.main_run.target_pools

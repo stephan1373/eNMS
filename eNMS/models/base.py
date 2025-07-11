@@ -83,7 +83,7 @@ class AbstractBase(db.base):
             property_type = vs.model_properties[self.__tablename__].get(property, None)
             if property in relation:
                 if relation[property]["list"] and value:
-                    value = db.objectify(relation[property]["model"], value, rbac=None)
+                    value = db.fetch_all(relation[property]["model"], id_in=value, rbac=None)
                 elif value:
                     value = db.fetch(relation[property]["model"], id=value, rbac=None)
             if property_type == "bool":

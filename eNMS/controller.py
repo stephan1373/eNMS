@@ -102,7 +102,7 @@ class Controller(vs.TimingMixin):
         if target.type == "pool" and not target.manually_defined:
             return {"alert": "Adding objects to a dynamic pool is not allowed."}
         model, property = kwargs["model"], kwargs["property"]
-        instances = set(db.objectify(model, kwargs.get("instances", [])))
+        instances = set(db.fetch_all(model, id_in=kwargs.get("instances", [])))
         if kwargs["names"]:
             for name in [instance.strip() for instance in kwargs["names"].split(",")]:
                 instance = db.fetch(model, allow_none=True, name=name)
@@ -119,9 +119,9 @@ class Controller(vs.TimingMixin):
     def add_objects_to_network(self, network_id, **kwargs):
         network = db.fetch("network", id=network_id)
         result = {"devices": [], "links": []}
-        devices = set(db.objectify("device", kwargs["devices"]))
-        links = set(db.objectify("link", kwargs["links"]))
-        for pool in db.objectify("pool", kwargs["pools"]):
+        devices = set(db.fetch_all("device", id_in=kwargs["devices"]))
+        links = set(db.fetch_all("link", id_in=kwargs["links"]))
+        for pool in db.fetch_all("pool", id_in=kwargs["pools"]):
             devices |= set(pool.devices)
             links |= set(pool.links)
         if kwargs["add_connected_devices"]:
@@ -166,7 +166,7 @@ class Controller(vs.TimingMixin):
                 else:
                     current_value = getattr(instance, property)
                     related_model = vs.relationships[table][property]["model"]
-                    objects = db.objectify(related_model, value)
+                    objects = db.fetch_all(related_model, id_in=value)
                     if edit_mode == "set":
                         setattr(instance, property, objects)
                     else:
@@ -250,7 +250,7 @@ class Controller(vs.TimingMixin):
 
     def copy_service_in_workflow(self, workflow_id, **kwargs):
         service_sets = list(set(kwargs["services-to-copy"].split(",")))
-        service_instances = db.objectify("service", service_sets)
+        service_instances = db.fetch_all("service", id_in=service_sets)
         workflow = db.fetch("workflow", id=workflow_id, rbac="edit")
         services, errors, shallow_copy = [], [], kwargs["mode"] == "shallow"
         for service in service_instances:
