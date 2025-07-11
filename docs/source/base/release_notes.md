@@ -164,10 +164,13 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - device_run: compute_targets_and_collect_results
 - Add new "scan_folder_on_startup" option to make calling "scan_folder" on first app init optional
   Commit: 0378806a6d42aa1ab6fc349e37dd3389bcf8f722
-- Update to the Excel topology import mechanism:
-  - Don't call to_dict() after creating an object
-  - Don't update pools after the topology import
-  Commit: 52243ef833579e31ff631d9b70b739aa5ce201ac
+- Remove calls to "to_dict()" with empty parameters (gets all relationships)
+  - Update to the Excel topology import mechanism:
+    - Don't call to_dict() after creating an object
+    - Don't update pools after the topology import
+    Commit: 52243ef833579e31ff631d9b70b739aa5ce201ac
+  - Use 'get_properties' instead of 'to_dict()' in the add_objects_to_network function
+    Commit: 2747699d47a6443e712ce2f4490c06536c7daed7
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
