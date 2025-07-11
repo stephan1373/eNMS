@@ -95,7 +95,13 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       Commit: c1525d9295bf70d14b192d6cb942cf299a60c9f9
     - Reduce numnber of unnecessary calls to db.fetch in Runner initialization
       Commit: c7847256a06b7c12207a6db7b8f60719ff8f2403
-  Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
+  - Changelog Display:
+    - Add mechanism to create fake changelogs on app startup via 'create_fake_logs' key in settings (the value
+      must be set to the number of changelogs to create, by default it's 0)
+      Commit: a302b25ed825dc967c4db61a29f32367ee4ccf33
+    - Add an index for all changelog models
+      Commit: 25a719efe5659e633710917f0e9ccf9744ddc6e7
+      Impact: creating 50M is about 5x slower, but changelog table performance issue is fixed
 - Minor update to configureNamespace function
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
 - Refactor the SQL query monitoring mechnaism:
@@ -205,9 +211,6 @@ Key Ideas about the refactoring of runner.py and "High Performance":
 - Make 'get_git_content' and 'scan_folder' optional on app startup with new optional "on_startup" key
   in settings.json
   Commit: 4341a0feebed970625e677a85c52a7a0f29d6d7a
-- Add mechanism to create fake changelogs on app startup via 'create_fake_logs' key in settings (the value
-  must be set to the number of changelogs to create, by default it's 0)
-  Commit: a302b25ed825dc967c4db61a29f32367ee4ccf33
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
