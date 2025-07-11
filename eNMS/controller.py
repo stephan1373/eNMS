@@ -1886,13 +1886,11 @@ class Controller(vs.TimingMixin):
                     func = db.field_conversion[property_type]
                     values[property] = func(sheet.row_values(row_index)[index])
                 try:
-                    db.factory(obj_type, **values).to_dict()
+                    db.factory(obj_type, **values)
                 except Exception as exc:
                     info(f"{str(values)} could not be imported ({str(exc)})")
                     status = "Partial import (see logs)."
             db.session.commit()
-        for pool in db.fetch_all("pool", rbac="edit"):
-            pool.compute_pool()
         env.log("info", status)
         return status
 
