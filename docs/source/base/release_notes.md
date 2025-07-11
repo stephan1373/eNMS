@@ -326,6 +326,8 @@ Tests:
 - Test that the "Report" mechanism works correctly regardless of the value of "High Performance"
 - Test the Restart From mechanism, with all possible target origins, with both "High Performance" enabled and disabled
 - Test the Ansible Playbook Service
+- Test the "update_instance" REST endpoint, specifically the update of a relationship by passing it the names of the
+  related model (for example, update the target devices of a service)
 
 Notes:
 - Everything in the "Tests" section should be tested with both "High Performance" checked and unchecked
