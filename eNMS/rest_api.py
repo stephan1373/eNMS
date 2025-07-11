@@ -174,9 +174,21 @@ class RestApi(vs.TimingMixin):
                 continue
             try:
                 new_name = instance.pop("new_name", None)
-                object_data = controller.objectify(instance_type, instance)
+                for property, relation in vs.relationships[instance_type].items():
+                    if property not in instance:
+                        continue
+                    elif relation["list"]:
+                        instance[property] = [row.id for row in db.fetch_all(
+                            relation["model"],
+                            name_in=instance[property],
+                            properties=["id"]
+                        )]
+                    else:
+                        instance[property] = db.fetch(
+                            relation["model"], name=instance[property]
+                        ).id
                 instance = db.factory(
-                    instance_type, update_source="ReST API", **object_data
+                    instance_type, update_source="ReST API", **instance
                 )
                 if new_name:
                     instance.name = new_name

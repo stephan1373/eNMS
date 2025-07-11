@@ -1631,21 +1631,6 @@ class Controller(vs.TimingMixin):
         info("Inventory import: Done.")
         return result
 
-    def objectify(self, model, instance):
-        for property, relation in vs.relationships[model].items():
-            if property not in instance:
-                continue
-            elif relation["list"]:
-                instance[property] = [
-                    db.fetch(relation["model"], name=name).id
-                    for name in instance[property]
-                ]
-            else:
-                instance[property] = db.fetch(
-                    relation["model"], name=instance[property]
-                ).id
-        return instance
-
     def remove_instance(self, **kwargs):
         instance = db.fetch(kwargs["instance"]["type"], id=kwargs["instance"]["id"])
         target = db.fetch(kwargs["relation"]["type"], id=kwargs["relation"]["id"])
