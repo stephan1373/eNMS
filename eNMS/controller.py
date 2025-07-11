@@ -133,7 +133,7 @@ class Controller(vs.TimingMixin):
         for device in devices:
             if not device or device in network.devices or device == network:
                 continue
-            result["devices"].append(device.to_dict())
+            result["devices"].append(device.get_properties())
             network.devices.append(device)
         for link in links:
             if link in network.links:
@@ -143,7 +143,7 @@ class Controller(vs.TimingMixin):
                 or link.destination not in network.devices
             ):
                 continue
-            result["links"].append(link.to_dict())
+            result["links"].append(link.get_properties())
             network.links.append(link)
         return result
 
