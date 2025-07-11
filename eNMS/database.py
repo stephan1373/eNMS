@@ -557,7 +557,7 @@ class Database:
             abort_delete = instance.delete()
             if abort_delete:
                 return {"delete_aborted": True, "log_level": "error", **abort_delete}
-        serialized_instance = instance.to_dict()
+        serialized_instance = instance.get_properties()
         if not abort_delete:
             self.session.delete(instance)
         return serialized_instance
