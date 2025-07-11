@@ -306,6 +306,10 @@ Open Questions:
 - What arguments are used for "pool_size" and "max_overflow", and how many threads is the
   configuration backup workflow configured with
 
+Benchmark needed for:
+  - Workflow runs
+  - Add Services to Workflow Panel ("get_workflow_services" endpoint)
+
 Migration:
 - Run migration script to:
   - Convert all devices from type "device" to "generic_device"
