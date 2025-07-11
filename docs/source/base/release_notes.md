@@ -121,15 +121,17 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Refactoring of objectify:
   - Add support for properties in fetch function
   - Use 'in_' query to convert names to ID in form_postprocessing function
-  Commit: 14664e221fc19829ef6f0e39ed3c41d9becea241
+    Commit: 14664e221fc19829ef6f0e39ed3c41d9becea241
   - Update fetch to support 'in_' queries
   - Update objectify to use 'in_' query via fetch_all instead of fetch in a loop
   - Don't call objectify in Base.update if value is empty
-  Commit: 53a24913d886c0e6ce96aa747802b6c51b30604f
+    Commit: 53a24913d886c0e6ce96aa747802b6c51b30604f
   - In form MultipleInstanceField validation, use in_ query instead of fetching objects in a loop
-  Commit: 956f796b6e282fe31d446d5022f17858b646d719
-  Performance speedup: edit object ("Save" button in Edit Panel) about 10x faster for a workflow
-  with 1k target devices
+    Commit: 956f796b6e282fe31d446d5022f17858b646d719
+    Performance speedup: edit object ("Save" button in Edit Panel) about 10x faster for a workflow
+    with 1k target devices
+  - Remove all references to objectify and replace them with 'fetch_all' with 'in_' query
+    Commit: c6a070a45816b1146cb9fc3ec3b5930e404c685f
 - Move the 'runtime' property to the first column of the Run ('Results') table so that runs are always
   sorted by runtime, even when they have custom names via parameterized form.
   Commit: b7839556dc70844af5efe3c851e2b69ee41ec0eb
