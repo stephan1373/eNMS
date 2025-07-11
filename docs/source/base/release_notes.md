@@ -171,6 +171,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     Commit: 52243ef833579e31ff631d9b70b739aa5ce201ac
   - Use 'get_properties' instead of 'to_dict()' in the add_objects_to_network function
     Commit: 2747699d47a6443e712ce2f4490c06536c7daed7
+  - Use 'get_properties' instead of 'to_dict()' in copy_service_in_workflow function
+    Commit: 00603dac5d6131c6c3289de764ee98d4db4af866
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
