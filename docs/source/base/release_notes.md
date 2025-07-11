@@ -298,6 +298,8 @@ Main Commits:
 - Part 27: return results in 'start_run' instead of storing them in 'self.results' and add the device
   results to the main results in the Run class (in case the trigger is REST API and mode is no SQL)
   Commit: b559794d79e9d3599631f2b8a409a90d78911f30
+- Part 28: in 'High Performance' mode, increase the maximum number of threads allowed to 'max_process' * 10
+  Commit: f26ee4f41310de0d488f548afb8476efe6674f0c
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
@@ -343,6 +345,7 @@ Tests:
 - Test the Ansible Playbook Service
 - Test the "update_instance" REST endpoint, specifically the update of a relationship by passing it the names of the
   related model (for example, update the target devices of a service)
+- Test that the number of threads allowed depends on whether High Performance is checked or not (* 10)
 
 Notes:
 - Everything in the "Tests" section should be tested with both "High Performance" checked and unchecked
