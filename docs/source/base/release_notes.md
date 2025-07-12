@@ -189,6 +189,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 0378806a6d42aa1ab6fc349e37dd3389bcf8f722
 - Remove 'get_device_logs' endpoint in rbac.json and in controller code (unused, no longer relevant)
   Commit: 636cf96ed26dd3ff9fdd411fad27b61e4fc11633
+- Remove 'clear_results' endpoint in rbac.json and in controller code (unused, no longer relevant)
+  Commit: 7e65a387d4b2dffa0423fcffe67a750d6da6717e
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
