@@ -104,11 +104,12 @@ class Controller(vs.TimingMixin):
         model, property = kwargs["model"], kwargs["property"]
         instances = set(db.fetch_all(model, id_in=kwargs.get("instances", [])))
         if kwargs["names"]:
-            for name in [instance.strip() for instance in kwargs["names"].split(",")]:
-                instance = db.fetch(model, allow_none=True, name=name)
-                if not instance:
-                    return {"alert": f"{model.capitalize()} '{name}' does not exist."}
-                instances.add(instance)
+            names = [instance.strip() for instance in kwargs["names"].split(",")]
+            instance_objects = set(db.fetch_all(model, name_in=names))
+            object_names = {instance.name for instance in instance_objects}
+            if diff := set(names) - object_names:
+                return {"alert": f"These {model}s do not exist: {', '.join(diff)}."}
+            instances |= instance_objects
         instances = instances - set(getattr(target, property))
         for instance in instances:
             getattr(target, property).append(instance)
