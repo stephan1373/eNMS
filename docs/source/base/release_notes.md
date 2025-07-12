@@ -62,6 +62,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Optimize call to "run_service" (slow response when many runs (>1k) because of 'to_dict()' call
     without argument)
     Commit: ecc22a0fecd18c559db9d2414e6c968dca6efd93
+  - Update 'save_positions' function to no longer make one SQL query per service / device when saving positions
+    Commit: 49eb0e18862efaacf61f415ac45295038283b1cc
   - Optimize the workflow builder refresh mechanism to update service color in bulk via nodeUpdates
     When refreshing a large workflow with a set runtime (i.e not in Normal Display), the update would
     cause the UI to freeze for a few seconds. Should be instantaneous now.
