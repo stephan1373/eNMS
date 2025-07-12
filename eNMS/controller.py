@@ -1769,11 +1769,14 @@ class Controller(vs.TimingMixin):
         if not instance:
             return
         relation_type = "device" if type == "network" else "service"
+        id_to_name = {
+            str(obj.id): obj.name
+            for obj in db.fetch_all(relation_type, id_in=kwargs.keys())
+        }
         for id, position in kwargs.items():
             new_position = [position["x"], position["y"]]
             if "-" not in id:
-                relation = db.fetch(relation_type, id=id, rbac=None)
-                instance.positions[relation.name] = new_position
+                instance.positions[id_to_name[id]] = new_position
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
         instance.last_modified = vs.get_time()
