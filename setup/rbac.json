@@ -199,7 +199,6 @@
     "/bulk_removal": "access",
     "/copy_service_in_workflow": "access",
     "/calendar_init": "all",
-    "/clear_results": "access",
     "/clear_configurations": "access",
     "/compare": "access",
     "/counters": "access",

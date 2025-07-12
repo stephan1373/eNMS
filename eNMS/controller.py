@@ -216,12 +216,6 @@ class Controller(vs.TimingMixin):
             results[instance.name] = {"start": start, **instance_properties}
         return results
 
-    def clear_results(self, service_id):
-        for result in db.fetch(
-            "run", all_matches=True, allow_none=True, service_id=service_id
-        ):
-            db.session.delete(result)
-
     def compare(self, type, id, v1, v2, context_lines):
         if type == "changelog":
             properties = db.fetch("changelog", id=id).history["properties"][v1]
