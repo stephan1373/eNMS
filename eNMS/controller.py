@@ -552,14 +552,6 @@ class Controller(vs.TimingMixin):
                 return
             return credential.username, env.get_password(credential.password)
 
-    def get_device_logs(self, device_id):
-        device_logs = [
-            log.name
-            for log in db.fetch_all("log")
-            if log.source == db.fetch("device", id=device_id).ip_address
-        ]
-        return "\n".join(device_logs)
-
     def get_device_network_data(self, device_id):
         device = db.fetch("device", id=device_id, rbac="configuration")
         return {
