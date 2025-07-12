@@ -35,8 +35,11 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Increase size of 'payload' field in Rest Call Service
   Commit: c586d0b852a60576c9d0cec5ec134bfc91c04035
 - Performance Optimization
-  - Update "counters" function to improve dashboard display time by using low-level SQL query
-    Commit: a01d175e5f4c66c29d250de67fe24cc0b530ec38
+  - Update "counters" function to improve dashboard display time
+    - Use low-level SQL query to compute Count dictionaries for each model property
+      Commit: a01d175e5f4c66c29d250de67fe24cc0b530ec38
+    - Get task ID instead of SQLAlchemy objects to get total number of active tasks
+      Commit: 975aeadaba5f75af26f62a6b7e1c232a1ccbdae2
   - Update pool mechanism optimization:
     - Replace "db.session.execute(table.insert().values(values))" with
       "db.session.execute(table.insert(), values)" (the update can fail with first option)
