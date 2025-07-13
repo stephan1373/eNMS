@@ -119,6 +119,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     Commit: 65fe27e2f97cb79828ef5d35a4d69f01dda6c2ea
   - Add traceback to find out which line of code sent the query
     Commit: 4becbb44f6194be2ecdd9e68eb1a94f074d98f4e
+  - Display number of queries in the UI for easier monitoring (after eNMS version)
+    Commit: bc6a5840070bac30262c4f8392179e44ef096c4d
 - Remove lazy join for workflow edges and servers
     - WorkflowEdge.source, WorkflowEdge.destination, WorkflowEdge.workflow
     - Server.workers
