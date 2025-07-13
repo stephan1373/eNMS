@@ -891,15 +891,9 @@ function buildBulkEditPanel(panel, type, tableId) {
       `);
     }
   }
-  const form = {
-    ...serializeForm(`#search-form-${tableId}`, `${model}_filtering`),
-    ...tableInstances[tableId].constraints,
-    ...tableInstances[tableId].filteringConstraints,
-  };
-  const rbac = tableId.includes("configuration") ? "configuration" : "read";
   call({
     url: `/filtering/${model}`,
-    data: { form: form, bulk: "id", rbac: rbac },
+    data: { ...tableInstances[tableId].getFilteringData(), bulk: "id" },
     callback: function(instances) {
       $(`#${type}-id-${tableId}`).val(instances.join("-"));
       $(`#${type}-scoped_name-${tableId},#${type}-name-${tableId}`).val("Bulk Edit");
