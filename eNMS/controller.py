@@ -1214,7 +1214,11 @@ class Controller(vs.TimingMixin):
             for class_name in vs.models
             if class_name not in db.json_migration["no_export"]
         ]
-        option = OPT_INDENT_2 | OPT_SORT_KEYS
+        option = (
+            OPT_INDENT_2 | OPT_SORT_KEYS
+            if kwargs.get("export_format") == "structured"
+            else None
+        )
         path = Path(vs.migration_path) / kwargs["name"]
         for cls_name in export_models:
             self.json_export_properties(cls_name, path, option)
