@@ -7,6 +7,12 @@
   {{ form.hidden_tag() }}
   <div class="modal-body">
     <div>
+      {{ form.export_format.label() }}
+      <br />
+      {{ form.export_format(class="form-control") }}
+    </div>
+    <br />
+    <div>
       <label>
         Directory pathname to use in {{ form.migration_folder }} :<br />
       </label>

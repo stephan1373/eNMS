@@ -426,6 +426,14 @@ class JsonMigrationForm(BaseForm):
     template = "json_migration"
     migration_folder = vs.migration_path
     form_type = HiddenField(default="json_migration")
+    export_format = SelectField(
+        'Export Format',
+        choices=[
+            ('structured', 'Structured Format (2 spaces, ordered)'),
+            ('bytestring', 'Bytestring Format')
+        ],
+        no_search=True
+    )
 
 
 class DataForm(BaseForm):
