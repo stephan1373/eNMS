@@ -96,11 +96,13 @@ class Workflow(Service):
             edge.name.replace(old_name, self.name)
 
     def duplicate(self, workflow=None, clone=None):
+        db.session.connection().info["ignore"] = True
         if not clone:
             clone = super().duplicate(workflow)
         clone.labels = self.labels
         clone_services = {}
         db.session.commit()
+        db.session.connection().info["ignore"] = True
         for service in self.exclude_soft_deleted("services"):
             if service.shared:
                 service_clone = service
@@ -114,6 +116,7 @@ class Workflow(Service):
             service_clone.skip[clone.name] = service.skip.get(self.name, False)
             clone_services[service.id] = service_clone
         db.session.commit()
+        db.session.connection().info["ignore"] = True
         for edge in self.exclude_soft_deleted("edges"):
             clone.edges.append(
                 db.factory(

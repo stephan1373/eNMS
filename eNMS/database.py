@@ -265,7 +265,7 @@ class Database:
 
         @event.listens_for(self.base, "before_update", propagate=True)
         def log_instance_update(mapper, connection, target):
-            if not env.log_events:
+            if not env.log_events or connection.info.get("ignore"):
                 return
             state, changelog, history = inspect(target), [], defaultdict(dict)
             for attr in state.attrs:
