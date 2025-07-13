@@ -107,7 +107,7 @@ class Service(AbstractBase):
     preprocessing = db.Column(db.LargeString)
     postprocessing = db.Column(db.LargeString)
     postprocessing_mode = db.Column(db.TinyString, default="success")
-    builder_link = db.Column(db.SmallString)
+    builder_link = db.Column(db.SmallString, info={"log_change": False})
     log_level = db.Column(Integer, default=1)
     show_user_logs = db.Column(Boolean, default=True)
     service_logs = relationship(
