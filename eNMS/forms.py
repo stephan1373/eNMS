@@ -406,7 +406,7 @@ class DatabaseDeletionForm(BaseForm):
     )
 
 
-class YamlMigrationsForm(BaseForm):
+class YamlMigrationForm(BaseForm):
     template = "yaml_migration"
     migration_folder = vs.migration_path
     form_type = HiddenField(default="yaml_migration")
@@ -422,7 +422,7 @@ class YamlMigrationsForm(BaseForm):
     )
 
 
-class JsonMigrationsForm(BaseForm):
+class JsonMigrationForm(BaseForm):
     template = "json_migration"
     migration_folder = vs.migration_path
     form_type = HiddenField(default="json_migration")
