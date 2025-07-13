@@ -71,9 +71,6 @@ class AbstractBase(db.base):
     def base_properties(self):
         return {prop: getattr(self, prop) for prop in ("id", "name", "type")}
 
-    def post_update(self):
-        return self.get_properties()
-
     def update(self, rbac="edit", **kwargs):
         self.filter_rbac_kwargs(kwargs)
         relation = vs.relationships[self.__tablename__]

@@ -2185,5 +2185,10 @@
       "status"
     ],
     "user": ["name", "description", "groups", "email"]
+  },
+  "update": {
+    "device": ["networks"],
+    "network": ["networks", "devices"],
+    "service": ["services", "workflows"]
   }
 }

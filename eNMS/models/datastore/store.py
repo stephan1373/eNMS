@@ -29,7 +29,6 @@ class Store(Data):
         if migration_import or old_name != self.name:
             for datum in self.data:
                 datum.post_update()
-        return self.get_properties()
 
 
 class StoreForm(DataForm):

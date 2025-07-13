@@ -43,7 +43,6 @@ class Network(Device):
             self.path = f"{self.networks[0].path}>{self.id}"
         else:
             self.path = str(self.id)
-        return self.to_dict(include_relations=["networks", "devices"])
 
 
 class NetworkForm(DeviceForm):

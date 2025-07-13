@@ -130,7 +130,6 @@ class User(AbstractBase, UserMixin):
 
     def post_update(self):
         self.update_rbac()
-        return self.get_properties()
 
     def update(self, **kwargs):
         if not getattr(current_user, "is_admin", True):
@@ -424,7 +423,6 @@ class Data(AbstractBase):
         else:
             self.path = f"/{self.scoped_name}"
         self.name = self.path.replace("/", ">")
-        return self.get_properties()
 
     @property
     def ui_name(self):

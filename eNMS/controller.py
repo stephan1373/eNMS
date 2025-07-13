@@ -1940,7 +1940,9 @@ class Controller(vs.TimingMixin):
             instance = db.factory(type, commit=True, **kwargs)
             if kwargs.get("copy"):
                 db.fetch(type, id=kwargs["copy"]).duplicate(clone=instance)
-            return instance.post_update()
+            if relations := vs.properties["update"].get(instance.class_type):
+                return instance.to_dict(include_relations=relations)
+            return instance.get_properties()
         except db.rbac_error:
             return {"alert": "Error 403 - Not Authorized."}
         except Exception as exc:

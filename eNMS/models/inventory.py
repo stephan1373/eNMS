@@ -95,9 +95,6 @@ class Device(Object):
                 network.positions[self.name] = network.positions.pop(old_name, [0, 0])
         self.serialized = str(self.get_properties().values())
 
-    def post_update(self):
-        return self.to_dict(include_relations=["networks"])
-
     @classmethod
     def database_init(cls):
         for property in vs.configuration_properties:
@@ -306,7 +303,6 @@ class Pool(AbstractBase):
 
     def post_update(self):
         self.compute_pool()
-        return super().post_update()
 
     def update(self, **kwargs):
         super().update(**kwargs)
