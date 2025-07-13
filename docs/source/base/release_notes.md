@@ -356,6 +356,7 @@ Benchmark (comparison last release versus new release) needed for:
     - Update 1 pool with 50k devices
     - Update all pools (the pools must be the same in last release and new release)
   - Workflow Duplication: try to duplicate large workflows
+  - Compare Speed of JSON Import with Structured Data versus Bytestring Data
 
 Migration:
 - Run migration script to:
