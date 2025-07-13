@@ -128,7 +128,8 @@ class Workflow(Service):
                 )
             )
         db.session.commit()
-        clone.recursive_update()
+        if not workflow:
+            clone.recursive_update()
         return clone
 
     @property
