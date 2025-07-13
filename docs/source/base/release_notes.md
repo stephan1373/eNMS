@@ -86,6 +86,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       Commit: e83dcc7739f12406ea802295afab684d2d7ad001
     - Avoid creating changelogs during the workflow duplication mechanism
       Commit: 370b580602ed47bde69f3bbe83deccb541876215
+    - Allow passing SQLAlchemy object in Base.update (via factory) to reduce the number of fetch queries
+      Commit: 217ad4517477fab06f26b91d845fffb51ea20178
   - Update to the Runner mechanism:
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
       time the 'global_variables' function is called.
