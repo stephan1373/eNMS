@@ -201,6 +201,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   bulk edit does not work with relationship filtering, e.g find all services that belong to a workflow
   then bulk edit filtered services)
   Commit: ca721c4b4ce9036cd006e72e04e12ddc4096ea17
+- Fix display bug in the Network / Workflow builder when moving a node, then switching to the edge creation
+  mode, then dragging the background of the canvas: the first node is moved instead of the canvas because
+  of a vis.js bug that does not properly clear the internal state of the canvas dragging mechanism
+  Commit: a48091f61033c5e4cd0c98b842e62a5561a1fcc9
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
