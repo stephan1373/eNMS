@@ -84,6 +84,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       Commit: e590b0b512a9e904dc3dc6d2a52632d78815ba48
     - Only call the 'recursive_update' function from the top-level workflow
       Commit: e83dcc7739f12406ea802295afab684d2d7ad001
+    - Avoid creating changelogs during the workflow duplication mechanism
+      Commit: 370b580602ed47bde69f3bbe83deccb541876215
   - Update to the Runner mechanism:
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
       time the 'global_variables' function is called.
