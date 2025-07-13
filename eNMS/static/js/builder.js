@@ -487,6 +487,7 @@ function deleteSelection() {
     callback: function(updateTime) {
       network.deleteSelected();
       network.setSelection({ nodes: [], edges: [] });
+      network.interactionHandler.drag.selection = [];
       const edgeType = type == "network" ? "links" : "edges";
       instance[`${nodeType}s`] = instance[`${nodeType}s`].filter(
         (n) => !selection.nodes.includes(n.id)
@@ -710,6 +711,7 @@ export function switchMode(mode, noNotification) {
     notification = "Mode: Motion.";
   } else {
     network.setSelection({ nodes: [], edges: [] });
+    network.interactionHandler.drag.selection = [];
     network.addEdgeMode();
     const linkLog = type == "network" ? "link" : `'${currentMode}' Edge.`;
     notification = `Mode: Creation of ${linkLog}.`;
