@@ -123,10 +123,10 @@ class Workflow(Service):
                     "workflow_edge",
                     rbac=None,
                     **{
-                        "workflow": clone.id,
+                        "workflow": clone,
                         "subtype": edge.subtype,
-                        "source": clone_services[edge.source.id].id,
-                        "destination": clone_services[edge.destination.id].id,
+                        "source": clone_services[edge.source.id],
+                        "destination": clone_services[edge.destination.id],
                     },
                 )
             )
