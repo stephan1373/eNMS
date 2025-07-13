@@ -178,11 +178,14 @@ class RestApi(vs.TimingMixin):
                     if property not in instance:
                         continue
                     elif relation["list"]:
-                        instance[property] = [row.id for row in db.fetch_all(
-                            relation["model"],
-                            name_in=instance[property],
-                            properties=["id"]
-                        )]
+                        instance[property] = [
+                            row.id
+                            for row in db.fetch_all(
+                                relation["model"],
+                                name_in=instance[property],
+                                properties=["id"],
+                            )
+                        ]
                     else:
                         instance[property] = db.fetch(
                             relation["model"], name=instance[property]

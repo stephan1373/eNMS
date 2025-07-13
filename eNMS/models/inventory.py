@@ -348,7 +348,9 @@ class Pool(AbstractBase):
                                 {"pool_id": self.id, f"{model}_id": instance.id}
                                 for instance in instances
                             ]
-                            for batch in batched(values, vs.database["transactions"]["batch_size"]):
+                            for batch in batched(
+                                values, vs.database["transactions"]["batch_size"]
+                            ):
                                 db.session.execute(table.insert(), batch)
                     else:
                         setattr(self, f"{model}s", instances)

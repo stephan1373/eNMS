@@ -284,7 +284,9 @@ class Controller(vs.TimingMixin):
             },
             "active": {
                 "service": active_service,
-                "task": len(db.fetch_all("task", properties=["id"], rbac=None, is_active=True)),
+                "task": len(
+                    db.fetch_all("task", properties=["id"], rbac=None, is_active=True)
+                ),
                 "workflow": active_workflow,
             },
             "properties": {

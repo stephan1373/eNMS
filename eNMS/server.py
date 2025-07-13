@@ -111,7 +111,7 @@ class Server(Flask):
                 ),
                 "time": str(vs.get_time()),
                 "server_id": vs.server_id,
-                "parameters": db.fetch("parameters").to_dict()
+                "parameters": db.fetch("parameters").to_dict(),
             }
             if db.monitor_orm_statements:
                 kwargs["queries"] = db.orm_statements.total()

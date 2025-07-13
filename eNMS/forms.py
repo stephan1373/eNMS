@@ -1069,7 +1069,9 @@ class ServiceForm(BaseForm):
                 f"The validation method is set to '{self.validation_method.data}'"
                 f" and the matching value is empty: these do no match."
             )
-        max_process = vs.settings["automation"]["max_process"] * (10 if self.high_performance.data else 1)
+        max_process = vs.settings["automation"]["max_process"] * (
+            10 if self.high_performance.data else 1
+        )
         too_many_threads_error = self.max_processes.data > max_process
         if too_many_threads_error:
             self.max_processes.errors.append(
@@ -1273,13 +1275,22 @@ class DeviceForm(ObjectForm):
         "NAPALM Driver", choices=vs.napalm_drivers, default="ios", validate_choice=False
     )
     netmiko_driver = SelectField(
-        "Netmiko Driver", choices=vs.netmiko_drivers, default="cisco_ios", validate_choice=False
+        "Netmiko Driver",
+        choices=vs.netmiko_drivers,
+        default="cisco_ios",
+        validate_choice=False,
     )
     scrapli_driver = SelectField(
-        "Scrapli Driver", choices=vs.scrapli_drivers, default="cisco_iosxe", validate_choice=False
+        "Scrapli Driver",
+        choices=vs.scrapli_drivers,
+        default="cisco_iosxe",
+        validate_choice=False,
     )
     netconf_driver = SelectField(
-        "Netconf Driver", choices=vs.netconf_drivers, default="default", validate_choice=False
+        "Netconf Driver",
+        choices=vs.netconf_drivers,
+        default="default",
+        validate_choice=False,
     )
     gateways = MultipleInstanceField("Gateways", model="gateway")
     networks = MultipleInstanceField("Networks", model="network")

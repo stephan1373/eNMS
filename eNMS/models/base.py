@@ -79,8 +79,14 @@ class AbstractBase(db.base):
                 continue
             property_type = vs.model_properties[self.__tablename__].get(property, None)
             if property in relation:
-                if relation[property]["list"] and value and not hasattr(value[0], "__mapper__"):
-                    value = db.fetch_all(relation[property]["model"], id_in=value, rbac=None)
+                if (
+                    relation[property]["list"]
+                    and value
+                    and not hasattr(value[0], "__mapper__")
+                ):
+                    value = db.fetch_all(
+                        relation[property]["model"], id_in=value, rbac=None
+                    )
                 elif value and not hasattr(value, "__mapper__"):
                     value = db.fetch(relation[property]["model"], id=value, rbac=None)
             if property_type == "bool":

@@ -249,7 +249,11 @@ class Database:
 
         @event.listens_for(self.base, "after_insert", propagate=True)
         def log_instance_creation(mapper, connection, target):
-            if not getattr(target, "log_change", True) or not env.log_events or connection.info.get("ignore"):
+            if (
+                not getattr(target, "log_change", True)
+                or not env.log_events
+                or connection.info.get("ignore")
+            ):
                 return
             if hasattr(target, "name") and target.type != "run":
                 properties = target.get_properties(logging=True)
@@ -258,7 +262,11 @@ class Database:
 
         @event.listens_for(self.base, "before_delete", propagate=True)
         def log_instance_deletion(mapper, connection, target):
-            if not getattr(target, "log_change", True) or not env.log_events or connection.info.get("ignore"):
+            if (
+                not getattr(target, "log_change", True)
+                or not env.log_events
+                or connection.info.get("ignore")
+            ):
                 return
             name = getattr(target, "name", str(target))
             env.log("info", f"DELETION: {target.type} '{name}'")
@@ -549,7 +557,12 @@ class Database:
         return self.delete_instance(instance)
 
     def fetch_all(self, model, **kwargs):
-        if "name_in" in kwargs and not kwargs["name_in"] or "id_in" in kwargs and not kwargs["id_in"]:
+        if (
+            "name_in" in kwargs
+            and not kwargs["name_in"]
+            or "id_in" in kwargs
+            and not kwargs["id_in"]
+        ):
             return []
         return self.fetch(model, allow_none=True, all_matches=True, **kwargs)
 

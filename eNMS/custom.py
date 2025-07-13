@@ -54,7 +54,9 @@ class CustomApp(vs.TimingMixin):
 
     def create_fake_logs(self):
         entry = ("changelog", "content", "admin", vs.get_time())
-        query = "INSERT INTO changelog (type, content, author, time) VALUES (?, ?, ?, ?)"
+        query = (
+            "INSERT INTO changelog (type, content, author, time) VALUES (?, ?, ?, ?)"
+        )
         batch_size = vs.database["transactions"]["batch_size"]
         log_size = vs.settings["on_startup"]["create_fake_logs"]
         with env.timer("Create Fake Changelogs"):

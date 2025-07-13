@@ -265,7 +265,9 @@ class Changelog(AbstractBase):
             setattr(
                 cls,
                 f"{model}_id",
-                db.Column(Integer, ForeignKey(f"{model}.id", ondelete="SET NULL"), index=True),
+                db.Column(
+                    Integer, ForeignKey(f"{model}.id", ondelete="SET NULL"), index=True
+                ),
             )
             setattr(cls, model, relationship(class_name, **kwargs))
 
