@@ -406,10 +406,10 @@ class DatabaseDeletionForm(BaseForm):
     )
 
 
-class DatabaseMigrationsForm(BaseForm):
-    template = "database_migration"
+class YamlMigrationsForm(BaseForm):
+    template = "yaml_migration"
     migration_folder = vs.migration_path
-    form_type = HiddenField(default="database_migration")
+    form_type = HiddenField(default="yaml_migration")
     empty_database_before_import = BooleanField("Empty Database before Import")
     skip_pool_update = BooleanField(
         "Skip the Pool update after Import", default="checked"
@@ -417,10 +417,15 @@ class DatabaseMigrationsForm(BaseForm):
     export_private_properties = BooleanField(
         "Include private properties", default="checked"
     )
-    json_migration = BooleanField("JSON Fast Migration", default="checked")
     import_export_types = SelectMultipleField(
         "Instances to migrate", choices=db.import_export_models
     )
+
+
+class JsonMigrationsForm(BaseForm):
+    template = "json_migration"
+    migration_folder = vs.migration_path
+    form_type = HiddenField(default="json_migration")
 
 
 class DataForm(BaseForm):

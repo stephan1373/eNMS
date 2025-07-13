@@ -243,10 +243,10 @@
     "/get_instance_tree": "access",
     "/import_services": "access",
     "/import_topology": "admin",
+    "/json_migration_export": "admin",
+    "/json_migration_import": "admin",
     "/load_debug_snippets": "admin",
     "/login": "none",
-    "/migration_export": "admin",
-    "/migration_import": "admin",
     "/multiselect_filtering": "all",
     "/remove_instance": "access",
     "/rest/instance": "access",
@@ -279,7 +279,9 @@
     "/update_device_rbac": "admin",
     "/upload_files": "access",
     "/view_filtering": "access",
-    "/web_connection": "access"
+    "/web_connection": "access",
+    "/yaml_migration_export": "admin",
+    "/yaml_migration_import": "admin"
   },
   "rest_endpoints": {
     "GET": {

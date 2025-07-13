@@ -45,7 +45,7 @@ class Controller(vs.TimingMixin):
     def _initialize(self, first_init):
         if not first_init:
             return
-        self.migration_import(
+        self.json_migration_import(
             name=vs.settings["app"].get("startup_migration", "default"),
             import_export_types=db.import_export_models,
             json_migration=vs.settings["app"].get("json_migration"),
@@ -1208,7 +1208,7 @@ class Controller(vs.TimingMixin):
             "warning", f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
         )
 
-    def json_export(self, **kwargs):
+    def json_migration_export(self, **kwargs):
         export_models = [
             class_name
             for class_name in vs.models
@@ -1343,7 +1343,7 @@ class Controller(vs.TimingMixin):
         ):
             db.session.execute(properties["table"].insert(), batch)
 
-    def json_import(self, folder="migrations", **kwargs):
+    def json_migration_import(self, folder="migrations", **kwargs):
         export_models = [
             class_name
             for class_name in vs.models
@@ -1380,9 +1380,7 @@ class Controller(vs.TimingMixin):
         vs.server_id = getattr(server, "id", None)
         return "Import successful."
 
-    def migration_export(self, **kwargs):
-        if kwargs.get("json_migration"):
-            return self.json_export(**kwargs)
+    def yaml_migration_export(self, **kwargs):
         self.delete_soft_deleted_objects()
         self.delete_corrupted_objects()
         yaml = vs.custom.get_yaml_instance()
@@ -1407,9 +1405,7 @@ class Controller(vs.TimingMixin):
                 file,
             )
 
-    def migration_import(self, folder="migrations", **kwargs):
-        if kwargs.get("json_migration"):
-            return self.json_import(**kwargs)
+    def yaml_migration_import(self, folder="migrations", **kwargs):
         env.log("info", "Starting Migration Import")
         env.log_events = False
         status, models = "Import successful.", kwargs["import_export_types"]
@@ -1599,7 +1595,7 @@ class Controller(vs.TimingMixin):
             folder_name = tar_file.getmembers()[0].name
             rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
             tar_file.extractall(path=vs.file_path / "services")
-            status = self.migration_import(
+            status = self.yaml_migration_import(
                 folder="services",
                 name=folder_name,
                 import_export_types=["service", "workflow_edge"],

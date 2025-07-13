@@ -236,10 +236,10 @@ function getClusterStatus() {
   });
 }
 
-function migrationsExport() {
+function migrationsExport(type) {
   notify("Migration Export initiated.", "success", 5, true);
   call({
-    url: "/migration_export",
+    url: `/${type}_migration_export`,
     form: "migration-form",
     callback: function() {
       notify("Migration Export successful.", "success", 5, true);
@@ -257,9 +257,9 @@ function scanFolder() {
   });
 }
 
-function showMigrationPanel() {
+function showMigrationPanel(type) {
   openPanel({
-    name: "database_migration",
+    name: `${type}_migration`,
     title: "Database Migration",
     size: "auto",
     callback: () => {
@@ -287,10 +287,10 @@ function revertChange(id) {
   });
 }
 
-function migrationsImport() {
+function migrationsImport(type) {
   notify("Inventory Import initiated.", "success", 5, true);
   call({
-    url: "/migration_import",
+    url: `/${type}_migration_import`,
     form: "migration-form",
     callback: function(result) {
       notify(result, "success", 5, true);

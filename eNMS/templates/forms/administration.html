@@ -35,9 +35,15 @@
   >
     <button
       class="btn btn-primary btn-file btn-admin-panel"
-      onclick="eNMS.administration.showMigrationPanel()"
+      onclick="eNMS.administration.showMigrationPanel('json')"
     >
-      Migration Import / Export
+      JSON Migration
+    </button>
+    <button
+      class="btn btn-primary btn-file btn-admin-panel"
+      onclick="eNMS.administration.showMigrationPanel('yaml')"
+    >
+      YAML Migration
     </button>
     <button
       class="btn btn-primary btn-file btn-admin-panel"

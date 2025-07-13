@@ -18,10 +18,6 @@
       {{ form.export_private_properties.label() }} {{
       form.export_private_properties(checked=True) }}
     </div>
-    <div>
-      <label>JSON Fast Migration</label>
-      {{ form.json_migration(checked=True) }}
-    </div>
     <br />
     <div>
       <label>
@@ -44,14 +40,14 @@
         <button
           type="button"
           class="btn btn-success"
-          onclick="eNMS.administration.migrationsImport()"
+          onclick="eNMS.administration.migrationsImport('yaml')"
         >
           Import
         </button>
         <button
           type="button"
           class="btn btn-success"
-          onclick="eNMS.administration.migrationsExport()"
+          onclick="eNMS.administration.migrationsExport('yaml')"
         >
           Export
         </button>
