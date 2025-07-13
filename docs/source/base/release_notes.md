@@ -195,6 +195,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 636cf96ed26dd3ff9fdd411fad27b61e4fc11633
 - Remove 'clear_results' endpoint in rbac.json and in controller code (unused, no longer relevant)
   Commit: 7e65a387d4b2dffa0423fcffe67a750d6da6717e
+- Update bulk edit mechanism to take the bulk filtering form into account when filtering (previously,
+  bulk edit does not work with relationship filtering, e.g find all services that belong to a workflow
+  then bulk edit filtered services)
+  Commit: ca721c4b4ce9036cd006e72e04e12ddc4096ea17
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
