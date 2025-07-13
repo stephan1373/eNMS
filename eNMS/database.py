@@ -549,6 +549,8 @@ class Database:
         return self.delete_instance(instance)
 
     def fetch_all(self, model, **kwargs):
+        if "name_in" in kwargs and not kwargs["name_in"] or "id_in" in kwargs and not kwargs["id_in"]:
+            return []
         return self.fetch(model, allow_none=True, all_matches=True, **kwargs)
 
     def delete_instance(self, instance, call_delete=True):
