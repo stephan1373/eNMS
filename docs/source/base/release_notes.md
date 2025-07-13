@@ -71,6 +71,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Optimize 'add_instances_in_bulk' to use name_in SQL query to add instances by name instead of db.fetch
     in a loop and return the list of all objects whose name is not found, not just the first one
     Commit: c44abaa30936d347afd3bbd64188153c0006787d
+  - Update skip_services endpoint to not fetch services in a loop
+    Commit: a03720c560496e98a3fa061a5ea5088436c20431
   - Update "get_service_state" function:
     - Optimize the function when a workflow has many runs by only fetching the runs name and runtime
       properties, not the full SQLalchemy objects for all runs (fetch the SQL object only for
