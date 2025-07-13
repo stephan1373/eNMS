@@ -1091,3 +1091,16 @@ ul.bar_tabs.right li {
 .hidden-scrollbar::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
+
+/* Admin Panel */
+
+.btn-admin-panel {
+  width: 200px;
+}
+
+.navbar-admin-panel {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}

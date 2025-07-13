@@ -3,27 +3,23 @@
     <h4 class="text-center">Miscellaneous</h4>
   </div>
   <nav
-    class="navbar navbar-default nav-controls"
-    style="margin-top: 5px; display: flex; flex-direction: column; gap: 7px;"
+    class="navbar navbar-default nav-controls navbar-admin-panel"
     role="navigation"
   >
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.administration.getGitContent()"
     >
       Fetch Git Configurations
     </button>
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.administration.downloadProfilingData()"
     >
       Download Profiling Data
     </button>
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.base.showInstancePanel('parameters', 1)"
     >
       Parameters
@@ -34,20 +30,17 @@
   </div>
   <br />
   <nav
-    class="navbar navbar-default nav-controls"
-    style="margin-top: 5px; display: flex; flex-direction: column; gap: 7px;"
+    class="navbar navbar-default nav-controls navbar-admin-panel"
     role="navigation"
   >
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.administration.showMigrationPanel()"
     >
       Migration Import / Export
     </button>
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.base.openPanel({
         name: 'database_deletion', title: 'Database Deletion', size: '500 300'
       })"
@@ -55,8 +48,7 @@
       Per-type Mass Deletion
     </button>
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.base.openPanel({
         name: 'old_instances_deletion',
         title: 'Results & Logs Deletion',
@@ -71,20 +63,17 @@
   </div>
   <br />
   <nav
-    class="navbar navbar-default nav-controls"
-    style="margin-top: 5px; display: flex; flex-direction: column; gap: 7px;"
+    class="navbar navbar-default nav-controls navbar-admin-panel"
     role="navigation"
   >
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.inventory.showImportTopologyPanel()"
     >
       Excel Import
     </button>
     <button
-      class="btn btn-primary btn-file"
-      style="width: 200px;"
+      class="btn btn-primary btn-file btn-admin-panel"
       onclick="eNMS.base.openPanel({
         title: 'Export Inventory',
         name: 'excel_export',
