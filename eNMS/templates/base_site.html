@@ -111,7 +111,7 @@
           class="version unselectable"
           style="font-size: {{ version_size }}px;"
         >
-          v{{ version }}
+          v{{ version }} {% if queries %} ({{ queries }}) {% endif %}
         </h3>
       </center>
       <div id="sidebar-menu" class="hidden-print main_menu">

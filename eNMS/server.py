@@ -103,20 +103,22 @@ class Server(Flask):
     def configure_context_processor(self):
         @self.context_processor
         def inject_properties():
+            kwargs = {
+                "user": (
+                    current_user.get_properties()
+                    if current_user.is_authenticated
+                    else None
+                ),
+                "time": str(vs.get_time()),
+                "server_id": vs.server_id,
+                "parameters": db.fetch("parameters").to_dict()
+            }
+            if db.monitor_orm_statements:
+                kwargs["queries"] = db.orm_statements.total()
             return (
                 vs.template_context
                 if request.path.endswith("_form")
-                else {
-                    "user": (
-                        current_user.get_properties()
-                        if current_user.is_authenticated
-                        else None
-                    ),
-                    "time": str(vs.get_time()),
-                    "server_id": vs.server_id,
-                    "parameters": db.fetch("parameters").to_dict(),
-                    **vs.template_context,
-                }
+                else {**kwargs, **vs.template_context}
             )
 
     def configure_errors(self):
