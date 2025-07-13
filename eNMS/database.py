@@ -249,7 +249,7 @@ class Database:
 
         @event.listens_for(self.base, "after_insert", propagate=True)
         def log_instance_creation(mapper, connection, target):
-            if not getattr(target, "log_change", True) or not env.log_events:
+            if not getattr(target, "log_change", True) or not env.log_events or connection.info.get("ignore"):
                 return
             if hasattr(target, "name") and target.type != "run":
                 properties = target.get_properties(logging=True)
@@ -258,7 +258,7 @@ class Database:
 
         @event.listens_for(self.base, "before_delete", propagate=True)
         def log_instance_deletion(mapper, connection, target):
-            if not getattr(target, "log_change", True) or not env.log_events:
+            if not getattr(target, "log_change", True) or not env.log_events or connection.info.get("ignore"):
                 return
             name = getattr(target, "name", str(target))
             env.log("info", f"DELETION: {target.type} '{name}'")
