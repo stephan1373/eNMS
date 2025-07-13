@@ -1806,7 +1806,7 @@ class Controller(vs.TimingMixin):
             self.task_action(mode, task.id)
 
     def skip_services(self, workflow_id, service_ids):
-        services = [db.fetch("service", id=id) for id in service_ids.split("-")]
+        services = db.fetch_all("service", id_in=service_ids.split("-"))
         workflow = db.fetch("workflow", id=workflow_id, rbac="edit")
         workflow.check_restriction_to_owners("edit")
         skip = not all(service.skip.get(workflow.name) for service in services)
