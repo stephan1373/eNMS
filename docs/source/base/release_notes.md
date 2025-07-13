@@ -78,6 +78,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       properties, not the full SQLalchemy objects for all runs (fetch the SQL object only for
       currently displayed runtime instead)
       Commit: 7fe70bc8cf5f453bb45d75878fa070e9800f9edb
+  - Optimize the workflow duplication mechanism:
+    - Don't return anything in the post_update function, and update the 'controller.update' function to not
+      rely on the post_update function to return the instance properties and relations
+      Commit: e590b0b512a9e904dc3dc6d2a52632d78815ba48
   - Update to the Runner mechanism:
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
       time the 'global_variables' function is called.
