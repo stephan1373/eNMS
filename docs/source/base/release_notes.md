@@ -29,6 +29,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Add batch mechanism for creating and updating DB records in batches during the migration import
     Configured via database.json > "transactions" > "batch_size" (default: 1000)
     Commit: 80e11132115e76c4eab2aa0a5cd0f8361d3c0adc
+  - Separate JSON and YAML migration forms
+    Commit: 783ad217d188766e767c80b9c5e3b19b7acc4145
 - Make Service.name a SmallString, otherwise mysql fails to initialize with the following error:
   "MySQLdb.OperationalError: (1170, BLOB/TEXT column 'name' used in key specification without a key length)"
   Commit: 82154c0830f1cae60ea7a81732478c302767145b
