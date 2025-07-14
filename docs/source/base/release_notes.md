@@ -271,10 +271,10 @@ Main Commits:
     - d55771ef9a515f76ab04df6f248ab78733c6a23c
   Side-effect: Because the workflow topology is saved when the workflow runs, any changes made
   afterward (such as removing an edge or a service) won't affect that workflow run.
-- Part 2 (no SQL only): Store results in a dict and create them in the end of run transaction.
+- Part 2 (High Performance Mode only): Store results in a dict and create them in the end of run transaction.
   Only active when the "High Performance" option is checked.
   Commit: 1dce0d1494fe3c3689d27acd68d8e620b49675b0
-- Part 3 (no SQL only):
+- Part 3 (High Performance Mode only):
   - Use service namespace instead of service SQL object for Runner.service
   - Convert all jobs to @staticmethod so it can be called without service SQL object
   - Add Target Devices and Target Pools as namespaces to the topology store (SxS with Service Targets)
@@ -294,15 +294,15 @@ Main Commits:
   Commit: 3fe07068a483175b02a5c16b3bd5663f84d359e6
 - Part 7: Remove task from the argument of Runner (no longer used)
   Commit: 99bbad31b0791a71cf61a223c2facfab600572cf
-- Part 8 (no SQL only): Create all reports after the main run in the Run class in
+- Part 8 (High Performance Mode only): Create all reports after the main run in the Run class in
   "High Performance" mode
   Commit: 24bd32010b1c94f12680dda13bbf481430fb3e09
-- Part 9 (no SQL only): Implement in-memory get transient result function and convert devices to
+- Part 9 (High Performance Mode only): Implement in-memory get transient result function and convert devices to
   namespace in topology cache
   Commit: 1b403f8b2f93e0ab37baea5738b36ad9493612f1
 - Part 10: Move the initialization of the main run cache in the Run class
   Commit: eb66e66689e8e39ab523575e79badb379b3ed370
-- Part 11 (no SQL only): Update Runner.log and env.log to not create a changelog object with factory
+- Part 11 (High Performance Mode only): Update Runner.log and env.log to not create a changelog object with factory
   during a run if the run is in no SQL mode (logs are stored in memory in vs.service_changelog)
   Commit: c2bb5b7698c63a938a020bd7b6f6302486f2035d
 - Part 12: Move 'close_remaining_connections' function in the Run class (it is executed after the
@@ -311,15 +311,15 @@ Main Commits:
 - Part 13: Close the threaded session used to refetch after fork immediately after refetching to
   avoid blocking the session until the end of the thread
   Commit: 8d62843fb91525a7a4569b42d2e5382029859d4f
-- Part 14 (no SQL only): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
+- Part 14 (High Performance Mode only): In no SQL mode, pass a namespace of the Run object instead of the Run itself,
   and remove the placeholder argument
   Commit: 6fce929592b61e6314b437b4de4566ea33d9ea3e
-- Part 15 (no SQL only): Don't refetch after fork in "High Performance" mode
+- Part 15 (High Performance Mode only): Don't refetch after fork in "High Performance" mode
   Commit: f4b1f8e7f1b78bbcb81b35c81b31d34fb2af9be0
 - Part 16:
-  - (no SQL only) Don't pass reference to restart_run as Runner arg in no SQL mode
+  - (High Performance Mode only) Don't pass reference to restart_run as Runner arg in no SQL mode
   - Remove references to restart_run in Workflow.job
-  - (no SQL only) Compute targets at the end of run in no SQL mode
+  - (High Performance Mode only) Compute targets at the end of run in no SQL mode
   Commit: 54e548559fa8722580c934858547a852b237ccda
 - Part 17: Call db.session.remove at the end of Controller.run to release the SQLAlchemy connection
   to the connection pool
@@ -328,9 +328,9 @@ Main Commits:
   after fetching the credential object in a thread, and prevent leaking SQLAlchemy connections when the connection
   setup fails (only applicable if multiprocessing is enabled)
   Commit: 0522ca6131d6679f827b6a8ff18b536960ec1766
-- Part 19 (no SQL only): Fetch device with selectinload gateways to prevent refetch in connection functions 
+- Part 19 (High Performance Mode only): Fetch device with selectinload gateways to prevent refetch in connection functions 
   Commit: e04d7a334c135cd9a73e65c49c6421e4429481e5
-- Part 20 (no SQL only): Refactor the "compute devices" mechanism and "get_target_property" so that targets are
+- Part 20 (High Performance Mode only): Refactor the "compute devices" mechanism and "get_target_property" so that targets are
   computed in the Run class whenever possible (e.g parameterized form, restart run, etc)
   Commit: 5929b7ed82aa0c4f56c08a64182c6040319e8e5b
 - Part 21: Move all the global variables function in their own class, parent class of Runner
@@ -351,7 +351,7 @@ Main Commits:
   Commit: b559794d79e9d3599631f2b8a409a90d78911f30
 - Part 28: in 'High Performance' mode, increase the maximum number of threads allowed to 'max_process' * 10
   Commit: f26ee4f41310de0d488f548afb8476efe6674f0c
-- Part 29: (no SQL only) Refactor 'compute_devices_from_query':
+- Part 29: (High Performance Mode only) Refactor 'compute_devices_from_query':
     - Use a 'in_' query to fetch the devices, which reduces the number of SQL queries made during the run
       Commit: 4840ab57130c7a189be846da83cb210991fdf622
     - Add db.session_scope context manager to release the SQL session when multiprocessing is enabled
