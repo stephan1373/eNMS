@@ -5,3 +5,4 @@
 db.monitor_orm_statements = True
 db.orm_statements.clear()
 db.orm_statements_runtime.clear()
+db.orm_statements_tracebacks.clear()
