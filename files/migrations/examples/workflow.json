@@ -14794,8 +14794,18 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "labels": {},
-    "last_modified": "2025-07-14 16:26:29.299177",
+    "labels": {
+      "233d04e7-d36c-4973-8476-b0996d128ffd": {
+        "alignment": "left",
+        "content": "Every service uses [f\"router{i}\" for i in range(24, 37)] as\r\niteration query, which means the compute_devices_from_query\r\nwill have to fetch these routers for each target device and each\r\nservice. This workflow can be run with the SQL monitoring mechanism\r\nto see how many queries are made. When multiprocessing is enabled,\r\nit tests that the SQL session is properly released after making the\r\ndb.fetch SQL query (need to run it with a pool size lower than the\r\nnumber of threads used in the workflow",
+        "positions": [
+          167,
+          287
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-07-14 17:19:18.615826",
     "last_modified_by": "admin",
     "last_run": "2025-07-14 16:25:48.426815",
     "log_level": 1,
@@ -14822,16 +14832,16 @@
     "persistent_id": "WNhzQq2rwyw",
     "positions": {
       "[Shared] End": [
-        626,
-        191
+        608,
+        24
       ],
       "[Shared] Start": [
-        -193,
-        16
+        -267,
+        90
       ],
       "[Workflow with large Iteration Query] S1": [
-        -187,
-        -107
+        -82,
+        -66
       ],
       "[Workflow with large Iteration Query] S10": [
         127,
@@ -14874,8 +14884,8 @@
         192
       ],
       "[Workflow with large Iteration Query] S2": [
-        34,
-        -168
+        -104,
+        179
       ],
       "[Workflow with large Iteration Query] S20": [
         456,
@@ -14914,28 +14924,28 @@
         100
       ],
       "[Workflow with large Iteration Query] S3": [
-        64,
-        -53
+        92,
+        -67
       ],
       "[Workflow with large Iteration Query] S4": [
-        -37,
-        105
+        90,
+        174
       ],
       "[Workflow with large Iteration Query] S5": [
-        109,
-        217
+        265,
+        -66
       ],
       "[Workflow with large Iteration Query] S6": [
-        252,
-        90
+        275,
+        179
       ],
       "[Workflow with large Iteration Query] S7": [
-        305,
-        -90
+        451,
+        -71
       ],
       "[Workflow with large Iteration Query] S8": [
-        507,
-        25
+        450,
+        169
       ],
       "[Workflow with large Iteration Query] S9": [
         -35,
@@ -14956,7 +14966,7 @@
     "scoped_name": "Workflow with large Iteration Query",
     "send_notification": false,
     "send_notification_method": "mail",
-    "serialized": "dict_values(['', 0, 1, False, '', 'Workflow with large Iteration Query', 'name', 'workflow', True, [], False, 'admin', None, None, None, False, '', 0, '', '', 'admin', None, None, False, 'any', 1, '', None, '', '', 'none', {}, False, '', 'text', None, 0, None, '7c3b9534-cafb-4a89-b1e2-e9009cab5125', '', 'text', 10, \"results['result']\", False, False, 'Workflow with large Iteration Query', False, {}, 'Default Value', '', 'set_var(\"sleep_time\", 0)', 'Definition', False, 'Scalability', 'device', None, False, '', '2025-07-14 16:19:44.274751', False, True, False, 'per_device', '', 'success', False, 100, \"name = StringField('Name', [InputRequired()])\\r\\ninitial_payload = DictField()\\r\\ntarget_devices = MultipleInstanceField('Devices', model='device')\\r\\ntarget_pools = MultipleInstanceField('Pools', model='pool')\\r\\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\\r\\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\\r\\nmultiprocessing = BooleanField('Multiprocessing', default=False)\\r\\nmax_processes = IntegerField('Maximum number of processes', default=15)\", '', False, False, 15, None, False, None, False, 0, '', 'iteration_value', False, '', 'mail', False, {}, 'none', 1, 'Default Value', False, 'success', None, '', '', False, 11, 'name'])",
+    "serialized": "dict_values(['workflow', '', '2025-07-14 16:19:44.276797', '', 'WNhzQq2rwyw', '', '', [], \"results['result']\", False, '', 'Default Value', False, '', 'text', '2025-07-14 17:19:18.615826', False, 'mail', '', 15, 'text', '', False, 'Idle', 'device', 0, 10, '', False, False, 394, False, False, 'Workflow with large Iteration Query', 'name', 'none', '', False, '', 0, False, '', False, False, '', False, 1, '', 'WNhzQq2rwyw', '', '', 0, False, 'Scalability', 'any', False, \"name = StringField('Name', [InputRequired()])\\r\\ninitial_payload = DictField()\\r\\ntarget_devices = MultipleInstanceField('Devices', model='device')\\r\\ntarget_pools = MultipleInstanceField('Pools', model='pool')\\r\\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\\r\\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\\r\\nmultiprocessing = BooleanField('Multiprocessing', default=False)\\r\\nmax_processes = IntegerField('Maximum number of processes', default=15)\", '', True, {}, 1, '7c3b9534-cafb-4a89-b1e2-e9009cab5125', 'Definition', 'admin', '2025-07-14 16:25:48.426815', 0, 1, False, {'[Shared] End': [608, 24], '[Shared] Start': [-267, 90], '[Workflow with large Iteration Query] S1': [-82, -66], '[Workflow with large Iteration Query] S10': [127, 192], '[Workflow with large Iteration Query] S11': [125, 97], '[Workflow with large Iteration Query] S12': [123, 9], '[Workflow with large Iteration Query] S13': [122, -75], '[Workflow with large Iteration Query] S14': [124, -155], '[Workflow with large Iteration Query] S15': [281, -155], '[Workflow with large Iteration Query] S16': [283, -74], '[Workflow with large Iteration Query] S17': [282, 13], '[Workflow with large Iteration Query] S18': [287, 100], '[Workflow with large Iteration Query] S19': [296, 192], '[Workflow with large Iteration Query] S2': [-104, 179], '[Workflow with large Iteration Query] S20': [456, 194], '[Workflow with large Iteration Query] S21': [457, 99], '[Workflow with large Iteration Query] S22': [454, 12], '[Workflow with large Iteration Query] S23': [448, -77], '[Workflow with large Iteration Query] S24': [448, -158], '[Workflow with large Iteration Query] S25': [617, -161], '[Workflow with large Iteration Query] S26': [624, -76], '[Workflow with large Iteration Query] S27': [625, 10], '[Workflow with large Iteration Query] S28': [625, 100], '[Workflow with large Iteration Query] S3': [92, -67], '[Workflow with large Iteration Query] S4': [90, 174], '[Workflow with large Iteration Query] S5': [265, -66], '[Workflow with large Iteration Query] S6': [275, 179], '[Workflow with large Iteration Query] S7': [451, -71], '[Workflow with large Iteration Query] S8': [450, 169], '[Workflow with large Iteration Query] S9': [-35, 195]}, 'admin', False, 'Workflow with large Iteration Query', False, 'name', False, '', 'Default Value', 11, {}, None, False, {'233d04e7-d36c-4973-8476-b0996d128ffd': {'positions': [167, 287], 'content': 'Every service uses [f\"router{i}\" for i in range(24, 37)] as\\r\\niteration query, which means the compute_devices_from_query\\r\\nwill have to fetch these routers for each target device and each\\r\\nservice. This workflow can be run with the SQL monitoring mechanism\\r\\nto see how many queries are made. When multiprocessing is enabled,\\r\\nit tests that the SQL session is properly released after making the\\r\\ndb.fetch SQL query (need to run it with a pool size lower than the\\r\\nnumber of threads used in the workflow', 'alignment': 'left', 'size': 14}}, True, False, 'iteration_value', 'per_device', '', 'set_var(\"sleep_time\", 0)', 100, False, {}, 'success', 'success', 'none', ''])",
     "shared": false,
     "show_user_logs": true,
     "skip": {},
