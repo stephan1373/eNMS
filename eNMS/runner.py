@@ -162,11 +162,12 @@ class RunEngine:
             values = [values]
         values = list(map(str, values))
         if _self.high_performance:
-            devices = db.fetch_all(
-                "device",
-                user=_self.creator,
-                **{f"{property}_in": values},
-            )
+            with db.session_scope(remove=_self.in_process):
+                devices = db.fetch_all(
+                    "device",
+                    user=_self.creator,
+                    **{f"{property}_in": values},
+                )
             if len(devices) != len(values):
                 found = {getattr(device, property) for device in devices}
                 not_found = set(values) - found
@@ -344,6 +345,8 @@ class RunEngine:
                     .one()
                 )
             run_kwargs = {"in_process": True, **run.kwargs}
+        checked_out = db.engine.pool.checkedout()
+        print(f"Checked out connections: {checked_out}")
         results.append(Runner(run, **run_kwargs).run_job_and_collect_results(device))
 
     def device_iteration(self, device):
