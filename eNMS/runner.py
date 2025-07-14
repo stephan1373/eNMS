@@ -163,10 +163,11 @@ class RunEngine:
         values = list(map(str, values))
         if _self.high_performance:
             with db.session_scope(remove=_self.in_process):
-                devices = db.fetch_all(
-                    "device",
-                    user=_self.creator,
-                    **{f"{property}_in": values},
+                devices = (
+                    db.query("device", user=_self.creator)
+                    .options(selectinload(vs.models["device"].gateways))
+                    .filter(getattr(vs.models["device"], property).in_(values))
+                    .all()
                 )
             if len(devices) != len(values):
                 found = {getattr(device, property) for device in devices}
