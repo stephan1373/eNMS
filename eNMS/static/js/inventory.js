@@ -59,7 +59,7 @@ function drawDiagrams(type, objects, property) {
     let value = params.data.name;
     openPanel({
       name: "table",
-      size: "1250 500",
+      size: "1250 650",
       content: `
         <div class="modal-body">
           <div id="tooltip-overlay" class="overlay"></div>
