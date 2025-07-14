@@ -249,6 +249,9 @@ Key Ideas about the refactoring of runner.py and "High Performance":
 - Make 'get_git_content' and 'scan_folder' optional on app startup with new optional "on_startup" key
   in settings.json
   Commit: 4341a0feebed970625e677a85c52a7a0f29d6d7a
+- Allow raising custom 403 alerts in the UI from a plugin or any controller function, instead of the standard
+  'Not Authorized' message
+  Commit: 67cd0ce9e51a1202d9132c3f1d2993bbfced4ba8
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
