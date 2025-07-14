@@ -160,20 +160,31 @@ class RunEngine:
         devices, not_found = set(), []
         if isinstance(values, str):
             values = [values]
-        for value in values:
-            if isinstance(value, vs.models["device"]):
-                device = value
-            else:
-                device = db.fetch(
-                    "device",
-                    allow_none=True,
-                    user=_self.creator,
-                    **{property: str(value)},
-                )
-            if device:
-                devices.add(device)
-            else:
-                not_found.append(str(value))
+        values = list(map(str, values))
+        if _self.high_performance:
+            devices = db.fetch_all(
+                "device",
+                user=_self.creator,
+                **{f"{property}_in": values},
+            )
+            if len(devices) != len(values):
+                found = {getattr(device, property) for device in devices}
+                not_found = set(values) - found
+        else:
+            for value in values:
+                if isinstance(value, vs.models["device"]):
+                    device = value
+                else:
+                    device = db.fetch(
+                        "device",
+                        allow_none=True,
+                        user=_self.creator,
+                        **{property: str(value)},
+                    )
+                if device:
+                    devices.add(device)
+                else:
+                    not_found.append(str(value))
         if not_found:
             raise Exception(f"Device query invalid targets: {', '.join(not_found)}")
         return devices
