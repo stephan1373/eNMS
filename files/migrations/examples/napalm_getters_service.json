@@ -32,6 +32,7 @@
     "getters": [
       "get_facts"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": true,
@@ -56,7 +57,6 @@
     "multiprocessing": false,
     "name": "[Shared] NAPALM: Get Facts",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -129,6 +129,7 @@
     "getters": [
       "get_interfaces"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": true,
@@ -153,7 +154,6 @@
     "multiprocessing": false,
     "name": "[Shared] NAPALM: Get interfaces",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -230,6 +230,7 @@
     "getters": [
       "get_interfaces_ip"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": false,
@@ -254,7 +255,6 @@
     "multiprocessing": false,
     "name": "[Shared] Getters Workflow: Interface IP",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -331,6 +331,7 @@
     "getters": [
       "is_alive"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": false,
@@ -355,7 +356,6 @@
     "multiprocessing": false,
     "name": "[(R) Napalm Getters Service] Getters Workflow: is alive",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -431,6 +431,7 @@
     "getters": [
       "get_facts"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": false,
@@ -455,7 +456,6 @@
     "multiprocessing": false,
     "name": "[(R) Napalm Getters Service] Getters Workflow: get facts",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -528,6 +528,7 @@
     "getters": [
       "get_mac_address_table"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": false,
@@ -552,7 +553,6 @@
     "multiprocessing": false,
     "name": "[(R) Napalm Getters Service] Getters Workflow: MAC address",
     "negative_logic": true,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -629,6 +629,7 @@
     "getters": [
       "get_facts"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": true,
     "include_link_in_summary": false,
@@ -653,7 +654,6 @@
     "multiprocessing": false,
     "name": "[(R) Napalm Getters Service] Getters Workflow: get facts failed match",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -726,6 +726,7 @@
     "getters": [
       "get_interfaces"
     ],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": false,
     "include_link_in_summary": false,
@@ -750,7 +751,6 @@
     "multiprocessing": false,
     "name": "[(R) Named Credential Mechanism] Napalm - get interfaces -",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
@@ -823,6 +823,7 @@
     "dry_run": true,
     "email_report": false,
     "getters": [],
+    "high_performance": false,
     "impacting": true,
     "include_device_results": false,
     "include_link_in_summary": false,
@@ -847,7 +848,6 @@
     "multiprocessing": false,
     "name": "[Dry Run: Napalm Services] Getters",
     "negative_logic": false,
-    "high_performance": false,
     "notification_header": "",
     "number_of_retries": 0,
     "operating_system": "",
