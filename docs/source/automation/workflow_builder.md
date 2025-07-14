@@ -67,6 +67,14 @@ The Workflow Builder's panel is organized into 3 blocks of controls:
     - `Switch to Parent workflow`: transitions back to the parent workflow if
       a subworkflow has been double-clicked for drill down.
     - `Next workflow`: functions like the Next-button of the browser.
+      
+!!! note
+
+    **Shared Service**
+
+    A pink shadow around a service node visually indicates that the service is shared.
+
+![Shared Service](../_static/automation/workflows/workflow_builder_ss.png)
 
 -   Section 3: Run or Stop the workflow, Browse Logs and Results
 
