@@ -252,6 +252,9 @@ Key Ideas about the refactoring of runner.py and "High Performance":
 - Allow raising custom 403 alerts in the UI from a plugin or any controller function, instead of the standard
   'Not Authorized' message
   Commit: 67cd0ce9e51a1202d9132c3f1d2993bbfced4ba8
+- Changelog Diff Improvements:
+  - Make 'Side by Side' the default visualization mode and increase panel width
+    Commit: c5e0af196abe701e8480e4109edb26c2f7603797
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
