@@ -1018,7 +1018,7 @@ export function displayDiff(type, instanceId, properties) {
       name: "compare",
       title: `Compare ${objectType}`,
       id: diffId,
-      size: "700 500",
+      size: "1200 600",
       content: `
         <nav
           class="navbar navbar-default nav-controls"
@@ -1048,7 +1048,7 @@ export function displayDiff(type, instanceId, properties) {
           <div id="content-${diffId}" style="height:100%"></div>
         </div>`,
       callback: () => {
-        $(`#diff-type-${diffId}`).bootstrapToggle({
+        $(`#diff-type-${diffId}`).prop("checked", true).bootstrapToggle({
           on: "Side by side",
           off: "Line by line",
           width: "120px",
