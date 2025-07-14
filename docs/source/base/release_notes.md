@@ -255,6 +255,10 @@ Key Ideas about the refactoring of runner.py and "High Performance":
 - Changelog Diff Improvements:
   - Make 'Side by Side' the default visualization mode and increase panel width
     Commit: c5e0af196abe701e8480e4109edb26c2f7603797
+  - Remove the newline in the content of a changelog before 'Added' and 'Removed' so it can be searched in the changelog
+    table, and add the diff in Changelog.history so that updates to an object relationships can be displayed in the git
+    diff panel of a changelog
+    Commit: ccf6d7a4de6490689e5a094c351e273ccfe150fb
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
