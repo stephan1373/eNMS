@@ -345,8 +345,6 @@ class RunEngine:
                     .one()
                 )
             run_kwargs = {"in_process": True, **run.kwargs}
-        checked_out = db.engine.pool.checkedout()
-        print(f"Checked out connections: {checked_out}")
         results.append(Runner(run, **run_kwargs).run_job_and_collect_results(device))
 
     def device_iteration(self, device):
