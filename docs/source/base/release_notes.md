@@ -219,6 +219,19 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   mode, then dragging the background of the canvas: the first node is moved instead of the canvas because
   of a vis.js bug that does not properly clear the internal state of the canvas dragging mechanism
   Commit: a48091f61033c5e4cd0c98b842e62a5561a1fcc9
+- Make 'get_git_content' and 'scan_folder' optional on app startup with new optional "on_startup" key
+  in settings.json
+  Commit: 4341a0feebed970625e677a85c52a7a0f29d6d7a
+- Allow raising custom 403 alerts in the UI from a plugin or any controller function, instead of the standard
+  'Not Authorized' message
+  Commit: 67cd0ce9e51a1202d9132c3f1d2993bbfced4ba8
+- Changelog Diff Improvements:
+  - Make 'Side by Side' the default visualization mode and increase panel width
+    Commit: c5e0af196abe701e8480e4109edb26c2f7603797
+  - Remove the newline in the content of a changelog before 'Added' and 'Removed' so it can be searched in the changelog
+    table, and add the diff in Changelog.history so that updates to an object relationships can be displayed in the git
+    diff panel of a changelog
+    Commit: ccf6d7a4de6490689e5a094c351e273ccfe150fb
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
@@ -246,19 +259,6 @@ Key Ideas about the refactoring of runner.py and "High Performance":
 - In "No SQL mode", every transaction that happens after forking should have a clear beginning and end, otherwise the
   session is never closed until the end of the thread, and a workflow that uses 25 threads will use 25 SQL session
   until the end of the wokrflow.
-- Make 'get_git_content' and 'scan_folder' optional on app startup with new optional "on_startup" key
-  in settings.json
-  Commit: 4341a0feebed970625e677a85c52a7a0f29d6d7a
-- Allow raising custom 403 alerts in the UI from a plugin or any controller function, instead of the standard
-  'Not Authorized' message
-  Commit: 67cd0ce9e51a1202d9132c3f1d2993bbfced4ba8
-- Changelog Diff Improvements:
-  - Make 'Side by Side' the default visualization mode and increase panel width
-    Commit: c5e0af196abe701e8480e4109edb26c2f7603797
-  - Remove the newline in the content of a changelog before 'Added' and 'Removed' so it can be searched in the changelog
-    table, and add the diff in Changelog.history so that updates to an object relationships can be displayed in the git
-    diff panel of a changelog
-    Commit: ccf6d7a4de6490689e5a094c351e273ccfe150fb
 
 Main Commits:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
