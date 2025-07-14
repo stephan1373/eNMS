@@ -309,9 +309,12 @@ class Database:
                         ),
                     }
                     if deleted:
-                        change += f"\n  - Removed: {deleted}"
+                        change += f" - Removed: {deleted}"
                     if added:
-                        change += f"\n  - Added: {added}"
+                        change += f" - Added: {added}"
+                    history["properties"][attr.key] = {
+                        "old": "\n".join(map(str, deleted)), "new": "\n".join(map(str, added))
+                    }
                 else:
                     if deleted:
                         if hasattr(deleted[0], "class_type"):
