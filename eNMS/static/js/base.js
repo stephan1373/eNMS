@@ -169,7 +169,7 @@ export const call = function({ url, data, form, callback, errorCallback }) {
       if (error.status == 400) {
         message += " Your session might have expired, try refreshing the page.";
       } else if (error.status == 403) {
-        message = "Error 403 - Not Authorized.";
+        message = error.responseJSON.alert;
       }
       if (errorCallback) {
         errorCallback(error);

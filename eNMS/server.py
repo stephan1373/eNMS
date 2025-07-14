@@ -151,6 +151,7 @@ class Server(Flask):
             endpoint = "/".join(request.path.split("/")[: 2 + rest_request])
             request_property = f"{request.method.lower()}_requests"
             endpoint_rbac = vs.rbac[request_property].get(endpoint)
+            error_message = None
             if rest_request:
                 user = None
                 if request.authorization:
@@ -179,8 +180,8 @@ class Server(Flask):
                 try:
                     result = function(*args, **kwargs)
                     status_code = 200
-                except (db.rbac_error, Forbidden):
-                    status_code = 403
+                except (db.rbac_error, Forbidden) as exc:
+                    status_code, error_message = 403, str(exc)
                 except NotFound:
                     status_code = 404
                 except Exception:
@@ -216,7 +217,8 @@ class Server(Flask):
                     status_code,
                 )
             else:
-                error_message = Server.status_error_message[status_code]
+                if not error_message:
+                    error_message = Server.status_error_message[status_code]
                 alert = f"Error {status_code} - {error_message}"
                 return jsonify({"alert": alert}), status_code
 
