@@ -351,6 +351,9 @@ Main Commits:
   Commit: b559794d79e9d3599631f2b8a409a90d78911f30
 - Part 28: in 'High Performance' mode, increase the maximum number of threads allowed to 'max_process' * 10
   Commit: f26ee4f41310de0d488f548afb8476efe6674f0c
+- Part 29: (no SQL only) Refactor 'compute_devices_from_query' so it uses a 'in_' query to fetch the devices,
+  which reduces the number of SQL queries made during the run
+  Commit: 4840ab57130c7a189be846da83cb210991fdf622
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
