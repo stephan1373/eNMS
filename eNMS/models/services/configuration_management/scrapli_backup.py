@@ -71,20 +71,14 @@ class ScrapliBackupService(ConnectionService):
                 result = sub(
                     replacement["pattern"], replacement["replace_with"], result, flags=M
                 )
-            deferred_device = (
-                db.query("device", user=run.creator)
-                .options(load_only(getattr(vs.models["device"], self.property)))
-                .filter_by(id=device.id)
-                .one()
-            )
-            if getattr(deferred_device, self.property) != result:
-                with open(path / self.property, "w") as file:
-                    file.write(result)
-            kwargs["deferred_device"] = deferred_device
         except Exception:
             result, kwargs["success"] = format_exc(), False
         kwargs["result"] = result
-        db.try_commit(run.configuration_transaction, self.property, device, **kwargs)
+        with db.session_scope(remove=run.high_performance and run.in_process):
+            old_value = run.configuration_transaction(self.property, device, **kwargs)
+        if old_value != result:
+            with open(path / self.property, "w") as file:
+                file.write(result)
         if kwargs["success"]:
             run.update_configuration_properties(path, self.property, device)
             return {"success": True}

@@ -18,7 +18,7 @@ from re import compile, search
 from requests import post
 from scp import SCPClient
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import load_only, selectinload
 from sys import getsizeof
 from time import sleep
 from traceback import format_exc
@@ -1370,19 +1370,29 @@ class NetworkManagement:
             dump(data, file, indent=4)
 
     def configuration_transaction(self, property, device, **kwargs):
-        setattr(device, f"last_{self.property}_runtime", str(kwargs["runtime"]))
-        if kwargs["success"]:
-            setattr(device, f"last_{property}_status", "Success")
-            duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"
-            setattr(device, f"last_{property}_duration", duration)
-            if getattr(kwargs["deferred_device"], property) != kwargs["result"]:
-                setattr(kwargs["deferred_device"], property, kwargs["result"])
-                setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
-            setattr(device, f"last_{property}_success", str(kwargs["runtime"]))
-        else:
-            setattr(device, f"last_{property}_status", "Failure")
-            setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))
+        deferred_device = (
+            db.query("device", user=self.creator)
+            .options(load_only(getattr(vs.models["device"], property)))
+            .filter_by(id=device.id)
+            .one()
+        )
 
+        def transaction():
+            setattr(device, f"last_{property}_runtime", str(kwargs["runtime"]))
+            if kwargs["success"]:
+                setattr(device, f"last_{property}_status", "Success")
+                duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"
+                setattr(device, f"last_{property}_duration", duration)
+                if getattr(deferred_device, property) != kwargs["result"]:
+                    setattr(deferred_device, property, kwargs["result"])
+                    setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
+                setattr(device, f"last_{property}_success", str(kwargs["runtime"]))
+            else:
+                setattr(device, f"last_{property}_status", "Failure")
+                setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))
+
+        db.try_commit(transaction)
+        return getattr(deferred_device, property)
 
 class GlobalVariables:
     def global_variables(_self, **locals):  # noqa: N805
