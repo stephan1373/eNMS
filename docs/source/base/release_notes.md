@@ -356,6 +356,9 @@ Main Commits:
       Commit: 4840ab57130c7a189be846da83cb210991fdf622
     - Add db.session_scope context manager to release the SQL session when multiprocessing is enabled
       Commit: 27f4652e12427dfb9409e7e7bc71cd06e8240e8b
+- Part 30: Refactor netmiko and scrapli backup services to handle all SQL operations in a single function, and remove the
+  session at the end if in high performance and in a thread
+  Commit: 5cb6f847650dfb00173e69ee674ecf
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
