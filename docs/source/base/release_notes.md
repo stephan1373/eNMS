@@ -369,6 +369,10 @@ Open Questions:
 
 Benchmark (comparison last release versus new release) needed for:
   - Workflow runs
+    - Workflow with 5 - 10 empty python snippet services, 10k target devices
+    - Configuration Backup Workflow:
+      - Compare performance new and last release with same number of threads
+      - Try to raise the number of threads to 300, 500
   - Add Services to Workflow Panel ("get_workflow_services" endpoint)
   - Update pool:
     - Update 1 pool with 50k devices
