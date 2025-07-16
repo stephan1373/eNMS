@@ -377,8 +377,6 @@ class WorkflowEdge(AbstractBase):
     def update(self, **kwargs):
         super().update(**kwargs)
         self.set_name(kwargs.get("name"))
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
 
     def set_name(self, name=None):
         self.name = name or f"[{self.workflow}] {vs.get_time()}"

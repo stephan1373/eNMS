@@ -29,8 +29,6 @@ class Object(AbstractBase):
         super().update(**kwargs)
         if not hasattr(self, "class_type") or self.class_type == "network":
             return
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
 
     def delete(self):
         number = f"{self.class_type}_number"
@@ -303,11 +301,6 @@ class Pool(AbstractBase):
 
     def post_update(self):
         self.compute_pool()
-
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
 
     def compute_pool(self, commit=False):
         def transaction():

@@ -44,11 +44,6 @@ class Server(AbstractBase):
     workers = relationship("Worker", back_populates="server")
     model_properties = {"current_runs": "str"}
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
-
     @property
     def current_runs(self):
         return (
@@ -153,8 +148,6 @@ class User(AbstractBase, UserMixin):
         if kwargs.get("password") and not kwargs["password"].startswith("$argon2i"):
             kwargs["password"] = argon2.hash(kwargs["password"])
         super().update(**kwargs)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
 
     def update_rbac(self):
         if self.is_admin:
@@ -209,8 +202,6 @@ class Group(AbstractBase):
     def update(self, **kwargs):
         old_users = set(self.users)
         super().update(**kwargs)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
         if not kwargs.get("import_mechanism", False):
             for user in set(self.users) | old_users:
                 user.update_rbac()
@@ -238,11 +229,6 @@ class Credential(AbstractBase):
         back_populates="credential_devices",
     )
     logs = relationship("Changelog", back_populates="credential")
-
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
 
 
 class Changelog(AbstractBase):

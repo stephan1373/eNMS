@@ -98,6 +98,7 @@ class AbstractBase(db.base):
                     if current_value:
                         value = {**current_value, **value}
             setattr(self, property, value)
+        self.update_last_modified_properties()
         if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
             return
         for group in db.fetch_all("group", force_read_access=True, rbac=None):
