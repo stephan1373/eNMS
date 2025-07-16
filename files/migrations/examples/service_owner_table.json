@@ -104,6 +104,10 @@
     "admin"
   ],
   [
+    "Rest Call Service: Substitution Type Mechanism",
+    "admin"
+  ],
+  [
     "Runtime Notes Mechanism",
     "admin"
   ],
@@ -533,6 +537,10 @@
   ],
   [
     "[Priority Mechanism] Service 5",
+    "admin"
+  ],
+  [
+    "[Rest Call Service: Substitution Type Mechanism] Dict Substitution",
     "admin"
   ],
   [

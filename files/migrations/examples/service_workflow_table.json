@@ -1264,6 +1264,10 @@
     "Priority Mechanism"
   ],
   [
+    "[Rest Call Service: Substitution Type Mechanism] Dict Substitution",
+    "Rest Call Service: Substitution Type Mechanism"
+  ],
+  [
     "[Runtime Notes Mechanism] Remove note1",
     "Runtime Notes Mechanism"
   ],
@@ -1598,6 +1602,10 @@
   [
     "[Shared] End",
     "Priority Mechanism"
+  ],
+  [
+    "[Shared] End",
+    "Rest Call Service: Substitution Type Mechanism"
   ],
   [
     "[Shared] End",
@@ -2106,6 +2114,10 @@
   [
     "[Shared] Start",
     "Priority Mechanism"
+  ],
+  [
+    "[Shared] Start",
+    "Rest Call Service: Substitution Type Mechanism"
   ],
   [
     "[Shared] Start",
