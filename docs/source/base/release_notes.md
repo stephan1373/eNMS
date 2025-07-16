@@ -242,6 +242,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     Commit: 88254128498d50d015070d9eacdf8819c0669999
   - Add 'Last Modified' and 'Last Modified By' to service and task forms, as well as group, task, user and server tables
     Commit: 26c547bc025a682c1aad887b3d044adf49fc9b7b
+- Fix edge display (workflow edge in workflow builder and link in network builder) not updated after either name or
+  color is modified bug
+  Commit: 45596d6a40314d57c6aaf6538c4bc6bc61b04877
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
