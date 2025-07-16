@@ -15021,15 +15021,15 @@
     "labels": {
       "5c7d0c38-a8af-46cc-a843-6b02e60bf110": {
         "alignment": "left",
-        "content": "This workflow runs in DxD on a single device. It has a preprocessing section where:\r\n- a \"property_list\" variable is set to [\"name\", \"ip_address\"].\r\n- a \"payload_dict\" variable is set to {\"columns\": [\"name\", \"model\", \"vendor\"], \"maximum_return_records\": 5, \"start\": 0, \"type\": \"device\"}",
+        "content": "This workflow runs in DxD on a single device. It has a preprocessing section where:\r\n- a \"property_list\" variable is set to [\"name\", \"ip_address\"].\r\n- a \"payload_dict\" variable is set to {\"columns\": [\"name\", \"model\", \"vendor\"], \"maximum_return_records\": 5, \"start\": 0, \"type\": \"device\"}\r\nThe first service, Dict Substitution, uses the following payload:\r\n{\"columns\": \"{{ get_var('property_list') }}\", \"maximum_return_records\": 3, \"start\": 0, \"type\": \"device\"}\r\nIt must be converted to a dictionary via json.loads before calling run.sub so that\r\nit uses dict substitution.\r\nThe second service, String Substitution, uses {{ get_var(payload_dict) }} as payload:\r\nit is run.sub that will convert it from a string into the payload dictionary.",
         "positions": [
-          203,
-          -199
+          338,
+          -78
         ],
         "size": 14
       }
     },
-    "last_modified": "2025-07-16 21:19:45.779739",
+    "last_modified": "2025-07-16 21:27:36.738461",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15056,16 +15056,20 @@
     "persistent_id": "8OYou6HDvPU",
     "positions": {
       "[Rest Call Service: Substitution Type Mechanism] Dict Substitution": [
-        20,
-        54
+        74,
+        71
+      ],
+      "[Rest Call Service: Substitution Type Mechanism] String Substitution": [
+        321,
+        72
       ],
       "[Shared] End": [
-        637,
-        96
+        568,
+        66
       ],
       "[Shared] Start": [
-        -223,
-        92
+        -161,
+        70
       ]
     },
     "postprocessing": "",
