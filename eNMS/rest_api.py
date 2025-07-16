@@ -201,5 +201,6 @@ class RestApi(vs.TimingMixin):
                 result["failure"].append((instance, format_exc()))
         db.session.commit()
         for instance in instances:
-            instance.post_update()
+            if hasattr(instance, "post_update"):
+                instance.post_update()
         return result
