@@ -36,7 +36,7 @@
       <div class="tab-content">
         <div class="tab-pane fade in active" id="group-properties">
           <div id="content" class="add-id" style="height: 100%"></div>
-          {% for field in form if field.name in ("name", "creator", "admin_only",
+          {% for field in form if field.name in ("name", "creator", "last_modified", "last_modified_by", "admin_only",
           "force_read_access", "description", "email", "users") or field.name in
           form.custom_properties %} {{ block_field(form, field.name) }} {% endfor %}
         </div>

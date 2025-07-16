@@ -33,6 +33,8 @@ class Server(AbstractBase):
     location = db.Column(db.SmallString)
     version = db.Column(db.TinyString)
     commit_sha = db.Column(db.TinyString)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     last_restart = db.Column(db.TinyString)
     weight = db.Column(Integer, default=1)
     allowed_automation = db.Column(db.List)
@@ -41,6 +43,11 @@ class Server(AbstractBase):
     runs = relationship("Run", back_populates="server")
     workers = relationship("Worker", back_populates="server")
     model_properties = {"current_runs": "str"}
+
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        if not kwargs.get("migration_import"):
+            self.update_last_modified_properties()
 
     @property
     def current_runs(self):
@@ -99,6 +106,8 @@ class User(AbstractBase, UserMixin):
     groups = db.Column(db.LargeString)
     is_admin = db.Column(Boolean, default=False)
     last_login = db.Column(db.SmallString)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     email = db.Column(db.SmallString)
     landing_page = db.Column(
         db.SmallString, default=vs.settings["authentication"]["landing_page"]
@@ -144,6 +153,8 @@ class User(AbstractBase, UserMixin):
         if kwargs.get("password") and not kwargs["password"].startswith("$argon2i"):
             kwargs["password"] = argon2.hash(kwargs["password"])
         super().update(**kwargs)
+        if not kwargs.get("migration_import"):
+            self.update_last_modified_properties()
 
     def update_rbac(self):
         if self.is_admin:
@@ -163,6 +174,8 @@ class Group(AbstractBase):
     force_read_access = db.Column(Boolean, default=False)
     description = db.Column(db.LargeString)
     email = db.Column(db.SmallString)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     users = relationship("User", secondary=db.user_group_table, back_populates="groups")
     logs = relationship("Changelog", back_populates="group")
 
@@ -196,6 +209,8 @@ class Group(AbstractBase):
     def update(self, **kwargs):
         old_users = set(self.users)
         super().update(**kwargs)
+        if not kwargs.get("migration_import"):
+            self.update_last_modified_properties()
         if not kwargs.get("import_mechanism", False):
             for user in set(self.users) | old_users:
                 user.update_rbac()

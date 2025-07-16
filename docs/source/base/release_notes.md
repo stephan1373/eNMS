@@ -90,7 +90,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       Commit: 370b580602ed47bde69f3bbe83deccb541876215
     - Allow passing SQLAlchemy object in Base.update (via factory) to reduce the number of fetch queries
       Commit: 217ad4517477fab06f26b91d845fffb51ea20178
-    - Don't create changelog objects in SQL creation and deletion de detection eventsif connection info set to ignore
+    - Don't create changelog objects in SQL creation and deletion de detection events if connection info set to ignore
       Commit: a58b79edbbd621548abb27112f1f0686d548e431
   - Update to the Runner mechanism:
     - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
