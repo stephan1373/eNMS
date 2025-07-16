@@ -61,14 +61,7 @@
     "params": {
       "verify": "false"
     },
-    "payload": {
-      "a": "b",
-      "c": [
-        "1",
-        "2",
-        "3"
-      ]
-    },
+    "payload": "{\"a\": \"b\", \"c\": [\"1\", \"2\", \"3\"]}",
     "persistent_id": "7oYidJEmm8U",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -163,7 +156,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "VQPE8qPETMM",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -258,7 +251,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "oP0Itp5FVdw",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -353,7 +346,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "GC3I0yCzZaU",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -450,14 +443,7 @@
     "params": {
       "verify": "false"
     },
-    "payload": {
-      "a": "b",
-      "c": [
-        "1",
-        "2",
-        "3"
-      ]
-    },
+    "payload": "{\"a\": \"b\", \"c\": [\"1\", \"2\", \"3\"]}",
     "persistent_id": "yw1xI-l_CL8",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -552,7 +538,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "-3yr2z8sFfE",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -649,14 +635,7 @@
     "params": {
       "verify": "false"
     },
-    "payload": {
-      "a": "b",
-      "c": [
-        "1",
-        "2",
-        "3"
-      ]
-    },
+    "payload": "{\"a\": \"b\", \"c\": [\"1\", \"2\", \"3\"]}",
     "persistent_id": "Y0Pe8J9gKeU",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -753,14 +732,7 @@
     "params": {
       "verify": "false"
     },
-    "payload": {
-      "a": "b",
-      "c": [
-        "1",
-        "2",
-        "3"
-      ]
-    },
+    "payload": "{\"a\": \"b\", \"c\": [\"1\", \"2\", \"3\"]}",
     "persistent_id": "y8BNLAI7rLI",
     "postprocessing": "",
     "postprocessing_mode": "always",
@@ -855,7 +827,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "iYuekeDbNEA",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -952,7 +924,7 @@
     "params": {
       "verify": "false"
     },
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "CNT1EAkA6tw",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -1047,7 +1019,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "uf3QnTd3oc8",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -1142,7 +1114,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "kn-wjZ8oiig",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -1237,7 +1209,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "fVAV1hVf5wY",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -1334,7 +1306,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "BRz2Lphbttw",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -1431,7 +1403,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "gGW-drsX96U",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -1526,7 +1498,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "I4ZrAqp_sCo",
     "postprocessing": "one_element_list = len(results[\"result\"]) == 1\nhas_washington = results[\"result\"][0][\"name\"] == \"Washington\"\nresults[\"success\"] = one_element_list and has_washington",
     "postprocessing_mode": "success",
@@ -1621,7 +1593,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "Yse5Ls1N-oA",
     "postprocessing": "results[\"success\"] = not len(results[\"result\"])",
     "postprocessing_mode": "success",
@@ -1716,7 +1688,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "lDVE8BDeMjg",
     "postprocessing": "results[\"success\"] = all(\n  device[\"operating_system\" ] == \"EOS\"\n  for device in results[\"result\"]\n)",
     "postprocessing_mode": "success",
@@ -1811,16 +1783,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "columns": [
-        "name",
-        "configuration",
-        "ip_address"
-      ],
-      "maximum_return_records": 5,
-      "start": 5,
-      "type": "device"
-    },
+    "payload": "{\"columns\": [\"name\", \"configuration\", \"ip_address\"], \"maximum_return_records\": 5, \"start\": 5, \"type\": \"device\"}",
     "persistent_id": "leZYOi4J2bY",
     "postprocessing": "results[\"success\"] = (\n  len(results[\"result\"]) == 5\n  and all(\n    device[\"ip_address\"] == \"192.168.56.51\"\n    and \" Command: show running-config\" in device[\"configuration\"]\n    for device in results[\"result\"]\n))",
     "postprocessing_mode": "success",
@@ -1915,18 +1878,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "columns": [
-        "name",
-        "operating_system",
-        "ip_address"
-      ],
-      "maximum_return_records": 100,
-      "search_criteria": {
-        "name": "i"
-      },
-      "type": "device"
-    },
+    "payload": "{\"columns\": [\"name\", \"operating_system\", \"ip_address\"], \"maximum_return_records\": 100, \"search_criteria\": {\"name\": \"i\"}, \"type\": \"device\"}",
     "persistent_id": "njvwkNzpIP0",
     "postprocessing": "chicago_pool = fetch(\"pool\", name=\"Devices with i including networks\")\nresults[\"success\"] = len(chicago_pool.devices) == len(results[\"result\"])",
     "postprocessing_mode": "success",
@@ -2021,19 +1973,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "columns": [
-        "name",
-        "configuration_matches",
-        "ip_address"
-      ],
-      "maximum_return_records": 50,
-      "search_criteria": {
-        "configuration": "TRAFFIC-\\d\\d",
-        "configuration_filter": "regex"
-      },
-      "type": "device"
-    },
+    "payload": "{\"columns\": [\"name\", \"configuration_matches\", \"ip_address\"], \"maximum_return_records\": 50, \"search_criteria\": {\"configuration\": \"TRAFFIC-\\\\d\\\\d\", \"configuration_filter\": \"regex\"}, \"type\": \"device\"}",
     "persistent_id": "NFekBcoO790",
     "postprocessing": "all_devices = len(results[\"result\"]) == 14\nall_matches = all(\n  device[\"configuration_matches\"] == [\n    \"L19: vrf instance CUSTOMER-TRAFFIC-28\",\n    \"L32: no ip routing vrf CUSTOMER-TRAFFIC-28\"\n  ] for device in results[\"result\"]\n)\nresults[\"success\"] = all_devices and all_matches",
     "postprocessing_mode": "success",
@@ -2128,10 +2068,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "name": "NewDevice",
-      "property1": "UPDATED"
-    },
+    "payload": "{\"name\": \"NewDevice\", \"property1\": \"UPDATED\"}",
     "persistent_id": "fipv63fNXHA",
     "postprocessing": "results[\"success\"] = fetch(\"device\", name=\"NewDevice\").property1 == \"UPDATED\"",
     "postprocessing_mode": "success",
@@ -2226,9 +2163,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "name": "NewDevice"
-    },
+    "payload": "{\"name\": \"NewDevice\"}",
     "persistent_id": "HuCOtaddKp8",
     "postprocessing": "fetch(\"device\", name=\"NewDevice\")",
     "postprocessing_mode": "success",
@@ -2323,7 +2258,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "hGA0G1VGwic",
     "postprocessing": "results[\"success\"] = fetch(\"device\", name=\"NewDevice\", allow_none=True) is None",
     "postprocessing_mode": "success",
@@ -2418,7 +2353,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "quo1m1A7gvg",
     "postprocessing": "results[\"success\"] = results[\"success\"] == True",
     "postprocessing_mode": "success",
@@ -2513,18 +2448,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "columns": [
-        "result",
-        "parent_runtime",
-        "service_name"
-      ],
-      "maximum_return_records": 1000,
-      "search_criteria": {
-        "parent_runtime": "{{ runtime }}"
-      },
-      "type": "result"
-    },
+    "payload": "{\"columns\": [\"result\", \"parent_runtime\", \"service_name\"], \"maximum_return_records\": 1000, \"search_criteria\": {\"parent_runtime\": \"{{ runtime }}\"}, \"type\": \"result\"}",
     "persistent_id": "vObQWEWwz9c",
     "postprocessing": "results[\"success\"] = len(results[\"result\"]) == 4",
     "postprocessing_mode": "success",
@@ -2619,7 +2543,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "tHosE3BcNfc",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -2717,10 +2641,7 @@
       "test": "{{ variable1 }}",
       "test2": "{{ integer_variable }}"
     },
-    "payload": {
-      "integer": "{{ integer_variable }}",
-      "var1": "{{ variable1 }}"
-    },
+    "payload": "{\"integer\": \"{{ integer_variable }}\", \"var1\": \"{{ variable1 }}\"}",
     "persistent_id": "Q0euuEXkQM0",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -2815,13 +2736,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {
-      "address": "1.2.3.4",
-      "name": ">IPAM>IP Address>IP Address 3",
-      "scoped_name": "IP Address 3",
-      "store": ">IPAM>IP Address",
-      "type": "ip_address"
-    },
+    "payload": "{\"address\": \"1.2.3.4\", \"name\": \">IPAM>IP Address>IP Address 3\", \"scoped_name\": \"IP Address 3\", \"store\": \">IPAM>IP Address\", \"type\": \"ip_address\"}",
     "persistent_id": "ulBNkx-LVoI",
     "postprocessing": "",
     "postprocessing_mode": "success",
@@ -2916,7 +2831,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "ulBNkx-LVoG",
     "postprocessing": "log(\"warning\", \"New Address: \" + results[\"result\"][\"address\"])",
     "postprocessing_mode": "success",
@@ -3011,7 +2926,7 @@
     "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
     "parameterized_form_template": "",
     "params": {},
-    "payload": {},
+    "payload": "{}",
     "persistent_id": "vgG3-sGwIhA",
     "postprocessing": "",
     "postprocessing_mode": "success",
