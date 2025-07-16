@@ -126,6 +126,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     - Add an index for all changelog models
       Commit: 25a719efe5659e633710917f0e9ccf9744ddc6e7
       Impact: creating 50M is about 5x slower, but changelog table performance issue is fixed
+    - Update SQL constraints when opening service changelog panel from RC menu in the Workflow Builder
+      to make it faster
+      Commit: b7eae51e4fe7a3076a7c94ea9a78ee2a659de0ee
 - Minor update to configureNamespace function
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
 - Refactor the SQL query monitoring mechnaism:
