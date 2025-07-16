@@ -738,9 +738,16 @@ export function processBuilderData(newInstance) {
     creationMode = null;
     switchTo(`${newInstance.id}`);
   } else if (
-    (type == "workflow" && !instance.type) ||
+    (type == "workflow" && newInstance.type == "workflow_edge") ||
     (type == "network" && newInstance.type in subtypes.link)
   ) {
+    const property = type == "network" ? "links" : "edges";
+    let index = instance[property].findIndex((s) => s.id == newInstance.id);
+    if (index == -1) {
+      instance[property].push(newInstance);
+    } else {
+      instance[property][index] = newInstance;
+    }
     edges.update(drawEdge(newInstance));
     network.addEdgeMode();
   } else if (
