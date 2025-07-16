@@ -159,8 +159,6 @@ def migrate_5_2_to_5_3_json():
     with open(PATH / FILENAME / "rest_call_service.json", "rb") as service_file:
         services = or_loads(service_file.read())
     for service in services:
-        if service["type"] != "rest_call_service":
-            continue
         service["payload"] = dumps(service["payload"])
     with open(PATH / FILENAME / "rest_call_service.json", "wb") as service_file:
         service_file.write(
