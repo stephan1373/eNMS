@@ -10,6 +10,8 @@
     "creator": "",
     "description": "eNMS Server",
     "ip_address": "192.168.56.108:5000",
+    "last_modified": "",
+    "last_modified_by": "",
     "last_restart": "2025-07-14 16:25:44.449590",
     "location": "",
     "mac_address": "50548062756104",

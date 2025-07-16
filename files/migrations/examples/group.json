@@ -12,6 +12,8 @@
     "email": "",
     "force_read_access": false,
     "get_requests": [],
+    "last_modified": "",
+    "last_modified_by": "",
     "link_access": [],
     "menu": [],
     "name": "All users",
@@ -36,6 +38,8 @@
     "email": "admin@enms.io",
     "force_read_access": false,
     "get_requests": [],
+    "last_modified": "",
+    "last_modified_by": "",
     "link_access": [],
     "menu": [],
     "name": "Admin User",
@@ -199,6 +203,8 @@
       "/task_filtering_form",
       "/user_filtering_form"
     ],
+    "last_modified": "",
+    "last_modified_by": "",
     "link_access": [],
     "menu": [
       "Clustering",
@@ -462,6 +468,8 @@
       "/task_filtering_form",
       "/user_filtering_form"
     ],
+    "last_modified": "",
+    "last_modified_by": "",
     "link_access": [],
     "menu": [
       "Inventory",
