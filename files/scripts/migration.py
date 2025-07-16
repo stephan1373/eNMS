@@ -151,6 +151,7 @@ def migrate_5_2_to_5_3():
         if service["type"] != "rest_call_service":
             continue
         service["payload"] = dumps(service["payload"])
+        service["substitution_type"] = "dict"
     with open(PATH / FILENAME / "service.yaml", "w") as service_file:
         yaml.dump(services, service_file)
 
@@ -160,6 +161,7 @@ def migrate_5_2_to_5_3_json():
         services = or_loads(service_file.read())
     for service in services:
         service["payload"] = dumps(service["payload"])
+        service["substitution_type"] = "dict"
     with open(PATH / FILENAME / "rest_call_service.json", "wb") as service_file:
         service_file.write(
             or_dumps(
