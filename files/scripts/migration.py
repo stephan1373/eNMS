@@ -1,5 +1,6 @@
 from collections import defaultdict
 from json import dumps
+from orjson import dumps as or_dumps, loads as or_loads, OPT_INDENT_2, OPT_SORT_KEYS
 from pathlib import Path
 from ruamel.yaml import YAML
 
@@ -154,4 +155,20 @@ def migrate_5_2_to_5_3():
         yaml.dump(services, service_file)
 
 
-migrate_5_2_to_5_3()
+def migrate_5_2_to_5_3_json():
+    with open(PATH / FILENAME / "rest_call_service.json", "rb") as service_file:
+        services = or_loads(service_file.read())
+    for service in services:
+        if service["type"] != "rest_call_service":
+            continue
+        service["payload"] = dumps(service["payload"])
+    with open(PATH / FILENAME / "rest_call_service.json", "wb") as service_file:
+        service_file.write(
+            orjson.dumps(
+                services,
+                option=OPT_INDENT_2 | OPT_SORT_KEYS
+            )
+        )
+
+
+migrate_5_2_to_5_3_json()
