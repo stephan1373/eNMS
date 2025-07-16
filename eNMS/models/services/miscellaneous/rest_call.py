@@ -1,3 +1,4 @@
+from ast import literal_eval
 from json import loads
 from requests.auth import HTTPBasicAuth
 from sqlalchemy import Boolean, ForeignKey, Integer
@@ -55,8 +56,10 @@ class RestCallService(Service):
         }
         kwargs["verify"] = run.verify_ssl_certificate
         if run.call_type in ("POST", "PUT", "PATCH"):
-            payload = self.payload if run.substitution_type == "str" else loads(self.payload)
-            kwargs["json"] = run.sub(payload, local_variables)
+            if run.substitution_type == "str":
+                kwargs["json"] = literal_eval(run.sub(self.payload, local_variables))
+            else:
+                kwargs["json"] = run.sub(loads(self.payload), local_variables)
         if run.dry_run:
             return {"url": log_url, "kwargs": kwargs}
         credentials = run.get_credentials(device, add_secret=False)
