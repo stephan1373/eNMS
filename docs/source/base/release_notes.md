@@ -436,6 +436,9 @@ Tests:
 - Test the "update_instance" REST endpoint, specifically the update of a relationship by passing it the names of the
   related model (for example, update the target devices of a service)
 - Test that the number of threads allowed depends on whether High Performance is checked or not (* 10)
+- Test that the display of an edge in the workflow builder and a link in the network builder is properly updated after
+  editing the edge (name or color)
+- Test that all relevant forms and tables have the "Last Modified", "Last Modified By" and "Creation Time" properties
 
 Notes:
 - Everything in the "Tests" section should be tested with both "High Performance" checked and unchecked
