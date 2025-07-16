@@ -236,10 +236,12 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     diff panel of a changelog
     Commit: ccf6d7a4de6490689e5a094c351e273ccfe150fb
 - Refactoring of "Last Modified" properties:
-  - Add 'last_modified' and 'last_modified_by' properties to the User, Group and Server classes
+  - Add 'Last Modified' and 'Last Modified By' properties to the User, Group and Server classes
     Commit: 2e8f4196411ade6b37e0c63039af1c0d9879f8ea
-  - Add 'last_modified' and 'last_modified_by' properties to the Credential and Pool classes and move last modified update in Base.update
+  - Add 'Last Modified' and 'Last Modified By' properties to the Credential and Pool classes and move last modified update in Base.update
     Commit: 88254128498d50d015070d9eacdf8819c0669999
+  - Add 'Last Modified' and 'Last Modified By' to service and task forms, as well as group, task, user and server tables
+    Commit: 26c547bc025a682c1aad887b3d044adf49fc9b7b
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
