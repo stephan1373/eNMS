@@ -757,6 +757,8 @@ class ServiceForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", help="common/full_name", ui_name="Full Name")
     creator = StringField(render_kw={"readonly": True})
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
     type = StringField("Service Type")
     persistent_id = StringField("Persistent ID", render_kw={"readonly": True})
     shared = BooleanField("Shared", help="common/shared")
@@ -957,6 +959,8 @@ class ServiceForm(BaseForm):
             "scoped_name",
             "name",
             "creator",
+            "last_modified",
+            "last_modified_by",
             "type",
             "persistent_id",
             "high_performance",
@@ -1131,6 +1135,8 @@ class TaskForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
     scheduling_mode = SelectField(
         "Scheduling Mode",
         choices=(("cron", "Crontab Scheduling"), ("standard", "Standard Scheduling")),

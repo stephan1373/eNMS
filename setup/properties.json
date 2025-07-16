@@ -1181,6 +1181,18 @@
         "visible": false
       },
       {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "admin_only",
         "title": "Admin Only",
         "search": "bool",
@@ -1225,6 +1237,18 @@
       {
         "data": "creation_time",
         "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
         "search": "text",
         "visible": false
       },
@@ -1326,6 +1350,18 @@
         "visible": false
       },
       {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "description",
         "title": "Description",
         "width": "400px",
@@ -1364,6 +1400,18 @@
       {
         "data": "creator",
         "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
         "search": "text",
         "visible": false
       },

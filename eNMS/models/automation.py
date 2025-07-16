@@ -877,6 +877,8 @@ class Task(AbstractBase):
     description = db.Column(db.LargeString)
     creator = db.Column(db.SmallString)
     creation_time = db.Column(db.TinyString)
+    last_modified = db.Column(db.TinyString, info={"log_change": False})
+    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
     last_scheduled_by = db.Column(db.SmallString)
     scheduling_mode = db.Column(db.TinyString, default="standard")
     frequency = db.Column(Integer)
