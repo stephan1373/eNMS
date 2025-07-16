@@ -59,6 +59,7 @@ class CustomApp(vs.TimingMixin):
         )
         batch_size = vs.database["transactions"]["batch_size"]
         log_size = vs.settings["on_startup"]["create_fake_logs"]
+        env.log("info", f"Starting to create Fake Changelogs ({log_size} logs)")
         with env.timer("Create Fake Changelogs"):
             changelogs = (entry for _ in range(log_size))
             cursor = db.session.connection().connection.cursor()

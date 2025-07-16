@@ -350,7 +350,8 @@ export function showBuilderChangelogPanel(model, global) {
   } else {
     const selectedNode = network.getSelectedNodes()[0];
     const classType = model == "workflow" ? "service" : nodes.get(selectedNode).type;
-    showChangelogPanel(instance.id, { [`${classType}_id`]: selectedNode });
+    const serviceName = [nodes.get(selectedNode).full_name]
+    showChangelogPanel(instance.id, { [`${classType}`]: serviceName });
   }
 }
 
