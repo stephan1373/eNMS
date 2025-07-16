@@ -382,6 +382,15 @@ Benchmark (comparison last release versus new release) needed for:
     - Update all pools (the pools must be the same in last release and new release)
   - Workflow Duplication: try to duplicate large workflows
   - Compare Speed of JSON Import with Structured Data versus Bytestring Data
+  - Compare Speed to display Changelog panel:
+    - In the Changelog page in the menu (display ALL changelogs)
+    - In every table in the application (display changelogs related to a specific object):
+      need to test every table to make sure no index is missing
+    - In the Workflow Builder (resp. Network Builder):
+      - For a specific service (resp. device) from the RC menu (Display / Changelogs)
+      - For the workflow (resp. network) in the top-level menu: the changelog of a workflow (resp. network)
+        should be the union of all services (resp. devices) changelogs, including the changelogs in
+        subworkflows (resp. subnetworks)
 
 Migration:
 - Run migration script to:
