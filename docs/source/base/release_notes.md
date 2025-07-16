@@ -235,8 +235,11 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     table, and add the diff in Changelog.history so that updates to an object relationships can be displayed in the git
     diff panel of a changelog
     Commit: ccf6d7a4de6490689e5a094c351e273ccfe150fb
-- Add 'last_modified' and 'last_modified_by' properties to the User, Group and Server classes
-  Commit: 2e8f4196411ade6b37e0c63039af1c0d9879f8ea
+- Refactoring of "Last Modified" properties:
+  - Add 'last_modified' and 'last_modified_by' properties to the User, Group and Server classes
+    Commit: 2e8f4196411ade6b37e0c63039af1c0d9879f8ea
+  - Add 'last_modified' and 'last_modified_by' properties to the Credential and Pool classes and move last modified update in Base.update
+    Commit: 88254128498d50d015070d9eacdf8819c0669999
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
