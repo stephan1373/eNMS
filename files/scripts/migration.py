@@ -1,4 +1,5 @@
 from collections import defaultdict
+from json import dumps
 from pathlib import Path
 from ruamel.yaml import YAML
 
@@ -143,6 +144,14 @@ def migrate_5_2_to_5_3():
             file["type"] = "generic_file"
     with open(PATH / FILENAME / "file.yaml", "w") as file_file:
         yaml.dump(files, file_file)
+    with open(PATH / FILENAME / "service.yaml", "r") as service_file:
+        services = yaml.load(service_file)
+    for service in services:
+        if service["type"] != "rest_call_service":
+            continue
+        service["payload"] = dumps(service["payload"])
+    with open(PATH / FILENAME / "service.yaml", "w") as service_file:
+        yaml.dump(services, service_file)
 
 
 migrate_5_2_to_5_3()
