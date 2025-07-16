@@ -432,6 +432,9 @@ Notes:
 - The "High Performance" flag comes from the superworkflow if there is one.
 - Modifying a workflow (updating services, removing or adding edges, etc) will no longer affect on-going runs as the topology is saved before the run begins
 - In "High Performance" mode, results cannot be read from the UI until the workflow has completed.
+- It is no longer possible to set device attribute from a python snippet or python code by doing
+  "device.property = value". The factory function must be used instead:
+  "factory("device", name=device.name, property=value)"
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------
