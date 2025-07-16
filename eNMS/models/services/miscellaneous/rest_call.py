@@ -26,7 +26,7 @@ class RestCallService(Service):
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     call_type = db.Column(db.SmallString)
     rest_url = db.Column(db.LargeString)
-    payload = db.Column(JSON, default={})
+    payload = db.Column(db.LargeString)
     params = db.Column(JSON, default={})
     headers = db.Column(JSON, default={})
     verify_ssl_certificate = db.Column(Boolean, default=True)
@@ -86,9 +86,7 @@ class RestCallForm(ServiceForm):
         )
     )
     rest_url = StringField(substitution=True)
-    payload = DictField(
-        json_only=True, substitution=True, widget=TextArea(), render_kw={"rows": 6}
-    )
+    payload = StringField(substitution=True, widget=TextArea(), render_kw={"rows": 6})
     params = DictField(substitution=True)
     headers = DictField(substitution=True)
     verify_ssl_certificate = BooleanField("Verify SSL Certificate")
