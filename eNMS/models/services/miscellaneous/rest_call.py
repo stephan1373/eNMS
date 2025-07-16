@@ -93,7 +93,7 @@ class RestCallForm(ServiceForm):
     substitution_type = SelectField(
         "Payload Substitution Type",
         choices=(
-            ("string", "String Substitution"),
+            ("str", "String Substitution"),
             ("dict", "Dict Substitution"),
         ),
     )
