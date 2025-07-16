@@ -1,3 +1,4 @@
+from json import loads
 from requests.auth import HTTPBasicAuth
 from sqlalchemy import Boolean, ForeignKey, Integer
 from sqlalchemy.orm import relationship
@@ -27,6 +28,7 @@ class RestCallService(Service):
     call_type = db.Column(db.SmallString)
     rest_url = db.Column(db.LargeString)
     payload = db.Column(db.LargeString)
+    substitution_type = db.Column(db.SmallString)
     params = db.Column(JSON, default={})
     headers = db.Column(JSON, default={})
     verify_ssl_certificate = db.Column(Boolean, default=True)
@@ -53,7 +55,8 @@ class RestCallService(Service):
         }
         kwargs["verify"] = run.verify_ssl_certificate
         if run.call_type in ("POST", "PUT", "PATCH"):
-            kwargs["json"] = run.sub(self.payload, local_variables)
+            payload = self.payload if run.substitution_type == "str" else loads(self.payload)
+            kwargs["json"] = run.sub(payload, local_variables)
         if run.dry_run:
             return {"url": log_url, "kwargs": kwargs}
         credentials = run.get_credentials(device, add_secret=False)
@@ -87,6 +90,13 @@ class RestCallForm(ServiceForm):
     )
     rest_url = StringField(substitution=True)
     payload = StringField(substitution=True, widget=TextArea(), render_kw={"rows": 6})
+    substitution_type = SelectField(
+        "Payload Substitution Type",
+        choices=(
+            ("string", "String Substitution"),
+            ("dict", "Dict Substitution"),
+        ),
+    )
     params = DictField(substitution=True)
     headers = DictField(substitution=True)
     verify_ssl_certificate = BooleanField("Verify SSL Certificate")
