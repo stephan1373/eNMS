@@ -87,6 +87,7 @@ export let graph;
 let currentRun;
 let currentPlaceholder;
 let discardNextRefresh;
+let edgeRoundness;
 let placeholder;
 let isSuperworkflow;
 let startId;
@@ -102,6 +103,7 @@ export function displayWorkflow(workflowData, workflowSwitch) {
   const statePath = currentPath.split(">").map(id => idToPid[id]).join(">");
   currentPlaceholder = workflowData.state?.[statePath]?.placeholder;
   isSuperworkflow = false;
+  edgeRoundness = new Map();
   graph = configureGraph(
     workflow,
     {
@@ -441,6 +443,9 @@ export function drawIterationEdge(service) {
 }
 
 export function drawWorkflowEdge(edge) {
+  const key = `${edge.source_id}->${edge.destination_id}`;
+  const index = edgeRoundness.get(key) || 0;
+  edgeRoundness.set(key, index + 1);
   return {
     id: edge.id,
     label: edge.label,
@@ -449,7 +454,7 @@ export function drawWorkflowEdge(edge) {
     to: edge.destination_id,
     smooth: {
       type: "curvedCW",
-      roundness: edge.subtype == "success" ? 0.1 : edge.subtype == "failure" ? -0.1 : 0,
+      roundness: (-1) ** (index - 1) * 0.1 * Math.ceil(index / 2),
     },
     color: {
       color: edge.color,
