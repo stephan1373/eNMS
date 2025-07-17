@@ -1014,6 +1014,15 @@ export function displayDiff(type, instanceId, properties) {
     notify("You must select two distinct versions.", "error", 5);
   } else {
     const diffId = type == "changelog" ? instanceId : cantorPairing(parseInt(v1), parseInt(v2));
+    const changelogSelect = type === "changelog" ? `
+      <div style="margin-top: 15px">
+        <select
+          id="changelog-properties-${diffId}"
+          name="changelog-properties"
+          class="form-control"
+        ></select>
+      </div>
+    ` : "";
     openPanel({
       name: "compare",
       title: `Compare ${objectType}`,
@@ -1036,13 +1045,7 @@ export function displayDiff(type, instanceId, properties) {
             id="slider-${diffId}"
             class="slider"
           >
-          <div style="margin-top: 15px">
-          <select
-            id="changelog-properties-${diffId}"
-            name="changelog-properties"
-            class="form-control"
-          ></select>
-          </div>
+          ${changelogSelect}
         </nav>
         <div class="modal-body">
           <div id="content-${diffId}" style="height:100%"></div>
