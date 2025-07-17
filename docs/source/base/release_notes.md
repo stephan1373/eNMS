@@ -426,6 +426,9 @@ Migration:
   - All custom services that make database update (e.g using db.fetch, db.factory, device.property = value, etc)
     must be updated to use the session_scope so that the SQLAlchemy session is removed at the end of the
     transaction
+- All REST Call Services must be updated:
+  - The "payload" property, previously stored as JSON, must be converted to a string with json.dumps
+  - The new "substitution_type" must be set to "dict"
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
