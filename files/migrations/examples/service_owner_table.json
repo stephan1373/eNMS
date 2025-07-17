@@ -92,6 +92,10 @@
     "admin"
   ],
   [
+    "Outgoing Edge Mechanism",
+    "admin"
+  ],
+  [
     "Parameterized Column Ordering and Global user Property",
     "admin"
   ],
@@ -513,6 +517,26 @@
   ],
   [
     "[Large Workflow (30 Netmiko Services)] S9",
+    "admin"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S1",
+    "admin"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S2",
+    "admin"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S3",
+    "admin"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S4",
+    "admin"
+  ],
+  [
+    "[Outgoing Edge Mechanism] Switch1",
     "admin"
   ],
   [

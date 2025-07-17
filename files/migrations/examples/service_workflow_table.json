@@ -1168,6 +1168,26 @@
     "Optional Remediation Branch"
   ],
   [
+    "[Outgoing Edge Mechanism] S1",
+    "Outgoing Edge Mechanism"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S2",
+    "Outgoing Edge Mechanism"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S3",
+    "Outgoing Edge Mechanism"
+  ],
+  [
+    "[Outgoing Edge Mechanism] S4",
+    "Outgoing Edge Mechanism"
+  ],
+  [
+    "[Outgoing Edge Mechanism] Switch1",
+    "Outgoing Edge Mechanism"
+  ],
+  [
     "[POST Endpoint search] Configuration with regex TRAFFIC-dd",
     "POST Endpoint search"
   ],
@@ -1566,6 +1586,10 @@
   [
     "[Shared] End",
     "Optional Remediation Branch"
+  ],
+  [
+    "[Shared] End",
+    "Outgoing Edge Mechanism"
   ],
   [
     "[Shared] End",
@@ -2078,6 +2102,10 @@
   [
     "[Shared] Start",
     "Optional Remediation Branch"
+  ],
+  [
+    "[Shared] Start",
+    "Outgoing Edge Mechanism"
   ],
   [
     "[Shared] Start",
