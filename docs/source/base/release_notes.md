@@ -249,6 +249,15 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   then drag node A again, node B is being dragged instead of node A. to fix it, when dragStart is emitted, we check
   whether the node being dragged is selected or not; if it is not, we select it
   Commit: 45de53534d0095bf719e5652febdf7d782db0edd
+- Refactor REST Call Service to store payload as string instead of JSON
+  - Convert payload field to StringField instead of DictField
+  - Add a new property "Substitution Type":
+    - String Substitution: the payload is not a valid dict in itself: it will be substituted first, then converted from a
+      string to an actual dictionary with ast.literal_eval before using it as "json" argument
+    - Dict Substitution: the payload is a valid dictionary represented as a string: it is first converted to an actual
+      dictionary with json.loads, then it is substituted (ensures backward-compatiblity)
+    By default, the property is set to String Substitution, but migrated services are using the Dict Substitution option.
+  Key commit: 0dd36637610853ebd6a47058602736d11740a55f
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
