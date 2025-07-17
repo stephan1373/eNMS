@@ -15139,12 +15139,39 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {
+      "048fb5b0-28e7-45f1-a963-1ea2da8e8dfa": {
+        "alignment": "left",
+        "content": "Priority: 15\r\nresults[\"success\"] = False\r\nin postprocessing, so it should\r\ngo through the failure edge",
+        "positions": [
+          -47,
+          384
+        ],
+        "size": 14
+      },
       "13c53c6c-f368-4bfe-a368-a86676af0e6a": {
         "alignment": "left",
         "content": "Expected: 2",
         "positions": [
           -196,
           70
+        ],
+        "size": 14
+      },
+      "4a1230c0-0cd8-4320-a0fd-76770bbc49eb": {
+        "alignment": "left",
+        "content": "Expected: 1",
+        "positions": [
+          73,
+          307
+        ],
+        "size": 14
+      },
+      "4b2fa505-2022-48e7-900b-2341da93d6dc": {
+        "alignment": "left",
+        "content": "Priority: 15\r\nExpected: 2",
+        "positions": [
+          195,
+          302
         ],
         "size": 14
       },
@@ -15166,6 +15193,15 @@
         ],
         "size": 14
       },
+      "75affc9a-2e75-4ace-9978-3f6a54706f7e": {
+        "alignment": "left",
+        "content": "Priority: 15",
+        "positions": [
+          -66,
+          222
+        ],
+        "size": 14
+      },
       "96c58944-de68-4ed0-b5e5-8fc646ac5ed5": {
         "alignment": "left",
         "content": "Expected: 1",
@@ -15183,9 +15219,18 @@
           -184
         ],
         "size": 14
+      },
+      "ce40e6d1-5f42-4682-9bba-63d72a03183d": {
+        "alignment": "left",
+        "content": "Expected: 1",
+        "positions": [
+          70,
+          176
+        ],
+        "size": 14
       }
     },
-    "last_modified": "2025-07-17 19:34:00.607259",
+    "last_modified": "2025-07-17 19:38:16.014196",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15226,6 +15271,14 @@
       "[Outgoing Edge Mechanism] S4": [
         -70,
         308
+      ],
+      "[Outgoing Edge Mechanism] S5": [
+        192,
+        242
+      ],
+      "[Outgoing Edge Mechanism] S6": [
+        187,
+        -9
       ],
       "[Outgoing Edge Mechanism] Switch1": [
         -377,

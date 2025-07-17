@@ -5578,5 +5578,65 @@
     "name": "[Outgoing Edge Mechanism] 2025-07-17 16:03:10.116528",
     "soft_deleted": false,
     "subtype": "Dummy6"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-07-17 19:35:40.737119",
+    "label": "success",
+    "last_modified": "2025-07-17 19:35:40.737104",
+    "last_modified_by": "admin",
+    "name": "2025-07-17 19:35:40.735720",
+    "soft_deleted": false,
+    "subtype": "success"
+  },
+  {
+    "color": "red",
+    "creation_time": "2025-07-17 19:35:44.518365",
+    "label": "failure",
+    "last_modified": "2025-07-17 19:35:44.518342",
+    "last_modified_by": "admin",
+    "name": "2025-07-17 19:35:44.516909",
+    "soft_deleted": false,
+    "subtype": "failure"
+  },
+  {
+    "color": "red",
+    "creation_time": "2025-07-17 19:36:54.960991",
+    "label": "failure",
+    "last_modified": "2025-07-17 19:36:54.960928",
+    "last_modified_by": "admin",
+    "name": "2025-07-17 19:36:54.957464",
+    "soft_deleted": true,
+    "subtype": "failure"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-07-17 19:37:06.022322",
+    "label": "success",
+    "last_modified": "2025-07-17 19:37:06.022311",
+    "last_modified_by": "admin",
+    "name": "2025-07-17 19:37:06.020985",
+    "soft_deleted": false,
+    "subtype": "success"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-07-17 19:37:07.221651",
+    "label": "success",
+    "last_modified": "2025-07-17 19:37:07.221638",
+    "last_modified_by": "admin",
+    "name": "2025-07-17 19:37:07.220702",
+    "soft_deleted": false,
+    "subtype": "success"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-07-17 19:37:09.455125",
+    "label": "success",
+    "last_modified": "2025-07-17 19:37:09.455063",
+    "last_modified_by": "admin",
+    "name": "2025-07-17 19:37:09.452160",
+    "soft_deleted": false,
+    "subtype": "success"
   }
 ]
