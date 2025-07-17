@@ -268,6 +268,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Update the Workflow Builder to support displaying multiple edges between two services
     Commit: 8efa2d41165b285083544695d5a6bbb44908fbda
   - Add new regression workflow: "Outgoing Edge Mechanism"
+- Add 'Export as CSV' buttons in Runs table (Results page) and Tasks table (Scheduling page)
+  Commit: 007c96d5a9635f60faa99e15cfbb1d8169dcf529
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
