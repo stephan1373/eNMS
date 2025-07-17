@@ -15139,6 +15139,42 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {
+      "13c53c6c-f368-4bfe-a368-a86676af0e6a": {
+        "alignment": "left",
+        "content": "Expected: 2",
+        "positions": [
+          -196,
+          70
+        ],
+        "size": 14
+      },
+      "4e33f014-6adb-41ac-83e9-57a393a77383": {
+        "alignment": "left",
+        "content": "Expected: 1 device\r\non each edge",
+        "positions": [
+          -345,
+          -23
+        ],
+        "size": 14
+      },
+      "5d1e3a97-2d2c-475f-a571-aee620ba387a": {
+        "alignment": "left",
+        "content": "Expected: 1",
+        "positions": [
+          -199,
+          180
+        ],
+        "size": 14
+      },
+      "96c58944-de68-4ed0-b5e5-8fc646ac5ed5": {
+        "alignment": "left",
+        "content": "Expected: 1",
+        "positions": [
+          -202,
+          263
+        ],
+        "size": 14
+      },
       "a945da53-0349-4302-885a-2c934146b8ae": {
         "alignment": "left",
         "content": "This workflow runs in DxD and SxS WT mode on 6 devices: Dummy1-6\r\n",
@@ -15149,7 +15185,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-07-17 16:06:22.562136",
+    "last_modified": "2025-07-17 19:34:00.607259",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15176,32 +15212,32 @@
     "persistent_id": "lhtS_ENtbW0",
     "positions": {
       "[Outgoing Edge Mechanism] S1": [
-        59,
-        -93
+        -175,
+        -88
       ],
       "[Outgoing Edge Mechanism] S2": [
-        63,
-        24
+        -74,
+        28
       ],
       "[Outgoing Edge Mechanism] S3": [
-        64,
-        138
+        -67,
+        167
       ],
       "[Outgoing Edge Mechanism] S4": [
-        56,
-        269
+        -70,
+        308
       ],
       "[Outgoing Edge Mechanism] Switch1": [
-        -133,
-        82
+        -377,
+        271
       ],
       "[Shared] End": [
         642,
         78
       ],
       "[Shared] Start": [
-        -264,
-        84
+        -376,
+        83
       ]
     },
     "postprocessing": "",
