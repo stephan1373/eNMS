@@ -575,8 +575,8 @@ class Run(AbstractBase):
                     source_id = self.placeholder.id
                 elif instance.destination.name == "[Shared] Placeholder":
                     destination_id = self.placeholder.id
-                key = (instance.workflow_id, source_id, instance.subtype)
-                self.topology["neighbors"][key].add((instance.id, destination_id))
+                key = (instance.workflow_id, source_id)
+                self.topology["neighbors"][key].add((edge.id, destination_id))
                 self.topology["name_to_dict"]["edges"][instance.name] = edge
             else:
                 service = SimpleNamespace(

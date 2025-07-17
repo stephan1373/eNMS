@@ -387,7 +387,7 @@ class RunEngine:
             )
             self.log("info", result, logger="security")
         self.run_targets = allowed_devices
-        summary = {"failure": [], "success": [], "discard": []}
+        summary = defaultdict(list)
         if self.iteration_devices and not self.iteration_run:
             if not self.workflow:
                 result = "Device iteration not allowed outside of a workflow"
@@ -451,9 +451,10 @@ class RunEngine:
                 return {"success": self.skip_value == "success", "summary": summary}
             results = self.run_job_and_collect_results()
             if "summary" not in results:
-                summary_key = "success" if results["success"] else "failure"
+                default_key = "success" if results["success"] else "failure"
                 device_names = [device.name for device in self.run_targets]
-                summary[summary_key].extend(device_names)
+                key = results.get("outgoing_edge", default_key)
+                summary[key].extend(device_names)
                 results["summary"] = summary
             for key in ("success", "failure"):
                 self.write_state(
@@ -498,7 +499,8 @@ class RunEngine:
                     ]
                 )
             for result in results:
-                key = "success" if result["success"] else "failure"
+                default_key = "success" if result["success"] else "failure"
+                key = result.get("outgoing_edge", default_key)
                 summary[key].append(result["device_target"])
             return {
                 "summary": summary,

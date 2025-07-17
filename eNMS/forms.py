@@ -1248,6 +1248,7 @@ class WorkflowLabelForm(BaseForm):
 class WorkflowEdgeForm(BaseForm):
     form_type = HiddenField(default="workflow_edge")
     id = HiddenField()
+    subtype = StringField()
     label = StringField()
     color = StringField()
     last_modified = StringField("Last Modified", render_kw={"readonly": True})

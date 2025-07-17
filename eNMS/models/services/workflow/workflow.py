@@ -163,40 +163,36 @@ class Workflow(Service):
         for service_id in run.start_services or [start.id]:
             service = topology["services"][int(service_id)]
             targets[service.name] |= {device.name for device in start_targets}
-            heappush(services, (1 / service.priority, int(service.id)))
+            heappush(services, (1 / service.priority, service))
         visited = set()
         tracking_bfs = run.run_method == "per_service_with_workflow_targets"
+        SxS = not (tracking_bfs or device)
         device_store = {device.name: device for device in start_targets}
         while services:
             if run.stop:
                 return {"success": False, "result": "Aborted"}
-            _, service_id = heappop(services)
-            service = topology["services"][service_id]
+            _, service = heappop(services)
             if number_of_runs[service.name] >= service.maximum_runs:
                 continue
             number_of_runs[service.name] += 1
-            visited.add(service_id)
-            if service_id in (start.id, end.id) or service.skip.get(self.name, False):
+            visited.add(service.id)
+            if service in (start, end) or service.skip.get(self.name, False):
                 success = service.skip_value == "success"
                 results = {"result": "skipped", "success": success}
-                if tracking_bfs or device:
-                    results["summary"] = {
-                        "success": targets[service.name],
-                        "failure": [],
-                    }
+                if not SxS:
+                    results["summary"] = defaultdict(list, success=targets[service.name])
             else:
+                service_kw = service
                 if not run.high_performance:
-                    sql_service = db.fetch("service", id=service_id, rbac=None)
-                else:
-                    sql_service = topology["services"][service_id]
+                    service_kw = db.fetch("service", id=service.id, rbac=None)                    
                 kwargs = {
-                    "service": sql_service,
+                    "service": service_kw,
                     "workflow": self,
                     "parent": run,
                     "parent_runtime": run.parent_runtime,
                     "workflow_run_method": run.run_method,
                 }
-                if tracking_bfs or device:
+                if not SxS:
                     kwargs["run_targets"] = []
                     for name in targets[service.name]:
                         if name not in device_store:
@@ -209,37 +205,27 @@ class Workflow(Service):
                 if not results:
                     continue
             status = "success" if results["success"] else "failure"
+            next_edge = results.get("outgoing_edge", status)
             summary = results.get("summary", {})
             if not tracking_bfs and not device:
-                run.write_state(f"progress/service/{status}", 1, "increment")
-            for edge_type in ("success", "failure"):
-                if not tracking_bfs and edge_type != status:
+                run.write_state(f"progress/service/{next_edge}", 1, "increment")
+            for edge_id, successor_id in topology["neighbors"][(self.id, service.id)]:
+                edge = topology["edges"][edge_id]
+                successor = topology["services"][successor_id]
+                next_targets = summary.get(edge.subtype)
+                if (SxS and edge.subtype != next_edge or not SxS and not next_targets):
                     continue
-                if (tracking_bfs or device) and not summary.get(edge_type):
-                    continue
-                neighbors = topology["neighbors"][(self.id, service.id, edge_type)]
-                for edge_id, successor_id in neighbors:
-                    successor = topology["services"][successor_id]
-                    if successor.soft_deleted:
-                        continue
-                    if tracking_bfs or device:
-                        targets[successor.name] |= set(summary[edge_type])
-                    heappush(services, ((1 / successor.priority, successor_id)))
-                    if tracking_bfs or device:
-                        run.write_state(
-                            f"edges/{edge_id}",
-                            len(summary[edge_type]),
-                            "increment",
-                            top_level=True,
-                        )
-                    else:
-                        run.write_state(f"edges/{edge_id}", "DONE", top_level=True)
-        if tracking_bfs or device:
+                if not SxS:
+                    targets[successor.name] |= set(next_targets)
+                heappush(services, ((1 / successor.priority, successor)))
+                edge_state = (("Done",) if SxS else (len(next_targets), "increment"))
+                run.write_state(f"edges/{edge_id}", *edge_state, top_level=True)
+        if SxS:
+            results = {"success": end.id in visited}
+        else:
             failed = list(targets[start.name] - targets[end.name])
             summary = {"success": list(targets[end.name]), "failure": failed}
             results = {"success": not failed, "summary": summary}
-        else:
-            results = {"success": end.id in visited}
         return results
 
 
