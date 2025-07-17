@@ -261,6 +261,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - If the 'Subtitution Type' is set to 'Dict Substitution', validate the payload field by converting it to a JSON object
     with json.loads (replaces the "json_only" option of DictField previously)
     Commiy: 49874c2282fd443fa6be65321c84309e483bbc74
+- Outgoing Edge Mechanism:
+  - Refactor the graph traversal algorithm to allow for edges other than success and failure: the user can define
+    an "outgoing_edge" variable in python (e.g in post-processing) to decide which edge to follow next
+    Commit: b8c37c1bdb0e2b1c0775b475366de7965a2e8f7a
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
