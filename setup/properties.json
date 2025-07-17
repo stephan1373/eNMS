@@ -2101,6 +2101,7 @@
           ["Basics", "Basics"],
           ["Dry Run", "Dry Run"],
           ["Global Variables", "Global Variables"],
+          ["Graph Traversal", "Graph Traversal"],
           ["Iteration Mechanism", "Iteration Mechanism"],
           ["Notification Mechanism", "Notification Mechanism"],
           ["Other", "Other"],
