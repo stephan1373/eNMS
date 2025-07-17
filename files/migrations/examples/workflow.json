@@ -15168,10 +15168,10 @@
       },
       "4b2fa505-2022-48e7-900b-2341da93d6dc": {
         "alignment": "left",
-        "content": "Priority: 15\r\nExpected: 2",
+        "content": "Priority: 15\r\nExpected: 2\r\nIn post-processing: results[\"outgoing_edge\"] = device.name, but there is only\r\na \"Dummy5\" outgoing edge, so Dummy5 should move forward and Dummy6\r\nshould stop here.",
         "positions": [
-          195,
-          302
+          402,
+          333
         ],
         "size": 14
       },
@@ -15193,12 +15193,30 @@
         ],
         "size": 14
       },
+      "7367e61b-092d-41ea-8a35-81511d1ceaf9": {
+        "alignment": "left",
+        "content": "Expected: 2",
+        "positions": [
+          20,
+          -75
+        ],
+        "size": 14
+      },
       "75affc9a-2e75-4ace-9978-3f6a54706f7e": {
         "alignment": "left",
         "content": "Priority: 15",
         "positions": [
           -66,
           222
+        ],
+        "size": 14
+      },
+      "78fb6afe-65ba-44dc-b693-3d4ed1fc8dc0": {
+        "alignment": "left",
+        "content": "Expected: 1",
+        "positions": [
+          120,
+          92
         ],
         "size": 14
       },
@@ -15211,12 +15229,39 @@
         ],
         "size": 14
       },
+      "9dcc93f2-5a5a-4b01-ae46-bf4e7512a793": {
+        "alignment": "left",
+        "content": "Expected: 2",
+        "positions": [
+          64,
+          40
+        ],
+        "size": 14
+      },
       "a945da53-0349-4302-885a-2c934146b8ae": {
         "alignment": "left",
         "content": "This workflow runs in DxD and SxS WT mode on 6 devices: Dummy1-6\r\n",
         "positions": [
-          229,
-          -184
+          172,
+          -112
+        ],
+        "size": 14
+      },
+      "b6d0eb34-55c4-4e16-952c-6334ba279f82": {
+        "alignment": "left",
+        "content": "if device.name == \"Dummy1\":\r\n    results[\"outgoing_edge\"] = \"Dummy1\"\r\nelif device.name not in (\"Dummy3\", \"Dummy5\"):\r\n    results[\"outgoing_edge\"] = \"Not Dummy3 or 5\"\r\nelif device.name == \"Dummy5\":\r\n    results[\"outgoing_edge\"] = \"Dummy5\"",
+        "positions": [
+          454,
+          -34
+        ],
+        "size": 14
+      },
+      "beaaa57e-1596-4944-b28e-a45dcce5b6f9": {
+        "alignment": "left",
+        "content": "Expected:\r\nvia Dummy1: 1\r\nvia Dummy5: 1\r\nvia not Dummy3 or 5: 2 (2 and 4)\r\nDummy3 is discarded",
+        "positions": [
+          384,
+          226
         ],
         "size": 14
       },
@@ -15230,7 +15275,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-07-17 19:38:16.014196",
+    "last_modified": "2025-07-17 19:51:24.361671",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15280,13 +15325,17 @@
         187,
         -9
       ],
+      "[Outgoing Edge Mechanism] S7": [
+        594,
+        192
+      ],
       "[Outgoing Edge Mechanism] Switch1": [
         -377,
         271
       ],
       "[Shared] End": [
-        642,
-        78
+        647,
+        18
       ],
       "[Shared] Start": [
         -376,
