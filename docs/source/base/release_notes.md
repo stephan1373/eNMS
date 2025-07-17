@@ -258,6 +258,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       dictionary with json.loads, then it is substituted (ensures backward-compatiblity)
     By default, the property is set to String Substitution, but migrated services are using the Dict Substitution option.
   Key commit: 0dd36637610853ebd6a47058602736d11740a55f
+  - If the 'Subtitution Type' is set to 'Dict Substitution', validate the payload field by converting it to a JSON object
+    with json.loads (replaces the "json_only" option of DictField previously)
+    Commiy: 49874c2282fd443fa6be65321c84309e483bbc74
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
