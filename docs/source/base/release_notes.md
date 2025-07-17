@@ -245,6 +245,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Fix edge display (workflow edge in workflow builder and link in network builder) not updated after either name or
   color is modified bug
   Commit: 45596d6a40314d57c6aaf6538c4bc6bc61b04877
+- Fix bug in workflow builder: if user selects node A (single left click), then drags node B (without selecting it),
+  then drag node A again, node B is being dragged instead of node A. to fix it, when dragStart is emitted, we check
+  whether the node being dragged is selected or not; if it is not, we select it
+  Commit: 45de53534d0095bf719e5652febdf7d782db0edd
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
