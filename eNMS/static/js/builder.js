@@ -79,11 +79,8 @@ export function configureGraph(newInstance, graph, options) {
   network.on("select", function() {
     $("#confirmation-builder_deletion").remove();
   });
-  network.on("dragStart", (event) => {
-    const node = network.getNodeAt(event.pointer.DOM);
-    if (!network.getSelectedNodes().includes(node)) {
-        network.selectNodes([node]);
-    }
+  network.on("dragStart", () => {
+    network.selectNodes(network.getSelectedNodes());
     $("#confirmation-builder_deletion").remove();
   });
   network.on("oncontext", function(properties) {
