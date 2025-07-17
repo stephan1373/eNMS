@@ -1273,6 +1273,7 @@ tables.run = class RunTable extends Table {
       >
         <span class="glyphicon glyphicon-calendar"></span>
       </button>`,
+      this.exportTableButton(),
     ];
   }
 
@@ -1443,6 +1444,7 @@ tables.task = class TaskTable extends Table {
       </button>`,
       this.createNewButton(),
       this.bulkEditButton(),
+      this.exportTableButton(),
       ` <button
         type="button"
         class="btn btn-success"
