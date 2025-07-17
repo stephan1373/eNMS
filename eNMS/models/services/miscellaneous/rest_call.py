@@ -126,4 +126,15 @@ class RestCallForm(ServiceForm):
                 "Device credentials cannot be selected because the service "
                 "'Run Method' is not set to 'Run Once per Device'"
             )
-        return valid_form and not device_credentials_error
+        invalid_json = False
+        if self.substitution_type.data == "dict":
+            try:
+                loads(self.payload.data)
+            except Exception:
+                invalid_json = True
+        if invalid_json:
+            self.payload.errors.append(
+                "The 'Substitution Type' property is set to 'Dict Substitution',"
+                " but the payload is not valid JSON object"
+            )
+        return valid_form and not device_credentials_error and not invalid_json
