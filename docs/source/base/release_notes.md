@@ -265,6 +265,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Refactor the graph traversal algorithm to allow for edges other than success and failure: the user can define
     an "outgoing_edge" variable in python (e.g in post-processing) to decide which edge to follow next
     Commit: b8c37c1bdb0e2b1c0775b475366de7965a2e8f7a
+  - Update the Workflow Builder to support displaying multiple edges between two services
+    Commit: 8efa2d41165b285083544695d5a6bbb44908fbda
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
