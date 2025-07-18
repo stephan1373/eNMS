@@ -274,6 +274,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   the current search parameters (either per-column search from the table, or bulk filter including relationships search
   from the bulk filter form)
   Commit: 62a790a3b1363ff705ace6a1a382dcfa0c25492a
+- Configure the folder name for configuration backup in automation.json 'configuration_backup' / 'folder' instead of
+  hardcoding it
+  Commit: 17ebe08db3a63a55483a81ed6f83f9457baf0200
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
