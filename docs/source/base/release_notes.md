@@ -270,6 +270,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Add new regression workflow: "Outgoing Edge Mechanism"
 - Add 'Export as CSV' buttons in Runs table (Results page) and Tasks table (Scheduling page)
   Commit: 007c96d5a9635f60faa99e15cfbb1d8169dcf529
+- Add 'Copy Search to Clipboard' feature: a new button in the top-level menu of a table to copy a link to a table with
+  the current search parameters (either per-column search from the table, or bulk filter including relationships search
+  from the bulk filter form)
+  Commit: 62a790a3b1363ff705ace6a1a382dcfa0c25492a
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
