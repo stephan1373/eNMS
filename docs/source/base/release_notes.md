@@ -409,6 +409,10 @@ Main Commits:
 - Part 30: Refactor netmiko and scrapli backup services to handle all SQL operations in a single function, and remove the
   session at the end if in high performance and in a thread
   Commit: 5cb6f847650dfb00173e69ee674ecf
+- Part 31: (High Performance Mode only) In the Ansible Playbook Service, refetch the device object before
+  calling 'get_properties', otherwise we get out of session exceptions because get_properties causes SQLAlchemy
+  to trigger SQL queries to get some of the device properties
+  Commit: 293e09d11ab1eabc831aca40d4d03ae8f5c94f71
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
