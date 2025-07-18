@@ -280,6 +280,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
 - Configure the folder name for configuration backup in automation.json 'configuration_backup' / 'folder' instead of
   hardcoding it
   Commit: 17ebe08db3a63a55483a81ed6f83f9457baf0200
+- Add 'creation_time' property to Server class, form and table
+  Commit: 672c80df874465cd26dbace8e247573bff3935f0
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
