@@ -312,7 +312,7 @@ class File(AbstractBase):
     folder = relationship(
         "Folder", foreign_keys="Folder.folder_id", back_populates="files"
     )
-    folder_path = db.Column(db.SmallString, info={"log_change": False})
+    folder_path = db.Column(db.SmallString, index=True, info={"log_change": False})
     logs = relationship("Changelog", back_populates="file")
 
     def update(self, move_file=True, **kwargs):
