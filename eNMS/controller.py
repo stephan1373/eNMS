@@ -565,7 +565,7 @@ class Controller(vs.TimingMixin):
         repo = vs.settings["app"]["git_repository"]
         if not repo:
             return
-        local_path = vs.path / "network_data"
+        local_path = vs.path / vs.automation["configuration_backup"]["folder"]
         try:
             if exists(local_path):
                 Repo(local_path).remotes.origin.pull()
@@ -582,8 +582,9 @@ class Controller(vs.TimingMixin):
 
     def get_git_history(self, device_id):
         device = db.fetch("device", id=device_id, rbac="configuration")
-        repo = Repo(vs.path / "network_data")
-        path = vs.path / "network_data" / device.name
+        folder = vs.automation["configuration_backup"]["folder"]
+        repo = Repo(vs.path / folder)
+        path = vs.path / folder / device.name
         return {
             data_type: [
                 {"hash": str(commit), "date": commit.committed_datetime}
@@ -593,7 +594,8 @@ class Controller(vs.TimingMixin):
         }
 
     def get_git_network_data(self, device_name, hash):
-        commit, result = Repo(vs.path / "network_data").commit(hash), {}
+        folder = vs.automation["configuration_backup"]["folder"]
+        commit, result = Repo(vs.path / folder).commit(hash), {}
         device = db.fetch("device", name=device_name, rbac="configuration")
         for property in vs.configuration_properties:
             try:
@@ -1959,7 +1961,7 @@ class Controller(vs.TimingMixin):
             pool.compute_pool(commit=True)
 
     def update_database_configurations_from_git(self, force_update=False):
-        path = vs.path / "network_data"
+        path = vs.path / vs.automation["configuration_backup"]["folder"]
         env.log("info", f"Updating device configurations with data from {path}")
         for dir in scandir(path):
             user = "admin" if force_update else current_user.name

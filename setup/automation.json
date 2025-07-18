@@ -1,4 +1,7 @@
 {
+  "configuration_backup": {
+    "folder": "network_data"
+  },
   "connections": {
     "enforce_threshold": false,
     "threshold": 100,

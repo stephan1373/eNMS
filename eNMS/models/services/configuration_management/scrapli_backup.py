@@ -25,7 +25,7 @@ class ScrapliBackupService(ConnectionService):
     timeout_socket = db.Column(Float, default=15.0)
     timeout_transport = db.Column(Float, default=30.0)
     timeout_ops = db.Column(Float, default=30.0)
-    local_path = db.Column(db.SmallString, default="network_data")
+    local_path = db.Column(db.SmallString, default=vs.automation["configuration_backup"]["folder"])
     property = db.Column(db.SmallString)
     commands = db.Column(db.List)
     replacements = db.Column(db.List)
@@ -92,7 +92,7 @@ class ScrapliBackupForm(ScrapliForm):
         "Configuration Property to Update",
         choices=list(vs.configuration_properties.items()),
     )
-    local_path = StringField("Local Path", default="network_data", substitution=True)
+    local_path = StringField("Local Path", default=vs.automation["configuration_backup"]["folder"], substitution=True)
     commands = FieldList(FormField(CommandsForm), min_entries=12)
     replacements = FieldList(FormField(ReplacementForm), min_entries=12)
     add_header = BooleanField("Add header for each command", default=True)

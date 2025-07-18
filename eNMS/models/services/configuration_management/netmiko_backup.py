@@ -31,7 +31,7 @@ class NetmikoBackupService(ConnectionService):
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
     global_delay_factor = db.Column(Float, default=0.1)
-    local_path = db.Column(db.SmallString, default="network_data")
+    local_path = db.Column(db.SmallString, default=vs.automation["configuration_backup"]["folder"])
     property = db.Column(db.SmallString)
     commands = db.Column(db.List)
     replacements = db.Column(db.List)
@@ -102,7 +102,7 @@ class NetmikoBackupForm(NetmikoForm):
         "Configuration Property to Update",
         choices=list(vs.configuration_properties.items()),
     )
-    local_path = StringField("Local Path", default="network_data", substitution=True)
+    local_path = StringField("Local Path", default=vs.automation["configuration_backup"]["folder"], substitution=True)
     commands = FieldList(FormField(CommandsForm), min_entries=12)
     replacements = FieldList(FormField(ReplacementForm), min_entries=12)
     add_header = BooleanField("Add header for each command", default=True)
