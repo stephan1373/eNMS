@@ -17,10 +17,5 @@ stylesheets %} {% block left_frame %}
     ></table>
   </form>
 </div>
-{% endblock left_frame %}
-{% block javascripts %}
-  {{ super() }}
-  <script>
-    const tableSearch = {{ search | tojson | safe }};
-  </script>
-{% endblock javascripts %}
+{% endblock left_frame %} {% block javascripts %} {{ super() }} {% endblock javascripts
+%}
