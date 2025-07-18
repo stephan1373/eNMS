@@ -47,7 +47,12 @@ class AnsiblePlaybookService(Service):
         if run.pass_device_properties:
             credentials = run.get_credentials(device)
             credentials.pop("pkey", None)
-            extra_args = {**device.get_properties(), **credentials}
+            if run.high_performance:
+                with db.session_scope(remove=run.in_process):
+                    device_object = db.fetch("device", name=device.name, rbac=None)
+                    extra_args = {**device_object.get_properties(), **credentials}
+            else:
+                extra_args = {**device.get_properties(), **credentials}
         if run.options:
             extra_args.update(run.sub(run.options, locals()))
         if extra_args:
