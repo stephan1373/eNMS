@@ -153,13 +153,15 @@ export class Table {
         type: "POST",
         contentType: "application/json",
         data: (data) => {
+          this.data = Object.keys(tableSearch).length
+            ?  tableSearch
+            : { ...this.getFilteringData(), ...self.filteringData };
           Object.assign(data, {
             export: self.csvExport,
             clipboard: self.copyClipboard,
             pagination: self.displayPagination,
-            ...this.getFilteringData(),
+            ...this.data,
           });
-          Object.assign(data, self.filteringData);
           self.copyClipboard = false;
           return JSON.stringify(data);
         },
@@ -457,6 +459,18 @@ export class Table {
       </button>`;
   }
 
+  copySearchLinkButton() {
+    return `
+      <button
+        class="btn btn-info"
+        onclick="eNMS.table.copySearchLinkToClipboard('${this.id}')"
+        data-tooltip="Copy Hyperlink to Current Search to Clipboard"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-link"></span>
+      </button>`;
+  }
+
   copyTableButton() {
     return `
       <button
@@ -613,6 +627,7 @@ tables.device = class DeviceTable extends Table {
         <span class="glyphicon glyphicon-search"></span>
       </button>`,
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -751,6 +766,7 @@ tables.network = class NetworkTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -840,6 +856,7 @@ tables.configuration = class ConfigurationTable extends Table {
       >`,
       this.refreshTableButton(),
       this.bulkFilteringButton("device"),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       ` <button
@@ -912,6 +929,7 @@ tables.link = class LinkTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -980,6 +998,7 @@ tables.pool = class PoolTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -1107,6 +1126,7 @@ tables.service = class ServiceTable extends Table {
         <span class="glyphicon glyphicon-search"></span>
       </button>`,
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -1264,6 +1284,7 @@ tables.run = class RunTable extends Table {
       this.userFilteringButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       ` <button
         class="btn btn-info"
@@ -1356,6 +1377,7 @@ tables.result = class ResultTable extends Table {
         <span class="glyphicon glyphicon-adjust"></span>
       </button>`,
       this.refreshTableButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
     ];
   }
@@ -1433,6 +1455,7 @@ tables.task = class TaskTable extends Table {
       this.userFilteringButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       ` <button
         class="btn btn-info"
@@ -1518,6 +1541,7 @@ tables.group = class GroupTable extends Table {
       this.columnDisplay(),
       this.displayChangelogButton(),
       this.refreshTableButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -1576,6 +1600,7 @@ tables.user = class UserTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.copyTableButton(),
       this.createNewButton(),
@@ -1616,6 +1641,7 @@ tables.credential = class CredentialTable extends Table {
       this.displayChangelogButton(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.createNewButton(),
       this.bulkEditButton(),
@@ -1654,6 +1680,7 @@ tables.data = class DataTable extends Table {
       this.columnDisplay(),
       this.displayChangelogButton("data"),
       this.refreshTableButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       `
       <a
@@ -1726,6 +1753,7 @@ tables.server = class ServerTable extends Table {
       this.columnDisplay(),
       this.displayChangelogButton(),
       this.refreshTableButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.createNewButton(),
       this.bulkEditButton(),
@@ -1768,6 +1796,7 @@ tables.changelog = class ChangelogTable extends Table {
       this.columnDisplay(),
       this.refreshTableButton(),
       this.bulkFilteringButton(),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       this.createNewButton(),
       this.exportTableButton(),
@@ -1901,6 +1930,7 @@ tables.file = class FileTable extends Table {
         </select>
       </button>`,
       this.refreshTableButton("file"),
+      this.copySearchLinkButton(),
       this.clearSearchButton(),
       `
       <a
@@ -2101,6 +2131,13 @@ function copySelectionToClipboard(tableId) {
   refreshTable(tableId);
 }
 
+function copySearchLinkToClipboard(tableId) {
+  const searchData = JSON.stringify(tableInstances[tableId].data);
+  const query = new URLSearchParams({ search: searchData }).toString();
+  const fullUrl = `${window.location.origin}${window.location.pathname}?${query}`;
+  copyToClipboard({ text: fullUrl, includeText: false });
+}
+
 function buildServiceLink(service) {
   if (service.type == "workflow") {
     return `<b><a href="/workflow_builder/${service.builder_link}">${sanitize(
@@ -2289,6 +2326,7 @@ configureNamespace("table", [
   bulkRemoval,
   clearSearch,
   copySelectionToClipboard,
+  copySearchLinkToClipboard,
   displayRelationTable,
   exportTable,
   refreshTable,

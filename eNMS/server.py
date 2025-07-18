@@ -19,7 +19,7 @@ from functools import wraps
 from importlib import import_module
 from io import BytesIO
 from logging import info
-from orjson import dumps, OPT_NON_STR_KEYS
+from orjson import dumps, loads, OPT_NON_STR_KEYS
 from os import getenv, remove
 from pathlib import Path
 from tarfile import open as open_tar
@@ -305,7 +305,10 @@ class Server(Flask):
         @self.process_requests
         def table(table_type):
             return render_template(
-                "table.html", **{"endpoint": f"{table_type}_table", "type": table_type}
+                "table.html",
+                type=table_type,
+                endpoint=f"{table_type}_table",
+                search=loads(request.args.get("search", "{}"))
             )
 
         @blueprint.route("/geographical_view")
