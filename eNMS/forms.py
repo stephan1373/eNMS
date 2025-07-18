@@ -714,6 +714,7 @@ class ServerForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     creator = StringField(render_kw={"readonly": True})
+    creation_time = StringField("Creation Time", render_kw={"readonly": True})
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
     last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
     description = StringField(widget=TextArea(), render_kw={"rows": 6})

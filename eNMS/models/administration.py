@@ -24,6 +24,7 @@ class Server(AbstractBase):
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
     creator = db.Column(db.SmallString)
+    creation_time = db.Column(db.TinyString)
     description = db.Column(db.LargeString)
     role = db.Column(db.TinyString, default="primary")
     mac_address = db.Column(db.TinyString)

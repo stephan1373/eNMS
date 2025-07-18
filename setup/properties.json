@@ -1404,6 +1404,12 @@
         "visible": false
       },
       {
+        "data": "creation_time",
+        "title": "Creation Time",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "last_modified",
         "title": "Last Modified",
         "search": "text",
