@@ -234,6 +234,8 @@ class Service(AbstractBase):
                 break
             index += 1
         if workflow:
+            service.target_devices = self.target_devices
+            service.target_pools = self.target_pools
             workflow.services.append(service)
         service.persistent_id = vs.get_persistent_id()
         service.set_name()
