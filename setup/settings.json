@@ -15,8 +15,7 @@
   },
   "on_startup": {
     "get_git_content": false,
-    "scan_folder": false,
-    "create_fake_logs": 0
+    "scan_folder": false
   },
   "authentication": {
     "default": "database",

@@ -140,8 +140,6 @@ class Database:
         parameters = self.fetch("parameters", rbac=None)
         if parameters.banner_deactivate_on_restart:
             parameters.banner_active = False
-        if vs.settings.get("on_startup", {}).get("create_fake_logs"):
-            vs.custom.create_fake_logs()
         self.session.commit()
         return first_init
 
