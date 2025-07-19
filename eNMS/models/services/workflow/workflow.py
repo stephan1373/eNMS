@@ -163,7 +163,7 @@ class Workflow(Service):
         for service_id in run.start_services or [start.id]:
             service = topology["services"][int(service_id)]
             targets[service.name] |= {device.name for device in start_targets}
-            heappush(services, (1 / service.priority, service))
+            heappush(services, (1 / service.priority, service.id))
         visited = set()
         tracking_bfs = run.run_method == "per_service_with_workflow_targets"
         SxS = not (tracking_bfs or device)
@@ -171,11 +171,12 @@ class Workflow(Service):
         while services:
             if run.stop:
                 return {"success": False, "result": "Aborted"}
-            _, service = heappop(services)
+            _, service_id = heappop(services)
+            service = topology["services"][service_id]
             if number_of_runs[service.name] >= service.maximum_runs:
                 continue
             number_of_runs[service.name] += 1
-            visited.add(service.id)
+            visited.add(service_id)
             if service in (start, end) or service.skip.get(self.name, False):
                 success = service.skip_value == "success"
                 results = {"result": "skipped", "success": success}
@@ -184,7 +185,7 @@ class Workflow(Service):
             else:
                 service_kw = service
                 if not run.high_performance:
-                    service_kw = db.fetch("service", id=service.id, rbac=None)                    
+                    service_kw = db.fetch("service", id=service_id, rbac=None)                    
                 kwargs = {
                     "service": service_kw,
                     "workflow": self,
@@ -209,7 +210,7 @@ class Workflow(Service):
             summary = results.get("summary", {})
             if not tracking_bfs and not device:
                 run.write_state(f"progress/service/{next_edge}", 1, "increment")
-            for edge_id, successor_id in topology["neighbors"][(self.id, service.id)]:
+            for edge_id, successor_id in topology["neighbors"][(self.id, service_id)]:
                 edge = topology["edges"][edge_id]
                 successor = topology["services"][successor_id]
                 next_targets = summary.get(edge.subtype)
@@ -217,7 +218,7 @@ class Workflow(Service):
                     continue
                 if not SxS:
                     targets[successor.name] |= set(next_targets)
-                heappush(services, ((1 / successor.priority, successor)))
+                heappush(services, ((1 / successor.priority, successor.id)))
                 edge_state = (("Done",) if SxS else (len(next_targets), "increment"))
                 run.write_state(f"edges/{edge_id}", *edge_state, top_level=True)
         if SxS:
