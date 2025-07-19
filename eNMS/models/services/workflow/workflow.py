@@ -214,7 +214,7 @@ class Workflow(Service):
                 edge = topology["edges"][edge_id]
                 successor = topology["services"][successor_id]
                 next_targets = summary.get(edge.subtype)
-                if (SxS and edge.subtype != next_edge or not SxS and not next_targets):
+                if not next_targets and (not SxS or edge.subtype != next_edge):
                     continue
                 if not SxS:
                     targets[successor.name] |= set(next_targets)
