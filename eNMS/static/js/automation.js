@@ -541,7 +541,7 @@ function refreshLogs(service, runtime, editor, first, wasRefreshed, line, search
           $(`#logs-${service.id}`).remove();
           const table = service.type == "workflow" ? null : "result";
           const panel = service.display_report ? "report" : "results";
-          //if (page == "workflow_builder") getWorkflowState();
+          if (page == "workflow_builder") getWorkflowState();
           showRuntimePanel(panel, service, runtime, table);
         }, 1000);
       }
