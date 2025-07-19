@@ -285,6 +285,10 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 4f4cbf22d937e228412cda61133b6731c9ccdc2f
 - Remove charset utf-8 from redis configuration in settings.json (no longer supported)
   Commit: 85fb006a5d3a476f88693f8228b2115c9f1d051c
+- When refreshing logs with a redis queue, don't always fetch all logs from redis, only fetch the logs up to start_line
+  as provided by the front-end (fixes the wrong implementation in a6660f78805d9475d68441c0b042d67ce03925e6 and the
+  associated issue 541)
+  Commit: 0a382bf07126fd8a5b3af420e692278761adb636
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
