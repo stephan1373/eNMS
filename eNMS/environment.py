@@ -360,9 +360,8 @@ class Environment(vs.TimingMixin):
             if mode == "add":
                 log = self.redis("lpush", key, log)
             else:
-                log = self.redis("lrange", key, 0, -1)
-                if log:
-                    log = log[::-1][start_line:]
+                bound = self.redis("llen", key) - start_line - 1
+                log = [] if bound == -1 else self.redis("lrange", key, 0, bound)[::-1]
         else:
             if mode == "add":
                 return vs.run_logs[runtime][int(service)].append(log)
