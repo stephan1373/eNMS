@@ -283,6 +283,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 672c80df874465cd26dbace8e247573bff3935f0
 - Fix bug where service targets are not copied when duplicating a workflow (e.g a workflow in SxS service targets mode)
   Commit: 4f4cbf22d937e228412cda61133b6731c9ccdc2f
+- Remove charset utf-8 from redis configuration in settings.json (no longer supported)
+  Commit: 85fb006a5d3a476f88693f8228b2115c9f1d051c
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
