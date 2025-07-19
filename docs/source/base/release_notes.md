@@ -123,8 +123,7 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
     - Reduce numnber of unnecessary calls to db.fetch in Runner initialization
       Commit: c7847256a06b7c12207a6db7b8f60719ff8f2403
   - Changelog Display:
-    - Add mechanism to create fake changelogs on app startup via 'create_fake_logs' key in settings (the value
-      must be set to the number of changelogs to create, by default it's 0)
+    - Add python snippet to create many fake changelogs with low-level SQL (50M by default)
       Commit: a302b25ed825dc967c4db61a29f32367ee4ccf33
     - Add an index for all changelog models
       Commit: 25a719efe5659e633710917f0e9ccf9744ddc6e7
