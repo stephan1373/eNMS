@@ -1378,6 +1378,8 @@ class NetworkManagement:
             .filter_by(id=device.id)
             .one()
         )
+        previous_config = getattr(deferred_device, property)
+        write_config = kwargs["success"] and previous_config != kwargs["result"]
 
         def transaction():
             setattr(device, f"last_{property}_runtime", str(kwargs["runtime"]))
@@ -1385,7 +1387,7 @@ class NetworkManagement:
                 setattr(device, f"last_{property}_status", "Success")
                 duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"
                 setattr(device, f"last_{property}_duration", duration)
-                if getattr(deferred_device, property) != kwargs["result"]:
+                if previous_config != kwargs["result"]:
                     setattr(deferred_device, property, kwargs["result"])
                     setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
                 setattr(device, f"last_{property}_success", str(kwargs["runtime"]))
@@ -1394,7 +1396,7 @@ class NetworkManagement:
                 setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))
 
         db.try_commit(transaction)
-        return getattr(deferred_device, property)
+        return write_config
 
 class GlobalVariables:
     def global_variables(_self, **locals):  # noqa: N805

@@ -75,8 +75,8 @@ class ScrapliBackupService(ConnectionService):
             result, kwargs["success"] = format_exc(), False
         kwargs["result"] = result
         with db.session_scope(remove=run.high_performance and run.in_process):
-            old_value = run.configuration_transaction(self.property, device, **kwargs)
-        if old_value != result:
+            write_config = run.configuration_transaction(self.property, device, **kwargs)
+        if write_config:
             with open(path / self.property, "w") as file:
                 file.write(result)
         if kwargs["success"]:
