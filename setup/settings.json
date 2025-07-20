@@ -151,9 +151,12 @@
   "pool": {
     "fast_compute": true
   },
+  "rate_limiter": {
+    "window_size": 60,
+    "max_requests": 50
+  },
   "redis": {
     "config": {
-      "charset": "utf-8",
       "db": 0,
       "decode_responses": true,
       "port": 6379,

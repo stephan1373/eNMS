@@ -27,7 +27,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
 from sys import path as sys_path, stderr
 from threading import Thread
-from time import perf_counter
+from time import perf_counter, time
 from traceback import format_exc, print_exc
 from warnings import warn
 from watchdog.observers.polling import PollingObserver
@@ -370,6 +370,17 @@ class Environment(vs.TimingMixin):
                 full_log = getattr(vs.run_logs[runtime], mode)(int(service), [])
                 log = full_log[start_line:]
         return log
+
+    def rate_limiter(self, user):
+        if not self.redis_queue:
+            return
+        window_size = vs.settings["rate_limiter"]["window_size"]
+        max_requests = vs.settings["rate_limiter"]["max_requests"]
+        key = f"rate_limit:{user}:{int(time() // window_size)}"
+        count = self.redis("incr", key)
+        if count == 1:
+            self.redis("expire", key, window_size)
+        return count > max_requests
 
     def redis(self, operation, *args, **kwargs):
         try:
