@@ -150,6 +150,10 @@
   "pool": {
     "fast_compute": true
   },
+  "rate_limiter": {
+    "window_size": 60,
+    "max_requests": 50
+  },
   "redis": {
     "config": {
       "db": 0,
