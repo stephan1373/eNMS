@@ -146,8 +146,15 @@
     "fast_compute": true
   },
   "rate_limiter": {
-    "window_size": 60,
-    "max_requests": 50
+    "global": {
+      "window_size": 60,
+      "max_requests": 50
+    },
+    "rest": {
+      "window_size": 60,
+      "max_requests": 6,
+      "rest_api": true
+    }
   },
   "redis": {
     "config": {

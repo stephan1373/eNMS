@@ -368,16 +368,18 @@ class Environment(vs.TimingMixin):
                 log = full_log[start_line:]
         return log
 
-    def rate_limiter(self, user):
+    def rate_limiter(self, user, is_rest):
         if not self.redis_queue:
             return
-        window_size = vs.settings["rate_limiter"]["window_size"]
-        max_requests = vs.settings["rate_limiter"]["max_requests"]
-        key = f"rate_limit:{user}:{int(time() // window_size)}"
-        count = self.redis("incr", key)
-        if count == 1:
-            self.redis("expire", key, window_size)
-        return count > max_requests
+        for key, values in vs.settings["rate_limiter"].items():
+            if values.get("rest_api") and not is_rest:
+                continue
+            key = f"rate_limit:{user}:{key}:{int(time() // values['window_size'])}"
+            count = self.redis("incr", key)
+            if count == 1:
+                self.redis("expire", key, values["window_size"])
+            if count > values["max_requests"]:
+                return True
 
     def redis(self, operation, *args, **kwargs):
         try:

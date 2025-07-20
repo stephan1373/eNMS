@@ -154,7 +154,7 @@ class Server(Flask):
                 if user:
                     login_user(user)
             username = getattr(current_user, "name", "Unknown")
-            rate_limited = env.rate_limiter(username)
+            rate_limited = env.rate_limiter(username, rest_request)
             if not endpoint_rbac:
                 status_code = 404
             elif rest_request and endpoint_rbac != "none" and not user:
