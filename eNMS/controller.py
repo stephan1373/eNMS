@@ -796,23 +796,24 @@ class Controller(vs.TimingMixin):
         file_path_set = {file.full_path for file in files_set}
         ignored_types = vs.settings["files"]["ignored_types"]
         creation_time = vs.get_time()
-        new_files, folders = [], [path]
-        while folders:
-            folder = folders.pop()
+        insert_data, stack = defaultdict(list), [path]
+        while stack:
+            folder = stack.pop()
             with scandir(folder) as entries:
                 for entry in entries:
                     if entry.path in file_path_set:
                         continue
                     if entry.is_dir():
-                        folders.append(entry.path)
+                        stack.append(entry.path)
                     elif splitext(entry.name)[1] in ignored_types:
                             continue
                     scoped_path = entry.path.replace(str(vs.file_path), "")
                     stat_info = entry.stat()
                     last_modified = str(datetime.fromtimestamp(stat_info.st_mtime))
-                    new_files.append({
+                    model = "folder" if entry.is_dir() else "generic_file"
+                    insert_data[model].append({
                         "creation_time": creation_time,
-                        "type": "folder" if entry.is_dir() else "generic_file",
+                        "type": model,
                         "filename": entry.name,
                         "folder_path": folder,
                         "full_path": entry.path,
@@ -821,8 +822,9 @@ class Controller(vs.TimingMixin):
                         "path": scoped_path,
                         "size": stat_info.st_size,
                     })
-        for batch in batched(new_files, vs.database["transactions"]["batch_size"]):
-            db.session.execute(insert(vs.models["file"]), batch)
+        for model, batch in insert_data.items():
+            for batch in batched(batch, vs.database["transactions"]["batch_size"]):
+                db.session.execute(insert(vs.models[model]), batch)
         env.log("info", "Scan of Files Successful")
 
     def get_visualization_pools(self, view):
