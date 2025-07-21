@@ -73,11 +73,6 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   - Optimize 'add_instances_in_bulk' to use name_in SQL query to add instances by name instead of db.fetch
     in a loop and return the list of all objects whose name is not found, not just the first one
     Commit: c44abaa30936d347afd3bbd64188153c0006787d
-  - Optimize the "Scan Folder" mechanism:
-    - Remove the SQL relationship between File and Folder (rely on folder_path only to display the table)
-    - Refactor the "scan_folder" function to use os.walk to gather file data, then create new file in bulk
-      with a low-level SQL query
-    Commit: 52c6ad85f61392177044b98bb3f5be1555736220
   - Update skip_services endpoint to not fetch services in a loop
     Commit: a03720c560496e98a3fa061a5ea5088436c20431
   - Update "get_service_state" function:
@@ -85,9 +80,14 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       properties, not the full SQLalchemy objects for all runs (fetch the SQL object only for
       currently displayed runtime instead)
       Commit: 7fe70bc8cf5f453bb45d75878fa070e9800f9edb
-  - Optimize File Table Display
+  - File Optimizations:
     - Add missing index on File.folder_path column (used for file table hierarchical filtering) to make the display faster
       Commit: 949c5ab9f398027acdd8c5c7e93a2b1b3de7f206
+    - Speed up the "Scan Folder" mechanism:
+      - Remove the SQL relationship between File and Folder (rely on folder_path only to display the table)
+      - Refactor the "scan_folder" function to use os.scandir to gather file data, then create new file in bulk
+        with a low-level SQL query
+      Commit: 52c6ad85f61392177044b98bb3f5be1555736220
   - Optimize the workflow duplication mechanism:
     - Don't return anything in the post_update function, and update the 'controller.update' function to not
       rely on the post_update function to return the instance properties and relations
