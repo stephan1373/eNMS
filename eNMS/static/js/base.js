@@ -185,6 +185,13 @@ export const call = function({ url, data, form, callback, errorCallback }) {
     });
   } else if (form) {
     params.data = $(`[id="${form}"]`).serialize();
+    const formArray = $(`[id="${form}"]`).serializeArray();
+    formArray.forEach(item => {
+      if (typeof item.value === 'string') {
+        item.value = item.value.replace(/\r\n?/g, '\n');
+      }
+    });
+    params.data = $.param(formArray);
   }
   $.ajax(params);
 };
