@@ -812,7 +812,7 @@ class Controller(vs.TimingMixin):
                     last_modified = str(datetime.fromtimestamp(stat_info.st_mtime))
                     new_files.append({
                         "creation_time": creation_time,
-                        "type": "folder" if entry.is_dir() else "file",
+                        "type": "folder" if entry.is_dir() else "generic_file",
                         "filename": entry.name,
                         "folder_path": folder,
                         "full_path": entry.path,
