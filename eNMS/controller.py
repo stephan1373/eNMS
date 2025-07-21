@@ -15,7 +15,7 @@ from logging import info, error
 from operator import attrgetter, itemgetter
 from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
 from os import getenv, listdir, makedirs, scandir, walk
-from os.path import exists, join, splitext
+from os.path import exists, splitext
 from pathlib import Path
 from re import compile, search, sub
 from requests import get as http_get
@@ -795,27 +795,31 @@ class Controller(vs.TimingMixin):
                 file.status = "Not Found"
         file_path_set = {file.full_path for file in files_set}
         ignored_types = vs.settings["files"]["ignored_types"]
-        new_files = []
-        for folder_path, folders, files in walk(path):
-            updates = [
-                *(("folder", folder) for folder in folders),
-                *(("file", file) for file in files)
-            ]
-            for type, filename in updates:
-                full_path = join(folder_path, filename)
-                if full_path in file_path_set:
-                    continue
-                elif type == "file" and splitext(filename)[1] in ignored_types:
-                    continue
-                scoped_path = full_path.replace(str(vs.file_path), "")
-                new_files.append({
-                    "type": type,
-                    "filename": filename,
-                    "folder_path": folder_path,
-                    "full_path": full_path,
-                    "name": scoped_path.replace("/", ">"),
-                    "path": scoped_path,
-                })
+        creation_time = vs.get_time()
+        new_files, folders = [], [path]
+        while folders:
+            folder = folders.pop()
+            with scandir(folder) as entries:
+                for entry in entries:
+                    if entry.path in file_path_set:
+                        continue
+                    if entry.is_dir():
+                        folders.append(entry.path)
+                    elif splitext(entry.name)[1] in ignored_types:
+                            continue
+                    scoped_path = entry.path.replace(str(vs.file_path), "")
+                    stat_info = entry.stat()
+                    last_modified = str(datetime.fromtimestamp(stat_info.st_mtime))
+                    new_files.append({
+                        "creation_time": creation_time,
+                        "type": "folder" if entry.is_dir() else "file",
+                        "filename": entry.name,
+                        "folder_path": folder,
+                        "full_path": entry.path,
+                        "last_modified": last_modified,
+                        "name": scoped_path.replace("/", ">"),
+                        "path": scoped_path,
+                    })
         for batch in batched(new_files, vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models["file"]), batch)
         env.log("info", "Scan of Files Successful")
