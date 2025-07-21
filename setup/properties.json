@@ -173,6 +173,12 @@
         "width": "200px"
       },
       {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "creator",
         "title": "Creator",
         "search": "text",
@@ -426,6 +432,12 @@
         "title": "Name",
         "search": "text",
         "width": "200px"
+      },
+      {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
       },
       {
         "data": "creator",
@@ -718,6 +730,12 @@
         "search": "text",
         "className": "dt-body-left",
         "html": true
+      },
+      {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
       },
       {
         "data": "type",
@@ -1689,6 +1707,12 @@
         "width": "200px"
       },
       {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "creator",
         "title": "Creator",
         "search": "text",
@@ -1745,6 +1769,12 @@
         "html": true
       },
       {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "creator",
         "title": "Creator",
         "search": "text",
@@ -1789,6 +1819,12 @@
         "width": "200px"
       },
       {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
+      },
+      {
         "data": "creator",
         "title": "Creator",
         "search": "text",
@@ -1831,6 +1867,12 @@
         "title": "Name",
         "search": "text",
         "width": "200px"
+      },
+      {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
       },
       {
         "data": "creator",
@@ -1922,6 +1964,12 @@
         "title": "Name",
         "search": "text",
         "width": "200px"
+      },
+      {
+        "data": "persistent_id",
+        "title": "Persistent ID",
+        "search": "text",
+        "visible": false
       },
       {
         "data": "creator",
