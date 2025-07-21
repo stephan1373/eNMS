@@ -296,6 +296,9 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
   Commit: 0a382bf07126fd8a5b3af420e692278761adb636
 - Add new "size" property to Files to see filesize on disk in form and table
   Commit: 0e0bd259d6267cc1c2a7f0bd618fb14067a985b9
+- normalize strings in the front-end during form serialization to remove windows and mac line endings so that changelogs
+  don't get created for line ending changes
+  Commit: 480e044ed214102154bac1f6b8db5bb8f7a531bf
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
