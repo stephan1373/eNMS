@@ -801,10 +801,10 @@ class Controller(vs.TimingMixin):
             folder = stack.pop()
             with scandir(folder) as entries:
                 for entry in entries:
-                    if entry.path in file_path_set:
-                        continue
                     if entry.is_dir():
                         stack.append(entry.path)
+                    if entry.path in file_path_set:
+                        continue
                     elif splitext(entry.name)[1] in ignored_types:
                             continue
                     scoped_path = entry.path.replace(str(vs.file_path), "")
