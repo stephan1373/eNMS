@@ -14,8 +14,8 @@ from json import dump, load
 from logging import info, error
 from operator import attrgetter, itemgetter
 from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
-from os import getenv, listdir, makedirs, scandir
-from os.path import exists
+from os import getenv, listdir, makedirs, scandir, walk
+from os.path import exists, join, splitext
 from pathlib import Path
 from re import compile, search, sub
 from requests import get as http_get
@@ -794,18 +794,30 @@ class Controller(vs.TimingMixin):
             if not exists(file.full_path):
                 file.status = "Not Found"
         file_path_set = {file.full_path for file in files_set}
-        while folders:
-            folder = folders.pop()
-            for file in folder.iterdir():
-                if str(file) in file_path_set:
+        ignored_types = vs.settings["files"]["ignored_types"]
+        new_files = []
+        for folder_path, folders, files in walk(path):
+            updates = [
+                *(("folder", folder) for folder in folders),
+                *(("file", file) for file in files)
+            ]
+            for type, filename in updates:
+                full_path = join(folder_path, filename)
+                if full_path in file_path_set:
                     continue
-                elif file.suffix in vs.settings["files"]["ignored_types"]:
+                elif type == "file" and splitext(filename)[1] in ignored_types:
                     continue
-                elif file.is_dir():
-                    folders.add(file)
-                scoped_path = str(file).replace(str(vs.file_path), "")
-                filetype = "folder" if file.is_dir() else "file"
-                db.factory(filetype, commit=True, path=scoped_path, rbac=None)
+                scoped_path = full_path.replace(str(vs.file_path), "")
+                new_files.append({
+                    "type": type,
+                    "filename": filename,
+                    "folder_path": folder_path,
+                    "full_path": full_path,
+                    "name": scoped_path.replace("/", ">"),
+                    "path": scoped_path,
+                })
+        for batch in batched(new_files, vs.database["transactions"]["batch_size"]):
+            db.session.execute(insert(vs.models["file"]), batch)
         env.log("info", "Scan of Files Successful")
 
     def get_visualization_pools(self, view):

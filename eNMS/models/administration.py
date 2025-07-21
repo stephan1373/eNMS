@@ -309,10 +309,6 @@ class File(AbstractBase):
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_updated = db.Column(db.TinyString)
     status = db.Column(db.TinyString)
-    folder_id = db.Column(Integer, ForeignKey("folder.id", ondelete="cascade"))
-    folder = relationship(
-        "Folder", foreign_keys="Folder.folder_id", back_populates="files"
-    )
     folder_path = db.Column(db.SmallString, index=True, info={"log_change": False})
     logs = relationship("Changelog", back_populates="file")
 
@@ -329,9 +325,6 @@ class File(AbstractBase):
             raise Exception("The path resolves outside of the files folder.")
         if exists(str(old_path)) and not exists(self.full_path) and move_file:
             move(old_path, self.full_path)
-        self.folder = db.fetch(
-            "folder", full_path=self.folder_path, allow_none=True, rbac=None
-        )
         if exists(self.full_path) and not kwargs.get("migration_import"):
             last_modified = datetime.strptime(ctime(getmtime(self.full_path)), "%c")
             self.last_modified = str(last_modified)
@@ -372,18 +365,9 @@ class GenericFile(File):
 
 class Folder(File):
     __tablename__ = "folder"
+    __mapper_args__ = {"polymorphic_identity": "folder"}
     pretty_name = "Folder"
     id = db.Column(Integer, ForeignKey("file.id", ondelete="cascade"), primary_key=True)
-    files = relationship(
-        "File",
-        back_populates="folder",
-        foreign_keys="File.folder_id",
-        cascade="all, delete-orphan",
-    )
-    __mapper_args__ = {
-        "polymorphic_identity": "folder",
-        "inherit_condition": id == File.id,
-    }
 
     def __init__(self, **kwargs):
         full_path = f"{vs.file_path}{kwargs['path']}"
