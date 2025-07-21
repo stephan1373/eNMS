@@ -85,8 +85,8 @@ Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
       Commit: 949c5ab9f398027acdd8c5c7e93a2b1b3de7f206
     - Speed up the "Scan Folder" mechanism:
       - Remove the SQL relationship between File and Folder (rely on folder_path only to display the table)
-      - Refactor the "scan_folder" function to use os.scandir to gather file data, then create new file in bulk
-        with a low-level SQL query
+      - Refactor the "scan_folder" function to use os.scandir to gather file data, then create new files
+        and flders in bulk with a low-level SQL query
       Commit: 52c6ad85f61392177044b98bb3f5be1555736220
   - Optimize the workflow duplication mechanism:
     - Don't return anything in the post_update function, and update the 'controller.update' function to not
