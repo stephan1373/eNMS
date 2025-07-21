@@ -9,7 +9,8 @@
     "last_modified": "2023-05-11 20:15:09",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">file_transfer>a.bin",
-    "path": "/file_transfer/a.bin"
+    "path": "/file_transfer/a.bin",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -21,7 +22,8 @@
     "last_modified": "2023-05-11 20:15:09",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">file_transfer>bc.bin",
-    "path": "/file_transfer/bc.bin"
+    "path": "/file_transfer/bc.bin",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -33,7 +35,8 @@
     "last_modified": "2023-05-11 20:15:09",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">file_transfer>bd.bin",
-    "path": "/file_transfer/bd.bin"
+    "path": "/file_transfer/bd.bin",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -45,7 +48,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">scripts>generate_fernet_key.py",
-    "path": "/scripts/generate_fernet_key.py"
+    "path": "/scripts/generate_fernet_key.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -57,7 +61,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">scripts>generate_migration.py",
-    "path": "/scripts/generate_migration.py"
+    "path": "/scripts/generate_migration.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -69,7 +74,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">scripts>generate_topology.py",
-    "path": "/scripts/generate_topology.py"
+    "path": "/scripts/generate_topology.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -81,7 +87,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">scripts>gitlab_test.py",
-    "path": "/scripts/gitlab_test.py"
+    "path": "/scripts/gitlab_test.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -93,151 +100,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">scripts>migration.py",
-    "path": "/scripts/migration.py"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "scalability_migration.py",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/scripts",
-    "full_path": "/mnt/shared/eNMS-prod2/files/scripts/scalability_migration.py",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">scripts>scalability_migration.py",
-    "path": "/scripts/scalability_migration.py"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "device.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability/device.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>rbac_scalability>device.yaml",
-    "path": "/migrations/rbac_scalability/device.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "group.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability/group.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>rbac_scalability>group.yaml",
-    "path": "/migrations/rbac_scalability/group.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "link.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability/link.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>rbac_scalability>link.yaml",
-    "path": "/migrations/rbac_scalability/link.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "user.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability/user.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>rbac_scalability>user.yaml",
-    "path": "/migrations/rbac_scalability/user.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "device.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/device.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:35",
-    "name": ">migrations>default>device.yaml",
-    "path": "/migrations/default/device.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "link.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/link.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:35",
-    "name": ">migrations>default>link.yaml",
-    "path": "/migrations/default/link.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "pool.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/pool.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:34",
-    "name": ">migrations>default>pool.yaml",
-    "path": "/migrations/default/pool.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "service.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/service.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:35",
-    "name": ">migrations>default>service.yaml",
-    "path": "/migrations/default/service.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "task.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/task.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:34",
-    "name": ">migrations>default>task.yaml",
-    "path": "/migrations/default/task.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "user.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/user.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:34",
-    "name": ">migrations>default>user.yaml",
-    "path": "/migrations/default/user.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "workflow_edge.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/workflow_edge.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:35",
-    "name": ">migrations>default>workflow_edge.yaml",
-    "path": "/migrations/default/workflow_edge.yaml"
+    "path": "/scripts/migration.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -249,7 +113,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">services>.gitkeep",
-    "path": "/services/.gitkeep"
+    "path": "/services/.gitkeep",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -261,7 +126,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>defaults.xls",
-    "path": "/spreadsheets/defaults.xls"
+    "path": "/spreadsheets/defaults.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -273,7 +139,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>device_counters.xls",
-    "path": "/spreadsheets/device_counters.xls"
+    "path": "/spreadsheets/device_counters.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -285,7 +152,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>europe.xls",
-    "path": "/spreadsheets/europe.xls"
+    "path": "/spreadsheets/europe.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -297,7 +165,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>objects.xls",
-    "path": "/spreadsheets/objects.xls"
+    "path": "/spreadsheets/objects.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -309,7 +178,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_20000_nodes_links.xls",
-    "path": "/spreadsheets/topology_20000_nodes_links.xls"
+    "path": "/spreadsheets/topology_20000_nodes_links.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -321,7 +191,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_2000_nodes_3000_links.xls",
-    "path": "/spreadsheets/topology_2000_nodes_3000_links.xls"
+    "path": "/spreadsheets/topology_2000_nodes_3000_links.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -333,7 +204,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_3000_nodes_6000_links.xls",
-    "path": "/spreadsheets/topology_3000_nodes_6000_links.xls"
+    "path": "/spreadsheets/topology_3000_nodes_6000_links.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -345,7 +217,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_500.xls",
-    "path": "/spreadsheets/topology_500.xls"
+    "path": "/spreadsheets/topology_500.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -357,7 +230,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_65000.xls",
-    "path": "/spreadsheets/topology_65000.xls"
+    "path": "/spreadsheets/topology_65000.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -369,7 +243,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_9000.xls",
-    "path": "/spreadsheets/topology_9000.xls"
+    "path": "/spreadsheets/topology_9000.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -381,7 +256,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>topology_9000_nodes_links.xls",
-    "path": "/spreadsheets/topology_9000_nodes_links.xls"
+    "path": "/spreadsheets/topology_9000_nodes_links.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -393,7 +269,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>usa.xls",
-    "path": "/spreadsheets/usa.xls"
+    "path": "/spreadsheets/usa.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -405,7 +282,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets>usa_nocoords_sameip.xls",
-    "path": "/spreadsheets/usa_nocoords_sameip.xls"
+    "path": "/spreadsheets/usa_nocoords_sameip.xls",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -417,7 +295,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>delete_corrupted_edges.py",
-    "path": "/snippets/delete_corrupted_edges.py"
+    "path": "/snippets/delete_corrupted_edges.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -429,7 +308,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>duplicates_in_association_table.py",
-    "path": "/snippets/duplicates_in_association_table.py"
+    "path": "/snippets/duplicates_in_association_table.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -441,7 +321,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>empty.py",
-    "path": "/snippets/empty.py"
+    "path": "/snippets/empty.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -453,7 +334,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>functions.py",
-    "path": "/snippets/functions.py"
+    "path": "/snippets/functions.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -465,7 +347,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>getsizeof.py",
-    "path": "/snippets/getsizeof.py"
+    "path": "/snippets/getsizeof.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -477,7 +360,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>memory_profile.py",
-    "path": "/snippets/memory_profile.py"
+    "path": "/snippets/memory_profile.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -489,7 +373,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets>sql_performances.py",
-    "path": "/snippets/sql_performances.py"
+    "path": "/snippets/sql_performances.py",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -501,7 +386,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:02:05",
     "name": ">migrations>examples>credential.yaml",
-    "path": "/migrations/examples/credential.yaml"
+    "path": "/migrations/examples/credential.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -513,7 +399,8 @@
     "last_modified": "2024-10-24 07:15:39",
     "last_updated": "2024-10-24 07:15:39",
     "name": ">migrations>examples>device.yaml",
-    "path": "/migrations/examples/device.yaml"
+    "path": "/migrations/examples/device.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -525,7 +412,8 @@
     "last_modified": "2024-10-24 07:15:40",
     "last_updated": "2024-10-24 07:15:39",
     "name": ">migrations>examples>group.yaml",
-    "path": "/migrations/examples/group.yaml"
+    "path": "/migrations/examples/group.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -537,19 +425,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:01:57",
     "name": ">migrations>examples>link.yaml",
-    "path": "/migrations/examples/link.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "network.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/examples",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/examples/network.yaml",
-    "last_modified": "2023-05-12 10:55:48",
-    "last_updated": "2023-05-09 15:02:04",
-    "name": ">migrations>examples>network.yaml",
-    "path": "/migrations/examples/network.yaml"
+    "path": "/migrations/examples/link.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -561,7 +438,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:02:06",
     "name": ">migrations>examples>pool.yaml",
-    "path": "/migrations/examples/pool.yaml"
+    "path": "/migrations/examples/pool.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -573,7 +451,8 @@
     "last_modified": "2023-05-11 20:15:09",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">migrations>examples>port.yaml",
-    "path": "/migrations/examples/port.yaml"
+    "path": "/migrations/examples/port.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -585,7 +464,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:02:04",
     "name": ">migrations>examples>service.yaml",
-    "path": "/migrations/examples/service.yaml"
+    "path": "/migrations/examples/service.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -597,7 +477,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:02:05",
     "name": ">migrations>examples>task.yaml",
-    "path": "/migrations/examples/task.yaml"
+    "path": "/migrations/examples/task.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -609,7 +490,8 @@
     "last_modified": "2024-10-24 07:15:40",
     "last_updated": "2024-10-24 07:15:39",
     "name": ">migrations>examples>user.yaml",
-    "path": "/migrations/examples/user.yaml"
+    "path": "/migrations/examples/user.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -621,7 +503,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:02:05",
     "name": ">migrations>examples>workflow_edge.yaml",
-    "path": "/migrations/examples/workflow_edge.yaml"
+    "path": "/migrations/examples/workflow_edge.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -633,7 +516,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>ansible.cfg",
-    "path": "/playbooks/ansible.cfg"
+    "path": "/playbooks/ansible.cfg",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -645,7 +529,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>arista_show_running_config.yml",
-    "path": "/playbooks/arista_show_running_config.yml"
+    "path": "/playbooks/arista_show_running_config.yml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -657,7 +542,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>arista_show_version.yml",
-    "path": "/playbooks/arista_show_version.yml"
+    "path": "/playbooks/arista_show_version.yml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -669,7 +555,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>change_hostname.yml",
-    "path": "/playbooks/change_hostname.yml"
+    "path": "/playbooks/change_hostname.yml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -681,7 +568,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>inventory",
-    "path": "/playbooks/inventory"
+    "path": "/playbooks/inventory",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -693,7 +581,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>output.txt",
-    "path": "/playbooks/output.txt"
+    "path": "/playbooks/output.txt",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -705,7 +594,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>save_running_config.yaml",
-    "path": "/playbooks/save_running_config.yaml"
+    "path": "/playbooks/save_running_config.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -717,103 +607,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks>simple_playbook.yml",
-    "path": "/playbooks/simple_playbook.yml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "device.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/device.yaml",
-    "last_modified": "2023-05-11 20:15:09",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>device.yaml",
-    "path": "/migrations/model_scalability/device.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "group.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/group.yaml",
-    "last_modified": "2023-05-11 20:15:09",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>group.yaml",
-    "path": "/migrations/model_scalability/group.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "link.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/link.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>link.yaml",
-    "path": "/migrations/model_scalability/link.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "network.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/network.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>network.yaml",
-    "path": "/migrations/model_scalability/network.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "pool.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/pool.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>pool.yaml",
-    "path": "/migrations/model_scalability/pool.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "service.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/service.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>service.yaml",
-    "path": "/migrations/model_scalability/service.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "task.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/task.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>task.yaml",
-    "path": "/migrations/model_scalability/task.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "user.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability/user.yaml",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability>user.yaml",
-    "path": "/migrations/model_scalability/user.yaml"
+    "path": "/playbooks/simple_playbook.yml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -825,7 +620,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 15:01:57",
     "name": ">migrations>examples>file.yaml",
-    "path": "/migrations/examples/file.yaml"
+    "path": "/migrations/examples/file.yaml",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -837,187 +633,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-28 06:54:27",
     "name": ">reports>report_results.j2",
-    "path": "/reports/report_results.j2"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "group.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/group.yaml",
-    "last_modified": "2023-05-09 14:30:06",
-    "last_updated": "2023-05-09 14:30:07",
-    "name": ">migrations>default>group.yaml",
-    "path": "/migrations/default/group.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "file.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/file.yaml",
-    "last_modified": "2023-05-09 14:30:08",
-    "last_updated": "2023-05-09 14:30:08",
-    "name": ">migrations>default>file.yaml",
-    "path": "/migrations/default/file.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "network.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/network.yaml",
-    "last_modified": "2023-05-09 14:30:17",
-    "last_updated": "2023-05-09 14:30:18",
-    "name": ">migrations>default>network.yaml",
-    "path": "/migrations/default/network.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "credential.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default/credential.yaml",
-    "last_modified": "2023-05-09 14:30:18",
-    "last_updated": "2023-05-09 14:30:18",
-    "name": ">migrations>default>credential.yaml",
-    "path": "/migrations/default/credential.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "credential.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/credential.yaml",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>credential.yaml",
-    "path": "/migrations/small_scalability/credential.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "device.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/device.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>device.yaml",
-    "path": "/migrations/small_scalability/device.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "file.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/file.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>file.yaml",
-    "path": "/migrations/small_scalability/file.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "group.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/group.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>group.yaml",
-    "path": "/migrations/small_scalability/group.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "link.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/link.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>link.yaml",
-    "path": "/migrations/small_scalability/link.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "network.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/network.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>network.yaml",
-    "path": "/migrations/small_scalability/network.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "pool.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/pool.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>pool.yaml",
-    "path": "/migrations/small_scalability/pool.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "service.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/service.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>service.yaml",
-    "path": "/migrations/small_scalability/service.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "task.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/task.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>task.yaml",
-    "path": "/migrations/small_scalability/task.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "user.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/user.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>user.yaml",
-    "path": "/migrations/small_scalability/user.yaml"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "workflow_edge.yaml",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability/workflow_edge.yaml",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability>workflow_edge.yaml",
-    "path": "/migrations/small_scalability/workflow_edge.yaml"
+    "path": "/reports/report_results.j2",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -1029,6 +646,7 @@
     "last_modified": "2023-05-12 10:54:27",
     "last_updated": "2023-05-12 10:56:41",
     "name": ">migrations>examples>metadata.yaml",
-    "path": "/migrations/examples/metadata.yaml"
+    "path": "/migrations/examples/metadata.yaml",
+    "size": ""
   }
 ]

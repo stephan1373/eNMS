@@ -9,7 +9,8 @@
     "last_modified": "2023-05-11 20:15:09",
     "last_updated": "2022-11-09 01:27:06",
     "name": ">file_transfer",
-    "path": "/file_transfer"
+    "path": "/file_transfer",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -21,7 +22,8 @@
     "last_modified": "2023-05-12 08:37:19",
     "last_updated": "2022-11-09 01:27:12",
     "name": ">migrations",
-    "path": "/migrations"
+    "path": "/migrations",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -33,7 +35,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">playbooks",
-    "path": "/playbooks"
+    "path": "/playbooks",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -45,7 +48,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">scripts",
-    "path": "/scripts"
+    "path": "/scripts",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -57,7 +61,8 @@
     "last_modified": "2023-05-12 10:48:07",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">services",
-    "path": "/services"
+    "path": "/services",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -69,7 +74,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">snippets",
-    "path": "/snippets"
+    "path": "/snippets",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -81,19 +87,8 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-09 01:23:39",
     "name": ">spreadsheets",
-    "path": "/spreadsheets"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "default",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
-    "last_modified": "2023-05-12 08:37:19",
-    "last_updated": "2023-05-09 14:32:35",
-    "name": ">migrations>default",
-    "path": "/migrations/default"
+    "path": "/spreadsheets",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -105,31 +100,8 @@
     "last_modified": "2023-05-12 10:55:48",
     "last_updated": "2023-05-09 14:56:24",
     "name": ">migrations>examples",
-    "path": "/migrations/examples"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "model_scalability",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/model_scalability",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>model_scalability",
-    "path": "/migrations/model_scalability"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "rbac_scalability",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/rbac_scalability",
-    "last_modified": "2023-05-11 20:15:10",
-    "last_updated": "2022-11-09 01:23:39",
-    "name": ">migrations>rbac_scalability",
-    "path": "/migrations/rbac_scalability"
+    "path": "/migrations/examples",
+    "size": ""
   },
   {
     "creation_time": "",
@@ -141,18 +113,7 @@
     "last_modified": "2023-05-11 20:15:10",
     "last_updated": "2022-11-14 06:34:59",
     "name": ">reports",
-    "path": "/reports"
-  },
-  {
-    "creation_time": "",
-    "custom_property": "Custom",
-    "description": "",
-    "filename": "small_scalability",
-    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations",
-    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/small_scalability",
-    "last_modified": "2023-05-12 08:37:20",
-    "last_updated": "2023-05-12 10:56:41",
-    "name": ">migrations>small_scalability",
-    "path": "/migrations/small_scalability"
+    "path": "/reports",
+    "size": ""
   }
 ]
