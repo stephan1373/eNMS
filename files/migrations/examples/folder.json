@@ -115,5 +115,18 @@
     "name": ">reports",
     "path": "/reports",
     "size": ""
+  },
+  {
+    "creation_time": "2025-07-21 16:12:07.062647",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "lab",
+    "folder_path": "/mnt/shared/eNMS-prod2/files",
+    "full_path": "/mnt/shared/eNMS-prod2/files/lab",
+    "last_modified": "2025-07-21 15:36:30.514237",
+    "last_updated": "",
+    "name": ">lab",
+    "path": "/lab",
+    "size": "160"
   }
 ]

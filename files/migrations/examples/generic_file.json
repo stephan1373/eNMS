@@ -648,5 +648,44 @@
     "name": ">migrations>examples>metadata.yaml",
     "path": "/migrations/examples/metadata.yaml",
     "size": ""
+  },
+  {
+    "creation_time": "2025-07-21 16:12:07.062647",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "lab.clab.yaml",
+    "folder_path": "/mnt/shared/eNMS-prod2/files/lab",
+    "full_path": "/mnt/shared/eNMS-prod2/files/lab/lab.clab.yaml",
+    "last_modified": "2025-07-21 15:36:30.504767",
+    "last_updated": "",
+    "name": ">lab>lab.clab.yaml",
+    "path": "/lab/lab.clab.yaml",
+    "size": "583"
+  },
+  {
+    "creation_time": "2025-07-21 16:12:07.062647",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "router1.cfg",
+    "folder_path": "/mnt/shared/eNMS-prod2/files/lab",
+    "full_path": "/mnt/shared/eNMS-prod2/files/lab/router1.cfg",
+    "last_modified": "2025-07-21 15:36:30.511144",
+    "last_updated": "",
+    "name": ">lab>router1.cfg",
+    "path": "/lab/router1.cfg",
+    "size": "1142"
+  },
+  {
+    "creation_time": "2025-07-21 16:12:07.062647",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "router2.cfg",
+    "folder_path": "/mnt/shared/eNMS-prod2/files/lab",
+    "full_path": "/mnt/shared/eNMS-prod2/files/lab/router2.cfg",
+    "last_modified": "2025-07-21 15:36:30.517467",
+    "last_updated": "",
+    "name": ">lab>router2.cfg",
+    "path": "/lab/router2.cfg",
+    "size": "1142"
   }
 ]
