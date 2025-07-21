@@ -1,7 +1,7 @@
 # Release Notes
 
-Version 5.3: JSON Migration, SQLectomy and Various Performance Improvements
----------------------------------------------------------------------------
+Version 5.3: JSON Migration, High Performance Mode and other Performance Improvements
+-------------------------------------------------------------------------------------
 
 - Add new JSON migration mechanism
   - Add new "Generic Device" class and convert all devices of type "device" to this new
