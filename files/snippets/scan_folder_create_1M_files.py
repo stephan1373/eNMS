@@ -4,7 +4,7 @@
 
 from pathlib import Path
 
-path_folder = vs.file_path / "files" / "test"
+path_folder = vs.file_path / "test"
 path_folder.mkdir(exist_ok=True)
 
 for i in range(1, 1000001):
