@@ -2,7 +2,7 @@ from flask_login import current_user, UserMixin
 from datetime import datetime
 from itertools import chain
 from os import kill, makedirs
-from os.path import exists, getmtime
+from os.path import exists, getmtime, getsize
 from passlib.hash import argon2
 from pathlib import Path
 from shutil import move, rmtree
@@ -329,6 +329,7 @@ class File(AbstractBase):
         if exists(self.full_path) and not kwargs.get("migration_import"):
             last_modified = datetime.strptime(ctime(getmtime(self.full_path)), "%c")
             self.last_modified = str(last_modified)
+            self.size = getsize(self.full_path)
         if not kwargs.get("migration_import"):
             self.last_updated = str(datetime.strptime(ctime(), "%c"))
         self.status = "Updated"
