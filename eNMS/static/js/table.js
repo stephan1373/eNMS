@@ -464,7 +464,7 @@ export class Table {
       <button
         class="btn btn-info"
         onclick="eNMS.table.copySearchLinkToClipboard('${this.id}')"
-        data-tooltip="Copy Hyperlink to Current Search to Clipboard"
+        data-tooltip="Copy to Clipboard Hyperlink to Current Search"
         type="button"
       >
         <span class="glyphicon glyphicon-link"></span>
