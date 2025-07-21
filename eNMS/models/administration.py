@@ -308,6 +308,7 @@ class File(AbstractBase):
     creation_time = db.Column(db.TinyString)
     last_modified = db.Column(db.TinyString, info={"log_change": False})
     last_updated = db.Column(db.TinyString)
+    size = db.Column(db.SmallString)
     status = db.Column(db.TinyString)
     folder_path = db.Column(db.SmallString, index=True, info={"log_change": False})
     logs = relationship("Changelog", back_populates="file")

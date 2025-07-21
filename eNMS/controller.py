@@ -819,6 +819,7 @@ class Controller(vs.TimingMixin):
                         "last_modified": last_modified,
                         "name": scoped_path.replace("/", ">"),
                         "path": scoped_path,
+                        "size": stat_info.st_size,
                     })
         for batch in batched(new_files, vs.database["transactions"]["batch_size"]):
             db.session.execute(insert(vs.models["file"]), batch)

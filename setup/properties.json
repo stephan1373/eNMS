@@ -1688,6 +1688,11 @@
         "search": "text"
       },
       {
+        "data": "size",
+        "title": "Size",
+        "search": "text"
+      },
+      {
         "data": "status",
         "title": "Status",
         "search": "text"
