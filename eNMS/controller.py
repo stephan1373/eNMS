@@ -2007,7 +2007,7 @@ class Controller(vs.TimingMixin):
                 with open(filepath) as file:
                     setattr(device, property, file.read())
             db.session.commit()
-        for pool in db.fetch_all("pool"):
+        for pool in db.fetch_all("pool", rbac=None):
             if any(
                 getattr(pool, f"device_{property}")
                 for property in vs.configuration_properties
