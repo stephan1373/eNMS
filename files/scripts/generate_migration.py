@@ -249,7 +249,7 @@ def generate_runs():
             "progress": {"device": {"total": 1, "success": 1}},
         }
         state = {"Workflow0": inner_state}
-        run_service_table.append([runtime, f"[Shared] Workflow0"])
+        run_service_table.append([runtime, "[Shared] Workflow0"])
         for service_index in range(30):
             state[f"Workflow0>Service{service_index}"] = inner_state
             run_service_table.append([runtime, f"[Shared] Service{service_index}"])
@@ -280,7 +280,7 @@ def generate_runs():
             }
         )
         run_service[runtime] = "[Shared] Workflow1"
-        run_service_table.append([runtime, f"[Shared] Workflow1"])
+        run_service_table.append([runtime, "[Shared] Workflow1"])
     with open(PATH / "run.json", "wb") as file:
         file.write(dumps(runs))
     with open(PATH / "run_service.json", "wb") as file:

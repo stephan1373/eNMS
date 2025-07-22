@@ -2,7 +2,6 @@ from datetime import datetime
 from pathlib import Path
 from re import M, sub
 from sqlalchemy import Boolean, Float, ForeignKey, Integer
-from sqlalchemy.orm import load_only
 from wtforms import FormField
 
 from eNMS.database import db

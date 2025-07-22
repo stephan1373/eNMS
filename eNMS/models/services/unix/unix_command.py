@@ -49,7 +49,6 @@ class UnixCommandForm(ServiceForm):
 
     def validate(self, **_):
         valid_form = super().validate()
-        service = db.fetch("service", id=self.id.data, allow_none=True)
         rbac_error = self.approved_by_admin.data and not current_user.is_admin
         if rbac_error:
             self.approved_by_admin.errors.append(
