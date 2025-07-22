@@ -181,11 +181,13 @@ class Workflow(Service):
                 success = service.skip_value == "success"
                 results = {"result": "skipped", "success": success}
                 if not SxS:
-                    results["summary"] = defaultdict(list, success=targets[service.name])
+                    results["summary"] = defaultdict(
+                        list, success=targets[service.name]
+                    )
             else:
                 service_kw = service
                 if not run.high_performance:
-                    service_kw = db.fetch("service", id=service_id, rbac=None)                    
+                    service_kw = db.fetch("service", id=service_id, rbac=None)
                 kwargs = {
                     "service": service_kw,
                     "workflow": self,
@@ -219,7 +221,7 @@ class Workflow(Service):
                 if not SxS:
                     targets[successor.name] |= set(next_targets)
                 heappush(services, ((1 / successor.priority, successor.id)))
-                edge_state = (("Done",) if SxS else (len(next_targets), "increment"))
+                edge_state = ("Done",) if SxS else (len(next_targets), "increment")
                 run.write_state(f"edges/{edge_id}", *edge_state, top_level=True)
         if SxS:
             results = {"success": end.id in visited}

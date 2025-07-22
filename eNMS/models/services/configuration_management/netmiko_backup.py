@@ -31,7 +31,9 @@ class NetmikoBackupService(ConnectionService):
     auth_timeout = db.Column(Float, default=0.0)
     banner_timeout = db.Column(Float, default=15.0)
     global_delay_factor = db.Column(Float, default=0.1)
-    local_path = db.Column(db.SmallString, default=vs.automation["configuration_backup"]["folder"])
+    local_path = db.Column(
+        db.SmallString, default=vs.automation["configuration_backup"]["folder"]
+    )
     property = db.Column(db.SmallString)
     commands = db.Column(db.List)
     replacements = db.Column(db.List)
@@ -85,7 +87,9 @@ class NetmikoBackupService(ConnectionService):
             result, kwargs["success"] = format_exc(), False
         kwargs["result"] = result
         with db.session_scope(remove=run.high_performance and run.in_process):
-            write_config = run.configuration_transaction(self.property, device, **kwargs)
+            write_config = run.configuration_transaction(
+                self.property, device, **kwargs
+            )
         if write_config:
             with open(path / self.property, "w") as file:
                 file.write(result)
@@ -102,7 +106,11 @@ class NetmikoBackupForm(NetmikoForm):
         "Configuration Property to Update",
         choices=list(vs.configuration_properties.items()),
     )
-    local_path = StringField("Local Path", default=vs.automation["configuration_backup"]["folder"], substitution=True)
+    local_path = StringField(
+        "Local Path",
+        default=vs.automation["configuration_backup"]["folder"],
+        substitution=True,
+    )
     commands = FieldList(FormField(CommandsForm), min_entries=12)
     replacements = FieldList(FormField(ReplacementForm), min_entries=12)
     add_header = BooleanField("Add header for each command", default=True)

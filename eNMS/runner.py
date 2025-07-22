@@ -1398,6 +1398,7 @@ class NetworkManagement:
         db.try_commit(transaction)
         return write_config
 
+
 class GlobalVariables:
     def global_variables(_self, **locals):  # noqa: N805
         payload, device = _self.payload, locals.get("device")

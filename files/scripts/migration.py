@@ -163,12 +163,7 @@ def migrate_5_2_to_5_3_json():
         service["payload"] = dumps(service["payload"])
         service["substitution_type"] = "dict"
     with open(PATH / FILENAME / "rest_call_service.json", "wb") as service_file:
-        service_file.write(
-            or_dumps(
-                services,
-                option=OPT_INDENT_2 | OPT_SORT_KEYS
-            )
-        )
+        service_file.write(or_dumps(services, option=OPT_INDENT_2 | OPT_SORT_KEYS))
 
 
 migrate_5_2_to_5_3_json()

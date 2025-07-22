@@ -27,7 +27,9 @@ class NapalmBackupService(ConnectionService):
     driver = db.Column(db.SmallString)
     timeout = db.Column(Integer, default=60)
     optional_args = db.Column(db.Dict)
-    local_path = db.Column(db.SmallString, default=vs.automation["configuration_backup"]["folder"])
+    local_path = db.Column(
+        db.SmallString, default=vs.automation["configuration_backup"]["folder"]
+    )
     property = db.Column(db.SmallString)
     getters = db.Column(db.List)
     replacements = db.Column(db.List)
@@ -95,7 +97,11 @@ class NapalmBackupForm(NapalmForm):
         "Configuration Property to Update",
         choices=list(vs.configuration_properties.items()),
     )
-    local_path = StringField("Local Path", default=vs.automation["configuration_backup"]["folder"], substitution=True)
+    local_path = StringField(
+        "Local Path",
+        default=vs.automation["configuration_backup"]["folder"],
+        substitution=True,
+    )
     getters = SelectMultipleField(choices=vs.automation["napalm"]["getters"])
     replacements = FieldList(FormField(ReplacementForm), min_entries=3)
     groups = {

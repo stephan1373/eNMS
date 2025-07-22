@@ -429,12 +429,12 @@ class JsonMigrationForm(BaseForm):
     migration_folder = vs.migration_path
     form_type = HiddenField(default="json_migration")
     export_format = SelectField(
-        'Export Format',
+        "Export Format",
         choices=[
-            ('structured', 'Structured Format (2 spaces, ordered)'),
-            ('bytestring', 'Bytestring Format')
+            ("structured", "Structured Format (2 spaces, ordered)"),
+            ("bytestring", "Bytestring Format"),
         ],
-        no_search=True
+        no_search=True,
     )
 
 

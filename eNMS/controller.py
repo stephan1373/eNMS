@@ -806,22 +806,24 @@ class Controller(vs.TimingMixin):
                     if entry.path in file_path_set:
                         continue
                     elif splitext(entry.name)[1] in ignored_types:
-                            continue
+                        continue
                     scoped_path = entry.path.replace(str(vs.file_path), "")
                     stat_info = entry.stat()
                     last_modified = str(datetime.fromtimestamp(stat_info.st_mtime))
                     model = "folder" if entry.is_dir() else "generic_file"
-                    insert_data[model].append({
-                        "creation_time": creation_time,
-                        "type": model,
-                        "filename": entry.name,
-                        "folder_path": folder,
-                        "full_path": entry.path,
-                        "last_modified": last_modified,
-                        "name": scoped_path.replace("/", ">"),
-                        "path": scoped_path,
-                        "size": stat_info.st_size,
-                    })
+                    insert_data[model].append(
+                        {
+                            "creation_time": creation_time,
+                            "type": model,
+                            "filename": entry.name,
+                            "folder_path": folder,
+                            "full_path": entry.path,
+                            "last_modified": last_modified,
+                            "name": scoped_path.replace("/", ">"),
+                            "path": scoped_path,
+                            "size": stat_info.st_size,
+                        }
+                    )
         for model, batch in insert_data.items():
             for batch in batched(batch, vs.database["transactions"]["batch_size"]):
                 db.session.execute(insert(vs.models[model]), batch)

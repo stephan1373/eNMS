@@ -310,7 +310,7 @@ class Server(Flask):
                 "table.html",
                 type=table_type,
                 endpoint=f"{table_type}_table",
-                search=loads(request.args.get("search", "{}"))
+                search=loads(request.args.get("search", "{}")),
             )
 
         @blueprint.route("/geographical_view")

@@ -311,7 +311,8 @@ class Database:
                     if added:
                         change += f" - Added: {added}"
                     history["properties"][attr.key] = {
-                        "old": "\n".join(map(str, deleted)), "new": "\n".join(map(str, added))
+                        "old": "\n".join(map(str, deleted)),
+                        "new": "\n".join(map(str, added)),
                     }
                 else:
                     if deleted:
