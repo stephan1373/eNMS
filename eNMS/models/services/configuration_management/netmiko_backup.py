@@ -6,13 +6,7 @@ from traceback import format_exc
 from wtforms import FormField
 
 from eNMS.database import db
-from eNMS.fields import (
-    BooleanField,
-    FieldList,
-    HiddenField,
-    SelectField,
-    StringField,
-)
+from eNMS.fields import BooleanField, FieldList, HiddenField, SelectField, StringField
 from eNMS.forms import CommandsForm, NetmikoForm, ReplacementForm
 from eNMS.models.automation import ConnectionService
 from eNMS.variables import vs
