@@ -1,6 +1,5 @@
 from black import format_str, Mode
-from collections import Counter, defaultdict
-from concurrent.futures import ThreadPoolExecutor
+from collections import defaultdict
 from contextlib import redirect_stdout
 from datetime import datetime
 from difflib import unified_diff
@@ -12,13 +11,12 @@ from io import BytesIO, StringIO
 from itertools import batched
 from json import dump, load
 from logging import info, error
-from operator import attrgetter, itemgetter
+from operator import itemgetter
 from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
-from os import getenv, listdir, makedirs, scandir, walk
+from os import getenv, listdir, makedirs, scandir
 from os.path import exists, splitext
 from pathlib import Path
 from re import compile, search, sub
-from requests import get as http_get
 from shutil import rmtree
 from sqlalchemy import and_, cast, func, insert, or_, select, String, update
 from sqlalchemy.exc import IntegrityError, OperationalError
@@ -30,7 +28,6 @@ from tarfile import open as open_tar
 from threading import Thread
 from traceback import format_exc
 from uuid import uuid4
-from warnings import warn
 from xlrd import open_workbook
 from xlrd.biffh import XLRDError
 from xlwt import Workbook
@@ -783,7 +780,6 @@ class Controller(vs.TimingMixin):
             return {"alert": "This folder does not exist on the filesystem."}
         elif not str(Path(path).resolve()).startswith(f"{vs.file_path}"):
             return {"error": "The path resolves outside of the files folder."}
-        folders = {Path(path)}
         files_set = {
             file
             for file in db.session.query(vs.models["file"])
@@ -1183,7 +1179,7 @@ class Controller(vs.TimingMixin):
         for service in soft_deleted_services:
             db.delete_instance(service)
         db.session.commit()
-        env.log("warning", f"Soft-deleted objects successfully deleted")
+        env.log("warning", "Soft-deleted objects successfully deleted")
 
     def delete_corrupted_objects(self):
         number_of_corrupted_services = 0
@@ -1291,7 +1287,6 @@ class Controller(vs.TimingMixin):
 
     def json_export_properties(self, cls_name, path, option):
         cls = vs.models[cls_name]
-        model_class = vs.models[cls_name]
         export_type = getattr(cls, "export_type", cls.type)
         excluded_properties = set(
             db.json_migration["dont_migrate"].get(export_type, [])
@@ -1316,7 +1311,6 @@ class Controller(vs.TimingMixin):
             file.write(dumps(instances, option=option))
 
     def json_import_properties(self, cls_name, path):
-        cls = vs.models[cls_name]
         filepath = path / f"{cls_name}.json"
         if cls_name in db.json_migration["no_export"] or not exists(filepath):
             return
@@ -1666,7 +1660,7 @@ class Controller(vs.TimingMixin):
             }[model]
             conditions = [getattr(vs.models[model], row) < date_time_string]
             if model in ("service", "workflow_edge"):
-                conditions.append(vs.models[model].soft_deleted == True)
+                conditions.append(vs.models[model].soft_deleted == true())
             session_query = db.session.query(vs.models[model]).filter(and_(*conditions))
             if model in ("service", "workflow_edge"):
                 for obj in session_query.all():
@@ -1678,8 +1672,7 @@ class Controller(vs.TimingMixin):
     @staticmethod
     @actor(max_retries=0, time_limit=float("inf"))
     def run(service, **kwargs):
-        start = datetime.now().replace(microsecond=0)
-        run_object, runtime, user = None, kwargs["runtime"], kwargs["creator"]
+        run_object, user = None, kwargs["creator"]
         if "path" not in kwargs:
             kwargs["path"] = str(service)
         keys = list(vs.model_properties["run"]) + list(vs.relationships["run"])
@@ -1878,7 +1871,7 @@ class Controller(vs.TimingMixin):
                 sheet.write(0, index, property)
                 for obj_index, obj in enumerate(db.fetch_all(obj_type), 1):
                     value = getattr(obj, property)
-                    if type(value) == bytes:
+                    if isinstance(value, bytes):
                         value = str(env.decrypt(value), "utf-8")
                     sheet.write(obj_index, index, str(value))
         workbook.save(vs.file_path / "spreadsheets" / filename)
