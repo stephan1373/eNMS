@@ -1,17 +1,10 @@
-from sqlalchemy import Boolean, Float, ForeignKey, Integer
+from sqlalchemy import Float, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import relationship
 
 from eNMS.database import db
 from eNMS.forms import DataForm
-from eNMS.fields import (
-    BooleanField,
-    FloatField,
-    HiddenField,
-    InstanceField,
-    SelectField,
-    StringField,
-)
+from eNMS.fields import FloatField, HiddenField, InstanceField, StringField
 from eNMS.models.administration import Data
 
 

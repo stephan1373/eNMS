@@ -8,7 +8,7 @@ from orjson import loads
 from os import environ, getpid
 from requests import get, post
 from requests.exceptions import ConnectionError, MissingSchema, ReadTimeout
-from sqlalchemy import and_, Boolean, case, ForeignKey, insert, Integer
+from sqlalchemy import Boolean, case, ForeignKey, insert, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, deferred, relationship
@@ -758,10 +758,10 @@ class Run(AbstractBase):
         devices, pools = [], []
         if self.restart_run and self.payload["targets"] == "Manually defined":
             devices = db.fetch_all(
-                "device", in_in=self.payload[f"restart_devices"], user=self.creator
+                "device", in_in=self.payload["restart_devices"], user=self.creator
             )
             pools = db.fetch_all(
-                "pool", in_in=self.payload[f"restart_pools"], user=self.creator
+                "pool", in_in=self.payload["restart_pools"], user=self.creator
             )
         elif self.restart_run and self.payload["targets"] == "Restart run":
             devices = self.restart_run.target_devices

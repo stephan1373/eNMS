@@ -8,7 +8,6 @@ try:
 except ImportError as exc:
     warn(f"Couldn't import ldap3 module({exc})")
 
-from eNMS.database import db
 from eNMS.environment import env
 from eNMS.variables import vs
 

@@ -9,7 +9,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formatdate
 from flask_caching import Cache
-from flask_login import current_user
 from importlib import import_module
 from logging.config import dictConfig
 from logging import Formatter, getLogger, Handler, info
