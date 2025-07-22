@@ -1,3 +1,4 @@
+# flake8: noqa: F821
 # Sort and display the profiling data stored in vs.profiling
 
 # The data can be sorted by:

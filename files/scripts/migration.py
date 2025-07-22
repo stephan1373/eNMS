@@ -23,6 +23,7 @@ def get_yaml_instance():
 
 
 def migrate_from_4_to_4_2():
+    yaml = get_yaml_instance()
     with open(PATH / FILENAME / "service.yaml", "r") as migration_file:
         services = yaml.load(migration_file)
     for service in services:
@@ -43,6 +44,7 @@ def migrate_from_4_to_4_2():
 
 
 def migrate_from_4_2_to_4_3():
+    yaml = get_yaml_instance()
     with open(PATH / FILENAME / "service.yaml", "r") as migration_file:
         services = yaml.load(migration_file)
     for service in services:
@@ -58,6 +60,7 @@ def migrate_from_4_2_to_4_3():
 
 
 def migrate_from_4_3_to_4_4():
+    yaml = get_yaml_instance()
     with open(PATH / FILENAME / "credential.yaml", "r") as credential_file:
         credentials = yaml.load(credential_file)
     for credential in credentials:
