@@ -1,8 +1,8 @@
 from sqlalchemy import ForeignKey, Integer
 
 from eNMS.database import db
-from eNMS.forms import DataForm
 from eNMS.fields import HiddenField, InstanceField, SelectField, StringField
+from eNMS.forms import DataForm
 from eNMS.models.administration import Data
 
 

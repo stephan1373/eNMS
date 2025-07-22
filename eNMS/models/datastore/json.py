@@ -2,8 +2,8 @@ from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.types import JSON
 
 from eNMS.database import db
-from eNMS.forms import DataForm
 from eNMS.fields import HiddenField, JsonField, InstanceField
+from eNMS.forms import DataForm
 from eNMS.models.administration import Data
 
 

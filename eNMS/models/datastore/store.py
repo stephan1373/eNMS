@@ -2,8 +2,8 @@ from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import relationship
 
 from eNMS.database import db
-from eNMS.forms import DataForm
 from eNMS.fields import HiddenField, InstanceField, SelectField
+from eNMS.forms import DataForm
 from eNMS.models.administration import Data
 from eNMS.variables import vs
 

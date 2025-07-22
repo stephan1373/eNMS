@@ -2,8 +2,8 @@ from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import deferred, relationship
 
 from eNMS.database import db
-from eNMS.forms import DeviceForm
 from eNMS.fields import HiddenField, SelectField
+from eNMS.forms import DeviceForm
 from eNMS.models.inventory import Device
 from eNMS.variables import vs
 

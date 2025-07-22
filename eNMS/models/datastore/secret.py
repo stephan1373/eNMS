@@ -2,8 +2,8 @@ from sqlalchemy import ForeignKey, Integer
 from wtforms.widgets import TextArea
 
 from eNMS.database import db
-from eNMS.forms import DataForm
 from eNMS.fields import HiddenField, InstanceField, PasswordField
+from eNMS.forms import DataForm
 from eNMS.models.administration import Data
 
 

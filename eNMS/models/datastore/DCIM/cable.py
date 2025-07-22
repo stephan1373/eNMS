@@ -3,8 +3,8 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import relationship
 
 from eNMS.database import db
-from eNMS.forms import DataForm
 from eNMS.fields import FloatField, HiddenField, InstanceField, StringField
+from eNMS.forms import DataForm
 from eNMS.models.administration import Data
 
 
