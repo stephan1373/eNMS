@@ -7,14 +7,14 @@ from sqlalchemy.orm import load_only
 from wtforms import FormField
 
 from eNMS.database import db
-from eNMS.forms import NapalmForm
 from eNMS.fields import (
+    FieldList,
     HiddenField,
     SelectField,
-    StringField,
     SelectMultipleField,
-    FieldList,
+    StringField,
 )
+from eNMS.forms import NapalmForm
 from eNMS.models.automation import ConnectionService
 from eNMS.variables import vs
 

@@ -2,14 +2,14 @@ from datetime import datetime
 from pathlib import Path
 from re import M, sub
 from sqlalchemy import Boolean, Float, ForeignKey, Integer
+from traceback import format_exc
 from wtforms import FormField
 
 from eNMS.database import db
-from eNMS.forms import ScrapliForm, CommandsForm, ReplacementForm
 from eNMS.fields import BooleanField, FieldList, HiddenField, SelectField, StringField
+from eNMS.forms import CommandsForm, ReplacementForm, ScrapliForm
 from eNMS.models.automation import ConnectionService
 from eNMS.variables import vs
-from traceback import format_exc
 
 
 class ScrapliBackupService(ConnectionService):

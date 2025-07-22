@@ -1,8 +1,8 @@
 from sqlalchemy import ForeignKey, Integer
 
 from eNMS.database import db
-from eNMS.forms import NapalmForm
 from eNMS.fields import HiddenField
+from eNMS.forms import NapalmForm
 from eNMS.models.automation import ConnectionService
 
 
