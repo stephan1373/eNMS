@@ -1,5 +1,5 @@
-# Uses low-level SQL to create many changelogs (50M by default)
 # flake8: noqa
+# Uses low-level SQL to create many changelogs (50M by default)
 
 from itertools import batched
 

@@ -1,5 +1,5 @@
-# Functions provided by eNMS
 # flake8: noqa
+# Functions provided by eNMS
 
 # Factory: create a new instance
 

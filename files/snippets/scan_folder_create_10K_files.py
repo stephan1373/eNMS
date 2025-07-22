@@ -1,6 +1,6 @@
+# flake8: noqa
 # This script is used to optimize the "scan_folder" function
 # It creates 1M files in a subfolder "test" of the "files" folder
-# flake8: noqa
 
 from pathlib import Path
 

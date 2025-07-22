@@ -1,11 +1,10 @@
+# flake8: noqa
 # Uses the "pympler" module for profiling memory.
 # By default, objects are sorted by their size in memory.
 # The order can be changed to sorting by number of objects in
 # memory by replacing "itemgetter(2)" with "itemgetter(1)".
 # The "max_results" variable limits the output to the first
 # max_results results.
-
-# flake8: noqa
 
 from operator import itemgetter
 from pympler import muppy, summary

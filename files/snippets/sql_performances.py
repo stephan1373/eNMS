@@ -1,7 +1,7 @@
+# flake8: noqa
 # Uses eNMS fetch, factory and delete function
 # to measure eNMS performances when querying
 # the database.
-# flake8: noqa
 
 from datetime import datetime
 
