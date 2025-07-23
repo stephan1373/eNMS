@@ -35,6 +35,7 @@ export let tables = {};
 export let tableInstances = {};
 export const models = {};
 let waitForSearch = false;
+let debounceTimer;
 
 $.fn.dataTable.ext.errMode = "none";
 
@@ -129,14 +130,18 @@ export class Table {
             }
             const eventType = data.search == "text" ? "keyup" : "change";
             $(element)
-              .appendTo($(this.header()))
-              .on(eventType, function() {
-                if (waitForSearch) return;
+            .appendTo($(this.header()))
+            .on(eventType, function () {
+              if (waitForSearch) return;
+              clearTimeout(debounceTimer);
+              debounceTimer = setTimeout(function () {
                 waitForSearch = true;
-                setTimeout(function() {
-                  self.table.page(0).ajax.reload(null, false);
+                notify("Searching...", "success", 5, true);
+                self.table.page(0).ajax.reload(function () {
+                  notify("Search completed successfully", "success", 5, true);
                   waitForSearch = false;
-                }, 500);
+                }, false);
+              }, 1000);
               })
               .on("keydown", function(e) {
                 if (e.key === "Enter") e.preventDefault();
