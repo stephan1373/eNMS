@@ -129,6 +129,7 @@ export class Table {
                 </div>`;
             }
             const eventType = data.search == "text" ? "keyup" : "change";
+            const sendAlert = settings.tables.search.notification;
             $(element)
             .appendTo($(this.header()))
             .on(eventType, function () {
@@ -136,12 +137,12 @@ export class Table {
               clearTimeout(debounceTimer);
               debounceTimer = setTimeout(function () {
                 waitForSearch = true;
-                notify("Searching...", "success", 5, true);
+                if (sendAlert) notify("Searching...", "success", 5, true);
                 self.table.page(0).ajax.reload(function () {
-                  notify("Search completed successfully", "success", 5, true);
+                  if (sendAlert) notify("Search completed successfully", "success", 5, true);
                   waitForSearch = false;
                 }, false);
-              }, 1000);
+              }, settings.tables.search.timer);
               })
               .on("keydown", function(e) {
                 if (e.key === "Enter") e.preventDefault();

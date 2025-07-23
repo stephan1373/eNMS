@@ -213,6 +213,10 @@
       "run": 5000,
       "service": 3000,
       "task": 3000
+    },
+    "search": {
+      "notification": false,
+      "timer": 300
     }
   },
   "vault": {
