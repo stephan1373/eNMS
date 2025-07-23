@@ -751,6 +751,9 @@ Version 5.2.0: Data Store and Various Improvements
   for specific properties and models (mainly Credential 'use' section)
   Commit: 3cd8743e2a02646ccda276c34ad49b185a08f42a
 - Add 'last_success' property for the configuration backup services
+- Improve the JS table search code to prevent sending multiple searches in parallel to the server: always wait
+  until the on-going search completes
+  Commit: 0a6bbb43555913b5fdd50351d0ee16e456fa4e93
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
