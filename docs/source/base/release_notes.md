@@ -751,9 +751,13 @@ Version 5.2.0: Data Store and Various Improvements
   for specific properties and models (mainly Credential 'use' section)
   Commit: 3cd8743e2a02646ccda276c34ad49b185a08f42a
 - Add 'last_success' property for the configuration backup services
-- Improve the JS table search code to prevent sending multiple searches in parallel to the server: always wait
-  until the on-going search completes
-  Commit: 0a6bbb43555913b5fdd50351d0ee16e456fa4e93
+- Improve the JS table search code to prevent sending multiple searches in parallel to the server:
+  - Always wait until the on-going search completes
+    Commit: 0a6bbb43555913b5fdd50351d0ee16e456fa4e93
+  - Add refresh settings in settings.json to configure search behavior
+    - "timer": debounce timer (search start X ms after last keystroke)
+    - "notification": send notification in the UI to let the user know that the start started / completed
+    Commit: 0f8e011f71a13e03cff8382aa0b972a6c7b147db
 - Don't create changelog for the 'last_{property}_{timestamp}' properties in Device class to prevent logging
   too many changes
   Commit: 395a34dcdb13a10d61fc8131b26eea04828e34f3
