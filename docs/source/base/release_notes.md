@@ -754,6 +754,9 @@ Version 5.2.0: Data Store and Various Improvements
 - Improve the JS table search code to prevent sending multiple searches in parallel to the server: always wait
   until the on-going search completes
   Commit: 0a6bbb43555913b5fdd50351d0ee16e456fa4e93
+- Don't create changelog for the 'last_{property}_{timestamp}' properties in Device class to prevent logging
+  too many changes
+  Commit: 395a34dcdb13a10d61fc8131b26eea04828e34f3
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
