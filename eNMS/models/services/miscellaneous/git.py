@@ -3,8 +3,8 @@ from pathlib import Path
 from sqlalchemy import Boolean, ForeignKey, Integer
 
 from eNMS.database import db
-from eNMS.forms import ServiceForm
 from eNMS.fields import BooleanField, HiddenField, SelectMultipleField, StringField
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 
 

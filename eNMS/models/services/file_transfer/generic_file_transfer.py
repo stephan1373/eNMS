@@ -1,13 +1,12 @@
 from glob import glob
 from os.path import split
+from paramiko import AutoAddPolicy, SSHClient
 from pathlib import Path
-from paramiko import SSHClient, AutoAddPolicy
 from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from wtforms.validators import InputRequired
 
 from eNMS.database import db
-from eNMS.forms import ServiceForm
 from eNMS.fields import (
     BooleanField,
     FloatField,
@@ -18,6 +17,7 @@ from eNMS.fields import (
     SelectField,
     StringField,
 )
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 from eNMS.variables import vs
 

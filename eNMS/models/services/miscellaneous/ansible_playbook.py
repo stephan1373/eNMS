@@ -5,7 +5,6 @@ from subprocess import check_output
 from traceback import format_exc
 
 from eNMS.database import db
-from eNMS.forms import ServiceForm
 from eNMS.fields import (
     BooleanField,
     DictField,
@@ -13,6 +12,7 @@ from eNMS.fields import (
     SelectField,
     StringField,
 )
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 from eNMS.variables import vs
 
