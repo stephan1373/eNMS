@@ -1,10 +1,10 @@
 from flask_login import current_user
-from subprocess import run as sub_run
 from sqlalchemy import Boolean, ForeignKey, Integer
+from subprocess import run as sub_run
 
 from eNMS.database import db
-from eNMS.forms import ServiceForm
 from eNMS.fields import BooleanField, HiddenField, StringField
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 
 

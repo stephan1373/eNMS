@@ -10,8 +10,8 @@ except ImportError as exc:
     warn(f"Couldn't import slack_sdk module ({exc})")
 
 from eNMS.database import db
-from eNMS.forms import ServiceForm
 from eNMS.fields import HiddenField, StringField
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 from eNMS.variables import vs
 

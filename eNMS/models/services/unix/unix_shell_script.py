@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from wtforms.widgets import TextArea
 
 from eNMS.database import db
-from eNMS.forms import NetmikoForm
 from eNMS.fields import BooleanField, HiddenField, StringField
+from eNMS.forms import NetmikoForm
 from eNMS.models.automation import ConnectionService
 from eNMS.variables import vs
 
