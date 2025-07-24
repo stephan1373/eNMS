@@ -6,8 +6,6 @@ from sqlalchemy.schema import UniqueConstraint
 from wtforms.validators import NumberRange
 
 from eNMS.database import db
-from eNMS.models.base import AbstractBase
-from eNMS.forms import ServiceForm
 from eNMS.fields import (
     BooleanField,
     HiddenField,
@@ -15,7 +13,9 @@ from eNMS.fields import (
     IntegerField,
     SelectField,
 )
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
+from eNMS.models.base import AbstractBase
 from eNMS.runner import Runner
 from eNMS.variables import vs
 

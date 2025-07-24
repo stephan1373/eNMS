@@ -13,8 +13,8 @@ except ImportError as exc:
     warn(f"Couldn't import ttp module ({exc})")
 
 from eNMS.database import db
-from eNMS.forms import ServiceForm
 from eNMS.fields import HiddenField, SelectField, StringField
+from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 
 
