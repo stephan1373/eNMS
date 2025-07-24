@@ -1,5 +1,5 @@
-from flask_login import current_user, UserMixin
 from datetime import datetime
+from flask_login import current_user, UserMixin
 from itertools import chain
 from os import kill, makedirs
 from os.path import exists, getmtime, getsize
@@ -7,7 +7,7 @@ from passlib.hash import argon2
 from pathlib import Path
 from shutil import move, rmtree
 from signal import SIGTERM
-from sqlalchemy import Boolean, ForeignKey, Integer, Float
+from sqlalchemy import Boolean, Float, ForeignKey, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import JSON
