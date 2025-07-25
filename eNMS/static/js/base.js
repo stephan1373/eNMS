@@ -776,6 +776,9 @@ export function showChangelogPanel(id, constraints) {
     title: "Changelog",
     callback: function() {
       // eslint-disable-next-line new-cap
+      constraints.service = constraints.service.filter(
+        service => !["[Shared] Start", "[Shared] End"].includes(service)
+      );
       new tables["changelog"](id, constraints);
     },
   });
