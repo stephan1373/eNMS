@@ -309,6 +309,17 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
       - "window_size": duration of the window (in seconds)
       - "max_requests": maximum number of requests allowed during the window
       - "rest_api" (bool): the window applies to REST requests only
+- Improve the JS table search code to prevent sending multiple searches in parallel to the server:
+  - Always wait until the on-going search completes
+    Commit: 0a6bbb43555913b5fdd50351d0ee16e456fa4e93
+  - Add refresh settings in settings.json to configure search behavior
+    - "timer": debounce timer (search start X ms after last keystroke)
+    - "notification": send notification in the UI to let the user know that the start started / completed
+    Commit: 0f8e011f71a13e03cff8382aa0b972a6c7b147db
+- Don't create changelog for the 'last_{property}_{timestamp}' properties in Device class to prevent logging
+  too many changes
+  Commit: 395a34dcdb13a10d61fc8131b26eea04828e34f3
+
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
   own transaction)
@@ -760,16 +771,6 @@ Version 5.2.0: Data Store and Various Improvements
   for specific properties and models (mainly Credential 'use' section)
   Commit: 3cd8743e2a02646ccda276c34ad49b185a08f42a
 - Add 'last_success' property for the configuration backup services
-- Improve the JS table search code to prevent sending multiple searches in parallel to the server:
-  - Always wait until the on-going search completes
-    Commit: 0a6bbb43555913b5fdd50351d0ee16e456fa4e93
-  - Add refresh settings in settings.json to configure search behavior
-    - "timer": debounce timer (search start X ms after last keystroke)
-    - "notification": send notification in the UI to let the user know that the start started / completed
-    Commit: 0f8e011f71a13e03cff8382aa0b972a6c7b147db
-- Don't create changelog for the 'last_{property}_{timestamp}' properties in Device class to prevent logging
-  too many changes
-  Commit: 395a34dcdb13a10d61fc8131b26eea04828e34f3
 
 Migration
 - Run the script to collect all services position and store them in workflows, and do the same for
