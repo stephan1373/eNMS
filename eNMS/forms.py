@@ -715,12 +715,19 @@ class ScriptForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     version = StringField("Version")
-    code = StringField(python=True, widget=TextArea(), render_kw={"rows": 10})
-    description = StringField(widget=TextArea(), render_kw={"rows": 6})
+    description = StringField(widget=TextArea(), render_kw={"rows": 2})
+    code = StringField(
+        type="code",
+        python=True,
+        widget=TextArea(),
+        render_kw={"rows": 6},
+        layout="<div style='margin-top:10px'>{field}</div>"
+    )
     creator = StringField(render_kw={"readonly": True})
     creation_time = StringField("Creation Time", render_kw={"readonly": True})
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
     last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
+    properties = ["creator", "creation_time", "last_modified", "last_modified_by"]
 
 
 class ServerForm(BaseForm):
