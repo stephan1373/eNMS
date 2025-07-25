@@ -299,6 +299,10 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - normalize strings in the front-end during form serialization to remove windows and mac line endings so that changelogs
   don't get created for line ending changes
   Commit: 480e044ed214102154bac1f6b8db5bb8f7a531bf
+- Add new Rate Limiter Feature:
+  - Limit the number of on-going runs in parallel allowed for each user (configured from
+    settings.json / "rate_limiter" / "runs")
+    Commit: 2db5c5d74c9962a11c202009c8122dcf37c74667
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
