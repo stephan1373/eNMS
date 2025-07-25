@@ -1,0 +1,13 @@
+[
+  {
+    "code": "# The data can be sorted by:\n# - \"count\": how many times a function was called\n# - \"average_time\": how much time does the function take on average\n# - \"combined_time\": how much time did the function take in total\nSORT_BY = \"count\"\n\n# The data can be filtered by origin:\n# - If the origin is \"\", all the data is displayed\n# - Possible origins include: \"Environment\", \"Controller\",\n# \"Runner\", \"CustomApp\", \"RestApi\"\nORIGIN = \"\"\n\n# Number of entries to display\n# By default, we only display the 20 largest entries\nLIMIT = 20\n\ndata = sorted(\n    [\n        (name, entry)\n        for name, entry in vs.profiling.items()\n        if entry[\"class\"].startswith(ORIGIN)\n    ],\n    key=lambda item: item[1][SORT_BY],\n    reverse=True,\n)[:LIMIT]\n\nprint(\n    \"\\n\\n\".join(\n        f\"Function '{name}':\\n {vs.dict_to_string(data, depth=2)}\"\n        for name, data in data\n    )\n)\n",
+    "creation_time": "2025-07-25 11:49:14.990787",
+    "creator": "admin",
+    "description": "Sort and display the profiling data stored in vs.profiling",
+    "id": 1,
+    "last_modified": "2025-07-25 11:49:14.990741",
+    "last_modified_by": "admin",
+    "name": "Display Profiling Data",
+    "version": ""
+  }
+]
