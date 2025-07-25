@@ -303,7 +303,12 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   - Limit the number of on-going runs in parallel allowed for each user (configured from
     settings.json / "rate_limiter" / "runs")
     Commit: 2db5c5d74c9962a11c202009c8122dcf37c74667
-
+  - Limit the number of HTTP requests a user can make with configurable fixed windows:
+    - Configured from settings.json / "rate_limiter" / "requests"
+    - A window is defined with the following parameters:
+      - "window_size": duration of the window (in seconds)
+      - "max_requests": maximum number of requests allowed during the window
+      - "rest_api" (bool): the window applies to REST requests only
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
   own transaction)
