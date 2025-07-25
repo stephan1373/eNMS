@@ -217,7 +217,7 @@ export function openDebugPanel() {
 
 function runDebugCode(scriptId) {
   call({
-    url: `/run_debug_code/${scriptId}`,
+    url: `/run_debug_code${scriptId ? `/${scriptId}` : ""}`,
     form: "debug-form",
     callback: function(result) {
       if (!scriptId) $("#debug-output").val(result);
