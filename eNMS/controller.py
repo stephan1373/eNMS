@@ -10,7 +10,7 @@ from git import Repo
 from io import BytesIO, StringIO
 from itertools import batched
 from json import dump, load
-from logging import info, error
+from logging import error, info
 from operator import itemgetter
 from orjson import dumps, loads, OPT_INDENT_2, OPT_SORT_KEYS
 from os import getenv, listdir, makedirs, scandir
@@ -33,8 +33,8 @@ from xlrd.biffh import XLRDError
 from xlwt import Workbook
 
 from eNMS.database import db
-from eNMS.forms import form_factory
 from eNMS.environment import env
+from eNMS.forms import form_factory
 from eNMS.variables import vs
 
 

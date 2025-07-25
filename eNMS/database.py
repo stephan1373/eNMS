@@ -16,8 +16,8 @@ from sqlalchemy import (
     Column,
     create_engine,
     event,
-    ForeignKey,
     Float,
+    ForeignKey,
     inspect,
     Integer,
     PickleType,
@@ -25,7 +25,7 @@ from sqlalchemy import (
     Table,
     Text,
 )
-from sqlalchemy.dialects.mysql.base import MSMediumBlob, LONGTEXT, MEDIUMTEXT
+from sqlalchemy.dialects.mysql.base import LONGTEXT, MEDIUMTEXT, MSMediumBlob
 from sqlalchemy.exc import IntegrityError, InvalidRequestError, OperationalError
 from sqlalchemy.ext.associationproxy import AssociationProxyExtensionType
 from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta

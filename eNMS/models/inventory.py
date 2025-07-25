@@ -5,8 +5,8 @@ from sqlalchemy.orm import backref, deferred, relationship
 from sqlalchemy.schema import UniqueConstraint
 
 from eNMS.controller import controller
-from eNMS.models.base import AbstractBase
 from eNMS.database import db
+from eNMS.models.base import AbstractBase
 from eNMS.variables import vs
 
 
