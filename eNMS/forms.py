@@ -709,12 +709,12 @@ class RunServiceForm(BaseForm):
     service = InstanceField("Services", model="service")
 
 
-class ServerForm(BaseForm):
+class ScriptForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="script")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
-    version = StringField("Version", render_kw={"readonly": True})
+    version = StringField("Version")
     code = StringField(python=True, widget=TextArea(), render_kw={"rows": 10})
     description = StringField(widget=TextArea(), render_kw={"rows": 6})
     creator = StringField(render_kw={"readonly": True})
