@@ -215,12 +215,12 @@ export function openDebugPanel() {
   });
 }
 
-function runDebugCode() {
+function runDebugCode(scriptId) {
   call({
-    url: "/run_debug_code",
+    url: `/run_debug_code/${scriptId}`,
     form: "debug-form",
     callback: function(result) {
-      $("#debug-output").val(result);
+      if (!scriptId) $("#debug-output").val(result);
       notify("Code executed successfully.", "success", 5, true);
     },
   });

@@ -1777,6 +1777,12 @@ tables.script = class ScriptTable extends Table {
             ><span class="glyphicon glyphicon-duplicate"></span
           ></button>
         </li>
+        <li>
+          <button type="button" class="btn btn-sm btn-success"
+          onclick="eNMS.administration.runDebugCode(${row.id})"
+          data-tooltip="Run Script"><span class="glyphicon glyphicon-play"></span
+          ></button>
+        </li>
         ${this.deleteInstanceButton(row)}
       </ul>`,
     ];

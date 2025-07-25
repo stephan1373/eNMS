@@ -1451,7 +1451,7 @@
       },
       {
         "data": "buttons",
-        "width": "160px",
+        "width": "200px",
         "orderable": false,
         "export": false
       }
