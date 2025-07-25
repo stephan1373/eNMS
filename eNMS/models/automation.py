@@ -663,6 +663,8 @@ class Run(AbstractBase):
         elif hasattr(self, "runner"):
             self.status = "Aborted" if self.runner.stop else "Completed"
             self.payload = self.runner.make_json_compliant(self.runner.payload)
+        else:
+            self.status = "Aborted (error)"
         if getattr(self, "man_minutes", None) and "summary" in results:
             self.service.man_minutes_total += (
                 len(results["summary"]["success"]) * self.service.man_minutes
@@ -690,6 +692,7 @@ class Run(AbstractBase):
             runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
             if runtime_keys:
                 env.redis("delete", *runtime_keys)
+            env.redis("decr", f"rate_limit:{self.creator}:runs")
 
     @process(raise_exception=True)
     def update_target_pools(self):
@@ -783,6 +786,10 @@ class Run(AbstractBase):
         return set(devices) | set().union(*(pool.devices for pool in pools))
 
     def start_run(self):
+        if env.redis_queue and vs.settings["rate_limiter"].get("runs"):
+            count = env.redis("incr", f"rate_limit:{self.creator}:runs")
+            if count > vs.settings["rate_limiter"]["runs"]:
+                raise db.rbac_error(f"Too many on-going runs for user '{self.creator}'")
         worker = db.factory(
             "worker",
             name=f"{vs.server} - {getpid()}",
@@ -864,8 +871,10 @@ class Run(AbstractBase):
         except Exception:
             log = f"Run '{self.name}' failed to run:\n{format_exc()}"
             results = {"success": False, "result": log}
-            log_function = self.runner.log if hasattr(self, "runner") else env.log
-            log_function("critical", log)
+            if hasattr(self, "runner"):
+                self.runner.log("critical", log)
+            else:
+                env.log_queue(self.runtime, self.service.id, log)
         results["duration"] = str(datetime.now() - start_time)
         return self.finalize_run(results)
 

@@ -372,7 +372,7 @@ class Environment(vs.TimingMixin):
     def rate_limiter(self, user, is_rest):
         if not self.redis_queue:
             return
-        for key, values in vs.settings["rate_limiter"].items():
+        for key, values in vs.settings["rate_limiter"]["requests"].items():
             if values.get("rest_api") and not is_rest:
                 continue
             key = f"rate_limit:{user}:{key}:{int(time() // values['window_size'])}"
