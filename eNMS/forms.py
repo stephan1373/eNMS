@@ -15,9 +15,9 @@ from wtforms.widgets import TextArea
 from eNMS.database import db
 from eNMS.fields import (
     BooleanField,
-    HiddenField,
     DictField,
     FloatField,
+    HiddenField,
     InstanceField,
     IntegerField,
     JsonField,

@@ -10,8 +10,8 @@ from email.mime.text import MIMEText
 from email.utils import formatdate
 from flask_caching import Cache
 from importlib import import_module
-from logging.config import dictConfig
 from logging import Formatter, getLogger, Handler, info
+from logging.config import dictConfig
 from multiprocessing import Queue
 from os import getenv
 from passlib.hash import argon2
@@ -29,8 +29,8 @@ from threading import Thread
 from time import perf_counter, time
 from traceback import format_exc, print_exc
 from warnings import warn
-from watchdog.observers.polling import PollingObserver
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers.polling import PollingObserver
 
 try:
     from hvac import Client as VaultClient

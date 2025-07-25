@@ -10,8 +10,8 @@ from wtforms import (
     IntegerField as WtformsIntegerField,
     PasswordField as WtformsPasswordField,
     SelectField as WtformsSelectField,
-    StringField as WtformsStringField,
     SelectMultipleField as WtformsSelectMultipleField,
+    StringField as WtformsStringField,
 )
 from wtforms.validators import ValidationError
 from wtforms.widgets import html_params
