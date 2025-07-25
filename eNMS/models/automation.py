@@ -20,9 +20,7 @@ from types import SimpleNamespace
 from eNMS.controller import controller
 from eNMS.database import db
 from eNMS.environment import env
-from eNMS.models.administration import User  # noqa: F401
 from eNMS.models.base import AbstractBase
-from eNMS.models.inventory import Device  # noqa: F401
 from eNMS.runner import Runner
 from eNMS.variables import vs
 
