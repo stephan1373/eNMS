@@ -11,12 +11,12 @@ from pathlib import Path
 from random import randint
 from string import punctuation
 from sys import modules
+from textwrap import indent
 from time import time
 from traceback import format_exc
 from warnings import warn
 from wtforms.validators import __all__ as all_validators
 from wtforms.widgets.core import __all__ as all_widgets
-from textwrap import indent
 
 try:
     from scrapli import Scrapli

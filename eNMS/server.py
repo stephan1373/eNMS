@@ -10,10 +10,10 @@ from flask import (
     request,
     Response,
     send_file,
-    url_for,
     session,
+    url_for,
 )
-from flask_login import current_user, LoginManager, login_user, logout_user, login_url
+from flask_login import current_user, LoginManager, login_url, login_user, logout_user
 from flask_wtf.csrf import CSRFProtect
 from functools import wraps
 from importlib import import_module
