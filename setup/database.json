@@ -201,6 +201,7 @@
     "link": "Link",
     "network": "Network",
     "pool": "Pool",
+    "script": "Script",
     "server": "Server",
     "service": "Service",
     "task": "Task",

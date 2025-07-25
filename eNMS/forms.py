@@ -711,6 +711,20 @@ class RunServiceForm(BaseForm):
 
 class ServerForm(BaseForm):
     template = "object"
+    form_type = HiddenField(default="script")
+    id = HiddenField()
+    name = StringField("Name", [InputRequired()])
+    version = StringField("Version", render_kw={"readonly": True})
+    code = StringField(python=True, widget=TextArea(), render_kw={"rows": 10})
+    description = StringField(widget=TextArea(), render_kw={"rows": 6})
+    creator = StringField(render_kw={"readonly": True})
+    creation_time = StringField("Creation Time", render_kw={"readonly": True})
+    last_modified = StringField("Last Modified", render_kw={"readonly": True})
+    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
+
+
+class ServerForm(BaseForm):
+    template = "object"
     form_type = HiddenField(default="server")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
