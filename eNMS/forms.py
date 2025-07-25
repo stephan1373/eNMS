@@ -715,7 +715,7 @@ class ScriptForm(BaseForm):
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     version = StringField("Version")
-    description = StringField(widget=TextArea(), render_kw={"rows": 2})
+    description = StringField(widget=TextArea(), render_kw={"rows": 3})
     code = StringField(
         type="code",
         python=True,
