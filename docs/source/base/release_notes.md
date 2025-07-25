@@ -1024,6 +1024,8 @@ Version 5.1.0: Changelog & Workflow Tree
 - Defer Service.positions to improve run performance
 - Always set the positions as a list instead of a tuple to remove the need for a specific constructor
   for tuples in the migration files
+- Exclude Start and End services from the changelog table when displaying the changeog of a workflow
+  Commit: d757ae648df5529a699567e370ebcfcebeb43307
 
 Deviations:
 - Deviation 1 (5f51ad98c843f776c46c42faf3fe904b02bc37fd): Database.configure_events service subclass check: 
