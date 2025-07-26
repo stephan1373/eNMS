@@ -213,12 +213,12 @@ function runDebugCode(scriptId) {
           title: "Debug Panel",
           id: scriptId,
           callback: function() {
-            notify("Code executed successfully.", "success", 5, true);
             const editor = initCodeMirror(`debug-${scriptId}`, "logs");
             editor.setValue(result);
           },
         });
       }
+      notify("Code executed successfully.", "success", 5, true);
     },
   });
 }
