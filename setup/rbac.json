@@ -251,7 +251,6 @@
     "/import_topology": "admin",
     "/json_migration_export": "admin",
     "/json_migration_import": "admin",
-    "/load_debug_snippets": "admin",
     "/login": "none",
     "/multiselect_filtering": "all",
     "/remove_instance": "access",

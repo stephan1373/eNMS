@@ -190,31 +190,6 @@ function showChangelogDiff(id) {
   });
 }
 
-export function openDebugPanel() {
-  openPanel({
-    name: "debug",
-    title: "Debug Panel",
-    size: "1200px 500px",
-    callback: function() {
-      call({
-        url: "/load_debug_snippets",
-        callback: function(snippets) {
-          for (const name of Object.keys(snippets)) {
-            $("#debug-snippets").append(`<option value="${name}">${name}</option>`);
-          }
-          $("#debug-snippets")
-            .val("empty.py")
-            .on("change", function() {
-              const value = snippets[this.value];
-              editors[undefined]["code"].setValue(value);
-            })
-            .selectpicker("refresh");
-        },
-      });
-    },
-  });
-}
-
 function runDebugCode(scriptId) {
   call({
     url: `/run_debug_code${scriptId ? `/${scriptId}` : ""}`,

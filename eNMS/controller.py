@@ -1163,13 +1163,6 @@ class Controller(vs.TimingMixin):
                 key=itemgetter("text"),
             )
 
-    def load_debug_snippets(self):
-        snippets = {}
-        for path in Path(vs.file_path / "snippets").glob("**/*.py"):
-            with open(path, "r") as file:
-                snippets[path.name] = file.read()
-        return snippets
-
     def delete_soft_deleted_objects(self):
         soft_deleted_edges = db.fetch_all("workflow_edge", soft_deleted=True)
         for edge in soft_deleted_edges:
