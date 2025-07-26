@@ -86,5 +86,27 @@
     "last_modified_by": "admin",
     "name": "Delete corrupted edges",
     "version": ""
+  },
+  {
+    "code": "from sys import getsizeof\n\nVARIABLES = {\n    \"connections_cache\": \"Network Connections Cache\",\n    \"service_run_count\": \"Service Run cache\",\n    \"run_states\": \"Run State Cache\",\n    \"run_logs\": \"Run Logs Cache\",\n}\n\nprint(\"MEMORY USAGE :\", end=\"\\n\\n\")\nfor variable, function in VARIABLES.items():\n    size = getsizeof(getattr(app, variable))\n    print(f\"{function} ({variable}): {size} bytes\")\n",
+    "creation_time": "2025-07-26 14:18:08.306994",
+    "creator": "admin",
+    "description": "This script monitors the memory usage of a few controller variables used for storing data, like the network connections cache (stores netmiko, napalm and scrapli connections) and the logs cache (stores service logs).\nMemory usage of these variables should not grow over time are their content is supposed to be deleted when no longer useful.",
+    "id": 9,
+    "last_modified": "2025-07-26 14:18:08.306941",
+    "last_modified_by": "admin",
+    "name": "Memory: monitor memory usage",
+    "version": ""
+  },
+  {
+    "code": "from operator import itemgetter\nfrom pympler import muppy, summary\n\n\nmax_results = 3\nall_objects = muppy.get_objects()\n\n\ndef format_size(size):\n    for unit in [\"B\", \"KiB\", \"MiB\", \"GiB\"]:\n        if size < 1024.0 or unit == \"GiB\":\n            break\n        size /= 1024.0\n    return f\"{size:.2f} {unit}\"\n\n\nprofile = sorted(\n    (object_ for object_ in summary.summarize(all_objects)),\n    key=itemgetter(2),\n    reverse=True,\n)\n\nfor object_ in profile[:max_results]:\n    print(f\"Name: {object_[0]}\")\n    print(f\"Number of objects: {object_[1]}\")\n    print(f\"Total size: {format_size(object_[2])}\", end=\"\\n\\n\")\n\n\nfor type in (str, dict):\n    print(f\"Last {max_results} {type} objects in memory\", end=\"\\n\\n\")\n    latest_objects = muppy.filter(all_objects, Type=type)[-max_results:]\n    print(\"\\n\".join(map(str, latest_objects)))\n",
+    "creation_time": "2025-07-26 14:19:23.331444",
+    "creator": "admin",
+    "description": "Uses the \"pympler\" module for profiling memory. By default, objects are sorted by their size in memory.\nThe order can be changed to sorting by number of objects in memory by replacing \"itemgetter(2)\" with \"itemgetter(1)\".\nThe \"max_results\" variable limits the output to the first max_results results.",
+    "id": 10,
+    "last_modified": "2025-07-26 14:19:23.331394",
+    "last_modified_by": "admin",
+    "name": "Memory: profiling with pymler",
+    "version": ""
   }
 ]
