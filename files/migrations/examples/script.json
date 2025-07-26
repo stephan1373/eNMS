@@ -42,5 +42,27 @@
     "last_modified_by": "admin",
     "name": "Query Monitoring: Start",
     "version": ""
+  },
+  {
+    "code": "from itertools import batched\n\nentry = (\"changelog\", \"content\", \"admin\", vs.get_time())\nquery = \"INSERT INTO changelog (type, content, author, time) VALUES (?, ?, ?, ?)\"\nbatch_size = vs.database[\"transactions\"][\"batch_size\"]\nlog_size = 50_000_000\n\nenv.log(\"info\", f\"Starting to create Fake Changelogs ({log_size} logs)\")\n\nwith env.timer(\"Create Fake Changelogs\"):\n    changelogs = (entry for _ in range(log_size))\n    cursor = db.session.connection().connection.cursor()\n    for batch in batched(changelogs, batch_size):\n        cursor.executemany(query, batch)\n    db.session.commit()\n",
+    "creation_time": "2025-07-26 09:14:56.501843",
+    "creator": "admin",
+    "description": "Uses low-level SQL to create many changelogs (50M by default)",
+    "id": 5,
+    "last_modified": "2025-07-26 09:14:56.501793",
+    "last_modified_by": "admin",
+    "name": "Create Fake Logs",
+    "version": ""
+  },
+  {
+    "code": "from datetime import datetime\n\ndevice_number = 200\n\nfactory_time = datetime.now()\nfor index in range(device_number):\n    db.factory(\"device\", name=str(index), commit=True)\nprint(f\"'db.factory' time: {datetime.now() - factory_time}\")\n\nfetch_time = datetime.now()\nfor index in range(device_number):\n    db.fetch(\"device\", name=str(index))\nprint(f\"'db.fetch' time: {datetime.now() - fetch_time}\")\n\ndelete_time = datetime.now()\nfor index in range(device_number):\n    db.delete(\"device\", name=str(index))\n    db.session.commit()\nprint(f\"'db.delete' time: {datetime.now() - delete_time}\")\n\nprint(f\"Total duration: {datetime.now() - factory_time}\")\n",
+    "creation_time": "2025-07-26 09:15:33.006728",
+    "creator": "admin",
+    "description": "Uses eNMS fetch, factory and delete function to measure eNMS performances when querying the database.",
+    "id": 6,
+    "last_modified": "2025-07-26 09:15:38.131060",
+    "last_modified_by": "admin",
+    "name": "Scalability: tests fetch, factory and delete performance",
+    "version": ""
   }
 ]
