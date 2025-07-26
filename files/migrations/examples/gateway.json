@@ -47,7 +47,6 @@
     "property3": "password",
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'antenna', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.250583', 'Never', '', 'Never', 1, 'Never', 'Never', 'Linux', 22, 'Never', '', '192.168.56.104', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Gateway 1', '', 'ios', 'Never', 'Never', False, '', 'gateway', 'Never', 'Never', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -99,7 +98,6 @@
     "property3": "password",
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'antenna', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.255578', 'Never', '', 'Never', 2, 'Never', 'Never', 'Linux', 22, 'Never', '', '192.168.56.199', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Gateway 2', '', 'ios', 'Never', 'Never', False, '', 'gateway', 'Never', 'Never', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -151,7 +149,6 @@
     "property3": "password",
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Success', 'antenna', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.260271', '3.43952s', '', 'Never', 3, '2022-04-18 09:25:12.151286', '2022-04-18 09:25:12.151286', 'Linux', 22, 'Never', '', '192.168.56.201', 'Never', 'Success', 'cisco_iosxe', '1.348949s', '10.145.14.1', 'Never', '', 'Gateway 3', '', 'ios', '2022-04-18 09:28:22.904639', 'Never', False, '', 'gateway', 'Never', '2022-04-18 09:22:26.872995', 'admin', '2022-04-18 09:28:22.904639', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -203,7 +200,6 @@
     "property3": "password",
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'host', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.279382', 'Never', '', 'Never', 1, 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Subnetwork 2 - G1', '', 'ios', 'Never', 'Never', False, '', 'gateway', 'Never', 'Never', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -255,7 +251,6 @@
     "property3": "password",
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'host', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.287133', 'Never', '', 'Never', 1, 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Subnetwork 2 - G2', '', 'ios', 'Never', 'Never', False, '', 'gateway', 'Never', 'Never', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -307,7 +302,6 @@
     "property3": "password",
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'host', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.296572', 'Never', '', 'Never', 1, 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Duplication - G1', '', 'ios', 'Never', 'Never', False, '', 'gateway', 'Never', 'Never', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   }

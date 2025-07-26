@@ -47,7 +47,6 @@
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
     "serial_number": "",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'server', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.233363', 'Never', '', 'Never', 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Router 2', '', 'ios', 'Never', 'Never', False, '', 'router', 'Never', 'Never', '', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -99,7 +98,6 @@
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
     "serial_number": "",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'optical_switch', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.238001', 'Never', '', 'Never', 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Router 3', '', 'ios', 'Never', 'Never', False, '', 'router', 'Never', 'Never', '', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -151,7 +149,6 @@
     "reachable": true,
     "scrapli_driver": "arista_eos",
     "serial_number": "",
-    "serialized": "dict_values([False, 'Never', 'arista_eos', '2023-05-22 16:58:26.506616', '4.447091s', '', 22, 'Never', 'Never', 'antenna', 'eos', 'Arista', '192.168.56.51', 'Never', '0.0', 'admin', 'Success', '', 'router', '10.145.14.1', False, 'arista_eos', 'default', '', 'password', 'Never', '1.692064s', 'CP', '0.0', '', 'Router behind Gateway 1', '2023-05-22 16:58:26.506616', '2025-07-15 06:33:03.899587', 'Never', 'b', '2023-05-22 17:00:22.709117', 'Never', [], 'Never', '', 'EOS', '2023-05-22 17:00:22.709117', 'Success', '', True, 111, {}, 'Never', 'admin', '2023-05-22 15:30:07.256815', 'Arista'])",
     "subtype": "",
     "vendor": "Arista"
   },
@@ -203,7 +200,6 @@
     "reachable": true,
     "scrapli_driver": "arista_eos",
     "serial_number": "",
-    "serialized": "dict_values([False, 'Never', 'arista_eos', '2023-05-22 16:59:20.914460', '9.071588s', '', 22, 'Never', 'Never', 'antenna', 'eos', 'Arista', '192.168.56.51', 'Never', '0.0', 'admin', 'Success', '', 'router', '10.145.14.1', False, 'arista_eos', 'default', '', 'password', 'Never', '2.81129s', 'CP', '0.0', '', 'Router behind Gateway 1, 2 and 3', '2023-05-22 16:59:20.914460', '2025-07-15 06:33:03.900660', 'Never', 'b', '2023-05-22 16:59:58.671668', 'Never', [], 'Never', '', 'EOS', '2023-05-22 16:59:58.671668', 'Success', '', True, 112, {}, 'Never', 'admin', '2023-05-22 15:30:21.289966', 'Arista'])",
     "subtype": "",
     "vendor": "Arista"
   },
@@ -255,7 +251,6 @@
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
     "serial_number": "",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Success', 'router', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.269658', '3.309849s', '', 'Never', '2022-04-18 09:26:09.888036', '2022-04-18 09:26:09.888036', '', 22, 'Never', '', '', 'Never', 'Success', 'cisco_iosxe', '1.39299s', '10.145.14.1', 'Never', '', 'Subnetwork 1 - R1', '', 'ios', '2022-04-18 09:28:09.308434', 'Never', False, '', 'router', 'Never', 'Never', '', 'admin', '2022-04-18 09:28:09.308434', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -307,7 +302,6 @@
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
     "serial_number": "",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Success', 'router', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.274240', '3.454503s', '', 'Never', '2022-04-18 09:26:44.276171', '2022-04-18 09:26:44.276171', '', 22, 'Never', '', '', 'Never', 'Success', 'cisco_iosxe', '2.095845s', '10.145.14.1', 'Never', '', 'Subnetwork 1 - R2', '', 'ios', '2022-04-18 09:24:49.444219', 'Never', False, '', 'router', 'Never', 'Never', '', 'admin', '2022-04-18 09:24:49.444219', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -359,7 +353,6 @@
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
     "serial_number": "",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'router', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.300989', 'Never', '', 'Never', 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Duplication - R1', '', 'ios', 'Never', 'Never', False, '', 'router', 'Never', 'Never', '', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   },
@@ -411,7 +404,6 @@
     "reachable": true,
     "scrapli_driver": "cisco_iosxe",
     "serial_number": "",
-    "serialized": "dict_values(['', 'default', '', 'Never', 'admin', '0.0', 'Never', 'router', 'CP', 'b', False, True, 'cisco_ios', None, {}, 'Never', '2023-05-12 10:56:15.305190', 'Never', '', 'Never', 'Never', 'Never', '', 22, 'Never', '', '', 'Never', 'Never', 'cisco_iosxe', 'Never', '10.145.14.1', 'Never', '', 'Subnetwork 1 - R3', '', 'ios', 'Never', 'Never', False, '', 'router', 'Never', 'Never', '', 'admin', 'Never', 'password', '0.0', 'Never', []])",
     "subtype": "",
     "vendor": ""
   }
