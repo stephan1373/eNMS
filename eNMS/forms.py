@@ -455,7 +455,6 @@ class DataForm(BaseForm):
 class DebugForm(BaseForm):
     template = "debug"
     form_type = HiddenField(default="debug")
-    snippets = SelectField(choices=(), validate_choice=False)
     code = StringField(
         "Python Code",
         type="code",
