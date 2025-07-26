@@ -166,5 +166,17 @@
     "last_modified_by": "admin",
     "name": "Delete Soft-Deleted Objects",
     "version": ""
+  },
+  {
+    "category": "Scalability",
+    "code": "config_string = \"\\n\".join(\n  \"\".join(random.choices(string.ascii_lowercase, k=50))\n  for _ in range(50000)\n)",
+    "creation_time": "2025-07-26 16:57:04.606507",
+    "creator": "admin",
+    "description": "We create a configuration of 50K lines, 100 characters per line.\nThen we set all devices to that configuration with low-level SQL.",
+    "id": 15,
+    "last_modified": "2025-07-26 16:57:04.606465",
+    "last_modified_by": "admin",
+    "name": "Set Large Configurations",
+    "version": ""
   }
 ]
