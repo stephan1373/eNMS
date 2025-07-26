@@ -23,6 +23,7 @@ class Script(AbstractBase):
     __tablename__ = type = class_type = "script"
     id = db.Column(Integer, primary_key=True)
     name = db.Column(db.SmallString, unique=True)
+    category = db.Column(db.SmallString)
     creator = db.Column(db.SmallString)
     creation_time = db.Column(db.TinyString)
     code = db.Column(db.LargeString)

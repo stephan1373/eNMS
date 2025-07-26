@@ -713,6 +713,7 @@ class ScriptForm(BaseForm):
     form_type = HiddenField(default="script")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
+    category = StringField("Category")
     version = StringField("Version")
     description = StringField(widget=TextArea(), render_kw={"rows": 3})
     code = StringField(

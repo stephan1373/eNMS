@@ -1411,6 +1411,11 @@
     ],
     "script": [
       {
+        "data": "category",
+        "title": "Category",
+        "search": "text"
+      },
+      {
         "data": "name",
         "title": "Name",
         "search": "text"
