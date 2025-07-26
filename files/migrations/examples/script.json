@@ -1,16 +1,18 @@
 [
   {
+    "category": "Profiling",
     "code": "# The data can be sorted by:\n# - \"count\": how many times a function was called\n# - \"average_time\": how much time does the function take on average\n# - \"combined_time\": how much time did the function take in total\nSORT_BY = \"count\"\n\n# The data can be filtered by origin:\n# - If the origin is \"\", all the data is displayed\n# - Possible origins include: \"Environment\", \"Controller\",\n# \"Runner\", \"CustomApp\", \"RestApi\"\nORIGIN = \"\"\n\n# Number of entries to display\n# By default, we only display the 20 largest entries\nLIMIT = 20\n\ndata = sorted(\n    [\n        (name, entry)\n        for name, entry in vs.profiling.items()\n        if entry[\"class\"].startswith(ORIGIN)\n    ],\n    key=lambda item: item[1][SORT_BY],\n    reverse=True,\n)[:LIMIT]\n\nprint(\n    \"\\n\\n\".join(\n        f\"Function '{name}':\\n {vs.dict_to_string(data, depth=2)}\"\n        for name, data in data\n    )\n)\n",
     "creation_time": "2025-07-25 11:49:14.990787",
     "creator": "admin",
     "description": "Sort and display the profiling data stored in vs.profiling",
     "id": 1,
-    "last_modified": "2025-07-25 11:49:14.990741",
+    "last_modified": "2025-07-26 15:26:50.963870",
     "last_modified_by": "admin",
     "name": "Display Profiling Data",
     "version": ""
   },
   {
+    "category": "",
     "code": "# Factory: create a new instance\n\ndevice = db.factory(\"device\", name=\"test\", model=\"IOS\", commit=True)\nprint(f\"Device '{device}' has been created\")\n\n# Fetch: retrieve instance from database\n\ndevice = db.fetch(\"device\", name=\"test\")\nprint(f\"Device '{device}' retrieved from database\")\n\n# Factory: edit existing instance\n# We use factory to update the \"model\" property of Washington\n\nprint(f\"Old model: {device.model}\")\ndevice = db.factory(\"device\", name=\"test\", model=\"EOS\")\nprint(f\"New model: {device.model}\")\n\n# Delete: erase instance from database\n\ndb.delete(\"device\", name=\"test\")\ndb.session.commit()\n\nget_deleted_device = db.fetch(\"device\", name=\"test\", allow_none=True)\n\nif get_deleted_device is None:\n    print(\"Device has been deleted\")\n",
     "creation_time": "2025-07-26 09:08:08.597839",
     "creator": "admin",
@@ -22,6 +24,7 @@
     "version": ""
   },
   {
+    "category": "",
     "code": "from pathlib import Path\n\npath_folder = vs.file_path / \"test\"\npath_folder.mkdir(exist_ok=True)\n\nfor i in range(10000):\n    file_path = path_folder / f\"file{i}\"\n    file_path.touch()\n",
     "creation_time": "2025-07-26 09:11:08.608881",
     "creator": "admin",
@@ -33,6 +36,7 @@
     "version": ""
   },
   {
+    "category": "",
     "code": "db.monitor_orm_statements = True\ndb.orm_statements.clear()\ndb.orm_statements_runtime.clear()\ndb.orm_statements_tracebacks.clear()\n",
     "creation_time": "2025-07-26 09:12:38.966690",
     "creator": "admin",
@@ -44,6 +48,7 @@
     "version": ""
   },
   {
+    "category": "",
     "code": "from itertools import batched\n\nentry = (\"changelog\", \"content\", \"admin\", vs.get_time())\nquery = \"INSERT INTO changelog (type, content, author, time) VALUES (?, ?, ?, ?)\"\nbatch_size = vs.database[\"transactions\"][\"batch_size\"]\nlog_size = 50_000_000\n\nenv.log(\"info\", f\"Starting to create Fake Changelogs ({log_size} logs)\")\n\nwith env.timer(\"Create Fake Changelogs\"):\n    changelogs = (entry for _ in range(log_size))\n    cursor = db.session.connection().connection.cursor()\n    for batch in batched(changelogs, batch_size):\n        cursor.executemany(query, batch)\n    db.session.commit()\n",
     "creation_time": "2025-07-26 09:14:56.501843",
     "creator": "admin",
@@ -55,6 +60,7 @@
     "version": ""
   },
   {
+    "category": "",
     "code": "from datetime import datetime\n\ndevice_number = 200\n\nfactory_time = datetime.now()\nfor index in range(device_number):\n    db.factory(\"device\", name=str(index), commit=True)\nprint(f\"'db.factory' time: {datetime.now() - factory_time}\")\n\nfetch_time = datetime.now()\nfor index in range(device_number):\n    db.fetch(\"device\", name=str(index))\nprint(f\"'db.fetch' time: {datetime.now() - fetch_time}\")\n\ndelete_time = datetime.now()\nfor index in range(device_number):\n    db.delete(\"device\", name=str(index))\n    db.session.commit()\nprint(f\"'db.delete' time: {datetime.now() - delete_time}\")\n\nprint(f\"Total duration: {datetime.now() - factory_time}\")\n",
     "creation_time": "2025-07-26 09:15:33.006728",
     "creator": "admin",
@@ -66,28 +72,31 @@
     "version": ""
   },
   {
+    "category": "Database Cleanup",
     "code": "for service in db.fetch_all(\"service\", shared=False):\n    if service.workflows or service.name == service.scoped_name:\n        continue\n    print(f\"Deleting '{service}'\")\n    db.session.delete(service)\ndb.session.commit()\n",
     "creation_time": "2025-07-26 12:18:25.993536",
     "creator": "admin",
     "description": "Corrupted services are services that used to belong to a workflow and were removed from the workflow relationship without being deleted.\nThey have the following characteristics:\n- They don't belong to a workflow\n- They are not shared\n- Their scoped name differ from their name",
     "id": 7,
-    "last_modified": "2025-07-26 12:18:40.980816",
+    "last_modified": "2025-07-26 15:27:43.729597",
     "last_modified_by": "admin",
     "name": "Delete corrupted services",
     "version": ""
   },
   {
+    "category": "Database Cleanup",
     "code": "from collections import defaultdict\n\nedges = set(db.fetch_all(\"workflow_edge\"))\nduplicated_edges, number_of_corrupted_edges = defaultdict(list), 0\nfor edge in list(edges):\n    services = getattr(edge.workflow, \"services\", [])\n    if (\n        not edge.source\n        or not edge.destination\n        or not edge.workflow\n        or edge.source not in services\n        or edge.destination not in services\n        or edge.soft_deleted\n    ):\n        edges.remove(edge)\n        db.session.delete(edge)\n        number_of_corrupted_edges += 1\ndb.session.commit()\nfor edge in edges:\n    duplicated_edges[\n        (\n            edge.source.name,\n            edge.destination.name,\n            edge.workflow.name,\n            edge.subtype,\n        )\n    ].append(edge)\nfor duplicates in duplicated_edges.values():\n    for duplicate in duplicates[1:]:\n        db.session.delete(duplicate)\n        number_of_corrupted_edges += 1\n\nprint(f\"Number of corrupted edges deleted: {number_of_corrupted_edges}\")\n",
     "creation_time": "2025-07-26 12:19:21.777448",
     "creator": "admin",
     "description": "Corrupted edges can be:\n- edges missing a source, destinaton or a workflow\n- edges whose source or destination is not in the workflow's services\n- duplicated edges i.e with same source, destination, workflow and subtype",
     "id": 8,
-    "last_modified": "2025-07-26 12:19:21.777436",
+    "last_modified": "2025-07-26 15:27:47.855430",
     "last_modified_by": "admin",
     "name": "Delete corrupted edges",
     "version": ""
   },
   {
+    "category": "",
     "code": "from sys import getsizeof\n\nVARIABLES = {\n    \"connections_cache\": \"Network Connections Cache\",\n    \"service_run_count\": \"Service Run cache\",\n    \"run_states\": \"Run State Cache\",\n    \"run_logs\": \"Run Logs Cache\",\n}\n\nprint(\"MEMORY USAGE :\", end=\"\\n\\n\")\nfor variable, function in VARIABLES.items():\n    size = getsizeof(getattr(app, variable))\n    print(f\"{function} ({variable}): {size} bytes\")\n",
     "creation_time": "2025-07-26 14:18:08.306994",
     "creator": "admin",
@@ -99,6 +108,7 @@
     "version": ""
   },
   {
+    "category": "",
     "code": "from operator import itemgetter\nfrom pympler import muppy, summary\n\n\nmax_results = 3\nall_objects = muppy.get_objects()\n\n\ndef format_size(size):\n    for unit in [\"B\", \"KiB\", \"MiB\", \"GiB\"]:\n        if size < 1024.0 or unit == \"GiB\":\n            break\n        size /= 1024.0\n    return f\"{size:.2f} {unit}\"\n\n\nprofile = sorted(\n    (object_ for object_ in summary.summarize(all_objects)),\n    key=itemgetter(2),\n    reverse=True,\n)\n\nfor object_ in profile[:max_results]:\n    print(f\"Name: {object_[0]}\")\n    print(f\"Number of objects: {object_[1]}\")\n    print(f\"Total size: {format_size(object_[2])}\", end=\"\\n\\n\")\n\n\nfor type in (str, dict):\n    print(f\"Last {max_results} {type} objects in memory\", end=\"\\n\\n\")\n    latest_objects = muppy.filter(all_objects, Type=type)[-max_results:]\n    print(\"\\n\".join(map(str, latest_objects)))\n",
     "creation_time": "2025-07-26 14:19:23.331444",
     "creator": "admin",
@@ -110,6 +120,7 @@
     "version": ""
   },
   {
+    "category": "",
     "code": "print(f\"Number of Queries: {db.orm_statements.total()}\\n\")\n\nfor query, count in db.orm_statements.most_common():\n    print(f\"{count}: {query}\\n\")\n    query_time = db.orm_statements_runtime[query]\n    print(f\"Execution time ({count} query): {query_time}\\n\")\n    tracebacks = \"\\n\\n\".join(\n        f\"{count}: {traceback}\"\n        for traceback, count in db.orm_statements_tracebacks[query].items()\n    )\n    print(f\"Tracebacks:\\n{tracebacks}\\n\\n\")\n\ndb.monitor_orm_statements = False\n",
     "creation_time": "2025-07-26 14:22:25.418046",
     "creator": "admin",
@@ -121,17 +132,19 @@
     "version": ""
   },
   {
+    "category": "Profiling",
     "code": "vs.profiling = {}\n",
     "creation_time": "2025-07-26 14:22:56.470569",
     "creator": "admin",
     "description": "Empty the profiling data dictionary",
     "id": 12,
-    "last_modified": "2025-07-26 14:22:56.470524",
+    "last_modified": "2025-07-26 15:27:25.933840",
     "last_modified_by": "admin",
-    "name": "Profiling: Empty Data",
+    "name": "Empty Data",
     "version": ""
   },
   {
+    "category": "",
     "code": "pool = db.factory(\"pool\", name=\"A pool\")\npool.devices = [db.fetch(\"device\", name=\"Washington\") for _ in range(5)]\ndb.session.commit()\n",
     "creation_time": "2025-07-26 14:25:50.993599",
     "creator": "admin",
@@ -143,14 +156,15 @@
     "version": ""
   },
   {
+    "category": "Database Cleanup",
     "code": "controller.delete_soft_deleted_objects()\nprint(f\"Soft-deleted objects successfully deleted\")\n",
     "creation_time": "2025-07-26 14:26:32.632192",
     "creator": "admin",
     "description": "Delete all soft-deleted workflow edges and services",
     "id": 14,
-    "last_modified": "2025-07-26 14:26:32.632161",
+    "last_modified": "2025-07-26 15:27:31.441771",
     "last_modified_by": "admin",
-    "name": "Database Cleanup: Delete Soft-Deleted Objects",
+    "name": "Delete Soft-Deleted Objects",
     "version": ""
   }
 ]
