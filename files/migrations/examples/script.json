@@ -130,5 +130,27 @@
     "last_modified_by": "admin",
     "name": "Profiling: Empty Data",
     "version": ""
+  },
+  {
+    "code": "pool = db.factory(\"pool\", name=\"A pool\")\npool.devices = [db.fetch(\"device\", name=\"Washington\") for _ in range(5)]\ndb.session.commit()\n",
+    "creation_time": "2025-07-26 14:25:50.993599",
+    "creator": "admin",
+    "description": "Provides a straightforward way to reproduce the duplicate rows issue in an association table.\nPrevents deleting both part of the association.\nExpected error: \"sqlalchemy.orm.exc.StaleDataError: DELETE statement on table 'pool_device_association' expected to delete 1 row(s); Only 5 were matched.\"",
+    "id": 13,
+    "last_modified": "2025-07-26 14:25:50.993563",
+    "last_modified_by": "admin",
+    "name": "Database: Trigger Duplicates Error",
+    "version": ""
+  },
+  {
+    "code": "controller.delete_soft_deleted_objects()\nprint(f\"Soft-deleted objects successfully deleted\")\n",
+    "creation_time": "2025-07-26 14:26:32.632192",
+    "creator": "admin",
+    "description": "Delete all soft-deleted workflow edges and services",
+    "id": 14,
+    "last_modified": "2025-07-26 14:26:32.632161",
+    "last_modified_by": "admin",
+    "name": "Database Cleanup: Delete Soft-Deleted Objects",
+    "version": ""
   }
 ]
