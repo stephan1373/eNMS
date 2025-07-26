@@ -1418,7 +1418,8 @@
       {
         "data": "name",
         "title": "Name",
-        "search": "text"
+        "search": "text",
+        "width": "200px"
       },
       {
         "data": "creator",
