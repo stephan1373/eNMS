@@ -169,12 +169,12 @@
   },
   {
     "category": "Scalability",
-    "code": "from random import choices\nfrom sqlalchemy import text\nfrom string import ascii_lowercase\n\nconfiguration = \"\\n\".join(\n  \"\".join(choices(ascii_lowercase, k=50))\n  for _ in range(50000)\n)\n\ndb.session.execute(\n    text(\"UPDATE device SET configuration = :config\"),\n    {\"config\": configuration}\n)\ndb.session.commit()",
+    "code": "from random import choices\nfrom sqlalchemy import text\nfrom string import ascii_lowercase\n\nconfiguration = \"\\n\".join(\n  \"\".join(choices(ascii_lowercase, k=50))\n  for _ in range(1_000)\n)\n\ndb.session.execute(\n    text(\"UPDATE device SET configuration = :config\"),\n    {\"config\": configuration}\n)\ndb.session.commit()",
     "creation_time": "2025-07-26 16:57:04.606507",
     "creator": "admin",
-    "description": "We create a configuration of 50K lines, 100 characters per line.\nThen we set all devices to that configuration with low-level SQL.",
+    "description": "We create a configuration of 1K lines, 50 characters per line.\nThen we set all devices to that configuration with low-level SQL.",
     "id": 15,
-    "last_modified": "2025-07-26 17:04:51.340319",
+    "last_modified": "2025-07-26 18:35:25.150912",
     "last_modified_by": "admin",
     "name": "Set Large Configurations",
     "version": ""
