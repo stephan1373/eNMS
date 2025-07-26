@@ -220,8 +220,22 @@ function runDebugCode(scriptId) {
     url: `/run_debug_code${scriptId ? `/${scriptId}` : ""}`,
     form: "debug-form",
     callback: function(result) {
-      if (!scriptId) $("#debug-output").val(result);
-      notify("Code executed successfully.", "success", 5, true);
+      if (!scriptId) {
+        $("#debug-output").val(result);
+      } else {
+        openPanel({
+          name: "script-code",
+          content: `<div class="modal-body"><div id="debug-${scriptId}"></div></div>`,
+          size: "900 500",
+          title: "Debug Panel",
+          id: scriptId,
+          callback: function() {
+            notify("Code executed successfully.", "success", 5, true);
+            const editor = initCodeMirror(`debug-${scriptId}`, "logs");
+            editor.setValue(result);
+          },
+        });
+      }
     },
   });
 }

@@ -75,6 +75,7 @@ export function detectUserInactivity() {
 
 const panelThemes = {
   "report-text": { bgContent: "#1B1B1B" },
+  "script-code": { bgContent: "#1B1B1B" },
   logs: { bgContent: "#1B1B1B" },
   changelog_diff: { bgContent: "#1B1B1B" },
   device_data: { bgContent: "#1B1B1B" },
