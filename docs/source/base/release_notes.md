@@ -319,6 +319,10 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Don't create changelog for the 'last_{property}_{timestamp}' properties in Device class to prevent logging
   too many changes
   Commit: 395a34dcdb13a10d61fc8131b26eea04828e34f3
+- Refactor Device.serialized and Service.serialized to no longer store the serialized string in the database
+  to avoid data duplication; instead use get_properties() in the workflow builder search, and a combination
+  of ilike filter on all string properties in the table search
+  Commit: 0fa9e72200c2347ec0421513488f1621c04daf55
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
