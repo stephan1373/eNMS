@@ -59,7 +59,6 @@ class Device(Object):
     configuration = deferred(db.Column(db.LargeString, info={"log_change": False}))
     operational_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
     specialized_data = deferred(db.Column(db.LargeString, info={"log_change": False}))
-    serialized = deferred(db.Column(db.LargeString, info={"log_change": False}))
     gateways = relationship(
         "Gateway", secondary=db.device_gateway_table, back_populates="devices"
     )
@@ -91,7 +90,6 @@ class Device(Object):
         if not kwargs.get("migration_import") and self.name != old_name:
             for network in self.networks:
                 network.positions[self.name] = network.positions.pop(old_name, [0, 0])
-        self.serialized = str(self.get_properties().values())
 
     @classmethod
     def database_init(cls):

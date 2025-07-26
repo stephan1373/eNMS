@@ -20,6 +20,7 @@ from re import compile, search, sub
 from shutil import rmtree
 from sqlalchemy import and_, cast, func, insert, or_, select, String, update
 from sqlalchemy.exc import IntegrityError, OperationalError
+from sqlalchemy.inspection import inspect
 from sqlalchemy.orm import aliased
 from sqlalchemy.orm.attributes import ScalarObjectAttributeImpl as ScalarAttr
 from sqlalchemy.sql.expression import true
@@ -419,6 +420,12 @@ class Controller(vs.TimingMixin):
     def filtering_base_constraints(self, model, **kwargs):
         table, constraints = vs.models[model], []
         constraint_dict = {**kwargs.get("form", {}), **kwargs.get("constraints", {})}
+        if serialized := constraint_dict.get("serialized"):
+            constraints.append(or_(*(
+                column.ilike(f"%{serialized}%")
+                for column in inspect(table).columns
+                if isinstance(column.type, String)
+            )))
         for property in vs.model_properties[model]:
             value, row = constraint_dict.get(property), getattr(table, property)
             filter_value = constraint_dict.get(f"{property}_filter")
@@ -874,10 +881,11 @@ class Controller(vs.TimingMixin):
                     else value.lower() in name.lower()
                 )
             else:
+                serialized = str(instance.get_properties().values())
                 is_match = (
-                    search(value, instance.serialized)
+                    search(value, serialized)
                     if is_regex_search
-                    else value.lower() in instance.serialized.lower()
+                    else value.lower() in serialized.lower()
                 )
             if is_match:
                 highlight.append(instance.id)

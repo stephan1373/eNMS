@@ -137,7 +137,6 @@ class Service(AbstractBase):
     negative_logic = db.Column(Boolean, default=False)
     delete_spaces_before_matching = db.Column(Boolean, default=False)
     run_method = db.Column(db.TinyString, default="per_device")
-    serialized = deferred(db.Column(db.LargeString, info={"log_change": False}))
 
     def __init__(self, **kwargs):
         kwargs.pop("status", None)
@@ -205,7 +204,6 @@ class Service(AbstractBase):
             self.update_last_modified_properties()
             for workflow in self.workflows:
                 workflow.positions[self.name] = workflow.positions.pop(old_name, [0, 0])
-        self.serialized = str(self.get_properties().values())
 
     def update_last_modified_properties(self):
         super().update_last_modified_properties()
