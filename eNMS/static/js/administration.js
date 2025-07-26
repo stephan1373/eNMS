@@ -205,7 +205,7 @@ function runDebugCode(scriptId) {
     callback: function(result) {
       if (!scriptId) {
         $("#debug-output").val(result);
-      } else {
+      } else if (result.trim()) {
         openPanel({
           name: "script-code",
           content: `<div class="modal-body"><div id="debug-${scriptId}"></div></div>`,
