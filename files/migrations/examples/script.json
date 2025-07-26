@@ -108,5 +108,27 @@
     "last_modified_by": "admin",
     "name": "Memory: profiling with pymler",
     "version": ""
+  },
+  {
+    "code": "print(f\"Number of Queries: {db.orm_statements.total()}\\n\")\n\nfor query, count in db.orm_statements.most_common():\n    print(f\"{count}: {query}\\n\")\n    query_time = db.orm_statements_runtime[query]\n    print(f\"Execution time ({count} query): {query_time}\\n\")\n    tracebacks = \"\\n\\n\".join(\n        f\"{count}: {traceback}\"\n        for traceback, count in db.orm_statements_tracebacks[query].items()\n    )\n    print(f\"Tracebacks:\\n{tracebacks}\\n\\n\")\n\ndb.monitor_orm_statements = False\n",
+    "creation_time": "2025-07-26 14:22:25.418046",
+    "creator": "admin",
+    "description": "This script use the SQLAlchemy _do_orm_execute event to analyze what SQL queries were executed (SQL statement) and how much time each query took.",
+    "id": 11,
+    "last_modified": "2025-07-26 14:22:25.418034",
+    "last_modified_by": "admin",
+    "name": "Query Monitoring: End",
+    "version": ""
+  },
+  {
+    "code": "vs.profiling = {}\n",
+    "creation_time": "2025-07-26 14:22:56.470569",
+    "creator": "admin",
+    "description": "Empty the profiling data dictionary",
+    "id": 12,
+    "last_modified": "2025-07-26 14:22:56.470524",
+    "last_modified_by": "admin",
+    "name": "Profiling: Empty Data",
+    "version": ""
   }
 ]
