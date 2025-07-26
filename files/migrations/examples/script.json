@@ -49,9 +49,9 @@
     "creator": "admin",
     "description": "Uses low-level SQL to create many changelogs (50M by default)",
     "id": 5,
-    "last_modified": "2025-07-26 09:14:56.501793",
+    "last_modified": "2025-07-26 12:17:25.703121",
     "last_modified_by": "admin",
-    "name": "Create Fake Logs",
+    "name": "Scalability: Create 50M Changelogs",
     "version": ""
   },
   {
@@ -63,6 +63,28 @@
     "last_modified": "2025-07-26 09:15:38.131060",
     "last_modified_by": "admin",
     "name": "Scalability: tests fetch, factory and delete performance",
+    "version": ""
+  },
+  {
+    "code": "for service in db.fetch_all(\"service\", shared=False):\n    if service.workflows or service.name == service.scoped_name:\n        continue\n    print(f\"Deleting '{service}'\")\n    db.session.delete(service)\ndb.session.commit()\n",
+    "creation_time": "2025-07-26 12:18:25.993536",
+    "creator": "admin",
+    "description": "Corrupted services are services that used to belong to a workflow and were removed from the workflow relationship without being deleted.\nThey have the following characteristics:\n- They don't belong to a workflow\n- They are not shared\n- Their scoped name differ from their name",
+    "id": 7,
+    "last_modified": "2025-07-26 12:18:40.980816",
+    "last_modified_by": "admin",
+    "name": "Delete corrupted services",
+    "version": ""
+  },
+  {
+    "code": "from collections import defaultdict\n\nedges = set(db.fetch_all(\"workflow_edge\"))\nduplicated_edges, number_of_corrupted_edges = defaultdict(list), 0\nfor edge in list(edges):\n    services = getattr(edge.workflow, \"services\", [])\n    if (\n        not edge.source\n        or not edge.destination\n        or not edge.workflow\n        or edge.source not in services\n        or edge.destination not in services\n        or edge.soft_deleted\n    ):\n        edges.remove(edge)\n        db.session.delete(edge)\n        number_of_corrupted_edges += 1\ndb.session.commit()\nfor edge in edges:\n    duplicated_edges[\n        (\n            edge.source.name,\n            edge.destination.name,\n            edge.workflow.name,\n            edge.subtype,\n        )\n    ].append(edge)\nfor duplicates in duplicated_edges.values():\n    for duplicate in duplicates[1:]:\n        db.session.delete(duplicate)\n        number_of_corrupted_edges += 1\n\nprint(f\"Number of corrupted edges deleted: {number_of_corrupted_edges}\")\n",
+    "creation_time": "2025-07-26 12:19:21.777448",
+    "creator": "admin",
+    "description": "Corrupted edges can be:\n- edges missing a source, destinaton or a workflow\n- edges whose source or destination is not in the workflow's services\n- duplicated edges i.e with same source, destination, workflow and subtype",
+    "id": 8,
+    "last_modified": "2025-07-26 12:19:21.777436",
+    "last_modified_by": "admin",
+    "name": "Delete corrupted edges",
     "version": ""
   }
 ]
