@@ -11,14 +11,25 @@
     "version": ""
   },
   {
-    "code": "# flake8: noqa\n# Functions provided by eNMS\n\n# Factory: create a new instance\n\ndevice = db.factory(\"device\", name=\"test\", model=\"IOS\", commit=True)\nprint(f\"Device '{device}' has been created\")\n\n# Fetch: retrieve instance from database\n\ndevice = db.fetch(\"device\", name=\"test\")\nprint(f\"Device '{device}' retrieved from database\")\n\n# Factory: edit existing instance\n# We use factory to update the \"model\" property of Washington\n\nprint(f\"Old model: {device.model}\")\ndevice = db.factory(\"device\", name=\"test\", model=\"EOS\")\nprint(f\"New model: {device.model}\")\n\n# Delete: erase instance from database\n\ndb.delete(\"device\", name=\"test\")\ndb.session.commit()\n\nget_deleted_device = db.fetch(\"device\", name=\"test\", allow_none=True)\n\nif get_deleted_device is None:\n    print(\"Device has been deleted\")\n",
+    "code": "# Factory: create a new instance\n\ndevice = db.factory(\"device\", name=\"test\", model=\"IOS\", commit=True)\nprint(f\"Device '{device}' has been created\")\n\n# Fetch: retrieve instance from database\n\ndevice = db.fetch(\"device\", name=\"test\")\nprint(f\"Device '{device}' retrieved from database\")\n\n# Factory: edit existing instance\n# We use factory to update the \"model\" property of Washington\n\nprint(f\"Old model: {device.model}\")\ndevice = db.factory(\"device\", name=\"test\", model=\"EOS\")\nprint(f\"New model: {device.model}\")\n\n# Delete: erase instance from database\n\ndb.delete(\"device\", name=\"test\")\ndb.session.commit()\n\nget_deleted_device = db.fetch(\"device\", name=\"test\", allow_none=True)\n\nif get_deleted_device is None:\n    print(\"Device has been deleted\")\n",
     "creation_time": "2025-07-26 09:08:08.597839",
     "creator": "admin",
     "description": "Tests factory (for creating and editing), fetch, and delete",
     "id": 2,
-    "last_modified": "2025-07-26 09:08:08.597826",
+    "last_modified": "2025-07-26 09:11:17.980857",
     "last_modified_by": "admin",
     "name": "Functions provided by eNMS",
+    "version": ""
+  },
+  {
+    "code": "from pathlib import Path\n\npath_folder = vs.file_path / \"test\"\npath_folder.mkdir(exist_ok=True)\n\nfor i in range(10000):\n    file_path = path_folder / f\"file{i}\"\n    file_path.touch()\n",
+    "creation_time": "2025-07-26 09:11:08.608881",
+    "creator": "admin",
+    "description": "This script is used to optimize the \"scan_folder\" function.\nIt creates 10K files in a subfolder \"test\" of the \"files\" folder",
+    "id": 3,
+    "last_modified": "2025-07-26 09:11:08.608856",
+    "last_modified_by": "admin",
+    "name": "Scalability: create 10K files",
     "version": ""
   }
 ]
