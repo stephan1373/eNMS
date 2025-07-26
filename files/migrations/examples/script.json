@@ -31,5 +31,16 @@
     "last_modified_by": "admin",
     "name": "Scalability: create 10K files",
     "version": ""
+  },
+  {
+    "code": "db.monitor_orm_statements = True\ndb.orm_statements.clear()\ndb.orm_statements_runtime.clear()\ndb.orm_statements_tracebacks.clear()\n",
+    "creation_time": "2025-07-26 09:12:38.966690",
+    "creator": "admin",
+    "description": "This script starts the monitoring mechanism for SQL queries and clears the content of the dict used for the analysis.",
+    "id": 4,
+    "last_modified": "2025-07-26 09:12:38.966650",
+    "last_modified_by": "admin",
+    "name": "Query Monitoring: Start",
+    "version": ""
   }
 ]
