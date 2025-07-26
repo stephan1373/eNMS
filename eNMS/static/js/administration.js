@@ -190,6 +190,14 @@ function showChangelogDiff(id) {
   });
 }
 
+export function openDebugPanel() {
+  openPanel({
+    name: "debug",
+    title: "Debug Panel",
+    size: "1200px 450px",
+  });
+}
+
 function runDebugCode(scriptId) {
   call({
     url: `/run_debug_code${scriptId ? `/${scriptId}` : ""}`,
@@ -503,6 +511,7 @@ configureNamespace("administration", [
   migrationsExport,
   migrationsImport,
   oldInstancesDeletion,
+  openDebugPanel,
   runDebugCode,
   saveFile,
   saveProfile,

@@ -1753,6 +1753,15 @@ tables.script = class ScriptTable extends Table {
       this.createNewButton(),
       this.bulkEditButton(),
       this.exportTableButton(),
+      `
+      <button
+        class="btn btn-success"
+        onclick="eNMS.administration.openDebugPanel()"
+        data-tooltip="Run Debug Script"
+        type="button"
+      >
+        <span class="glyphicon glyphicon-play"></span>
+      </button>`,
       this.bulkDeletionButton(),
     ];
   }
