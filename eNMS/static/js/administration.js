@@ -295,19 +295,6 @@ function migrationsImport(type) {
   });
 }
 
-function databaseDeletion() {
-  notify("Starting Database Deletion", "success", 5, true);
-  call({
-    url: "/database_deletion",
-    title: "Database Deletion",
-    form: "database_deletion-form",
-    callback: function() {
-      notify("Database Deletion done.", "success", 5, true);
-      $("#database_deletion").remove();
-    },
-  });
-}
-
 function oldInstancesDeletion() {
   notify("Instances Deletion initiated...", "success", 5, true);
   call({
@@ -500,7 +487,6 @@ function updateDeviceRbac() {
 }
 
 configureNamespace("administration", [
-  databaseDeletion,
   displayFiles,
   downloadProfilingData,
   editFile,

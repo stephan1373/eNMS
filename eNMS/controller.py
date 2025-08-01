@@ -317,9 +317,6 @@ class Controller(vs.TimingMixin):
         )
         return {"id": label_id, **label}
 
-    def database_deletion(self, **kwargs):
-        db.delete_all(*kwargs["deletion_types"])
-
     def delete_instance(self, model, instance_id):
         try:
             return db.delete(model, id=instance_id)

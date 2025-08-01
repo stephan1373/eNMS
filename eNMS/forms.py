@@ -400,14 +400,6 @@ class CredentialForm(BaseForm):
         return valid_form and not invalid_priority
 
 
-class DatabaseDeletionForm(BaseForm):
-    action = "eNMS.administration.databaseDeletion"
-    form_type = HiddenField(default="database_deletion")
-    deletion_types = SelectMultipleField(
-        "Instances to delete", choices=db.import_export_models
-    )
-
-
 class YamlMigrationForm(BaseForm):
     template = "yaml_migration"
     migration_folder = vs.migration_path
