@@ -325,6 +325,14 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: 0fa9e72200c2347ec0421513488f1621c04daf55
 - Remove start_service_id from Run class (unused, legacy code)
   Commit: fb75b72be870420fbc9d6388c07f209d5761a6ad
+- New Script Mechanism:
+  - Create a new "Script" model for the admin users to run custom python snippets for app troubleshooting
+    and maintenance
+  - Convert all the python snippets that were previously stored in the "snippets" folder to Script object
+    (stored in the database)
+  - Remove the "Per Type Database Deletion" mechanism from the admin panel and replace it with a script
+    called "Database Mass Deletion"
+    Commit: 39081e98a3127fb825bcf6d44c7a437d6518e89d
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
