@@ -158,7 +158,6 @@
         "service_id",
         "service_name",
         "placeholder_id",
-        "start_service_id",
         "task_id",
         "worker_id",
         "server_name",

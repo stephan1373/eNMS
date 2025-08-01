@@ -1694,12 +1694,10 @@ class Controller(vs.TimingMixin):
             "run", allow_none=True, runtime=restart_runtime, user=user
         )
         if service.type == "workflow" and service.superworkflow and not restart_run:
-            run_kwargs["placeholder"] = run_kwargs["start_service"] = service.id
+            run_kwargs["placeholder"] = service.id
             run_kwargs["path"] = str(service.superworkflow.id)
             service = service.superworkflow
             initial_payload.update(service.initial_payload)
-        else:
-            run_kwargs["start_service"] = service.id
         if restart_run:
             run_kwargs["restart_run"] = restart_run.id
             initial_payload = restart_run.payload

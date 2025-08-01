@@ -422,8 +422,6 @@ class Run(AbstractBase):
     )
     placeholder_id = db.Column(Integer, ForeignKey("service.id", ondelete="SET NULL"))
     placeholder = relationship("Service", foreign_keys="Run.placeholder_id")
-    start_service_id = db.Column(Integer, ForeignKey("service.id", ondelete="SET NULL"))
-    start_service = relationship("Service", foreign_keys="Run.start_service_id")
     task_id = db.Column(Integer, ForeignKey("task.id", ondelete="SET NULL"))
     task = relationship("Task", back_populates="runs")
     task_name = association_proxy("task", "name")
