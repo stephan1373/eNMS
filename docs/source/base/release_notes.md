@@ -323,6 +323,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   to avoid data duplication; instead use get_properties() in the workflow builder search, and a combination
   of ilike filter on all string properties in the table search
   Commit: 0fa9e72200c2347ec0421513488f1621c04daf55
+- Remove start_service_id from Run class (unused, legacy code)
+  Commit: fb75b72be870420fbc9d6388c07f209d5761a6ad
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
