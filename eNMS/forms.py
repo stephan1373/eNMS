@@ -719,7 +719,14 @@ class ScriptForm(BaseForm):
     creation_time = StringField("Creation Time", render_kw={"readonly": True})
     last_modified = StringField("Last Modified", render_kw={"readonly": True})
     last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
-    properties = ["creator", "creation_time", "last_modified", "last_modified_by"]
+    properties = [
+        "creator",
+        "creation_time",
+        "description",
+        "last_modified",
+        "last_modified_by",
+        "version",
+    ]
 
 
 class ServerForm(BaseForm):
