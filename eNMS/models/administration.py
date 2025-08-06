@@ -58,6 +58,7 @@ class Server(AbstractBase):
     logs = relationship("Changelog", back_populates="server")
     runs = relationship("Run", back_populates="server")
     workers = relationship("Worker", back_populates="server")
+    sessions = relationship("Session", back_populates="server")
     model_properties = {"current_runs": "str"}
 
     @property

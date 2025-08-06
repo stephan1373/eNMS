@@ -2061,6 +2061,7 @@ class Controller(vs.TimingMixin):
             "PORT": str(device.port),
             "PROTOCOL": kwargs["protocol"],
             "REDIRECTION": str(vs.settings["ssh"]["port_redirection"]),
+            "SERVER": vs.server,
             "USER": current_user.name,
         }
         if "authentication" in kwargs:

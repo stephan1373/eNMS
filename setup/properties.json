@@ -1575,6 +1575,13 @@
         "html": true
       },
       {
+        "data": "sessions",
+        "title": "Sessions",
+        "width": "80px",
+        "html": true,
+        "visible": false
+      },
+      {
         "data": "buttons",
         "width": "160px",
         "orderable": false,
@@ -1994,6 +2001,13 @@
         "orderable": false
       },
       {
+        "data": "server_name",
+        "title": "Server",
+        "search": "text",
+        "width": "100px",
+        "orderable": false
+      },
+      {
         "data": "content",
         "title": "Session",
         "search": "text",
@@ -2011,7 +2025,7 @@
       },
       {
         "data": "buttons",
-        "width": "60px",
+        "width": "80px",
         "orderable": false,
         "export": false
       }

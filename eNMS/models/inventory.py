@@ -368,6 +368,11 @@ class Session(AbstractBase):
         "Device", back_populates="sessions", foreign_keys="Session.device_id"
     )
     device_name = association_proxy("device", "name")
+    server_id = db.Column(Integer, ForeignKey("server.id"))
+    server = relationship(
+        "Server", back_populates="sessions", foreign_keys="Session.server_id"
+    )
+    server_name = association_proxy("server", "name")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
