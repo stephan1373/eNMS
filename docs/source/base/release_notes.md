@@ -333,6 +333,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   - Remove the "Per Type Database Deletion" mechanism from the admin panel and replace it with a script
     called "Database Mass Deletion"
     Commit: 39081e98a3127fb825bcf6d44c7a437d6518e89d
+- Add one-to-many Server - Session relationship to identify which Server handled which Session, and
+  update the Session (resp. Server) table with a 'Server Name' (resp. 'Sessions') column
+  Commit: 2650f509a77107e7795915ecb408b9f75814b2c9
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
