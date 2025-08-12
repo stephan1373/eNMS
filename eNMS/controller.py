@@ -317,14 +317,6 @@ class Controller(vs.TimingMixin):
         )
         return {"id": label_id, **label}
 
-    def delete_instance(self, model, instance_id):
-        try:
-            return db.delete(model, id=instance_id)
-        except db.rbac_error:
-            return {"alert": "Error 403 - Not Authorized."}
-        except Exception as exc:
-            return {"alert": f"Unable to delete {model} ({exc})"}
-
     def delete_builder_selection(self, type, id, **selection):
         instance = db.fetch(type, id=id)
         instance.update_last_modified_properties()
@@ -353,6 +345,14 @@ class Controller(vs.TimingMixin):
         log = " - ".join(f"{k.capitalize()}: {', '.join(v)}" for k, v in names.items())
         env.log("info", f"Removed from '{instance}': {log}", instance=instance)
         return instance.last_modified
+
+    def delete_instance(self, model, instance_id):
+        try:
+            return db.delete(model, id=instance_id)
+        except db.rbac_error:
+            return {"alert": "Error 403 - Not Authorized."}
+        except Exception as exc:
+            return {"alert": f"Unable to delete {model} ({exc})"}
 
     def edit_file(self, filepath):
         scoped_path = filepath.replace(">", "/")
