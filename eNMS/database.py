@@ -240,17 +240,6 @@ class Database:
             }
             setattr(self, f"pool_group_{property}_table", table)
 
-    def create_metabase(self):
-        class SubDeclarativeMeta(DeclarativeMeta):
-            def __init__(cls, *args):  # noqa: N805
-                DeclarativeMeta.__init__(cls, *args)
-                if hasattr(cls, "database_init") and "database_init" in cls.__dict__:
-                    cls.database_init()
-                self.set_custom_properties(cls)
-                self.set_rbac_properties(cls)
-
-        return SubDeclarativeMeta
-
     def configure_columns(self):
         class CustomPickleType(PickleType):
             cache_ok = True
@@ -481,6 +470,17 @@ class Database:
                     if "enms" in frame.filename.lower()
                 )
                 self.orm_statements_tracebacks[statement][traceback] += 1
+
+    def create_metabase(self):
+        class SubDeclarativeMeta(DeclarativeMeta):
+            def __init__(cls, *args):  # noqa: N805
+                DeclarativeMeta.__init__(cls, *args)
+                if hasattr(cls, "database_init") and "database_init" in cls.__dict__:
+                    cls.database_init()
+                self.set_custom_properties(cls)
+                self.set_rbac_properties(cls)
+
+        return SubDeclarativeMeta
 
     @staticmethod
     def dict_conversion(input):
