@@ -1173,6 +1173,44 @@ class Controller(vs.TimingMixin):
                 key=itemgetter("text"),
             )
 
+    def import_services(self, **kwargs):
+        file = kwargs["file"]
+        service_path = vs.file_path / "services"
+        filepath = service_path / file.filename
+        service_path.mkdir(parents=True, exist_ok=True)
+        file.save(str(filepath))
+        with open_tar(filepath) as tar_file:
+            for member in tar_file.getmembers():
+                member_path = (Path(service_path) / member.name).resolve()
+                if service_path not in member_path.parents:
+                    raise ValueError(
+                        "Unsafe path detected when importing service archive "
+                        f"(User: {current_user} - Path: {member_path})"
+                    )
+            folder_name = tar_file.getmembers()[0].name
+            rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
+            tar_file.extractall(path=vs.file_path / "services")
+            status = self.yaml_migration_import(
+                folder="services",
+                name=folder_name,
+                import_export_types=["service", "workflow_edge"],
+                service_import=True,
+                skip_pool_update=True,
+                skip_model_update=True,
+            )
+        rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
+        if "Error during import" in status:
+            raise Exception(status)
+        return status
+
+    def import_topology(self, **kwargs):
+        file = kwargs["file"]
+        if kwargs["replace"]:
+            db.delete_all("device")
+        result = self.topology_import(file)
+        info("Inventory import: Done.")
+        return result
+
     def json_export_association(self, association_name, path, option):
         association_table = db.associations[association_name]
         table = association_table["table"]
@@ -1371,55 +1409,6 @@ class Controller(vs.TimingMixin):
             "total_count": query.count(),
         }
 
-    def import_services(self, **kwargs):
-        file = kwargs["file"]
-        service_path = vs.file_path / "services"
-        filepath = service_path / file.filename
-        service_path.mkdir(parents=True, exist_ok=True)
-        file.save(str(filepath))
-        with open_tar(filepath) as tar_file:
-            for member in tar_file.getmembers():
-                member_path = (Path(service_path) / member.name).resolve()
-                if service_path not in member_path.parents:
-                    raise ValueError(
-                        "Unsafe path detected when importing service archive "
-                        f"(User: {current_user} - Path: {member_path})"
-                    )
-            folder_name = tar_file.getmembers()[0].name
-            rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
-            tar_file.extractall(path=vs.file_path / "services")
-            status = self.yaml_migration_import(
-                folder="services",
-                name=folder_name,
-                import_export_types=["service", "workflow_edge"],
-                service_import=True,
-                skip_pool_update=True,
-                skip_model_update=True,
-            )
-        rmtree(vs.file_path / "services" / folder_name, ignore_errors=True)
-        if "Error during import" in status:
-            raise Exception(status)
-        return status
-
-    def import_topology(self, **kwargs):
-        file = kwargs["file"]
-        if kwargs["replace"]:
-            db.delete_all("device")
-        result = self.topology_import(file)
-        info("Inventory import: Done.")
-        return result
-
-    def remove_instance(self, **kwargs):
-        instance = db.fetch(kwargs["instance"]["type"], id=kwargs["instance"]["id"])
-        target = db.fetch(kwargs["relation"]["type"], id=kwargs["relation"]["id"])
-        if target.type == "pool" and not target.manually_defined:
-            return {"alert": "Removing an object from a dynamic pool is an allowed."}
-        relationship_property = getattr(target, kwargs["relation"]["relation"]["to"])
-        if instance in relationship_property:
-            relationship_property.remove(instance)
-        else:
-            return {"alert": f"{instance.name} is not associated with {target.name}."}
-
     def old_instances_deletion(self, **kwargs):
         date_time_object = datetime.strptime(kwargs["date_time"], "%d/%m/%Y %H:%M:%S")
         date_time_string = date_time_object.strftime("%Y-%m-%d %H:%M:%S.%f")
@@ -1440,6 +1429,17 @@ class Controller(vs.TimingMixin):
             else:
                 session_query.delete(synchronize_session=False)
             db.session.commit()
+
+    def remove_instance(self, **kwargs):
+        instance = db.fetch(kwargs["instance"]["type"], id=kwargs["instance"]["id"])
+        target = db.fetch(kwargs["relation"]["type"], id=kwargs["relation"]["id"])
+        if target.type == "pool" and not target.manually_defined:
+            return {"alert": "Removing an object from a dynamic pool is an allowed."}
+        relationship_property = getattr(target, kwargs["relation"]["relation"]["to"])
+        if instance in relationship_property:
+            relationship_property.remove(instance)
+        else:
+            return {"alert": f"{instance.name} is not associated with {target.name}."}
 
     @staticmethod
     @actor(max_retries=0, time_limit=float("inf"))
