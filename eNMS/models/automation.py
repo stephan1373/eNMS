@@ -928,31 +928,12 @@ class Task(AbstractBase):
     def service_properties(self):
         return self.service.base_properties
 
-    @hybrid_property
-    def status(self):
-        return "Active" if self.is_active else "Inactive"
-
-    @status.expression
-    def status(cls):  # noqa: N805
-        return case((cls.is_active, "Active"), else_="Inactive")
-
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("import_mechanism", False):
-            db.session.commit()
-            self.schedule(mode="schedule" if self.is_active else "pause")
-
     @property
     @_catch_request_exceptions
     def next_run_time(self):
         return get(
             f"{vs.scheduler_address}/next_runtime/{self.id}", timeout=0.01
         ).json()
-
-    @property
-    @_catch_request_exceptions
-    def time_before_next_run(self):
-        return get(f"{vs.scheduler_address}/time_left/{self.id}", timeout=0.01).json()
 
     @_catch_request_exceptions
     def schedule(self, mode="schedule"):
@@ -965,3 +946,22 @@ class Task(AbstractBase):
             return {"alert": "Scheduler Unreachable: the task cannot be scheduled."}
         self.is_active = result.get("active", False)
         return result
+
+    @hybrid_property
+    def status(self):
+        return "Active" if self.is_active else "Inactive"
+
+    @status.expression
+    def status(cls):  # noqa: N805
+        return case((cls.is_active, "Active"), else_="Inactive")
+
+    @property
+    @_catch_request_exceptions
+    def time_before_next_run(self):
+        return get(f"{vs.scheduler_address}/time_left/{self.id}", timeout=0.01).json()
+
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        if not kwargs.get("import_mechanism", False):
+            db.session.commit()
+            self.schedule(mode="schedule" if self.is_active else "pause")
