@@ -616,6 +616,57 @@ class RunEngine:
             self.log("error", log)
             return {"error": log}
 
+    def notify(self, results, report):
+        self.log("info", f"Sending {self.send_notification_method} notification...")
+        notification = self.build_notification(results)
+        file_content = deepcopy(notification)
+        if self.include_device_results and not self.high_performance:
+            file_content["Device Results"] = {}
+            for device in self.run_targets:
+                device_result = db.fetch(
+                    "result",
+                    service_id=self.service.id,
+                    parent_runtime=self.parent_runtime,
+                    device_id=device.id,
+                    allow_none=True,
+                    rbac=None,
+                )
+                if device_result:
+                    file_content["Device Results"][device.name] = device_result.result
+        if self.send_notification_method == "mail":
+            filename = self.runtime.replace(".", "").replace(":", "")
+            status = "PASS" if results["success"] else "FAILED"
+            content = report if self.email_report else vs.dict_to_string(file_content)
+            html_report = self.email_report and self.report_format == "html"
+            result = env.send_email(
+                self.sub(self.get("mail_subject"), locals())
+                or f"{status}: {self.service.name}",
+                content,
+                recipients=self.sub(self.get("mail_recipient"), locals()),
+                sender=self.sub(self.get("mail_sender"), locals()),
+                reply_to=self.sub(self.get("reply_to"), locals()),
+                bcc=self.sub(self.get("mail_bcc"), locals()),
+                filename=f"results-{filename}.{'html' if html_report else 'txt'}",
+                file_content=content,
+                content_type="html" if html_report else "plain",
+            )
+        elif self.send_notification_method == "slack":
+            result = WebClient(token=getenv("SLACK_TOKEN")).chat_postMessage(
+                channel=f"#{vs.settings['slack']['channel']}",
+                text=vs.dict_to_string(notification),
+            )
+        else:
+            result = post(
+                vs.settings["mattermost"]["url"],
+                verify=vs.settings["mattermost"]["verify_certificate"],
+                json={
+                    "channel": vs.settings["mattermost"]["channel"],
+                    "text": notification,
+                },
+            ).text
+        results["notification"] = {"success": True, "result": result}
+        return results
+
     def run_job_and_collect_results(self, device=None, commit=True):
         self.log("info", "STARTING", device)
         start = datetime.now().replace(microsecond=0)
@@ -827,57 +878,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def notify(self, results, report):
-        self.log("info", f"Sending {self.send_notification_method} notification...")
-        notification = self.build_notification(results)
-        file_content = deepcopy(notification)
-        if self.include_device_results and not self.high_performance:
-            file_content["Device Results"] = {}
-            for device in self.run_targets:
-                device_result = db.fetch(
-                    "result",
-                    service_id=self.service.id,
-                    parent_runtime=self.parent_runtime,
-                    device_id=device.id,
-                    allow_none=True,
-                    rbac=None,
-                )
-                if device_result:
-                    file_content["Device Results"][device.name] = device_result.result
-        if self.send_notification_method == "mail":
-            filename = self.runtime.replace(".", "").replace(":", "")
-            status = "PASS" if results["success"] else "FAILED"
-            content = report if self.email_report else vs.dict_to_string(file_content)
-            html_report = self.email_report and self.report_format == "html"
-            result = env.send_email(
-                self.sub(self.get("mail_subject"), locals())
-                or f"{status}: {self.service.name}",
-                content,
-                recipients=self.sub(self.get("mail_recipient"), locals()),
-                sender=self.sub(self.get("mail_sender"), locals()),
-                reply_to=self.sub(self.get("reply_to"), locals()),
-                bcc=self.sub(self.get("mail_bcc"), locals()),
-                filename=f"results-{filename}.{'html' if html_report else 'txt'}",
-                file_content=content,
-                content_type="html" if html_report else "plain",
-            )
-        elif self.send_notification_method == "slack":
-            result = WebClient(token=getenv("SLACK_TOKEN")).chat_postMessage(
-                channel=f"#{vs.settings['slack']['channel']}",
-                text=vs.dict_to_string(notification),
-            )
-        else:
-            result = post(
-                vs.settings["mattermost"]["url"],
-                verify=vs.settings["mattermost"]["verify_certificate"],
-                json={
-                    "channel": vs.settings["mattermost"]["channel"],
-                    "text": notification,
-                },
-            ).text
-        results["notification"] = {"success": True, "result": result}
-        return results
 
     def convert_result(self, result):
         if self.conversion_method == "none" or "result" not in result:
