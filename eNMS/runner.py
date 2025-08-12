@@ -167,6 +167,35 @@ class RunEngine:
         else:
             return getattr(self, property)
 
+    @staticmethod
+    def get_device_result_in_process(args):
+        device_id, runtime, results, refetch_ids = args
+        run = vs.run_instances[runtime]
+        if not run.high_performance:
+            device = db.fetch("device", id=device_id, rbac=None)
+            run_kwargs = {"in_process": True}
+            for key, value in run.kwargs.items():
+                try:
+                    run_kwargs[key] = db.fetch(
+                        value.type, id=refetch_ids[key], rbac=None
+                    )
+                except Exception as exc:
+                    if isinstance(exc, SQLAlchemyError):
+                        db.session.rollback()
+                    run_kwargs[key] = value
+            if isinstance(run, vs.models["run"]):
+                run = db.fetch("run", runtime=run.runtime, rbac=None)
+        else:
+            with db.session_scope(remove=True):
+                device = (
+                    db.session.query(vs.models["device"])
+                    .options(selectinload(vs.models["device"].gateways))
+                    .filter(vs.models["device"].id == device_id)
+                    .one()
+                )
+            run_kwargs = {"in_process": True, **run.kwargs}
+        results.append(Runner(run, **run_kwargs).run_job_and_collect_results(device))
+
     def get_service_properties(self):
         return {
             property: getattr(self.service, property)
@@ -318,35 +347,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    @staticmethod
-    def get_device_result_in_process(args):
-        device_id, runtime, results, refetch_ids = args
-        run = vs.run_instances[runtime]
-        if not run.high_performance:
-            device = db.fetch("device", id=device_id, rbac=None)
-            run_kwargs = {"in_process": True}
-            for key, value in run.kwargs.items():
-                try:
-                    run_kwargs[key] = db.fetch(
-                        value.type, id=refetch_ids[key], rbac=None
-                    )
-                except Exception as exc:
-                    if isinstance(exc, SQLAlchemyError):
-                        db.session.rollback()
-                    run_kwargs[key] = value
-            if isinstance(run, vs.models["run"]):
-                run = db.fetch("run", runtime=run.runtime, rbac=None)
-        else:
-            with db.session_scope(remove=True):
-                device = (
-                    db.session.query(vs.models["device"])
-                    .options(selectinload(vs.models["device"].gateways))
-                    .filter(vs.models["device"].id == device_id)
-                    .one()
-                )
-            run_kwargs = {"in_process": True, **run.kwargs}
-        results.append(Runner(run, **run_kwargs).run_job_and_collect_results(device))
 
     def device_iteration(self, device):
         derived_devices = self.compute_devices_from_query(
