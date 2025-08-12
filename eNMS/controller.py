@@ -1849,14 +1849,14 @@ class Controller(vs.TimingMixin):
                 setattr(group, f"{property}_devices", devices)
                 db.session.commit()
 
+    def update_pool(self, pool_id):
+        db.fetch("pool", id=int(pool_id), rbac="edit").compute_pool()
+
     def upload_files(self, **kwargs):
         path = f"{vs.file_path}/{kwargs['folder']}/{kwargs['file'].filename}"
         if not str(Path(path).resolve()).startswith(f"{vs.file_path}/"):
             return {"error": "The path resolves outside of the files folder."}
         kwargs["file"].save(path)
-
-    def update_pool(self, pool_id):
-        db.fetch("pool", id=int(pool_id), rbac="edit").compute_pool()
 
     def view_filtering(self, **kwargs):
         return {
