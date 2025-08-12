@@ -53,13 +53,6 @@ class CustomApp(vs.TimingMixin):
             value = sub(r"(username.*secret) (.*)", "\g<1> ********", value)
         return value
 
-    def tacacs_authentication(self, user, name, password):
-        if not hasattr(env, "tacacs_client"):
-            env.log("error", "TACACS+ authentication failed: no server configured")
-            return False
-        success = env.tacacs_client.authenticate(name, password).valid
-        return {"name": name, "is_admin": True} if success else False
-
     def run_post_processing(self, run, run_result):
         return
 
@@ -68,6 +61,13 @@ class CustomApp(vs.TimingMixin):
 
     def server_template_context(self):
         return {}
+
+    def tacacs_authentication(self, user, name, password):
+        if not hasattr(env, "tacacs_client"):
+            env.log("error", "TACACS+ authentication failed: no server configured")
+            return False
+        success = env.tacacs_client.authenticate(name, password).valid
+        return {"name": name, "is_admin": True} if success else False
 
 
 vs.custom = CustomApp()
