@@ -104,57 +104,6 @@ class RunEngine:
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
 
-    def get_service_properties(self):
-        return {
-            property: getattr(self.service, property)
-            for property in ("id", "name", "scoped_name", "type")
-        }
-
-    def get(self, property):
-        if self.parameterized_run and property in self.payload["form"]:
-            return self.payload["form"][property]
-        else:
-            return getattr(self, property)
-
-    def get_target_property(self, property):
-        if (
-            self.is_main_run
-            and self.main_run.restart_run
-            and self.payload["targets"] != "Workflow"
-        ):
-            if property not in ("target_devices", "target_pools"):
-                return None
-            if self.payload["targets"] == "Manually defined":
-                model = "pool" if property == "target_pools" else "device"
-                return db.fetch_all(
-                    model, id_in=self.payload[f"restart_{model}s"], user=self.creator
-                )
-            elif self.payload["targets"] == "Restart run":
-                return getattr(self.main_run.restart_run, property)
-        elif self.parameterized_run and property in self.payload["form"]:
-            value = self.payload["form"][property]
-            if property in ("target_devices", "target_pools"):
-                model = "pool" if property == "target_pools" else "device"
-                value = db.fetch_all(model, id_in=value, user=self.creator)
-            return value
-        elif self.is_main_run and (
-            self.main_run.target_devices or self.main_run.target_pools
-        ):
-            return getattr(self.main_run, property, [])
-        elif self.workflow_run_method == "per_service_with_service_targets":
-            return getattr(self.service, property)
-        elif not self.is_main_run:
-            return self.__dict__.get(property, [])
-        else:
-            return getattr(self.main_run.placeholder or self.service, property)
-
-    @property
-    def stop(self):
-        if env.redis_queue:
-            return bool(env.redis("get", f"stop/{self.parent_runtime}"))
-        else:
-            return vs.run_stop[self.parent_runtime]
-
     def compute_devices_from_query(_self, query, property, **locals):  # noqa: N805
         values = _self.eval(query, **locals)[0]
         devices, not_found = set(), []
@@ -211,6 +160,57 @@ class RunEngine:
         else:
             devices |= set().union(*(pool.devices for pool in pools))
         return devices
+
+    def get(self, property):
+        if self.parameterized_run and property in self.payload["form"]:
+            return self.payload["form"][property]
+        else:
+            return getattr(self, property)
+
+    def get_service_properties(self):
+        return {
+            property: getattr(self.service, property)
+            for property in ("id", "name", "scoped_name", "type")
+        }
+
+    def get_target_property(self, property):
+        if (
+            self.is_main_run
+            and self.main_run.restart_run
+            and self.payload["targets"] != "Workflow"
+        ):
+            if property not in ("target_devices", "target_pools"):
+                return None
+            if self.payload["targets"] == "Manually defined":
+                model = "pool" if property == "target_pools" else "device"
+                return db.fetch_all(
+                    model, id_in=self.payload[f"restart_{model}s"], user=self.creator
+                )
+            elif self.payload["targets"] == "Restart run":
+                return getattr(self.main_run.restart_run, property)
+        elif self.parameterized_run and property in self.payload["form"]:
+            value = self.payload["form"][property]
+            if property in ("target_devices", "target_pools"):
+                model = "pool" if property == "target_pools" else "device"
+                value = db.fetch_all(model, id_in=value, user=self.creator)
+            return value
+        elif self.is_main_run and (
+            self.main_run.target_devices or self.main_run.target_pools
+        ):
+            return getattr(self.main_run, property, [])
+        elif self.workflow_run_method == "per_service_with_service_targets":
+            return getattr(self.service, property)
+        elif not self.is_main_run:
+            return self.__dict__.get(property, [])
+        else:
+            return getattr(self.main_run.placeholder or self.service, property)
+
+    @property
+    def stop(self):
+        if env.redis_queue:
+            return bool(env.redis("get", f"stop/{self.parent_runtime}"))
+        else:
+            return vs.run_stop[self.parent_runtime]
 
     def init_state(self):
         if not env.redis_queue:
