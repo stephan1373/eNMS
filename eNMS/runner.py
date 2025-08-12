@@ -391,6 +391,25 @@ class RunEngine:
             devices |= set().union(*(pool.devices for pool in pools))
         return devices
 
+    def device_iteration(self, device):
+        derived_devices = self.compute_devices_from_query(
+            self.service.iteration_devices,
+            self.service.iteration_devices_property,
+            **locals(),
+        )
+        service_run = Runner(
+            self.run,
+            iteration_run=True,
+            payload=self.payload,
+            service=self.service,
+            run_targets=derived_devices,
+            workflow=self.workflow,
+            parent_device=device,
+            parent=self,
+            parent_runtime=self.parent_runtime,
+        )
+        return service_run.start_run()["success"]
+
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:
             return self.payload["form"][property]
@@ -707,25 +726,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def device_iteration(self, device):
-        derived_devices = self.compute_devices_from_query(
-            self.service.iteration_devices,
-            self.service.iteration_devices_property,
-            **locals(),
-        )
-        service_run = Runner(
-            self.run,
-            iteration_run=True,
-            payload=self.payload,
-            service=self.service,
-            run_targets=derived_devices,
-            workflow=self.workflow,
-            parent_device=device,
-            parent=self,
-            parent_runtime=self.parent_runtime,
-        )
-        return service_run.start_run()["success"]
 
     def log(
         self,
