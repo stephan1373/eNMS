@@ -25,17 +25,17 @@ class Object(AbstractBase):
     location = db.Column(db.SmallString)
     vendor = db.Column(db.SmallString)
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not hasattr(self, "class_type") or self.class_type == "network":
-            return
-
     def delete(self):
         number = f"{self.class_type}_number"
         if self.class_type == "network":
             return
         for pool in self.pools:
             setattr(pool, number, getattr(pool, number) - 1)
+
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        if not hasattr(self, "class_type") or self.class_type == "network":
+            return
 
 
 class Device(Object):
@@ -84,13 +84,6 @@ class Device(Object):
     )
     logs = relationship("Changelog", back_populates="device")
 
-    def update(self, **kwargs):
-        old_name = self.name
-        super().update(**kwargs)
-        if not kwargs.get("migration_import") and self.name != old_name:
-            for network in self.networks:
-                network.positions[self.name] = network.positions.pop(old_name, [0, 0])
-
     @classmethod
     def database_init(cls):
         for property in vs.configuration_properties:
@@ -130,6 +123,13 @@ class Device(Object):
         properties = super().table_properties(**kwargs)
         search_properties = super().table_search(vs.configuration_properties, **kwargs)
         return {**properties, **search_properties}
+
+    def update(self, **kwargs):
+        old_name = self.name
+        super().update(**kwargs)
+        if not kwargs.get("migration_import") and self.name != old_name:
+            for network in self.networks:
+                network.positions[self.name] = network.positions.pop(old_name, [0, 0])
 
     @property
     def view_properties(self):
