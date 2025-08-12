@@ -453,35 +453,6 @@ class Run(AbstractBase):
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
 
-    @classmethod
-    def rbac_filter(cls, *args):
-        return super().rbac_filter(*args, join_class="service")
-
-    @property
-    def progress(self):
-        progress = self.get_state().get(self.service.persistent_id, {}).get("progress")
-        if not progress:
-            return
-        try:
-            progress = progress["device"]
-            failure = int(progress.get("failure", 0))
-            success = int(progress.get("success", 0))
-            return f"{success + failure}/{progress['total']} ({failure} failed)"
-        except (KeyError, TypeError):
-            return "N/A"
-
-    @property
-    def service_properties(self):
-        return self.service.base_properties
-
-    @property
-    def server_properties(self):
-        return self.server.base_properties
-
-    @property
-    def worker_properties(self):
-        return self.worker.base_properties
-
     @staticmethod
     def _initialize():
         for run in db.fetch(
@@ -498,28 +469,6 @@ class Run(AbstractBase):
             run.finalize_run(results, app_reloaded=True)
         if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
             env.redis_queue.flushdb()
-
-    def get_state(self):
-        if self.state:
-            return self.state
-        elif env.redis_queue:
-            keys = env.redis("keys", f"{self.runtime}/state/*")
-            if not keys:
-                return {}
-            data, state = list(zip(keys, env.redis("mget", *keys))), {}
-            for log, value in data:
-                inner_store, (*path, last_key) = state, log.split("/")[2:]
-                for key in path:
-                    inner_store = inner_store.setdefault(key, {})
-                if value in ("False", "True"):
-                    value = value == "True"
-                inner_store[last_key] = value
-            return state
-        else:
-            return vs.run_states[self.runtime]
-
-    def table_properties(self, **kwargs):
-        return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
     def process(commit=False, raise_exception=False):
         def decorator(func):
@@ -543,6 +492,25 @@ class Run(AbstractBase):
             return wrapper
 
         return decorator
+
+    def get_state(self):
+        if self.state:
+            return self.state
+        elif env.redis_queue:
+            keys = env.redis("keys", f"{self.runtime}/state/*")
+            if not keys:
+                return {}
+            data, state = list(zip(keys, env.redis("mget", *keys))), {}
+            for log, value in data:
+                inner_store, (*path, last_key) = state, log.split("/")[2:]
+                for key in path:
+                    inner_store = inner_store.setdefault(key, {})
+                if value in ("False", "True"):
+                    value = value == "True"
+                inner_store[last_key] = value
+            return state
+        else:
+            return vs.run_states[self.runtime]
 
     @process(raise_exception=True)
     def get_topology(self):
@@ -587,6 +555,38 @@ class Run(AbstractBase):
                 self.topology["name_to_dict"]["services"][instance.name] = service
             if instance.type == "workflow":
                 instances |= set(instance.services) | set(instance.edges)
+
+    @property
+    def progress(self):
+        progress = self.get_state().get(self.service.persistent_id, {}).get("progress")
+        if not progress:
+            return
+        try:
+            progress = progress["device"]
+            failure = int(progress.get("failure", 0))
+            success = int(progress.get("success", 0))
+            return f"{success + failure}/{progress['total']} ({failure} failed)"
+        except (KeyError, TypeError):
+            return "N/A"
+
+    @classmethod
+    def rbac_filter(cls, *args):
+        return super().rbac_filter(*args, join_class="service")
+
+    @property
+    def service_properties(self):
+        return self.service.base_properties
+
+    @property
+    def server_properties(self):
+        return self.server.base_properties
+
+    def table_properties(self, **kwargs):
+        return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
+
+    @property
+    def worker_properties(self):
+        return self.worker.base_properties
 
     @process(commit=True)
     def create_all_results(self):
