@@ -453,6 +453,20 @@ class RunEngine:
         )
         return service_run.start_run()["success"]
 
+    def eval(_self, query, function="eval", **locals):  # noqa: N805
+        exec_variables = _self.global_variables(**locals)
+        try:
+            results = builtins[function](query, exec_variables) if query else ""
+        except Exception as exc:
+            exc.args = (
+                (
+                    f"Error when executing user query:\n"
+                    f"Query: '{query}'\nError: '{str(exc)}'"
+                ),
+            )
+            raise
+        return results, exec_variables
+
     def generate_report(self, results):
         try:
             report = ""
@@ -962,20 +976,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def eval(_self, query, function="eval", **locals):  # noqa: N805
-        exec_variables = _self.global_variables(**locals)
-        try:
-            results = builtins[function](query, exec_variables) if query else ""
-        except Exception as exc:
-            exc.args = (
-                (
-                    f"Error when executing user query:\n"
-                    f"Query: '{query}'\nError: '{str(exc)}'"
-                ),
-            )
-            raise
-        return results, exec_variables
 
 
 class NetworkManagement:
