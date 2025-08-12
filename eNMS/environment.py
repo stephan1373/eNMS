@@ -195,6 +195,9 @@ class Environment(vs.TimingMixin):
         end = vs.settings["ssh"]["end_port"]
         return start + int(self.ssh_port) % (end - start)
 
+    def get_workers(self):
+        return {worker.name: worker.to_dict() for worker in db.fetch_all("worker")}
+
     def init_authentication(self):
         ldap_servers = vs.settings["authentication"]["methods"]["ldap"].get("servers")
         try:
@@ -283,9 +286,6 @@ class Environment(vs.TimingMixin):
         if self.vault_client.sys.is_sealed() and vs.settings["vault"]["unseal_vault"]:
             keys = [getenv(f"UNSEAL_VAULT_KEY{index}") for index in range(1, 6)]
             self.vault_client.sys.submit_unseal_keys(filter(None, keys))
-
-    def get_workers(self):
-        return {worker.name: worker.to_dict() for worker in db.fetch_all("worker")}
 
     def log(
         self,
