@@ -493,6 +493,36 @@ class Run(AbstractBase):
 
         return decorator
 
+    @process()
+    def clean_stored_data(self):
+        vs.run_allowed_targets.pop(self.runtime, None)
+        vs.run_states.pop(self.runtime, None)
+        vs.run_logs.pop(self.runtime, None)
+        vs.run_stop.pop(self.runtime, None)
+        vs.run_instances.pop(self.runtime, None)
+        if env.redis_queue:
+            runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
+            if runtime_keys:
+                env.redis("delete", *runtime_keys)
+            env.redis("decr", f"rate_limit:{self.creator}:runs")
+
+    @process()
+    def close_remaining_connections(self):
+        threads = []
+        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+            device_connections = vs.connections_cache[library][self.runtime]
+            for device, connections in list(device_connections.items()):
+                for connection in list(connections.values()):
+                    args = (library, device, connection)
+                    thread = Thread(target=self.runner.disconnect, args=args)
+                    thread.start()
+                    threads.append(thread)
+        timeout = vs.automation["advanced"]["disconnect_thread_timeout"]
+        for thread in threads:
+            thread.join(timeout=timeout)
+        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+            vs.connections_cache[library].pop(self.runtime)
+
     @process(commit=True)
     def create_all_changelogs(self):
         changelogs = vs.service_changelog.pop(self.runtime, [])
@@ -673,23 +703,6 @@ class Run(AbstractBase):
     def table_properties(self, **kwargs):
         return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
-    @property
-    def worker_properties(self):
-        return self.worker.base_properties
-
-    @process()
-    def clean_stored_data(self):
-        vs.run_allowed_targets.pop(self.runtime, None)
-        vs.run_states.pop(self.runtime, None)
-        vs.run_logs.pop(self.runtime, None)
-        vs.run_stop.pop(self.runtime, None)
-        vs.run_instances.pop(self.runtime, None)
-        if env.redis_queue:
-            runtime_keys = env.redis("keys", f"{self.runtime}/*") or []
-            if runtime_keys:
-                env.redis("delete", *runtime_keys)
-            env.redis("decr", f"rate_limit:{self.creator}:runs")
-
     @process(raise_exception=True)
     def update_target_pools(self):
         for service in self.topology["services"].values():
@@ -698,22 +711,9 @@ class Run(AbstractBase):
                     pool.compute_pool()
         db.session.commit()
 
-    @process()
-    def close_remaining_connections(self):
-        threads = []
-        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-            device_connections = vs.connections_cache[library][self.runtime]
-            for device, connections in list(device_connections.items()):
-                for connection in list(connections.values()):
-                    args = (library, device, connection)
-                    thread = Thread(target=self.runner.disconnect, args=args)
-                    thread.start()
-                    threads.append(thread)
-        timeout = vs.automation["advanced"]["disconnect_thread_timeout"]
-        for thread in threads:
-            thread.join(timeout=timeout)
-        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-            vs.connections_cache[library].pop(self.runtime)
+    @property
+    def worker_properties(self):
+        return self.worker.base_properties
 
     @property
     def cache(self):
