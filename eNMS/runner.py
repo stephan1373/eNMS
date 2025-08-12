@@ -104,6 +104,236 @@ class RunEngine:
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
 
+    def compute_targets_and_collect_results(self):
+        if not self.run_targets:
+            self.run_targets = self.compute_run_targets()
+        allowed_devices, restricted_devices = [], []
+        device_cache = self.cache["topology"]["name_to_dict"]["devices"]
+        for device in self.run_targets:
+            if device.id in vs.run_allowed_targets[self.parent_runtime]:
+                allowed_devices.append(device)
+                if self.high_performance and device.name not in device_cache:
+                    device_namespace = SimpleNamespace(**device.get_properties())
+                    device_cache[device.name] = device_namespace
+            else:
+                restricted_devices.append(device.name)
+        if restricted_devices:
+            result = (
+                f"Error 403: User '{self.creator}' is not allowed to use these"
+                f" devices as targets: {', '.join(restricted_devices)}"
+            )
+            self.log("info", result, logger="security")
+        self.run_targets = allowed_devices
+        summary = defaultdict(list)
+        if self.iteration_devices and not self.iteration_run:
+            if not self.workflow:
+                result = "Device iteration not allowed outside of a workflow"
+                return {"success": False, "result": result, "runtime": self.runtime}
+            self.write_state(
+                "progress/device/total", len(self.run_targets), "increment"
+            )
+            for device in self.run_targets:
+                key = "success" if self.device_iteration(device) else "failure"
+                self.write_state(f"progress/device/{key}", 1, "increment")
+                summary[key].append(device.name)
+            return {
+                "success": not summary["failure"],
+                "summary": summary,
+                "runtime": self.runtime,
+            }
+        self.write_state(
+            f"{self.progress_key}/total", len(self.run_targets), "increment"
+        )
+        non_skipped_targets, skipped_targets, results = [], [], []
+        skip_service = self.skip.get(getattr(self.workflow, "name", None))
+        if skip_service:
+            self.write_state("status", "Skipped")
+        if (
+            self.run_method == "once"
+            and not self.run_targets
+            and self.eval(self.skip_query, **locals())[0]
+        ):
+            self.write_state("status", "Skipped")
+            return {
+                "success": self.skip_value == "success",
+                "result": "skipped",
+                "runtime": self.runtime,
+            }
+        for device in self.run_targets:
+            skip_device = skip_service
+            if not skip_service and self.skip_query:
+                skip_device = self.eval(self.skip_query, **locals())[0]
+            if skip_device:
+                if device:
+                    self.write_state(f"{self.progress_key}/skipped", 1, "increment")
+                if self.skip_value == "discard":
+                    continue
+                device_results = {
+                    "device_target": getattr(device, "name", None),
+                    "runtime": vs.get_time(),
+                    "result": "skipped",
+                    "duration": "0:00:00",
+                    "success": self.skip_value == "success",
+                }
+                skipped_targets.append(device.name)
+                self.create_result(device_results, device, commit=False)
+                results.append(device_results)
+            else:
+                non_skipped_targets.append(device)
+        all_skipped = self.run_targets and not non_skipped_targets
+        self.run_targets = non_skipped_targets
+        if self.run_method != "per_device":
+            if all_skipped:
+                summary[self.skip_value] = skipped_targets
+                return {"success": self.skip_value == "success", "summary": summary}
+            results = self.run_job_and_collect_results()
+            if "summary" not in results:
+                default_key = "success" if results["success"] else "failure"
+                device_names = [device.name for device in self.run_targets]
+                key = results.get("outgoing_edge", default_key)
+                summary[key].extend(device_names)
+                results["summary"] = summary
+            for key in ("success", "failure"):
+                self.write_state(
+                    f"{self.progress_key}/{key}",
+                    len(results["summary"][key]),
+                    "increment",
+                )
+            summary[self.skip_value].extend(skipped_targets)
+            return results
+        else:
+            if self.is_main_run and not self.run_targets:
+                error = (
+                    "The service 'Run method' is set to 'Per device' mode, "
+                    "but no targets have been selected (in Step 3 > Targets)"
+                )
+                self.log("error", error)
+                return {"success": False, "runtime": self.runtime, "result": error}
+            if (
+                self.get("multiprocessing")
+                and len(non_skipped_targets) > 1
+                and not self.in_process
+                and not self.iteration_run
+            ):
+                processes = min(len(non_skipped_targets), self.get("max_processes"))
+                refetch_ids = {
+                    key: value.id
+                    for key, value in self.kwargs.items()
+                    if hasattr(value, "id")
+                }
+                process_args = [
+                    (device.id, self.runtime, results, refetch_ids)
+                    for device in non_skipped_targets
+                ]
+                self.log("info", f"Starting a pool of {processes} threads")
+                with ThreadPool(processes=processes) as pool:
+                    pool.map(self.get_device_result_in_process, process_args)
+            else:
+                results.extend(
+                    [
+                        self.run_job_and_collect_results(device, commit=False)
+                        for device in non_skipped_targets
+                    ]
+                )
+            for result in results:
+                default_key = "success" if result["success"] else "failure"
+                key = result.get("outgoing_edge", default_key)
+                summary[key].append(result["device_target"])
+            return {
+                "summary": summary,
+                "success": all(result["success"] for result in results if result),
+                "runtime": self.runtime,
+            }
+
+    def check_size(self, data, data_type):
+        column_type = "pickletype" if data_type == "result" else "large_string"
+        data_size = getsizeof(str(data))
+        self.write_state("memory_size", data_size, "increment", top_level=True)
+        if data_type == "result":
+            data["memory_size"] = data_size
+        max_allowed_size = vs.database["columns"]["length"][column_type]
+        allow_truncate = vs.automation["advanced"]["truncate_logs"]["active"]
+        truncate_size = vs.automation["advanced"]["truncate_logs"]["maximum_size"]
+        if data_type == "log" and allow_truncate and data_size > truncate_size:
+            message = f"Log data is too large: truncated to {truncate_size} characters."
+            self.log("warning", message)
+            data = f"{data[:truncate_size]}\n{message}"
+        elif data_size >= max_allowed_size:
+            logs = (
+                f"The {data_type} is too large to be committed to the database: "
+                f"Size: {data_size}B / Maximum Allowed Size: {max_allowed_size}B"
+            )
+            self.log("critical", logs)
+            raise Exception(f"{data_type.capitalize()} Data Overflow")
+        else:
+            size_percentage = data_size / max_allowed_size * 100
+            log = f"The {data_type} is {size_percentage:.1f}% the maximum allowed size."
+            if size_percentage > 50:
+                self.log("warning", log)
+        return data
+
+    def create_transient_result(self, result, device):
+        device_key = device.id if device else None
+        if env.redis_queue:
+            path = f"{self.parent_runtime}/results/{self.service.id}/{device_key}"
+            env.redis("lpush", path, or_dumps(result))
+        else:
+            vs.service_result[self.parent_runtime][self.service.id][device_key].append(
+                result
+            )
+
+    def create_result(self, results, device=None, commit=True, run_result=False):
+        self.success = results["success"]
+        result_kw = {
+            "parent_runtime": self.parent_runtime,
+            "parent_service_id": self.main_run.service.id,
+            "path": self.path,
+            "run_id": self.main_run.id,
+            "service_id": self.service.id,
+            "labels": self.main_run.labels,
+            "creator": self.main_run.creator,
+        }
+        if self.workflow:
+            result_kw["workflow_id"] = self.workflow.id
+        if self.parent_device:
+            result_kw["parent_device_id"] = self.parent_device.id
+        if device:
+            result_kw["device_id"] = device.id
+        if self.is_main_run and not device:
+            results["payload"] = self.payload
+            if self.main_run.trigger == "REST API" and not self.high_performance:
+                results["devices"] = {}
+                for result in self.main_run.results:
+                    if not result.device:
+                        continue
+                    results["devices"][result.device.name] = result.result
+        else:
+            results.pop("payload", None)
+        create_failed_results = self.disable_result_creation and not self.success
+        results = self.make_json_compliant(results)
+        results = self.check_size(results, "result")
+        result_kw["memory_size"] = results["memory_size"]
+        result_kw["result"] = results
+        if not self.disable_result_creation or create_failed_results or run_result:
+            self.has_result = True
+            if not self.high_performance:
+                try:
+                    db.factory(
+                        "result",
+                        commit=vs.automation["advanced"]["always_commit"] or commit,
+                        rbac=None,
+                        **result_kw,
+                    )
+                except Exception:
+                    self.log("critical", f"Failed to commit result:\n{format_exc()}")
+                    db.session.rollback()
+            else:
+                for key in ("duration", "runtime", "success"):
+                    result_kw[key] = results[key]
+                result_kw["name"] = f"{results['runtime']} - {vs.get_persistent_id()}"
+                self.create_transient_result(result_kw, device)
+        return results
+
     def compute_devices_from_query(_self, query, property, **locals):  # noqa: N805
         values = _self.eval(query, **locals)[0]
         devices, not_found = set(), []
@@ -366,236 +596,6 @@ class RunEngine:
             parent_runtime=self.parent_runtime,
         )
         return service_run.start_run()["success"]
-
-    def compute_targets_and_collect_results(self):
-        if not self.run_targets:
-            self.run_targets = self.compute_run_targets()
-        allowed_devices, restricted_devices = [], []
-        device_cache = self.cache["topology"]["name_to_dict"]["devices"]
-        for device in self.run_targets:
-            if device.id in vs.run_allowed_targets[self.parent_runtime]:
-                allowed_devices.append(device)
-                if self.high_performance and device.name not in device_cache:
-                    device_namespace = SimpleNamespace(**device.get_properties())
-                    device_cache[device.name] = device_namespace
-            else:
-                restricted_devices.append(device.name)
-        if restricted_devices:
-            result = (
-                f"Error 403: User '{self.creator}' is not allowed to use these"
-                f" devices as targets: {', '.join(restricted_devices)}"
-            )
-            self.log("info", result, logger="security")
-        self.run_targets = allowed_devices
-        summary = defaultdict(list)
-        if self.iteration_devices and not self.iteration_run:
-            if not self.workflow:
-                result = "Device iteration not allowed outside of a workflow"
-                return {"success": False, "result": result, "runtime": self.runtime}
-            self.write_state(
-                "progress/device/total", len(self.run_targets), "increment"
-            )
-            for device in self.run_targets:
-                key = "success" if self.device_iteration(device) else "failure"
-                self.write_state(f"progress/device/{key}", 1, "increment")
-                summary[key].append(device.name)
-            return {
-                "success": not summary["failure"],
-                "summary": summary,
-                "runtime": self.runtime,
-            }
-        self.write_state(
-            f"{self.progress_key}/total", len(self.run_targets), "increment"
-        )
-        non_skipped_targets, skipped_targets, results = [], [], []
-        skip_service = self.skip.get(getattr(self.workflow, "name", None))
-        if skip_service:
-            self.write_state("status", "Skipped")
-        if (
-            self.run_method == "once"
-            and not self.run_targets
-            and self.eval(self.skip_query, **locals())[0]
-        ):
-            self.write_state("status", "Skipped")
-            return {
-                "success": self.skip_value == "success",
-                "result": "skipped",
-                "runtime": self.runtime,
-            }
-        for device in self.run_targets:
-            skip_device = skip_service
-            if not skip_service and self.skip_query:
-                skip_device = self.eval(self.skip_query, **locals())[0]
-            if skip_device:
-                if device:
-                    self.write_state(f"{self.progress_key}/skipped", 1, "increment")
-                if self.skip_value == "discard":
-                    continue
-                device_results = {
-                    "device_target": getattr(device, "name", None),
-                    "runtime": vs.get_time(),
-                    "result": "skipped",
-                    "duration": "0:00:00",
-                    "success": self.skip_value == "success",
-                }
-                skipped_targets.append(device.name)
-                self.create_result(device_results, device, commit=False)
-                results.append(device_results)
-            else:
-                non_skipped_targets.append(device)
-        all_skipped = self.run_targets and not non_skipped_targets
-        self.run_targets = non_skipped_targets
-        if self.run_method != "per_device":
-            if all_skipped:
-                summary[self.skip_value] = skipped_targets
-                return {"success": self.skip_value == "success", "summary": summary}
-            results = self.run_job_and_collect_results()
-            if "summary" not in results:
-                default_key = "success" if results["success"] else "failure"
-                device_names = [device.name for device in self.run_targets]
-                key = results.get("outgoing_edge", default_key)
-                summary[key].extend(device_names)
-                results["summary"] = summary
-            for key in ("success", "failure"):
-                self.write_state(
-                    f"{self.progress_key}/{key}",
-                    len(results["summary"][key]),
-                    "increment",
-                )
-            summary[self.skip_value].extend(skipped_targets)
-            return results
-        else:
-            if self.is_main_run and not self.run_targets:
-                error = (
-                    "The service 'Run method' is set to 'Per device' mode, "
-                    "but no targets have been selected (in Step 3 > Targets)"
-                )
-                self.log("error", error)
-                return {"success": False, "runtime": self.runtime, "result": error}
-            if (
-                self.get("multiprocessing")
-                and len(non_skipped_targets) > 1
-                and not self.in_process
-                and not self.iteration_run
-            ):
-                processes = min(len(non_skipped_targets), self.get("max_processes"))
-                refetch_ids = {
-                    key: value.id
-                    for key, value in self.kwargs.items()
-                    if hasattr(value, "id")
-                }
-                process_args = [
-                    (device.id, self.runtime, results, refetch_ids)
-                    for device in non_skipped_targets
-                ]
-                self.log("info", f"Starting a pool of {processes} threads")
-                with ThreadPool(processes=processes) as pool:
-                    pool.map(self.get_device_result_in_process, process_args)
-            else:
-                results.extend(
-                    [
-                        self.run_job_and_collect_results(device, commit=False)
-                        for device in non_skipped_targets
-                    ]
-                )
-            for result in results:
-                default_key = "success" if result["success"] else "failure"
-                key = result.get("outgoing_edge", default_key)
-                summary[key].append(result["device_target"])
-            return {
-                "summary": summary,
-                "success": all(result["success"] for result in results if result),
-                "runtime": self.runtime,
-            }
-
-    def check_size(self, data, data_type):
-        column_type = "pickletype" if data_type == "result" else "large_string"
-        data_size = getsizeof(str(data))
-        self.write_state("memory_size", data_size, "increment", top_level=True)
-        if data_type == "result":
-            data["memory_size"] = data_size
-        max_allowed_size = vs.database["columns"]["length"][column_type]
-        allow_truncate = vs.automation["advanced"]["truncate_logs"]["active"]
-        truncate_size = vs.automation["advanced"]["truncate_logs"]["maximum_size"]
-        if data_type == "log" and allow_truncate and data_size > truncate_size:
-            message = f"Log data is too large: truncated to {truncate_size} characters."
-            self.log("warning", message)
-            data = f"{data[:truncate_size]}\n{message}"
-        elif data_size >= max_allowed_size:
-            logs = (
-                f"The {data_type} is too large to be committed to the database: "
-                f"Size: {data_size}B / Maximum Allowed Size: {max_allowed_size}B"
-            )
-            self.log("critical", logs)
-            raise Exception(f"{data_type.capitalize()} Data Overflow")
-        else:
-            size_percentage = data_size / max_allowed_size * 100
-            log = f"The {data_type} is {size_percentage:.1f}% the maximum allowed size."
-            if size_percentage > 50:
-                self.log("warning", log)
-        return data
-
-    def create_transient_result(self, result, device):
-        device_key = device.id if device else None
-        if env.redis_queue:
-            path = f"{self.parent_runtime}/results/{self.service.id}/{device_key}"
-            env.redis("lpush", path, or_dumps(result))
-        else:
-            vs.service_result[self.parent_runtime][self.service.id][device_key].append(
-                result
-            )
-
-    def create_result(self, results, device=None, commit=True, run_result=False):
-        self.success = results["success"]
-        result_kw = {
-            "parent_runtime": self.parent_runtime,
-            "parent_service_id": self.main_run.service.id,
-            "path": self.path,
-            "run_id": self.main_run.id,
-            "service_id": self.service.id,
-            "labels": self.main_run.labels,
-            "creator": self.main_run.creator,
-        }
-        if self.workflow:
-            result_kw["workflow_id"] = self.workflow.id
-        if self.parent_device:
-            result_kw["parent_device_id"] = self.parent_device.id
-        if device:
-            result_kw["device_id"] = device.id
-        if self.is_main_run and not device:
-            results["payload"] = self.payload
-            if self.main_run.trigger == "REST API" and not self.high_performance:
-                results["devices"] = {}
-                for result in self.main_run.results:
-                    if not result.device:
-                        continue
-                    results["devices"][result.device.name] = result.result
-        else:
-            results.pop("payload", None)
-        create_failed_results = self.disable_result_creation and not self.success
-        results = self.make_json_compliant(results)
-        results = self.check_size(results, "result")
-        result_kw["memory_size"] = results["memory_size"]
-        result_kw["result"] = results
-        if not self.disable_result_creation or create_failed_results or run_result:
-            self.has_result = True
-            if not self.high_performance:
-                try:
-                    db.factory(
-                        "result",
-                        commit=vs.automation["advanced"]["always_commit"] or commit,
-                        rbac=None,
-                        **result_kw,
-                    )
-                except Exception:
-                    self.log("critical", f"Failed to commit result:\n{format_exc()}")
-                    db.session.rollback()
-            else:
-                for key in ("duration", "runtime", "success"):
-                    result_kw[key] = results[key]
-                result_kw["name"] = f"{results['runtime']} - {vs.get_persistent_id()}"
-                self.create_transient_result(result_kw, device)
-        return results
 
     def run_service_job(self, device):
         args = (device,) if device else ()
