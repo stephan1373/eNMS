@@ -66,6 +66,20 @@ class AbstractBase(db.base):
     def delete(self):
         pass
 
+    def duplicate(self, **kwargs):
+        properties = {
+            property: value
+            for property, value in self.get_properties().items()
+            if property not in ("id", "name")
+        }
+        instance = db.factory(self.type, rbac=None, **{**properties, **kwargs})
+        return instance
+
+    def exclude_soft_deleted(self, property):
+        for instance in getattr(self, property):
+            if not getattr(instance, "soft_deleted", False):
+                yield instance
+
     def filter_rbac_kwargs(self, kwargs):
         if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
             return
@@ -215,6 +229,54 @@ class AbstractBase(db.base):
                     )
         return search_properties
 
+    def to_dict(
+        self,
+        export=False,
+        exclude=None,
+        exclude_relations=None,
+        include=None,
+        include_relations=None,
+        private_properties=False,
+        relation_names_only=False,
+        relation_properties=None,
+    ):
+        properties = self.get_properties(
+            export,
+            exclude=exclude,
+            include=include,
+            private_properties=private_properties,
+        )
+        no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
+        for property, relation in vs.relationships[self.type].items():
+            if include_relations and property not in include_relations:
+                continue
+            if exclude_relations and property in exclude_relations:
+                continue
+            if export and property in no_migrate:
+                continue
+            value = getattr(self, property)
+            if relation["list"]:
+                properties[property] = [
+                    (
+                        obj.name
+                        if export or relation_names_only
+                        else obj.get_properties(include=relation_properties)
+                    )
+                    for obj in value
+                    if not getattr(obj, "soft_deleted", False)
+                ]
+                if export:
+                    properties[property].sort()
+            else:
+                if not value or getattr(value, "soft_deleted", False):
+                    continue
+                properties[property] = (
+                    value.name
+                    if export or relation_names_only
+                    else value.get_properties(include=relation_properties)
+                )
+        return dict(OrderedDict(sorted(properties.items()))) if export else properties
+
     def update(self, rbac="edit", **kwargs):
         self.filter_rbac_kwargs(kwargs)
         relation = vs.relationships[self.__tablename__]
@@ -264,65 +326,3 @@ class AbstractBase(db.base):
             for access_type in getattr(group, f"{model}_access"):
                 if group not in getattr(self, access_type):
                     getattr(self, access_type).append(group)
-
-    def duplicate(self, **kwargs):
-        properties = {
-            property: value
-            for property, value in self.get_properties().items()
-            if property not in ("id", "name")
-        }
-        instance = db.factory(self.type, rbac=None, **{**properties, **kwargs})
-        return instance
-
-    def exclude_soft_deleted(self, property):
-        for instance in getattr(self, property):
-            if not getattr(instance, "soft_deleted", False):
-                yield instance
-
-    def to_dict(
-        self,
-        export=False,
-        exclude=None,
-        exclude_relations=None,
-        include=None,
-        include_relations=None,
-        private_properties=False,
-        relation_names_only=False,
-        relation_properties=None,
-    ):
-        properties = self.get_properties(
-            export,
-            exclude=exclude,
-            include=include,
-            private_properties=private_properties,
-        )
-        no_migrate = db.dont_migrate.get(getattr(self, "export_type", self.type), {})
-        for property, relation in vs.relationships[self.type].items():
-            if include_relations and property not in include_relations:
-                continue
-            if exclude_relations and property in exclude_relations:
-                continue
-            if export and property in no_migrate:
-                continue
-            value = getattr(self, property)
-            if relation["list"]:
-                properties[property] = [
-                    (
-                        obj.name
-                        if export or relation_names_only
-                        else obj.get_properties(include=relation_properties)
-                    )
-                    for obj in value
-                    if not getattr(obj, "soft_deleted", False)
-                ]
-                if export:
-                    properties[property].sort()
-            else:
-                if not value or getattr(value, "soft_deleted", False):
-                    continue
-                properties[property] = (
-                    value.name
-                    if export or relation_names_only
-                    else value.get_properties(include=relation_properties)
-                )
-        return dict(OrderedDict(sorted(properties.items()))) if export else properties
