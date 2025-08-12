@@ -492,6 +492,17 @@ class Database:
                 self.delete_instance(instance, call_delete=model != "file")
             self.session.commit()
 
+    def delete_instance(self, instance, call_delete=True):
+        abort_delete = False
+        if call_delete:
+            abort_delete = instance.delete()
+            if abort_delete:
+                return {"delete_aborted": True, "log_level": "error", **abort_delete}
+        serialized_instance = instance.get_properties()
+        if not abort_delete:
+            self.session.delete(instance)
+        return serialized_instance
+
     @staticmethod
     def dict_conversion(input):
         try:
@@ -507,6 +518,41 @@ class Database:
             instance.to_dict(export=True, private_properties=private_properties)
             for instance in self.fetch_all(model, **kwargs)
         ]
+
+    def factory(
+        self, _class, commit=False, no_fetch=False, rbac="edit", user=None, **kwargs
+    ):
+        def transaction(_class, **kwargs):
+            property = "path" if _class in ("file", "folder") else "name"
+            characters = set(kwargs.get("name", "") + kwargs.get("scoped_name", ""))
+            if set("/\\'" + '"') & characters:
+                raise ValueError("Names cannot contain a slash or a quote.")
+            instance, instance_id = None, kwargs.pop("id", 0)
+            if instance_id:
+                instance = self.fetch(_class, id=instance_id, rbac=rbac, user=user)
+            elif property in kwargs and not no_fetch:
+                instance = self.fetch(
+                    _class,
+                    allow_none=True,
+                    rbac=rbac,
+                    user=user,
+                    **{property: kwargs[property]},
+                )
+            if instance and not kwargs.get("must_be_new"):
+                instance.update(rbac=rbac, **kwargs)
+            else:
+                instance = vs.models[_class](rbac=rbac, **kwargs)
+                self.session.add(instance)
+            if "update_source" in kwargs and hasattr(instance, "name"):
+                key = f"update_{instance.type}_{instance.name}"
+                db.session.connection().info[key] = kwargs["update_source"]
+            return instance
+
+        if not commit:
+            instance = transaction(_class, **kwargs)
+        else:
+            instance = self.try_commit(transaction, _class, **kwargs)
+        return instance
 
     def fetch(
         self,
@@ -562,16 +608,24 @@ class Database:
             return []
         return self.fetch(model, allow_none=True, all_matches=True, **kwargs)
 
-    def delete_instance(self, instance, call_delete=True):
-        abort_delete = False
-        if call_delete:
-            abort_delete = instance.delete()
-            if abort_delete:
-                return {"delete_aborted": True, "log_level": "error", **abort_delete}
-        serialized_instance = instance.get_properties()
-        if not abort_delete:
-            self.session.delete(instance)
-        return serialized_instance
+    def get_credential(
+        self, username, name=None, device=None, credential_type="any", optional=False
+    ):
+        query = db.query("credential", rbac="use", user=username)
+        if device:
+            query = query.join(
+                vs.models["pool"], vs.models["credential"].device_pools
+            ).join(vs.models["device"], vs.models["pool"].devices)
+        if name:
+            query = query.filter(vs.models["credential"].name == name)
+        if device:
+            query = query.filter(vs.models["device"].name == device.name)
+        if credential_type != "any":
+            query = query.filter(vs.models["credential"].role == credential_type)
+        credentials = max(query.all(), key=attrgetter("priority"), default=None)
+        if not credentials and not optional:
+            raise Exception(f"No matching credentials found for DEVICE '{device.name}'")
+        return credentials
 
     def query(self, model, rbac="read", user=None, properties=None):
         if properties:
@@ -622,60 +676,6 @@ class Database:
             setattr(instance, property, value)
 
         self.try_commit(transaction)
-
-    def factory(
-        self, _class, commit=False, no_fetch=False, rbac="edit", user=None, **kwargs
-    ):
-        def transaction(_class, **kwargs):
-            property = "path" if _class in ("file", "folder") else "name"
-            characters = set(kwargs.get("name", "") + kwargs.get("scoped_name", ""))
-            if set("/\\'" + '"') & characters:
-                raise ValueError("Names cannot contain a slash or a quote.")
-            instance, instance_id = None, kwargs.pop("id", 0)
-            if instance_id:
-                instance = self.fetch(_class, id=instance_id, rbac=rbac, user=user)
-            elif property in kwargs and not no_fetch:
-                instance = self.fetch(
-                    _class,
-                    allow_none=True,
-                    rbac=rbac,
-                    user=user,
-                    **{property: kwargs[property]},
-                )
-            if instance and not kwargs.get("must_be_new"):
-                instance.update(rbac=rbac, **kwargs)
-            else:
-                instance = vs.models[_class](rbac=rbac, **kwargs)
-                self.session.add(instance)
-            if "update_source" in kwargs and hasattr(instance, "name"):
-                key = f"update_{instance.type}_{instance.name}"
-                db.session.connection().info[key] = kwargs["update_source"]
-            return instance
-
-        if not commit:
-            instance = transaction(_class, **kwargs)
-        else:
-            instance = self.try_commit(transaction, _class, **kwargs)
-        return instance
-
-    def get_credential(
-        self, username, name=None, device=None, credential_type="any", optional=False
-    ):
-        query = db.query("credential", rbac="use", user=username)
-        if device:
-            query = query.join(
-                vs.models["pool"], vs.models["credential"].device_pools
-            ).join(vs.models["device"], vs.models["pool"].devices)
-        if name:
-            query = query.filter(vs.models["credential"].name == name)
-        if device:
-            query = query.filter(vs.models["device"].name == device.name)
-        if credential_type != "any":
-            query = query.filter(vs.models["credential"].role == credential_type)
-        credentials = max(query.all(), key=attrgetter("priority"), default=None)
-        if not credentials and not optional:
-            raise Exception(f"No matching credentials found for DEVICE '{device.name}'")
-        return credentials
 
     def register_custom_models(self):
         for model in ("device", "link", "service", "data"):
