@@ -59,17 +59,57 @@ class AbstractBase(db.base):
         else:
             super().__setattr__(property, value)
 
+    @property
+    def base_properties(self):
+        return {prop: getattr(self, prop) for prop in ("id", "name", "type")}
+
+    def delete(self):
+        pass
+
+    def filter_rbac_kwargs(self, kwargs):
+        if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
+            return
+        rbac_properties = ["owners", "restrict_to_owners"]
+        model_rbac_properties = list(vs.rbac["rbac_models"][self.class_type])
+        is_admin = getattr(current_user, "is_admin", True)
+        if not is_admin:
+            kwargs.pop("admin_only", None)
+            if current_user not in self.owners:
+                for property in rbac_properties + model_rbac_properties:
+                    kwargs.pop(property, None)
+
     @classmethod
     def filtering_constraints(cls, **_):
         return []
+
+    def get_changelog_kwargs(self):
+        return {
+            "target_name": self.name,
+            "target_type": self.type,
+            "target_id": self.id,
+            f"{self.class_type}_id": self.id,
+        }
 
     @property
     def ui_name(self):
         return self.name
 
-    @property
-    def base_properties(self):
-        return {prop: getattr(self, prop) for prop in ("id", "name", "type")}
+    @classmethod
+    def rbac_filter(cls, query, mode, user, join_class=None):
+        model = join_class or getattr(cls, "class_type", None)
+        if model not in vs.rbac["rbac_models"]:
+            return query
+        if join_class:
+            query = query.join(getattr(cls, join_class))
+        user_group = [group.id for group in user.groups]
+        property = getattr(vs.models[model], f"rbac_{mode}")
+        rbac_constraint = property.any(vs.models["group"].id.in_(user_group))
+        owners_constraint = vs.models[model].owners.any(id=user.id)
+        if hasattr(vs.models[model], "admin_only") and mode not in vs.rbac[
+            "admin_only_bypass"
+        ].get(model, []):
+            query = query.filter(vs.models[model].admin_only == false())
+        return query.filter(or_(owners_constraint, rbac_constraint))
 
     def update(self, rbac="edit", **kwargs):
         self.filter_rbac_kwargs(kwargs)
@@ -110,43 +150,6 @@ class AbstractBase(db.base):
         self.last_modified = vs.get_time()
         self.last_modified_by = getattr(current_user, "name", "admin")
 
-    def filter_rbac_kwargs(self, kwargs):
-        if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
-            return
-        rbac_properties = ["owners", "restrict_to_owners"]
-        model_rbac_properties = list(vs.rbac["rbac_models"][self.class_type])
-        is_admin = getattr(current_user, "is_admin", True)
-        if not is_admin:
-            kwargs.pop("admin_only", None)
-            if current_user not in self.owners:
-                for property in rbac_properties + model_rbac_properties:
-                    kwargs.pop(property, None)
-
-    def get_changelog_kwargs(self):
-        return {
-            "target_name": self.name,
-            "target_type": self.type,
-            "target_id": self.id,
-            f"{self.class_type}_id": self.id,
-        }
-
-    @classmethod
-    def rbac_filter(cls, query, mode, user, join_class=None):
-        model = join_class or getattr(cls, "class_type", None)
-        if model not in vs.rbac["rbac_models"]:
-            return query
-        if join_class:
-            query = query.join(getattr(cls, join_class))
-        user_group = [group.id for group in user.groups]
-        property = getattr(vs.models[model], f"rbac_{mode}")
-        rbac_constraint = property.any(vs.models["group"].id.in_(user_group))
-        owners_constraint = vs.models[model].owners.any(id=user.id)
-        if hasattr(vs.models[model], "admin_only") and mode not in vs.rbac[
-            "admin_only_bypass"
-        ].get(model, []):
-            query = query.filter(vs.models[model].admin_only == false())
-        return query.filter(or_(owners_constraint, rbac_constraint))
-
     def update_rbac(self):
         model = getattr(self, "class_type", None)
         if model not in vs.rbac["rbac_models"] or not current_user:
@@ -157,9 +160,6 @@ class AbstractBase(db.base):
             for access_type in getattr(group, f"{model}_access"):
                 if group not in getattr(self, access_type):
                     getattr(self, access_type).append(group)
-
-    def delete(self):
-        pass
 
     def get_properties(
         self,
