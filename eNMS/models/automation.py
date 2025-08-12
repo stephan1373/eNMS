@@ -493,6 +493,83 @@ class Run(AbstractBase):
 
         return decorator
 
+    @process(commit=True)
+    def create_all_changelogs(self):
+        changelogs = vs.service_changelog.pop(self.runtime, [])
+        for batch in batched(changelogs, vs.database["transactions"]["batch_size"]):
+            db.session.execute(insert(vs.models["changelog"]), batch)
+
+    @process(commit=True)
+    def create_all_logs(self):
+        logs = []
+        for service in self.services:
+            content = "\n".join(
+                env.log_queue(self.runtime, service.id, mode="get") or []
+            )
+            if hasattr(self, "runner"):
+                content = self.runner.check_size(content, "log")
+            logs.append(
+                {"runtime": self.runtime, "service_id": service.id, "content": content}
+            )
+        db.session.execute(insert(vs.models["service_log"]), logs)
+
+    @process(commit=True)
+    def create_all_reports(self):
+        reports = vs.service_report.pop(self.runtime, {})
+        for batch in batched(
+            (
+                {"runtime": self.runtime, "service_id": service_id, "content": report}
+                for service_id, report in reports.items()
+            ),
+            vs.database["transactions"]["batch_size"],
+        ):
+            db.session.execute(insert(vs.models["service_report"]), batch)
+
+    @process(commit=True)
+    def create_all_results(self):
+        if env.redis_queue:
+            results = (
+                loads(result)
+                for result in chain.from_iterable(
+                    env.redis("lrange", key, 0, -1)
+                    for key in env.redis("keys", f"{self.runtime}/results/*")
+                )
+            )
+        else:
+            results = (
+                result
+                for device_results in vs.service_result.pop(self.runtime, {}).values()
+                for result_list in device_results.values()
+                for result in result_list
+            )
+        for batch in batched(results, vs.database["transactions"]["batch_size"]):
+            db.session.execute(insert(vs.models["result"]), batch)
+
+    @process(commit=True)
+    def end_of_run_transaction(self, results, app_reloaded):
+        if app_reloaded:
+            self.status = "Aborted (reload)"
+        elif hasattr(self, "runner"):
+            self.status = "Aborted" if self.runner.stop else "Completed"
+            self.payload = self.runner.make_json_compliant(self.runner.payload)
+        else:
+            self.status = "Aborted (error)"
+        if getattr(self, "man_minutes", None) and "summary" in results:
+            self.service.man_minutes_total += (
+                len(results["summary"]["success"]) * self.service.man_minutes
+                if self.service.man_minutes_type == "device"
+                else self.service.man_minutes * results["success"]
+            )
+        self.success = results["success"]
+        self.duration = results.get("duration", "Unknown")
+        if app_reloaded or not self.service.is_running:
+            self.service.status = "Idle"
+        state = self.get_state()
+        self.memory_size = state.get("memory_size", "Unknown")
+        self.state = state
+        if self.task and not (self.task.frequency or self.task.crontab_expression):
+            self.task.is_active = False
+
     def get_state(self):
         if self.state:
             return self.state
@@ -573,6 +650,18 @@ class Run(AbstractBase):
     def rbac_filter(cls, *args):
         return super().rbac_filter(*args, join_class="service")
 
+    @process(commit=True)
+    def run_service_table_transaction(self):
+        if env.redis_queue:
+            run_services = env.redis("smembers", f"{self.runtime}/services")
+        else:
+            run_services = vs.run_services.pop(self.runtime, [])
+        if run_services:
+            table = db.run_service_table
+            values = [{"run_id": self.id, "service_id": id} for id in run_services]
+            db.session.execute(table.delete().where(table.c.run_id == self.id))
+            db.session.execute(table.insert(), values)
+
     @property
     def service_properties(self):
         return self.service.base_properties
@@ -587,95 +676,6 @@ class Run(AbstractBase):
     @property
     def worker_properties(self):
         return self.worker.base_properties
-
-    @process(commit=True)
-    def create_all_results(self):
-        if env.redis_queue:
-            results = (
-                loads(result)
-                for result in chain.from_iterable(
-                    env.redis("lrange", key, 0, -1)
-                    for key in env.redis("keys", f"{self.runtime}/results/*")
-                )
-            )
-        else:
-            results = (
-                result
-                for device_results in vs.service_result.pop(self.runtime, {}).values()
-                for result_list in device_results.values()
-                for result in result_list
-            )
-        for batch in batched(results, vs.database["transactions"]["batch_size"]):
-            db.session.execute(insert(vs.models["result"]), batch)
-
-    @process(commit=True)
-    def create_all_reports(self):
-        reports = vs.service_report.pop(self.runtime, {})
-        for batch in batched(
-            (
-                {"runtime": self.runtime, "service_id": service_id, "content": report}
-                for service_id, report in reports.items()
-            ),
-            vs.database["transactions"]["batch_size"],
-        ):
-            db.session.execute(insert(vs.models["service_report"]), batch)
-
-    @process(commit=True)
-    def create_all_changelogs(self):
-        changelogs = vs.service_changelog.pop(self.runtime, [])
-        for batch in batched(changelogs, vs.database["transactions"]["batch_size"]):
-            db.session.execute(insert(vs.models["changelog"]), batch)
-
-    @process(commit=True)
-    def create_all_logs(self):
-        logs = []
-        for service in self.services:
-            content = "\n".join(
-                env.log_queue(self.runtime, service.id, mode="get") or []
-            )
-            if hasattr(self, "runner"):
-                content = self.runner.check_size(content, "log")
-            logs.append(
-                {"runtime": self.runtime, "service_id": service.id, "content": content}
-            )
-        db.session.execute(insert(vs.models["service_log"]), logs)
-
-    @process(commit=True)
-    def run_service_table_transaction(self):
-        if env.redis_queue:
-            run_services = env.redis("smembers", f"{self.runtime}/services")
-        else:
-            run_services = vs.run_services.pop(self.runtime, [])
-        if run_services:
-            table = db.run_service_table
-            values = [{"run_id": self.id, "service_id": id} for id in run_services]
-            db.session.execute(table.delete().where(table.c.run_id == self.id))
-            db.session.execute(table.insert(), values)
-
-    @process(commit=True)
-    def end_of_run_transaction(self, results, app_reloaded):
-        if app_reloaded:
-            self.status = "Aborted (reload)"
-        elif hasattr(self, "runner"):
-            self.status = "Aborted" if self.runner.stop else "Completed"
-            self.payload = self.runner.make_json_compliant(self.runner.payload)
-        else:
-            self.status = "Aborted (error)"
-        if getattr(self, "man_minutes", None) and "summary" in results:
-            self.service.man_minutes_total += (
-                len(results["summary"]["success"]) * self.service.man_minutes
-                if self.service.man_minutes_type == "device"
-                else self.service.man_minutes * results["success"]
-            )
-        self.success = results["success"]
-        self.duration = results.get("duration", "Unknown")
-        if app_reloaded or not self.service.is_running:
-            self.service.status = "Idle"
-        state = self.get_state()
-        self.memory_size = state.get("memory_size", "Unknown")
-        self.state = state
-        if self.task and not (self.task.frequency or self.task.crontab_expression):
-            self.task.is_active = False
 
     @process()
     def clean_stored_data(self):
