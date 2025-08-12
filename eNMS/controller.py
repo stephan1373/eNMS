@@ -346,6 +346,52 @@ class Controller(vs.TimingMixin):
         env.log("info", f"Removed from '{instance}': {log}", instance=instance)
         return instance.last_modified
 
+    def delete_corrupted_objects(self):
+        number_of_corrupted_services = 0
+        for service in db.fetch_all("service", shared=False):
+            if service.workflows or service.name == service.scoped_name:
+                continue
+            db.session.delete(service)
+            number_of_corrupted_services += 1
+        db.session.commit()
+        env.log(
+            "warning",
+            f"Number of corrupted services deleted: {number_of_corrupted_services}",
+        )
+        edges = set(db.fetch_all("workflow_edge"))
+        duplicated_edges, number_of_corrupted_edges = defaultdict(list), 0
+        for edge in list(edges):
+            services = getattr(edge.workflow, "services", [])
+            if (
+                not edge.source
+                or not edge.destination
+                or not edge.workflow
+                or edge.source not in services
+                or edge.destination not in services
+                or edge.soft_deleted
+            ):
+                edges.remove(edge)
+                db.session.delete(edge)
+                number_of_corrupted_edges += 1
+        db.session.commit()
+        for edge in edges:
+            duplicated_edges[
+                (
+                    edge.source.name,
+                    edge.destination.name,
+                    edge.workflow.name,
+                    edge.subtype,
+                )
+            ].append(edge)
+        for duplicates in duplicated_edges.values():
+            for duplicate in duplicates[1:]:
+                db.session.delete(duplicate)
+                number_of_corrupted_edges += 1
+        db.session.commit()
+        env.log(
+            "warning", f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
+        )
+
     def delete_instance(self, model, instance_id):
         try:
             return db.delete(model, id=instance_id)
@@ -353,6 +399,17 @@ class Controller(vs.TimingMixin):
             return {"alert": "Error 403 - Not Authorized."}
         except Exception as exc:
             return {"alert": f"Unable to delete {model} ({exc})"}
+
+    def delete_soft_deleted_objects(self):
+        soft_deleted_edges = db.fetch_all("workflow_edge", soft_deleted=True)
+        for edge in soft_deleted_edges:
+            db.delete_instance(edge)
+        db.session.commit()
+        soft_deleted_services = db.fetch_all("service", soft_deleted=True)
+        for service in soft_deleted_services:
+            db.delete_instance(service)
+        db.session.commit()
+        env.log("warning", "Soft-deleted objects successfully deleted")
 
     def edit_file(self, filepath):
         scoped_path = filepath.replace(">", "/")
@@ -1115,63 +1172,6 @@ class Controller(vs.TimingMixin):
                 ),
                 key=itemgetter("text"),
             )
-
-    def delete_soft_deleted_objects(self):
-        soft_deleted_edges = db.fetch_all("workflow_edge", soft_deleted=True)
-        for edge in soft_deleted_edges:
-            db.delete_instance(edge)
-        db.session.commit()
-        soft_deleted_services = db.fetch_all("service", soft_deleted=True)
-        for service in soft_deleted_services:
-            db.delete_instance(service)
-        db.session.commit()
-        env.log("warning", "Soft-deleted objects successfully deleted")
-
-    def delete_corrupted_objects(self):
-        number_of_corrupted_services = 0
-        for service in db.fetch_all("service", shared=False):
-            if service.workflows or service.name == service.scoped_name:
-                continue
-            db.session.delete(service)
-            number_of_corrupted_services += 1
-        db.session.commit()
-        env.log(
-            "warning",
-            f"Number of corrupted services deleted: {number_of_corrupted_services}",
-        )
-        edges = set(db.fetch_all("workflow_edge"))
-        duplicated_edges, number_of_corrupted_edges = defaultdict(list), 0
-        for edge in list(edges):
-            services = getattr(edge.workflow, "services", [])
-            if (
-                not edge.source
-                or not edge.destination
-                or not edge.workflow
-                or edge.source not in services
-                or edge.destination not in services
-                or edge.soft_deleted
-            ):
-                edges.remove(edge)
-                db.session.delete(edge)
-                number_of_corrupted_edges += 1
-        db.session.commit()
-        for edge in edges:
-            duplicated_edges[
-                (
-                    edge.source.name,
-                    edge.destination.name,
-                    edge.workflow.name,
-                    edge.subtype,
-                )
-            ].append(edge)
-        for duplicates in duplicated_edges.values():
-            for duplicate in duplicates[1:]:
-                db.session.delete(duplicate)
-                number_of_corrupted_edges += 1
-        db.session.commit()
-        env.log(
-            "warning", f"Number of corrupted edges deleted: {number_of_corrupted_edges}"
-        )
 
     def json_migration_export(self, **kwargs):
         export_models = [
