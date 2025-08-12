@@ -795,12 +795,12 @@ class Run(AbstractBase):
             db.session.execute(table.insert(), values)
 
     @property
-    def service_properties(self):
-        return self.service.base_properties
-
-    @property
     def server_properties(self):
         return self.server.base_properties
+
+    @property
+    def service_properties(self):
+        return self.service.base_properties
 
     def start_run(self):
         if env.redis_queue and vs.settings["rate_limiter"].get("runs"):
@@ -909,11 +909,17 @@ class Task(AbstractBase):
         "time_before_next_run": "str",
     }
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("import_mechanism", False):
-            db.session.commit()
-            self.schedule(mode="schedule" if self.is_active else "pause")
+    def _catch_request_exceptions(func):  # noqa: N805
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except (ConnectionError, MissingSchema, ReadTimeout):
+                return "Scheduler Unreachable"
+            except Exception as exc:
+                return f"Error ({exc})"
+
+        return wrapper
 
     def delete(self):
         post(f"{vs.scheduler_address}/delete_job/{self.id}")
@@ -930,17 +936,11 @@ class Task(AbstractBase):
     def status(cls):  # noqa: N805
         return case((cls.is_active, "Active"), else_="Inactive")
 
-    def _catch_request_exceptions(func):  # noqa: N805
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            try:
-                return func(*args, **kwargs)
-            except (ConnectionError, MissingSchema, ReadTimeout):
-                return "Scheduler Unreachable"
-            except Exception as exc:
-                return f"Error ({exc})"
-
-        return wrapper
+    def update(self, **kwargs):
+        super().update(**kwargs)
+        if not kwargs.get("import_mechanism", False):
+            db.session.commit()
+            self.schedule(mode="schedule" if self.is_active else "pause")
 
     @property
     @_catch_request_exceptions
