@@ -494,6 +494,52 @@ class RunEngine:
                 self.write_state(f"placeholder/{property}", value)
         self.write_state("success", True)
 
+    def log(
+        self,
+        severity,
+        log,
+        device=None,
+        change_log=False,
+        logger=None,
+        service_log=True,
+        allow_disable=True,
+        user_defined=False,
+    ):
+        log_level = self.cache["main_run_service"]["log_level"]
+        if (
+            logger != "security"
+            and allow_disable
+            and (log_level == -1 or severity not in vs.log_levels[log_level:])
+            and not (user_defined and self.cache["main_run_service"]["show_user_logs"])
+        ):
+            return
+        if device:
+            device_name = device if isinstance(device, str) else device.name
+            log = f"DEVICE {device_name} - {log}"
+        full_log = (
+            f"RUNTIME {self.parent_runtime} - USER {self.creator} -"
+            f" SERVICE '{self.cache['service']['name']}' - {log}"
+        )
+        runtime = self.parent_runtime if self.high_performance else None
+        settings = env.log(
+            severity,
+            full_log,
+            user=self.creator,
+            change_log=change_log,
+            logger=logger,
+            runtime=runtime,
+        )
+        if service_log or logger and settings.get("service_log"):
+            run_log = (
+                f"{vs.get_time()} - {severity} - USER {self.creator} -"
+                f" SERVICE {self.cache['service']['scoped_name']} - {log}"
+            )
+            env.log_queue(self.parent_runtime, self.cache["service"]["id"], run_log)
+            if self.cache["service"]["id"] != self.cache["main_run_service"]["id"]:
+                env.log_queue(
+                    self.parent_runtime, self.cache["main_run_service"]["id"], run_log
+                )
+
     def make_json_compliant(self, input):
         def rec(value):
             if isinstance(value, dict):
@@ -726,52 +772,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def log(
-        self,
-        severity,
-        log,
-        device=None,
-        change_log=False,
-        logger=None,
-        service_log=True,
-        allow_disable=True,
-        user_defined=False,
-    ):
-        log_level = self.cache["main_run_service"]["log_level"]
-        if (
-            logger != "security"
-            and allow_disable
-            and (log_level == -1 or severity not in vs.log_levels[log_level:])
-            and not (user_defined and self.cache["main_run_service"]["show_user_logs"])
-        ):
-            return
-        if device:
-            device_name = device if isinstance(device, str) else device.name
-            log = f"DEVICE {device_name} - {log}"
-        full_log = (
-            f"RUNTIME {self.parent_runtime} - USER {self.creator} -"
-            f" SERVICE '{self.cache['service']['name']}' - {log}"
-        )
-        runtime = self.parent_runtime if self.high_performance else None
-        settings = env.log(
-            severity,
-            full_log,
-            user=self.creator,
-            change_log=change_log,
-            logger=logger,
-            runtime=runtime,
-        )
-        if service_log or logger and settings.get("service_log"):
-            run_log = (
-                f"{vs.get_time()} - {severity} - USER {self.creator} -"
-                f" SERVICE {self.cache['service']['scoped_name']} - {log}"
-            )
-            env.log_queue(self.parent_runtime, self.cache["service"]["id"], run_log)
-            if self.cache["service"]["id"] != self.cache["main_run_service"]["id"]:
-                env.log_queue(
-                    self.parent_runtime, self.cache["main_run_service"]["id"], run_log
-                )
 
     def build_notification(self, results):
         notification = {
