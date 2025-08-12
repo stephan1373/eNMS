@@ -84,6 +84,9 @@ class Device(Object):
     )
     logs = relationship("Changelog", back_populates="device")
 
+    def __repr__(self):
+        return f"{self.name} ({self.model})" if self.model else str(self.name)
+
     @classmethod
     def database_init(cls):
         for property in vs.configuration_properties:
@@ -124,6 +127,10 @@ class Device(Object):
         search_properties = super().table_search(vs.configuration_properties, **kwargs)
         return {**properties, **search_properties}
 
+    @property
+    def ui_name(self):
+        return f"{self.name} ({self.model})" if self.model else str(self.name)
+
     def update(self, **kwargs):
         old_name = self.name
         super().update(**kwargs)
@@ -142,13 +149,6 @@ class Device(Object):
             "longitude",
         )
         return {property: getattr(self, property) for property in properties}
-
-    @property
-    def ui_name(self):
-        return f"{self.name} ({self.model})" if self.model else str(self.name)
-
-    def __repr__(self):
-        return f"{self.name} ({self.model})" if self.model else str(self.name)
 
 
 class Link(Object):
