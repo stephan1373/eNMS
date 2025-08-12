@@ -482,6 +482,25 @@ class Database:
 
         return SubDeclarativeMeta
 
+    def delete(self, model, **kwargs):
+        instance = self.fetch(model, **{"rbac": "edit", **kwargs})
+        return self.delete_instance(instance)
+
+    def delete_all(self, *models):
+        for model in models:
+            for instance in self.fetch_all(model):
+                self.delete_instance(instance, call_delete=model != "file")
+            self.session.commit()
+
+    def export(self, model, private_properties=False):
+        kwargs = {}
+        if model in ("service", "workflow_edge"):
+            kwargs = {"soft_deleted": False}
+        return [
+            instance.to_dict(export=True, private_properties=private_properties)
+            for instance in self.fetch_all(model, **kwargs)
+        ]
+
     @staticmethod
     def dict_conversion(input):
         try:
@@ -533,10 +552,6 @@ class Database:
                 "or the user does not have access"
             )
 
-    def delete(self, model, **kwargs):
-        instance = self.fetch(model, **{"rbac": "edit", **kwargs})
-        return self.delete_instance(instance)
-
     def fetch_all(self, model, **kwargs):
         if (
             "name_in" in kwargs
@@ -557,21 +572,6 @@ class Database:
         if not abort_delete:
             self.session.delete(instance)
         return serialized_instance
-
-    def delete_all(self, *models):
-        for model in models:
-            for instance in self.fetch_all(model):
-                self.delete_instance(instance, call_delete=model != "file")
-            self.session.commit()
-
-    def export(self, model, private_properties=False):
-        kwargs = {}
-        if model in ("service", "workflow_edge"):
-            kwargs = {"soft_deleted": False}
-        return [
-            instance.to_dict(export=True, private_properties=private_properties)
-            for instance in self.fetch_all(model, **kwargs)
-        ]
 
     def query(self, model, rbac="read", user=None, properties=None):
         if properties:
