@@ -496,6 +496,136 @@ class RunEngine:
             self.log("error", log)
             return {"error": log}
 
+    def run_job_and_collect_results(self, device=None, commit=True):
+        self.log("info", "STARTING", device)
+        start = datetime.now().replace(microsecond=0)
+        results = {"device_target": getattr(device, "name", None)}
+        if self.stop:
+            return {"success": False, **results}
+        try:
+            if self.service.iteration_values:
+                targets_results = {}
+                targets = self.eval(self.service.iteration_values, **locals())[0]
+                if not isinstance(targets, dict):
+                    if isinstance(targets, (GeneratorType, map, filter)):
+                        targets = list(targets)
+                    targets = dict(zip(map(str, targets), targets))
+                for target_name, target_value in targets.items():
+                    self.payload_helper(
+                        self.iteration_variable_name,
+                        target_value,
+                        device=getattr(device, "name", None),
+                    )
+                    targets_results[target_name] = self.run_service_job(device)
+                results.update(
+                    {
+                        "result": targets_results,
+                        "success": all(
+                            result["success"] for result in targets_results.values()
+                        ),
+                    }
+                )
+            else:
+                results.update(self.run_service_job(device))
+        except Exception:
+            formatted_error = "\n".join(format_exc().splitlines())
+            results.update({"success": False, "result": formatted_error})
+            self.log("error", formatted_error, device)
+        results["duration"] = str(datetime.now().replace(microsecond=0) - start)
+        if device:
+            if getattr(self, "close_connection", False) or self.is_main_run:
+                self.close_device_connection(device.name)
+            status = "success" if results["success"] else "failure"
+            self.write_state(f"{self.progress_key}/{status}", 1, "increment")
+            self.create_result(
+                {"runtime": vs.get_time(), **results}, device, commit=commit
+            )
+        self.log("info", "FINISHED", device)
+        if self.waiting_time:
+            self.log("info", f"SLEEP {self.waiting_time} seconds...", device)
+            sleep(self.waiting_time)
+        if not results["success"]:
+            self.write_state("success", False)
+        return results
+
+    def run_service_job(self, device):
+        args = (device,) if device else ()
+        retries, total_retries = self.number_of_retries + 1, 0
+        while retries and total_retries < self.max_number_of_retries:
+            if self.stop:
+                self.log("error", f"ABORTING {device.name} (STOP)")
+                return {"success": False, "result": "Aborted"}
+            retries -= 1
+            total_retries += 1
+            try:
+                if self.number_of_retries - retries:
+                    retry = self.number_of_retries - retries
+                    self.log("error", f"RETRY #{retry}", device)
+                if self.service.preprocessing:
+                    try:
+                        self.eval(
+                            self.service.preprocessing, function="exec", **locals()
+                        )
+                    except SystemExit:
+                        pass
+                try:
+                    model = vs.models[self.service.type]
+                    results = model.job(self.service, self, *args)
+                except Exception:
+                    result = "\n".join(format_exc().splitlines())
+                    self.log("error", result, device)
+                    results = {"success": False, "result": result}
+                results = self.convert_result(results)
+                if "success" not in results:
+                    results["success"] = True
+                if self.dry_run:
+                    self.write_state("dry_run", True)
+                    results["dry_run"] = True
+                if self.service.postprocessing:
+                    if (
+                        self.postprocessing_mode == "always"
+                        or self.postprocessing_mode == "failure"
+                        and not results["success"]
+                        or self.postprocessing_mode == "success"
+                        and results["success"]
+                    ):
+                        try:
+                            _, exec_variables = self.eval(
+                                self.service.postprocessing, function="exec", **locals()
+                            )
+                            if isinstance(exec_variables.get("retries"), int):
+                                retries = exec_variables["retries"]
+                        except SystemExit:
+                            pass
+                    else:
+                        log = (
+                            "Postprocessing was skipped as it is set to "
+                            f"{self.postprocessing_mode} only, and the service "
+                            f"{'passed' if results['success'] else 'failed'})"
+                        )
+                        self.log("warning", log, device)
+                run_validation = (
+                    self.validation_condition == "always"
+                    or self.validation_condition == "failure"
+                    and not results["success"]
+                    or self.validation_condition == "success"
+                    and results["success"]
+                )
+                if run_validation:
+                    section = self.eval(self.validation_section, results=results)[0]
+                    results.update(self.validate_result(section, device))
+                    if self.negative_logic:
+                        results["success"] = not results["success"]
+                if results["success"]:
+                    return results
+                elif retries:
+                    sleep(self.time_between_retries)
+            except Exception:
+                result = "\n".join(format_exc().splitlines())
+                self.log("error", result, device)
+                results = {"success": False, "result": result}
+        return results
+
     def start_run(self):
         self.init_state()
         self.write_state("status", "Running")
@@ -596,136 +726,6 @@ class RunEngine:
             parent_runtime=self.parent_runtime,
         )
         return service_run.start_run()["success"]
-
-    def run_service_job(self, device):
-        args = (device,) if device else ()
-        retries, total_retries = self.number_of_retries + 1, 0
-        while retries and total_retries < self.max_number_of_retries:
-            if self.stop:
-                self.log("error", f"ABORTING {device.name} (STOP)")
-                return {"success": False, "result": "Aborted"}
-            retries -= 1
-            total_retries += 1
-            try:
-                if self.number_of_retries - retries:
-                    retry = self.number_of_retries - retries
-                    self.log("error", f"RETRY #{retry}", device)
-                if self.service.preprocessing:
-                    try:
-                        self.eval(
-                            self.service.preprocessing, function="exec", **locals()
-                        )
-                    except SystemExit:
-                        pass
-                try:
-                    model = vs.models[self.service.type]
-                    results = model.job(self.service, self, *args)
-                except Exception:
-                    result = "\n".join(format_exc().splitlines())
-                    self.log("error", result, device)
-                    results = {"success": False, "result": result}
-                results = self.convert_result(results)
-                if "success" not in results:
-                    results["success"] = True
-                if self.dry_run:
-                    self.write_state("dry_run", True)
-                    results["dry_run"] = True
-                if self.service.postprocessing:
-                    if (
-                        self.postprocessing_mode == "always"
-                        or self.postprocessing_mode == "failure"
-                        and not results["success"]
-                        or self.postprocessing_mode == "success"
-                        and results["success"]
-                    ):
-                        try:
-                            _, exec_variables = self.eval(
-                                self.service.postprocessing, function="exec", **locals()
-                            )
-                            if isinstance(exec_variables.get("retries"), int):
-                                retries = exec_variables["retries"]
-                        except SystemExit:
-                            pass
-                    else:
-                        log = (
-                            "Postprocessing was skipped as it is set to "
-                            f"{self.postprocessing_mode} only, and the service "
-                            f"{'passed' if results['success'] else 'failed'})"
-                        )
-                        self.log("warning", log, device)
-                run_validation = (
-                    self.validation_condition == "always"
-                    or self.validation_condition == "failure"
-                    and not results["success"]
-                    or self.validation_condition == "success"
-                    and results["success"]
-                )
-                if run_validation:
-                    section = self.eval(self.validation_section, results=results)[0]
-                    results.update(self.validate_result(section, device))
-                    if self.negative_logic:
-                        results["success"] = not results["success"]
-                if results["success"]:
-                    return results
-                elif retries:
-                    sleep(self.time_between_retries)
-            except Exception:
-                result = "\n".join(format_exc().splitlines())
-                self.log("error", result, device)
-                results = {"success": False, "result": result}
-        return results
-
-    def run_job_and_collect_results(self, device=None, commit=True):
-        self.log("info", "STARTING", device)
-        start = datetime.now().replace(microsecond=0)
-        results = {"device_target": getattr(device, "name", None)}
-        if self.stop:
-            return {"success": False, **results}
-        try:
-            if self.service.iteration_values:
-                targets_results = {}
-                targets = self.eval(self.service.iteration_values, **locals())[0]
-                if not isinstance(targets, dict):
-                    if isinstance(targets, (GeneratorType, map, filter)):
-                        targets = list(targets)
-                    targets = dict(zip(map(str, targets), targets))
-                for target_name, target_value in targets.items():
-                    self.payload_helper(
-                        self.iteration_variable_name,
-                        target_value,
-                        device=getattr(device, "name", None),
-                    )
-                    targets_results[target_name] = self.run_service_job(device)
-                results.update(
-                    {
-                        "result": targets_results,
-                        "success": all(
-                            result["success"] for result in targets_results.values()
-                        ),
-                    }
-                )
-            else:
-                results.update(self.run_service_job(device))
-        except Exception:
-            formatted_error = "\n".join(format_exc().splitlines())
-            results.update({"success": False, "result": formatted_error})
-            self.log("error", formatted_error, device)
-        results["duration"] = str(datetime.now().replace(microsecond=0) - start)
-        if device:
-            if getattr(self, "close_connection", False) or self.is_main_run:
-                self.close_device_connection(device.name)
-            status = "success" if results["success"] else "failure"
-            self.write_state(f"{self.progress_key}/{status}", 1, "increment")
-            self.create_result(
-                {"runtime": vs.get_time(), **results}, device, commit=commit
-            )
-        self.log("info", "FINISHED", device)
-        if self.waiting_time:
-            self.log("info", f"SLEEP {self.waiting_time} seconds...", device)
-            sleep(self.waiting_time)
-        if not results["success"]:
-            self.write_state("success", False)
-        return results
 
     def log(
         self,
