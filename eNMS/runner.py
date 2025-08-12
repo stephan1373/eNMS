@@ -816,6 +816,12 @@ class RunEngine:
                 results = {"success": False, "result": result}
         return results
 
+    def safe_log(self, original, modified):
+        if "get_secret" in original or "get_credential" in original:
+            return original
+        else:
+            return modified
+
     def start_run(self):
         self.init_state()
         self.write_state("status", "Running")
@@ -867,6 +873,25 @@ class RunEngine:
             return bool(env.redis("get", f"stop/{self.parent_runtime}"))
         else:
             return vs.run_stop[self.parent_runtime]
+
+    def sub(self, input, variables):
+        regex = compile("{{(.*?)}}")
+        variables["payload"] = self.payload
+
+        def replace(match):
+            return str(self.eval(match.group()[2:-2], **variables)[0])
+
+        def rec(input):
+            if isinstance(input, str):
+                return regex.sub(replace, input)
+            elif isinstance(input, list):
+                return [rec(item) for item in input]
+            elif isinstance(input, dict):
+                return {rec(key): rec(value) for key, value in input.items()}
+            else:
+                return input
+
+        return rec(input)
 
     def validate_result(self, section, device):
         if self.validation_method == "text":
@@ -951,31 +976,6 @@ class RunEngine:
             )
             raise
         return results, exec_variables
-
-    def safe_log(self, original, modified):
-        if "get_secret" in original or "get_credential" in original:
-            return original
-        else:
-            return modified
-
-    def sub(self, input, variables):
-        regex = compile("{{(.*?)}}")
-        variables["payload"] = self.payload
-
-        def replace(match):
-            return str(self.eval(match.group()[2:-2], **variables)[0])
-
-        def rec(input):
-            if isinstance(input, str):
-                return regex.sub(replace, input)
-            elif isinstance(input, list):
-                return [rec(item) for item in input]
-            elif isinstance(input, dict):
-                return {rec(key): rec(value) for key, value in input.items()}
-            else:
-                return input
-
-        return rec(input)
 
 
 class NetworkManagement:
