@@ -153,10 +153,16 @@ class Service(AbstractBase):
             "scoped_name": self.scoped_name,
         }
 
-    def delete(self):
-        if self.name in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
-            return {"log": f"It is not allowed to delete '{self.name}'."}
-        self.check_restriction_to_owners("edit")
+    @property
+    def filename(self):
+        return vs.strip_all(self.name)
+
+    @property
+    def is_running(self):
+        if env.redis_queue:
+            return bool(int(env.redis("get", f"services/{self.id}/runs")))
+        else:
+            return bool(vs.service_run_count[self.id])
 
     def check_restriction_to_owners(self, mode):
         if (
@@ -169,6 +175,37 @@ class Service(AbstractBase):
             )
         ):
             raise db.rbac_error("Not Authorized (restricted to owners).")
+
+    def delete(self):
+        if self.name in ("[Shared] Start", "[Shared] End", "[Shared] Placeholder"):
+            return {"log": f"It is not allowed to delete '{self.name}'."}
+        self.check_restriction_to_owners("edit")
+
+    def duplicate(self, workflow=None):
+        index = 0
+        while True:
+            number = f" ({index})" if index else ""
+            scoped_name = f"{self.scoped_name}{number}"
+            name = f"[{workflow.name}] {scoped_name}" if workflow else scoped_name
+            if not db.fetch("service", allow_none=True, name=name):
+                service = super().duplicate(
+                    name=name, scoped_name=scoped_name, shared=False
+                )
+                break
+            index += 1
+        if workflow:
+            service.target_devices = self.target_devices
+            service.target_pools = self.target_pools
+            workflow.services.append(service)
+        service.persistent_id = vs.get_persistent_id()
+        service.set_name()
+        return service
+
+    def get_ancestors(self):
+        def rec(service):
+            return {service} | set().union(*(rec(w) for w in service.workflows))
+
+        return rec(self)
 
     def post_update(self):
         if len(self.workflows) == 1 and not self.shared and self.workflows[0].path:
@@ -205,54 +242,17 @@ class Service(AbstractBase):
             for workflow in self.workflows:
                 workflow.positions[self.name] = workflow.positions.pop(old_name, [0, 0])
 
-    def update_last_modified_properties(self):
-        super().update_last_modified_properties()
-        for ancestor in self.get_ancestors():
-            ancestor.last_modified = self.last_modified
-            ancestor.last_modified_by = self.last_modified_by
-
-    def get_ancestors(self):
-        def rec(service):
-            return {service} | set().union(*(rec(w) for w in service.workflows))
-
-        return rec(self)
-
-    def duplicate(self, workflow=None):
-        index = 0
-        while True:
-            number = f" ({index})" if index else ""
-            scoped_name = f"{self.scoped_name}{number}"
-            name = f"[{workflow.name}] {scoped_name}" if workflow else scoped_name
-            if not db.fetch("service", allow_none=True, name=name):
-                service = super().duplicate(
-                    name=name, scoped_name=scoped_name, shared=False
-                )
-                break
-            index += 1
-        if workflow:
-            service.target_devices = self.target_devices
-            service.target_pools = self.target_pools
-            workflow.services.append(service)
-        service.persistent_id = vs.get_persistent_id()
-        service.set_name()
-        return service
-
-    @property
-    def filename(self):
-        return vs.strip_all(self.name)
-
-    @property
-    def is_running(self):
-        if env.redis_queue:
-            return bool(int(env.redis("get", f"services/{self.id}/runs")))
-        else:
-            return bool(vs.service_run_count[self.id])
-
     def update_count(self, count):
         if env.redis_queue:
             env.redis("incr", f"services/{self.id}/runs", count)
         else:
             vs.service_run_count[self.id] += count
+
+    def update_last_modified_properties(self):
+        super().update_last_modified_properties()
+        for ancestor in self.get_ancestors():
+            ancestor.last_modified = self.last_modified
+            ancestor.last_modified_by = self.last_modified_by
 
     def set_name(self, name=None):
         if self.shared:
