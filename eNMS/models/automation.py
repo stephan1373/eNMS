@@ -466,7 +466,7 @@ class Run(AbstractBase):
             if run.worker:
                 continue
             results = {"success": False, "result": "Aborted (reload)"}
-            run.finalize_run(results, app_reloaded=True)
+            run.run_finalize(results, app_reloaded=True)
         if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
             env.redis_queue.flushdb()
 
@@ -492,6 +492,42 @@ class Run(AbstractBase):
             return wrapper
 
         return decorator
+
+    @property
+    def cache(self):
+        creator = db.fetch("user", name=self.creator, rbac=None)
+        return {
+            "creator": {
+                "name": creator.name,
+                "email": creator.email,
+                "is_admin": creator.is_admin,
+            },
+            "main_run": self.base_properties,
+            "main_run_service": {
+                "high_performance": self.service.high_performance,
+                "log_level": int(self.service.log_level),
+                "show_user_logs": self.service.show_user_logs,
+                "id": self.service.id,
+            },
+            "topology": self.topology,
+            "global_variables": {
+                "dict_to_string": vs.dict_to_string,
+                "encrypt": env.encrypt_password,
+                "placeholder": self.topology["services"].get(self.placeholder_id),
+                "prepend_filepath": vs.prepend_filepath,
+                "runtime": self.runtime,
+                "send_email": env.send_email,
+                "server": vs.server_dict,
+                "trigger": self.trigger,
+                "try_commit": db.try_commit,
+                "try_set": db.try_set,
+                "user": {
+                    "name": creator.name,
+                    "email": creator.email,
+                    "is_admin": creator.is_admin,
+                },
+            },
+        }
 
     @process()
     def clean_stored_data(self):
@@ -600,6 +636,36 @@ class Run(AbstractBase):
         if self.task and not (self.task.frequency or self.task.crontab_expression):
             self.task.is_active = False
 
+    def get_run_targets(self):
+        devices, pools = [], []
+        if self.restart_run and self.payload["targets"] == "Manually defined":
+            devices = db.fetch_all(
+                "device", in_in=self.payload["restart_devices"], user=self.creator
+            )
+            pools = db.fetch_all(
+                "pool", in_in=self.payload["restart_pools"], user=self.creator
+            )
+        elif self.restart_run and self.payload["targets"] == "Restart run":
+            devices = self.restart_run.target_devices
+            pools = self.restart_run.target_pools
+        elif self.parameterized_run:
+            device_ids = self.payload["form"].get("target_devices", [])
+            pool_ids = self.payload["form"].get("target_pools", [])
+            devices = set(db.fetch_all("device", in_in=device_ids, user=self.creator))
+            pools = db.fetch_all("pool", in_in=pool_ids, user=self.creator)
+            query = self.payload["form"].get("device_query")
+            if query:
+                property = self.payload["form"].get("device_query_property", "name")
+                devices |= self.runner.compute_devices_from_query(query, property)
+        elif self.target_devices or self.target_pools:
+            devices, pools = self.target_devices, self.target_pools
+        else:
+            devices = getattr(self.placeholder or self.service, "target_devices")
+            pools = getattr(self.placeholder or self.service, "target_pools")
+        self.target_devices, self.target_pools = list(devices), list(pools)
+        db.session.commit()
+        return set(devices) | set().union(*(pool.devices for pool in pools))
+
     def get_state(self):
         if self.state:
             return self.state
@@ -663,6 +729,15 @@ class Run(AbstractBase):
             if instance.type == "workflow":
                 instances |= set(instance.services) | set(instance.edges)
 
+    def post_process_results(self, results):
+        if self.trigger == "REST API" and self.service.high_performance:
+            results["devices"] = {}
+            for result in self.results:
+                if not result.device:
+                    continue
+                results["devices"][result.device.name] = result.result
+        return results
+
     @property
     def progress(self):
         progress = self.get_state().get(self.service.persistent_id, {}).get("progress")
@@ -679,6 +754,33 @@ class Run(AbstractBase):
     @classmethod
     def rbac_filter(cls, *args):
         return super().rbac_filter(*args, join_class="service")
+
+    def run(self):
+        start_time = datetime.now()
+        try:
+            results = self.start_run()
+        except Exception:
+            log = f"Run '{self.name}' failed to run:\n{format_exc()}"
+            results = {"success": False, "result": log}
+            if hasattr(self, "runner"):
+                self.runner.log("critical", log)
+            else:
+                env.log_queue(self.runtime, self.service.id, log)
+        results["duration"] = str(datetime.now() - start_time)
+        return self.run_finalize(results)
+
+    def run_finalize(self, results, app_reloaded=False):
+        self.run_service_table_transaction()
+        if self.service.high_performance:
+            self.create_all_results()
+            self.create_all_reports()
+            self.create_all_changelogs()
+        self.create_all_logs()
+        self.close_remaining_connections()
+        self.end_of_run_transaction(results, app_reloaded)
+        self.service.update_count(-1)
+        self.clean_stored_data()
+        return self.post_process_results(results)
 
     @process(commit=True)
     def run_service_table_transaction(self):
@@ -699,87 +801,6 @@ class Run(AbstractBase):
     @property
     def server_properties(self):
         return self.server.base_properties
-
-    def table_properties(self, **kwargs):
-        return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
-
-    @process(raise_exception=True)
-    def update_target_pools(self):
-        for service in self.topology["services"].values():
-            if service.update_target_pools and service.target_pools:
-                for pool in service.target_pools:
-                    pool.compute_pool()
-        db.session.commit()
-
-    @property
-    def worker_properties(self):
-        return self.worker.base_properties
-
-    @property
-    def cache(self):
-        creator = db.fetch("user", name=self.creator, rbac=None)
-        return {
-            "creator": {
-                "name": creator.name,
-                "email": creator.email,
-                "is_admin": creator.is_admin,
-            },
-            "main_run": self.base_properties,
-            "main_run_service": {
-                "high_performance": self.service.high_performance,
-                "log_level": int(self.service.log_level),
-                "show_user_logs": self.service.show_user_logs,
-                "id": self.service.id,
-            },
-            "topology": self.topology,
-            "global_variables": {
-                "dict_to_string": vs.dict_to_string,
-                "encrypt": env.encrypt_password,
-                "placeholder": self.topology["services"].get(self.placeholder_id),
-                "prepend_filepath": vs.prepend_filepath,
-                "runtime": self.runtime,
-                "send_email": env.send_email,
-                "server": vs.server_dict,
-                "trigger": self.trigger,
-                "try_commit": db.try_commit,
-                "try_set": db.try_set,
-                "user": {
-                    "name": creator.name,
-                    "email": creator.email,
-                    "is_admin": creator.is_admin,
-                },
-            },
-        }
-
-    def get_run_targets(self):
-        devices, pools = [], []
-        if self.restart_run and self.payload["targets"] == "Manually defined":
-            devices = db.fetch_all(
-                "device", in_in=self.payload["restart_devices"], user=self.creator
-            )
-            pools = db.fetch_all(
-                "pool", in_in=self.payload["restart_pools"], user=self.creator
-            )
-        elif self.restart_run and self.payload["targets"] == "Restart run":
-            devices = self.restart_run.target_devices
-            pools = self.restart_run.target_pools
-        elif self.parameterized_run:
-            device_ids = self.payload["form"].get("target_devices", [])
-            pool_ids = self.payload["form"].get("target_pools", [])
-            devices = set(db.fetch_all("device", in_in=device_ids, user=self.creator))
-            pools = db.fetch_all("pool", in_in=pool_ids, user=self.creator)
-            query = self.payload["form"].get("device_query")
-            if query:
-                property = self.payload["form"].get("device_query_property", "name")
-                devices |= self.runner.compute_devices_from_query(query, property)
-        elif self.target_devices or self.target_pools:
-            devices, pools = self.target_devices, self.target_pools
-        else:
-            devices = getattr(self.placeholder or self.service, "target_devices")
-            pools = getattr(self.placeholder or self.service, "target_pools")
-        self.target_devices, self.target_pools = list(devices), list(pools)
-        db.session.commit()
-        return set(devices) | set().union(*(pool.devices for pool in pools))
 
     def start_run(self):
         if env.redis_queue and vs.settings["rate_limiter"].get("runs"):
@@ -838,41 +859,20 @@ class Run(AbstractBase):
             self.runner.run_targets = self.get_run_targets()
         return self.runner.start_run()
 
-    def post_process_results(self, results):
-        if self.trigger == "REST API" and self.service.high_performance:
-            results["devices"] = {}
-            for result in self.results:
-                if not result.device:
-                    continue
-                results["devices"][result.device.name] = result.result
-        return results
+    def table_properties(self, **kwargs):
+        return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
 
-    def finalize_run(self, results, app_reloaded=False):
-        self.run_service_table_transaction()
-        if self.service.high_performance:
-            self.create_all_results()
-            self.create_all_reports()
-            self.create_all_changelogs()
-        self.create_all_logs()
-        self.close_remaining_connections()
-        self.end_of_run_transaction(results, app_reloaded)
-        self.service.update_count(-1)
-        self.clean_stored_data()
-        return self.post_process_results(results)
+    @process(raise_exception=True)
+    def update_target_pools(self):
+        for service in self.topology["services"].values():
+            if service.update_target_pools and service.target_pools:
+                for pool in service.target_pools:
+                    pool.compute_pool()
+        db.session.commit()
 
-    def run(self):
-        start_time = datetime.now()
-        try:
-            results = self.start_run()
-        except Exception:
-            log = f"Run '{self.name}' failed to run:\n{format_exc()}"
-            results = {"success": False, "result": log}
-            if hasattr(self, "runner"):
-                self.runner.log("critical", log)
-            else:
-                env.log_queue(self.runtime, self.service.id, log)
-        results["duration"] = str(datetime.now() - start_time)
-        return self.finalize_run(results)
+    @property
+    def worker_properties(self):
+        return self.worker.base_properties
 
 
 class Task(AbstractBase):
