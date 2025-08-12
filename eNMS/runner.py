@@ -635,6 +635,28 @@ class RunEngine:
             self.log("error", log)
             return {"error": log}
 
+    def match_dictionary(self, result, match, first=True):
+        if self.validation_method == "dict_equal":
+            return result == self.dict_match
+        else:
+            copy = deepcopy(match) if first else match
+            if isinstance(result, dict):
+                for k, v in result.items():
+                    if isinstance(copy.get(k), list) and isinstance(v, list):
+                        for item in v:
+                            try:
+                                copy[k].remove(item)
+                            except ValueError:
+                                pass
+                        pop_key = not copy[k]
+                    else:
+                        pop_key = k in copy and copy[k] == v
+                    copy.pop(k) if pop_key else self.match_dictionary(v, copy, False)
+            elif isinstance(result, list):
+                for item in result:
+                    self.match_dictionary(item, copy, False)
+            return not copy
+
     def notify(self, results, report):
         self.log("info", f"Sending {self.send_notification_method} notification...")
         notification = self.build_notification(results)
@@ -940,28 +962,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def match_dictionary(self, result, match, first=True):
-        if self.validation_method == "dict_equal":
-            return result == self.dict_match
-        else:
-            copy = deepcopy(match) if first else match
-            if isinstance(result, dict):
-                for k, v in result.items():
-                    if isinstance(copy.get(k), list) and isinstance(v, list):
-                        for item in v:
-                            try:
-                                copy[k].remove(item)
-                            except ValueError:
-                                pass
-                        pop_key = not copy[k]
-                    else:
-                        pop_key = k in copy and copy[k] == v
-                    copy.pop(k) if pop_key else self.match_dictionary(v, copy, False)
-            elif isinstance(result, list):
-                for item in result:
-                    self.match_dictionary(item, copy, False)
-            return not copy
 
     def eval(_self, query, function="eval", **locals):  # noqa: N805
         exec_variables = _self.global_variables(**locals)
