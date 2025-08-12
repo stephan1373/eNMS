@@ -1173,27 +1173,6 @@ class Controller(vs.TimingMixin):
                 key=itemgetter("text"),
             )
 
-    def json_migration_export(self, **kwargs):
-        export_models = [
-            class_name
-            for class_name in vs.models
-            if class_name not in db.json_migration["no_export"]
-        ]
-        option = (
-            OPT_INDENT_2 | OPT_SORT_KEYS
-            if kwargs.get("export_format") == "structured"
-            else None
-        )
-        path = Path(vs.migration_path) / kwargs["name"]
-        for cls_name in export_models:
-            self.json_export_properties(cls_name, path, option)
-            self.json_export_scalar(cls_name, path, option)
-        for association_name in db.associations:
-            self.json_export_association(association_name, path, option)
-        with open("metadata.json", "wb") as file:
-            metadata = {"version": vs.server_version, "export_time": datetime.now()}
-            file.write(dumps(metadata))
-
     def json_export_association(self, association_name, path, option):
         association_table = db.associations[association_name]
         table = association_table["table"]
@@ -1211,25 +1190,6 @@ class Controller(vs.TimingMixin):
             return
         with open(path / f"{association_name}.json", "wb") as file:
             file.write(dumps(result, option=option))
-
-    def json_export_scalar(self, cls_name, path, option):
-        for property, relation in vs.relationships[cls_name].items():
-            if relation["list"]:
-                continue
-            if f"{cls_name}_{property}" in db.json_migration["no_export"]:
-                continue
-            cls = vs.models[cls_name]
-            alias = aliased(vs.models[relation["model"]], flat=True)
-            statement = (
-                select(getattr(cls, "name"), getattr(alias, "name"))
-                .select_from(cls)
-                .join(alias, getattr(cls, f"{property}_id") == getattr(alias, "id"))
-            )
-            result = dict(db.session.execute(statement).all())
-            if not result:
-                continue
-            with open(path / f"{cls_name}_{property}.json", "wb") as file:
-                file.write(dumps(result, option=option))
 
     def json_export_properties(self, cls_name, path, option):
         cls = vs.models[cls_name]
@@ -1255,6 +1215,46 @@ class Controller(vs.TimingMixin):
             makedirs(path)
         with open(path / f"{cls_name}.json", "wb") as file:
             file.write(dumps(instances, option=option))
+
+    def json_export_scalar(self, cls_name, path, option):
+        for property, relation in vs.relationships[cls_name].items():
+            if relation["list"]:
+                continue
+            if f"{cls_name}_{property}" in db.json_migration["no_export"]:
+                continue
+            cls = vs.models[cls_name]
+            alias = aliased(vs.models[relation["model"]], flat=True)
+            statement = (
+                select(getattr(cls, "name"), getattr(alias, "name"))
+                .select_from(cls)
+                .join(alias, getattr(cls, f"{property}_id") == getattr(alias, "id"))
+            )
+            result = dict(db.session.execute(statement).all())
+            if not result:
+                continue
+            with open(path / f"{cls_name}_{property}.json", "wb") as file:
+                file.write(dumps(result, option=option))
+
+    def json_migration_export(self, **kwargs):
+        export_models = [
+            class_name
+            for class_name in vs.models
+            if class_name not in db.json_migration["no_export"]
+        ]
+        option = (
+            OPT_INDENT_2 | OPT_SORT_KEYS
+            if kwargs.get("export_format") == "structured"
+            else None
+        )
+        path = Path(vs.migration_path) / kwargs["name"]
+        for cls_name in export_models:
+            self.json_export_properties(cls_name, path, option)
+            self.json_export_scalar(cls_name, path, option)
+        for association_name in db.associations:
+            self.json_export_association(association_name, path, option)
+        with open("metadata.json", "wb") as file:
+            metadata = {"version": vs.server_version, "export_time": datetime.now()}
+            file.write(dumps(metadata))
 
     def json_import_properties(self, cls_name, path):
         filepath = path / f"{cls_name}.json"
