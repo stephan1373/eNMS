@@ -153,17 +153,6 @@ class Service(AbstractBase):
             "scoped_name": self.scoped_name,
         }
 
-    @property
-    def filename(self):
-        return vs.strip_all(self.name)
-
-    @property
-    def is_running(self):
-        if env.redis_queue:
-            return bool(int(env.redis("get", f"services/{self.id}/runs")))
-        else:
-            return bool(vs.service_run_count[self.id])
-
     def check_restriction_to_owners(self, mode):
         if (
             not getattr(current_user, "is_admin", True)
@@ -201,11 +190,22 @@ class Service(AbstractBase):
         service.set_name()
         return service
 
+    @property
+    def filename(self):
+        return vs.strip_all(self.name)
+
     def get_ancestors(self):
         def rec(service):
             return {service} | set().union(*(rec(w) for w in service.workflows))
 
         return rec(self)
+
+    @property
+    def is_running(self):
+        if env.redis_queue:
+            return bool(int(env.redis("get", f"services/{self.id}/runs")))
+        else:
+            return bool(vs.service_run_count[self.id])
 
     def post_update(self):
         if len(self.workflows) == 1 and not self.shared and self.workflows[0].path:
