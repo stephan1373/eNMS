@@ -245,6 +245,60 @@ class Pool(AbstractBase):
     )
     logs = relationship("Changelog", back_populates="pool")
 
+    def compute_pool(self, commit=False):
+        def transaction():
+            for model in self.models:
+                if not self.manually_defined:
+                    kwargs = {"bulk": "object", "rbac": None, "form": {}}
+                    for property in vs.properties["filtering"][model]:
+                        value = getattr(self, f"{model}_{property}")
+                        match_type = getattr(self, f"{model}_{property}_match")
+                        invert_type = getattr(self, f"{model}_{property}_invert")
+                        if not value and match_type != "empty":
+                            continue
+                        kwargs["form"].update(
+                            {
+                                property: value,
+                                f"{property}_filter": match_type,
+                                f"{property}_invert": invert_type,
+                            }
+                        )
+                    fast_compute = vs.settings["pool"]["fast_compute"]
+                    if kwargs["form"]:
+                        if model == "device" and not self.include_networks:
+                            kwargs["sql_contraints"] = [
+                                vs.models["device"].type != "network"
+                            ]
+                        if fast_compute:
+                            kwargs["properties"] = ["id"]
+                        instances = controller.filtering(model, **kwargs)
+                    else:
+                        instances = []
+                    if fast_compute:
+                        table = getattr(db, f"pool_{model}_table")
+                        db.session.execute(
+                            table.delete().where(table.c.pool_id == self.id)
+                        )
+                        if instances:
+                            values = [
+                                {"pool_id": self.id, f"{model}_id": instance.id}
+                                for instance in instances
+                            ]
+                            for batch in batched(
+                                values, vs.database["transactions"]["batch_size"]
+                            ):
+                                db.session.execute(table.insert(), batch)
+                    else:
+                        setattr(self, f"{model}s", instances)
+                else:
+                    instances = getattr(self, f"{model}s")
+                setattr(self, f"{model}_number", len(instances))
+
+        if commit:
+            db.try_commit(transaction)
+        else:
+            transaction()
+
     @classmethod
     def configure_events(cls):
         for model in cls.models:
@@ -299,60 +353,6 @@ class Pool(AbstractBase):
 
     def post_update(self):
         self.compute_pool()
-
-    def compute_pool(self, commit=False):
-        def transaction():
-            for model in self.models:
-                if not self.manually_defined:
-                    kwargs = {"bulk": "object", "rbac": None, "form": {}}
-                    for property in vs.properties["filtering"][model]:
-                        value = getattr(self, f"{model}_{property}")
-                        match_type = getattr(self, f"{model}_{property}_match")
-                        invert_type = getattr(self, f"{model}_{property}_invert")
-                        if not value and match_type != "empty":
-                            continue
-                        kwargs["form"].update(
-                            {
-                                property: value,
-                                f"{property}_filter": match_type,
-                                f"{property}_invert": invert_type,
-                            }
-                        )
-                    fast_compute = vs.settings["pool"]["fast_compute"]
-                    if kwargs["form"]:
-                        if model == "device" and not self.include_networks:
-                            kwargs["sql_contraints"] = [
-                                vs.models["device"].type != "network"
-                            ]
-                        if fast_compute:
-                            kwargs["properties"] = ["id"]
-                        instances = controller.filtering(model, **kwargs)
-                    else:
-                        instances = []
-                    if fast_compute:
-                        table = getattr(db, f"pool_{model}_table")
-                        db.session.execute(
-                            table.delete().where(table.c.pool_id == self.id)
-                        )
-                        if instances:
-                            values = [
-                                {"pool_id": self.id, f"{model}_id": instance.id}
-                                for instance in instances
-                            ]
-                            for batch in batched(
-                                values, vs.database["transactions"]["batch_size"]
-                            ):
-                                db.session.execute(table.insert(), batch)
-                    else:
-                        setattr(self, f"{model}s", instances)
-                else:
-                    instances = getattr(self, f"{model}s")
-                setattr(self, f"{model}_number", len(instances))
-
-        if commit:
-            db.try_commit(transaction)
-        else:
-            transaction()
 
 
 class Session(AbstractBase):
