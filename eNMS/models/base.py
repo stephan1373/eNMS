@@ -146,10 +146,6 @@ class AbstractBase(db.base):
             result[property] = value
         return result
 
-    @property
-    def ui_name(self):
-        return self.name
-
     @classmethod
     def rbac_filter(cls, query, mode, user, join_class=None):
         model = join_class or getattr(cls, "class_type", None)
@@ -276,6 +272,10 @@ class AbstractBase(db.base):
                     else value.get_properties(include=relation_properties)
                 )
         return dict(OrderedDict(sorted(properties.items()))) if export else properties
+
+    @property
+    def ui_name(self):
+        return self.name
 
     def update(self, rbac="edit", **kwargs):
         self.filter_rbac_kwargs(kwargs)
