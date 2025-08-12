@@ -80,40 +80,6 @@ class Environment(vs.TimingMixin):
             main_thread.start()
         self.ssh_port = -1
 
-    def monitor_filesystem(self):
-        class Handler(FileSystemEventHandler):
-            def on_any_event(_, event):
-                src_path = event.src_path.replace(str(vs.file_path), "")
-                if not src_path or any(
-                    src_path.endswith(extension)
-                    for extension in vs.settings["files"]["ignored_types"]
-                ):
-                    return
-                filetype = "folder" if event.is_directory else "file"
-                file = db.fetch(filetype, path=src_path, allow_none=True, rbac=None)
-                if event.event_type == "moved" and file:
-                    file.update(
-                        path=event.dest_path.replace(str(vs.file_path), ""),
-                        move_file=False,
-                    )
-                elif event.event_type in ("created", "modified"):
-                    file = db.factory(filetype, path=src_path, rbac=None)
-                elif event.event_type != "deleted" or not file:
-                    return
-                file.status = event.event_type.capitalize()
-                if vs.settings["files"]["log_events"]:
-                    log = f"File {src_path} {event.event_type} (watchdog)."
-                    self.log("info", log, change_log=True)
-                try:
-                    db.session.commit()
-                except (StaleDataError, IntegrityError):
-                    db.session.rollback()
-
-        event_handler = Handler()
-        observer = PollingObserver()
-        observer.schedule(event_handler, path=str(vs.file_path), recursive=True)
-        observer.start()
-
     def authenticate_user(self, **kwargs):
         name, password = kwargs["username"], kwargs["password"]
         if not name or not password:
@@ -145,6 +111,61 @@ class Environment(vs.TimingMixin):
                 user = db.factory("user", authentication=method, **response)
                 db.session.commit()
             return user
+
+    def build_multiprocessing_logging_handler(self, logging_config):
+        class MultiProcessingLoggingHandler(Handler):
+            def __init__(self, handler_type, **kwargs):
+                super().__init__()
+                module_name, class_name = handler_type.rsplit(".", 1)
+                module = __import__(module_name, fromlist=[class_name])
+                self.handler = getattr(module, class_name)(**kwargs)
+                formatter = Formatter(vs.logging["formatters"]["standard"]["format"])
+                self.handler.setFormatter(formatter)
+                self.queue, thread = Queue(-1), Thread(target=self.receive)
+                thread.daemon = True
+                thread.start()
+
+            def receive(self):
+                while True:
+                    try:
+                        record = self.queue.get()
+                        self.handler.emit(record)
+                    except (KeyboardInterrupt, SystemExit):
+                        raise
+                    except EOFError:
+                        break
+                    except Exception:
+                        print_exc(file=stderr)
+
+            def send(self, record):
+                self.queue.put_nowait(record)
+
+            def format_record(self, record):
+                if record.args:
+                    record.msg = record.msg % record.args
+                    record.args = None
+                if record.exc_info:
+                    self.format(record)
+                    record.exc_info = None
+                return record
+
+            def emit(self, record):
+                try:
+                    formatted_record = self.format_record(record)
+                    formatted_record.session = None
+                    self.send(formatted_record)
+                except (KeyboardInterrupt, SystemExit):
+                    raise
+                except Exception:
+                    self.handleError(record)
+
+            def close(self):
+                self.handler.close()
+                super().close()
+
+        for handler_dict in logging_config["handlers"].values():
+            handler_dict["()"] = MultiProcessingLoggingHandler
+            handler_dict["handler_type"] = handler_dict.pop("class", None)
 
     @vs.custom_function
     def detect_cli(self):
@@ -224,61 +245,6 @@ class Environment(vs.TimingMixin):
             self.encrypt, self.decrypt = fernet.encrypt, fernet.decrypt
         else:
             self.encrypt, self.decrypt = b64encode, b64decode
-
-    def build_multiprocessing_logging_handler(self, logging_config):
-        class MultiProcessingLoggingHandler(Handler):
-            def __init__(self, handler_type, **kwargs):
-                super().__init__()
-                module_name, class_name = handler_type.rsplit(".", 1)
-                module = __import__(module_name, fromlist=[class_name])
-                self.handler = getattr(module, class_name)(**kwargs)
-                formatter = Formatter(vs.logging["formatters"]["standard"]["format"])
-                self.handler.setFormatter(formatter)
-                self.queue, thread = Queue(-1), Thread(target=self.receive)
-                thread.daemon = True
-                thread.start()
-
-            def receive(self):
-                while True:
-                    try:
-                        record = self.queue.get()
-                        self.handler.emit(record)
-                    except (KeyboardInterrupt, SystemExit):
-                        raise
-                    except EOFError:
-                        break
-                    except Exception:
-                        print_exc(file=stderr)
-
-            def send(self, record):
-                self.queue.put_nowait(record)
-
-            def format_record(self, record):
-                if record.args:
-                    record.msg = record.msg % record.args
-                    record.args = None
-                if record.exc_info:
-                    self.format(record)
-                    record.exc_info = None
-                return record
-
-            def emit(self, record):
-                try:
-                    formatted_record = self.format_record(record)
-                    formatted_record.session = None
-                    self.send(formatted_record)
-                except (KeyboardInterrupt, SystemExit):
-                    raise
-                except Exception:
-                    self.handleError(record)
-
-            def close(self):
-                self.handler.close()
-                super().close()
-
-        for handler_dict in logging_config["handlers"].values():
-            handler_dict["()"] = MultiProcessingLoggingHandler
-            handler_dict["handler_type"] = handler_dict.pop("class", None)
 
     def init_logs(self):
         folder = vs.path / "logs"
@@ -368,6 +334,40 @@ class Environment(vs.TimingMixin):
                 full_log = getattr(vs.run_logs[runtime], mode)(int(service), [])
                 log = full_log[start_line:]
         return log
+
+    def monitor_filesystem(self):
+        class Handler(FileSystemEventHandler):
+            def on_any_event(_, event):
+                src_path = event.src_path.replace(str(vs.file_path), "")
+                if not src_path or any(
+                    src_path.endswith(extension)
+                    for extension in vs.settings["files"]["ignored_types"]
+                ):
+                    return
+                filetype = "folder" if event.is_directory else "file"
+                file = db.fetch(filetype, path=src_path, allow_none=True, rbac=None)
+                if event.event_type == "moved" and file:
+                    file.update(
+                        path=event.dest_path.replace(str(vs.file_path), ""),
+                        move_file=False,
+                    )
+                elif event.event_type in ("created", "modified"):
+                    file = db.factory(filetype, path=src_path, rbac=None)
+                elif event.event_type != "deleted" or not file:
+                    return
+                file.status = event.event_type.capitalize()
+                if vs.settings["files"]["log_events"]:
+                    log = f"File {src_path} {event.event_type} (watchdog)."
+                    self.log("info", log, change_log=True)
+                try:
+                    db.session.commit()
+                except (StaleDataError, IntegrityError):
+                    db.session.rollback()
+
+        event_handler = Handler()
+        observer = PollingObserver()
+        observer.schedule(event_handler, path=str(vs.file_path), recursive=True)
+        observer.start()
 
     def rate_limiter(self, user, is_rest):
         if not self.redis_queue:
