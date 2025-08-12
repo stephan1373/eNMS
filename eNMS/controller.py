@@ -414,6 +414,51 @@ class Controller(vs.TimingMixin):
             service_count[service_path] += 1
         return f"services/{folder_name}"
 
+    def filtering(
+        self, model, bulk=False, rbac="read", user=None, properties=None, **kwargs
+    ):
+        table, pagination = vs.models[model], kwargs.get("pagination")
+        query = db.query(model, rbac, user, properties=properties)
+        total_records, filtered_records = (10**6,) * 2
+        if pagination and not bulk and not properties:
+            total_records = query.with_entities(table.id).count()
+        constraints = self.filtering_base_constraints(model, **kwargs)
+        constraints.extend(table.filtering_constraints(**kwargs))
+        constraints.extend(kwargs.get("sql_contraints", []))
+        query = self.filtering_relationship_constraints(query, model, **kwargs)
+        query = query.filter(and_(*constraints))
+        if bulk or properties:
+            instances = query.all()
+            if bulk == "object" or properties:
+                return instances
+            else:
+                return [getattr(instance, bulk) for instance in instances]
+        if pagination:
+            filtered_records = query.with_entities(table.id).count()
+        data = kwargs["columns"][int(kwargs["order"][0]["column"])]["data"]
+        ordering = getattr(getattr(table, data, None), kwargs["order"][0]["dir"], None)
+        if ordering:
+            query = query.order_by(ordering())
+        try:
+            query_data = (
+                query.limit(int(kwargs["length"])).offset(int(kwargs["start"])).all()
+            )
+        except OperationalError:
+            return {"error": "Invalid regular expression as search parameter."}
+        table_result = {
+            "draw": int(kwargs["draw"]),
+            "recordsTotal": total_records,
+            "recordsFiltered": filtered_records,
+            "data": [obj.table_properties(**kwargs) for obj in query_data],
+        }
+        if kwargs.get("export"):
+            table_result["full_result"] = [
+                obj.table_properties(**kwargs) for obj in query.all()
+            ]
+        if kwargs.get("clipboard"):
+            table_result["clipboard"] = ",".join(obj.name for obj in query.all())
+        return table_result
+
     def filtering_base_constraints(self, model, **kwargs):
         table, constraints = vs.models[model], []
         constraint_dict = {**kwargs.get("form", {}), **kwargs.get("constraints", {})}
@@ -478,51 +523,6 @@ class Controller(vs.TimingMixin):
                 intersect_table, getattr(table, f"{intersect_model}s")
             ).filter(intersect_table.id == constraint_dict["intersect"]["id"])
         return query
-
-    def filtering(
-        self, model, bulk=False, rbac="read", user=None, properties=None, **kwargs
-    ):
-        table, pagination = vs.models[model], kwargs.get("pagination")
-        query = db.query(model, rbac, user, properties=properties)
-        total_records, filtered_records = (10**6,) * 2
-        if pagination and not bulk and not properties:
-            total_records = query.with_entities(table.id).count()
-        constraints = self.filtering_base_constraints(model, **kwargs)
-        constraints.extend(table.filtering_constraints(**kwargs))
-        constraints.extend(kwargs.get("sql_contraints", []))
-        query = self.filtering_relationship_constraints(query, model, **kwargs)
-        query = query.filter(and_(*constraints))
-        if bulk or properties:
-            instances = query.all()
-            if bulk == "object" or properties:
-                return instances
-            else:
-                return [getattr(instance, bulk) for instance in instances]
-        if pagination:
-            filtered_records = query.with_entities(table.id).count()
-        data = kwargs["columns"][int(kwargs["order"][0]["column"])]["data"]
-        ordering = getattr(getattr(table, data, None), kwargs["order"][0]["dir"], None)
-        if ordering:
-            query = query.order_by(ordering())
-        try:
-            query_data = (
-                query.limit(int(kwargs["length"])).offset(int(kwargs["start"])).all()
-            )
-        except OperationalError:
-            return {"error": "Invalid regular expression as search parameter."}
-        table_result = {
-            "draw": int(kwargs["draw"]),
-            "recordsTotal": total_records,
-            "recordsFiltered": filtered_records,
-            "data": [obj.table_properties(**kwargs) for obj in query_data],
-        }
-        if kwargs.get("export"):
-            table_result["full_result"] = [
-                obj.table_properties(**kwargs) for obj in query.all()
-            ]
-        if kwargs.get("clipboard"):
-            table_result["clipboard"] = ",".join(obj.name for obj in query.all())
-        return table_result
 
     def format_code_with_black(self, content):
         return format_str(content, mode=Mode())
