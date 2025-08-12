@@ -868,6 +868,24 @@ class RunEngine:
         else:
             return vs.run_stop[self.parent_runtime]
 
+    def validate_result(self, section, device):
+        if self.validation_method == "text":
+            match = self.sub(self.content_match, locals())
+            str_section = str(section)
+            if self.delete_spaces_before_matching:
+                match, str_section = map(vs.space_deleter, (match, str_section))
+            success = (
+                self.content_match_regex
+                and bool(search(match, str_section))
+                or match in str_section
+                and not self.content_match_regex
+            )
+        else:
+            match = self.sub(self.dict_match, locals())
+            success = self.match_dictionary(section, match)
+        validation = {"path": self.validation_section, "value": section, "match": match}
+        return {"success": success, "validation": validation}
+
     def write_state(self, path, value, method=None, top_level=False):
         parent_path = "" if top_level else f"/{self.path}"
         if env.redis_queue:
@@ -897,24 +915,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def validate_result(self, section, device):
-        if self.validation_method == "text":
-            match = self.sub(self.content_match, locals())
-            str_section = str(section)
-            if self.delete_spaces_before_matching:
-                match, str_section = map(vs.space_deleter, (match, str_section))
-            success = (
-                self.content_match_regex
-                and bool(search(match, str_section))
-                or match in str_section
-                and not self.content_match_regex
-            )
-        else:
-            match = self.sub(self.dict_match, locals())
-            success = self.match_dictionary(section, match)
-        validation = {"path": self.validation_section, "value": section, "match": match}
-        return {"success": success, "validation": validation}
 
     def match_dictionary(self, result, match, first=True):
         if self.validation_method == "dict_equal":
