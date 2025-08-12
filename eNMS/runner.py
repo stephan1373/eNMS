@@ -216,6 +216,27 @@ class RunEngine:
                 self.write_state(f"placeholder/{property}", value)
         self.write_state("success", True)
 
+    def make_json_compliant(self, input):
+        def rec(value):
+            if isinstance(value, dict):
+                return {rec(key): rec(value[key]) for key in list(value)}
+            elif isinstance(value, list):
+                return list(map(rec, value))
+            elif not isinstance(
+                value, (int, str, bool, float, None.__class__)
+            ) or value in (float("inf"), float("-inf")):
+                self.log("info", f"Converting {value} to string")
+                return str(value)
+            else:
+                return value
+
+        try:
+            return rec(input)
+        except Exception:
+            log = f"Payload conversion to JSON failed:\n{format_exc()}"
+            self.log("error", log)
+            return {"error": log}
+
     def start_run(self):
         self.init_state()
         self.write_state("status", "Running")
@@ -297,27 +318,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def make_json_compliant(self, input):
-        def rec(value):
-            if isinstance(value, dict):
-                return {rec(key): rec(value[key]) for key in list(value)}
-            elif isinstance(value, list):
-                return list(map(rec, value))
-            elif not isinstance(
-                value, (int, str, bool, float, None.__class__)
-            ) or value in (float("inf"), float("-inf")):
-                self.log("info", f"Converting {value} to string")
-                return str(value)
-            else:
-                return value
-
-        try:
-            return rec(input)
-        except Exception:
-            log = f"Payload conversion to JSON failed:\n{format_exc()}"
-            self.log("error", log)
-            return {"error": log}
 
     @staticmethod
     def get_device_result_in_process(args):
