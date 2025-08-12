@@ -458,6 +458,19 @@ class Run(AbstractBase):
         return super().rbac_filter(*args, join_class="service")
 
     @property
+    def progress(self):
+        progress = self.get_state().get(self.service.persistent_id, {}).get("progress")
+        if not progress:
+            return
+        try:
+            progress = progress["device"]
+            failure = int(progress.get("failure", 0))
+            success = int(progress.get("success", 0))
+            return f"{success + failure}/{progress['total']} ({failure} failed)"
+        except (KeyError, TypeError):
+            return "N/A"
+
+    @property
     def service_properties(self):
         return self.service.base_properties
 
@@ -468,6 +481,23 @@ class Run(AbstractBase):
     @property
     def worker_properties(self):
         return self.worker.base_properties
+
+    @staticmethod
+    def _initialize():
+        for run in db.fetch(
+            "run",
+            all_matches=True,
+            allow_none=True,
+            status="Running",
+            server_id=vs.server_id,
+            rbac=None,
+        ):
+            if run.worker:
+                continue
+            results = {"success": False, "result": "Aborted (reload)"}
+            run.finalize_run(results, app_reloaded=True)
+        if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
+            env.redis_queue.flushdb()
 
     def get_state(self):
         if self.state:
@@ -488,38 +518,8 @@ class Run(AbstractBase):
         else:
             return vs.run_states[self.runtime]
 
-    @property
-    def progress(self):
-        progress = self.get_state().get(self.service.persistent_id, {}).get("progress")
-        if not progress:
-            return
-        try:
-            progress = progress["device"]
-            failure = int(progress.get("failure", 0))
-            success = int(progress.get("success", 0))
-            return f"{success + failure}/{progress['total']} ({failure} failed)"
-        except (KeyError, TypeError):
-            return "N/A"
-
     def table_properties(self, **kwargs):
         return {"url": self.service.builder_link, **super().table_properties(**kwargs)}
-
-    @staticmethod
-    def _initialize():
-        for run in db.fetch(
-            "run",
-            all_matches=True,
-            allow_none=True,
-            status="Running",
-            server_id=vs.server_id,
-            rbac=None,
-        ):
-            if run.worker:
-                continue
-            results = {"success": False, "result": "Aborted (reload)"}
-            run.finalize_run(results, app_reloaded=True)
-        if env.redis_queue and vs.settings["redis"]["flush_on_restart"]:
-            env.redis_queue.flushdb()
 
     def process(commit=False, raise_exception=False):
         def decorator(func):
