@@ -143,6 +143,9 @@ class Database:
         self.session.commit()
         return first_init
 
+    def cleanup(self):
+        self.engine.dispose()
+
     def configure_associations(self):
         self.associations = {}
         for name, association in self.relationships["associations"].items():
@@ -784,9 +787,6 @@ class Database:
                     back_populates=f"{property}_{model}s",
                 ),
             )
-
-    def cleanup(self):
-        self.engine.dispose()
 
 
 db = Database()
