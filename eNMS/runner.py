@@ -205,13 +205,6 @@ class RunEngine:
         else:
             return getattr(self.main_run.placeholder or self.service, property)
 
-    @property
-    def stop(self):
-        if env.redis_queue:
-            return bool(env.redis("get", f"stop/{self.parent_runtime}"))
-        else:
-            return vs.run_stop[self.parent_runtime]
-
     def init_state(self):
         if not env.redis_queue:
             if vs.run_states[self.parent_runtime].get(self.path):
@@ -222,36 +215,6 @@ class RunEngine:
                 value = getattr(self.main_run.placeholder, property)
                 self.write_state(f"placeholder/{property}", value)
         self.write_state("success", True)
-
-    def write_state(self, path, value, method=None, top_level=False):
-        parent_path = "" if top_level else f"/{self.path}"
-        if env.redis_queue:
-            if isinstance(value, bool):
-                value = str(value)
-            env.redis(
-                {
-                    None: "set",
-                    "append": "lpush",
-                    "increment": "incr",
-                    "delete": "delete",
-                }[method],
-                f"{self.parent_runtime}/state{parent_path}/{path}",
-                value,
-            )
-        else:
-            *keys, last = f"{self.parent_runtime}{parent_path}/{path}".split("/")
-            store = vs.run_states
-            for key in keys:
-                store = store.setdefault(key, {})
-            if not method:
-                store[last] = value
-            elif method == "increment":
-                store.setdefault(last, 0)
-                store[last] += value
-            elif method == "delete":
-                store.pop(last, None)
-            else:
-                store.setdefault(last, []).append(value)
 
     def start_run(self):
         self.init_state()
@@ -297,6 +260,43 @@ class RunEngine:
             vs.custom.run_post_processing(self, results)
         vs.run_instances.pop(self.runtime)
         return results
+
+    @property
+    def stop(self):
+        if env.redis_queue:
+            return bool(env.redis("get", f"stop/{self.parent_runtime}"))
+        else:
+            return vs.run_stop[self.parent_runtime]
+
+    def write_state(self, path, value, method=None, top_level=False):
+        parent_path = "" if top_level else f"/{self.path}"
+        if env.redis_queue:
+            if isinstance(value, bool):
+                value = str(value)
+            env.redis(
+                {
+                    None: "set",
+                    "append": "lpush",
+                    "increment": "incr",
+                    "delete": "delete",
+                }[method],
+                f"{self.parent_runtime}/state{parent_path}/{path}",
+                value,
+            )
+        else:
+            *keys, last = f"{self.parent_runtime}{parent_path}/{path}".split("/")
+            store = vs.run_states
+            for key in keys:
+                store = store.setdefault(key, {})
+            if not method:
+                store[last] = value
+            elif method == "increment":
+                store.setdefault(last, 0)
+                store[last] += value
+            elif method == "delete":
+                store.pop(last, None)
+            else:
+                store.setdefault(last, []).append(value)
 
     def make_json_compliant(self, input):
         def rec(value):
