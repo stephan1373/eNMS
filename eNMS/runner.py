@@ -434,6 +434,37 @@ class RunEngine:
         )
         return service_run.start_run()["success"]
 
+    def generate_report(self, results):
+        try:
+            report = ""
+            if self.service.report:
+                variables = {
+                    "service": self.service,
+                    "results": results,
+                    **self.global_variables(),
+                }
+                if self.service.report_jinja2_template:
+                    report = Template(self.service.report).render(variables)
+                else:
+                    report = self.sub(self.service.report, variables)
+        except Exception:
+            report = "\n".join(format_exc().splitlines())
+            self.log("error", f"Failed to build report:\n{report}")
+        if report:
+            self.check_size(report, "report")
+            if not self.high_performance:
+                db.factory(
+                    "service_report",
+                    runtime=self.parent_runtime,
+                    service=self.service.id,
+                    content=report,
+                    commit=vs.automation["advanced"]["always_commit"],
+                    rbac=None,
+                )
+            else:
+                self.create_transient_report(report)
+        return report
+
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:
             return self.payload["form"][property]
@@ -796,37 +827,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def generate_report(self, results):
-        try:
-            report = ""
-            if self.service.report:
-                variables = {
-                    "service": self.service,
-                    "results": results,
-                    **self.global_variables(),
-                }
-                if self.service.report_jinja2_template:
-                    report = Template(self.service.report).render(variables)
-                else:
-                    report = self.sub(self.service.report, variables)
-        except Exception:
-            report = "\n".join(format_exc().splitlines())
-            self.log("error", f"Failed to build report:\n{report}")
-        if report:
-            self.check_size(report, "report")
-            if not self.high_performance:
-                db.factory(
-                    "service_report",
-                    runtime=self.parent_runtime,
-                    service=self.service.id,
-                    content=report,
-                    commit=vs.automation["advanced"]["always_commit"],
-                    rbac=None,
-                )
-            else:
-                self.create_transient_report(report)
-        return report
 
     def notify(self, results, report):
         self.log("info", f"Sending {self.send_notification_method} notification...")
