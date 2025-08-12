@@ -93,15 +93,6 @@ class RunEngine:
         if not self.high_performance:
             db.session.commit()
 
-    def get_service_properties(self):
-        return {
-            property: getattr(self.service, property)
-            for property in ("id", "name", "scoped_name", "type")
-        }
-
-    def __repr__(self):
-        return f"{self.runtime}: SERVICE '{self.service}'"
-
     def __getattr__(self, key):
         if key in self.__dict__:
             return self.__dict__[key]
@@ -109,6 +100,15 @@ class RunEngine:
             return getattr(self.service, key)
         else:
             raise AttributeError
+
+    def __repr__(self):
+        return f"{self.runtime}: SERVICE '{self.service}'"
+
+    def get_service_properties(self):
+        return {
+            property: getattr(self.service, property)
+            for property in ("id", "name", "scoped_name", "type")
+        }
 
     def get(self, property):
         if self.parameterized_run and property in self.payload["form"]:
