@@ -1441,6 +1441,45 @@ class Controller(vs.TimingMixin):
         else:
             return {"alert": f"{instance.name} is not associated with {target.name}."}
 
+    def revert_change(self, log_id):
+        log = db.fetch("changelog", id=log_id)
+        if not log.history or not log.author:
+            return {"alert": "This changelog is not revertible."}
+        target = db.fetch(
+            log.target_type, name=log.target_name, rbac="edit", allow_none=True
+        )
+        if target is None:
+            return {"alert": "The target object no longer exists."}
+        if log.history.get("creation"):
+            return db.delete_instance(target)
+        for relationship, history in log.history.get("lists", {}).items():
+            target_value = getattr(target, relationship)
+            for value in history["deleted"]:
+                instance = (
+                    value
+                    if history["type"] == "str"
+                    else db.fetch(history["type"], id=value, allow_none=True)
+                )
+                if instance and instance not in target_value:
+                    target_value.append(instance)
+            for value in history["added"]:
+                instance = (
+                    value
+                    if history["type"] == "str"
+                    else db.fetch(history["type"], id=value, allow_none=True)
+                )
+                if instance and instance in target_value:
+                    target_value.remove(instance)
+        for property, values in log.history.get("scalars", {}).items():
+            related_instance = db.fetch(values["type"], id=values["id"])
+            setattr(target, property, related_instance)
+        if "properties" in log.history:
+            for property, value_dict in log.history["properties"].items():
+                setattr(target, property, value_dict["old"])
+        key = f"update_{target.type}_{target.name}"
+        db.session.connection().info[key] = "Change Reverted"
+        db.session.commit()
+
     @staticmethod
     @actor(max_retries=0, time_limit=float("inf"))
     def run(service, **kwargs):
@@ -1726,45 +1765,6 @@ class Controller(vs.TimingMixin):
             db.session.commit()
         env.log("info", status)
         return status
-
-    def revert_change(self, log_id):
-        log = db.fetch("changelog", id=log_id)
-        if not log.history or not log.author:
-            return {"alert": "This changelog is not revertible."}
-        target = db.fetch(
-            log.target_type, name=log.target_name, rbac="edit", allow_none=True
-        )
-        if target is None:
-            return {"alert": "The target object no longer exists."}
-        if log.history.get("creation"):
-            return db.delete_instance(target)
-        for relationship, history in log.history.get("lists", {}).items():
-            target_value = getattr(target, relationship)
-            for value in history["deleted"]:
-                instance = (
-                    value
-                    if history["type"] == "str"
-                    else db.fetch(history["type"], id=value, allow_none=True)
-                )
-                if instance and instance not in target_value:
-                    target_value.append(instance)
-            for value in history["added"]:
-                instance = (
-                    value
-                    if history["type"] == "str"
-                    else db.fetch(history["type"], id=value, allow_none=True)
-                )
-                if instance and instance in target_value:
-                    target_value.remove(instance)
-        for property, values in log.history.get("scalars", {}).items():
-            related_instance = db.fetch(values["type"], id=values["id"])
-            setattr(target, property, related_instance)
-        if "properties" in log.history:
-            for property, value_dict in log.history["properties"].items():
-                setattr(target, property, value_dict["old"])
-        key = f"update_{target.type}_{target.name}"
-        db.session.connection().info[key] = "Change Reverted"
-        db.session.commit()
 
     def update(self, type, **kwargs):
         try:
