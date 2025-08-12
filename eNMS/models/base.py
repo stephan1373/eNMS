@@ -90,77 +90,6 @@ class AbstractBase(db.base):
             f"{self.class_type}_id": self.id,
         }
 
-    @property
-    def ui_name(self):
-        return self.name
-
-    @classmethod
-    def rbac_filter(cls, query, mode, user, join_class=None):
-        model = join_class or getattr(cls, "class_type", None)
-        if model not in vs.rbac["rbac_models"]:
-            return query
-        if join_class:
-            query = query.join(getattr(cls, join_class))
-        user_group = [group.id for group in user.groups]
-        property = getattr(vs.models[model], f"rbac_{mode}")
-        rbac_constraint = property.any(vs.models["group"].id.in_(user_group))
-        owners_constraint = vs.models[model].owners.any(id=user.id)
-        if hasattr(vs.models[model], "admin_only") and mode not in vs.rbac[
-            "admin_only_bypass"
-        ].get(model, []):
-            query = query.filter(vs.models[model].admin_only == false())
-        return query.filter(or_(owners_constraint, rbac_constraint))
-
-    def update(self, rbac="edit", **kwargs):
-        self.filter_rbac_kwargs(kwargs)
-        relation = vs.relationships[self.__tablename__]
-        for property, value in kwargs.items():
-            if not hasattr(self, property):
-                continue
-            property_type = vs.model_properties[self.__tablename__].get(property, None)
-            if property in relation:
-                if (
-                    relation[property]["list"]
-                    and value
-                    and not hasattr(value[0], "__mapper__")
-                ):
-                    value = db.fetch_all(
-                        relation[property]["model"], id_in=value, rbac=None
-                    )
-                elif value and not hasattr(value, "__mapper__"):
-                    value = db.fetch(relation[property]["model"], id=value, rbac=None)
-            if property_type == "bool":
-                value = value not in (False, "false")
-            elif property_type == "dict":
-                table_properties = vs.properties["custom"].get(self.__tablename__, {})
-                if table_properties.get(property, {}).get("merge_update"):
-                    current_value = getattr(self, property)
-                    if current_value:
-                        value = {**current_value, **value}
-            setattr(self, property, value)
-        if not kwargs.get("migration_import"):
-            self.update_last_modified_properties()
-        if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
-            return
-        for group in db.fetch_all("group", force_read_access=True, rbac=None):
-            if group not in self.rbac_read:
-                self.rbac_read.append(group)
-
-    def update_last_modified_properties(self):
-        self.last_modified = vs.get_time()
-        self.last_modified_by = getattr(current_user, "name", "admin")
-
-    def update_rbac(self):
-        model = getattr(self, "class_type", None)
-        if model not in vs.rbac["rbac_models"] or not current_user:
-            return
-        self.access_properties = defaultdict(list)
-        self.owners = [current_user]
-        for group in current_user.groups:
-            for access_type in getattr(group, f"{model}_access"):
-                if group not in getattr(self, access_type):
-                    getattr(self, access_type).append(group)
-
     def get_properties(
         self,
         export=False,
@@ -202,6 +131,27 @@ class AbstractBase(db.base):
                     continue
             result[property] = value
         return result
+
+    @property
+    def ui_name(self):
+        return self.name
+
+    @classmethod
+    def rbac_filter(cls, query, mode, user, join_class=None):
+        model = join_class or getattr(cls, "class_type", None)
+        if model not in vs.rbac["rbac_models"]:
+            return query
+        if join_class:
+            query = query.join(getattr(cls, join_class))
+        user_group = [group.id for group in user.groups]
+        property = getattr(vs.models[model], f"rbac_{mode}")
+        rbac_constraint = property.any(vs.models["group"].id.in_(user_group))
+        owners_constraint = vs.models[model].owners.any(id=user.id)
+        if hasattr(vs.models[model], "admin_only") and mode not in vs.rbac[
+            "admin_only_bypass"
+        ].get(model, []):
+            query = query.filter(vs.models[model].admin_only == false())
+        return query.filter(or_(owners_constraint, rbac_constraint))
 
     def table_properties(self, **kwargs):
         displayed = [column["data"] for column in kwargs["columns"]]
@@ -264,6 +214,56 @@ class AbstractBase(db.base):
                         for match in result
                     )
         return search_properties
+
+    def update(self, rbac="edit", **kwargs):
+        self.filter_rbac_kwargs(kwargs)
+        relation = vs.relationships[self.__tablename__]
+        for property, value in kwargs.items():
+            if not hasattr(self, property):
+                continue
+            property_type = vs.model_properties[self.__tablename__].get(property, None)
+            if property in relation:
+                if (
+                    relation[property]["list"]
+                    and value
+                    and not hasattr(value[0], "__mapper__")
+                ):
+                    value = db.fetch_all(
+                        relation[property]["model"], id_in=value, rbac=None
+                    )
+                elif value and not hasattr(value, "__mapper__"):
+                    value = db.fetch(relation[property]["model"], id=value, rbac=None)
+            if property_type == "bool":
+                value = value not in (False, "false")
+            elif property_type == "dict":
+                table_properties = vs.properties["custom"].get(self.__tablename__, {})
+                if table_properties.get(property, {}).get("merge_update"):
+                    current_value = getattr(self, property)
+                    if current_value:
+                        value = {**current_value, **value}
+            setattr(self, property, value)
+        if not kwargs.get("migration_import"):
+            self.update_last_modified_properties()
+        if getattr(self, "class_type", None) not in vs.rbac["rbac_models"]:
+            return
+        for group in db.fetch_all("group", force_read_access=True, rbac=None):
+            if group not in self.rbac_read:
+                self.rbac_read.append(group)
+
+    def update_last_modified_properties(self):
+        self.last_modified = vs.get_time()
+        self.last_modified_by = getattr(current_user, "name", "admin")
+
+    def update_rbac(self):
+        model = getattr(self, "class_type", None)
+        if model not in vs.rbac["rbac_models"] or not current_user:
+            return
+        self.access_properties = defaultdict(list)
+        self.owners = [current_user]
+        for group in current_user.groups:
+            for access_type in getattr(group, f"{model}_access"):
+                if group not in getattr(self, access_type):
+                    getattr(self, access_type).append(group)
 
     def duplicate(self, **kwargs):
         properties = {
