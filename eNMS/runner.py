@@ -415,6 +415,25 @@ class RunEngine:
             devices |= set().union(*(pool.devices for pool in pools))
         return devices
 
+    def convert_result(self, result):
+        if self.conversion_method == "none" or "result" not in result:
+            return result
+        try:
+            if self.conversion_method == "text":
+                result["result"] = str(result["result"])
+            elif self.conversion_method == "json":
+                result["result"] = loads(result["result"])
+            elif self.conversion_method == "xml":
+                result["result"] = parse(result["result"], force_list=True)
+        except (ExpatError, JSONDecodeError) as exc:
+            result = {
+                "success": False,
+                "text_response": result,
+                "error": f"Conversion to {self.conversion_method} failed",
+                "exception": str(exc),
+            }
+        return result
+
     def device_iteration(self, device):
         derived_devices = self.compute_devices_from_query(
             self.service.iteration_devices,
@@ -878,25 +897,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def convert_result(self, result):
-        if self.conversion_method == "none" or "result" not in result:
-            return result
-        try:
-            if self.conversion_method == "text":
-                result["result"] = str(result["result"])
-            elif self.conversion_method == "json":
-                result["result"] = loads(result["result"])
-            elif self.conversion_method == "xml":
-                result["result"] = parse(result["result"], force_list=True)
-        except (ExpatError, JSONDecodeError) as exc:
-            result = {
-                "success": False,
-                "text_response": result,
-                "error": f"Conversion to {self.conversion_method} failed",
-                "exception": str(exc),
-            }
-        return result
 
     def validate_result(self, section, device):
         if self.validation_method == "text":
