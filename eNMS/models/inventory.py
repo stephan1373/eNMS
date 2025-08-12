@@ -188,6 +188,18 @@ class Link(Object):
     logs = relationship("Changelog", back_populates="link")
     __table_args__ = (UniqueConstraint(name, source_id, destination_id),)
 
+    def update(self, **kwargs):
+        if "source_name" in kwargs:
+            kwargs["source"] = db.fetch("device", name=kwargs.pop("source_name")).id
+            kwargs["destination"] = db.fetch(
+                "device", name=kwargs.pop("destination_name")
+            ).id
+        if "source" in kwargs and "destination" in kwargs:
+            kwargs.update(
+                {"source_id": kwargs["source"], "destination_id": kwargs["destination"]}
+            )
+        super().update(**kwargs)
+
     @property
     def view_properties(self):
         node_properties = ("id", "longitude", "latitude")
@@ -205,18 +217,6 @@ class Link(Object):
                 for property in node_properties
             },
         }
-
-    def update(self, **kwargs):
-        if "source_name" in kwargs:
-            kwargs["source"] = db.fetch("device", name=kwargs.pop("source_name")).id
-            kwargs["destination"] = db.fetch(
-                "device", name=kwargs.pop("destination_name")
-            ).id
-        if "source" in kwargs and "destination" in kwargs:
-            kwargs.update(
-                {"source_id": kwargs["source"], "destination_id": kwargs["destination"]}
-            )
-        super().update(**kwargs)
 
 
 class Pool(AbstractBase):
