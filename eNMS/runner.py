@@ -104,6 +104,27 @@ class RunEngine:
     def __repr__(self):
         return f"{self.runtime}: SERVICE '{self.service}'"
 
+    def build_notification(self, results):
+        notification = {
+            "Service": f"{self.service.name} ({self.service.type})",
+            "Server": vs.server_dict,
+            "Runtime": self.runtime,
+            "Status": "PASS" if results["success"] else "FAILED",
+        }
+        if self.notification_header:
+            notification["Header"] = self.sub(self.notification_header, locals())
+        if self.include_link_in_summary:
+            run = f"{self.main_run.id}/{self.service.id}"
+            notification["Link"] = f"{vs.server_url}/view_service_results/{run}"
+        if "summary" in results:
+            if results["summary"]["failure"]:
+                notification["FAILED"] = results["summary"]["failure"]
+            if results["summary"]["success"] and not self.display_only_failed_nodes:
+                notification["PASSED"] = results["summary"]["success"]
+        if "result" in results:
+            notification["Results"] = results["result"]
+        return notification
+
     def compute_targets_and_collect_results(self):
         if not self.run_targets:
             self.run_targets = self.compute_run_targets()
@@ -271,6 +292,9 @@ class RunEngine:
             if size_percentage > 50:
                 self.log("warning", log)
         return data
+
+    def create_transient_report(self, report):
+        vs.service_report[self.parent_runtime][self.service.id] = report
 
     def create_transient_result(self, result, device):
         device_key = device.id if device else None
@@ -772,30 +796,6 @@ class RunEngine:
                 store.pop(last, None)
             else:
                 store.setdefault(last, []).append(value)
-
-    def build_notification(self, results):
-        notification = {
-            "Service": f"{self.service.name} ({self.service.type})",
-            "Server": vs.server_dict,
-            "Runtime": self.runtime,
-            "Status": "PASS" if results["success"] else "FAILED",
-        }
-        if self.notification_header:
-            notification["Header"] = self.sub(self.notification_header, locals())
-        if self.include_link_in_summary:
-            run = f"{self.main_run.id}/{self.service.id}"
-            notification["Link"] = f"{vs.server_url}/view_service_results/{run}"
-        if "summary" in results:
-            if results["summary"]["failure"]:
-                notification["FAILED"] = results["summary"]["failure"]
-            if results["summary"]["success"] and not self.display_only_failed_nodes:
-                notification["PASSED"] = results["summary"]["success"]
-        if "result" in results:
-            notification["Results"] = results["result"]
-        return notification
-
-    def create_transient_report(self, report):
-        vs.service_report[self.parent_runtime][self.service.id] = report
 
     def generate_report(self, results):
         try:
