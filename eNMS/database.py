@@ -648,6 +648,31 @@ class Database:
                 query = vs.models[model].rbac_filter(query, rbac, user)
         return query
 
+    def register_custom_models(self):
+        for model in ("device", "link", "service", "data"):
+            folder_name = "datastore" if model == "data" else f"{model}s"
+            paths = [vs.path / "eNMS" / "models" / folder_name]
+            load_examples = vs.settings["app"].get("startup_migration") == "examples"
+            if vs.settings["paths"][f"custom_{folder_name}"]:
+                paths.append(Path(vs.settings["paths"][f"custom_{folder_name}"]))
+            for path in paths:
+                for file in path.glob("**/*.py"):
+                    if "init" in str(file):
+                        continue
+                    if not load_examples and "examples" in str(file):
+                        continue
+                    if (
+                        "notification" in str(file)
+                        and file.stem.split("_")[0] not in vs.automation["notification"]
+                    ):
+                        continue
+                    info(f"Loading {model}: {file}")
+                    spec = spec_from_file_location(file.stem, str(file))
+                    try:
+                        spec.loader.exec_module(module_from_spec(spec))
+                    except InvalidRequestError:
+                        error(f"Error loading {model} '{file}'\n{format_exc()}")
+
     def try_commit(self, transaction, *args, **kwargs):
         for index in range(self.retry_commit_number):
             try:
@@ -676,31 +701,6 @@ class Database:
             setattr(instance, property, value)
 
         self.try_commit(transaction)
-
-    def register_custom_models(self):
-        for model in ("device", "link", "service", "data"):
-            folder_name = "datastore" if model == "data" else f"{model}s"
-            paths = [vs.path / "eNMS" / "models" / folder_name]
-            load_examples = vs.settings["app"].get("startup_migration") == "examples"
-            if vs.settings["paths"][f"custom_{folder_name}"]:
-                paths.append(Path(vs.settings["paths"][f"custom_{folder_name}"]))
-            for path in paths:
-                for file in path.glob("**/*.py"):
-                    if "init" in str(file):
-                        continue
-                    if not load_examples and "examples" in str(file):
-                        continue
-                    if (
-                        "notification" in str(file)
-                        and file.stem.split("_")[0] not in vs.automation["notification"]
-                    ):
-                        continue
-                    info(f"Loading {model}: {file}")
-                    spec = spec_from_file_location(file.stem, str(file))
-                    try:
-                        spec.loader.exec_module(module_from_spec(spec))
-                    except InvalidRequestError:
-                        error(f"Error loading {model} '{file}'\n{format_exc()}")
 
     @contextmanager
     def session_scope(self, commit=False, remove=False):
