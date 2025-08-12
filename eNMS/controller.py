@@ -534,6 +534,24 @@ class Controller(vs.TimingMixin):
             kwargs["include_relations"] = list(vs.form_properties[model])
         return getattr(db.fetch(model, id=id), func)(**kwargs)
 
+    def get_builder_children(self, type, instance_id):
+        instance = db.fetch(type, id=instance_id)
+        children = {instance.name}
+        child_property = "services" if type == "workflow" else "devices"
+
+        def rec(instance):
+            for sub_instance in getattr(instance, child_property):
+                children.add(sub_instance.name)
+                if sub_instance.type == type:
+                    rec(sub_instance)
+
+        rec(instance)
+        return list(children)
+
+    def get_changelog_history(self, changelog_id):
+        changelog = db.fetch("changelog", id=changelog_id)
+        return {"content": changelog.content, "history": changelog.history}
+
     def get_cluster_status(self):
         return [server.status for server in db.fetch_all("server")]
 
@@ -609,6 +627,149 @@ class Controller(vs.TimingMixin):
             except KeyError:
                 result[property] = ""
         return {"result": result, "datetime": commit.committed_datetime}
+
+    def get_instance_tree(self, type, full_path, runtime=None, **kwargs):
+        path_id = full_path.split(">")
+        path_pid = [
+            db.fetch("service", id=id, rbac=None).persistent_id for id in path_id
+        ]
+        full_ppath = ">".join(path_pid)
+        run = db.fetch("run", runtime=runtime) if runtime else None
+        state = {}
+        if "state" in kwargs:
+            state = kwargs["state"]
+        elif run:
+            state = run.state or run.get_state()
+        highlight = []
+
+        def match(instance, **kwargs):
+            is_regex_search = kwargs.get("regex_search", False)
+            name = getattr(instance, "name" if type == "network" else "scoped_name")
+            value = kwargs["search_value"]
+            if kwargs["search_mode"] == "names":
+                is_match = (
+                    search(value, name)
+                    if is_regex_search
+                    else value.lower() in name.lower()
+                )
+            else:
+                serialized = str(instance.get_properties().values())
+                is_match = (
+                    search(value, serialized)
+                    if is_regex_search
+                    else value.lower() in serialized.lower()
+                )
+            if is_match:
+                highlight.append(instance.id)
+            return is_match
+
+        def rec(instance, path):
+            if run and path not in state:
+                return
+            local_path_ids = path.split(">")
+            if (
+                getattr(instance, "run_method", None) == "per_device"
+                and "device_state" in kwargs
+                and instance.id not in kwargs["device_state"]
+            ):
+                return
+            style, active_search = "", kwargs.get("search_value")
+            if type == "workflow":
+                if instance.scoped_name in ("Start", "End"):
+                    return
+                elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
+                    instance = db.fetch(type, id=path_id[1])
+                    path = f"{path.split('>')[0]}>{instance.persistent_id}"
+            if active_search and instance.type != type:
+                if match(instance, **kwargs):
+                    style = "font-weight: bold; color: #BABA06"
+                elif not kwargs["display_all"]:
+                    return
+            children = False
+            if instance.type == type:
+                instances = (
+                    instance.exclude_soft_deleted("services")
+                    if type == "workflow"
+                    else instance.devices
+                )
+                children_results = []
+                for child in instances:
+                    if str(child.persistent_id) in local_path_ids:
+                        continue
+                    if run and child.scoped_name == "Placeholder" and run.placeholder:
+                        child = run.placeholder
+                    child_results = rec(child, f"{path}>{child.persistent_id}")
+                    if run and not child_results:
+                        continue
+                    children_results.append(child_results)
+                children = sorted(
+                    filter(None, children_results),
+                    key=(
+                        itemgetter("runtime")
+                        if run
+                        else lambda node: node["text"].lower()
+                    ),
+                )
+                if active_search:
+                    is_match = match(instance, **kwargs)
+                    if not children and not is_match and not kwargs["display_all"]:
+                        return
+                    elif is_match:
+                        style = "font-weight: bold; color: #BABA06"
+            progress_data = {}
+            if run and "device_state" not in kwargs:
+                progress = state[path].get("progress")
+                if progress and progress["device"]["total"]:
+                    progress_data = {"progress": progress["device"]}
+            if instance.id in kwargs.get("device_state", {}):
+                color = kwargs["device_state"][instance.id]
+            elif run:
+                if state[path].get("dry_run"):
+                    color = "#E09E2F"
+                elif "success" in state[path].get("result", {}):
+                    color = "#32CD32" if state[path]["result"]["success"] else "#FF6666"
+                else:
+                    color = "#25B6FA"
+            else:
+                color = (
+                    "#FF1694"
+                    if getattr(instance, "shared", False)
+                    else "#E09E2F" if getattr(instance, "dry_run", False) else "#6666FF"
+                )
+            text = instance.scoped_name if type == "workflow" else instance.name
+            attr_class = "jstree-wholerow-clicked" if full_ppath == path else ""
+            runtime = state[path].get("result", {}).get("runtime") if state else None
+            return {
+                "runtime": runtime,
+                "data": {
+                    "path": path,
+                    "properties": instance.base_properties,
+                    **progress_data,
+                },
+                "id": path,
+                "state": {"opened": full_ppath.startswith(path)},
+                "text": text if len(text) < 45 else f"{text[:45]}...",
+                "children": children,
+                "a_attr": {
+                    "class": f"no_checkbox {attr_class}",
+                    "style": f"color: {color}; width: 100%; {style}",
+                },
+                "type": instance.type,
+            }
+
+        # In a standard run, the top-level service in the path has run so we use it
+        # as root of the tree. In case of restart run from a subworkflow or from a
+        # workflow that has a superworkflow, we use the last service as root.
+        if run:
+            has_root_state = str(path_pid[0]) in state
+            root_id = path_id[0] if has_root_state else path_id[-1]
+            root_path = str(path_pid[0]) if has_root_state else full_ppath
+        else:
+            root_id, root_path = path_id[0], str(path_pid[0])
+        return {
+            "tree": rec(db.fetch(type, id=root_id), root_path),
+            "highlight": highlight,
+        }
 
     def get_migration_folders(self):
         return listdir(Path(vs.migration_path))
@@ -782,167 +943,6 @@ class Controller(vs.TimingMixin):
         has_link = vs.models["pool"].links.any()
         pools = db.query("pool").filter(or_(has_device, has_link)).all()
         return [pool.base_properties for pool in pools]
-
-    def get_changelog_history(self, changelog_id):
-        changelog = db.fetch("changelog", id=changelog_id)
-        return {"content": changelog.content, "history": changelog.history}
-
-    def get_builder_children(self, type, instance_id):
-        instance = db.fetch(type, id=instance_id)
-        children = {instance.name}
-        child_property = "services" if type == "workflow" else "devices"
-
-        def rec(instance):
-            for sub_instance in getattr(instance, child_property):
-                children.add(sub_instance.name)
-                if sub_instance.type == type:
-                    rec(sub_instance)
-
-        rec(instance)
-        return list(children)
-
-    def get_instance_tree(self, type, full_path, runtime=None, **kwargs):
-        path_id = full_path.split(">")
-        path_pid = [
-            db.fetch("service", id=id, rbac=None).persistent_id for id in path_id
-        ]
-        full_ppath = ">".join(path_pid)
-        run = db.fetch("run", runtime=runtime) if runtime else None
-        state = {}
-        if "state" in kwargs:
-            state = kwargs["state"]
-        elif run:
-            state = run.state or run.get_state()
-        highlight = []
-
-        def match(instance, **kwargs):
-            is_regex_search = kwargs.get("regex_search", False)
-            name = getattr(instance, "name" if type == "network" else "scoped_name")
-            value = kwargs["search_value"]
-            if kwargs["search_mode"] == "names":
-                is_match = (
-                    search(value, name)
-                    if is_regex_search
-                    else value.lower() in name.lower()
-                )
-            else:
-                serialized = str(instance.get_properties().values())
-                is_match = (
-                    search(value, serialized)
-                    if is_regex_search
-                    else value.lower() in serialized.lower()
-                )
-            if is_match:
-                highlight.append(instance.id)
-            return is_match
-
-        def rec(instance, path):
-            if run and path not in state:
-                return
-            local_path_ids = path.split(">")
-            if (
-                getattr(instance, "run_method", None) == "per_device"
-                and "device_state" in kwargs
-                and instance.id not in kwargs["device_state"]
-            ):
-                return
-            style, active_search = "", kwargs.get("search_value")
-            if type == "workflow":
-                if instance.scoped_name in ("Start", "End"):
-                    return
-                elif instance.scoped_name == "Placeholder" and len(path_id) > 1:
-                    instance = db.fetch(type, id=path_id[1])
-                    path = f"{path.split('>')[0]}>{instance.persistent_id}"
-            if active_search and instance.type != type:
-                if match(instance, **kwargs):
-                    style = "font-weight: bold; color: #BABA06"
-                elif not kwargs["display_all"]:
-                    return
-            children = False
-            if instance.type == type:
-                instances = (
-                    instance.exclude_soft_deleted("services")
-                    if type == "workflow"
-                    else instance.devices
-                )
-                children_results = []
-                for child in instances:
-                    if str(child.persistent_id) in local_path_ids:
-                        continue
-                    if run and child.scoped_name == "Placeholder" and run.placeholder:
-                        child = run.placeholder
-                    child_results = rec(child, f"{path}>{child.persistent_id}")
-                    if run and not child_results:
-                        continue
-                    children_results.append(child_results)
-                children = sorted(
-                    filter(None, children_results),
-                    key=(
-                        itemgetter("runtime")
-                        if run
-                        else lambda node: node["text"].lower()
-                    ),
-                )
-                if active_search:
-                    is_match = match(instance, **kwargs)
-                    if not children and not is_match and not kwargs["display_all"]:
-                        return
-                    elif is_match:
-                        style = "font-weight: bold; color: #BABA06"
-            progress_data = {}
-            if run and "device_state" not in kwargs:
-                progress = state[path].get("progress")
-                if progress and progress["device"]["total"]:
-                    progress_data = {"progress": progress["device"]}
-            if instance.id in kwargs.get("device_state", {}):
-                color = kwargs["device_state"][instance.id]
-            elif run:
-                if state[path].get("dry_run"):
-                    color = "#E09E2F"
-                elif "success" in state[path].get("result", {}):
-                    color = "#32CD32" if state[path]["result"]["success"] else "#FF6666"
-                else:
-                    color = "#25B6FA"
-            else:
-                color = (
-                    "#FF1694"
-                    if getattr(instance, "shared", False)
-                    else "#E09E2F" if getattr(instance, "dry_run", False) else "#6666FF"
-                )
-            text = instance.scoped_name if type == "workflow" else instance.name
-            attr_class = "jstree-wholerow-clicked" if full_ppath == path else ""
-            runtime = state[path].get("result", {}).get("runtime") if state else None
-            return {
-                "runtime": runtime,
-                "data": {
-                    "path": path,
-                    "properties": instance.base_properties,
-                    **progress_data,
-                },
-                "id": path,
-                "state": {"opened": full_ppath.startswith(path)},
-                "text": text if len(text) < 45 else f"{text[:45]}...",
-                "children": children,
-                "a_attr": {
-                    "class": f"no_checkbox {attr_class}",
-                    "style": f"color: {color}; width: 100%; {style}",
-                },
-                "type": instance.type,
-            }
-
-        # In a standard run, the top-level service in the path has run so we use it
-        # as root of the tree. In case of restart run from a subworkflow or from a
-        # workflow that has a superworkflow, we use the last service as root.
-        if run:
-            has_root_state = str(path_pid[0]) in state
-            root_id = path_id[0] if has_root_state else path_id[-1]
-            root_path = str(path_pid[0]) if has_root_state else full_ppath
-        else:
-            root_id, root_path = path_id[0], str(path_pid[0])
-        return {
-            "tree": rec(db.fetch(type, id=root_id), root_path),
-            "highlight": highlight,
-        }
 
     def get_workflow_path(self, path):
         return ">".join(
