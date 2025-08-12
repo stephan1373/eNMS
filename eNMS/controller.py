@@ -613,6 +613,23 @@ class Controller(vs.TimingMixin):
     def get_migration_folders(self):
         return listdir(Path(vs.migration_path))
 
+    def get_network_state(self, path, **kwargs):
+        network = db.fetch("network", id=path.split(">")[-1], allow_none=True)
+        if not network:
+            raise db.rbac_error
+        results = db.fetch_all("result", parent_runtime=kwargs.get("runtime"))
+        output = {
+            "network": network.to_dict(include_relations=["devices", "links"]),
+            "device_results": {
+                result.device_id: result.success
+                for result in results
+                if result.device_id
+            },
+        }
+        if kwargs.get("get_tree") or kwargs.get("search_value"):
+            output.update(self.get_instance_tree("network", path, **kwargs))
+        return output
+
     def get_profiling_data(self):
         return vs.profiling
 
@@ -744,23 +761,6 @@ class Controller(vs.TimingMixin):
             store = db.fetch("store", id=kwargs["store"]["store_id"])
         return store.get_properties() if store else None
 
-    def get_network_state(self, path, **kwargs):
-        network = db.fetch("network", id=path.split(">")[-1], allow_none=True)
-        if not network:
-            raise db.rbac_error
-        results = db.fetch_all("result", parent_runtime=kwargs.get("runtime"))
-        output = {
-            "network": network.to_dict(include_relations=["devices", "links"]),
-            "device_results": {
-                result.device_id: result.success
-                for result in results
-                if result.device_id
-            },
-        }
-        if kwargs.get("get_tree") or kwargs.get("search_value"):
-            output.update(self.get_instance_tree("network", path, **kwargs))
-        return output
-
     def get_time(self):
         return vs.get_time()
 
@@ -776,58 +776,6 @@ class Controller(vs.TimingMixin):
             entry = dict(zip(properties, instance))
             result[instance.category or "Other"].append(entry)
         return result
-
-    def scan_folder(self, path=""):
-        env.log("info", "Starting Scan of Files")
-        path = f"{vs.file_path}{path.replace('>', '/')}"
-        if not exists(path):
-            return {"alert": "This folder does not exist on the filesystem."}
-        elif not str(Path(path).resolve()).startswith(f"{vs.file_path}"):
-            return {"error": "The path resolves outside of the files folder."}
-        files_set = {
-            file
-            for file in db.session.query(vs.models["file"])
-            .filter(vs.models["file"].full_path.startswith(path))
-            .all()
-        }
-        for file in files_set:
-            if not exists(file.full_path):
-                file.status = "Not Found"
-        file_path_set = {file.full_path for file in files_set}
-        ignored_types = vs.settings["files"]["ignored_types"]
-        creation_time = vs.get_time()
-        insert_data, stack = defaultdict(list), [path]
-        while stack:
-            folder = stack.pop()
-            with scandir(folder) as entries:
-                for entry in entries:
-                    if entry.is_dir():
-                        stack.append(entry.path)
-                    if entry.path in file_path_set:
-                        continue
-                    elif splitext(entry.name)[1] in ignored_types:
-                        continue
-                    scoped_path = entry.path.replace(str(vs.file_path), "")
-                    stat_info = entry.stat()
-                    last_modified = str(datetime.fromtimestamp(stat_info.st_mtime))
-                    model = "folder" if entry.is_dir() else "generic_file"
-                    insert_data[model].append(
-                        {
-                            "creation_time": creation_time,
-                            "type": model,
-                            "filename": entry.name,
-                            "folder_path": folder,
-                            "full_path": entry.path,
-                            "last_modified": last_modified,
-                            "name": scoped_path.replace("/", ">"),
-                            "path": scoped_path,
-                            "size": stat_info.st_size,
-                        }
-                    )
-        for model, batch in insert_data.items():
-            for batch in batched(batch, vs.database["transactions"]["batch_size"]):
-                db.session.execute(insert(vs.models[model]), batch)
-        env.log("info", "Scan of Files Successful")
 
     def get_visualization_pools(self, view):
         has_device = vs.models["pool"].devices.any()
@@ -1807,6 +1755,58 @@ class Controller(vs.TimingMixin):
         if kwargs["save"]:
             with open(vs.path / "setup" / "settings.json", "w") as file:
                 dump(kwargs["settings"], file, indent=2)
+
+    def scan_folder(self, path=""):
+        env.log("info", "Starting Scan of Files")
+        path = f"{vs.file_path}{path.replace('>', '/')}"
+        if not exists(path):
+            return {"alert": "This folder does not exist on the filesystem."}
+        elif not str(Path(path).resolve()).startswith(f"{vs.file_path}"):
+            return {"error": "The path resolves outside of the files folder."}
+        files_set = {
+            file
+            for file in db.session.query(vs.models["file"])
+            .filter(vs.models["file"].full_path.startswith(path))
+            .all()
+        }
+        for file in files_set:
+            if not exists(file.full_path):
+                file.status = "Not Found"
+        file_path_set = {file.full_path for file in files_set}
+        ignored_types = vs.settings["files"]["ignored_types"]
+        creation_time = vs.get_time()
+        insert_data, stack = defaultdict(list), [path]
+        while stack:
+            folder = stack.pop()
+            with scandir(folder) as entries:
+                for entry in entries:
+                    if entry.is_dir():
+                        stack.append(entry.path)
+                    if entry.path in file_path_set:
+                        continue
+                    elif splitext(entry.name)[1] in ignored_types:
+                        continue
+                    scoped_path = entry.path.replace(str(vs.file_path), "")
+                    stat_info = entry.stat()
+                    last_modified = str(datetime.fromtimestamp(stat_info.st_mtime))
+                    model = "folder" if entry.is_dir() else "generic_file"
+                    insert_data[model].append(
+                        {
+                            "creation_time": creation_time,
+                            "type": model,
+                            "filename": entry.name,
+                            "folder_path": folder,
+                            "full_path": entry.path,
+                            "last_modified": last_modified,
+                            "name": scoped_path.replace("/", ">"),
+                            "path": scoped_path,
+                            "size": stat_info.st_size,
+                        }
+                    )
+        for model, batch in insert_data.items():
+            for batch in batched(batch, vs.database["transactions"]["batch_size"]):
+                db.session.execute(insert(vs.models[model]), batch)
+        env.log("info", "Scan of Files Successful")
 
     def scan_playbook_folder(self):
         playbooks = [
