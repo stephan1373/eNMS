@@ -143,6 +143,103 @@ class Database:
         self.session.commit()
         return first_init
 
+    def configure_associations(self):
+        self.associations = {}
+        for name, association in self.relationships["associations"].items():
+            model1, model2 = association["model1"], association["model2"]
+            table = Table(
+                f"{name}_association",
+                self.base.metadata,
+                Column(
+                    model1["column"],
+                    Integer,
+                    ForeignKey(
+                        f"{model1['foreign_key']}.id", **model1.get("kwargs", {})
+                    ),
+                    primary_key=True,
+                ),
+                Column(
+                    model2["column"],
+                    Integer,
+                    ForeignKey(
+                        f"{model2['foreign_key']}.id", **model2.get("kwargs", {})
+                    ),
+                    primary_key=True,
+                ),
+            )
+            setattr(self, f"{name}_table", table)
+            self.associations[f"{name}_table"] = {"table": table, **association}
+        for model, properties in vs.rbac["rbac_models"].items():
+            table = Table(
+                f"{model}_owner_association",
+                self.base.metadata,
+                Column(
+                    f"{model}_id",
+                    Integer,
+                    ForeignKey(f"{model}.id"),
+                    primary_key=True,
+                ),
+                Column("user_id", Integer, ForeignKey("user.id"), primary_key=True),
+            )
+            association = {
+                "model1": {"foreign_key": model},
+                "model2": {"foreign_key": "user"},
+            }
+            self.associations[f"{model}_owner_table"] = {"table": table, **association}
+            setattr(self, f"{model}_owner_table", table)
+            for property in properties:
+                table = Table(
+                    f"{model}_{property}_association",
+                    self.base.metadata,
+                    Column(
+                        f"{model}_id",
+                        Integer,
+                        ForeignKey(f"{model}.id"),
+                        primary_key=True,
+                    ),
+                    Column(
+                        "group_id",
+                        Integer,
+                        ForeignKey("group.id"),
+                        primary_key=True,
+                    ),
+                )
+                association = {
+                    "model1": {"foreign_key": model},
+                    "model2": {"foreign_key": "group"},
+                }
+                self.associations[f"{model}_{property}_table"] = {
+                    "table": table,
+                    **association,
+                }
+                setattr(self, f"{model}_{property}_table", table)
+        for property in vs.rbac["rbac_models"]["device"]:
+            table = Table(
+                f"pool_group_{property}_association",
+                self.base.metadata,
+                Column(
+                    "pool_id",
+                    Integer,
+                    ForeignKey("pool.id"),
+                    primary_key=True,
+                ),
+                Column(
+                    "group_id",
+                    Integer,
+                    ForeignKey("group.id"),
+                    primary_key=True,
+                ),
+            )
+            association = {
+                "model1": {"foreign_key": "pool"},
+                "model2": {"foreign_key": "group"},
+            }
+            self.associations[f"pool_group_{property}_table"] = {
+                "table": table,
+                **association,
+            }
+            setattr(self, f"pool_group_{property}_table", table)
+
     def create_metabase(self):
         class SubDeclarativeMeta(DeclarativeMeta):
             def __init__(cls, *args):  # noqa: N805
@@ -153,13 +250,6 @@ class Database:
                 self.set_rbac_properties(cls)
 
         return SubDeclarativeMeta
-
-    @staticmethod
-    def dict_conversion(input):
-        try:
-            return literal_eval(input)
-        except Exception:
-            return loads(input)
 
     def configure_columns(self):
         class CustomPickleType(PickleType):
@@ -392,102 +482,12 @@ class Database:
                 )
                 self.orm_statements_tracebacks[statement][traceback] += 1
 
-    def configure_associations(self):
-        self.associations = {}
-        for name, association in self.relationships["associations"].items():
-            model1, model2 = association["model1"], association["model2"]
-            table = Table(
-                f"{name}_association",
-                self.base.metadata,
-                Column(
-                    model1["column"],
-                    Integer,
-                    ForeignKey(
-                        f"{model1['foreign_key']}.id", **model1.get("kwargs", {})
-                    ),
-                    primary_key=True,
-                ),
-                Column(
-                    model2["column"],
-                    Integer,
-                    ForeignKey(
-                        f"{model2['foreign_key']}.id", **model2.get("kwargs", {})
-                    ),
-                    primary_key=True,
-                ),
-            )
-            setattr(self, f"{name}_table", table)
-            self.associations[f"{name}_table"] = {"table": table, **association}
-        for model, properties in vs.rbac["rbac_models"].items():
-            table = Table(
-                f"{model}_owner_association",
-                self.base.metadata,
-                Column(
-                    f"{model}_id",
-                    Integer,
-                    ForeignKey(f"{model}.id"),
-                    primary_key=True,
-                ),
-                Column("user_id", Integer, ForeignKey("user.id"), primary_key=True),
-            )
-            association = {
-                "model1": {"foreign_key": model},
-                "model2": {"foreign_key": "user"},
-            }
-            self.associations[f"{model}_owner_table"] = {"table": table, **association}
-            setattr(self, f"{model}_owner_table", table)
-            for property in properties:
-                table = Table(
-                    f"{model}_{property}_association",
-                    self.base.metadata,
-                    Column(
-                        f"{model}_id",
-                        Integer,
-                        ForeignKey(f"{model}.id"),
-                        primary_key=True,
-                    ),
-                    Column(
-                        "group_id",
-                        Integer,
-                        ForeignKey("group.id"),
-                        primary_key=True,
-                    ),
-                )
-                association = {
-                    "model1": {"foreign_key": model},
-                    "model2": {"foreign_key": "group"},
-                }
-                self.associations[f"{model}_{property}_table"] = {
-                    "table": table,
-                    **association,
-                }
-                setattr(self, f"{model}_{property}_table", table)
-        for property in vs.rbac["rbac_models"]["device"]:
-            table = Table(
-                f"pool_group_{property}_association",
-                self.base.metadata,
-                Column(
-                    "pool_id",
-                    Integer,
-                    ForeignKey("pool.id"),
-                    primary_key=True,
-                ),
-                Column(
-                    "group_id",
-                    Integer,
-                    ForeignKey("group.id"),
-                    primary_key=True,
-                ),
-            )
-            association = {
-                "model1": {"foreign_key": "pool"},
-                "model2": {"foreign_key": "group"},
-            }
-            self.associations[f"pool_group_{property}_table"] = {
-                "table": table,
-                **association,
-            }
-            setattr(self, f"pool_group_{property}_table", table)
+    @staticmethod
+    def dict_conversion(input):
+        try:
+            return literal_eval(input)
+        except Exception:
+            return loads(input)
 
     def query(self, model, rbac="read", user=None, properties=None):
         if properties:
