@@ -979,6 +979,33 @@ class RunEngine:
 
 
 class NetworkManagement:
+    def configuration_transaction(self, property, device, **kwargs):
+        deferred_device = (
+            db.query("device", user=self.creator)
+            .options(load_only(getattr(vs.models["device"], property)))
+            .filter_by(id=device.id)
+            .one()
+        )
+        previous_config = getattr(deferred_device, property)
+        write_config = kwargs["success"] and previous_config != kwargs["result"]
+
+        def transaction():
+            setattr(device, f"last_{property}_runtime", str(kwargs["runtime"]))
+            if kwargs["success"]:
+                setattr(device, f"last_{property}_status", "Success")
+                duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"
+                setattr(device, f"last_{property}_duration", duration)
+                if previous_config != kwargs["result"]:
+                    setattr(deferred_device, property, kwargs["result"])
+                    setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
+                setattr(device, f"last_{property}_success", str(kwargs["runtime"]))
+            else:
+                setattr(device, f"last_{property}_status", "Failure")
+                setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))
+
+        db.try_commit(transaction)
+        return write_config
+
     def get_credentials(self, device, add_secret=True):
         result, credential_type = {}, self.main_run.service.credential_type
         credential = None
@@ -1034,6 +1061,72 @@ class NetworkManagement:
             ) as scp:
                 for source, destination in files:
                     getattr(scp, self.direction)(source, destination)
+
+    def napalm_connection(self, device):
+        connection = self.get_or_close_connection("napalm", device.name)
+        connection_name = f"NAPALM Connection '{self.connection_name}'"
+        if connection:
+            self.log("info", f"Using cached {connection_name}", device)
+            return connection
+        self.check_connection_numbers()
+        self.log(
+            "info",
+            f"OPENING {connection_name}",
+            device,
+            change_log=False,
+            logger="security",
+        )
+        credentials = self.get_credentials(device)
+        optional_args = self.service.optional_args
+        if not optional_args:
+            optional_args = {}
+        if "secret" not in optional_args:
+            optional_args["secret"] = credentials.pop("secret", None)
+        driver = get_network_driver(
+            device.napalm_driver if self.driver == "device" else self.driver
+        )
+        napalm_connection = driver(
+            hostname=device.ip_address,
+            timeout=self.timeout,
+            optional_args=optional_args,
+            **credentials,
+        )
+        napalm_connection.open()
+        napalm_connection.connection_name = self.connection_name
+        self.write_state("connections/napalm", 1, "increment", True)
+        vs.connections_cache["napalm"][self.parent_runtime].setdefault(device.name, {})[
+            self.connection_name
+        ] = napalm_connection
+        return napalm_connection
+
+    def ncclient_connection(self, device):
+        connection = self.get_or_close_connection("ncclient", device.name)
+        connection_name = f"NCClient Connection '{self.connection_name}'"
+        if connection:
+            self.log("info", f"Using cached {connection_name}", device)
+            return connection
+        self.log(
+            "info",
+            f"OPENING {connection_name}",
+            device,
+            change_log=False,
+            logger="security",
+        )
+        credentials = self.get_credentials(device)
+        ncclient_connection = manager.connect(
+            host=device.ip_address,
+            port=830,
+            hostkey_verify=False,
+            look_for_keys=False,
+            device_params={"name": device.netconf_driver or "default"},
+            username=credentials["username"],
+            password=credentials["password"],
+        )
+        ncclient_connection.connection_name = self.connection_name
+        vs.connections_cache["ncclient"][self.parent_runtime].setdefault(
+            device.name, {}
+        )[self.connection_name] = ncclient_connection
+        return ncclient_connection
 
     def netmiko_connection(self, device):
         connection = self.get_or_close_connection("netmiko", device.name)
@@ -1146,72 +1239,6 @@ class NetworkManagement:
             device.name, {}
         )[self.connection_name] = connection
         return connection
-
-    def napalm_connection(self, device):
-        connection = self.get_or_close_connection("napalm", device.name)
-        connection_name = f"NAPALM Connection '{self.connection_name}'"
-        if connection:
-            self.log("info", f"Using cached {connection_name}", device)
-            return connection
-        self.check_connection_numbers()
-        self.log(
-            "info",
-            f"OPENING {connection_name}",
-            device,
-            change_log=False,
-            logger="security",
-        )
-        credentials = self.get_credentials(device)
-        optional_args = self.service.optional_args
-        if not optional_args:
-            optional_args = {}
-        if "secret" not in optional_args:
-            optional_args["secret"] = credentials.pop("secret", None)
-        driver = get_network_driver(
-            device.napalm_driver if self.driver == "device" else self.driver
-        )
-        napalm_connection = driver(
-            hostname=device.ip_address,
-            timeout=self.timeout,
-            optional_args=optional_args,
-            **credentials,
-        )
-        napalm_connection.open()
-        napalm_connection.connection_name = self.connection_name
-        self.write_state("connections/napalm", 1, "increment", True)
-        vs.connections_cache["napalm"][self.parent_runtime].setdefault(device.name, {})[
-            self.connection_name
-        ] = napalm_connection
-        return napalm_connection
-
-    def ncclient_connection(self, device):
-        connection = self.get_or_close_connection("ncclient", device.name)
-        connection_name = f"NCClient Connection '{self.connection_name}'"
-        if connection:
-            self.log("info", f"Using cached {connection_name}", device)
-            return connection
-        self.log(
-            "info",
-            f"OPENING {connection_name}",
-            device,
-            change_log=False,
-            logger="security",
-        )
-        credentials = self.get_credentials(device)
-        ncclient_connection = manager.connect(
-            host=device.ip_address,
-            port=830,
-            hostkey_verify=False,
-            look_for_keys=False,
-            device_params={"name": device.netconf_driver or "default"},
-            username=credentials["username"],
-            password=credentials["password"],
-        )
-        ncclient_connection.connection_name = self.connection_name
-        vs.connections_cache["ncclient"][self.parent_runtime].setdefault(
-            device.name, {}
-        )[self.connection_name] = ncclient_connection
-        return ncclient_connection
 
     def get_or_close_connection(self, library, device):
         connection = self.get_connection(library, device)
@@ -1370,33 +1397,6 @@ class NetworkManagement:
         except Exception as exc:
             self.log("error", f"Failed to honor the config mode ({exc})", device)
         return connection
-
-    def configuration_transaction(self, property, device, **kwargs):
-        deferred_device = (
-            db.query("device", user=self.creator)
-            .options(load_only(getattr(vs.models["device"], property)))
-            .filter_by(id=device.id)
-            .one()
-        )
-        previous_config = getattr(deferred_device, property)
-        write_config = kwargs["success"] and previous_config != kwargs["result"]
-
-        def transaction():
-            setattr(device, f"last_{property}_runtime", str(kwargs["runtime"]))
-            if kwargs["success"]:
-                setattr(device, f"last_{property}_status", "Success")
-                duration = f"{(datetime.now() - kwargs['runtime']).total_seconds()}s"
-                setattr(device, f"last_{property}_duration", duration)
-                if previous_config != kwargs["result"]:
-                    setattr(deferred_device, property, kwargs["result"])
-                    setattr(device, f"last_{property}_update", str(kwargs["runtime"]))
-                setattr(device, f"last_{property}_success", str(kwargs["runtime"]))
-            else:
-                setattr(device, f"last_{property}_status", "Failure")
-                setattr(device, f"last_{property}_failure", str(kwargs["runtime"]))
-
-        db.try_commit(transaction)
-        return write_config
 
 
 class GlobalVariables:
