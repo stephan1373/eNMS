@@ -103,34 +103,6 @@ class Server(Flask):
         def user_loader(name):
             return db.fetch("user", allow_none=True, name=name, rbac=None)
 
-    def register_extensions(self):
-        self.csrf = CSRFProtect()
-        self.csrf.init_app(self)
-        env.cache.init_app(self)
-
-    def update_config(self):
-        session_timeout = vs.settings["app"]["session_timeout_minutes"]
-        self.config.update(
-            {
-                "DEBUG": vs.settings["app"]["config_mode"].lower() != "production",
-                "SECRET_KEY": getenv("SECRET_KEY", "secret_key"),
-                "WTF_CSRF_TIME_LIMIT": None,
-                "ERROR_404_HELP": False,
-                "MAX_CONTENT_LENGTH": vs.settings["app"]["max_content_length"],
-                "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
-            }
-        )
-
-    def register_plugins(self):
-        for plugin, settings in vs.plugins_settings.items():
-            try:
-                module = import_module(f"eNMS.plugins.{plugin}")
-                module.Plugin(self, controller, db, vs, env, **settings)
-            except Exception:
-                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
-                continue
-            info(f"Loading plugin: {settings['name']}")
-
     def log_user(self, user):
         if isinstance(user, str):
             user = db.fetch("user", name=user, rbac=None)
@@ -225,6 +197,34 @@ class Server(Flask):
                 return jsonify({"alert": alert}), status_code
 
         return decorated_function
+
+    def register_extensions(self):
+        self.csrf = CSRFProtect()
+        self.csrf.init_app(self)
+        env.cache.init_app(self)
+
+    def update_config(self):
+        session_timeout = vs.settings["app"]["session_timeout_minutes"]
+        self.config.update(
+            {
+                "DEBUG": vs.settings["app"]["config_mode"].lower() != "production",
+                "SECRET_KEY": getenv("SECRET_KEY", "secret_key"),
+                "WTF_CSRF_TIME_LIMIT": None,
+                "ERROR_404_HELP": False,
+                "MAX_CONTENT_LENGTH": vs.settings["app"]["max_content_length"],
+                "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
+            }
+        )
+
+    def register_plugins(self):
+        for plugin, settings in vs.plugins_settings.items():
+            try:
+                module = import_module(f"eNMS.plugins.{plugin}")
+                module.Plugin(self, controller, db, vs, env, **settings)
+            except Exception:
+                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
+                continue
+            info(f"Loading plugin: {settings['name']}")
 
     def configure_routes(self):
         blueprint = Blueprint("blueprint", __name__, template_folder="../templates")
