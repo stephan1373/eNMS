@@ -1686,7 +1686,6 @@ tables.data = class DataTable extends Table {
       this.columnDisplay(),
       this.displayChangelogButton("data"),
       this.refreshTableButton(),
-      this.copySearchLinkButton(),
       this.clearSearchButton(),
       `
       <a
