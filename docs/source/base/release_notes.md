@@ -336,6 +336,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Add one-to-many Server - Session relationship to identify which Server handled which Session, and
   update the Session (resp. Server) table with a 'Server Name' (resp. 'Sessions') column
   Commit: 2650f509a77107e7795915ecb408b9f75814b2c9
+- Add new 'delete_if_not_found' option for files so that a file is deleted during the scan folder mechanism
+  if it is not found on disk (configured from settings.json / "files" / "delete_if_not_found" (default: true))
+  Commit: 4290d0e38b3c53563e96952f9503d116ecc8e9f1
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
