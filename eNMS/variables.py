@@ -132,18 +132,6 @@ class VariableStore:
         self.property_names = {}
         self.relationships = defaultdict(dict)
 
-    def _set_report_variables(self):
-        self.reports = {"Empty report": ""}
-        for path in Path(self.file_path / "reports").glob("**/*"):
-            if path.suffix not in {".j2", ".txt"}:
-                continue
-            with open(path, "r") as file:
-                self.reports[path.name] = file.read()
-
-    def _set_version(self):
-        with open(self.path / "package.json") as package_file:
-            self.version = load(package_file)["version"]
-
     def _set_plugins_settings(self):
         self.plugins_settings = {}
         for path in Path(self.settings["app"]["plugin_path"]).iterdir():
@@ -162,6 +150,14 @@ class VariableStore:
             except Exception:
                 error(f"Could not load plugin settings '{path.stem}':\n{format_exc()}")
                 continue
+
+    def _set_report_variables(self):
+        self.reports = {"Empty report": ""}
+        for path in Path(self.file_path / "reports").glob("**/*"):
+            if path.suffix not in {".j2", ".txt"}:
+                continue
+            with open(path, "r") as file:
+                self.reports[path.name] = file.read()
 
     def _set_timing_mixin(self):
         self.profiling = {}
@@ -244,6 +240,10 @@ class VariableStore:
         self.migration_path = (
             self.settings["paths"]["migration"] or f"{self.file_path}/migrations"
         )
+
+    def _set_version(self):
+        with open(self.path / "package.json") as package_file:
+            self.version = load(package_file)["version"]
 
     def _update_rbac_variables(self):
         self.rbac = {"pages": [], "menus": [], "all_pages": {}, **self.rbac}
