@@ -173,15 +173,6 @@ class VariableStore:
             self.settings["paths"]["migration"] or f"{self.file_path}/migrations"
         )
 
-    def custom_function(self, func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            if hasattr(self.custom, func.__name__):
-                return getattr(self.custom, func.__name__)(*args, **kwargs)
-            return func(*args, **kwargs)
-
-        return wrapper
-
     def _update_rbac_variables(self):
         self.rbac = {"pages": [], "menus": [], "all_pages": {}, **self.rbac}
         for category, category_values in self.rbac["menu"].items():
@@ -195,6 +186,15 @@ class VariableStore:
                     self.rbac["all_pages"][subpage] = subpage_values["endpoint"]
                     if subpage_values["rbac"] == "access":
                         self.rbac["pages"].append(subpage)
+
+    def custom_function(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if hasattr(self.custom, func.__name__):
+                return getattr(self.custom, func.__name__)(*args, **kwargs)
+            return func(*args, **kwargs)
+
+        return wrapper
 
     def _set_run_variables(self):
         self.run_allowed_targets = {}
