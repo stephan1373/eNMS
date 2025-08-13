@@ -1006,6 +1006,11 @@ class NetworkManagement:
         db.try_commit(transaction)
         return write_config
 
+    def get_connection(self, library, device, name=None):
+        cache = vs.connections_cache[library].get(self.parent_runtime, {})
+        connection = name or getattr(self, "connection_name", "default")
+        return cache.get(device, {}).get(connection)
+
     def get_credentials(self, device, add_secret=True):
         result, credential_type = {}, self.main_run.service.credential_type
         credential = None
@@ -1044,6 +1049,32 @@ class NetworkManagement:
                 password = env.get_password(substituted_password)
             result["password"] = password
         return result
+
+    def get_or_close_connection(self, library, device):
+        connection = self.get_connection(library, device)
+        if not connection:
+            return
+        if self.start_new_connection:
+            return self.disconnect(library, device, connection)
+        if library == "napalm":
+            if connection.is_alive():
+                return connection
+            else:
+                self.disconnect(library, device, connection)
+        elif library == "ncclient":
+            if connection.connected:
+                return connection
+            else:
+                self.disconnect(library, device, connection)
+        else:
+            try:
+                if library == "netmiko":
+                    connection.find_prompt()
+                else:
+                    connection.get_prompt()
+                return connection
+            except Exception:
+                self.disconnect(library, device, connection)
 
     def transfer_file(self, ssh_client, files):
         if self.protocol == "sftp":
@@ -1239,37 +1270,6 @@ class NetworkManagement:
             device.name, {}
         )[self.connection_name] = connection
         return connection
-
-    def get_or_close_connection(self, library, device):
-        connection = self.get_connection(library, device)
-        if not connection:
-            return
-        if self.start_new_connection:
-            return self.disconnect(library, device, connection)
-        if library == "napalm":
-            if connection.is_alive():
-                return connection
-            else:
-                self.disconnect(library, device, connection)
-        elif library == "ncclient":
-            if connection.connected:
-                return connection
-            else:
-                self.disconnect(library, device, connection)
-        else:
-            try:
-                if library == "netmiko":
-                    connection.find_prompt()
-                else:
-                    connection.get_prompt()
-                return connection
-            except Exception:
-                self.disconnect(library, device, connection)
-
-    def get_connection(self, library, device, name=None):
-        cache = vs.connections_cache[library].get(self.parent_runtime, {})
-        connection = name or getattr(self, "connection_name", "default")
-        return cache.get(device, {}).get(connection)
 
     def check_connection_numbers(self):
         if not vs.automation["connections"]["enforce_threshold"]:
