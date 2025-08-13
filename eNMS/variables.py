@@ -159,39 +159,6 @@ class VariableStore:
             with open(path, "r") as file:
                 self.reports[path.name] = file.read()
 
-    def _set_timing_mixin(self):
-        self.profiling = {}
-
-        class TimingMixin:
-            def __getattribute__(self, name):
-                attr = super().__getattribute__(name)
-                if callable(attr):
-
-                    def timed_function(*args, **kwargs):
-                        start_time = time()
-                        result = attr(*args, **kwargs)
-                        path = f"{type(self).__name__}_{name}"
-                        elapsed_time = time() - start_time
-                        if path not in vs.profiling:
-                            vs.profiling[path] = {
-                                "count": 0,
-                                "average_time": 0,
-                                "combined_time": 0,
-                                "class": type(self).__name__,
-                            }
-                        data = vs.profiling[path]
-                        data["average_time"] = (
-                            data["average_time"] * data["count"] + elapsed_time
-                        ) / (data["count"] + 1)
-                        data["count"] += 1
-                        data["combined_time"] += elapsed_time
-                        return result
-
-                    return timed_function
-                return attr
-
-        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
-
     def _set_run_variables(self):
         self.run_allowed_targets = {}
         self.run_services = defaultdict(set)
@@ -240,6 +207,39 @@ class VariableStore:
         self.migration_path = (
             self.settings["paths"]["migration"] or f"{self.file_path}/migrations"
         )
+
+    def _set_timing_mixin(self):
+        self.profiling = {}
+
+        class TimingMixin:
+            def __getattribute__(self, name):
+                attr = super().__getattribute__(name)
+                if callable(attr):
+
+                    def timed_function(*args, **kwargs):
+                        start_time = time()
+                        result = attr(*args, **kwargs)
+                        path = f"{type(self).__name__}_{name}"
+                        elapsed_time = time() - start_time
+                        if path not in vs.profiling:
+                            vs.profiling[path] = {
+                                "count": 0,
+                                "average_time": 0,
+                                "combined_time": 0,
+                                "class": type(self).__name__,
+                            }
+                        data = vs.profiling[path]
+                        data["average_time"] = (
+                            data["average_time"] * data["count"] + elapsed_time
+                        ) / (data["count"] + 1)
+                        data["count"] += 1
+                        data["combined_time"] += elapsed_time
+                        return result
+
+                    return timed_function
+                return attr
+
+        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
 
     def _set_version(self):
         with open(self.path / "package.json") as package_file:
