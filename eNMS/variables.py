@@ -140,6 +140,62 @@ class VariableStore:
             with open(path, "r") as file:
                 self.reports[path.name] = file.read()
 
+    def _set_version(self):
+        with open(self.path / "package.json") as package_file:
+            self.version = load(package_file)["version"]
+
+    def _set_plugins_settings(self):
+        self.plugins_settings = {}
+        for path in Path(self.settings["app"]["plugin_path"]).iterdir():
+            if not Path(path / "settings.json").exists():
+                continue
+            try:
+                with open(path / "settings.json", "r") as file:
+                    settings = load(file)
+                if not settings["active"]:
+                    continue
+                self.plugins_settings[path.stem] = settings
+                for setup_file in ("database", "properties", "rbac"):
+                    self.dictionary_recursive_merge(
+                        getattr(self, setup_file), settings.get(setup_file, {})
+                    )
+            except Exception:
+                error(f"Could not load plugin settings '{path.stem}':\n{format_exc()}")
+                continue
+
+    def _set_timing_mixin(self):
+        self.profiling = {}
+
+        class TimingMixin:
+            def __getattribute__(self, name):
+                attr = super().__getattribute__(name)
+                if callable(attr):
+
+                    def timed_function(*args, **kwargs):
+                        start_time = time()
+                        result = attr(*args, **kwargs)
+                        path = f"{type(self).__name__}_{name}"
+                        elapsed_time = time() - start_time
+                        if path not in vs.profiling:
+                            vs.profiling[path] = {
+                                "count": 0,
+                                "average_time": 0,
+                                "combined_time": 0,
+                                "class": type(self).__name__,
+                            }
+                        data = vs.profiling[path]
+                        data["average_time"] = (
+                            data["average_time"] * data["count"] + elapsed_time
+                        ) / (data["count"] + 1)
+                        data["count"] += 1
+                        data["combined_time"] += elapsed_time
+                        return result
+
+                    return timed_function
+                return attr
+
+        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
+
     def _set_run_variables(self):
         self.run_allowed_targets = {}
         self.run_services = defaultdict(set)
@@ -256,62 +312,6 @@ class VariableStore:
             },
             **self.field_class,
         }
-
-    def _set_version(self):
-        with open(self.path / "package.json") as package_file:
-            self.version = load(package_file)["version"]
-
-    def _set_plugins_settings(self):
-        self.plugins_settings = {}
-        for path in Path(self.settings["app"]["plugin_path"]).iterdir():
-            if not Path(path / "settings.json").exists():
-                continue
-            try:
-                with open(path / "settings.json", "r") as file:
-                    settings = load(file)
-                if not settings["active"]:
-                    continue
-                self.plugins_settings[path.stem] = settings
-                for setup_file in ("database", "properties", "rbac"):
-                    self.dictionary_recursive_merge(
-                        getattr(self, setup_file), settings.get(setup_file, {})
-                    )
-            except Exception:
-                error(f"Could not load plugin settings '{path.stem}':\n{format_exc()}")
-                continue
-
-    def _set_timing_mixin(self):
-        self.profiling = {}
-
-        class TimingMixin:
-            def __getattribute__(self, name):
-                attr = super().__getattribute__(name)
-                if callable(attr):
-
-                    def timed_function(*args, **kwargs):
-                        start_time = time()
-                        result = attr(*args, **kwargs)
-                        path = f"{type(self).__name__}_{name}"
-                        elapsed_time = time() - start_time
-                        if path not in vs.profiling:
-                            vs.profiling[path] = {
-                                "count": 0,
-                                "average_time": 0,
-                                "combined_time": 0,
-                                "class": type(self).__name__,
-                            }
-                        data = vs.profiling[path]
-                        data["average_time"] = (
-                            data["average_time"] * data["count"] + elapsed_time
-                        ) / (data["count"] + 1)
-                        data["count"] += 1
-                        data["combined_time"] += elapsed_time
-                        return result
-
-                    return timed_function
-                return attr
-
-        self.TimingMixin = TimingMixin if self.settings["app"]["profiling"] else object
 
     def dict_to_string(self, input, depth=0):
         tab = "\t" * depth
