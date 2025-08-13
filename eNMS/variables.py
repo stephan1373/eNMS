@@ -268,51 +268,6 @@ class VariableStore:
 
         return wrapper
 
-    def set_subtypes(self):
-        self.subtypes = {
-            model: {
-                model_name: model_class.pretty_name
-                for model_name, model_class in sorted(self.models.items())
-                if issubclass(model_class, self.models[model])
-                and hasattr(model_class, "pretty_name")
-            }
-            for model in ("link", "data", "device", "service")
-        }
-
-    def set_template_context(self):
-        static_path = Path(self.path) / "eNMS" / "static" / "js" / "datastore"
-        self.template_context = {
-            "application_path": str(self.path),
-            "datastore_files": [file.name for file in static_path.glob("*.js")],
-            "file_path": str(self.file_path),
-            "automation": self.automation,
-            "configuration_properties": self.configuration_properties,
-            "form_properties": self.form_properties,
-            "names": self.property_names,
-            "rbac": self.rbac,
-            "relationships": self.relationships,
-            "subtypes": self.subtypes,
-            "server_url": self.server_url,
-            "settings": self.settings,
-            "ssh_url": self.ssh_url,
-            "themes": self.themes,
-            "table_properties": self.properties["tables"],
-            "version": self.version,
-            "visualization": self.visualization,
-            **self.custom.server_template_context(),
-        }
-        self.form_context = {
-            **{
-                validator: getattr(modules["wtforms.validators"], validator)
-                for validator in all_validators
-            },
-            **{
-                widget: getattr(modules["wtforms.widgets.core"], widget)
-                for widget in all_widgets
-            },
-            **self.field_class,
-        }
-
     def dict_to_string(self, input, depth=0):
         tab = "\t" * depth
         if isinstance(input, list):
@@ -366,6 +321,51 @@ class VariableStore:
 
     def strip_all(self, input):
         return input.translate(str.maketrans("", "", f"{punctuation} "))
+
+    def set_subtypes(self):
+        self.subtypes = {
+            model: {
+                model_name: model_class.pretty_name
+                for model_name, model_class in sorted(self.models.items())
+                if issubclass(model_class, self.models[model])
+                and hasattr(model_class, "pretty_name")
+            }
+            for model in ("link", "data", "device", "service")
+        }
+
+    def set_template_context(self):
+        static_path = Path(self.path) / "eNMS" / "static" / "js" / "datastore"
+        self.template_context = {
+            "application_path": str(self.path),
+            "datastore_files": [file.name for file in static_path.glob("*.js")],
+            "file_path": str(self.file_path),
+            "automation": self.automation,
+            "configuration_properties": self.configuration_properties,
+            "form_properties": self.form_properties,
+            "names": self.property_names,
+            "rbac": self.rbac,
+            "relationships": self.relationships,
+            "subtypes": self.subtypes,
+            "server_url": self.server_url,
+            "settings": self.settings,
+            "ssh_url": self.ssh_url,
+            "themes": self.themes,
+            "table_properties": self.properties["tables"],
+            "version": self.version,
+            "visualization": self.visualization,
+            **self.custom.server_template_context(),
+        }
+        self.form_context = {
+            **{
+                validator: getattr(modules["wtforms.validators"], validator)
+                for validator in all_validators
+            },
+            **{
+                widget: getattr(modules["wtforms.widgets.core"], widget)
+                for widget in all_widgets
+            },
+            **self.field_class,
+        }
 
 
 vs = VariableStore()
