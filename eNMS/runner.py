@@ -1400,70 +1400,11 @@ class NetworkManagement:
 
 
 class GlobalVariables:
-    def global_variables(_self, **locals):  # noqa: N805
-        payload, device = _self.payload, locals.get("device")
-        variables = {**locals, **payload.get("form", {})}
-        variables.update(payload.get("variables", {}))
-        if device and "devices" in payload.get("variables", {}):
-            variables.update(payload["variables"]["devices"].get(device.name, {}))
-        variables.update(
-            {
-                "__builtins__": {**builtins, "__import__": _self._import},
-                "delete": partial(_self.internal_function, "delete"),
-                "devices": _self.run_targets,
-                "dry_run": getattr(_self, "dry_run", False),
-                "get_all_results": _self.get_all_results,
-                "get_connection": _self.get_connection,
-                "get_var": _self.get_var,
-                "factory": partial(_self.internal_function, "factory"),
-                "fetch": partial(_self.internal_function, "fetch"),
-                "fetch_all": partial(_self.internal_function, "fetch_all"),
-                "filtering": partial(_self.internal_function, "filtering"),
-                "get_result": _self.get_result,
-                "get_secret": _self.get_secret,
-                "get_data": _self.get_data,
-                "log": partial(_self.log, user_defined=True),
-                "parent_device": _self.parent_device or device,
-                "payload": _self.payload,
-                "remove_note": _self.remove_note,
-                "set_note": _self.set_note,
-                "set_var": _self.payload_helper,
-                "workflow": _self.workflow,
-                **_self.cache["global_variables"],
-                **vs.custom.runner_global_variables(_self),
-            }
-        )
-        if _self.cache["creator"]["is_admin"]:
-            variables["get_credential"] = _self.get_credential
-        return variables
-
     @staticmethod
     def _import(module, *args, **kwargs):
         if module in vs.settings["security"]["forbidden_python_libraries"]:
             raise ImportError(f"Module '{module}' is restricted.")
         return importlib_import(module, *args, **kwargs)
-
-    def internal_function(self, func, _model, **kwargs):
-        if _model not in vs.automation["workflow"]["allowed_models"][func]:
-            raise db.rbac_error(f"Use of '{func}' not allowed on {_model}s.")
-        kwargs.update({"rbac": "edit", "user": self.creator})
-        if func == "filtering":
-            kwargs["bulk"] = "object"
-        target = controller if func == "filtering" else db
-        if self.high_performance:
-            with db.session_scope(commit=func == "factory", remove=self.in_process):
-                result = getattr(target, func)(_model, **kwargs)
-                if func == "delete":
-                    return result
-                elif isinstance(result, list):
-                    return [
-                        SimpleNamespace(**instance.get_properties())
-                        for instance in result
-                    ]
-                else:
-                    return SimpleNamespace(**result.get_properties())
-        else:
-            return getattr(target, func)(_model, **kwargs)
 
     def get_all_results(self):
         return db.fetch_all("result", parent_runtime=self.parent_runtime, rbac=None)
@@ -1577,6 +1518,65 @@ class GlobalVariables:
 
     def get_var(self, *args, **kwargs):
         return self.payload_helper(*args, operation="get", **kwargs)
+
+    def global_variables(_self, **locals):  # noqa: N805
+        payload, device = _self.payload, locals.get("device")
+        variables = {**locals, **payload.get("form", {})}
+        variables.update(payload.get("variables", {}))
+        if device and "devices" in payload.get("variables", {}):
+            variables.update(payload["variables"]["devices"].get(device.name, {}))
+        variables.update(
+            {
+                "__builtins__": {**builtins, "__import__": _self._import},
+                "delete": partial(_self.internal_function, "delete"),
+                "devices": _self.run_targets,
+                "dry_run": getattr(_self, "dry_run", False),
+                "get_all_results": _self.get_all_results,
+                "get_connection": _self.get_connection,
+                "get_var": _self.get_var,
+                "factory": partial(_self.internal_function, "factory"),
+                "fetch": partial(_self.internal_function, "fetch"),
+                "fetch_all": partial(_self.internal_function, "fetch_all"),
+                "filtering": partial(_self.internal_function, "filtering"),
+                "get_result": _self.get_result,
+                "get_secret": _self.get_secret,
+                "get_data": _self.get_data,
+                "log": partial(_self.log, user_defined=True),
+                "parent_device": _self.parent_device or device,
+                "payload": _self.payload,
+                "remove_note": _self.remove_note,
+                "set_note": _self.set_note,
+                "set_var": _self.payload_helper,
+                "workflow": _self.workflow,
+                **_self.cache["global_variables"],
+                **vs.custom.runner_global_variables(_self),
+            }
+        )
+        if _self.cache["creator"]["is_admin"]:
+            variables["get_credential"] = _self.get_credential
+        return variables
+
+    def internal_function(self, func, _model, **kwargs):
+        if _model not in vs.automation["workflow"]["allowed_models"][func]:
+            raise db.rbac_error(f"Use of '{func}' not allowed on {_model}s.")
+        kwargs.update({"rbac": "edit", "user": self.creator})
+        if func == "filtering":
+            kwargs["bulk"] = "object"
+        target = controller if func == "filtering" else db
+        if self.high_performance:
+            with db.session_scope(commit=func == "factory", remove=self.in_process):
+                result = getattr(target, func)(_model, **kwargs)
+                if func == "delete":
+                    return result
+                elif isinstance(result, list):
+                    return [
+                        SimpleNamespace(**instance.get_properties())
+                        for instance in result
+                    ]
+                else:
+                    return SimpleNamespace(**result.get_properties())
+        else:
+            return getattr(target, func)(_model, **kwargs)
 
     def payload_helper(
         self,
