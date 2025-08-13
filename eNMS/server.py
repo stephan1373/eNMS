@@ -63,34 +63,6 @@ class Server(Flask):
         self.configure_errors()
         self.configure_routes()
 
-    def update_config(self):
-        session_timeout = vs.settings["app"]["session_timeout_minutes"]
-        self.config.update(
-            {
-                "DEBUG": vs.settings["app"]["config_mode"].lower() != "production",
-                "SECRET_KEY": getenv("SECRET_KEY", "secret_key"),
-                "WTF_CSRF_TIME_LIMIT": None,
-                "ERROR_404_HELP": False,
-                "MAX_CONTENT_LENGTH": vs.settings["app"]["max_content_length"],
-                "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
-            }
-        )
-
-    def register_plugins(self):
-        for plugin, settings in vs.plugins_settings.items():
-            try:
-                module = import_module(f"eNMS.plugins.{plugin}")
-                module.Plugin(self, controller, db, vs, env, **settings)
-            except Exception:
-                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
-                continue
-            info(f"Loading plugin: {settings['name']}")
-
-    def register_extensions(self):
-        self.csrf = CSRFProtect()
-        self.csrf.init_app(self)
-        env.cache.init_app(self)
-
     def configure_login_manager(self):
         login_manager = LoginManager()
         login_manager.session_protection = "strong"
@@ -130,6 +102,34 @@ class Server(Flask):
         @self.errorhandler(404)
         def not_found_error(error):
             return render_template("error.html", error=404), 404
+
+    def update_config(self):
+        session_timeout = vs.settings["app"]["session_timeout_minutes"]
+        self.config.update(
+            {
+                "DEBUG": vs.settings["app"]["config_mode"].lower() != "production",
+                "SECRET_KEY": getenv("SECRET_KEY", "secret_key"),
+                "WTF_CSRF_TIME_LIMIT": None,
+                "ERROR_404_HELP": False,
+                "MAX_CONTENT_LENGTH": vs.settings["app"]["max_content_length"],
+                "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
+            }
+        )
+
+    def register_plugins(self):
+        for plugin, settings in vs.plugins_settings.items():
+            try:
+                module = import_module(f"eNMS.plugins.{plugin}")
+                module.Plugin(self, controller, db, vs, env, **settings)
+            except Exception:
+                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
+                continue
+            info(f"Loading plugin: {settings['name']}")
+
+    def register_extensions(self):
+        self.csrf = CSRFProtect()
+        self.csrf.init_app(self)
+        env.cache.init_app(self)
 
     def log_user(self, user):
         if isinstance(user, str):
