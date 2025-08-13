@@ -105,6 +105,7 @@
     "workflow_builder": "automation/workflow_builder/"
   },
   "files": {
+    "delete_if_not_found": true,
     "monitor_filesystem": false,
     "ignored_types": [".swp", ".tgz", "yaml"],
     "upload_timeout": 600000,

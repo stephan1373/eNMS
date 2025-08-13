@@ -1635,7 +1635,11 @@ class Controller(vs.TimingMixin):
             .all()
         }
         for file in files_set:
-            if not exists(file.full_path):
+            if exists(file.full_path):
+                continue
+            if vs.settings["files"]["delete_if_not_found"]:
+                db.session.delete(file)
+            else:
                 file.status = "Not Found"
         file_path_set = {file.full_path for file in files_set}
         ignored_types = vs.settings["files"]["ignored_types"]
