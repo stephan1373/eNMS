@@ -78,6 +78,33 @@ class VariableStore:
         except NameError:
             self.netconf_drivers = []
 
+    def _set_configuration_variables(self):
+        for property, title in self.configuration_properties.items():
+            self.properties["filtering"]["device"].append(property)
+            self.properties["tables"]["configuration"].insert(
+                -3,
+                {
+                    "data": property,
+                    "title": title,
+                    "search": "text",
+                    "width": "70%",
+                    "visible": property == "configuration",
+                    "orderable": False,
+                    "html": True,
+                },
+            )
+            for timestamp in self.timestamps:
+                self.properties["tables"]["configuration"].insert(
+                    -3,
+                    {
+                        "data": f"last_{property}_{timestamp}",
+                        "title": f"Last {title} {timestamp.capitalize()}",
+                        "search": "text",
+                        "visible": False,
+                        "html": timestamp == "status",
+                    },
+                )
+
     def _set_general_variables(self):
         self.field_class = {}
         self.form_class = {}
@@ -90,14 +117,13 @@ class VariableStore:
         self.property_names = {}
         self.relationships = defaultdict(dict)
 
-    def custom_function(self, func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            if hasattr(self.custom, func.__name__):
-                return getattr(self.custom, func.__name__)(*args, **kwargs)
-            return func(*args, **kwargs)
-
-        return wrapper
+    def _set_report_variables(self):
+        self.reports = {"Empty report": ""}
+        for path in Path(self.file_path / "reports").glob("**/*"):
+            if path.suffix not in {".j2", ".txt"}:
+                continue
+            with open(path, "r") as file:
+                self.reports[path.name] = file.read()
 
     def _set_setup_variables(self):
         self.path = Path.cwd()
@@ -113,6 +139,15 @@ class VariableStore:
         self.migration_path = (
             self.settings["paths"]["migration"] or f"{self.file_path}/migrations"
         )
+
+    def custom_function(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if hasattr(self.custom, func.__name__):
+                return getattr(self.custom, func.__name__)(*args, **kwargs)
+            return func(*args, **kwargs)
+
+        return wrapper
 
     def _set_server_variables(self):
         self.server = getenv("SERVER_NAME", "Localhost")
@@ -147,33 +182,6 @@ class VariableStore:
                 if model == "device" and property_dict.get("configuration"):
                     self.configuration_properties[property] = pretty_name
 
-    def _set_configuration_variables(self):
-        for property, title in self.configuration_properties.items():
-            self.properties["filtering"]["device"].append(property)
-            self.properties["tables"]["configuration"].insert(
-                -3,
-                {
-                    "data": property,
-                    "title": title,
-                    "search": "text",
-                    "width": "70%",
-                    "visible": property == "configuration",
-                    "orderable": False,
-                    "html": True,
-                },
-            )
-            for timestamp in self.timestamps:
-                self.properties["tables"]["configuration"].insert(
-                    -3,
-                    {
-                        "data": f"last_{property}_{timestamp}",
-                        "title": f"Last {title} {timestamp.capitalize()}",
-                        "search": "text",
-                        "visible": False,
-                        "html": timestamp == "status",
-                    },
-                )
-
     def _update_rbac_variables(self):
         self.rbac = {"pages": [], "menus": [], "all_pages": {}, **self.rbac}
         for category, category_values in self.rbac["menu"].items():
@@ -187,14 +195,6 @@ class VariableStore:
                     self.rbac["all_pages"][subpage] = subpage_values["endpoint"]
                     if subpage_values["rbac"] == "access":
                         self.rbac["pages"].append(subpage)
-
-    def _set_report_variables(self):
-        self.reports = {"Empty report": ""}
-        for path in Path(self.file_path / "reports").glob("**/*"):
-            if path.suffix not in {".j2", ".txt"}:
-                continue
-            with open(path, "r") as file:
-                self.reports[path.name] = file.read()
 
     def _set_run_variables(self):
         self.run_allowed_targets = {}
