@@ -979,35 +979,6 @@ class RunEngine:
 
 
 class NetworkManagement:
-    def update_netmiko_connection(self, connection, device):
-        setattr(connection, "global_delay_factor", self.service.global_delay_factor)
-        try:
-            if not hasattr(connection, "check_enable_mode"):
-                self.log("error", "Netmiko 'check_enable_mode' method is missing")
-                return connection
-            mode = connection.check_enable_mode()
-            if mode and not self.enable_mode:
-                connection.exit_enable_mode()
-            elif self.enable_mode and not mode:
-                connection.enable()
-        except Exception as exc:
-            self.log("error", f"Failed to honor the enable mode ({exc})", device)
-        try:
-            if not hasattr(connection, "check_config_mode"):
-                self.log("error", "Netmiko 'check_config_mode' method is missing")
-                return connection
-            mode = connection.check_config_mode()
-            if mode and not self.config_mode:
-                connection.exit_config_mode()
-            elif self.config_mode and not mode:
-                kwargs = {}
-                if getattr(self, "config_mode_command", None):
-                    kwargs["config_command"] = self.config_mode_command
-                connection.config_mode(**kwargs)
-        except Exception as exc:
-            self.log("error", f"Failed to honor the config mode ({exc})", device)
-        return connection
-
     def get_credentials(self, device, add_secret=True):
         result, credential_type = {}, self.main_run.service.credential_type
         credential = None
@@ -1370,6 +1341,35 @@ class NetworkManagement:
         }
         with open(path / "timestamps.json", "w") as file:
             dump(data, file, indent=4)
+
+    def update_netmiko_connection(self, connection, device):
+        setattr(connection, "global_delay_factor", self.service.global_delay_factor)
+        try:
+            if not hasattr(connection, "check_enable_mode"):
+                self.log("error", "Netmiko 'check_enable_mode' method is missing")
+                return connection
+            mode = connection.check_enable_mode()
+            if mode and not self.enable_mode:
+                connection.exit_enable_mode()
+            elif self.enable_mode and not mode:
+                connection.enable()
+        except Exception as exc:
+            self.log("error", f"Failed to honor the enable mode ({exc})", device)
+        try:
+            if not hasattr(connection, "check_config_mode"):
+                self.log("error", "Netmiko 'check_config_mode' method is missing")
+                return connection
+            mode = connection.check_config_mode()
+            if mode and not self.config_mode:
+                connection.exit_config_mode()
+            elif self.config_mode and not mode:
+                kwargs = {}
+                if getattr(self, "config_mode_command", None):
+                    kwargs["config_command"] = self.config_mode_command
+                connection.config_mode(**kwargs)
+        except Exception as exc:
+            self.log("error", f"Failed to honor the config mode ({exc})", device)
+        return connection
 
     def configuration_transaction(self, property, device, **kwargs):
         deferred_device = (
