@@ -979,6 +979,25 @@ class RunEngine:
 
 
 class NetworkManagement:
+    def check_connection_numbers(self):
+        if not vs.automation["connections"]["enforce_threshold"]:
+            return
+        total_connections = sum(
+            len(vs.connections_cache[library].get(self.parent_runtime, {}))
+            for library in ("netmiko", "scrapli", "napalm")
+        )
+        if total_connections >= vs.automation["connections"]["threshold"]:
+            log = f"Too many connections open in parallel ({total_connections})"
+            self.log(vs.automation["connections"]["log_level"], log)
+            if vs.automation["connections"]["raise_exception"]:
+                raise OverflowError(log)
+
+    def close_device_connection(self, device):
+        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
+            connection = self.get_connection(library, device)
+            if connection:
+                self.disconnect(library, device, connection)
+
     def configuration_transaction(self, property, device, **kwargs):
         deferred_device = (
             db.query("device", user=self.creator)
@@ -1005,6 +1024,72 @@ class NetworkManagement:
 
         db.try_commit(transaction)
         return write_config
+
+    def disconnect(self, library, device, connection):
+        connection_log = f"{library} connection '{connection.connection_name}'"
+        try:
+            if library == "netmiko":
+                connection.disconnect()
+            elif library == "ncclient":
+                connection.close_session()
+            else:
+                connection.close()
+            vs.connections_cache[library][self.parent_runtime][device].pop(
+                connection.connection_name
+            )
+            self.write_state(f"connections/{library}", -1, "increment", True)
+            self.log("info", f"Closed {connection_log}", device)
+        except Exception:
+            self.log("error", f"Error closing {connection_log}\n{format_exc()}", device)
+
+    def enter_remote_device(self, connection, device):
+        if not getattr(self, "jump_on_connect", False):
+            return
+        connection.find_prompt()
+        prompt = connection.base_prompt
+        password = self.sub(env.get_password(self.jump_password), locals())
+        commands = [
+            (
+                self.sub(self.jump_command, locals()),
+                self.sub(self.expect_username_prompt, locals()),
+            ),
+            (
+                self.sub(self.jump_username, locals()),
+                self.sub(self.expect_password_prompt, locals()),
+            ),
+            (password, self.sub(self.expect_prompt, locals())),
+        ]
+        for send, expect in commands:
+            if not send:
+                continue
+            log_command = (
+                "jump on connect password" if password and send == password else send
+            )
+            self.log("info", f"Sent '{log_command}'" f", waiting for '{expect}'")
+            connection.send_command(
+                send,
+                expect_string=expect,
+                auto_find_prompt=False,
+                read_timeout=self.read_timeout,
+                strip_prompt=False,
+                strip_command=True,
+                max_loops=150,
+            )
+        return prompt
+
+    def exit_remote_device(self, connection, prompt, device):
+        if not getattr(self, "jump_on_connect", False):
+            return
+        exit_command = self.sub(self.exit_command, locals())
+        self.log("info", f"Exit jump server with '{exit_command}'", device)
+        connection.send_command(
+            exit_command,
+            expect_string=prompt or None,
+            auto_find_prompt=True,
+            read_timeout=self.read_timeout,
+            strip_prompt=False,
+            strip_command=True,
+        )
 
     def get_connection(self, library, device, name=None):
         cache = vs.connections_cache[library].get(self.parent_runtime, {})
@@ -1270,91 +1355,6 @@ class NetworkManagement:
             device.name, {}
         )[self.connection_name] = connection
         return connection
-
-    def check_connection_numbers(self):
-        if not vs.automation["connections"]["enforce_threshold"]:
-            return
-        total_connections = sum(
-            len(vs.connections_cache[library].get(self.parent_runtime, {}))
-            for library in ("netmiko", "scrapli", "napalm")
-        )
-        if total_connections >= vs.automation["connections"]["threshold"]:
-            log = f"Too many connections open in parallel ({total_connections})"
-            self.log(vs.automation["connections"]["log_level"], log)
-            if vs.automation["connections"]["raise_exception"]:
-                raise OverflowError(log)
-
-    def close_device_connection(self, device):
-        for library in ("netmiko", "napalm", "scrapli", "ncclient"):
-            connection = self.get_connection(library, device)
-            if connection:
-                self.disconnect(library, device, connection)
-
-    def disconnect(self, library, device, connection):
-        connection_log = f"{library} connection '{connection.connection_name}'"
-        try:
-            if library == "netmiko":
-                connection.disconnect()
-            elif library == "ncclient":
-                connection.close_session()
-            else:
-                connection.close()
-            vs.connections_cache[library][self.parent_runtime][device].pop(
-                connection.connection_name
-            )
-            self.write_state(f"connections/{library}", -1, "increment", True)
-            self.log("info", f"Closed {connection_log}", device)
-        except Exception:
-            self.log("error", f"Error closing {connection_log}\n{format_exc()}", device)
-
-    def enter_remote_device(self, connection, device):
-        if not getattr(self, "jump_on_connect", False):
-            return
-        connection.find_prompt()
-        prompt = connection.base_prompt
-        password = self.sub(env.get_password(self.jump_password), locals())
-        commands = [
-            (
-                self.sub(self.jump_command, locals()),
-                self.sub(self.expect_username_prompt, locals()),
-            ),
-            (
-                self.sub(self.jump_username, locals()),
-                self.sub(self.expect_password_prompt, locals()),
-            ),
-            (password, self.sub(self.expect_prompt, locals())),
-        ]
-        for send, expect in commands:
-            if not send:
-                continue
-            log_command = (
-                "jump on connect password" if password and send == password else send
-            )
-            self.log("info", f"Sent '{log_command}'" f", waiting for '{expect}'")
-            connection.send_command(
-                send,
-                expect_string=expect,
-                auto_find_prompt=False,
-                read_timeout=self.read_timeout,
-                strip_prompt=False,
-                strip_command=True,
-                max_loops=150,
-            )
-        return prompt
-
-    def exit_remote_device(self, connection, prompt, device):
-        if not getattr(self, "jump_on_connect", False):
-            return
-        exit_command = self.sub(self.exit_command, locals())
-        self.log("info", f"Exit jump server with '{exit_command}'", device)
-        connection.send_command(
-            exit_command,
-            expect_string=prompt or None,
-            auto_find_prompt=True,
-            read_timeout=self.read_timeout,
-            strip_prompt=False,
-            strip_command=True,
-        )
 
     def update_configuration_properties(self, path, property, device):
         try:
