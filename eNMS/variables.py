@@ -52,6 +52,44 @@ class VariableStore:
         self._set_timing_mixin()
         self._update_rbac_variables()
 
+    def _set_automation_variables(self):
+        self.ssh_sessions = {}
+        self.netmiko_drivers = sorted(CLASS_MAPPER)
+        self.scrapli_drivers = sorted(CORE_PLATFORM_MAP)
+        self.timestamps = (
+            "status",
+            "update",
+            "failure",
+            "runtime",
+            "duration",
+            "success",
+        )
+        self.configuration_properties = {
+            "configuration": "Configuration",
+            "operational_data": "Operational Data",
+            "specialized_data": "Specialized Data",
+        }
+        try:
+            self.napalm_drivers = sorted(SUPPORTED_DRIVERS[1:])
+        except NameError:
+            self.napalm_drivers = []
+        try:
+            self.netconf_drivers = sorted(supported_devices_cfg)
+        except NameError:
+            self.netconf_drivers = []
+
+    def _set_general_variables(self):
+        self.field_class = {}
+        self.form_class = {}
+        self.form_properties = defaultdict(dict)
+        self.log_levels = ["debug", "info", "warning", "error", "critical"]
+        self.models = {}
+        self.model_properties = defaultdict(lambda: {"type": "str"})
+        self.private_properties = self.database["private_properties"]
+        self.private_properties_set = set(sum(self.private_properties.values(), []))
+        self.property_names = {}
+        self.relationships = defaultdict(dict)
+
     def custom_function(self, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -93,44 +131,6 @@ class VariableStore:
             "ip_address": self.server_ip,
             "role": self.server_role,
         }
-
-    def _set_automation_variables(self):
-        self.ssh_sessions = {}
-        self.netmiko_drivers = sorted(CLASS_MAPPER)
-        self.scrapli_drivers = sorted(CORE_PLATFORM_MAP)
-        self.timestamps = (
-            "status",
-            "update",
-            "failure",
-            "runtime",
-            "duration",
-            "success",
-        )
-        self.configuration_properties = {
-            "configuration": "Configuration",
-            "operational_data": "Operational Data",
-            "specialized_data": "Specialized Data",
-        }
-        try:
-            self.napalm_drivers = sorted(SUPPORTED_DRIVERS[1:])
-        except NameError:
-            self.napalm_drivers = []
-        try:
-            self.netconf_drivers = sorted(supported_devices_cfg)
-        except NameError:
-            self.netconf_drivers = []
-
-    def _set_general_variables(self):
-        self.field_class = {}
-        self.form_class = {}
-        self.form_properties = defaultdict(dict)
-        self.log_levels = ["debug", "info", "warning", "error", "critical"]
-        self.models = {}
-        self.model_properties = defaultdict(lambda: {"type": "str"})
-        self.private_properties = self.database["private_properties"]
-        self.private_properties_set = set(sum(self.private_properties.values(), []))
-        self.property_names = {}
-        self.relationships = defaultdict(dict)
 
     def _set_custom_variables(self):
         for model, values in self.properties["custom"].items():
