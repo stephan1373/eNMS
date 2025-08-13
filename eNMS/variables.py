@@ -312,16 +312,6 @@ class VariableStore:
     def prepend_filepath(self, value):
         return f"{self.file_path}{value}"
 
-    def str_to_date(self, value):
-        milliseconds = ".%f" if "." in value else ""
-        return datetime.strptime(value, f"%Y-%m-%d %H:%M:%S{milliseconds}")
-
-    def space_deleter(self, input):
-        return "".join(input.split())
-
-    def strip_all(self, input):
-        return input.translate(str.maketrans("", "", f"{punctuation} "))
-
     def set_subtypes(self):
         self.subtypes = {
             model: {
@@ -366,6 +356,16 @@ class VariableStore:
             },
             **self.field_class,
         }
+
+    def space_deleter(self, input):
+        return "".join(input.split())
+
+    def str_to_date(self, value):
+        milliseconds = ".%f" if "." in value else ""
+        return datetime.strptime(value, f"%Y-%m-%d %H:%M:%S{milliseconds}")
+
+    def strip_all(self, input):
+        return input.translate(str.maketrans("", "", f"{punctuation} "))
 
 
 vs = VariableStore()
