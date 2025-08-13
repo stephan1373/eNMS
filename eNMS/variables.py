@@ -140,6 +140,22 @@ class VariableStore:
             with open(path, "r") as file:
                 self.reports[path.name] = file.read()
 
+    def _set_run_variables(self):
+        self.run_allowed_targets = {}
+        self.run_services = defaultdict(set)
+        self.run_states = defaultdict(dict)
+        self.run_logs = defaultdict(lambda: defaultdict(list))
+        self.run_stop = defaultdict(bool)
+        self.run_instances = {}
+        libraries = ("netmiko", "napalm", "scrapli", "ncclient")
+        self.connections_cache = {library: defaultdict(dict) for library in libraries}
+        self.service_run_count = defaultdict(int)
+        self.service_report = defaultdict(dict)
+        self.service_result = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(list))
+        )
+        self.service_changelog = defaultdict(list)
+
     def _set_server_variables(self):
         self.server = getenv("SERVER_NAME", "Localhost")
         self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
@@ -195,22 +211,6 @@ class VariableStore:
             return func(*args, **kwargs)
 
         return wrapper
-
-    def _set_run_variables(self):
-        self.run_allowed_targets = {}
-        self.run_services = defaultdict(set)
-        self.run_states = defaultdict(dict)
-        self.run_logs = defaultdict(lambda: defaultdict(list))
-        self.run_stop = defaultdict(bool)
-        self.run_instances = {}
-        libraries = ("netmiko", "napalm", "scrapli", "ncclient")
-        self.connections_cache = {library: defaultdict(dict) for library in libraries}
-        self.service_run_count = defaultdict(int)
-        self.service_report = defaultdict(dict)
-        self.service_result = defaultdict(
-            lambda: defaultdict(lambda: defaultdict(list))
-        )
-        self.service_changelog = defaultdict(list)
 
     def set_subtypes(self):
         self.subtypes = {
