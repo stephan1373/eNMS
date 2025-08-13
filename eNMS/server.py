@@ -63,15 +63,6 @@ class Server(Flask):
         self.configure_errors()
         self.configure_routes()
 
-    def configure_login_manager(self):
-        login_manager = LoginManager()
-        login_manager.session_protection = "strong"
-        login_manager.init_app(self)
-
-        @login_manager.user_loader
-        def user_loader(name):
-            return db.fetch("user", allow_none=True, name=name, rbac=None)
-
     def configure_context_processor(self):
         @self.context_processor
         def inject_properties():
@@ -103,6 +94,20 @@ class Server(Flask):
         def not_found_error(error):
             return render_template("error.html", error=404), 404
 
+    def configure_login_manager(self):
+        login_manager = LoginManager()
+        login_manager.session_protection = "strong"
+        login_manager.init_app(self)
+
+        @login_manager.user_loader
+        def user_loader(name):
+            return db.fetch("user", allow_none=True, name=name, rbac=None)
+
+    def register_extensions(self):
+        self.csrf = CSRFProtect()
+        self.csrf.init_app(self)
+        env.cache.init_app(self)
+
     def update_config(self):
         session_timeout = vs.settings["app"]["session_timeout_minutes"]
         self.config.update(
@@ -125,11 +130,6 @@ class Server(Flask):
                 env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
                 continue
             info(f"Loading plugin: {settings['name']}")
-
-    def register_extensions(self):
-        self.csrf = CSRFProtect()
-        self.csrf.init_app(self)
-        env.cache.init_app(self)
 
     def log_user(self, user):
         if isinstance(user, str):
