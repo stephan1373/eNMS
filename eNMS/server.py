@@ -103,129 +103,6 @@ class Server(Flask):
         def user_loader(name):
             return db.fetch("user", allow_none=True, name=name, rbac=None)
 
-    def log_user(self, user):
-        if isinstance(user, str):
-            user = db.fetch("user", name=user, rbac=None)
-        login_user(user, remember=False)
-        user.last_login = vs.get_time()[:-7]
-        db.session.commit()
-        session.permanent = True
-        env.log("info", f"USER '{user}' logged in", logger="security")
-
-    @staticmethod
-    def process_requests(function):
-        @wraps(function)
-        def decorated_function(*args, **kwargs):
-            time_before = datetime.now()
-            remote_address = request.environ["REMOTE_ADDR"]
-            client_address = request.environ.get("HTTP_X_FORWARDED_FOR", remote_address)
-            rest_request = request.path.startswith("/rest/")
-            endpoint = "/".join(request.path.split("/")[: 2 + rest_request])
-            request_property = f"{request.method.lower()}_requests"
-            endpoint_rbac = vs.rbac[request_property].get(endpoint)
-            error_message = None
-            if rest_request:
-                user = None
-                if request.authorization:
-                    user = env.authenticate_user(**request.authorization.parameters)
-                if user:
-                    login_user(user)
-            username = getattr(current_user, "name", "Unknown")
-            rate_limited = env.rate_limiter(username, rest_request)
-            if not endpoint_rbac:
-                status_code = 404
-            elif rest_request and endpoint_rbac != "none" and not user:
-                status_code = 401
-            elif (
-                rate_limited
-                or endpoint_rbac != "none"
-                and not getattr(current_user, "is_admin", False)
-                and (
-                    not current_user.is_authenticated
-                    or endpoint_rbac == "admin"
-                    or (
-                        endpoint_rbac == "access"
-                        and endpoint not in getattr(current_user, request_property)
-                    )
-                )
-            ):
-                status_code = 403
-            else:
-                try:
-                    result = function(*args, **kwargs)
-                    status_code = 200
-                except (db.rbac_error, Forbidden) as exc:
-                    status_code, error_message = 403, str(exc)
-                except NotFound:
-                    status_code = 404
-                except Exception:
-                    status_code, traceback = 500, format_exc()
-            time_difference = (datetime.now() - time_before).total_seconds()
-            log = (
-                f"USER: {username} ({client_address}) - {time_difference:.3f}s - "
-                f"{request.method} {request.path} ({status_code})"
-            )
-            if status_code == 500:
-                log += f"\n{traceback}"
-            env.log(Server.status_log_level[status_code], log, change_log=False)
-            if rest_request:
-                logout_user()
-            if status_code == 200:
-                return result
-            elif endpoint == "/login" or request.method == "GET" and not rest_request:
-                if (
-                    not current_user.is_authenticated
-                    and not rest_request
-                    and endpoint != "/login"
-                ):
-                    url = url_for("blueprint.route", page="login", next_url=request.url)
-                    return redirect(login_url(url))
-                next_url = request.args.get("next_url")
-                login_link = login_url(
-                    url_for("blueprint.route", page="login", next_url=next_url)
-                )
-                return (
-                    render_template(
-                        "error.html", error=status_code, login_url=login_link
-                    ),
-                    status_code,
-                )
-            else:
-                if not error_message:
-                    error_message = Server.status_error_message[status_code]
-                alert = f"Error {status_code} - {error_message}"
-                return jsonify({"alert": alert}), status_code
-
-        return decorated_function
-
-    def register_extensions(self):
-        self.csrf = CSRFProtect()
-        self.csrf.init_app(self)
-        env.cache.init_app(self)
-
-    def update_config(self):
-        session_timeout = vs.settings["app"]["session_timeout_minutes"]
-        self.config.update(
-            {
-                "DEBUG": vs.settings["app"]["config_mode"].lower() != "production",
-                "SECRET_KEY": getenv("SECRET_KEY", "secret_key"),
-                "WTF_CSRF_TIME_LIMIT": None,
-                "ERROR_404_HELP": False,
-                "MAX_CONTENT_LENGTH": vs.settings["app"]["max_content_length"],
-                "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
-            }
-        )
-
-    def register_plugins(self):
-        for plugin, settings in vs.plugins_settings.items():
-            try:
-                module = import_module(f"eNMS.plugins.{plugin}")
-                module.Plugin(self, controller, db, vs, env, **settings)
-            except Exception:
-                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
-                continue
-            info(f"Loading plugin: {settings['name']}")
-
     def configure_routes(self):
         blueprint = Blueprint("blueprint", __name__, template_folder="../templates")
 
@@ -465,6 +342,129 @@ class Server(Flask):
                 )
 
         self.register_blueprint(blueprint)
+
+    def log_user(self, user):
+        if isinstance(user, str):
+            user = db.fetch("user", name=user, rbac=None)
+        login_user(user, remember=False)
+        user.last_login = vs.get_time()[:-7]
+        db.session.commit()
+        session.permanent = True
+        env.log("info", f"USER '{user}' logged in", logger="security")
+
+    @staticmethod
+    def process_requests(function):
+        @wraps(function)
+        def decorated_function(*args, **kwargs):
+            time_before = datetime.now()
+            remote_address = request.environ["REMOTE_ADDR"]
+            client_address = request.environ.get("HTTP_X_FORWARDED_FOR", remote_address)
+            rest_request = request.path.startswith("/rest/")
+            endpoint = "/".join(request.path.split("/")[: 2 + rest_request])
+            request_property = f"{request.method.lower()}_requests"
+            endpoint_rbac = vs.rbac[request_property].get(endpoint)
+            error_message = None
+            if rest_request:
+                user = None
+                if request.authorization:
+                    user = env.authenticate_user(**request.authorization.parameters)
+                if user:
+                    login_user(user)
+            username = getattr(current_user, "name", "Unknown")
+            rate_limited = env.rate_limiter(username, rest_request)
+            if not endpoint_rbac:
+                status_code = 404
+            elif rest_request and endpoint_rbac != "none" and not user:
+                status_code = 401
+            elif (
+                rate_limited
+                or endpoint_rbac != "none"
+                and not getattr(current_user, "is_admin", False)
+                and (
+                    not current_user.is_authenticated
+                    or endpoint_rbac == "admin"
+                    or (
+                        endpoint_rbac == "access"
+                        and endpoint not in getattr(current_user, request_property)
+                    )
+                )
+            ):
+                status_code = 403
+            else:
+                try:
+                    result = function(*args, **kwargs)
+                    status_code = 200
+                except (db.rbac_error, Forbidden) as exc:
+                    status_code, error_message = 403, str(exc)
+                except NotFound:
+                    status_code = 404
+                except Exception:
+                    status_code, traceback = 500, format_exc()
+            time_difference = (datetime.now() - time_before).total_seconds()
+            log = (
+                f"USER: {username} ({client_address}) - {time_difference:.3f}s - "
+                f"{request.method} {request.path} ({status_code})"
+            )
+            if status_code == 500:
+                log += f"\n{traceback}"
+            env.log(Server.status_log_level[status_code], log, change_log=False)
+            if rest_request:
+                logout_user()
+            if status_code == 200:
+                return result
+            elif endpoint == "/login" or request.method == "GET" and not rest_request:
+                if (
+                    not current_user.is_authenticated
+                    and not rest_request
+                    and endpoint != "/login"
+                ):
+                    url = url_for("blueprint.route", page="login", next_url=request.url)
+                    return redirect(login_url(url))
+                next_url = request.args.get("next_url")
+                login_link = login_url(
+                    url_for("blueprint.route", page="login", next_url=next_url)
+                )
+                return (
+                    render_template(
+                        "error.html", error=status_code, login_url=login_link
+                    ),
+                    status_code,
+                )
+            else:
+                if not error_message:
+                    error_message = Server.status_error_message[status_code]
+                alert = f"Error {status_code} - {error_message}"
+                return jsonify({"alert": alert}), status_code
+
+        return decorated_function
+
+    def register_extensions(self):
+        self.csrf = CSRFProtect()
+        self.csrf.init_app(self)
+        env.cache.init_app(self)
+
+    def update_config(self):
+        session_timeout = vs.settings["app"]["session_timeout_minutes"]
+        self.config.update(
+            {
+                "DEBUG": vs.settings["app"]["config_mode"].lower() != "production",
+                "SECRET_KEY": getenv("SECRET_KEY", "secret_key"),
+                "WTF_CSRF_TIME_LIMIT": None,
+                "ERROR_404_HELP": False,
+                "MAX_CONTENT_LENGTH": vs.settings["app"]["max_content_length"],
+                "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
+            }
+        )
+
+    def register_plugins(self):
+        for plugin, settings in vs.plugins_settings.items():
+            try:
+                module = import_module(f"eNMS.plugins.{plugin}")
+                module.Plugin(self, controller, db, vs, env, **settings)
+            except Exception:
+                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
+                continue
+            info(f"Loading plugin: {settings['name']}")
 
 
 server = Server()
