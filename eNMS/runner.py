@@ -1161,23 +1161,6 @@ class NetworkManagement:
             except Exception:
                 self.disconnect(library, device, connection)
 
-    def transfer_file(self, ssh_client, files):
-        if self.protocol == "sftp":
-            with SFTPClient.from_transport(
-                ssh_client.get_transport(),
-                window_size=self.window_size,
-                max_packet_size=self.max_transfer_size,
-            ) as sftp:
-                sftp.get_channel().settimeout(self.timeout)
-                for source, destination in files:
-                    getattr(sftp, self.direction)(source, destination)
-        else:
-            with SCPClient(
-                ssh_client.get_transport(), socket_timeout=self.timeout
-            ) as scp:
-                for source, destination in files:
-                    getattr(scp, self.direction)(source, destination)
-
     def napalm_connection(self, device):
         connection = self.get_or_close_connection("napalm", device.name)
         connection_name = f"NAPALM Connection '{self.connection_name}'"
@@ -1355,6 +1338,23 @@ class NetworkManagement:
             device.name, {}
         )[self.connection_name] = connection
         return connection
+
+    def transfer_file(self, ssh_client, files):
+        if self.protocol == "sftp":
+            with SFTPClient.from_transport(
+                ssh_client.get_transport(),
+                window_size=self.window_size,
+                max_packet_size=self.max_transfer_size,
+            ) as sftp:
+                sftp.get_channel().settimeout(self.timeout)
+                for source, destination in files:
+                    getattr(sftp, self.direction)(source, destination)
+        else:
+            with SCPClient(
+                ssh_client.get_transport(), socket_timeout=self.timeout
+            ) as scp:
+                for source, destination in files:
+                    getattr(scp, self.direction)(source, destination)
 
     def update_configuration_properties(self, path, property, device):
         try:
