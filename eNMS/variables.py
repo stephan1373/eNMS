@@ -105,6 +105,21 @@ class VariableStore:
                     },
                 )
 
+    def _set_custom_variables(self):
+        for model, values in self.properties["custom"].items():
+            for property, property_dict in values.items():
+                pretty_name = property_dict["pretty_name"]
+                self.property_names[property] = pretty_name
+                self.model_properties[model][property] = property_dict.get(
+                    "type", "str"
+                )
+                if property_dict.get("private"):
+                    if model not in self.private_properties:
+                        self.private_properties[model] = []
+                    self.private_properties[model].append(property)
+                if model == "device" and property_dict.get("configuration"):
+                    self.configuration_properties[property] = pretty_name
+
     def _set_general_variables(self):
         self.field_class = {}
         self.form_class = {}
@@ -124,6 +139,24 @@ class VariableStore:
                 continue
             with open(path, "r") as file:
                 self.reports[path.name] = file.read()
+
+    def _set_server_variables(self):
+        self.server = getenv("SERVER_NAME", "Localhost")
+        self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
+        self.server_role = getenv("SERVER_ROLE", "primary")
+        self.scheduler_address = getenv("SCHEDULER_ADDR", "0.0.0.0")
+        self.scheduler_active = getenv("SCHEDULER_ACTIVE", "1") == "1"
+        self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
+        self.ssh_url = getenv("SSH_URL")
+        self.server_location = getenv("SERVER_LOCATION")
+        self.server_version = self.settings["app"]["version"]
+        self.server_commit_sha = Repo(search_parent_directories=True).head.object.hexsha
+        self.server_dict = {
+            "name": self.server,
+            "url": self.server_url,
+            "ip_address": self.server_ip,
+            "role": self.server_role,
+        }
 
     def _set_setup_variables(self):
         self.path = Path.cwd()
@@ -148,39 +181,6 @@ class VariableStore:
             return func(*args, **kwargs)
 
         return wrapper
-
-    def _set_server_variables(self):
-        self.server = getenv("SERVER_NAME", "Localhost")
-        self.server_ip = getenv("SERVER_ADDR", "0.0.0.0")
-        self.server_role = getenv("SERVER_ROLE", "primary")
-        self.scheduler_address = getenv("SCHEDULER_ADDR", "0.0.0.0")
-        self.scheduler_active = getenv("SCHEDULER_ACTIVE", "1") == "1"
-        self.server_url = getenv("SERVER_URL", "https://0.0.0.0")
-        self.ssh_url = getenv("SSH_URL")
-        self.server_location = getenv("SERVER_LOCATION")
-        self.server_version = self.settings["app"]["version"]
-        self.server_commit_sha = Repo(search_parent_directories=True).head.object.hexsha
-        self.server_dict = {
-            "name": self.server,
-            "url": self.server_url,
-            "ip_address": self.server_ip,
-            "role": self.server_role,
-        }
-
-    def _set_custom_variables(self):
-        for model, values in self.properties["custom"].items():
-            for property, property_dict in values.items():
-                pretty_name = property_dict["pretty_name"]
-                self.property_names[property] = pretty_name
-                self.model_properties[model][property] = property_dict.get(
-                    "type", "str"
-                )
-                if property_dict.get("private"):
-                    if model not in self.private_properties:
-                        self.private_properties[model] = []
-                    self.private_properties[model].append(property)
-                if model == "device" and property_dict.get("configuration"):
-                    self.configuration_properties[property] = pretty_name
 
     def _update_rbac_variables(self):
         self.rbac = {"pages": [], "menus": [], "all_pages": {}, **self.rbac}
