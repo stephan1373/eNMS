@@ -443,6 +443,16 @@ class Server(Flask):
         self.csrf.init_app(self)
         env.cache.init_app(self)
 
+    def register_plugins(self):
+        for plugin, settings in vs.plugins_settings.items():
+            try:
+                module = import_module(f"eNMS.plugins.{plugin}")
+                module.Plugin(self, controller, db, vs, env, **settings)
+            except Exception:
+                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
+                continue
+            info(f"Loading plugin: {settings['name']}")
+
     def update_config(self):
         session_timeout = vs.settings["app"]["session_timeout_minutes"]
         self.config.update(
@@ -455,16 +465,6 @@ class Server(Flask):
                 "PERMANENT_SESSION_LIFETIME": timedelta(minutes=session_timeout),
             }
         )
-
-    def register_plugins(self):
-        for plugin, settings in vs.plugins_settings.items():
-            try:
-                module = import_module(f"eNMS.plugins.{plugin}")
-                module.Plugin(self, controller, db, vs, env, **settings)
-            except Exception:
-                env.log("error", f"Could not import plugin '{plugin}':\n{format_exc()}")
-                continue
-            info(f"Loading plugin: {settings['name']}")
 
 
 server = Server()
