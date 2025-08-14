@@ -479,26 +479,31 @@ Open Questions:
   configuration backup workflow configured with
 
 Benchmark (comparison last release versus new release) needed for:
-  - Workflow runs
-    - Workflow with 5 - 10 empty python snippet services, 10k target devices
-    - Configuration Backup Workflow:
-      - Compare performance new and last release with same number of threads
-      - Try to raise the number of threads to 300, 500
-  - Add Services to Workflow Panel ("get_workflow_services" endpoint)
-  - Update pool:
-    - Update 1 pool with 50k devices
-    - Update all pools (the pools must be the same in last release and new release)
-  - Workflow Duplication: try to duplicate large workflows
+- Workflow runs
+  - Workflow with 5 - 10 empty python snippet services, 10k target devices
+  - Configuration Backup Workflow:
+    - Compare performance new and last release with same number of threads
+    - Try to raise the number of threads to 300, 500
+- Add Services to Workflow Panel ("get_workflow_services" endpoint)
+- Update pool:
+  - Update 1 pool with 50k devices
+  - Update all pools (the pools must be the same in last release and new release)
+- Workflow Duplication: try to duplicate large workflows
+- JSON Import Export Mechanism:
+  - Compare speed of YAML versus JSON, for both Import and Export
   - Compare Speed of JSON Import with Structured Data versus Bytestring Data
-  - Compare Speed to display Changelog panel:
-    - In the Changelog page in the menu (display ALL changelogs)
-    - In every table in the application (display changelogs related to a specific object):
-      need to test every table to make sure no index is missing
-    - In the Workflow Builder (resp. Network Builder):
-      - For a specific service (resp. device) from the RC menu (Display / Changelogs)
-      - For the workflow (resp. network) in the top-level menu: the changelog of a workflow (resp. network)
-        should be the union of all services (resp. devices) changelogs, including the changelogs in
-        subworkflows (resp. subnetworks)
+- Compare Speed to display Changelog panel:
+  - In the Changelog page in the menu (display ALL changelogs)
+  - In every table in the application (display changelogs related to a specific object):
+    need to test every table to make sure no index is missing
+  - In the Workflow Builder (resp. Network Builder):
+    - For a specific service (resp. device) from the RC menu (Display / Changelogs)
+    - For the workflow (resp. network) in the top-level menu: the changelog of a workflow (resp. network)
+      should be the union of all services (resp. devices) changelogs, including the changelogs in
+      subworkflows (resp. subnetworks)
+- Compare Speed to display the Dashboard, specifically the following endpoints:
+  - "count_models" (called when loading the dashboard page)
+  - "counters" (called when changing entry in one of the property list in the dashboard)
 
 Migration:
 - Run migration script to:
