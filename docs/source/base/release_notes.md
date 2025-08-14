@@ -479,7 +479,7 @@ Open Questions:
   configuration backup workflow configured with
 
 Benchmark (comparison last release versus new release) needed for:
-- Workflow runs
+- Workflow runs duration
   - Workflow with 5 - 10 empty python snippet services, 10k target devices
   - Configuration Backup Workflow:
     - Compare performance new and last release with same number of threads
@@ -504,6 +504,9 @@ Benchmark (comparison last release versus new release) needed for:
   - "count_models" (called when loading the dashboard page)
   - "counters" (called when changing entry in one of the property list in the dashboard)
 - Compare the "Add Services to Workflow" speed ("get_workflow_services" endpoint), both with and without an active search
+- Compare speed to load the Results table (including the 'All Results' panel)
+- Compare speed of "run_service" endpoint (time between click on "Run" button and the run actually starting)
+- Compare speed of calls to "save_positions" endpoint (e.g triggered when moving a service in the Workflow Builder)
 
 Migration:
 - Run migration script to:
