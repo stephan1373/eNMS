@@ -484,7 +484,6 @@ Benchmark (comparison last release versus new release) needed for:
   - Configuration Backup Workflow:
     - Compare performance new and last release with same number of threads
     - Try to raise the number of threads to 300, 500
-- Add Services to Workflow Panel ("get_workflow_services" endpoint)
 - Update pool:
   - Update 1 pool with 50k devices
   - Update all pools (the pools must be the same in last release and new release)
@@ -504,6 +503,7 @@ Benchmark (comparison last release versus new release) needed for:
 - Compare Speed to display the Dashboard, specifically the following endpoints:
   - "count_models" (called when loading the dashboard page)
   - "counters" (called when changing entry in one of the property list in the dashboard)
+- Compare the "Add Services to Workflow" speed ("get_workflow_services" endpoint), both with and without an active search
 
 Migration:
 - Run migration script to:
