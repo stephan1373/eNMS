@@ -425,10 +425,10 @@ Main Commits:
 - Part 28: in 'High Performance' mode, increase the maximum number of threads allowed to 'max_process' * 10
   Commit: f26ee4f41310de0d488f548afb8476efe6674f0c
 - Part 29: (High Performance Mode only) Refactor 'compute_devices_from_query':
-    - Use a 'in_' query to fetch the devices, which reduces the number of SQL queries made during the run
-      Commit: 4840ab57130c7a189be846da83cb210991fdf622
-    - Add db.session_scope context manager to release the SQL session when multiprocessing is enabled
-      Commit: 27f4652e12427dfb9409e7e7bc71cd06e8240e8b
+  - Use a 'in_' query to fetch the devices, which reduces the number of SQL queries made during the run
+    Commit: 4840ab57130c7a189be846da83cb210991fdf622
+  - Add db.session_scope context manager to release the SQL session when multiprocessing is enabled
+    Commit: 27f4652e12427dfb9409e7e7bc71cd06e8240e8b
 - Part 30: Refactor netmiko and scrapli backup services to handle all SQL operations in a single function, and remove the
   session at the end if in high performance and in a thread
   Commit: 5cb6f847650dfb00173e69ee674ecf
