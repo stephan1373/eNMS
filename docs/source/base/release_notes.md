@@ -143,12 +143,6 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   - Move the restricted target computation outside of the compute_devices query so it works for
     workflow targets and iteration targets too
     Commit: 29c07275f935dae159eff80fff298e5dcdcde31d + 9bb96827e7f5bd09c79834b68b31cc3943165a24
-- Refactoring of Runner and Run class:
-  - Move all functions related to the main run in the Run class (end of run transaction,
-    end of run cleanup, etc)
-    Commit: 6b0c37bcfc2f1ee3c99006331c9a3de9e5885b7f
-  - Remove duplicate progress function in Runner class and use Persistent ID to retrieve device progress
-    Commit: 4ac0d4ce9f0f2113e1a5dfd8d3f242f70c520718
 - Remove update all pools after running option (unused, not scalable)
   Commit: 0e0192e48819890de590d83f494ef9a05d5b8e17
 - Set netmiko log level to 'info' in logging.json > 'external_loggers'
@@ -471,6 +465,11 @@ Related Commits:
 - Replace / rename "target_devices" with "run_targets" in Runner to prevent confusion between
   run.service.target_devices and run.target_devices.
   Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
+- Move all functions related to the main run in the Run class (end of run transaction,
+  end of run cleanup, etc)
+  Commit: 6b0c37bcfc2f1ee3c99006331c9a3de9e5885b7f
+- Remove duplicate progress function in Runner class and use Persistent ID to retrieve device progress
+  Commit: 4ac0d4ce9f0f2113e1a5dfd8d3f242f70c520718
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
