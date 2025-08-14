@@ -516,6 +516,7 @@ Benchmark (comparison last release versus new release) needed for:
   - Scan Folder mechanism
 - Compare Speed of Workflow Duplication (for workflows of different sizes)
 - Compare Speed of Service / Workflow Editing ("update/{service_type}" endpoint)
+- Compare Speed of Log Refresh when running a workflow (calls to "get_service_logs" endpoint)
 
 Migration:
 - Run migration script to:
