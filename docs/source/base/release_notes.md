@@ -100,17 +100,6 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
       Commit: 217ad4517477fab06f26b91d845fffb51ea20178
     - Don't create changelog objects in SQL creation and deletion de detection events if connection info set to ignore
       Commit: a58b79edbbd621548abb27112f1f0686d548e431
-  - Update to the Runner mechanism:
-    - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
-      time the 'global_variables' function is called.
-      Commit:
-        - fd356528ca691e263be0ced18cdf5038a237d752
-        - 2f2786f38eb29ba75ac9e2d4eb616c0c7aeef2b4
-    - Don't compute "target_devices" if it has already been defined as an argument of the Runner class
-      Commit: d46230319af9e3a76313584a93e59ac8835efedb
-    - Replace - rename "target_devices" with "run_targets" in Runner to prevent confusion between
-      run.service.target_devices and run.target_devices.
-      Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
   - Remove calls to "to_dict()" with empty parameters (gets all relationships - not scalable)
     - Update to the Excel topology import mechanism:
       - Don't call to_dict() after creating an object
@@ -470,6 +459,18 @@ Main Commits:
   calling 'get_properties', otherwise we get out of session exceptions because get_properties causes SQLAlchemy
   to trigger SQL queries to get some of the device properties
   Commit: 293e09d11ab1eabc831aca40d4d03ae8f5c94f71
+
+Related Commits:
+- Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
+  time the 'global_variables' function is called.
+  Commit:
+    - fd356528ca691e263be0ced18cdf5038a237d752
+    - 2f2786f38eb29ba75ac9e2d4eb616c0c7aeef2b4
+- Don't compute "target_devices" if it has already been defined as an argument of the Runner class
+  Commit: d46230319af9e3a76313584a93e59ac8835efedb
+- Replace / rename "target_devices" with "run_targets" in Runner to prevent confusion between
+  run.service.target_devices and run.target_devices.
+  Commit: 2d7cafc22f08f2d93b383888a6c47c0ec7dfcdb0
 
 Open Questions:
 - What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
