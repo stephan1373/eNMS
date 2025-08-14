@@ -176,23 +176,6 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: b7839556dc70844af5efe3c851e2b69ee41ec0eb
 - Change memory_size from an Integer to a String in database (to avoid integer overflow issue)
   Commit: 9d4ff3f4e78a2db97c7c2937160a65f91f07737c
-- Update to the session_scope context manager:
-  - Call session.remove() instead of session.close() (because db.session is a scoped_session)
-    Commit: 659cbc3302f769e425fd103aff3e3877669d8e38
-  - Use session_scope in runner code to remove session after fetch
-    Commit: b2e827b832c0470527f0f66ebe188995fe1727fd
-  - Update 'get_data' to return data as a namespace instead of a SQL alchemy object, and add session_scope
-    context_manager to remove SQLAlchemy session in no SQL mode for 'get_data' and 'get_credential'
-    global functions
-    Commit: 82f5add1f5e1a465561857a1ab6ea218b1bbb00e
-  - Refactor 'get_result' to use db.session_scope to remove the SQL session after fetching the results
-    in no SQL mode
-    Commit: 90e5405e465da2f9e3b8a12fdeb8ac29e40ce828
-  - Update 'get_secret' to use a session_scope to fetch the secret object
-    Commit: 9fa66c3842d55ca1c0ff0235ebb399d1f46164f9
-  - Add session_scope context_manager in internal_function (factory, fetch, fetch_all and delete) in
-    no SQL mode
-    Commit: 737bfb4ecb3297c1113d23440341e39e8bd07383
 - Rename function in runner.py
   - get_results: run_job_and_collect_results
   - compute_devices: compute_run_targets
@@ -453,6 +436,23 @@ Main Commits:
   calling 'get_properties', otherwise we get out of session exceptions because get_properties causes SQLAlchemy
   to trigger SQL queries to get some of the device properties
   Commit: 293e09d11ab1eabc831aca40d4d03ae8f5c94f71
+- Part 32: Update to the session_scope context manager:
+  - Call session.remove() instead of session.close() (because db.session is a scoped_session)
+    Commit: 659cbc3302f769e425fd103aff3e3877669d8e38
+  - Use session_scope in runner code to remove session after fetch
+    Commit: b2e827b832c0470527f0f66ebe188995fe1727fd
+  - Update 'get_data' to return data as a namespace instead of a SQL alchemy object, and add session_scope
+    context_manager to remove SQLAlchemy session in no SQL mode for 'get_data' and 'get_credential'
+    global functions
+    Commit: 82f5add1f5e1a465561857a1ab6ea218b1bbb00e
+  - Refactor 'get_result' to use db.session_scope to remove the SQL session after fetching the results
+    in no SQL mode
+    Commit: 90e5405e465da2f9e3b8a12fdeb8ac29e40ce828
+  - Update 'get_secret' to use a session_scope to fetch the secret object
+    Commit: 9fa66c3842d55ca1c0ff0235ebb399d1f46164f9
+  - Add session_scope context_manager in internal_function (factory, fetch, fetch_all and delete) in
+    no SQL mode
+    Commit: 737bfb4ecb3297c1113d23440341e39e8bd07383
 
 Related Commits:
 - Cache the 'global_variables' dict once at the beginning of a run to avoid recomputing it every
@@ -515,6 +515,7 @@ Benchmark (comparison last release versus new release) needed for:
   - File Table Display (calls to "filtering/file"): both in "Hierarchical" and "Flat" display
   - Scan Folder mechanism
 - Compare Speed of Workflow Duplication (for workflows of different sizes)
+- Compare Speed of Service / Workflow Editing ("update/{service_type}" endpoint)
 
 Migration:
 - Run migration script to:
