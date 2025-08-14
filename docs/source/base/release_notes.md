@@ -66,7 +66,7 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
     Commit: ecc22a0fecd18c559db9d2414e6c968dca6efd93
   - Update 'save_positions' function to no longer make one SQL query per service / device when saving positions
     Commit: 49eb0e18862efaacf61f415ac45295038283b1cc
-  - Optimize the workflow builder refresh mechanism to update service color in bulk via nodeUpdates
+  - Bug Fix: Optimize the workflow builder refresh mechanism to update service color in bulk via nodeUpdates
     When refreshing a large workflow with a set runtime (i.e not in Normal Display), the update would
     cause the UI to freeze for a few seconds. Should be instantaneous now.
     Commit: 5476991c10f91b0e8a3836d3ace7cbbc102616ea
@@ -507,6 +507,10 @@ Benchmark (comparison last release versus new release) needed for:
 - Compare speed to load the Results table (including the 'All Results' panel)
 - Compare speed of "run_service" endpoint (time between click on "Run" button and the run actually starting)
 - Compare speed of calls to "save_positions" endpoint (e.g triggered when moving a service in the Workflow Builder)
+- Compare speed of the "Add Instances in Bulk" mechanism (when adding many objects, for example 10k devices to a pool)
+- Compare speed of "get_service_state" endpoint (called every few seconds to refresh Workflow Builder) on large workflows:
+  - In both "Normal Display" and "Runtime Display"
+  - Both with Workflow Tree open and closed
 
 Migration:
 - Run migration script to:
