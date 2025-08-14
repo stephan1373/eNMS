@@ -511,6 +511,10 @@ Benchmark (comparison last release versus new release) needed for:
 - Compare speed of "get_service_state" endpoint (called every few seconds to refresh Workflow Builder) on large workflows:
   - In both "Normal Display" and "Runtime Display"
   - Both with Workflow Tree open and closed
+- Compare Speed for File Mechanism:
+  - File Table Display (calls to "filtering/file"): both in "Hierarchical" and "Flat" display
+  - Scan Folder mechanism
+- Compare Speed of Workflow Duplication (for workflows of different sizes)
 
 Migration:
 - Run migration script to:
