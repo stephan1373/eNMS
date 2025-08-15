@@ -102,6 +102,7 @@
   "files": {
     "monitor_filesystem": true,
     "ignored_types": [".swp", ".tgz", "yaml"],
+    "polling_interval": 1,
     "upload_timeout": 600000,
     "log_events": true,
     "trash": ""

@@ -110,7 +110,7 @@ class Environment(vs.TimingMixin):
                     db.session.rollback()
 
         event_handler = Handler()
-        observer = PollingObserver()
+        observer = PollingObserver(timeout=vs.settings["files"]["polling_interval"])
         observer.schedule(event_handler, path=str(vs.file_path), recursive=True)
         observer.start()
 
