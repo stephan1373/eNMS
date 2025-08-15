@@ -305,6 +305,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Add new 'delete_if_not_found' option for files so that a file is deleted during the scan folder mechanism
   if it is not found on disk (configured from settings.json / "files" / "delete_if_not_found" (default: true))
   Commit: 4290d0e38b3c53563e96952f9503d116ecc8e9f1
+- Remove device connection dict from 'connection_cache' in disconnect function if there are no other connections
+  for that given, otherwise the connection count in 'check_connection_numbers' is wrong
+  Commit: e60f90986732aae7e1943662f1553a05fe75b5c2
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
