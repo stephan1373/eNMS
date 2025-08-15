@@ -567,7 +567,7 @@ export function updateWorkflowRightClickBindings() {
     "Edit Edge": (edge) => {
       showInstancePanel("workflow_edge", edge.id);
     },
-    "Skip / Unskip": () => skipServices(),
+    "Skip - Unskip": () => skipServices(),
   });
 }
 
