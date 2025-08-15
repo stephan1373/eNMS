@@ -476,13 +476,6 @@ Related Commits:
 - Remove duplicate progress function in Runner class and use Persistent ID to retrieve device progress
   Commit: 4ac0d4ce9f0f2113e1a5dfd8d3f242f70c520718
 
-Open Questions:
-- What to do with "run_post_procesing" ? Where is it used, where should it be in the code ?
-- Are the "device" or "devices" used in python code field to set a variable (write change to DB) or only to read ?
-- Do the configuration backup workflows update pools after fetching the configuration ?
-- What arguments are used for "pool_size" and "max_overflow", and how many threads is the
-  configuration backup workflow configured with
-
 Benchmark (comparison last release versus new release) needed for:
 - Workflow runs duration
   - Workflow with 5 - 10 empty python snippet services, 10k target devices
