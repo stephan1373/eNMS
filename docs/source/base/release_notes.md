@@ -310,6 +310,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: e60f90986732aae7e1943662f1553a05fe75b5c2
 - Fix JS error in console when skipping or unskipping services because of slash in tooltip: replace slash with dash
   Commit: 0d6cf0fb599f72064f1a46a3bff113ceb8d35945
+- Add new 'polling_interval' setting to configure the polling interval of the file monitoring mechanism with
+  watchdog PollingObserver
+  Commit: 259549c2355cd113e82a7e083baf31165c428ba0
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
