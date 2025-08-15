@@ -1037,6 +1037,8 @@ class NetworkManagement:
             vs.connections_cache[library][self.parent_runtime][device].pop(
                 connection.connection_name
             )
+            if not vs.connections_cache[library][self.parent_runtime][device]:
+                vs.connections_cache[library][self.parent_runtime].pop(device)
             self.write_state(f"connections/{library}", -1, "increment", True)
             self.log("info", f"Closed {connection_log}", device)
         except Exception:

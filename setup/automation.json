@@ -3,7 +3,7 @@
     "folder": "network_data"
   },
   "connections": {
-    "enforce_threshold": false,
+    "enforce_threshold": true,
     "threshold": 100,
     "log_level": "warning",
     "raise_exception": false
