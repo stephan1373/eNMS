@@ -308,6 +308,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Remove device connection dict from 'connection_cache' in disconnect function if there are no other connections
   for that given, otherwise the connection count in 'check_connection_numbers' is wrong
   Commit: e60f90986732aae7e1943662f1553a05fe75b5c2
+- Rix JS error in console when skipping or unskipping services because of slash in tooltip: replace slash with dash
+  Commit: 0d6cf0fb599f72064f1a46a3bff113ceb8d35945
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
