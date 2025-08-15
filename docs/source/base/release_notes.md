@@ -338,7 +338,7 @@ Key Ideas about the refactoring of runner.py and "High Performance":
   session is never closed until the end of the thread, and a workflow that uses 25 threads will use 25 SQL session
   until the end of the wokrflow.
 
-Main Commits:
+Main Commits of the Run Refactoring:
 - Part 1: Generate the workflow topology graph at the beginning and reuse in
   workflow job function to reduce the number of SQL queries, and remove the neighbors SQL
   query to get next services in Dijkstra.
