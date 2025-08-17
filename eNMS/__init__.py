@@ -10,9 +10,12 @@ from eNMS.variables import vs
 
 def initialize():
     env._initialize()
-    server._initialize()
-    server.register_plugins()
+    if not env.file_watcher:
+        server._initialize()
+        server.register_plugins()
     first_init = db._initialize(env)
+    if env.file_watcher:
+        return env.monitor_filesystem()
     if env.detect_cli():
         return
     vs.set_subtypes()

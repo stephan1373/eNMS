@@ -64,16 +64,20 @@ function run() {
       rm /$HOME/database.db
     fi
   fi
-  if [ "$gunicorn" = true ]; then
+  if [ "$file_watcher" = true ]; then
+    export FILE_WATCHER=1
+    python3 app.py
+  elif [ "$gunicorn" = true ]; then
     gunicorn --config gunicorn.py app:app
   else
     python3 -m flask run -h 0.0.0.0 --no-reload
   fi
 }
 
-while getopts h?grqstvp:d: opt; do
+while getopts h?fgrqstvp:d: opt; do
     case "$opt" in
       d) database=$OPTARG;;
+      f) file_watcher=true;;
       g) gunicorn=true;;
       p) path=$OPTARG;;
       r) reload=true;;

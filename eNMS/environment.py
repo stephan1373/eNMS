@@ -62,22 +62,21 @@ class Environment(vs.TimingMixin):
             self.init_dramatiq()
 
     def _initialize(self):
+        self.init_logs()
+        self.use_vault = vs.settings["vault"]["use_vault"]
+        self.file_watcher = getenv("FILE_WATCHER")
+        if self.file_watcher:
+            return
         self.init_authentication()
         self.init_encryption()
-        self.use_vault = vs.settings["vault"]["use_vault"]
         if self.use_vault:
             self.init_vault_client()
         if vs.settings["paths"]["custom_code"]:
             sys_path.append(vs.settings["paths"]["custom_code"])
-        self.init_logs()
         self.init_redis()
         self.init_connection_pools()
         self.cache = Cache(config=vs.settings["cache"]["config"])
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
-        if vs.settings["files"]["monitor_filesystem"]:
-            main_thread = Thread(target=self.monitor_filesystem)
-            main_thread.daemon = True
-            main_thread.start()
         self.ssh_port = -1
 
     def authenticate_user(self, **kwargs):
@@ -368,6 +367,10 @@ class Environment(vs.TimingMixin):
         observer = PollingObserver(timeout=vs.settings["files"]["polling_interval"])
         observer.schedule(event_handler, path=str(vs.file_path), recursive=True)
         observer.start()
+        try:
+            observer.join()
+        except KeyboardInterrupt:
+            observer.stop()
 
     def rate_limiter(self, user, is_rest):
         if not self.redis_queue:
