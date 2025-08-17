@@ -313,6 +313,11 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Add new 'polling_interval' setting to configure the polling interval of the file monitoring mechanism with
   watchdog PollingObserver
   Commit: 259549c2355cd113e82a7e083baf31165c428ba0
+- Decouple the File Monitoring process with watchdog from the main app:
+  - The File Monitoring process must be started independently from the main app, with the FILE_WATCHER
+    environment variable set to 1
+  - Remove the "monitor_filesystem" variable from settings.json
+  Commit: 080f5ca9b3dcae041a73736199403e7f6ef8222b
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
