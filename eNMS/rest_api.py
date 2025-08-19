@@ -58,8 +58,8 @@ class RestApi(vs.TimingMixin):
     def is_alive(self, **_):
         return {"name": getnode(), "cluster_id": vs.settings["cluster"]["id"]}
 
-    def migrate(self, direction, **kwargs):
-        return getattr(controller, f"migration_{direction}")(**kwargs)
+    def migrate(self, import_type, direction, **kwargs):
+        return getattr(controller, f"{import_type}_migration_{direction}")(**kwargs)
 
     def query(self, instance_type, **kwargs):
         for arg in ("allow_none", "all_matches", "rbac", "user"):
