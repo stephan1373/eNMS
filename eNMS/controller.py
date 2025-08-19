@@ -43,11 +43,8 @@ class Controller(vs.TimingMixin):
     def _initialize(self, first_init):
         if not first_init:
             return
-        self.json_migration_import(
-            name=vs.settings["app"].get("startup_migration", "default"),
-            import_export_types=db.import_export_models,
-            json_migration=vs.settings["app"].get("json_migration"),
-        )
+        import_folder = vs.settings["app"].get("startup_migration", "default")
+        self.json_migration_import(name=import_folder)
         if vs.settings.get("on_startup", {}).get("get_git_content"):
             self.get_git_content(force_update=True)
         if vs.settings.get("on_startup", {}).get("scan_folder"):
@@ -1348,7 +1345,7 @@ class Controller(vs.TimingMixin):
             metadata = {"version": vs.server_version, "export_time": datetime.now()}
             file.write(dumps(metadata))
 
-    def json_migration_import(self, folder="migrations", **kwargs):
+    def json_migration_import(self, **kwargs):
         export_models = [
             class_name
             for class_name in vs.models
