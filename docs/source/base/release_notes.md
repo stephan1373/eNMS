@@ -541,6 +541,8 @@ Migration:
 - All REST Call Services must be updated:
   - The "payload" property, previously stored as JSON, must be converted to a string with json.dumps
   - The new "substitution_type" must be set to "dict"
+- The "migrate" endpoint has been modified with a new mandatory "import_type" argument. All REST calls to "migrate"
+  must be updated accordingly.
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
