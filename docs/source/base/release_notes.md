@@ -31,6 +31,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
     Commit: 80e11132115e76c4eab2aa0a5cd0f8361d3c0adc
   - Separate JSON and YAML migration forms
     Commit: 783ad217d188766e767c80b9c5e3b19b7acc4145
+  - Update 'migrate' REST endpoint to support new 'import_type' argument (yaml or json) to select the
+    corresponding function for import export
+    Commit: 1ccfaaf4123276c9ba4c3c9a4d3935c8f5dcb897
 - Make Service.name a SmallString, otherwise mysql fails to initialize with the following error:
   "MySQLdb.OperationalError: (1170, BLOB/TEXT column 'name' used in key specification without a key length)"
   Commit: 82154c0830f1cae60ea7a81732478c302767145b
