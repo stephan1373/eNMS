@@ -777,6 +777,7 @@ class RunEngine:
     def run_service_job(self, device):
         args = (device,) if device else ()
         retries, total_retries = self.number_of_retries + 1, 0
+        results = {}
         while retries and total_retries < self.max_number_of_retries:
             if self.stop:
                 self.log("error", f"ABORTING {device.name} (STOP)")
@@ -849,7 +850,7 @@ class RunEngine:
             except Exception:
                 result = "\n".join(format_exc().splitlines())
                 self.log("error", result, device)
-                results = {"success": False, "result": result}
+                results = {"result": result, "result_dict": results, "success": False}
         return results
 
     def safe_log(self, original, modified):
