@@ -324,6 +324,10 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Don't trigger UI refresh if the tab does not have focus (for table refresh, network builder refresh and
   workflow builder refresh)
   Commit: 75939e4c8f98895b3f4a77e8b025a4f38db67391
+- Add new 'result_dict' variable in the results that contain the 'results' before post processing (useful to get 
+  device output in services like netmiko commands in case post-processing is failing because the 'result' variable
+  then becomes the stacktrace) (reported in support slack channel)
+  Commit: 890cf5cc213b87a944d75333ee695820ffcb6f2e
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
