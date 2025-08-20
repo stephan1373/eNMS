@@ -2251,7 +2251,7 @@ export const refreshTable = function(tableId, notification, updateParent, firstP
 };
 
 function refreshTablePeriodically(tableId, interval, first) {
-  if (userIsActive && !first) refreshTable(tableId, false);
+  if (userIsActive && document.hasFocus() && !first) refreshTable(tableId, false);
   setTimeout(() => refreshTablePeriodically(tableId, interval), interval);
 }
 

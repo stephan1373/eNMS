@@ -280,7 +280,7 @@ function displayNetworkState(state) {
 }
 
 export function getNetworkState(periodic, first) {
-  if (userIsActive && network?.id && !first) {
+  if (userIsActive && document.hasFocus() && network?.id && !first) {
     call({
       url: `/get_network_state/${currentPath}`,
       data: {

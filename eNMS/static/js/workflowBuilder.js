@@ -803,7 +803,7 @@ export function resetWorkflowDisplay() {
 
 export function getWorkflowState(periodic, first) {
   const startTime = new Date().getTime();
-  if (userIsActive && workflow?.id && !first) {
+  if (userIsActive && document.hasFocus() && workflow?.id && !first) {
     call({
       url: `/get_service_state/${currentPath}`,
       data: {
