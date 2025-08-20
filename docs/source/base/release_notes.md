@@ -321,6 +321,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
     environment variable set to 1
   - Remove the "monitor_filesystem" variable from settings.json
   Commit: 080f5ca9b3dcae041a73736199403e7f6ef8222b
+- Don't trigger UI refresh if the tab does not have focus (for table refresh, network builder refresh and
+  workflow builder refresh)
+  Commit: 75939e4c8f98895b3f4a77e8b025a4f38db67391
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
