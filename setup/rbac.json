@@ -59,8 +59,8 @@
           "endpoint": "/credential_table",
           "rbac": "admin"
         },
-        "Scripts": {
-          "endpoint": "/script_table",
+        "Snippets": {
+          "endpoint": "/snippet_table",
           "rbac": "admin"
         }
       }
@@ -178,12 +178,12 @@
     "/result_form": "access",
     "/run_table": "access",
     "/script_form": "admin",
-    "/script_table": "admin",
     "/search_form": "access",
     "/server_table": "access",
     "/service_table": "access",
     "/session_log_form": "access",
     "/session_table": "access",
+    "/snippet_table": "admin",
     "/store_table": "access",
     "/network_table": "access",
     "/table_form": "access",

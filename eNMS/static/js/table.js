@@ -1741,7 +1741,7 @@ tables.data = class DataTable extends Table {
   }
 };
 
-tables.script = class ScriptTable extends Table {
+tables.snippet = class SnippetTable extends Table {
   get controls() {
     return [
       this.columnDisplay(),
@@ -1756,7 +1756,7 @@ tables.script = class ScriptTable extends Table {
       <button
         class="btn btn-success"
         onclick="eNMS.administration.openDebugPanel()"
-        data-tooltip="Run Debug Script"
+        data-tooltip="Run Debug Snippet"
         type="button"
       >
         <span class="glyphicon glyphicon-play"></span>
@@ -1772,7 +1772,7 @@ tables.script = class ScriptTable extends Table {
         ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('script', '${
+          onclick="eNMS.base.showInstancePanel('snippet', '${
             row.id
           }')" data-tooltip="Edit"
             ><span class="glyphicon glyphicon-edit"></span
@@ -1780,7 +1780,7 @@ tables.script = class ScriptTable extends Table {
         </li>
         <li>
           <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('script', '${row.id}', 'duplicate')"
+          onclick="eNMS.base.showInstancePanel('snippet', '${row.id}', 'duplicate')"
           data-tooltip="Duplicate"
             ><span class="glyphicon glyphicon-duplicate"></span
           ></button>
@@ -1788,7 +1788,7 @@ tables.script = class ScriptTable extends Table {
         <li>
           <button type="button" class="btn btn-sm btn-success"
           onclick="eNMS.administration.runDebugCode(${row.id})"
-          data-tooltip="Run Script"><span class="glyphicon glyphicon-play"></span
+          data-tooltip="Run Snippet"><span class="glyphicon glyphicon-play"></span
           ></button>
         </li>
         ${this.deleteInstanceButton(row)}

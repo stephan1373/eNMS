@@ -700,9 +700,9 @@ class RunServiceForm(BaseForm):
     service = InstanceField("Services", model="service")
 
 
-class ScriptForm(BaseForm):
+class SnippetForm(BaseForm):
     template = "object"
-    form_type = HiddenField(default="script")
+    form_type = HiddenField(default="snippet")
     id = HiddenField()
     name = StringField("Name", [InputRequired()])
     category = StringField("Category")

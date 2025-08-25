@@ -1523,10 +1523,10 @@ class Controller(vs.TimingMixin):
         run_object.payload = {**initial_payload, **kwargs}
         return run_object.run()
 
-    def run_debug_code(self, script_id=None, **kwargs):
+    def run_debug_code(self, snippet_id=None, **kwargs):
         if not current_user.is_admin:
             return
-        code = db.fetch("script", id=script_id).code if script_id else kwargs["code"]
+        code = db.fetch("snippet", id=snippet_id).code if snippet_id else kwargs["code"]
         result = StringIO()
         with redirect_stdout(result):
             try:

@@ -1409,7 +1409,7 @@
         "export": false
       }
     ],
-    "script": [
+    "snippet": [
       {
         "data": "category",
         "title": "Category",

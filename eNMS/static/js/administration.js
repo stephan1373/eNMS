@@ -198,22 +198,22 @@ export function openDebugPanel() {
   });
 }
 
-function runDebugCode(scriptId) {
+function runDebugCode(snippetId) {
   call({
-    url: `/run_debug_code${scriptId ? `/${scriptId}` : ""}`,
+    url: `/run_debug_code${snippetId ? `/${snippetId}` : ""}`,
     form: "debug-form",
     callback: function(result) {
-      if (!scriptId) {
+      if (!snippetId) {
         $("#debug-output").val(result);
       } else if (result.trim()) {
         openPanel({
-          name: "script-code",
-          content: `<div class="modal-body"><div id="debug-${scriptId}"></div></div>`,
+          name: "snippet-code",
+          content: `<div class="modal-body"><div id="debug-${snippetId}"></div></div>`,
           size: "900 500",
           title: "Debug Panel",
-          id: scriptId,
+          id: snippetId,
           callback: function() {
-            const editor = initCodeMirror(`debug-${scriptId}`, "logs");
+            const editor = initCodeMirror(`debug-${snippetId}`, "logs");
             editor.setValue(result);
           },
         });
