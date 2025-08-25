@@ -328,6 +328,10 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   device output in services like netmiko commands in case post-processing is failing because the 'result' variable
   then becomes the stacktrace) (reported in support slack channel)
   Commit: 890cf5cc213b87a944d75333ee695820ffcb6f2e
+- Update 'db.fetch_all': rename the first argument from 'model' to 'instance_type' so that it can be used to fetch
+  all devices based on their 'model' property (no more conflict between 'model' first argument and 'model' coming
+  from **kwargs)
+  Commit: 301fdba13afe9f6c526582c03f1a8b221d4eb2a6
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
