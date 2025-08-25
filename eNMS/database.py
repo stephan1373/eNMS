@@ -601,7 +601,7 @@ class Database:
                 "or the user does not have access"
             )
 
-    def fetch_all(self, model, **kwargs):
+    def fetch_all(self, instance_type, **kwargs):
         if (
             "name_in" in kwargs
             and not kwargs["name_in"]
@@ -609,7 +609,7 @@ class Database:
             and not kwargs["id_in"]
         ):
             return []
-        return self.fetch(model, allow_none=True, all_matches=True, **kwargs)
+        return self.fetch(instance_type, allow_none=True, all_matches=True, **kwargs)
 
     def get_credential(
         self, username, name=None, device=None, credential_type="any", optional=False
