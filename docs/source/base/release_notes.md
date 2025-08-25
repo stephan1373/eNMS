@@ -550,6 +550,9 @@ Migration:
   - The new "substitution_type" must be set to "dict"
 - The "migrate" endpoint has been modified with a new mandatory "import_type" argument. All REST calls to "migrate"
   must be updated accordingly.
+- Performance optimization of user code in workflows: the new "properties" keyword argument must be used whenever
+  "fetch_all" (or "fetch(all_matches=True)") is called and only a subset of properties are needed, so that the workflow
+  does not fetch the SQLAlchemy objects
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
