@@ -323,6 +323,8 @@ class RunEngine:
             result_kw["parent_device_id"] = self.parent_device.id
         if device:
             result_kw["device_id"] = device.id
+        if self.is_main_run:
+            results["trigger"] = self.main_run.trigger
         if self.is_main_run and not device:
             results["payload"] = self.payload
             if self.main_run.trigger == "REST API" and not self.high_performance:
