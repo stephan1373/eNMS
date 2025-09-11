@@ -560,6 +560,9 @@ Migration:
 - Performance optimization of user code in workflows: the new "properties" keyword argument must be used whenever
   "fetch_all" (or "fetch(all_matches=True)") is called and only a subset of properties are needed, so that the workflow
   does not fetch the SQLAlchemy objects
+- Update for Netmiko Commands Services: if a service uses a single command, and "Results as list" option is checked, the
+  results will now be returned as a list. To preserve backward compatibility, the option must be uncheckd (set to False) in
+  the migration files for all netmiko services with a single command, the "Results as list" set to True.
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
@@ -586,6 +589,8 @@ Tests:
 - Test that the display of an edge in the workflow builder and a link in the network builder is properly updated after
   editing the edge (name or color)
 - Test that all relevant forms and tables have the "Last Modified", "Last Modified By" and "Creation Time" properties
+- Test that the Netmiko services that uses to have a single line command and "Results as list" checked are still working
+  and the result is still returned as a string (because the option as unchecked during migration)
 
 Notes:
 - Everything in the "Tests" section should be tested with both "High Performance" checked and unchecked
