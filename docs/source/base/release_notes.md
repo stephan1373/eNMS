@@ -332,6 +332,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   all devices based on their 'model' property (no more conflict between 'model' first argument and 'model' coming
   from **kwargs)
   Commit: 301fdba13afe9f6c526582c03f1a8b221d4eb2a6
+- Update netmiko command service to always return the result as a list if 'Results as List' option is checked,
+  even if there is a single command
+  Commit: fe812c22b2325f2cbec16d100eb508ed2087780d
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
