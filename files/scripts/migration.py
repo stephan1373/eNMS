@@ -151,10 +151,15 @@ def migrate_5_2_to_5_3():
     with open(PATH / FILENAME / "service.yaml", "r") as service_file:
         services = yaml.load(service_file)
     for service in services:
-        if service["type"] != "rest_call_service":
-            continue
-        service["payload"] = dumps(service["payload"])
-        service["substitution_type"] = "dict"
+        if service["type"] == "rest_call_service":
+            service["payload"] = dumps(service["payload"])
+            service["substitution_type"] = "dict"
+        if (
+            service["type"] == "netmiko_commands_service"
+            and len(service["commands"].splitlines()) == 1
+            and service["results_as_list"] == True
+        ):
+            service["results_as_list"] = False
     with open(PATH / FILENAME / "service.yaml", "w") as service_file:
         yaml.dump(services, service_file)
 
