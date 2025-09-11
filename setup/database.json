@@ -172,6 +172,9 @@
         "status",
         "superworkflow_id"
       ],
+      "snippet": [
+        "id"
+      ],
       "task": [
         "id",
         "service_name",
@@ -345,6 +348,9 @@
       "logs",
       "service_changelogs",
       "soft_deleted"
+    ],
+    "snippet": [
+      "id"
     ],
     "network": [
       "id",
