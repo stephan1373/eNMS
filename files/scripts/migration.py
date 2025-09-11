@@ -10,7 +10,7 @@ PATH = Path.cwd().parent.parent.parent / "eNMS-prod2" / "files" / "migrations"
 
 
 def get_yaml_instance():
-    yaml = YAML()
+    yaml = YAML(typ="safe")
     yaml.default_style = '"'
 
     def representer(dumper, data):
