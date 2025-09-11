@@ -79,15 +79,16 @@ class NetmikoValidationService(ConnectionService):
                 )
                 for command in commands.splitlines()
             ]
-            if len(result) == 1:
-                (result,) = result
-            elif not run.results_as_list:
-                for index in range(len(result)):
-                    prefix = "{}COMMAND :".format("\n" if index else "")
-                    result[index] = (
-                        prefix + log_commands_list[index] + "\n\n" + result[index]
-                    )
-                result = "\n".join(map(str, result))
+            if not run.results_as_list:
+                if len(result) == 1:
+                    (result,) = result
+                else:
+                    for index in range(len(result)):
+                        prefix = "{}COMMAND :".format("\n" if index else "")
+                        result[index] = (
+                            prefix + log_commands_list[index] + "\n\n" + result[index]
+                        )
+                    result = "\n".join(map(str, result))
             run.exit_remote_device(netmiko_connection, prompt, device)
         except Exception:
             run.log("error", format_exc(), device)
