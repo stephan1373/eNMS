@@ -50,7 +50,7 @@ class Device(Object):
     icon = db.Column(db.TinyString, default="router")
     operating_system = db.Column(db.SmallString)
     os_version = db.Column(db.SmallString)
-    ip_address = db.Column(db.TinyString)
+    ip_address = db.Column(db.TinyString, index=True)
     port = db.Column(Integer, default=22)
     netmiko_driver = db.Column(db.TinyString, default="cisco_ios")
     napalm_driver = db.Column(db.TinyString, default="ios")
