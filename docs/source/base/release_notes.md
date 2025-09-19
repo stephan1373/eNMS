@@ -337,6 +337,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: fe812c22b2325f2cbec16d100eb508ed2087780d
 - Make Device.ip_address an indexed column
   Commit: 2ea2722573f58440a18447d79a7250db87cc0cc4
+- Fix bug #568 where a service that fails at compute target device query step is marked as success in the workflow
+  builder (update how 'runtime' and 'success' are stored in the state)
+  Commit: 3fe31e330ab3cb8b28d4a8c146bf26f7ee2d5f81
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
