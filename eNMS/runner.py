@@ -365,8 +365,9 @@ class RunEngine:
         devices, not_found = set(), []
         if isinstance(values, str):
             values = [values]
-        values = list(map(str, values))
-        if _self.high_performance:
+        if all(isinstance(value, vs.models["device"]) for value in values):
+            return values
+        elif _self.high_performance:
             with db.session_scope(remove=_self.in_process):
                 devices = (
                     db.query("device", user=_self.creator)
@@ -379,15 +380,12 @@ class RunEngine:
                 not_found = set(values) - found
         else:
             for value in values:
-                if isinstance(value, vs.models["device"]):
-                    device = value
-                else:
-                    device = db.fetch(
-                        "device",
-                        allow_none=True,
-                        user=_self.creator,
-                        **{property: str(value)},
-                    )
+                device = db.fetch(
+                    "device",
+                    allow_none=True,
+                    user=_self.creator,
+                    **{property: str(value)},
+                )
                 if device:
                     devices.add(device)
                 else:
