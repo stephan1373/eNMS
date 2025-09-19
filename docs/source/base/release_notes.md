@@ -340,6 +340,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Fix bug #568 where a service that fails at compute target device query step is marked as success in the workflow
   builder (update how 'runtime' and 'success' are stored in the state)
   Commit: 3fe31e330ab3cb8b28d4a8c146bf26f7ee2d5f81
+- Fix bug #569: when there are already device objects in a query field, return them immediately
+  Commit: 30c458c5f7f6285bd8a9b91ed2f068b988718f49
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
