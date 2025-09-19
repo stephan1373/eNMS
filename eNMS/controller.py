@@ -780,8 +780,8 @@ class Controller(vs.TimingMixin):
             elif run:
                 if state[path].get("dry_run"):
                     color = "#E09E2F"
-                elif "success" in state[path].get("result", {}):
-                    color = "#32CD32" if state[path]["result"]["success"] else "#FF6666"
+                elif "success" in state[path]:
+                    color = "#32CD32" if state[path]["success"] else "#FF6666"
                 else:
                     color = "#25B6FA"
             else:
@@ -792,7 +792,7 @@ class Controller(vs.TimingMixin):
                 )
             text = instance.scoped_name if type == "workflow" else instance.name
             attr_class = "jstree-wholerow-clicked" if full_ppath == path else ""
-            runtime = state[path].get("result", {}).get("runtime") if state else None
+            runtime = state[path].get("runtime") if state else None
             return {
                 "runtime": runtime,
                 "data": {

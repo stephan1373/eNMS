@@ -866,7 +866,7 @@ class RunEngine:
         self.write_state("status", "Running")
         start = datetime.now().replace(microsecond=0)
         results = {"runtime": self.runtime, "success": True}
-        self.write_state("result/runtime", self.runtime)
+        self.write_state("runtime", self.runtime)
         try:
             results.update(self.compute_targets_and_collect_results())
         except Exception:
@@ -892,7 +892,7 @@ class RunEngine:
                     results["notification"] = {"success": False, "error": error}
             now = datetime.now().replace(microsecond=0)
             results["duration"] = str(now - start)
-            self.write_state("result/success", results["success"])
+            self.write_state("success", results["success"])
             if isinstance(self.service, SimpleNamespace):
                 properties = vars(self.service)
                 properties.update({"target_devices": None, "target_pools": None})
