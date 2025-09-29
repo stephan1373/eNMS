@@ -940,7 +940,7 @@ class Task(AbstractBase):
         try:
             payload = {"mode": mode, "task": self.get_properties()}
             result = post(f"{vs.scheduler_address}/schedule", json=payload).json()
-            if not current_user.is_admin:
+            if not current_user.is_admin or not self.last_scheduled_by:
                 self.last_scheduled_by = current_user.name
         except ConnectionError:
             return {"alert": "Scheduler Unreachable: the task cannot be scheduled."}
