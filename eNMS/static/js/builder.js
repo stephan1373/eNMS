@@ -839,7 +839,10 @@ export function initBuilder() {
           notify(`No ${type} has been created yet.`, "error", 5);
         }
       }
-      $(`#current-${type},#current-runtime`).selectpicker({ liveSearch: true });
+      $(`#current-${type},#current-runtime`).selectpicker({
+        liveSearch: true,
+        virtualScroll: false
+      });
       if (type == "workflow") {
         $("#current-runtime").on("change", function() {
           getWorkflowState();
