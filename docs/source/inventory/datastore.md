@@ -6,6 +6,20 @@ title: Data Store
 
 ## Overview
 
+The Data Store serves as the central repository for all data managed by the application. It supports various data types, including text, secret values, JSON objects, spreadsheets, and DCIM/IPAM-related data such as IP addresses, VLANs, and cables.
+
+A Store represents a table within the Data Store. Navigating the Data Store works like browsing a file system. The current path of nested Stores is displayed as a sequence of hyperlinks, each linking to its respective Store in the hierarchy.
+
+## Data Type of a Store
+
+Each Store has a `data_type` property that defines the kind of data it contains (for example, a Store for IP addresses will contain only IP address data).
+
+A Store is also a type of Data and may include other Stores if its `data_type` is set to "store", similar to folders containing subfolders.
+
+The Data Type of a Store can only be set when the Store is created. Once created, this property becomes read-only.
+
+A Data object can only be moved to another Store with the same Data Type (for example, data of type A can only belong to a Store whose `data_type` is also A).
+
 ## Adding a new model to the Data Store
 
 - In the `models / datastore` folder, add a new python file to define the database model and its associated form.
