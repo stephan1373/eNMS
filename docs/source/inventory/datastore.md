@@ -2,9 +2,7 @@
 title: Data Store
 ---
 
-# Data Store
-
-## Overview
+# Overview
 
 The Data Store serves as the central repository for all data managed by the application. It supports various data types, including text, secret values, JSON objects, spreadsheets, and DCIM/IPAM-related data such as IP addresses, VLANs, and cables.
 
@@ -25,12 +23,18 @@ A Data object can only be moved to another Store with the same Data Type (for ex
 Every data object has a persistent ID. This ensures that data can be consistently referenced within workflows and across software releases, even when the data is renamed (or the database ID modified).
 Users can copy the persistent ID directly from the Data Store table using the provided copy-to-clipboard button.
 
-## Adding a new model to the Data Store
+## Reference a Data object in a workflow
+
+The `get_data` global function in the Workflow Builder retrieves a data object in python, either by its path or by its persistent ID.
+
+# Adding a new model to the Data Store
 
 New models can be added when needed. To define a new model:
 - Create a subclass of `Data` with your custom properties.
 - Save the file in the `models / datastore` directory.
 - Define the corresponding UI table in JavaScript within the `static / js / datastore` directory.
+
+## Python file
 
 - In the `models / datastore` folder, add a new python file to define the database model and its associated form.
 
@@ -54,6 +58,8 @@ class ExampleForm(DataForm):
     )
 ```
 
+## Javascript File
+
 - In `static / js / datastore`, add a new JS file with the table code:
 
 ```
@@ -62,6 +68,8 @@ import { tables } from "../table.js";
 tables.example = class extends tables.data {};
 tables.example.prototype.type = "example";
 ```
+
+## Update to properties.json
 
 - In `setup / properties.json` under the `tables` key, add the table properties:
 
