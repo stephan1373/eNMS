@@ -22,15 +22,15 @@ A Data object can only be moved to another Store with the same Data Type (for ex
 
 ## Persistent ID
 
-Every data entry has a persistent ID. This ensures that data can be consistently referenced within workflows and across software releases, even when the data is renamed (or the database ID changes).
+Every data object has a persistent ID. This ensures that data can be consistently referenced within workflows and across software releases, even when the data is renamed (or the database ID modified).
 Users can copy the persistent ID directly from the Data Store table using the provided copy-to-clipboard button.
 
 ## Adding a new model to the Data Store
 
 New models can be added when needed. To define a new model:
-- Create a subclass of Data with your custom properties.
-- Save the file in the models/datastore directory.
-- Define the corresponding UI table in JavaScript within the static/js/datastore directory.
+- Create a subclass of `Data` with your custom properties.
+- Save the file in the `models / datastore` directory.
+- Define the corresponding UI table in JavaScript within the `static / js / datastore` directory.
 
 - In the `models / datastore` folder, add a new python file to define the database model and its associated form.
 
