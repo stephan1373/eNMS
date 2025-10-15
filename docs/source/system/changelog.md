@@ -23,6 +23,8 @@ A change linked to a specific object can sometimes be reverted or undone. The "R
 
 When the changelog relates to an object update, a "Diff" panel allows you to select any of the properties that have changed. For each property, it displays a git-style diff showing the value before and after the change, making it easy to track modifications, especially for large textfields like python code in a service pre/post-processing.
 
+![Changelogs Diff](../_static/system/changelog_diff.jpg)
+
 ## Filtering Changelogs
 
 You can filter changelogs to see all entries for a specific object type or a particular object. There are two ways to do this:
