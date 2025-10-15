@@ -27,6 +27,20 @@ Users can copy the persistent ID directly from the Data Store table using the pr
 
 The `get_data` global function in the Workflow Builder retrieves a data object in python, either by its path or by its persistent ID.
 
+## Examples
+
+The following features have been implemented to demonstrate the capabilities of the datastore:
+
+- **New JSON object type**
+    - A JSON object has a `value` property to store JSON data.
+    - A JSON object can be edited directly from the edit panel.
+    - A JSON object can be downloaded as a JSON file from the JSON table.
+
+- **Example models**
+    - **VLAN model** :  demonstrates the **Get Next in Sequence** mechanism: a button is added next to the *VLAN ID* field in the form that automatically fills the field with the next available VLAN ID when clicked. That button is implemented with the `layout` keyword argument to customize the layout of a field.
+    - **Port model** :  shows a SQL relationship with an internal eNMS model (`Device`).
+    - **Cable model** :  demonstrates SQL relationships with a custom datastore model (`Port`).
+
 # Adding a new model to the Data Store
 
 New models can be added when needed. To define a new model:
