@@ -4,7 +4,7 @@
 
 The eNMS changelog is found under `System / Changelog`
 
-![Changelogs](../_static/system/changelog.png)
+![Changelogs](../_static/system/changelog.jpg)
 
 Changelog contains the following searchable information:
 
