@@ -21,6 +21,8 @@ In the changelogs table, you can enable the "Target Type" and "Target Name" colu
 
 A change linked to a specific object can sometimes be reverted or undone. The "Revert" icon on the right side of the changelogs table allows you to do this. If the icon is greyed out, the "Revert" action is not available.
 
+When the changelog relates to an object update, a "Diff" panel allows you to select any of the properties that have changed. For each property, it displays a git-style diff showing the value before and after the change, making it easy to track modifications, especially for large textfields like python code in a service pre/post-processing.
+
 ## Filtering Changelogs
 
 You can filter changelogs to see all entries for a specific object type or a particular object. There are two ways to do this:
