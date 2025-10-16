@@ -294,6 +294,11 @@ are made available to the user.
     -   **Type**: Dictionary.
     -   **Available**: After a service has run.
 
+- `runtime`
+    -   **Meaning**: The runtime of the current run (parent runtime).
+    -   **Type**: String.
+    -   **Available**: Always.
+
 - `send_email()` allows for sending an email with optional attached file. It
     takes the following parameters:
 
