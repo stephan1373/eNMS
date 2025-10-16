@@ -84,11 +84,14 @@ The Service Editor Panel is accessible from the following locations:
     The log level to use when running the service; it governs logs written
     to the log window in the UI, as well as the logs that are written to
     the log files.
-- `Save only failed results`: (default: False) If enabled, the service
+- `Always Show User-Defined Logs`: (default: `True`) When enabled, user-defined logs
+    (i.e., logs generated through the `log` function in Python) are always displayed,
+    regardless of their logging level or the value specified in the Logging field above.
+- `Save only failed results`: (default: `False`) If enabled, the service
     will not generate a result unless there was a failure. This saves
     database space and improves performance. Beware if a subsequent service
     needs to rely on this service's result.
-- `Update pools after running`: (default: False) Update all pools after
+- `Update pools after running`: (default: `False`) Update all pools after
     this service runs. Note that updating all pools is performance intensive.
 
 #### Parameterized Form Parameters
