@@ -426,13 +426,16 @@ from the workflow builder global variables.
 
 Key parameters to be aware of:
 
-- `always_commit` (default: `false`) Always commit results and logs immediately
+- `always_commit`: (default: `false`) Always commit results and logs immediately
   after they are created when a service is running. This can help prevent various
   database issues that arise during a run.
-- `disconnect_thread_timeout` (default: `10` (seconds)) This parameter sets the timeout value
+- `disconnect_thread_timeout`: (default: `10` (seconds)) This parameter sets the timeout value
   used when attempting to close all open connections at the end of a workflow.
   Multiple threads are spawned to close all connections as quickly as possible,
   and this timeout is passed to each thread.
+- `notification`: This parameter determines which notification mechanisms are available in Step 4
+  of the Service Panel, as well as in the service type drop-down lists in the Workflow Builder
+  and Service Table. By default, all notification mechanisms (email, Slack, and Mattermost) are enabled.
 - `truncate_logs`: (default: `false` with a `maximum_size` of `200000000`) This parameter
   determines whether to trim the logs of a service before saving them to the database if
   they exceed a certain size limit (`maximum_size`).
