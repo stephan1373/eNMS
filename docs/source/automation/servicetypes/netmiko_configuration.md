@@ -7,6 +7,9 @@ Configuration parameters for creating this service instance:
 - All [Netmiko Service Common Parameters](netmiko_common.md).
 - `Content`: Paste a configuration block of text here for applying to
     the target device(s).
+- `Interpret Commands as Jinja2 Template`: Tell the application to interpret the "Content"
+    text as a Jinja2 template. The output of the rendered template is used as the configuration
+    that is sent to the device.
 - `Commit Configuration`: Calls netmiko `commit` function after applying
     the configuration.
 - `Exit config mode`: Determines whether to exit config mode
