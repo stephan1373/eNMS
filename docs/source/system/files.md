@@ -59,7 +59,7 @@ delete both folders and files from the database.
   
 These actions apply to each individual file or folder:
 
-- `Copy Path to Clipboard`: copy the absolute path to the file or folder to the clipboard
+- `Copy Path to Clipboard`: copy the relative path to the file or folder to the clipboard
 - `Download File`: downloads a single file or a .TGZ file with contents of the entire folder 
 - `Upload Files in Folder`: only shown for a Folder, opens the Upload File window
 - `Edit`: edit the File or Folder details (e.g., Description)
