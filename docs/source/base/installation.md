@@ -429,6 +429,9 @@ Key parameters to be aware of:
 - `always_commit`: (default: `false`) Always commit results and logs immediately
   after they are created when a service is running. This can help prevent various
   database issues that arise during a run.
+- `connection_args`: These parameters are sent to the Netmiko or Scrapli connection handler
+  before establishing the connection. To see which parameters are supported, you should
+  check the Netmiko or Scrapli documentation.
 - `disconnect_thread_timeout`: (default: `10` (seconds)) This parameter sets the timeout value
   used when attempting to close all open connections at the end of a workflow.
   Multiple threads are spawned to close all connections as quickly as possible,
@@ -439,9 +442,6 @@ Key parameters to be aware of:
 - `truncate_logs`: (default: `false` with a `maximum_size` of `200000000`) This parameter
   determines whether to trim the logs of a service before saving them to the database if
   they exceed a certain size limit (`maximum_size`).
-- `connection_args`: These parameters are sent to the Netmiko or Scrapli connection handler
-  before establishing the connection. To see which parameters are supported, you should
-  check the Netmiko or Scrapli documentation.
 
 ### `database.json`
 The `setup/database.json` file contains database and schema configuration
