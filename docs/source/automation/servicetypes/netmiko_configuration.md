@@ -1,6 +1,6 @@
 Uses Netmiko to send a list of commands to be configured on the devices.
 
-![Netmiko Configuration Service](../../_static/automation/service_types/netmiko_configuration.png)
+![Netmiko Configuration Service](../../_static/automation/service_types/netmiko_configuration.jpg)
 
 Configuration parameters for creating this service instance:
 
