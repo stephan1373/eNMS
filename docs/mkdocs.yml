@@ -27,6 +27,7 @@ nav:
       - Workers: administration/workers.md
     - Tools:
       - Admin Panel: administration/admin_panel.md
+      - Snippets: administration/snippets.md
       - Debugging: administration/debug.md
   - Inventory:
     - Network Creation: inventory/network_creation.md
