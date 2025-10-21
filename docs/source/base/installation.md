@@ -659,6 +659,21 @@ Example syntax for LDAP:
 },
 ```
 
+DUO two-factor authentication can be configured through the settings in `authentication` > `duo` (client ID, host, and redirect URI) and the `DUO_SECRET` environment variable.
+
+Example syntax for DUO authentication:
+
+```
+"duo": {
+  "config": {
+    "client_id": "DIRUY3ZRHXYYHVOZDMIW",
+    "host": "api-58bbe24c.duosecurity.com",
+    "redirect_uri": "https://enms:5000/duo-callback"
+  },
+  "enabled": false
+},
+```
+
 #### `automation` section
 
 - `max_process` limit on multiprocessing (default: 15).
