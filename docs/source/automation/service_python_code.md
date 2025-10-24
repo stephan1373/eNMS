@@ -153,9 +153,10 @@ are made available to the user.
 - `filtering()`
     -   **Meaning**: Allows filtering objects in the database of a given type
         based on constraints.
-        **Type**: Function.
-        **Available**: Always.
-    -   **Return Type**: List of Database Objects or SQLAlchemy Row
+    -   **Type**: Function.
+    -   **Available**: Always.
+    -   **Return Type**: List of Database Objects or SQLAlchemy Row if the `properties` argument
+        is used.
     -   **Parameters**:
         -   `model`: (**mandatory string**) `device`, `link`, etc.
         -   `properties`: List of properties, when the query is expected to return
@@ -163,7 +164,7 @@ are made available to the user.
             Example: `properties=["id", "scoped_name"]`
         -   `constraints`: Dictionary of properties, expected values and type
             of search. Examples:
-            - `{"model": "Cisco"}`
+            - Objects whose model is `Cisco`: `{"model": "Cisco"}`
             - Non-shared services that do no belong to any workflow: `{"workflows_filter": "empty", "type": "service", "shared": "bool-false"}`
 
 - `get_neighbors()`
