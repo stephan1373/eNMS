@@ -184,10 +184,17 @@ Results can be viewed in the following locations:
   
 ## Inspecting Logs
 
+![Logs Window](../_static/automation/services/logs_window.jpg)
+
 Viewing device and service Logs is available at all the above 
 same results locations. The Log view panel automatically pops up when a service
 or workflow is manually initiated via the Services Management table or via
 Workflow Builder, and the log window automatically scrolls as logs occur.
+Users can disable the automatic scrolling to the bottom while logs refresh
+by unticking the "Auto Scroll" box.
+The Log Panel also has a search field that allows the user to filter logs
+by a specific string (see Search icon).
+
 Logs for scheduled tasks or REST API initiated automation
 jobs produce logs, but they do not cause the Log view panel to open.
 
