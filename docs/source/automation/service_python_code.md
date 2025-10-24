@@ -150,6 +150,22 @@ are made available to the user.
         - Model properties: (**optional**) Filter values to limit the set of
           returned objects: vendor="Cisco".
 
+- `filtering()`
+    -   **Meaning**: Allows filtering objects in the database of a given type
+        based on constraints.
+        **Type**: Function.
+        **Available**: Always.
+    -   **Return Type**: List of Database Objects or SQLAlchemy Row
+    -   **Parameters**:
+        -   `model`: (**mandatory string**) `device`, `link`, etc.
+        -   `properties`: List of properties, when the query is expected to return
+            a row of properties and not the SQLAlchemy objects (better performances).
+            Example: `properties=["id", "scoped_name"]`
+        -   `constraints`: Dictionary of properties, expected values and type
+            of search. Examples:
+            - `{"model": "Cisco"}`
+            - Non-shared services that do no belong to any workflow: `{"workflows_filter": "empty", "type": "service", "shared": "bool-false"}`
+
 - `get_neighbors()`
     -   **Meaning**: Used to return links or devices connected to the target
         device.
