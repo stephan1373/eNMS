@@ -65,8 +65,8 @@ Filtering and Bulk operations:
 The following features operate on Bulk Services that are currently
 filtered in the table display.
 
-- `Export Service as .TGZ`: Bulk export the filtered set of Services; stored on
-   the server in the `files/services` folder. 
+- `Export Service as .TGZ`: Bulk export the filtered set of Services to a
+   .tgz archive that downloads to the user's browser.
 - `Bulk Edit`: Makes the same config change to all currently filtered
    services in the table display.
 - `Export as CSV`: Export the current filtered list of services in the
