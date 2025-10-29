@@ -29,6 +29,7 @@ class RestCallService(Service):
     params = db.Column(JSON, default={})
     headers = db.Column(JSON, default={})
     verify_ssl_certificate = db.Column(Boolean, default=True)
+    allow_redirects = db.Column(Boolean, default=True)
     timeout = db.Column(Integer, default=15)
     credentials = db.Column(db.SmallString, default="custom")
     named_credential_id = db.Column(Integer, ForeignKey("credential.id"))
@@ -48,6 +49,7 @@ class RestCallService(Service):
             for parameter in ("headers", "params", "timeout")
         }
         kwargs["verify"] = run.verify_ssl_certificate
+        kwargs["allow_redirects"] = run.allow_redirects
         if run.call_type in ("POST", "PUT", "PATCH"):
             kwargs["json"] = run.sub(self.payload, local_variables)
         if run.dry_run:
@@ -86,6 +88,7 @@ class RestCallForm(ServiceForm):
     params = DictField(substitution=True)
     headers = DictField(substitution=True)
     verify_ssl_certificate = BooleanField("Verify SSL Certificate")
+    allow_redirects = BooleanField("Allow Redirects", default=True)
     timeout = IntegerField(default=15)
     credentials = SelectField(
         "Credentials",
