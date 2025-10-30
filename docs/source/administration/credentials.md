@@ -35,9 +35,9 @@ The `Common Properties` tab has the following properties:
 * **Password or Private Key**: If `Subtype` from above is `Username / Password`, the field becomes `Password`. If `Subtype` from above is `SSH Key`, the field becomes `Private Key`.  
 * **'Enable' Password**: Used by Netmiko based services when Enable mode is selected and a password is required.  This is not related to device connection, but is included on the credential for Vault storage.
 
-![Credentials Access](../_static/administration/credentials_access.jpg)
-
 The `Access Control` tab has the following properties: 
+
+![Credentials Access](../_static/administration/credentials_access.jpg)
 
 * **Owners**: Users allowed to modify this `Access Control` instance
 * **Admin Only** If enabled, only admin users can view or edit this instance
