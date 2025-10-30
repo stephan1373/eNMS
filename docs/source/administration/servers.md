@@ -5,6 +5,8 @@
 
 * **Name**: Name of the worker - defaults to "Server Name - Process ID"
 * **Creator**: Auto Populated field based on the user who built the team
+* **Last Modified**: The date and time when the object was last updated.
+* **Last Modified By**: The user who last updated the object.
 * **Description**: Text field for storing notes 
 * **Role**
 > * **Primary**: Primary server of the cluster
