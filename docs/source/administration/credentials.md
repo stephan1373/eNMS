@@ -25,8 +25,9 @@ The `Common Properties` tab has the following properties:
 
 * **Name**: Unique identification for referencing the credential
 * **Creator**: Auto Populated field based on the user who built the credential
+* **Last Modified**: The date and time when the object was last updated.
+* **Last Modified By**: The username of the user who last updated the object.
 * **Description**: Text field for storing notes  
-
 * **Role**: Read and write, or read only.
 * **Subtype**: Choose between `Username / Password` or `SSH Key`.
 * **Devices**: Pool of devices which will have access to these credentials.
