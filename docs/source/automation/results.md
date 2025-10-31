@@ -68,6 +68,8 @@ You can customize the colors for each device by adding a "color" key in the resu
 
 When you switch to Per-Device Result Display (by opening the Workflow Builder `Search` Panel and selecting a device from the `Device Filtering drop-down`), the results for that device will display using the specified color in the Workflow Builder.
 
+![Results Coloring](../_static/automation/results/results_coloring.jpg)
+
 ## Other ways to view results 
 
 Results can be also be viewed from: 
