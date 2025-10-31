@@ -5,6 +5,6 @@ WebSSH Connection feature into Session objects. Access to Sessions is RBAC-contr
 
 Users can use the `System -> Sessions` page to view the Session data:
 
-![Session Table and Logs](../_static/system/sessions.png)
+![Session Table and Logs](../_static/system/sessions.jpg)
 
   
