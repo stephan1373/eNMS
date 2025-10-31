@@ -7,4 +7,5 @@ Users can use the `System -> Sessions` page to view the Session data:
 
 ![Session Table and Logs](../_static/system/sessions.jpg)
 
-  
+Users can search the content of all sessions using the `Session` field in the table, just like with device configurations.
+At the top of the table, you can adjust the number of lines of context to display, from 0 to 5.
