@@ -568,10 +568,6 @@
     "Full UI Read + Edit Access"
   ],
   [
-    "[(R) Netmiko Validation with TextFSM Option] show version",
-    "Full UI Read + Edit Access"
-  ],
-  [
     "[(R) Payload Extraction & Validation] Payload Extraction",
     "Full UI Read + Edit Access"
   ],

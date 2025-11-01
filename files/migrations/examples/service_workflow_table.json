@@ -328,10 +328,6 @@
     "(R) Netmiko Validation with TextFSM Option"
   ],
   [
-    "[(R) Netmiko Validation with TextFSM Option] show version",
-    "(R) Netmiko Validation with TextFSM Option"
-  ],
-  [
     "[(R) Payload Extraction & Validation] Payload Extraction",
     "(R) Payload Extraction & Validation"
   ],

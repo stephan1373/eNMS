@@ -6992,8 +6992,8 @@
         "alignment": "left",
         "content": "This last command isn't supported by the use_textfsm option (there is\nno associated textFSM template) so with the option enabled, netmiko\nshould default to displaying the output as a string.",
         "positions": [
-          369,
-          218
+          414,
+          188
         ],
         "size": 14
       },
@@ -7001,13 +7001,13 @@
         "alignment": "left",
         "content": "This workflow uses netmiko \"use_textfsm\" option to automatically\nconvert the output from a string to a dictionary (structured data).\nThis only works for specific commands, when there is an associated\nTextFSM template available.",
         "positions": [
-          112,
-          -113
+          77,
+          -43
         ],
         "size": 14
       }
     },
-    "last_modified": "2022-11-09 01:23:33.036819",
+    "last_modified": "2025-11-01 12:38:05.219381",
     "last_modified_by": "admin",
     "last_run": "2024-11-11 17:37:43.839064",
     "log_level": 1,
@@ -7034,28 +7034,28 @@
     "persistent_id": "vX253Z8r7sg",
     "positions": {
       "[(R) Netmiko Validation with TextFSM Option] show arp": [
-        316,
-        137
+        372,
+        88
       ],
       "[(R) Netmiko Validation with TextFSM Option] show ip int brief": [
-        -132,
-        -29
+        -181,
+        82
       ],
       "[(R) Netmiko Validation with TextFSM Option] show lldp neighbor": [
-        269,
-        -27
+        84,
+        84
       ],
       "[(R) Netmiko Validation with TextFSM Option] show version": [
         -28,
         186
       ],
       "[Shared] End": [
-        522,
-        4
+        595,
+        87
       ],
       "[Shared] Start": [
-        -366,
-        74
+        -436,
+        100
       ]
     },
     "postprocessing": "",
