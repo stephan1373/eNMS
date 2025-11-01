@@ -727,8 +727,8 @@ function displayWorkflowState(result, workflowSwitch) {
           if (success) progressInfo.push(`${success} passed`);
           if (failure) progressInfo.push(`${failure} failed`);
           if (skipped) progressInfo.push(`${skipped} skipped`);
-          const detailedLabel = ` (${progressInfo.join(", ")})${first ? "\n" : ""}`;
-          if (progressInfo.length) label += detailedLabel;
+          if (progressInfo.length) label += ` (${progressInfo.join(", ")})`;
+          label += `${first ? "\n" : ""}`;
           first = false;
         }
       }
