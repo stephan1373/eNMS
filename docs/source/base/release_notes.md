@@ -346,6 +346,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: a448f00f4730f9c4a625bcd5294e6db39a028527
 - Fix blank space in bootstrap selectpicker list in the workflow or network builder when there are many entries
   Commit: 05a2810722ac4d585f4902c94725e8d53c630cb3
+- Fix return carriage bug in 'Device - Iteration' progress label of a service in the workflow builder
+  Commit: f6893cb6f8c150c696236b8ae5e308d57742f3fe
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
