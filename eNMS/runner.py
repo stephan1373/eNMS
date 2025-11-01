@@ -1105,7 +1105,12 @@ class NetworkManagement:
         if self.credentials == "object":
             if self.high_performance:
                 with db.session_scope(remove=self.in_process):
-                    credential = db.fetch("credential", user=self.creator, rbac="use", id=self.named_credential_id)
+                    credential = db.fetch(
+                        "credential",
+                        user=self.creator,
+                        rbac="use",
+                        id=self.named_credential_id,
+                    )
             else:
                 credential = self.named_credential
         elif self.credentials == "device" or add_secret:

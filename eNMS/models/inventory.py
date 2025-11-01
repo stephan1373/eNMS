@@ -91,7 +91,9 @@ class Device(Object):
     def database_init(cls):
         for property in vs.configuration_properties:
             for timestamp in vs.timestamps:
-                column = db.Column(db.SmallString, default="Never", info={"log_change": False})
+                column = db.Column(
+                    db.SmallString, default="Never", info={"log_change": False}
+                )
                 setattr(cls, f"last_{property}_{timestamp}", column)
         return cls
 

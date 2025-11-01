@@ -713,7 +713,7 @@ class SnippetForm(BaseForm):
         python=True,
         widget=TextArea(),
         render_kw={"rows": 6},
-        layout="<div style='margin-top:10px'>{field}</div>"
+        layout="<div style='margin-top:10px'>{field}</div>",
     )
     creator = StringField(render_kw={"readonly": True})
     creation_time = StringField("Creation Time", render_kw={"readonly": True})

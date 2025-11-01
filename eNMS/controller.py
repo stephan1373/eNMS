@@ -517,11 +517,15 @@ class Controller(vs.TimingMixin):
         table, constraints = vs.models[model], []
         constraint_dict = {**kwargs.get("form", {}), **kwargs.get("constraints", {})}
         if serialized := constraint_dict.get("serialized"):
-            constraints.append(or_(*(
-                column.ilike(f"%{serialized}%")
-                for column in inspect(table).columns
-                if isinstance(column.type, String)
-            )))
+            constraints.append(
+                or_(
+                    *(
+                        column.ilike(f"%{serialized}%")
+                        for column in inspect(table).columns
+                        if isinstance(column.type, String)
+                    )
+                )
+            )
         for property in vs.model_properties[model]:
             value, row = constraint_dict.get(property), getattr(table, property)
             filter_value = constraint_dict.get(f"{property}_filter")
