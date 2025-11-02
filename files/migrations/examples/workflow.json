@@ -8318,10 +8318,10 @@
     "labels": {
       "0041059d-b9b7-422e-9e82-5c2b6ff4db6f": {
         "alignment": "left",
-        "content": "This workflow runs in SxS with Service Targets. It must be run in two times,\nfirst with an edge from \"Start\" to \"Service1\", then with an edge from \"Start\"\nto \"Deletion of SanJose\". Deleting immediately after running Service1 and\nService2 would yield an \"Out of session scope\" database error.\n1) The first service runs on \"SanJose\", and the second service runs\non \"router14\" and \"router15\"\n2) - The services from the lower branch will delete :\n    * \"SanJose\" to test cascade deletion of results when the associated device is deleted.\n    * \"Service2\" to test cascade deletion of results when the associated service is deleted.\n    * The link \"atlantic-r26-boston-3\"\n- The last service should fail at deleting a task (tasks are not\nin the \"allowed_models\" for deletion in automation.json)",
+        "content": "This workflow runs in SxS with Service Targets.\n1) The first service runs on \"SanJose\", and the second service runs\non \"router14\" and \"router15\"\n2) - The services from the lower branch will delete :\n    * \"SanJose\" to test cascade deletion of results when the associated device is deleted.\n    * \"Service2\" to test cascade deletion of results when the associated service is deleted.\n    * The link \"atlantic-r26-boston-3\"\n- The last service should fail at deleting a task (tasks are not\nin the \"allowed_models\" for deletion in automation.json)",
         "positions": [
-          115,
-          168
+          178,
+          196
         ],
         "size": 14
       },
@@ -8329,24 +8329,24 @@
         "alignment": "left",
         "content": "Runs on \"router14\" and \"router15\"",
         "positions": [
-          410,
-          -11
+          417,
+          -16
         ]
       },
       "519df264-b0ab-4075-b662-dd4fca05e5c8": {
         "alignment": "left",
         "content": "Delete LINK \"atlantic-r26-boston-3\"\nExpected result: success",
         "positions": [
-          289,
-          371
+          226,
+          426
         ]
       },
       "aac54a20-a7bd-4444-8ef3-2c3ce8ae87cc": {
         "alignment": "left",
         "content": "Attempts to delete TASK \"Configuration Poller\"\nExpected result: failure",
         "positions": [
-          579,
-          351
+          -80,
+          427
         ]
       },
       "f55f5e94-bed6-46bc-a7dc-13405d8f1be0": {
@@ -8358,7 +8358,7 @@
         ]
       }
     },
-    "last_modified": "2022-11-28 06:58:15.498442",
+    "last_modified": "2025-11-02 12:05:07.180631",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -8385,32 +8385,32 @@
     "persistent_id": "JDTLPKwh-bI",
     "positions": {
       "[Deletion and Cascade Deletion] Deletion of SanJose": [
-        -204,
-        300
+        657,
+        163
       ],
       "[Deletion and Cascade Deletion] Deletion of Service2": [
-        33,
-        305
+        507,
+        352
       ],
       "[Deletion and Cascade Deletion] Link Deletion": [
-        265,
-        307
+        197,
+        359
       ],
       "[Deletion and Cascade Deletion] Service1": [
         -119,
         33
       ],
       "[Deletion and Cascade Deletion] Service2": [
-        380,
-        42
+        420,
+        36
       ],
       "[Deletion and Cascade Deletion] Task Deletion": [
-        530,
-        289
+        -115,
+        353
       ],
       "[Shared] End": [
-        664,
-        197
+        -319,
+        362
       ],
       "[Shared] Start": [
         -335,
