@@ -673,6 +673,7 @@ function displayWorkflowState(result, workflowSwitch) {
   if (!nodes || !edges || !result.state) return;
   if (result.device_state) {
     for (const [serviceId, color] of Object.entries(result.device_state)) {
+      if (!nodes.get(parseInt(serviceId))) continue;
       nodeUpdates.push({ id: parseInt(serviceId), color: color });
     }
     nodes.update(nodeUpdates);
