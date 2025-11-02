@@ -1606,7 +1606,7 @@ class Controller(vs.TimingMixin):
         }
         for id, position in kwargs.items():
             new_position = [position["x"], position["y"]]
-            if "-" not in id:
+            if "-" not in id and id in id_to_name:
                 instance.positions[id_to_name[id]] = new_position
             elif id in instance.labels:
                 instance.labels[id] = {**instance.labels[id], "positions": new_position}
