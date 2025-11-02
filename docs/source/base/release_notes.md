@@ -348,6 +348,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: 05a2810722ac4d585f4902c94725e8d53c630cb3
 - Fix return carriage bug in 'Device - Iteration' progress label of a service in the workflow builder
   Commit: f6893cb6f8c150c696236b8ae5e308d57742f3fe
+- Fix bug wrong device result display with specific color: empty vis.js node coming from the top-level workflow bug
+  Commit: 8076b25f2df876d4fde81f4d42c31c676be0f281
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
