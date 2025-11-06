@@ -116,6 +116,10 @@
     "admin"
   ],
   [
+    "Temporal Service",
+    "admin"
+  ],
+  [
     "Text Reports with Normal Templates",
     "admin"
   ],
@@ -597,6 +601,10 @@
   ],
   [
     "[Runtime Notes Mechanism] Update note1 and add note3",
+    "admin"
+  ],
+  [
+    "[Temporal Service] Run Workflow",
     "admin"
   ],
   [

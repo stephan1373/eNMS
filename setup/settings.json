@@ -223,6 +223,9 @@
       "timer": 300
     }
   },
+  "temporal": {
+    "url": "localhost:7233"
+  },
   "vault": {
     "mount": ["http://", "https://"],
     "pool_maxsize": 25,

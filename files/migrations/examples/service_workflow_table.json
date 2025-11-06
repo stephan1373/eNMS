@@ -1681,6 +1681,10 @@
   ],
   [
     "[Shared] End",
+    "Temporal Service"
+  ],
+  [
+    "[Shared] End",
     "Text Reports with Normal Templates"
   ],
   [
@@ -2197,6 +2201,10 @@
   ],
   [
     "[Shared] Start",
+    "Temporal Service"
+  ],
+  [
+    "[Shared] Start",
     "Text Reports with Normal Templates"
   ],
   [
@@ -2354,6 +2362,10 @@
   [
     "[Target Restriction Mechanism] Iteration Targets",
     "Target Restriction Mechanism"
+  ],
+  [
+    "[Temporal Service] Run Workflow",
+    "Temporal Service"
   ],
   [
     "[Text Reports with Normal Templates] Service",
