@@ -518,7 +518,7 @@ Related Commits:
 
 Benchmark (comparison last release versus new release) needed for:
 - Workflow runs duration
-  - Workflow with 5 - 10 empty python snippet services, 10k target devices
+  - Workflow with 5 empty python snippet services, 10k target devices
   - Configuration Backup Workflow:
     - Compare performance new and last release with same number of threads
     - Try to raise the number of threads to 300, 500
@@ -555,6 +555,38 @@ Benchmark (comparison last release versus new release) needed for:
 - Compare Speed of Workflow Duplication (for workflows of different sizes)
 - Compare Speed of Service / Workflow Editing ("update/{service_type}" endpoint)
 - Compare Speed of Log Refresh when running a workflow (calls to "get_service_logs" endpoint)
+
+Previous Release:
+- Workflow with 5 empty python snippet services, 10k target devices
+- Update a pool with 50k devices
+- Update all pools
+- Workflow Duplication of "Large Workflow"
+- Time to display the Dashboard:
+- Calls to "save_positions" endpoint in "Large Workflow"
+- Add Instances in Bulk" mechanism (when adding many objects, for example 10k devices to a pool)
+- Compare speed of "get_service_state" endpoint in "Large Workflow" (workflow tree open)
+  - In "Normal Display"
+  - In "Runtime Display"
+- Time to "Scan Folder":
+- Time of Workflow Duplication for "Large Workflow"
+- Average Time Calls to "get_service_logs"
+
+New Release:
+- Workflow with 5 empty python snippet services, 10k target devices:
+  - Normal Mode:
+  - High Performance Mode:
+- Update a pool with 50k devices
+- Update all pools
+- Workflow Duplication of "Large Workflow"
+- Time to display the Dashboard:
+- Calls to "save_positions" endpoint in "Large Workflow"
+- Add Instances in Bulk" mechanism (when adding many objects, for example 10k devices to a pool)
+- Compare speed of "get_service_state" endpoint in "Large Workflow" (workflow tree open)
+  - In "Normal Display"
+  - In "Runtime Display"
+- Time to "Scan Folder":
+- Time of Workflow Duplication for "Large Workflow"
+- Average Time Calls to "get_service_logs"
 
 Migration:
 - Run migration script to:
