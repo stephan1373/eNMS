@@ -366,7 +366,7 @@ class RunEngine:
         if isinstance(values, str):
             values = [values]
         if all(isinstance(value, vs.models["device"]) for value in values):
-            return values
+            return set(values)
         elif _self.high_performance:
             with db.session_scope(remove=_self.in_process):
                 devices = (
