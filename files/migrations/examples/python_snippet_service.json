@@ -10688,7 +10688,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2023-11-25 18:55:27.132519",
+    "last_modified": "2025-11-06 10:22:11.554639",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -10738,7 +10738,7 @@
     "validation_section": "results['result']",
     "vendor": "",
     "version": "",
-    "waiting_time": 6
+    "waiting_time": 10
   },
   {
     "admin_only": false,
@@ -10773,7 +10773,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2023-11-25 19:16:11.585122",
+    "last_modified": "2025-11-06 10:22:16.586864",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -10823,7 +10823,7 @@
     "validation_section": "results['result']",
     "vendor": "",
     "version": "",
-    "waiting_time": 6
+    "waiting_time": 10
   },
   {
     "admin_only": false,
@@ -10858,7 +10858,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2023-11-25 19:00:43.612104",
+    "last_modified": "2025-11-06 10:22:25.166971",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -10908,7 +10908,7 @@
     "validation_section": "results['result']",
     "vendor": "",
     "version": "",
-    "waiting_time": 6
+    "waiting_time": 10
   },
   {
     "admin_only": false,
@@ -10943,7 +10943,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2023-11-25 19:01:02.141138",
+    "last_modified": "2025-11-06 10:22:34.011442",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -10993,7 +10993,7 @@
     "validation_section": "results['result']",
     "vendor": "",
     "version": "",
-    "waiting_time": 6
+    "waiting_time": 0
   },
   {
     "admin_only": false,
