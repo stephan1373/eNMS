@@ -100,6 +100,26 @@
     "(R) Function: get_credential"
   ],
   [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Credentials encryption",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Delete function: delete new device",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Factory function: Create new device",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Functions fetch and fetch_all",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Show vrf with custom encrypted credentials",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
     "[(R) Functions: get_var, set_var, and get_result] Modify payload (no device)",
     "(R) Functions: get_var, set_var, and get_result"
   ],
@@ -736,26 +756,6 @@
     "Fork based on value with Skip Discard Mechanism"
   ],
   [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Credentials encryption",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Delete function: delete new device",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Factory function: Create new device",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Functions fetch and fetch_all",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Show vrf with custom encrypted credentials",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
-  ],
-  [
     "[Functions: filtering] Device Query with filtering",
     "Functions: filtering"
   ],
@@ -1353,6 +1353,10 @@
   ],
   [
     "[Shared] End",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
+    "[Shared] End",
     "(R) Functions: get_var, set_var, and get_result"
   ],
   [
@@ -1514,10 +1518,6 @@
   [
     "[Shared] End",
     "Fork based on value with Skip Discard Mechanism"
-  ],
-  [
-    "[Shared] End",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
   ],
   [
     "[Shared] End",
@@ -1869,6 +1869,10 @@
   ],
   [
     "[Shared] Start",
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result"
+  ],
+  [
+    "[Shared] Start",
     "(R) Functions: get_var, set_var, and get_result"
   ],
   [
@@ -2030,10 +2034,6 @@
   [
     "[Shared] Start",
     "Fork based on value with Skip Discard Mechanism"
-  ],
-  [
-    "[Shared] Start",
-    "Functions: factory, fetch, fetch_all, encrypt and get_result"
   ],
   [
     "[Shared] Start",

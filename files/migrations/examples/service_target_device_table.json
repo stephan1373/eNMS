@@ -64,6 +64,14 @@
     "Washington"
   ],
   [
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result",
+    "PaloAlto"
+  ],
+  [
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result",
+    "Washington"
+  ],
+  [
     "(R) Functions: get_var, set_var, and get_result",
     "Chicago"
   ],
@@ -265,14 +273,6 @@
   ],
   [
     "Fork based on value with Skip Discard Mechanism",
-    "Washington"
-  ],
-  [
-    "Functions: factory, fetch, fetch_all, encrypt and get_result",
-    "PaloAlto"
-  ],
-  [
-    "Functions: factory, fetch, fetch_all, encrypt and get_result",
     "Washington"
   ],
   [

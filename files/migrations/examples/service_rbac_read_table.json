@@ -32,6 +32,10 @@
     "Full UI Read + Edit Access"
   ],
   [
+    "(R) Functions: factory, fetch, fetch_all, encrypt and get_result",
+    "Full UI Read + Edit Access"
+  ],
+  [
     "(R) Functions: get_var, set_var, and get_result",
     "Full UI Read + Edit Access"
   ],
@@ -149,10 +153,6 @@
   ],
   [
     "Fork based on value with Skip Discard Mechanism",
-    "Full UI Read + Edit Access"
-  ],
-  [
-    "Functions: factory, fetch, fetch_all, encrypt and get_result",
     "Full UI Read + Edit Access"
   ],
   [
@@ -405,6 +405,26 @@
   ],
   [
     "[(R) Function: get_credential] Show interface via get_credential",
+    "Full UI Read + Edit Access"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Credentials encryption",
+    "Full UI Read + Edit Access"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Delete function: delete new device",
+    "Full UI Read + Edit Access"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Factory function: Create new device",
+    "Full UI Read + Edit Access"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Functions fetch and fetch_all",
+    "Full UI Read + Edit Access"
+  ],
+  [
+    "[(R) Functions: factory, fetch, fetch_all, encrypt and get_result] Show vrf with custom encrypted credentials",
     "Full UI Read + Edit Access"
   ],
   [
@@ -877,26 +897,6 @@
   ],
   [
     "[Fork based on value with Skip Discard Mechanism] is_alive endpoint 2: Skipped",
-    "Full UI Read + Edit Access"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Credentials encryption",
-    "Full UI Read + Edit Access"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Delete function: delete new device",
-    "Full UI Read + Edit Access"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Factory function: Create new device",
-    "Full UI Read + Edit Access"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Functions fetch and fetch_all",
-    "Full UI Read + Edit Access"
-  ],
-  [
-    "[Functions: factory, fetch, fetch_all, encrypt and get_result] Show vrf with custom encrypted credentials",
     "Full UI Read + Edit Access"
   ],
   [
