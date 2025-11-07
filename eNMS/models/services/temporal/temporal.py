@@ -23,9 +23,9 @@ from eNMS.models.automation import Service
 from eNMS.variables import vs
 
 
-class TemporalService(Service):
-    __tablename__ = "temporal_service"
-    pretty_name = "Temporal Workflow"
+class TemporalRunService(Service):
+    __tablename__ = "temporal_run_service"
+    pretty_name = "Run Temporal Workflow"
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     server_url = db.Column(db.SmallString)
     workflow_name = db.Column(db.SmallString)
@@ -34,7 +34,7 @@ class TemporalService(Service):
     timeout_seconds = db.Column(Integer, default=3600)
     wait_for_result = db.Column(Boolean, default=True)
 
-    __mapper_args__ = {"polymorphic_identity": "temporal_service"}
+    __mapper_args__ = {"polymorphic_identity": "temporal_run_service"}
 
     @staticmethod
     def job(self, run, device=None):
@@ -62,7 +62,7 @@ class TemporalService(Service):
 
 
 class TemporalForm(ServiceForm):
-    form_type = HiddenField(default="temporal_service")
+    form_type = HiddenField(default="temporal_run_service")
     server_url = StringField(
         "Temporal Server URL",
         [InputRequired()],
