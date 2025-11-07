@@ -15312,7 +15312,7 @@
   {
     "admin_only": false,
     "builder_link": "",
-    "category": "Other",
+    "category": "Temporal",
     "close_connection": false,
     "completion_time": 1,
     "content_match": "",
@@ -15346,7 +15346,7 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {},
-    "last_modified": "2025-11-06 16:54:58.559966",
+    "last_modified": "2025-11-07 18:06:53.969086",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15363,7 +15363,7 @@
     "max_processes": 15,
     "maximum_runs": 1,
     "multiprocessing": false,
-    "name": "Temporal Service",
+    "name": "(T) Temporal: Run Workflow",
     "negative_logic": false,
     "notification_header": "",
     "number_of_retries": 0,
@@ -15372,13 +15372,17 @@
     "parameterized_form_template": "",
     "persistent_id": "YYtFfcQLAC4",
     "positions": {
+      "[(T) Temporal: Run Workflow] Run Workflow": [
+        207,
+        -128
+      ],
       "[Shared] End": [
-        500,
-        0
+        626,
+        59
       ],
       "[Shared] Start": [
-        0,
-        0
+        -194,
+        65
       ],
       "[Temporal Service] Run Workflow": [
         207,
@@ -15396,7 +15400,7 @@
     "reserved": false,
     "restrict_to_owners": [],
     "run_method": "per_device",
-    "scoped_name": "Temporal Service",
+    "scoped_name": "(T) Temporal: Run Workflow",
     "send_notification": false,
     "send_notification_method": "mail",
     "shared": false,

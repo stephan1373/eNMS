@@ -456,6 +456,10 @@
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism"
   ],
   [
+    "[(T) Temporal: Run Workflow] Run Workflow",
+    "(T) Temporal: Run Workflow"
+  ],
+  [
     "[Basic Superworkflow] After Placeholder",
     "Basic Superworkflow"
   ],
@@ -1445,6 +1449,10 @@
   ],
   [
     "[Shared] End",
+    "(T) Temporal: Run Workflow"
+  ],
+  [
+    "[Shared] End",
     "Basic Superworkflow"
   ],
   [
@@ -1678,10 +1686,6 @@
   [
     "[Shared] End",
     "Target Restriction Mechanism"
-  ],
-  [
-    "[Shared] End",
-    "Temporal Service"
   ],
   [
     "[Shared] End",
@@ -1965,6 +1969,10 @@
   ],
   [
     "[Shared] Start",
+    "(T) Temporal: Run Workflow"
+  ],
+  [
+    "[Shared] Start",
     "Basic Superworkflow"
   ],
   [
@@ -2201,10 +2209,6 @@
   ],
   [
     "[Shared] Start",
-    "Temporal Service"
-  ],
-  [
-    "[Shared] Start",
     "Text Reports with Normal Templates"
   ],
   [
@@ -2362,10 +2366,6 @@
   [
     "[Target Restriction Mechanism] Iteration Targets",
     "Target Restriction Mechanism"
-  ],
-  [
-    "[Temporal Service] Run Workflow",
-    "Temporal Service"
   ],
   [
     "[Text Reports with Normal Templates] Service",

@@ -12,6 +12,10 @@
     "admin"
   ],
   [
+    "(T) Temporal: Run Workflow",
+    "admin"
+  ],
+  [
     "Basic Superworkflow",
     "admin"
   ],
@@ -116,10 +120,6 @@
     "admin"
   ],
   [
-    "Temporal Service",
-    "admin"
-  ],
-  [
     "Text Reports with Normal Templates",
     "admin"
   ],
@@ -165,6 +165,10 @@
   ],
   [
     "[(R) Netmiko Configuration with Jinja2 template] Delete VRF",
+    "admin"
+  ],
+  [
+    "[(T) Temporal: Run Workflow] Run Workflow",
     "admin"
   ],
   [
@@ -601,10 +605,6 @@
   ],
   [
     "[Runtime Notes Mechanism] Update note1 and add note3",
-    "admin"
-  ],
-  [
-    "[Temporal Service] Run Workflow",
     "admin"
   ],
   [
