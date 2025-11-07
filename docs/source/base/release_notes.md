@@ -350,6 +350,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: f6893cb6f8c150c696236b8ae5e308d57742f3fe
 - Fix bug wrong device result display with specific color: empty vis.js node coming from the top-level workflow bug
   Commit: 8076b25f2df876d4fde81f4d42c31c676be0f281
+- Add support for Temporal:
+  - Add new "Run Temporal Workflow" service to run a temporal workflow from an eNMS workflow
+    Commit: f4375203de2d63b143e5fded937860e4f94d7c33
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
