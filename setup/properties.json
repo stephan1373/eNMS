@@ -2241,7 +2241,8 @@
           ["Scalability", "Scalability"],
           ["Services", "Services"],
           ["Skip Mechanism", "Skip Mechanism"],
-          ["Superworkflows", "Superworkflows"]
+          ["Superworkflows", "Superworkflows"],
+          ["Temporal", "Temporal"]
         ],
         "validate_choice": false,
         "default": "Other"
