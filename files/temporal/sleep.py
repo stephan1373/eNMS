@@ -19,12 +19,7 @@ class SleepWorkflow:
 
 async def main():
     client = await Client.connect("localhost:7233")
-    worker = Worker(
-        client,
-        task_queue="sleep-task-queue",
-        workflows=[SleepWorkflow],
-    )
-    await worker.run()
+    await Worker(client, task_queue="sleep-task-queue", workflows=[SleepWorkflow]).run()
 
 
 if __name__ == "__main__":
