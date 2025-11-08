@@ -12,7 +12,11 @@
     "admin"
   ],
   [
-    "(T) Temporal: Run Workflow",
+    "(T) Cancel Temporal Workflow",
+    "admin"
+  ],
+  [
+    "(T) Run Temporal Workflow",
     "admin"
   ],
   [
@@ -168,7 +172,11 @@
     "admin"
   ],
   [
-    "[(T) Temporal: Run Workflow] Run Workflow",
+    "[(T) Cancel Temporal Workflow] Run Sleep Workflow",
+    "admin"
+  ],
+  [
+    "[(T) Run Temporal Workflow] Run Workflow",
     "admin"
   ],
   [

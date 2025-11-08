@@ -456,8 +456,12 @@
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism"
   ],
   [
-    "[(T) Temporal: Run Workflow] Run Workflow",
-    "(T) Temporal: Run Workflow"
+    "[(T) Cancel Temporal Workflow] Run Sleep Workflow",
+    "(T) Cancel Temporal Workflow"
+  ],
+  [
+    "[(T) Run Temporal Workflow] Run Workflow",
+    "(T) Run Temporal Workflow"
   ],
   [
     "[Basic Superworkflow] After Placeholder",
@@ -1449,7 +1453,11 @@
   ],
   [
     "[Shared] End",
-    "(T) Temporal: Run Workflow"
+    "(T) Cancel Temporal Workflow"
+  ],
+  [
+    "[Shared] End",
+    "(T) Run Temporal Workflow"
   ],
   [
     "[Shared] End",
@@ -1969,7 +1977,11 @@
   ],
   [
     "[Shared] Start",
-    "(T) Temporal: Run Workflow"
+    "(T) Cancel Temporal Workflow"
+  ],
+  [
+    "[Shared] Start",
+    "(T) Run Temporal Workflow"
   ],
   [
     "[Shared] Start",
