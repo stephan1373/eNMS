@@ -456,6 +456,10 @@
     "(R) Unix Command & Chell, Ping Service, Jump on Connect mechanism"
   ],
   [
+    "[(T) Cancel Temporal Workflow] Cancel Workflow",
+    "(T) Cancel Temporal Workflow"
+  ],
+  [
     "[(T) Cancel Temporal Workflow] Run Sleep Workflow",
     "(T) Cancel Temporal Workflow"
   ],
