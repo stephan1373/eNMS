@@ -8,6 +8,7 @@ from temporalio.worker import Worker
 class SleepWorkflow:
     @workflow.run
     async def run(self, sleep_seconds: int) -> str:
+        print(f"Run started (sleeping {sleep_seconds} seconds)")
         workflow.logger.info(f"Starting sleep for {sleep_seconds} seconds")
         try:
             await sleep(sleep_seconds)
