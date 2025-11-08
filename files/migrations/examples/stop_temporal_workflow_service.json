@@ -121,7 +121,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2025-11-08 10:13:36.717058",
+    "last_modified": "2025-11-08 10:15:00.661046",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -175,6 +175,6 @@
     "vendor": "",
     "version": "",
     "waiting_time": 0,
-    "workflow_id": "{{ get_result(\"Run Sleep Workflow\", device=device.name)[\"workflow_id\"] }}"
+    "workflow_id": "{{ get_result(\"Run Sleep Workflow (with CancelledError)\", device=device.name)[\"workflow_id\"] }}"
   }
 ]

@@ -15487,6 +15487,15 @@
         ],
         "size": 14
       },
+      "ccb313e9-e5a0-458e-9457-27d24bd67f35": {
+        "alignment": "left",
+        "content": "This workflow runs on two temporal workflows:\n- The upper branch runs the \"SleepWorkflow\" that sleeps but does not catch any exception\n- The lower branch runs the \"SleepCatchCancelledErrorWorkflow\" that sleeps and catched the\nCancelledError exception raised when cancelling the workflow.\n\nExpected result in Temporal UI:\n- The workflow run in the upper branch should show up as \"Cancelled\"\n- The workflow run in the lower branch should show up as \"Completed\" but the exception\nwas caught and not re-raised",
+        "positions": [
+          392,
+          16
+        ],
+        "size": 14
+      },
       "d16c9155-e76e-45fa-8f7c-09c8331f8b9f": {
         "alignment": "left",
         "content": "@workflow.defn\nclass SleepCatchCancelledErrorWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        try:\n            await sleep(sleep_seconds)\n            workflow.logger.info(\"Sleep completed successfully\")\n            return f\"Slept for {sleep_seconds} seconds\"\n        except CancelledError:\n            workflow.logger.info(\"Workflow was cancelled during sleep\")\n            print(\"Workflow was cancelled during sleep\")\n            return \"Workflow cancelled\"",
@@ -15497,7 +15506,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-11-08 10:13:46.487957",
+    "last_modified": "2025-11-08 10:20:19.187335",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15524,12 +15533,12 @@
     "persistent_id": "36wnywYpPKQ",
     "positions": {
       "[(T) Cancel Temporal Workflow] Cancel Workflow": [
-        508,
-        -125
+        582,
+        -188
       ],
       "[(T) Cancel Temporal Workflow] Cancel Workflow (with CancelledError)": [
-        514,
-        198
+        565,
+        244
       ],
       "[(T) Cancel Temporal Workflow] Run Sleep Workflow": [
         21,
@@ -15540,8 +15549,8 @@
         207
       ],
       "[Shared] End": [
-        745,
-        32
+        906,
+        -2
       ],
       "[Shared] Start": [
         22,
