@@ -476,6 +476,22 @@
     "(T) Run Temporal Workflow"
   ],
   [
+    "[(T) Terminate Temporal Workflow] Cancel Workflow",
+    "(T) Terminate Temporal Workflow"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Cancel Workflow (with CancelledError)",
+    "(T) Terminate Temporal Workflow"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Run Sleep Workflow",
+    "(T) Terminate Temporal Workflow"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Run Sleep Workflow (with CancelledError)",
+    "(T) Terminate Temporal Workflow"
+  ],
+  [
     "[Basic Superworkflow] After Placeholder",
     "Basic Superworkflow"
   ],
@@ -1473,6 +1489,10 @@
   ],
   [
     "[Shared] End",
+    "(T) Terminate Temporal Workflow"
+  ],
+  [
+    "[Shared] End",
     "Basic Superworkflow"
   ],
   [
@@ -1994,6 +2014,10 @@
   [
     "[Shared] Start",
     "(T) Run Temporal Workflow"
+  ],
+  [
+    "[Shared] Start",
+    "(T) Terminate Temporal Workflow"
   ],
   [
     "[Shared] Start",

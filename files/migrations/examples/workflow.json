@@ -15585,5 +15585,168 @@
     "vendor": "",
     "version": "",
     "waiting_time": 0
+  },
+  {
+    "admin_only": false,
+    "builder_link": "-vQwkGW5MMw",
+    "category": "Temporal",
+    "close_connection": false,
+    "completion_time": 1,
+    "content_match": "",
+    "content_match_regex": false,
+    "conversion_method": "none",
+    "creation_time": "2025-11-08 12:46:48.099581",
+    "creator": "admin",
+    "credential_type": "any",
+    "custom_property": "Default Value",
+    "default_uuid": "f1ddc8e9-c48f-4d20-ac66-d0cfc6421d26",
+    "definition": "Definition",
+    "delete_spaces_before_matching": false,
+    "description": "",
+    "device_query": "",
+    "device_query_property": "name",
+    "dict_match": {},
+    "disable_result_creation": false,
+    "disabled": false,
+    "disabled_info": "",
+    "display_only_failed_nodes": false,
+    "display_report": false,
+    "dry_run": false,
+    "email_report": false,
+    "high_performance": false,
+    "impacting": true,
+    "include_device_results": false,
+    "include_link_in_summary": false,
+    "initial_payload": {},
+    "iteration_devices": "",
+    "iteration_devices_property": "name",
+    "iteration_values": "",
+    "iteration_variable_name": "iteration_value",
+    "labels": {
+      "5ce09a35-27a8-4f91-baff-2ce3826a8767": {
+        "alignment": "left",
+        "content": "@workflow.defn\nclass SleepWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        await sleep(sleep_seconds)\n        workflow.logger.info(\"Sleep completed successfully\")\n        return f\"Slept for {sleep_seconds} seconds\"",
+        "positions": [
+          -398,
+          -112
+        ],
+        "size": 14
+      },
+      "c7d88bf3-c488-42a1-96d8-b0a50c4ec3ca": {
+        "alignment": "left",
+        "content": "Terminate Reason:\nNone provided",
+        "positions": [
+          581,
+          -249
+        ],
+        "size": 14
+      },
+      "c91bb8e5-800e-46a5-a862-16adcee6c8af": {
+        "alignment": "left",
+        "content": "Terminate Reason:\n\"Test the workflow\"",
+        "positions": [
+          577,
+          317
+        ],
+        "size": 14
+      },
+      "ccb313e9-e5a0-458e-9457-27d24bd67f35": {
+        "alignment": "left",
+        "content": "This workflow runs on two temporal workflows:\n- The upper branch runs the \"SleepWorkflow\" that sleeps but does not catch any exception\n- The lower branch runs the \"SleepCatchCancelledErrorWorkflow\" that sleeps and catched the\nCancelledError exception raised when cancelling the workflow.\n\nExpected result in Temporal UI: both workflows show up as terminated.\nThe exception catching does not matter when a workflow is terminated.\n\nThe reason for terminating the workflow is displayed in Temporal UI, when clicking on\nthe \"Workflow Execution Terminated\" row. It should display:\n- For the upper branch (no reason provided in eNMS): \"terminated by user via frontend\"\n- For the lower branch (reason provided): \"Test the workflow\"",
+        "positions": [
+          390,
+          18
+        ],
+        "size": 14
+      },
+      "d16c9155-e76e-45fa-8f7c-09c8331f8b9f": {
+        "alignment": "left",
+        "content": "@workflow.defn\nclass SleepCatchCancelledErrorWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        try:\n            await sleep(sleep_seconds)\n            workflow.logger.info(\"Sleep completed successfully\")\n            return f\"Slept for {sleep_seconds} seconds\"\n        except CancelledError:\n            workflow.logger.info(\"Workflow was cancelled during sleep\")\n            print(\"Workflow was cancelled during sleep\")\n            return \"Workflow cancelled\"",
+        "positions": [
+          -386,
+          173
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-11-08 12:52:28.762070",
+    "last_modified_by": "admin",
+    "last_run": "",
+    "log_level": 1,
+    "mail_bcc": "",
+    "mail_recipient": "",
+    "mail_sender": "",
+    "mail_subject": "",
+    "man_minutes": 0,
+    "man_minutes_total": 0,
+    "man_minutes_type": "workflow",
+    "mandatory_parameter": "Default Value",
+    "mandatory_parametrization": false,
+    "max_number_of_retries": 100,
+    "max_processes": 15,
+    "maximum_runs": 1,
+    "multiprocessing": false,
+    "name": "(T) Terminate Temporal Workflow",
+    "negative_logic": false,
+    "notification_header": "",
+    "number_of_retries": 0,
+    "operating_system": "",
+    "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
+    "parameterized_form_template": "",
+    "persistent_id": "-vQwkGW5MMw",
+    "positions": {
+      "[(T) Terminate Temporal Workflow] Cancel Workflow": [
+        582,
+        -188
+      ],
+      "[(T) Terminate Temporal Workflow] Cancel Workflow (with CancelledError)": [
+        565,
+        244
+      ],
+      "[(T) Terminate Temporal Workflow] Run Sleep Workflow": [
+        21,
+        -131
+      ],
+      "[(T) Terminate Temporal Workflow] Run Sleep Workflow (with CancelledError)": [
+        31,
+        207
+      ],
+      "[Shared] End": [
+        906,
+        -2
+      ],
+      "[Shared] Start": [
+        22,
+        29
+      ]
+    },
+    "postprocessing": "",
+    "postprocessing_mode": "success",
+    "preprocessing": "",
+    "priority": 10,
+    "reply_to": "",
+    "report": "",
+    "report_format": "text",
+    "report_jinja2_template": false,
+    "reserved": false,
+    "restrict_to_owners": [],
+    "run_method": "per_device",
+    "scoped_name": "(T) Terminate Temporal Workflow",
+    "send_notification": false,
+    "send_notification_method": "mail",
+    "shared": false,
+    "show_user_logs": true,
+    "skip": {},
+    "skip_query": "",
+    "skip_value": "success",
+    "soft_deleted": false,
+    "time_between_retries": 10,
+    "update_target_pools": false,
+    "validation_condition": "none",
+    "validation_method": "text",
+    "validation_section": "results['result']",
+    "vendor": "",
+    "version": "",
+    "waiting_time": 0
   }
 ]

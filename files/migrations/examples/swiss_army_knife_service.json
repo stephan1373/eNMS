@@ -72,6 +72,7 @@
     "show_user_logs": true,
     "skip": {
       "(R) Gateway Mechanism (SSH Proxy with Scrapli)": false,
+      "(T) Terminate Temporal Workflow": false,
       "Dry Run: Top-level Workflow Dry Run": false,
       "HTML Reports with Normal Templates": false,
       "Workflow with large Iteration Query": false,
@@ -164,6 +165,7 @@
     "show_user_logs": true,
     "skip": {
       "(R) Gateway Mechanism (SSH Proxy with Scrapli)": false,
+      "(T) Terminate Temporal Workflow": false,
       "Dry Run: Top-level Workflow Dry Run": false,
       "HTML Reports with Normal Templates": false,
       "Workflow with large Iteration Query": false,

@@ -20,6 +20,10 @@
     "admin"
   ],
   [
+    "(T) Terminate Temporal Workflow",
+    "admin"
+  ],
+  [
     "Basic Superworkflow",
     "admin"
   ],
@@ -189,6 +193,22 @@
   ],
   [
     "[(T) Run Temporal Workflow] Run Workflow",
+    "admin"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Cancel Workflow",
+    "admin"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Cancel Workflow (with CancelledError)",
+    "admin"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Run Sleep Workflow",
+    "admin"
+  ],
+  [
+    "[(T) Terminate Temporal Workflow] Run Sleep Workflow (with CancelledError)",
     "admin"
   ],
   [
