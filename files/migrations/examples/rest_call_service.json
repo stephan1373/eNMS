@@ -1,6 +1,7 @@
 [
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "",
     "call_type": "GET",
     "completion_time": 1,
@@ -98,6 +99,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "",
     "call_type": "GET",
     "completion_time": 1,
@@ -193,6 +195,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "_FWZZTjsuR4",
     "call_type": "GET",
     "completion_time": 1,
@@ -288,6 +291,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "_FWZZTjsuR4",
     "call_type": "GET",
     "completion_time": 1,
@@ -383,6 +387,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "L8O-mc-xZc4",
     "call_type": "GET",
     "completion_time": 1,
@@ -480,6 +485,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "dwK0iB81Gj0",
     "call_type": "GET",
     "completion_time": 1,
@@ -575,6 +581,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "sDGlN6Ru_Vg",
     "call_type": "GET",
     "completion_time": 1,
@@ -672,6 +679,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "sDGlN6Ru_Vg",
     "call_type": "GET",
     "completion_time": 1,
@@ -769,6 +777,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "rENgPmOC3eo",
     "call_type": "GET",
     "completion_time": 1,
@@ -864,6 +873,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "3gLMOfX4jVY",
     "call_type": "GET",
     "completion_time": 1,
@@ -961,6 +971,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "C-yQ4jxfjoc",
     "call_type": "GET",
     "completion_time": 1,
@@ -1056,6 +1067,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "C-yQ4jxfjoc",
     "call_type": "GET",
     "completion_time": 1,
@@ -1151,6 +1163,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "C-yQ4jxfjoc",
     "call_type": "GET",
     "completion_time": 1,
@@ -1246,6 +1259,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "C-yQ4jxfjoc",
     "call_type": "GET",
     "completion_time": 1,
@@ -1343,6 +1357,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "C-yQ4jxfjoc",
     "call_type": "GET",
     "completion_time": 1,
@@ -1440,6 +1455,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "7jzTI5LjPUk",
     "call_type": "GET",
     "completion_time": 1,
@@ -1535,6 +1551,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "7jzTI5LjPUk",
     "call_type": "GET",
     "completion_time": 1,
@@ -1630,6 +1647,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "7jzTI5LjPUk",
     "call_type": "GET",
     "completion_time": 1,
@@ -1725,6 +1743,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "0HlI5D07_RI",
     "call_type": "POST",
     "completion_time": 1,
@@ -1820,6 +1839,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "0HlI5D07_RI",
     "call_type": "POST",
     "completion_time": 1,
@@ -1915,6 +1935,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "0HlI5D07_RI",
     "call_type": "POST",
     "completion_time": 1,
@@ -2010,6 +2031,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "EkIyrH7k7Uo",
     "call_type": "POST",
     "completion_time": 1,
@@ -2105,6 +2127,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "EkIyrH7k7Uo",
     "call_type": "POST",
     "completion_time": 1,
@@ -2200,6 +2223,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "EkIyrH7k7Uo",
     "call_type": "DELETE",
     "completion_time": 1,
@@ -2295,6 +2319,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "EkIyrH7k7Uo",
     "call_type": "GET",
     "completion_time": 1,
@@ -2390,6 +2415,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "EkIyrH7k7Uo",
     "call_type": "POST",
     "completion_time": 1,
@@ -2485,6 +2511,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "xVTePa4_G9E",
     "call_type": "GET",
     "completion_time": 1,
@@ -2580,6 +2607,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "FVyiQ1TO4Wc",
     "call_type": "POST",
     "completion_time": 1,
@@ -2678,6 +2706,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "iP3eorKKMuE",
     "call_type": "POST",
     "completion_time": 1,
@@ -2773,6 +2802,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "iP3eorKKMuE",
     "call_type": "GET",
     "completion_time": 1,
@@ -2868,6 +2898,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "iP3eorKKMuE",
     "call_type": "DELETE",
     "completion_time": 1,
@@ -2963,6 +2994,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "0HlI5D07_RI",
     "call_type": "POST",
     "completion_time": 1,
@@ -3058,6 +3090,7 @@
   },
   {
     "admin_only": false,
+    "allow_redirects": true,
     "builder_link": "",
     "call_type": "POST",
     "completion_time": 1,

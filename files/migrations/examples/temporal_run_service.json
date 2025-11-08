@@ -32,7 +32,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2025-11-06 16:54:14.201360",
+    "last_modified": "2025-11-08 04:06:01.179539",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -75,7 +75,7 @@
     "skip_query": "",
     "skip_value": "success",
     "soft_deleted": false,
-    "task_queue": "hello-task-queue",
+    "task_queue": "print-input-queue",
     "time_between_retries": 10,
     "timeout_seconds": 15,
     "update_target_pools": false,
@@ -87,6 +87,6 @@
     "wait_for_result": true,
     "waiting_time": 0,
     "workflow_args": "[device.name]",
-    "workflow_name": "HelloWorkflow"
+    "workflow_name": "PrintInput"
   }
 ]
