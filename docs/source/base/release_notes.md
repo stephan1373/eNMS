@@ -355,6 +355,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
     Commit: f4375203de2d63b143e5fded937860e4f94d7c33
 - Add new "allow_redirects" option in REST Call Service
   Commit: 8dd630c906f44635e503b416cd03cab826c3f89d
+- Add new OpenShift Service
+  Commit: fc2af3462dfa8ece1432cf4910978930b6c48838
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
