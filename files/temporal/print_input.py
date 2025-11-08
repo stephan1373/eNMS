@@ -24,13 +24,12 @@ class PrintInput:
 
 async def main():
     client = await Client.connect("localhost:7233")
-    worker = Worker(
+    await Worker(
         client,
         task_queue="print-input-queue",
         workflows=[PrintInput],
         activities=[print_input],
-    )
-    await worker.run()
+    ).run()
 
 if __name__ == "__main__":
     run(main())
