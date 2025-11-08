@@ -43,7 +43,7 @@ class TemporalStopWorkflowService(Service):
         async def stop_workflow():
             client = await Client.connect(url)
             kwargs = {"run_id": result["run_id"]} if result["run_id"] else {}
-            handle = client.get_workflow_handle(result["workflow"], **kwargs)
+            handle = client.get_workflow_handle(result["workflow_id"], **kwargs)
             if run.stop_method == "cancel":
                 await handle.cancel()
             else:
