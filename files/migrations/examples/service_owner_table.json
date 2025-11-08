@@ -176,6 +176,10 @@
     "admin"
   ],
   [
+    "[(T) Cancel Temporal Workflow] Cancel Workflow (with CancelledError)",
+    "admin"
+  ],
+  [
     "[(T) Cancel Temporal Workflow] Run Sleep Workflow",
     "admin"
   ],

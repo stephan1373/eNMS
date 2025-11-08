@@ -15497,7 +15497,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-11-08 10:12:24.013892",
+    "last_modified": "2025-11-08 10:13:46.487957",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15527,13 +15527,17 @@
         508,
         -125
       ],
+      "[(T) Cancel Temporal Workflow] Cancel Workflow (with CancelledError)": [
+        514,
+        198
+      ],
       "[(T) Cancel Temporal Workflow] Run Sleep Workflow": [
         21,
         -131
       ],
       "[(T) Cancel Temporal Workflow] Run Sleep Workflow (with CancelledError)": [
-        20,
-        203
+        31,
+        207
       ],
       "[Shared] End": [
         745,

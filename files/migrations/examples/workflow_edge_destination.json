@@ -302,6 +302,8 @@
   "2025-11-08 09:59:20.480283": "[(T) Cancel Temporal Workflow] Cancel Workflow",
   "2025-11-08 09:59:21.604411": "[Shared] End",
   "2025-11-08 10:11:47.379959": "[(T) Cancel Temporal Workflow] Run Sleep Workflow (with CancelledError)",
+  "2025-11-08 10:13:45.223062": "[(T) Cancel Temporal Workflow] Cancel Workflow (with CancelledError)",
+  "2025-11-08 10:13:46.460725": "[Shared] End",
   "[Basic: Deletion (Device, Link, Service, Task)] 2021-12-29 02:11:37.943873": "[Shared] End",
   "[Dry Run: Top-level Workflow Dry Run] 2024-03-11 07:35:40.834252": "[Dry Run: Top-level Workflow Dry Run] Commands",
   "[Dry Run: Top-level Workflow Dry Run] 2024-03-11 07:35:40.931081": "[Dry Run: Top-level Workflow Dry Run] Backup",

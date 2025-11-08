@@ -460,6 +460,10 @@
     "(T) Cancel Temporal Workflow"
   ],
   [
+    "[(T) Cancel Temporal Workflow] Cancel Workflow (with CancelledError)",
+    "(T) Cancel Temporal Workflow"
+  ],
+  [
     "[(T) Cancel Temporal Workflow] Run Sleep Workflow",
     "(T) Cancel Temporal Workflow"
   ],
