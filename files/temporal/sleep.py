@@ -10,17 +10,32 @@ class SleepWorkflow:
     async def run(self, sleep_seconds: int) -> str:
         print(f"Run started (sleeping {sleep_seconds} seconds)")
         workflow.logger.info(f"Starting sleep for {sleep_seconds} seconds")
+        await sleep(sleep_seconds)
+        workflow.logger.info("Sleep completed successfully")
+        return f"Slept for {sleep_seconds} seconds"
+
+@workflow.defn
+class SleepCatchCancelledErrorWorkflow:
+    @workflow.run
+    async def run(self, sleep_seconds: int) -> str:
+        print(f"Run started (sleeping {sleep_seconds} seconds)")
+        workflow.logger.info(f"Starting sleep for {sleep_seconds} seconds")
         try:
             await sleep(sleep_seconds)
             workflow.logger.info("Sleep completed successfully")
             return f"Slept for {sleep_seconds} seconds"
         except CancelledError:
             workflow.logger.info("Workflow was cancelled during sleep")
+            print("Workflow was cancelled during sleep")
             return "Workflow cancelled"
 
 async def main():
     client = await Client.connect("localhost:7233")
-    await Worker(client, task_queue="sleep-task-queue", workflows=[SleepWorkflow]).run()
+    await Worker(
+        client,
+        task_queue="sleep-task-queue",
+        workflows=[SleepWorkflow, SleepCatchCancelledErrorWorkflow]
+    ).run()
 
 
 if __name__ == "__main__":
