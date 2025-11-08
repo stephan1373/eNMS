@@ -180,6 +180,10 @@
     "admin"
   ],
   [
+    "[(T) Cancel Temporal Workflow] Run Sleep Workflow (with CancelledError)",
+    "admin"
+  ],
+  [
     "[(T) Run Temporal Workflow] Run Workflow",
     "admin"
   ],

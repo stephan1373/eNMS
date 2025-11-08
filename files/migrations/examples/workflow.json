@@ -15477,8 +15477,27 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "labels": {},
-    "last_modified": "2025-11-08 09:59:27.651907",
+    "labels": {
+      "5ce09a35-27a8-4f91-baff-2ce3826a8767": {
+        "alignment": "left",
+        "content": "@workflow.defn\nclass SleepWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        await sleep(sleep_seconds)\n        workflow.logger.info(\"Sleep completed successfully\")\n        return f\"Slept for {sleep_seconds} seconds\"",
+        "positions": [
+          -398,
+          -112
+        ],
+        "size": 14
+      },
+      "d16c9155-e76e-45fa-8f7c-09c8331f8b9f": {
+        "alignment": "left",
+        "content": "@workflow.defn\nclass SleepCatchCancelledErrorWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        try:\n            await sleep(sleep_seconds)\n            workflow.logger.info(\"Sleep completed successfully\")\n            return f\"Slept for {sleep_seconds} seconds\"\n        except CancelledError:\n            workflow.logger.info(\"Workflow was cancelled during sleep\")\n            print(\"Workflow was cancelled during sleep\")\n            return \"Workflow cancelled\"",
+        "positions": [
+          -386,
+          173
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-11-08 10:12:24.013892",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15505,20 +15524,24 @@
     "persistent_id": "36wnywYpPKQ",
     "positions": {
       "[(T) Cancel Temporal Workflow] Cancel Workflow": [
-        417,
-        -83
+        508,
+        -125
       ],
       "[(T) Cancel Temporal Workflow] Run Sleep Workflow": [
-        -27,
-        -81
+        21,
+        -131
+      ],
+      "[(T) Cancel Temporal Workflow] Run Sleep Workflow (with CancelledError)": [
+        20,
+        203
       ],
       "[Shared] End": [
-        730,
-        94
+        745,
+        32
       ],
       "[Shared] Start": [
-        -284,
-        146
+        22,
+        29
       ]
     },
     "postprocessing": "",
