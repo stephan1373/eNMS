@@ -15345,8 +15345,27 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "labels": {},
-    "last_modified": "2025-11-08 04:06:01.179539",
+    "labels": {
+      "6e60fdc8-69f3-4309-8494-49d995f374ad": {
+        "alignment": "left",
+        "content": "Code of the temporal worker (PrintInput)\n\nfrom asyncio import run\nfrom datetime import timedelta\n\nfrom temporalio import workflow, activity\nfrom temporalio.client import Client\nfrom temporalio.worker import Worker\n\n\n@activity.defn\nasync def print_input(name):\n    return f\"Hi {name}!\"\n\n@workflow.defn\nclass PrintInput:\n    @workflow.run\n    async def run(self, name):\n        result = await workflow.execute_activity(\n            print_input,\n            name,\n            start_to_close_timeout=timedelta(seconds=10),\n        )\n        print(f\"Workflow result: {result}\")\n        return result\n\nasync def main():\n    client = await Client.connect(\"localhost:7233\")\n    worker = Worker(\n        client,\n        task_queue=\"print-input-queue\",\n        workflows=[PrintInput],\n        activities=[print_input],\n    )\n    await worker.run()\n\nif __name__ == \"__main__\":\n    run(main())",
+        "positions": [
+          451,
+          -32
+        ],
+        "size": 14
+      },
+      "8361550c-5928-45e0-a38d-1f04d0110621": {
+        "alignment": "left",
+        "content": "Run a temporal Workflow called \"Print Input\".\nPrint Input takes a single argument: \"name\", and\nit returns \"Hi name!\".\n\nThis workflow runs in DxD mode on two devices:\nWashington and Austin.\n\nThe temporal service uses the following parameters:\nTemporal Server URL: localhost:7233\nWorkflow Name: PrintInput\nTask Queue: print-input-queue\nWorkflow Arguments: [device.name]\n\nSince \"device.name\" is sent to the temporal worker,\nthe expected result should be:\n\"Hi, Washington!\" and \"Hi, Austin\".\n\nIn the worker CLI, we should see:\n\"Workflow result: Hi, Washington!\"\n\"Workflow result: Hi, Austin!\"\n\nIn the temporal UI, there should be two workflows\nmarked as \"Completed\"\n\n",
+        "positions": [
+          -51,
+          -29
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-11-08 04:11:39.548800",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15373,16 +15392,16 @@
     "persistent_id": "YYtFfcQLAC4",
     "positions": {
       "[(T) Temporal: Run Workflow] Run Workflow": [
-        207,
-        -128
+        148,
+        301
       ],
       "[Shared] End": [
-        626,
-        59
+        770,
+        303
       ],
       "[Shared] Start": [
-        -194,
-        65
+        -492,
+        298
       ],
       "[Temporal Service] Run Workflow": [
         207,
