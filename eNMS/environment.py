@@ -1,3 +1,4 @@
+from asyncio import run as async_run
 from base64 import b64decode, b64encode
 from click import get_current_context
 from contextlib import contextmanager
@@ -28,6 +29,7 @@ from sys import path as sys_path, stderr
 from threading import Thread
 from time import perf_counter, time
 from traceback import format_exc, print_exc
+from uuid import uuid4
 from warnings import warn
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
@@ -52,19 +54,26 @@ try:
 except ImportError as exc:
     warn(f"Couldn't import duo_universal module ({exc})")
 
+try:
+    from temporalio.client import Client
+    from temporalio.worker import Worker
+except ImportError as exc:
+    warn(f"Couldn't import temporalio module ({exc})")
+
 from eNMS.database import db
 from eNMS.variables import vs
 
 
 class Environment(vs.TimingMixin):
     def __init__(self):
-        if vs.settings["automation"]["use_task_queue"]:
+        if vs.settings["automation"]["task_queue"] == "dramatiq":
             self.init_dramatiq()
 
     def _initialize(self):
         self.init_logs()
         self.use_vault = vs.settings["vault"]["use_vault"]
         self.file_watcher = getenv("FILE_WATCHER")
+        self.temporal_worker = getenv("TEMPORAL")
         if self.file_watcher:
             return
         self.init_authentication()
@@ -238,6 +247,33 @@ class Environment(vs.TimingMixin):
                     if key != "decode_responses"
                 },
             )
+        )
+
+    @staticmethod
+    def init_temporal_worker():
+        from eNMS.temporal import temporal_job, TemporalWorkflow
+
+        async def run():
+            client = await Client.connect(vs.settings["temporal"]["url"])
+            worker = Worker(
+                client,
+                task_queue="enms-task-queue",
+                workflows=[TemporalWorkflow],
+                activities=[temporal_job],
+
+            )
+            await worker.run()
+
+        async_run(run())
+
+    @staticmethod
+    async def enqueue_workflow(service_id, kwargs):
+        client = await Client.connect(vs.settings["temporal"]["url"])
+        await client.start_workflow(
+            "TemporalWorkflow",
+            args=[service_id, kwargs],
+            id=f"enms-{uuid4()}",
+            task_queue="enms-task-queue",
         )
 
     def init_encryption(self):

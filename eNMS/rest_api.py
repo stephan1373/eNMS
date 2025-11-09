@@ -1,3 +1,4 @@
+from asyncio import run as async_run
 from collections import defaultdict
 from flask_login import current_user
 from random import uniform
@@ -111,8 +112,10 @@ class RestApi(vs.TimingMixin):
             data.update({"target_devices": devices, "target_pools": pools})
         data["runtime"] = runtime = vs.get_time(randomize=True)
         if handle_asynchronously:
-            if vs.settings["automation"]["use_task_queue"]:
+            if vs.settings["automation"]["task_queue"] == "dramatiq":
                 controller.run.send(service.id, **data)
+            elif vs.settings["automation"]["task_queue"] == "temporal":
+                async_run(env.enqueue_workflow(service.id, data))
             else:
                 Thread(target=controller.run, args=(service.id,), kwargs=data).start()
             return {"errors": errors, "runtime": runtime}
@@ -136,8 +139,10 @@ class RestApi(vs.TimingMixin):
             data["target_devices"] = [device.id for device in task.devices]
         if task.pools:
             data["target_pools"] = [pool.id for pool in task.pools]
-        if vs.settings["automation"]["use_task_queue"]:
+        if vs.settings["automation"]["task_queue"] == "dramatiq":
             controller.run.send(task.service.id, **data)
+        elif vs.settings["automation"]["task_queue"] == "temporal":
+            async_run(env.enqueue_workflow(task.service.id, data))
         else:
             Thread(target=controller.run, args=(task.service.id,), kwargs=data).start()
 

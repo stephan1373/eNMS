@@ -14,6 +14,8 @@ def initialize():
         server._initialize()
         server.register_plugins()
     first_init = db._initialize(env)
+    if env.temporal_worker:
+        env.init_temporal_worker()
     if env.file_watcher:
         return env.monitor_filesystem()
     if env.detect_cli():
