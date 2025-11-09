@@ -353,6 +353,12 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
 - Add support for Temporal:
   - Add new "Run Temporal Workflow" service to run a temporal workflow from an eNMS workflow
     Commit: f4375203de2d63b143e5fded937860e4f94d7c33
+  - Add support for using temporal as a task queue to run eNMS workflows
+    Commit: f3fe423e3acffe5be818d13e20ab19d90b8384d5
+  - Rename "use_task_queue" in automation.json to "task_queue". Possible values:
+    - false (default): no task queue. Workflows are run in a thread by the main application 
+    - "dramatiq": use Dramatiq as a task queue
+    - "temporal": use Temporal as a task queue
 - Add new "allow_redirects" option in REST Call Service
   Commit: 8dd630c906f44635e503b416cd03cab826c3f89d
 - Add new OpenShift Service
@@ -617,6 +623,7 @@ Migration:
 - Update for Netmiko Commands Services: if a service uses a single command, and "Results as list" option is checked, the
   results will now be returned as a list. To preserve backward compatibility, the option must be uncheckd (set to False) in
   the migration files for all netmiko services with a single command, the "Results as list" set to True.
+- In automation.json, change "use_task_queue" to "task_queue" (false, "dramatiq", or "temporal")
 
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
