@@ -15,7 +15,7 @@ from eNMS.models.automation import Service
 from eNMS.variables import vs
 
 
-class TemporalStopWorkflowService(Service):
+class StopTemporalWorkflowService(Service):
     __tablename__ = "stop_temporal_workflow_service"
     pretty_name = "Temporal Stop Workflow"
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
@@ -53,7 +53,7 @@ class TemporalStopWorkflowService(Service):
         return asyncio_run(stop_workflow())
 
 
-class TemporalStopWorkflowForm(ServiceForm):
+class StopTemporalWorkflowForm(ServiceForm):
     form_type = HiddenField(default="stop_temporal_workflow_service")
     server_url = StringField(
         "Temporal Server URL",
