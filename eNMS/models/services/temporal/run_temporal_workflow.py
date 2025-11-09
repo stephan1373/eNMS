@@ -25,7 +25,7 @@ from eNMS.variables import vs
 
 class TemporalRunService(Service):
     __tablename__ = "temporal_run_service"
-    pretty_name = "Run Temporal Workflow"
+    pretty_name = "Temporal Run Workflow"
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     server_url = db.Column(db.SmallString)
     workflow_name = db.Column(db.SmallString)
