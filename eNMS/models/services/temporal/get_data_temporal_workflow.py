@@ -22,7 +22,6 @@ class GetTemporalDataService(Service):
     server_url = db.Column(db.SmallString)
     workflow_id = db.Column(db.SmallString)
     run_id = db.Column(db.SmallString)
-    timeout_seconds = db.Column(Integer)
 
     __mapper_args__ = {"polymorphic_identity": "get_temporal_data_service"}
 
