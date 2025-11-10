@@ -80,6 +80,10 @@
     "admin"
   ],
   [
+    "Get Data Temporal Workflow",
+    "admin"
+  ],
+  [
     "Global Variables: get_data (Data Store)",
     "admin"
   ],
@@ -401,6 +405,10 @@
   ],
   [
     "[Functions: get_result and Restart Run with recursive access to previous results] Third",
+    "admin"
+  ],
+  [
+    "[Get Data Temporal Workflow] Run Sleep Workflow",
     "admin"
   ],
   [

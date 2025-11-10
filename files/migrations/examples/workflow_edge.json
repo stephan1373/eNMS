@@ -5598,5 +5598,15 @@
     "name": "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.153276",
     "soft_deleted": false,
     "subtype": "success"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-11-10 13:40:23.445510",
+    "label": "success",
+    "last_modified": "2025-11-10 13:40:23.445422",
+    "last_modified_by": "admin",
+    "name": "2025-11-10 13:40:23.439331",
+    "soft_deleted": false,
+    "subtype": "success"
   }
 ]
