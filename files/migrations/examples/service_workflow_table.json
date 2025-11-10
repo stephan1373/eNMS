@@ -876,6 +876,10 @@
     "GET Endpoints query and token"
   ],
   [
+    "[Get Data Temporal Workflow] Get Data",
+    "Get Data Temporal Workflow"
+  ],
+  [
     "[Get Data Temporal Workflow] Run Sleep Workflow",
     "Get Data Temporal Workflow"
   ],

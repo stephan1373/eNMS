@@ -305,6 +305,7 @@
   "2025-11-08 10:13:45.223062": "[(T) Cancel Temporal Workflow] Cancel Workflow (with CancelledError)",
   "2025-11-08 10:13:46.460725": "[Shared] End",
   "2025-11-10 13:40:23.439331": "[Get Data Temporal Workflow] Run Sleep Workflow",
+  "2025-11-10 13:43:26.016766": "[Get Data Temporal Workflow] Get Data",
   "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.151934": "[(T) Terminate Temporal Workflow] Run Sleep Workflow",
   "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.152308": "[(T) Terminate Temporal Workflow] Cancel Workflow",
   "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.152689": "[Shared] End",

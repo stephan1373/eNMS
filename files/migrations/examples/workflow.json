@@ -15752,7 +15752,7 @@
   {
     "admin_only": false,
     "builder_link": "",
-    "category": "Other",
+    "category": "Temporal",
     "close_connection": false,
     "completion_time": 1,
     "content_match": "",
@@ -15786,7 +15786,7 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {},
-    "last_modified": "2025-11-10 13:40:23.465224",
+    "last_modified": "2025-11-10 13:43:31.615406",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15812,9 +15812,13 @@
     "parameterized_form_template": "",
     "persistent_id": "fqQUDs3uOJw",
     "positions": {
+      "[Get Data Temporal Workflow] Get Data": [
+        428,
+        -199
+      ],
       "[Get Data Temporal Workflow] Run Sleep Workflow": [
-        -15,
-        -197
+        -6,
+        -195
       ],
       "[Shared] End": [
         706,
