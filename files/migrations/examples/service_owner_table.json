@@ -16,6 +16,10 @@
     "admin"
   ],
   [
+    "(T) Get Data Temporal Workflow",
+    "admin"
+  ],
+  [
     "(T) Run Temporal Workflow",
     "admin"
   ],
@@ -77,10 +81,6 @@
   ],
   [
     "Functions: get_result and Restart Run with recursive access to previous results",
-    "admin"
-  ],
-  [
-    "Get Data Temporal Workflow",
     "admin"
   ],
   [
@@ -193,6 +193,14 @@
   ],
   [
     "[(T) Cancel Temporal Workflow] Run Sleep Workflow (with CancelledError)",
+    "admin"
+  ],
+  [
+    "[(T) Get Data Temporal Workflow] Get Data",
+    "admin"
+  ],
+  [
+    "[(T) Get Data Temporal Workflow] Run Sleep Workflow",
     "admin"
   ],
   [
@@ -405,14 +413,6 @@
   ],
   [
     "[Functions: get_result and Restart Run with recursive access to previous results] Third",
-    "admin"
-  ],
-  [
-    "[Get Data Temporal Workflow] Get Data",
-    "admin"
-  ],
-  [
-    "[Get Data Temporal Workflow] Run Sleep Workflow",
     "admin"
   ],
   [

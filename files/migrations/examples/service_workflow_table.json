@@ -472,6 +472,14 @@
     "(T) Cancel Temporal Workflow"
   ],
   [
+    "[(T) Get Data Temporal Workflow] Get Data",
+    "(T) Get Data Temporal Workflow"
+  ],
+  [
+    "[(T) Get Data Temporal Workflow] Run Sleep Workflow",
+    "(T) Get Data Temporal Workflow"
+  ],
+  [
     "[(T) Run Temporal Workflow] Run Workflow",
     "(T) Run Temporal Workflow"
   ],
@@ -874,14 +882,6 @@
   [
     "[GET Endpoints query and token] Query Device - Washington",
     "GET Endpoints query and token"
-  ],
-  [
-    "[Get Data Temporal Workflow] Get Data",
-    "Get Data Temporal Workflow"
-  ],
-  [
-    "[Get Data Temporal Workflow] Run Sleep Workflow",
-    "Get Data Temporal Workflow"
   ],
   [
     "[Global Variables: get_data (Data Store)] Create IP Address",
@@ -1493,6 +1493,10 @@
   ],
   [
     "[Shared] End",
+    "(T) Get Data Temporal Workflow"
+  ],
+  [
+    "[Shared] End",
     "(T) Run Temporal Workflow"
   ],
   [
@@ -1594,10 +1598,6 @@
   [
     "[Shared] End",
     "GET Endpoints query and token"
-  ],
-  [
-    "[Shared] End",
-    "Get Data Temporal Workflow"
   ],
   [
     "[Shared] End",
@@ -2025,6 +2025,10 @@
   ],
   [
     "[Shared] Start",
+    "(T) Get Data Temporal Workflow"
+  ],
+  [
+    "[Shared] Start",
     "(T) Run Temporal Workflow"
   ],
   [
@@ -2126,10 +2130,6 @@
   [
     "[Shared] Start",
     "GET Endpoints query and token"
-  ],
-  [
-    "[Shared] Start",
-    "Get Data Temporal Workflow"
   ],
   [
     "[Shared] Start",
