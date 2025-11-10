@@ -15,15 +15,15 @@ from eNMS.models.automation import Service
 from eNMS.variables import vs
 
 
-class GetTemporalDataService(Service):
-    __tablename__ = "get_temporal_data_service"
-    pretty_name = "Temporal Get Data Workflow"
+class GetTemporalResultService(Service):
+    __tablename__ = "get_temporal_result_service"
+    pretty_name = "Temporal Get Result Workflow"
     id = db.Column(Integer, ForeignKey("service.id"), primary_key=True)
     server_url = db.Column(db.SmallString)
     workflow_id = db.Column(db.SmallString)
     run_id = db.Column(db.SmallString)
 
-    __mapper_args__ = {"polymorphic_identity": "get_temporal_data_service"}
+    __mapper_args__ = {"polymorphic_identity": "get_temporal_result_service"}
 
     def job(self, run, device=None):
         local_variables = locals()
@@ -45,8 +45,8 @@ class GetTemporalDataService(Service):
         return asyncio_run(get_workflow_info())
 
 
-class GetTemporalDataForm(ServiceForm):
-    form_type = HiddenField(default="get_temporal_data_service")
+class GetTemporalResultForm(ServiceForm):
+    form_type = HiddenField(default="get_temporal_result_service")
     server_url = StringField(
         "Temporal Server URL",
         [InputRequired()],
