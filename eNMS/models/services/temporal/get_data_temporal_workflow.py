@@ -42,7 +42,7 @@ class GetTemporalDataService(Service):
             description = await handle.describe()
             return {
                 "result": {
-                    "workflow_id": description.workflow_id,
+                    "workflow_id": description.id,
                     "run_id": description.run_id,
                     "status": description.status.name,
                     "start_time": description.start_time,
