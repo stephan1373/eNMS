@@ -15785,8 +15785,27 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "labels": {},
-    "last_modified": "2025-11-11 06:35:03.108856",
+    "labels": {
+      "51050528-6d12-4020-a53e-19712b7c0daf": {
+        "alignment": "left",
+        "content": "Run Workflow That SLEEPS for 20 SECONDS:\n\n@workflow.defn\nclass SleepWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        await sleep(sleep_seconds)\n        workflow.logger.info(\"Sleep completed successfully\")\n        return f\"Slept for {sleep_seconds} seconds\"",
+        "positions": [
+          -13,
+          -290
+        ],
+        "size": 14
+      },
+      "c14636cc-4ec1-47dc-84b3-288a7fe50ec1": {
+        "alignment": "left",
+        "content": "Uses \"workflow_id\" from the RESULTS of the previous service to get data:\n{{ get_result(\"Run Sleep Workflow\", device=device.name)[\"workflow_id\"] }}\n\nChecks that the workflow status is currently set to \"RUNNING\":\nresults[\"success\"] = results[\"result\"][\"status\"] == \"RUNNING\"",
+        "positions": [
+          554,
+          -259
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-11-11 06:37:52.569145",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15813,12 +15832,12 @@
     "persistent_id": "fqQUDs3uOJw",
     "positions": {
       "[(T) Get Data Temporal Workflow] Get Data": [
-        428,
-        -199
+        463,
+        -149
       ],
       "[(T) Get Data Temporal Workflow] Run Sleep Workflow": [
-        -6,
-        -195
+        -96,
+        -141
       ],
       "[Get Data Temporal Workflow] Get Data": [
         428,
@@ -15829,12 +15848,12 @@
         -195
       ],
       "[Shared] End": [
-        706,
-        11
+        827,
+        7
       ],
       "[Shared] Start": [
-        -208,
-        4
+        -383,
+        49
       ]
     },
     "postprocessing": "",
