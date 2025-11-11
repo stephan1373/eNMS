@@ -9,7 +9,7 @@ except ImportError as exc:
     warn(f"Couldn't import temporalio.client module ({exc})")
 
 from eNMS.database import db
-from eNMS.fields import HiddenField, StringField
+from eNMS.fields import HiddenField, IntegerField, StringField
 from eNMS.forms import ServiceForm
 from eNMS.models.automation import Service
 from eNMS.variables import vs
@@ -22,6 +22,7 @@ class GetTemporalResultService(Service):
     server_url = db.Column(db.SmallString)
     workflow_id = db.Column(db.SmallString)
     run_id = db.Column(db.SmallString)
+    timeout_seconds = db.Column(Integer, default=3600)
 
     __mapper_args__ = {"polymorphic_identity": "get_temporal_result_service"}
 
@@ -31,7 +32,7 @@ class GetTemporalResultService(Service):
         workflow_id = run.sub(run.workflow_id, local_variables)
         run_id = run.sub(run.run_id, local_variables)
         workflow_data = {"url": url, "workflow_id": workflow_id, "run_id": run_id}
-        run.log("info", f"Getting data for Temporal workflow '{workflow_id}'", device)
+        run.log("info", f"Waiting for Result for Temporal workflow '{workflow_id}'", device)
         if run.dry_run:
             return workflow_data
 
@@ -55,3 +56,4 @@ class GetTemporalResultForm(ServiceForm):
     )
     workflow_id = StringField("Workflow ID", [InputRequired()], substitution=True)
     run_id = StringField("Run ID (Optional)", substitution=True)
+    timeout_seconds = IntegerField("Timeout (seconds)", default=3600)
