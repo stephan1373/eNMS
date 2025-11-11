@@ -571,18 +571,17 @@ Benchmark (comparison last release versus new release) needed for:
 
 Previous Release:
 - Workflow with 5 empty python snippet services, 1k target devices
-- Update a pool with 10k devices
-- Update all pools
-- Workflow Duplication of "Large Workflow"
-- Time to display the Dashboard:
-- Calls to "save_positions" endpoint in "Large Workflow"
-- Add Instances in Bulk" mechanism (when adding many objects, for example 10k devices to a pool)
+  - DxD: 60s
+  - SxS WT: 2s
+- Update a pool with 10k devices: 190ms / 50k devices: 850ms
+- Add 10k devices to a manually defined pool (Add instances in Bulk): 3.9s
+- Workflow Duplication of "Large Workflow": 370ms
+- Calls to "save_positions" endpoint in "Large Workflow": 30ms
 - Compare speed of "get_service_state" endpoint in "Large Workflow" (workflow tree open)
-  - In "Normal Display"
-  - In "Runtime Display"
-- Time to "Scan Folder":
-- Time of Workflow Duplication for "Large Workflow"
-- Average Time Calls to "get_service_logs"
+  - In "Normal Display": 20 - 25ms
+  - In "Runtime Display" ('All Devices' pool as target): same
+- Time to "Scan Folder": 140ms
+- Time of Workflow Duplication for "Large Workflow": 370ms
 
 New Release:
 - Workflow with 5 empty python snippet services, 1k target devices:
