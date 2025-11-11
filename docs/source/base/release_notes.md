@@ -570,8 +570,8 @@ Benchmark (comparison last release versus new release) needed for:
 - Compare Speed of Log Refresh when running a workflow (calls to "get_service_logs" endpoint)
 
 Previous Release:
-- Workflow with 5 empty python snippet services, 10k target devices
-- Update a pool with 50k devices
+- Workflow with 5 empty python snippet services, 1k target devices
+- Update a pool with 10k devices
 - Update all pools
 - Workflow Duplication of "Large Workflow"
 - Time to display the Dashboard:
@@ -585,10 +585,10 @@ Previous Release:
 - Average Time Calls to "get_service_logs"
 
 New Release:
-- Workflow with 5 empty python snippet services, 10k target devices:
+- Workflow with 5 empty python snippet services, 1k target devices:
   - Normal Mode:
   - High Performance Mode:
-- Update a pool with 50k devices
+- Update a pool with 10k devices
 - Update all pools
 - Workflow Duplication of "Large Workflow"
 - Time to display the Dashboard:
