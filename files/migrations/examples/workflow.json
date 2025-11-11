@@ -15348,10 +15348,10 @@
     "labels": {
       "6e60fdc8-69f3-4309-8494-49d995f374ad": {
         "alignment": "left",
-        "content": "Code of the temporal worker (PrintInput)\n\nfrom asyncio import run\nfrom datetime import timedelta\n\nfrom temporalio import workflow, activity\nfrom temporalio.client import Client\nfrom temporalio.worker import Worker\n\n\n@activity.defn\nasync def print_input(name):\n    return f\"Hi {name}!\"\n\n@workflow.defn\nclass PrintInput:\n    @workflow.run\n    async def run(self, name):\n        result = await workflow.execute_activity(\n            print_input,\n            name,\n            start_to_close_timeout=timedelta(seconds=10),\n        )\n        print(f\"Workflow result: {result}\")\n        return result\n\nasync def main():\n    client = await Client.connect(\"localhost:7233\")\n    worker = Worker(\n        client,\n        task_queue=\"print-input-queue\",\n        workflows=[PrintInput],\n        activities=[print_input],\n    )\n    await worker.run()\n\nif __name__ == \"__main__\":\n    run(main())",
+        "content": "Code of the temporal worker (PrintInput)\n\nfrom asyncio import run\nfrom datetime import timedelta\n\nfrom temporalio import workflow, activity\nfrom temporalio.client import Client\nfrom temporalio.worker import Worker\n\n\n@activity.defn\nasync def print_input(name):\n    return f\"Hi {name}!\"",
         "positions": [
-          451,
-          -32
+          141,
+          67
         ],
         "size": 14
       },
@@ -15359,13 +15359,31 @@
         "alignment": "left",
         "content": "Run a temporal Workflow called \"Print Input\".\nPrint Input takes a single argument: \"name\", and\nit returns \"Hi name!\".\n\nThis workflow runs in DxD mode on two devices:\nWashington and Austin.\n\nThe temporal service uses the following parameters:\nTemporal Server URL: localhost:7233\nWorkflow Name: PrintInput\nTask Queue: print-input-queue\nWorkflow Arguments: [device.name]\n\nSince \"device.name\" is sent to the temporal worker,\nthe expected result should be:\n\"Hi, Washington!\" and \"Hi, Austin\".\n\nIn the worker CLI, we should see:\n\"Workflow result: Hi, Washington!\"\n\"Workflow result: Hi, Austin!\"\n\nIn the temporal UI, there should be two workflows\nmarked as \"Completed\"\n\n",
         "positions": [
-          -51,
-          -29
+          -274,
+          70
+        ],
+        "size": 14
+      },
+      "de7d460c-f709-4d07-95da-3bf14f613102": {
+        "alignment": "left",
+        "content": "@workflow.defn\nclass PrintInput:\n    @workflow.run\n    async def run(self, name):\n        result = await workflow.execute_activity(\n            print_input,\n            name,\n            start_to_close_timeout=timedelta(seconds=10),\n        )\n        print(f\"Workflow result: {result}\")\n        return result\n\nasync def main():\n    client = await Client.connect(\"localhost:7233\")\n    worker = Worker(\n        client,\n        task_queue=\"print-input-queue\",\n        workflows=[PrintInput],\n        activities=[print_input],\n    )\n    await worker.run()\n\nif __name__ == \"__main__\":\n    run(main())",
+        "positions": [
+          571,
+          36
+        ],
+        "size": 14
+      },
+      "ed00bca4-d484-4e66-94d0-2dbb09091d52": {
+        "alignment": "left",
+        "content": "Before running this workflow, there must be a Temporal WORKER to process the\n\"print-input-queue\" job. The worker is located in the \"eNMS / files / temporal\" folder\nRun the command: \"python print_input.py\" to start the worker.",
+        "positions": [
+          175,
+          -203
         ],
         "size": 14
       }
     },
-    "last_modified": "2025-11-08 05:48:54.311572",
+    "last_modified": "2025-11-11 06:54:59.721623",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
