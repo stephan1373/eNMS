@@ -200,6 +200,10 @@
     "admin"
   ],
   [
+    "[(T) Get Data Temporal Workflow] Get Data After Completion",
+    "admin"
+  ],
+  [
     "[(T) Get Data Temporal Workflow] Run Sleep Workflow",
     "admin"
   ],
