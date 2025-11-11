@@ -15522,9 +15522,18 @@
           173
         ],
         "size": 14
+      },
+      "f434f407-28ee-488f-8d50-ea0e3ddc548d": {
+        "alignment": "left",
+        "content": "Before running this workflow, there must be a Temporal WORKER to process the\n\"sleep-task-queue\" job. The worker is located in the \"eNMS / files / temporal\" folder\nRun the command: \"python sleep.py\" to start the worker.",
+        "positions": [
+          63,
+          -249
+        ],
+        "size": 14
       }
     },
-    "last_modified": "2025-11-08 10:20:19.187335",
+    "last_modified": "2025-11-11 06:56:52.534105",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15641,6 +15650,15 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {
+      "3c8464f7-03ea-4ce3-a824-34df887ab06e": {
+        "alignment": "left",
+        "content": "Before running this workflow, there must be a Temporal WORKER to process the\n\"sleep-task-queue\" job. The worker is located in the \"eNMS / files / temporal\" folder\nRun the command: \"python sleep.py\" to start the worker.",
+        "positions": [
+          75,
+          -258
+        ],
+        "size": 14
+      },
       "5ce09a35-27a8-4f91-baff-2ce3826a8767": {
         "alignment": "left",
         "content": "@workflow.defn\nclass SleepWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        await sleep(sleep_seconds)\n        workflow.logger.info(\"Sleep completed successfully\")\n        return f\"Slept for {sleep_seconds} seconds\"",
@@ -15687,7 +15705,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-11-08 12:52:28.762070",
+    "last_modified": "2025-11-11 06:56:26.700380",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15830,9 +15848,18 @@
           -259
         ],
         "size": 14
+      },
+      "de5e0a69-57a8-4bab-8b0e-2c1917c55d12": {
+        "alignment": "left",
+        "content": "Before running this workflow, there must be a Temporal WORKER to process the\n\"sleep-task-queue\" job. The worker is located in the \"eNMS / files / temporal\" folder\nRun the command: \"python sleep.py\" to start the worker.",
+        "positions": [
+          298,
+          -420
+        ],
+        "size": 14
       }
     },
-    "last_modified": "2025-11-11 06:42:22.914403",
+    "last_modified": "2025-11-11 06:56:44.149560",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
