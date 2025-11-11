@@ -16,7 +16,7 @@
     "admin"
   ],
   [
-    "(T) Get Data Temporal Workflow",
+    "(T) Get Data and Result Temporal Workflow",
     "admin"
   ],
   [
@@ -196,19 +196,19 @@
     "admin"
   ],
   [
-    "[(T) Get Data Temporal Workflow] Get Data",
+    "[(T) Get Data and Result Temporal Workflow] Get Data",
     "admin"
   ],
   [
-    "[(T) Get Data Temporal Workflow] Get Data After Completion",
+    "[(T) Get Data and Result Temporal Workflow] Get Data After Completion",
     "admin"
   ],
   [
-    "[(T) Get Data Temporal Workflow] Run Sleep Workflow",
+    "[(T) Get Data and Result Temporal Workflow] Run Sleep Workflow",
     "admin"
   ],
   [
-    "[(T) Get Data Temporal Workflow] WAIT and GET RESULT",
+    "[(T) Get Data and Result Temporal Workflow] WAIT and GET RESULT",
     "admin"
   ],
   [

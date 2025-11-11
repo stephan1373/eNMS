@@ -15795,6 +15795,15 @@
         ],
         "size": 14
       },
+      "c0dc0b4f-65da-416e-916e-5d68c0e8b5f5": {
+        "alignment": "left",
+        "content": "Expected Status: \"RUNNING\"",
+        "positions": [
+          506,
+          -89
+        ],
+        "size": 14
+      },
       "c14636cc-4ec1-47dc-84b3-288a7fe50ec1": {
         "alignment": "left",
         "content": "Uses \"workflow_id\" from the RESULTS of the previous service to get data:\n{{ get_result(\"Run Sleep Workflow\", device=device.name)[\"workflow_id\"] }}\n\nChecks that the workflow status is currently set to \"RUNNING\":\nresults[\"success\"] = results[\"result\"][\"status\"] == \"RUNNING\"",
@@ -15805,7 +15814,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-11-11 06:41:31.826974",
+    "last_modified": "2025-11-11 06:42:22.914403",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15822,7 +15831,7 @@
     "max_processes": 15,
     "maximum_runs": 1,
     "multiprocessing": false,
-    "name": "(T) Get Data Temporal Workflow",
+    "name": "(T) Get Data and Result Temporal Workflow",
     "negative_logic": false,
     "notification_header": "",
     "number_of_retries": 0,
@@ -15846,6 +15855,22 @@
       "[(T) Get Data Temporal Workflow] WAIT and GET RESULT": [
         -86,
         119
+      ],
+      "[(T) Get Data and Result Temporal Workflow] Get Data": [
+        463,
+        -149
+      ],
+      "[(T) Get Data and Result Temporal Workflow] Get Data After Completion": [
+        422,
+        123
+      ],
+      "[(T) Get Data and Result Temporal Workflow] Run Sleep Workflow": [
+        -96,
+        -141
+      ],
+      "[(T) Get Data and Result Temporal Workflow] WAIT and GET RESULT": [
+        -95,
+        131
       ],
       "[Get Data Temporal Workflow] Get Data": [
         428,
@@ -15875,7 +15900,7 @@
     "reserved": false,
     "restrict_to_owners": [],
     "run_method": "per_device",
-    "scoped_name": "(T) Get Data Temporal Workflow",
+    "scoped_name": "(T) Get Data and Result Temporal Workflow",
     "send_notification": false,
     "send_notification_method": "mail",
     "shared": false,

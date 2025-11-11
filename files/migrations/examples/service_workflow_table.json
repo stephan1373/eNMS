@@ -472,20 +472,20 @@
     "(T) Cancel Temporal Workflow"
   ],
   [
-    "[(T) Get Data Temporal Workflow] Get Data",
-    "(T) Get Data Temporal Workflow"
+    "[(T) Get Data and Result Temporal Workflow] Get Data",
+    "(T) Get Data and Result Temporal Workflow"
   ],
   [
-    "[(T) Get Data Temporal Workflow] Get Data After Completion",
-    "(T) Get Data Temporal Workflow"
+    "[(T) Get Data and Result Temporal Workflow] Get Data After Completion",
+    "(T) Get Data and Result Temporal Workflow"
   ],
   [
-    "[(T) Get Data Temporal Workflow] Run Sleep Workflow",
-    "(T) Get Data Temporal Workflow"
+    "[(T) Get Data and Result Temporal Workflow] Run Sleep Workflow",
+    "(T) Get Data and Result Temporal Workflow"
   ],
   [
-    "[(T) Get Data Temporal Workflow] WAIT and GET RESULT",
-    "(T) Get Data Temporal Workflow"
+    "[(T) Get Data and Result Temporal Workflow] WAIT and GET RESULT",
+    "(T) Get Data and Result Temporal Workflow"
   ],
   [
     "[(T) Run Temporal Workflow] Run Workflow",
@@ -1501,7 +1501,7 @@
   ],
   [
     "[Shared] End",
-    "(T) Get Data Temporal Workflow"
+    "(T) Get Data and Result Temporal Workflow"
   ],
   [
     "[Shared] End",
@@ -2033,7 +2033,7 @@
   ],
   [
     "[Shared] Start",
-    "(T) Get Data Temporal Workflow"
+    "(T) Get Data and Result Temporal Workflow"
   ],
   [
     "[Shared] Start",
