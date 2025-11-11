@@ -15805,7 +15805,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-11-11 06:37:52.569145",
+    "last_modified": "2025-11-11 06:39:54.428233",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -15838,6 +15838,10 @@
       "[(T) Get Data Temporal Workflow] Run Sleep Workflow": [
         -96,
         -141
+      ],
+      "[(T) Get Data Temporal Workflow] WAIT and GET RESULT": [
+        -86,
+        119
       ],
       "[Get Data Temporal Workflow] Get Data": [
         428,

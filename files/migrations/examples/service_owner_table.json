@@ -204,6 +204,10 @@
     "admin"
   ],
   [
+    "[(T) Get Data Temporal Workflow] WAIT and GET RESULT",
+    "admin"
+  ],
+  [
     "[(T) Run Temporal Workflow] Run Workflow",
     "admin"
   ],

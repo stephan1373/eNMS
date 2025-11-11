@@ -480,6 +480,10 @@
     "(T) Get Data Temporal Workflow"
   ],
   [
+    "[(T) Get Data Temporal Workflow] WAIT and GET RESULT",
+    "(T) Get Data Temporal Workflow"
+  ],
+  [
     "[(T) Run Temporal Workflow] Run Workflow",
     "(T) Run Temporal Workflow"
   ],
