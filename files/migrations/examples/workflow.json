@@ -15824,10 +15824,10 @@
     "labels": {
       "51050528-6d12-4020-a53e-19712b7c0daf": {
         "alignment": "left",
-        "content": "Run Workflow That SLEEPS for 20 SECONDS:\n\n@workflow.defn\nclass SleepWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        await sleep(sleep_seconds)\n        workflow.logger.info(\"Sleep completed successfully\")\n        return f\"Slept for {sleep_seconds} seconds\"",
+        "content": "Run Workflow That SLEEPS for 10 SECONDS:\n\n@workflow.defn\nclass SleepWorkflow:\n    @workflow.run\n    async def run(self, sleep_seconds: int) -> str:\n        print(f\"Run started (sleeping {sleep_seconds} seconds)\")\n        workflow.logger.info(f\"Starting sleep for {sleep_seconds} seconds\")\n        await sleep(sleep_seconds)\n        workflow.logger.info(\"Sleep completed successfully\")\n        return f\"Slept for {sleep_seconds} seconds\"",
         "positions": [
-          -13,
-          -290
+          -40,
+          -274
         ],
         "size": 14
       },
@@ -15859,7 +15859,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-11-11 06:56:44.149560",
+    "last_modified": "2025-11-11 06:59:42.855989",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,

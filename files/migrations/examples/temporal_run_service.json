@@ -490,7 +490,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2025-11-10 13:40:17.546697",
+    "last_modified": "2025-11-11 06:59:06.854961",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -546,7 +546,7 @@
     "version": "",
     "wait_for_result": false,
     "waiting_time": 0,
-    "workflow_args": "[20]",
+    "workflow_args": "[10]",
     "workflow_name": "SleepWorkflow"
   }
 ]
