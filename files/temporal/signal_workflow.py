@@ -30,8 +30,7 @@ async def main():
         workflows=[SignalWorkflow],
     ).run()
 
-
-async def approve_order(workflow_id: str):
+async def send_signal(workflow_id: str):
     client = await Client.connect("localhost:7233")
     await client.get_workflow_handle(workflow_id).signal("approve")
 
