@@ -3,12 +3,8 @@ from datetime import timedelta
 
 from temporalio import workflow, activity
 from temporalio.client import Client
+from temporalio.worker import Worker
 
-
-@activity.defn
-async def process_order():
-    activity.logger.info(f"Processed")
-    return f"Processed"
 
 @workflow.defn
 class SignalWorkflow:
@@ -24,12 +20,7 @@ class SignalWorkflow:
         workflow.logger.info("Before Wait Condition")
         await workflow.wait_condition(lambda: self.approved, timeout=timedelta(hours=1))
         workflow.logger.info("After Wait Condition")
-        result = await workflow.execute_activity(
-            process_order,
-            args=[],
-            start_to_close_timeout=timedelta(minutes=5)
-        )
-        return result
+        return "Workflow Completed"
 
 async def main():
     client = await Client.connect("localhost:7233")
@@ -37,7 +28,6 @@ async def main():
         client,
         task_queue="signal-queue",
         workflows=[SignalWorkflow],
-        activities=[process_order],
     ).run()
 
 
