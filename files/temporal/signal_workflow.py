@@ -24,11 +24,7 @@ class SignalWorkflow:
 
 async def main():
     client = await Client.connect("localhost:7233")
-    await Worker(
-        client,
-        task_queue="signal-queue",
-        workflows=[SignalWorkflow],
-    ).run()
+    await Worker(client, task_queue="signal-queue", workflows=[SignalWorkflow]).run()
 
 async def send_signal(workflow_id: str):
     client = await Client.connect("localhost:7233")
