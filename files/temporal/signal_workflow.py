@@ -18,7 +18,7 @@ class SignalWorkflow:
     @workflow.run
     async def run(self):
         workflow.logger.info("Waiting for value...")
-        await workflow.wait_condition(lambda: self.value is not None, timeout=timedelta(hours=1))
+        await workflow.wait_condition(lambda: self.value, timeout=timedelta(hours=1))
         workflow.logger.info(f"Received value: {self.value}")
         return f"Workflow completed with value: {self.value}"
 
