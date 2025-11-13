@@ -579,7 +579,7 @@ Previous Release:
 - Time of Workflow Duplication for "Large Workflow": 370ms
 - Large Workflow (30 python snippet) running on 100 devices:
   - Query Count: 26523
-  - Duration: 96s
+  - Duration: 18s
 
 New Release:
 - Workflow with 5 empty python snippet services, 1k target devices
