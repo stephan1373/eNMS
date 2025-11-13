@@ -26,9 +26,6 @@ async def main():
     client = await Client.connect("localhost:7233")
     await Worker(client, task_queue="signal-queue", workflows=[SignalWorkflow]).run()
 
-async def send_signal(workflow_id: str, value):
-    client = await Client.connect("localhost:7233")
-    await client.get_workflow_handle(workflow_id).signal("set_value", value)
 
 if __name__ == "__main__":
     run(main())
