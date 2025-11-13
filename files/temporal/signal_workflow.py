@@ -20,7 +20,7 @@ class SignalWorkflow:
         workflow.logger.info("Waiting for value...")
         await workflow.wait_condition(lambda: self.value, timeout=timedelta(hours=1))
         workflow.logger.info(f"Received value: {self.value}")
-        return f"Workflow completed with value: {self.value}"
+        return self.value
 
 async def main():
     client = await Client.connect("localhost:7233")
