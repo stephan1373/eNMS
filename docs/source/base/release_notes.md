@@ -363,6 +363,10 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: 8dd630c906f44635e503b416cd03cab826c3f89d
 - Add new OpenShift Service
   Commit: fc2af3462dfa8ece1432cf4910978930b6c48838
+- Refactor "Stop Run" mechanism:
+  - Require "run" RBAC access for a user to be allowed to stop a workflow
+  - Add new "You don't have permission to stop this workflow." alert in the UI
+  Commit: 40589d9e2dffa2b2672ce8415bb8ba20facdc019
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
