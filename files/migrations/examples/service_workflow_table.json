@@ -492,6 +492,10 @@
     "(T) Run Temporal Workflow"
   ],
   [
+    "[(T) Send Temporal Signal] Run Signal Workflow",
+    "(T) Send Temporal Signal"
+  ],
+  [
     "[(T) Terminate Temporal Workflow] Cancel Workflow",
     "(T) Terminate Temporal Workflow"
   ],
@@ -1509,6 +1513,10 @@
   ],
   [
     "[Shared] End",
+    "(T) Send Temporal Signal"
+  ],
+  [
+    "[Shared] End",
     "(T) Terminate Temporal Workflow"
   ],
   [
@@ -2038,6 +2046,10 @@
   [
     "[Shared] Start",
     "(T) Run Temporal Workflow"
+  ],
+  [
+    "[Shared] Start",
+    "(T) Send Temporal Signal"
   ],
   [
     "[Shared] Start",

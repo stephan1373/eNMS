@@ -24,6 +24,10 @@
     "admin"
   ],
   [
+    "(T) Send Temporal Signal",
+    "admin"
+  ],
+  [
     "(T) Terminate Temporal Workflow",
     "admin"
   ],
@@ -213,6 +217,10 @@
   ],
   [
     "[(T) Run Temporal Workflow] Run Workflow",
+    "admin"
+  ],
+  [
+    "[(T) Send Temporal Signal] Run Signal Workflow",
     "admin"
   ],
   [
