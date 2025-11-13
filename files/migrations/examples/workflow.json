@@ -16018,7 +16018,7 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {},
-    "last_modified": "2025-11-13 12:45:15.790393",
+    "last_modified": "2025-11-13 12:49:21.343546",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -16045,7 +16045,11 @@
     "persistent_id": "d-_yNrMiZys",
     "positions": {
       "[(T) Send Temporal Signal] Run Signal Workflow": [
-        -102,
+        -57,
+        72
+      ],
+      "[(T) Send Temporal Signal] Send TEST Signal": [
+        187,
         73
       ],
       "[Shared] End": [

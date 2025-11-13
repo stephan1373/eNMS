@@ -496,6 +496,10 @@
     "(T) Send Temporal Signal"
   ],
   [
+    "[(T) Send Temporal Signal] Send TEST Signal",
+    "(T) Send Temporal Signal"
+  ],
+  [
     "[(T) Terminate Temporal Workflow] Cancel Workflow",
     "(T) Terminate Temporal Workflow"
   ],

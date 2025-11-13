@@ -310,6 +310,7 @@
   "2025-11-11 06:41:30.899710": "[(T) Get Data and Result Temporal Workflow] Get Data After Completion",
   "2025-11-11 06:41:31.806029": "[Shared] End",
   "2025-11-13 12:45:15.764324": "[(T) Send Temporal Signal] Run Signal Workflow",
+  "2025-11-13 12:49:21.317213": "[(T) Send Temporal Signal] Send TEST Signal",
   "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.151934": "[(T) Terminate Temporal Workflow] Run Sleep Workflow",
   "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.152308": "[(T) Terminate Temporal Workflow] Cancel Workflow",
   "[(T) Terminate Temporal Workflow] 2025-11-08 12:46:48.152689": "[Shared] End",

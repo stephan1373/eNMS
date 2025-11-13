@@ -224,6 +224,10 @@
     "admin"
   ],
   [
+    "[(T) Send Temporal Signal] Send TEST Signal",
+    "admin"
+  ],
+  [
     "[(T) Terminate Temporal Workflow] Cancel Workflow",
     "admin"
   ],
