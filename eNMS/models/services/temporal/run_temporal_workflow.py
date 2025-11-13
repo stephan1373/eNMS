@@ -61,7 +61,7 @@ class TemporalRunService(Service):
         return asyncio_run(trigger_workflow())
 
 
-class TemporalForm(ServiceForm):
+class TemporalRunForm(ServiceForm):
     form_type = HiddenField(default="temporal_run_service")
     server_url = StringField(
         "Temporal Server URL",
