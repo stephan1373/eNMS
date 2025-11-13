@@ -44,7 +44,7 @@ class SendTemporalSignalService(Service):
             client = await Client.connect(kwargs["url"])
             run_kw = {"run_id": kwargs["run_id"]} if kwargs["run_id"] else {}
             handle = client.get_workflow_handle(kwargs["workflow_id"], **run_kw)
-            await handle.signal(kwargs["signal_name"], kwargs["signal_args"])
+            await handle.signal(kwargs["signal_name"], *kwargs["signal_args"])
             return {"success": True, "kwargs": kwargs, "result": "Signal sent"}
 
         return asyncio_run(send_signal())
