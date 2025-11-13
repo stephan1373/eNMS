@@ -34,7 +34,7 @@ class SendTemporalSignalService(Service):
             "workflow_id": run.sub(run.workflow_id, local_variables),
             "run_id": run.sub(run.run_id, local_variables),
             "signal_name": run.sub(run.signal_name, local_variables),
-            "signal_args": run.sub(run.signal_args, local_variables),
+            "signal_args": run.eval(run.signal_args, **local_variables)[0],
         }
         run.log("info", f"Sending Temporal signal (kwargs: '{kwargs}')", device)
         if run.dry_run:
