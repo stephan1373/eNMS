@@ -301,13 +301,9 @@ function stopWorkflow() {
   const stop = function() {
     call({
       url: `/stop_run/${currentRun.runtime}`,
-      callback: (result) => {
-        if (!result) {
-          notify("The workflow is not currently running.", "error", 5);
-        } else {
-          const log = `Workflow ${workflow.name} will stop after current service.`;
-          notify(log, "success", 5, true);
-        }
+      callback: () => {
+        const log = `Workflow '${workflow.name}' will stop after current service.`;
+        notify(log, "success", 5, true);
       },
     });
   };

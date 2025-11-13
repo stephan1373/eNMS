@@ -1712,13 +1712,15 @@ class Controller(vs.TimingMixin):
         }
 
     def stop_run(self, runtime):
-        run = db.fetch("run", allow_none=True, runtime=runtime)
-        if run and run.status == "Running":
-            if env.redis_queue:
-                env.redis("set", f"stop/{runtime}", "true")
-            else:
-                vs.run_stop[runtime] = True
-            return True
+        run = db.fetch("run", allow_none=True, rbac="run", runtime=runtime)
+        if not run:
+            return {"alert": "You don't have permission to stop this workflow."}
+        elif run.status != "Running":
+            return {"alert": "The service is not currently running."}
+        elif env.redis_queue:
+            env.redis("set", f"stop/{runtime}", "true")
+        else:
+            vs.run_stop[runtime] = True
 
     def switch_menu(self, user_id):
         user = db.fetch("user", rbac=None, id=user_id)
