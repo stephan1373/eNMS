@@ -94,7 +94,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   - Optimize the workflow duplication mechanism:
     - Don't return anything in the post_update function, and update the 'controller.update' function to not
       rely on the post_update function to return the instance properties and relations
-      Commit: e590b0b512a9e904dc3dc6d2a52632d78815ba48
+      Commit:
+        - e590b0b512a9e904dc3dc6d2a52632d78815ba48
+        - c48059f8182e0fa0bf915c11c1ea822b31415006
     - Only call the 'recursive_update' function from the top-level workflow
       Commit: e83dcc7739f12406ea802295afab684d2d7ad001
     - Avoid creating changelogs during the workflow duplication mechanism
