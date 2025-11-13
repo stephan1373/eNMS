@@ -577,6 +577,9 @@ Previous Release:
 - Add 10k devices to a manually defined pool (Add instances in Bulk): 3.9s
 - Calls to "save_positions" endpoint in "Large Workflow": 30ms
 - Time of Workflow Duplication for "Large Workflow": 370ms
+- Large Workflow (30 python snippet) running on 100 devices:
+  - Query Count: 26523
+  - Duration: 96s
 
 New Release:
 - Workflow with 5 empty python snippet services, 1k target devices
@@ -586,6 +589,13 @@ New Release:
 - Add 10k devices to a manually defined pool (Add instances in Bulk): 2.2s
 - Calls to "save_positions" endpoint in "Large Workflow": 20ms
 - Time of Workflow Duplication for "Large Workflow": 140ms
+- Large Workflow (30 python snippet) running on 100 devices:
+  - Normal Mode:
+    - Query Count: 23293
+    - Duration: 9s
+  - High Performance Mode:
+    - Query Count: 184
+    - Duration: 120ms
 
 Migration:
 - Run migration script to:
