@@ -220,6 +220,10 @@
     "admin"
   ],
   [
+    "[(T) Send Temporal Signal] Get Result",
+    "admin"
+  ],
+  [
     "[(T) Send Temporal Signal] Run Signal Workflow",
     "admin"
   ],

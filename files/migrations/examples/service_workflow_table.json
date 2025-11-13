@@ -492,6 +492,10 @@
     "(T) Run Temporal Workflow"
   ],
   [
+    "[(T) Send Temporal Signal] Get Result",
+    "(T) Send Temporal Signal"
+  ],
+  [
     "[(T) Send Temporal Signal] Run Signal Workflow",
     "(T) Send Temporal Signal"
   ],
