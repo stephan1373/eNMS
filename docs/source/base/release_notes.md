@@ -358,6 +358,12 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
       Commit: f4375203de2d63b143e5fded937860e4f94d7c33
     - Add new "Get Temporal Data" service to fetch data about a Temporal workflow (ID,
       status, start time, execution time, close time, etc)
+    - Add new "Stop Temporal Workflow" service to either cancel (stop gracefully) or
+      terminate (stop forcefully) a Temporal workflow
+    - Add new "Get Result Temporal Workflow" service to get the result of a Temporal workflow
+      (if the workflow is still running, it waits for the workflow to finish)
+    - Add new "Send Signal Temporal Workflow" service to send a signal to an on-going
+      Temporal workflow (name of signal + list of arguments to be passed)
   - Add support for using temporal as a task queue to run eNMS workflows
     Commit: f3fe423e3acffe5be818d13e20ab19d90b8384d5
   - Rename "use_task_queue" in automation.json to "task_queue". Possible values:
