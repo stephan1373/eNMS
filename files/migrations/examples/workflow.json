@@ -16017,8 +16017,36 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "labels": {},
-    "last_modified": "2025-11-13 13:13:07.636563",
+    "labels": {
+      "66946b51-aa3e-4e99-8de0-f82d25514b88": {
+        "alignment": "left",
+        "content": "@workflow.defn\nclass SignalWorkflow:\n    def __init__(self):\n        self.value = None\n    \n    @workflow.signal\n    async def set_value(self, new_value):\n        self.value = new_value",
+        "positions": [
+          -271,
+          -9
+        ],
+        "size": 14
+      },
+      "8d5aebcf-204c-444f-8418-6ee95934df58": {
+        "alignment": "left",
+        "content": "    @workflow.run\n    async def run(self):\n        workflow.logger.info(\"Waiting for value...\")\n        print(\"Waiting for value...\")\n        await workflow.wait_condition(\n          lambda: self.value, timeout=timedelta(hours=1)\n        )\n        workflow.logger.info(f\"Received value: {self.value}\")\n        print(f\"Received value: {self.value}\")\n        return self.value",
+        "positions": [
+          30,
+          -13
+        ],
+        "size": 14
+      },
+      "b3d560da-fb1a-4228-a848-119ec27f247b": {
+        "alignment": "left",
+        "content": "Before running this workflow, there must be a Temporal WORKER to process the\n\"signal-queue\" job. The worker is located in the \"eNMS / files / temporal\" folder\nRun the command: \"python signal_workflow.py\" to start the worker.",
+        "positions": [
+          232,
+          -156
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-11-14 04:24:46.150567",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -16045,24 +16073,24 @@
     "persistent_id": "d-_yNrMiZys",
     "positions": {
       "[(T) Send Temporal Signal] Get Result": [
-        492,
-        10
+        515,
+        147
       ],
       "[(T) Send Temporal Signal] Run Signal Workflow": [
-        -40,
-        6
+        -74,
+        161
       ],
       "[(T) Send Temporal Signal] Send TEST Signal": [
-        237,
-        164
+        266,
+        341
       ],
       "[Shared] End": [
-        795,
-        148
+        830,
+        209
       ],
       "[Shared] Start": [
-        -324,
-        74
+        -414,
+        366
       ]
     },
     "postprocessing": "",
