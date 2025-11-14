@@ -16044,9 +16044,27 @@
           -156
         ],
         "size": 14
+      },
+      "b4d190cb-a543-40ab-999c-e6c79f122683": {
+        "alignment": "left",
+        "content": "Sends the Signal \"set_value\" with arguments: [\"TEST\"]\nThe argument will be unpacked, so there is in fact a single argument: \"TEST\"\nPost-processing check:\nresults[\"success\"] = results[\"result\"] == \"Signal sent\"",
+        "positions": [
+          310,
+          437
+        ],
+        "size": 14
+      },
+      "c8122f8a-a3d8-4665-9abd-af1dbbddc7ac": {
+        "alignment": "left",
+        "content": "Retrieves the result from the workflow. We check that it is \"TEST\", because\n\"self.value\" is returned by the workflow at the end (see workflow code)\nPost-processing check:\nresults[\"success\"] = results[\"result\"] == \"TEST\"",
+        "positions": [
+          610,
+          56
+        ],
+        "size": 14
       }
     },
-    "last_modified": "2025-11-14 04:24:46.150567",
+    "last_modified": "2025-11-14 04:27:51.804693",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
