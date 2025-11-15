@@ -310,6 +310,7 @@
   },
   "allowed_rest_endpoints": {
     "add_instances_in_bulk": "access",
+    "scan_folder": "admin",
     "get_cluster_status": "access",
     "get_git_content": "access",
     "update_all_pools": "access",
