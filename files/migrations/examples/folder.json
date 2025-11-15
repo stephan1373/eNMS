@@ -128,5 +128,70 @@
     "name": ">migrations>examples",
     "path": "/migrations/examples",
     "size": "3936"
+  },
+  {
+    "creation_time": "2025-11-15 13:17:46.748988",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "temporal",
+    "folder_path": "/mnt/shared/eNMS-prod2/files",
+    "full_path": "/mnt/shared/eNMS-prod2/files/temporal",
+    "last_modified": "2025-11-14 18:35:36.494470",
+    "last_updated": "",
+    "name": ">temporal",
+    "path": "/temporal",
+    "size": "192"
+  },
+  {
+    "creation_time": "2025-11-15 13:17:46.748988",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "bruno",
+    "folder_path": "/mnt/shared/eNMS-prod2/files",
+    "full_path": "/mnt/shared/eNMS-prod2/files/bruno",
+    "last_modified": "2025-11-15 13:15:00.666414",
+    "last_updated": "",
+    "name": ">bruno",
+    "path": "/bruno",
+    "size": "96"
+  },
+  {
+    "creation_time": "2025-11-15 13:17:46.748988",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "__pycache__",
+    "folder_path": "/mnt/shared/eNMS-prod2/files/scripts",
+    "full_path": "/mnt/shared/eNMS-prod2/files/scripts/__pycache__",
+    "last_modified": "2025-11-06 16:52:57.112337",
+    "last_updated": "",
+    "name": ">scripts>__pycache__",
+    "path": "/scripts/__pycache__",
+    "size": "96"
+  },
+  {
+    "creation_time": "2025-11-15 13:17:46.748988",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "default",
+    "folder_path": "/mnt/shared/eNMS-prod2/files/migrations",
+    "full_path": "/mnt/shared/eNMS-prod2/files/migrations/default",
+    "last_modified": "2025-11-14 18:35:29.359553",
+    "last_updated": "",
+    "name": ">migrations>default",
+    "path": "/migrations/default",
+    "size": "224"
+  },
+  {
+    "creation_time": "2025-11-15 13:17:46.748988",
+    "custom_property": "Custom",
+    "description": "",
+    "filename": "__pycache__",
+    "folder_path": "/mnt/shared/eNMS-prod2/files/temporal",
+    "full_path": "/mnt/shared/eNMS-prod2/files/temporal/__pycache__",
+    "last_modified": "2025-11-15 12:51:28.992555",
+    "last_updated": "",
+    "name": ">temporal>__pycache__",
+    "path": "/temporal/__pycache__",
+    "size": "160"
   }
 ]
