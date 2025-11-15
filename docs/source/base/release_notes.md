@@ -380,6 +380,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: 40589d9e2dffa2b2672ce8415bb8ba20facdc019
 - Update the REST Call Service with new "proxies" option
   Commit: 6da2c403abe466522968ba0ea38393f8e4d74e08
+- Make "Scan Folder" mechanism available to admin users via REST ("scan_folder" POST endpoint)
+  Commit: 74d9894b807a7984fb667f644517a74af9f7933a
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
