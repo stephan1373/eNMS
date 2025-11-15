@@ -665,6 +665,7 @@ Tests:
 - Test that all relevant forms and tables have the "Last Modified", "Last Modified By" and "Creation Time" properties
 - Test that the Netmiko services that uses to have a single line command and "Results as list" checked are still working
   and the result is still returned as a string (because the option as unchecked during migration)
+- Tests what happens when dramatiq triggers the same jobs twice (in previous release, logs and results were disappearing because created twice)
 
 Notes:
 - Everything in the "Tests" section should be tested with both "High Performance" checked and unchecked
