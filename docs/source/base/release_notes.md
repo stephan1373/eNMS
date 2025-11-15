@@ -638,6 +638,9 @@ Migration:
   the migration files for all netmiko services with a single command, the "Results as list" set to True.
 - In automation.json, change "use_task_queue" to "task_queue" (false, "dramatiq", or "temporal")
 
+Documentation Update:
+- Removed extra "Admin Only" property for Credentials (meant to override the "Access Control" admin only ?) If this "Admin Only" property still exists outside of eNMS, it must be added as a deviation.
+
 Tests:
 - Test everything about the "Add services to workflow" mechanism (everything has changed, especially the
   Search mechanism)
