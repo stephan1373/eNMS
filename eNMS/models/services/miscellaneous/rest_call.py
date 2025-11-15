@@ -32,6 +32,7 @@ class RestCallService(Service):
     substitution_type = db.Column(db.SmallString)
     params = db.Column(JSON, default={})
     headers = db.Column(JSON, default={})
+    proxies = db.Column(JSON, default={})
     verify_ssl_certificate = db.Column(Boolean, default=True)
     allow_redirects = db.Column(Boolean, default=True)
     timeout = db.Column(Integer, default=15)
@@ -53,7 +54,7 @@ class RestCallService(Service):
         run.log("info", f"Sending REST Call to {log_url}", device, logger="security")
         kwargs = {
             parameter: run.sub(getattr(self, parameter), local_variables)
-            for parameter in ("headers", "params", "timeout")
+            for parameter in ("headers", "params", "proxies", "timeout")
         }
         kwargs["verify"] = run.verify_ssl_certificate
         kwargs["allow_redirects"] = run.allow_redirects
@@ -104,6 +105,7 @@ class RestCallForm(ServiceForm):
     )
     params = DictField(substitution=True)
     headers = DictField(substitution=True)
+    proxies = DictField(substitution=True)
     verify_ssl_certificate = BooleanField("Verify SSL Certificate")
     allow_redirects = BooleanField("Allow Redirects", default=True)
     timeout = IntegerField(default=15)
