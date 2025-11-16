@@ -124,6 +124,8 @@ class Workflow(Service):
                     rbac=None,
                     **{
                         "workflow": clone,
+                        "color": edge.color,
+                        "label": edge.label,
                         "subtype": edge.subtype,
                         "source": clone_services[edge.source.id],
                         "destination": clone_services[edge.destination.id],
