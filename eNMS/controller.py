@@ -1791,7 +1791,8 @@ class Controller(vs.TimingMixin):
                     builder_id = kwargs[f"{builder_type}s"][0]
                     db.fetch(builder_type, id=builder_id, rbac="edit")
             instance = db.factory(type, commit=True, **kwargs)
-            instance.post_update()
+            if hasattr(instance, "post_update"):
+                instance.post_update()
             if kwargs.get("copy"):
                 db.fetch(type, id=kwargs["copy"]).duplicate(clone=instance)
             if relations := vs.properties["update"].get(instance.class_type):
