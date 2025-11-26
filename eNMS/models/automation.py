@@ -960,8 +960,5 @@ class Task(AbstractBase):
     def time_before_next_run(self):
         return get(f"{vs.scheduler_address}/time_left/{self.id}", timeout=0.01).json()
 
-    def update(self, **kwargs):
-        super().update(**kwargs)
-        if not kwargs.get("import_mechanism", False):
-            db.session.commit()
-            self.schedule(mode="schedule" if self.is_active else "pause")
+    def post_update(self):
+        self.schedule(mode="schedule" if self.is_active else "pause")
