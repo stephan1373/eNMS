@@ -384,6 +384,9 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   Commit: 74d9894b807a7984fb667f644517a74af9f7933a
 - Fix bug label and color of the edges not preserved when duplicating a workflow
   Commit: 075bf450767ee1cdba3aa7919415dd6e9ffa2d12
+- Fix bug freeze after duplicating task with admin user when the task was created by a
+  non-admin user because of RBAC relationships (email "Scheduling issue - causing lockup")
+  Commit: 9b9684adf160607fc002f8983871e8b8bd6635e
 
 Key Ideas about the refactoring of runner.py and "High Performance":
 - Committing changes one by one takes more time (in particular, every result is created and committed in its
