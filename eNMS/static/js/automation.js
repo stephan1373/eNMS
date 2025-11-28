@@ -769,50 +769,6 @@ function runServicesOnTargets(id) {
   });
 }
 
-function showImportServicesPanel() {
-  openPanel({
-    name: "import_services",
-    title: "Import Services",
-    size: "600 500",
-    callback: () => {
-      new Dropzone(document.getElementById(`dropzone-services`), {
-        url: "/import_services",
-        timeout: automation.service_import.timeout,
-        init: function() {
-          this.on("sending", function(file, xhr) {
-            xhr.ontimeout = function() {
-              notify(`Upload of File "${file.name}" timed out.`, "error", 5, true);
-              file.previewElement.classList.add("dz-error");
-            };
-          });
-        },
-        error: function(file, message) {
-          const error = typeof message == "string" ? message : message.alert;
-          const log = `File ${file.name} was not uploaded - ${error}`;
-          notify(log, "error", 5, true);
-          file.previewElement.classList.add("dz-error");
-        },
-        success: function(file, message) {
-          if (message.alert) {
-            notify(`File upload failed (${message.alert}).`, "error", 5, true);
-          } else {
-            notify(`File uploaded (${message}).`, "success", 5, true);
-          }
-          file.previewElement.classList.add(message.alert ? "dz-error" : "dz-success");
-        },
-        accept: function(file, done) {
-          if (!file.name.toLowerCase().endsWith(".tgz")) {
-            done("The file must be a .tgz archive");
-          } else {
-            notify(`File ${file.name} accepted for upload.`, "success", 5, true);
-            done();
-          }
-        },
-      });
-    },
-  });
-}
-
 configureNamespace("automation", [
   copyClipboard,
   displayCalendar,
@@ -825,7 +781,6 @@ configureNamespace("automation", [
   runService,
   runServicesOnTargets,
   schedulerAction,
-  showImportServicesPanel,
   showResult,
   showRunServicePanel,
   showRuntimePanel,
