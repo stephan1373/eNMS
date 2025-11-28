@@ -19,21 +19,6 @@ from eNMS.models.base import AbstractBase
 from eNMS.variables import vs
 
 
-class Snippet(AbstractBase):
-    __tablename__ = type = class_type = "snippet"
-    id = db.Column(Integer, primary_key=True)
-    name = db.Column(db.SmallString, unique=True)
-    category = db.Column(db.SmallString)
-    creator = db.Column(db.SmallString)
-    creation_time = db.Column(db.TinyString)
-    code = db.Column(db.LargeString)
-    description = db.Column(db.LargeString)
-    version = db.Column(db.TinyString)
-    last_modified = db.Column(db.TinyString, info={"log_change": False})
-    last_modified_by = db.Column(db.SmallString, info={"log_change": False})
-    logs = relationship("Changelog", back_populates="snippet")
-
-
 class Server(AbstractBase):
     __tablename__ = type = class_type = "server"
     id = db.Column(Integer, primary_key=True)

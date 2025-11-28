@@ -667,35 +667,6 @@ class RunServiceForm(BaseForm):
     service = InstanceField("Services", model="service")
 
 
-class SnippetForm(BaseForm):
-    template = "object"
-    form_type = HiddenField(default="snippet")
-    id = HiddenField()
-    name = StringField("Name", [InputRequired()])
-    category = StringField("Category")
-    version = StringField("Version")
-    description = StringField(widget=TextArea(), render_kw={"rows": 3})
-    code = StringField(
-        type="code",
-        python=True,
-        widget=TextArea(),
-        render_kw={"rows": 6},
-        layout="<div style='margin-top:10px'>{field}</div>",
-    )
-    creator = StringField(render_kw={"readonly": True})
-    creation_time = StringField("Creation Time", render_kw={"readonly": True})
-    last_modified = StringField("Last Modified", render_kw={"readonly": True})
-    last_modified_by = StringField("Last Modified By", render_kw={"readonly": True})
-    properties = [
-        "creator",
-        "creation_time",
-        "description",
-        "last_modified",
-        "last_modified_by",
-        "version",
-    ]
-
-
 class ServerForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="server")
