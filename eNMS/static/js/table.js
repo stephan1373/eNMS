@@ -1162,7 +1162,7 @@ tables.service = class ServiceTable extends Table {
     let runtimeArg = "";
     if (row.type != "workflow") runtimeArg = ", null, 'result'";
     return `
-      <ul class="pagination pagination-lg" style="margin: 0px; width: 350px">
+      <ul class="pagination pagination-lg" style="margin: 0px; width: 320px">
         ${this.changelogButton(row)}
         <li>
           <button type="button" class="btn btn-sm btn-info"
