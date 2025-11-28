@@ -470,17 +470,6 @@ export function showDeviceResultsPanel(device) {
   });
 }
 
-function exportTopology() {
-  notify("Topology export starting...", "success", 5, true);
-  call({
-    url: "/topology_export",
-    form: "excel_export-form",
-    callback: function() {
-      notify("Topology successfully exported.", "success", 5, true);
-    },
-  });
-}
-
 function importTopology() {
   notify("Topology import: starting...", "success", 5, true);
   const formData = new FormData($("#import-form")[0]);

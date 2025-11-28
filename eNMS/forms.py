@@ -477,12 +477,6 @@ class DeviceDataForm(BaseForm):
     data_type = SelectField("Display", choices=vs.configuration_properties)
 
 
-class ExcelExportForm(BaseForm):
-    action = "eNMS.inventory.exportTopology"
-    form_type = HiddenField(default="excel_export")
-    export_filename = StringField("Filename")
-
-
 class FileForm(BaseForm):
     form_type = HiddenField(default="file")
     id = HiddenField()
