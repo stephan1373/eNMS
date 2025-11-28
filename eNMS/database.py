@@ -635,21 +635,7 @@ class Database:
             entity = [getattr(vs.models[model], property) for property in properties]
         else:
             entity = [vs.models[model]]
-        query = self.session.query(*entity)
-        if rbac:
-            if not current_user and not user:
-                raise self.rbac_error
-            user = (
-                current_user
-                or self.session.query(vs.models["user"]).filter_by(name=user).first()
-            )
-            if not user:
-                return
-            if user.is_authenticated and not user.is_admin:
-                if model in vs.rbac["admin_models"].get(rbac, []):
-                    raise self.rbac_error
-                query = vs.models[model].rbac_filter(query, rbac, user)
-        return query
+        return self.session.query(*entity)
 
     def register_custom_models(self):
         for model in ("device", "link", "service", "data"):
