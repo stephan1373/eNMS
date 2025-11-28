@@ -28,7 +28,6 @@ import {
   displayStorePath,
   folderPath,
 } from "./administration.js";
-import { exportServices } from "./automation.js";
 import { updateNetworkRightClickBindings } from "./networkBuilder.js";
 
 export let tables = {};
@@ -1203,13 +1202,6 @@ tables.service = class ServiceTable extends Table {
           <span class="glyphicon glyphicon-duplicate"></span></button>
         </li>
         <li>
-          <button type="button" class="btn btn-sm btn-primary"
-          onclick="location.href='/export_service/${row.id}'"
-          data-tooltip="Export Service as .tgz"
-            ><span class="glyphicon glyphicon-export"></span
-          ></button>
-        </li>
-        <li>
           <button type="button" class="btn btn-sm btn-success"
           onclick="eNMS.automation.runService({id: '${row.id}',
           parametrization: ${row.mandatory_parametrization}})"
@@ -2263,17 +2255,6 @@ function showBulkDeletionPanel(tableId, model) {
       currently displayed in the table ?`,
     confirmButton: "Delete",
     onConfirm: () => bulkDeletion(tableId, model),
-  });
-}
-
-function showBulkServiceExportPanel(tableId) {
-  showConfirmationPanel({
-    id: "bulk-tgz-export",
-    title: "Bulk .tgz Export (all services in table)",
-    message: `Are you sure you want to export all services
-      in the table as .tgz (this process might take a long time ?)`,
-    confirmButton: "Export",
-    onConfirm: () => exportServices(tableId),
   });
 }
 

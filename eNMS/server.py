@@ -276,12 +276,6 @@ class Server(Flask):
                 return_data, download_name=Path(full_path).name, as_attachment=True
             )
 
-        @blueprint.route("/export_service/<int:id>")
-        @self.process_requests
-        def export_service(id):
-            filename = f"/{controller.export_service(id)}.tgz"
-            return send_file(filename, as_attachment=True)
-
         @blueprint.route("/terminal/<session>")
         @self.process_requests
         def ssh_connection(session):

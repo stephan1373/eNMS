@@ -421,54 +421,6 @@ class Controller(vs.TimingMixin):
         except UnicodeDecodeError:
             return {"error": "Cannot read file (unsupported type)."}
 
-    def export_service(self, service_id, folder=""):
-        service = db.fetch("service", id=service_id)
-        path = Path(vs.file_path / "services" / folder / service.filename)
-        path.mkdir(parents=True, exist_ok=True)
-        services = (
-            set(service.deep_services) if service.type == "workflow" else [service]
-        )
-        exclude = ("target_devices", "target_pools", "pools", "events")
-        services = [
-            service.to_dict(
-                export=True, private_properties=True, exclude_relations=exclude
-            )
-            for service in services
-        ]
-        yaml = vs.custom.get_yaml_instance()
-        with open(path / "service.yaml", "w") as file:
-            yaml.dump(services, file)
-        if service.type == "workflow":
-            edges = [edge.to_dict(export=True) for edge in service.deep_edges]
-            with open(path / "workflow_edge.yaml", "w") as file:
-                yaml.dump(edges, file)
-        with open(path / "metadata.yaml", "w") as file:
-            metadata = {
-                "version": vs.server_version,
-                "export_time": datetime.now(),
-                "service": service.name,
-            }
-            yaml.dump(metadata, file)
-        with open_tar(f"{path}.tgz", "w:gz") as tar:
-            tar.add(path, arcname=service.filename)
-        rmtree(path, ignore_errors=True)
-        return path
-
-    def export_services(self, **kwargs):
-        if kwargs["parent-filtering"] == "true":
-            kwargs["workflows_filter"] = "empty"
-        folder_name = f"bulk_export_{current_user}_{vs.get_time(path=True)}"
-        folder = Path(vs.file_path / "services" / folder_name)
-        folder.mkdir(parents=True, exist_ok=True)
-        service_count = defaultdict(int)
-        for service in self.filtering("service", properties=["id"], form=kwargs):
-            service_path = self.export_service(service.id, folder)
-            Path(f"{service_path}.tgz").rename(
-                f"{folder}/{Path(service_path).name}_{service_count[service_path]}.tgz"
-            )
-            service_count[service_path] += 1
-        return f"services/{folder_name}"
-
     def filtering(
         self, model, bulk=False, rbac="read", user=None, properties=None, **kwargs
     ):
