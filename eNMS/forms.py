@@ -519,12 +519,6 @@ class FileEditorForm(BaseForm):
     file_content = StringField(widget=TextArea(), render_kw={"rows": 8})
 
 
-class ImportServices(BaseForm):
-    action = "eNMS.automation.importServices"
-    template = "upload_services"
-    form_type = HiddenField(default="import_services")
-
-
 class LoginForm(BaseForm):
     form_type = HiddenField(default="login")
     get_request_allowed = False
