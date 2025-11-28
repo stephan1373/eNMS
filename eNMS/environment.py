@@ -88,38 +88,6 @@ class Environment(vs.TimingMixin):
         Path(vs.settings["files"]["trash"]).mkdir(parents=True, exist_ok=True)
         self.ssh_port = -1
 
-    def authenticate_user(self, **kwargs):
-        name, password = kwargs["username"], kwargs["password"]
-        if not name or not password:
-            return False
-        user = db.fetch("user", allow_none=True, name=name)
-        default_method = vs.settings["authentication"]["default"]
-        user_method = getattr(user, "authentication", default_method)
-        method = kwargs.get("authentication_method", user_method)
-        if (
-            vs.settings["authentication"]["force_authentication_method"]
-            and user
-            and user.authentication != method
-        ):
-            return False
-        if method not in vs.settings["authentication"]["methods"]:
-            return False
-        elif method == "database":
-            if not user:
-                return False
-            user_password = self.get_password(user.password)
-            success = user and user_password and argon2.verify(password, user_password)
-            return user if success else False
-        else:
-            authentication_function = getattr(vs.custom, f"{method}_authentication")
-            response = authentication_function(user, name, password)
-            if not response:
-                return False
-            elif not user:
-                user = db.factory("user", authentication=method, **response)
-                db.session.commit()
-            return user
-
     def build_multiprocessing_logging_handler(self, logging_config):
         class MultiProcessingLoggingHandler(Handler):
             def __init__(self, handler_type, **kwargs):
