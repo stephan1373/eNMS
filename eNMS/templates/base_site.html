@@ -287,23 +287,6 @@
                     &nbsp;Files
                   </a>
                 </li>
-                {% if user.is_admin %}
-                <li class="nav-item">
-                  <a
-                    onclick="eNMS.base.openPanel({
-                      name: 'administration', title: 'Administration Panel', size: '450px auto'
-                      })"
-                    style="cursor: pointer"
-                  >
-                    <img
-                      src="{{ url_for('static', filename='img/administration.png') }}"
-                      height="25"
-                      width="25"
-                    />
-                    &nbsp;Admin
-                  </a>
-                </li>
-                {% endif %}
               </ul>
             </nav>
           </div>
