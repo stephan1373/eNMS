@@ -22,14 +22,6 @@
     "landing_page": "/dashboard",
     "allow_password_change": true,
     "force_authentication_method": false,
-    "duo": {
-      "config": {
-        "client_id": "DIRUY3ZRHXYYHVOZDMIW",
-        "host": "api-58bbe24c.duosecurity.com",
-        "redirect_uri": "https://enms:5000/duo-callback"
-      },
-      "enabled": false
-    },
     "methods": {
       "database": {
         "display_name": "Local User",
