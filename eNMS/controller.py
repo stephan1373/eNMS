@@ -1387,27 +1387,6 @@ class Controller(vs.TimingMixin):
         run_object.payload = {**initial_payload, **kwargs}
         return run_object.run()
 
-    def run_debug_code(self, snippet_id=None, **kwargs):
-        if not current_user.is_admin:
-            return
-        code = db.fetch("snippet", id=snippet_id).code if snippet_id else kwargs["code"]
-        result = StringIO()
-        with redirect_stdout(result):
-            try:
-                exec(
-                    code,
-                    {
-                        "controller": self,
-                        "env": env,
-                        "db": db,
-                        "models": vs.models,
-                        "vs": vs,
-                    },
-                )
-            except Exception:
-                return format_exc()
-        return result.getvalue()
-
     def run_service(self, path, **kwargs):
         server = db.fetch("server", name=vs.server, rbac=None)
         if "application" not in server.allowed_automation:
