@@ -1151,15 +1151,6 @@ tables.service = class ServiceTable extends Table {
       >
         <span class="glyphicon glyphicon-import"></span>
       </button>`,
-      `
-      <button
-        class="btn btn-primary"
-        onclick="eNMS.table.showBulkServiceExportPanel('${this.id}')"
-        data-tooltip="Export Services as .tgz"
-        type="button"
-      >
-        <span class="glyphicon glyphicon-export"></span>
-      </button>`,
       this.bulkEditButton(),
       this.exportTableButton(),
       this.bulkDeletionButton(),
@@ -2380,7 +2371,6 @@ configureNamespace("table", [
   serializedSearch,
   showBulkDeletionPanel,
   showBulkEditPanel,
-  showBulkServiceExportPanel,
   showTableChangelogPanel,
   togglePaginationDisplay,
   userFilteringDisplay,
