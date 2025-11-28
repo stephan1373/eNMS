@@ -751,10 +751,6 @@ class Run(AbstractBase):
         except (KeyError, TypeError):
             return "N/A"
 
-    @classmethod
-    def rbac_filter(cls, *args):
-        return super().rbac_filter(*args, join_class="service")
-
     def run(self):
         start_time = datetime.now()
         try:

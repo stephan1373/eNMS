@@ -146,23 +146,6 @@ class AbstractBase(db.base):
             result[property] = value
         return result
 
-    @classmethod
-    def rbac_filter(cls, query, mode, user, join_class=None):
-        model = join_class or getattr(cls, "class_type", None)
-        if model not in vs.rbac["rbac_models"]:
-            return query
-        if join_class:
-            query = query.join(getattr(cls, join_class))
-        user_group = [group.id for group in user.groups]
-        property = getattr(vs.models[model], f"rbac_{mode}")
-        rbac_constraint = property.any(vs.models["group"].id.in_(user_group))
-        owners_constraint = vs.models[model].owners.any(id=user.id)
-        if hasattr(vs.models[model], "admin_only") and mode not in vs.rbac[
-            "admin_only_bypass"
-        ].get(model, []):
-            query = query.filter(vs.models[model].admin_only == false())
-        return query.filter(or_(owners_constraint, rbac_constraint))
-
     def table_properties(self, **kwargs):
         displayed = [column["data"] for column in kwargs["columns"]]
         table_type = getattr(self, "class_type", self.type)
