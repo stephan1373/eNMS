@@ -257,7 +257,6 @@
     "/rest/search": "access",
     "/rest/topology": "access",
     "/old_instances_deletion": "access",
-    "/revert_change": "access",
     "/run_debug_code": "admin",
     "/run_service": "access",
     "/run_service_on_targets": "access",

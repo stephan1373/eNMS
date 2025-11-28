@@ -266,15 +266,6 @@ function showMigrationPanel(type) {
   });
 }
 
-function revertChange(id) {
-  call({
-    url: `/revert_change/${id}`,
-    callback: function() {
-      notify("Changes reverted.", "success", 5, true);
-    },
-  });
-}
-
 function migrationsImport(type) {
   notify("Inventory Import initiated.", "success", 5, true);
   call({
@@ -484,6 +475,5 @@ configureNamespace("administration", [
   showMigrationPanel,
   showProfile,
   showServerTime,
-  revertChange,
   updateDeviceRbac,
 ]);
