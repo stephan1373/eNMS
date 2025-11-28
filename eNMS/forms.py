@@ -400,22 +400,6 @@ class CredentialForm(BaseForm):
         return valid_form and not invalid_priority
 
 
-class YamlMigrationForm(BaseForm):
-    template = "yaml_migration"
-    migration_folder = vs.migration_path
-    form_type = HiddenField(default="yaml_migration")
-    empty_database_before_import = BooleanField("Empty Database before Import")
-    skip_pool_update = BooleanField(
-        "Skip the Pool update after Import", default="checked"
-    )
-    export_private_properties = BooleanField(
-        "Include private properties", default="checked"
-    )
-    import_export_types = SelectMultipleField(
-        "Instances to migrate", choices=db.import_export_models
-    )
-
-
 class JsonMigrationForm(BaseForm):
     template = "json_migration"
     migration_folder = vs.migration_path

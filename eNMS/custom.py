@@ -1,5 +1,4 @@
 from re import sub
-from ruamel.yaml import YAML
 from uuid import uuid4
 from warnings import warn
 
