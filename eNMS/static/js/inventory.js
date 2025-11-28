@@ -489,7 +489,6 @@ function importTopology() {
 
 configureNamespace("inventory", [
   downloadNetworkData,
-  exportTopology,
   openObjectPanel,
   showConnectionPanel,
   webConnection,
@@ -498,6 +497,5 @@ configureNamespace("inventory", [
   showDeviceData,
   showDeviceResultsPanel,
   showGitConfiguration,
-  showImportTopologyPanel,
   showSessionLog,
 ]);
