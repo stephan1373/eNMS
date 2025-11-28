@@ -119,26 +119,6 @@ class Server(Flask):
                 self.log_user(user)
             return redirect(url_for("blueprint.route", page=current_user.landing_page))
 
-        @blueprint.route("/duo-callback")
-        def duo_callback():
-            if (
-                "username" not in session
-                or "state" not in session
-                or request.args.get("state") != session["state"]
-            ):
-                abort(403)
-            code, username = request.args.get("duo_code"), session["username"]
-            try:
-                env.duo_client.exchange_authorization_code_for_2fa_result(
-                    code, username
-                )
-                self.log_user(username)
-            except Exception:
-                log = f"DUO Authentication error for user '{username}' ({format_exc()})"
-                env.log("error", log, logger="security")
-                abort(403)
-            return redirect(url_for("blueprint.route", page=current_user.landing_page))
-
         @blueprint.route("/dashboard")
         @self.process_requests
         def dashboard():
