@@ -76,7 +76,6 @@ class Environment(vs.TimingMixin):
         self.temporal_worker = getenv("TEMPORAL")
         if self.file_watcher:
             return
-        self.init_authentication()
         self.init_encryption()
         if self.use_vault:
             self.init_vault_client()
@@ -173,28 +172,6 @@ class Environment(vs.TimingMixin):
 
     def get_workers(self):
         return {worker.name: worker.to_dict() for worker in db.fetch_all("worker")}
-
-    def init_authentication(self):
-        ldap_servers = vs.settings["authentication"]["methods"]["ldap"].get("servers")
-        try:
-            if getenv("LDAP_ADDR"):
-                self.ldap_servers = [Server(getenv("LDAP_ADDR"))]
-            elif ldap_servers:
-                self.ldap_servers = [
-                    Server(address, **server_kwargs)
-                    for address, server_kwargs in ldap_servers.items()
-                ]
-            if getenv("TACACS_ADDR"):
-                self.tacacs_client = TACACSClient(
-                    getenv("TACACS_ADDR"), 49, getenv("TACACS_PASSWORD")
-                )
-        except NameError as exc:
-            warn(f"Module missing ({exc})")
-        if vs.settings["authentication"]["duo"]["enabled"]:
-            self.duo_client = DuoClient(
-                client_secret=getenv("DUO_SECRET"),
-                **vs.settings["authentication"]["duo"]["config"],
-            )
 
     def init_connection_pools(self):
         self.request_session = RequestSession()
