@@ -1,5 +1,4 @@
 ansible
-duo_universal
 dramatiq[redis, watch]
 hvac
 ldap3
