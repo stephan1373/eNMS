@@ -179,7 +179,6 @@
     "/service_table": "access",
     "/session_log_form": "access",
     "/session_table": "access",
-    "/snippet_table": "admin",
     "/store_table": "access",
     "/network_table": "access",
     "/table_form": "access",
