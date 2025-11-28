@@ -122,30 +122,6 @@ class RestApi(vs.TimingMixin):
         else:
             return {**controller.run(service.id, **data), "errors": errors}
 
-    def run_task(self, task_id):
-        server = db.fetch("server", name=vs.server, rbac=None)
-        if "scheduler" not in server.allowed_automation:
-            return {"error": "Scheduled runs are not allowed on this server."}
-        sleep(uniform(0, vs.automation["advanced"]["task_jitter"]))
-        task = db.fetch("task", rbac="edit", id=task_id)
-        data = {
-            "trigger": "Scheduler",
-            "creator": task.last_scheduled_by,
-            "runtime": vs.get_time(randomize=True),
-            "task": task.id,
-            **task.initial_payload,
-        }
-        if task.devices:
-            data["target_devices"] = [device.id for device in task.devices]
-        if task.pools:
-            data["target_pools"] = [pool.id for pool in task.pools]
-        if vs.settings["automation"]["task_queue"] == "dramatiq":
-            controller.run.send(task.service.id, **data)
-        elif vs.settings["automation"]["task_queue"] == "temporal":
-            async_run(env.enqueue_workflow(task.service.id, data))
-        else:
-            Thread(target=controller.run, args=(task.service.id,), kwargs=data).start()
-
     def search(self, **kwargs):
         filtering_kwargs = {
             "draw": 1,
