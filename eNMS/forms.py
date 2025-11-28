@@ -1464,13 +1464,6 @@ class UserForm(RbacForm):
             (theme, values["name"]) for theme, values in vs.themes["themes"].items()
         ],
     )
-    authentication = SelectField(
-        "Authentication",
-        choices=[
-            (method, values["display_name"])
-            for method, values in vs.settings["authentication"]["methods"].items()
-        ],
-    )
     password = PasswordField("Password")
     is_admin = BooleanField(default=False)
 
