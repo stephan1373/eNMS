@@ -181,39 +181,6 @@ function showChangelogDiff(id) {
   });
 }
 
-export function openDebugPanel() {
-  openPanel({
-    name: "debug",
-    title: "Debug Panel",
-    size: "1200px 450px",
-  });
-}
-
-function runDebugCode(snippetId) {
-  call({
-    url: `/run_debug_code${snippetId ? `/${snippetId}` : ""}`,
-    form: "debug-form",
-    callback: function(result) {
-      if (!snippetId) {
-        $("#debug-output").val(result);
-      } else if (result.trim()) {
-        openPanel({
-          name: "snippet-code",
-          content: `<div class="modal-body"><div id="debug-${snippetId}"></div></div>`,
-          size: "900 500",
-          title: "Debug Panel",
-          id: snippetId,
-          callback: function() {
-            const editor = initCodeMirror(`debug-${snippetId}`, "logs");
-            editor.setValue(result);
-          },
-        });
-      }
-      notify("Code executed successfully.", "success", 5, true);
-    },
-  });
-}
-
 function getClusterStatus() {
   call({
     url: "/get_cluster_status",
@@ -465,8 +432,6 @@ configureNamespace("administration", [
   getGitContent,
   migrationsExport,
   migrationsImport,
-  openDebugPanel,
-  runDebugCode,
   saveFile,
   saveProfile,
   scanFolder,

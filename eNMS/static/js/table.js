@@ -1727,15 +1727,6 @@ tables.snippet = class SnippetTable extends Table {
       this.createNewButton(),
       this.bulkEditButton(),
       this.exportTableButton(),
-      `
-      <button
-        class="btn btn-success"
-        onclick="eNMS.administration.openDebugPanel()"
-        data-tooltip="Run Debug Snippet"
-        type="button"
-      >
-        <span class="glyphicon glyphicon-play"></span>
-      </button>`,
       this.bulkDeletionButton(),
     ];
   }
@@ -1758,12 +1749,6 @@ tables.snippet = class SnippetTable extends Table {
           onclick="eNMS.base.showInstancePanel('snippet', '${row.id}', 'duplicate')"
           data-tooltip="Duplicate"
             ><span class="glyphicon glyphicon-duplicate"></span
-          ></button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-sm btn-success"
-          onclick="eNMS.administration.runDebugCode(${row.id})"
-          data-tooltip="Run Snippet"><span class="glyphicon glyphicon-play"></span
           ></button>
         </li>
         ${this.deleteInstanceButton(row)}

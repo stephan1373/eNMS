@@ -23,7 +23,6 @@ user: false
 import {
   currentStore,
   folderPath,
-  openDebugPanel,
   showCredentialPanel,
   showFolderPanel,
   showStorePanel,
@@ -1587,10 +1586,6 @@ export function hideMenu() {
 }
 
 $(document).ready(function() {
-  $("#eNMS").on("click", function(event) {
-    if (!event.altKey || !event.shiftKey || !user.is_admin) return;
-    openDebugPanel();
-  });
   NProgress.start();
   const alerts = localStorage.getItem("alerts");
   if (!alerts) {
