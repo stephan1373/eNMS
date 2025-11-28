@@ -519,21 +519,6 @@ class FileEditorForm(BaseForm):
     file_content = StringField(widget=TextArea(), render_kw={"rows": 8})
 
 
-class LoginForm(BaseForm):
-    form_type = HiddenField(default="login")
-    get_request_allowed = False
-    authentication_method = SelectField(
-        "Authentication Method",
-        choices=[
-            (method, properties["display_name"])
-            for method, properties in vs.settings["authentication"]["methods"].items()
-            if properties["enabled"]
-        ],
-    )
-    username = StringField("Name", [InputRequired()])
-    password = PasswordField("Password", [InputRequired()])
-
-
 class ObjectForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="object")
