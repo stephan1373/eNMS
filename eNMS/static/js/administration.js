@@ -155,15 +155,6 @@ export function displayStorePath() {
   $("#current-store-path").html(`<b>Current Store :</b>${htmlPath.join("")}`);
 }
 
-function downloadProfilingData() {
-  call({
-    url: "/get_profiling_data",
-    callback: function(data) {
-      downloadFile("profiling_data", JSON.stringify(data, null, 2), "json");
-    },
-  });
-}
-
 function showChangelogDiff(id) {
   call({
     url: `/get_changelog_history/${id}`,
@@ -291,18 +282,6 @@ function migrationsImport(type) {
     form: "migration-form",
     callback: function(result) {
       notify(result, "success", 5, true);
-    },
-  });
-}
-
-function oldInstancesDeletion() {
-  notify("Instances Deletion initiated...", "success", 5, true);
-  call({
-    url: "/old_instances_deletion",
-    form: "old_instances_deletion-form",
-    callback: function() {
-      notify("Log Deletion done.", "success", 5, true);
-      $("#old_instances_deletion").remove();
     },
   });
 }
@@ -488,7 +467,6 @@ function updateDeviceRbac() {
 
 configureNamespace("administration", [
   displayFiles,
-  downloadProfilingData,
   editFile,
   enterFolder,
   enterStore,
@@ -496,7 +474,6 @@ configureNamespace("administration", [
   getGitContent,
   migrationsExport,
   migrationsImport,
-  oldInstancesDeletion,
   openDebugPanel,
   runDebugCode,
   saveFile,

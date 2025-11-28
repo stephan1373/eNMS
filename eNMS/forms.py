@@ -642,21 +642,6 @@ class RestartWorkflowForm(BaseForm):
     restart_pools = MultipleInstanceField("Pools", model="pool")
 
 
-class OldInstancesDeletionForm(BaseForm):
-    action = "eNMS.administration.oldInstancesDeletion"
-    form_type = HiddenField(default="old_instances_deletion")
-    deletion_types = SelectMultipleField(
-        "Instances to Delete",
-        choices=[
-            ("run", "Result"),
-            ("changelog", "Changelog"),
-            ("service", "Soft Deleted Services"),
-            ("workflow_edge", "Soft Deleted Edges"),
-        ],
-    )
-    date_time = StringField("Older Than", [InputRequired()], type="date")
-
-
 class RunForm(BaseForm):
     template = "object"
     form_type = HiddenField(default="run")

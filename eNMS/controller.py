@@ -1330,27 +1330,6 @@ class Controller(vs.TimingMixin):
             "total_count": query.count(),
         }
 
-    def old_instances_deletion(self, **kwargs):
-        date_time_object = datetime.strptime(kwargs["date_time"], "%d/%m/%Y %H:%M:%S")
-        date_time_string = date_time_object.strftime("%Y-%m-%d %H:%M:%S.%f")
-        for model in kwargs["deletion_types"]:
-            row = {
-                "run": "runtime",
-                "changelog": "time",
-                "service": "last_modified",
-                "workflow_edge": "last_modified",
-            }[model]
-            conditions = [getattr(vs.models[model], row) < date_time_string]
-            if model in ("service", "workflow_edge"):
-                conditions.append(vs.models[model].soft_deleted == true())
-            session_query = db.session.query(vs.models[model]).filter(and_(*conditions))
-            if model in ("service", "workflow_edge"):
-                for obj in session_query.all():
-                    db.delete_instance(obj)
-            else:
-                session_query.delete(synchronize_session=False)
-            db.session.commit()
-
     def remove_instance(self, **kwargs):
         instance = db.fetch(kwargs["instance"]["type"], id=kwargs["instance"]["id"])
         target = db.fetch(kwargs["relation"]["type"], id=kwargs["relation"]["id"])
