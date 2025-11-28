@@ -245,8 +245,6 @@
     "/get_workflow_path": "access",
     "/get_workflow_services": "access",
     "/get_instance_tree": "access",
-    "/import_services": "access",
-    "/import_topology": "admin",
     "/json_migration_export": "admin",
     "/json_migration_import": "admin",
     "/login": "none",
@@ -282,9 +280,7 @@
     "/update_device_rbac": "admin",
     "/upload_files": "access",
     "/view_filtering": "access",
-    "/web_connection": "access",
-    "/yaml_migration_export": "admin",
-    "/yaml_migration_import": "admin"
+    "/web_connection": "access"
   },
   "rest_endpoints": {
     "GET": {
