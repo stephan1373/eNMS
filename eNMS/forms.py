@@ -483,12 +483,6 @@ class ExcelExportForm(BaseForm):
     export_filename = StringField("Filename")
 
 
-class ExcelImportForm(BaseForm):
-    template = "topology_import"
-    form_type = HiddenField(default="excel_import")
-    replace = BooleanField("Replace Existing Topology")
-
-
 class FileForm(BaseForm):
     form_type = HiddenField(default="file")
     id = HiddenField()

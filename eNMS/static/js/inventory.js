@@ -470,18 +470,6 @@ export function showDeviceResultsPanel(device) {
   });
 }
 
-function showImportTopologyPanel() {
-  openPanel({
-    name: "excel_import",
-    title: "Import Topology as an Excel file",
-    callback: () => {
-      document.getElementById("file").onchange = function() {
-        importTopology();
-      };
-    },
-  });
-}
-
 function exportTopology() {
   notify("Topology export starting...", "success", 5, true);
   call({
