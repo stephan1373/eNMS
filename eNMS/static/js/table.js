@@ -1866,18 +1866,6 @@ tables.changelog = class ChangelogTable extends Table {
             ><span class="glyphicon glyphicon-edit"></span
           ></button>
         </li>
-        <li>
-          <button
-            type="button"
-            class="btn btn-sm btn-${row.is_revertible ? "danger" : "dark"}"
-            ${row.is_revertible ? "" : "disabled"}
-            onclick="eNMS.administration.revertChange(${
-              row.id
-            })" data-tooltip="Revert Change"
-            >
-              <span class="fa fa-undo"></span>
-            </button>
-        </li>
       </ul>`,
     ];
   }
