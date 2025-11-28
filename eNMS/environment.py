@@ -40,21 +40,6 @@ except ImportError:
     warn(f"Couldn't import hvac module ({format_exc()})")
 
 try:
-    from ldap3 import Server
-except ImportError as exc:
-    warn(f"Couldn't import ldap3 module ({exc})")
-
-try:
-    from tacacs_plus.client import TACACSClient
-except ImportError as exc:
-    warn(f"Couldn't import tacacs_plus module ({exc})")
-
-try:
-    from duo_universal.client import Client as DuoClient
-except ImportError as exc:
-    warn(f"Couldn't import duo_universal module ({exc})")
-
-try:
     from temporalio.client import Client
     from temporalio.worker import Worker
 except ImportError as exc:

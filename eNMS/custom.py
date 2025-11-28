@@ -3,11 +3,6 @@ from ruamel.yaml import YAML
 from uuid import uuid4
 from warnings import warn
 
-try:
-    from ldap3 import Connection
-except ImportError as exc:
-    warn(f"Couldn't import ldap3 module({exc})")
-
 from eNMS.environment import env
 from eNMS.variables import vs
 
