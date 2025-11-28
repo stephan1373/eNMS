@@ -16,14 +16,6 @@ class CustomApp(vs.TimingMixin):
     def generate_uuid(self):
         return str(uuid4())
 
-    def ldap_authentication(self, user, name, password):
-        if not hasattr(env, "ldap_servers"):
-            env.log("error", "LDAP authentication failed: no server configured")
-            return False
-        user = f"uid={name},dc=example,dc=com"
-        success = Connection(env.ldap_servers, user=user, password=password).bind()
-        return {"name": name, "is_admin": True} if success else False
-
     def log_post_processing(_self, **kwargs):
         return
 
@@ -42,13 +34,6 @@ class CustomApp(vs.TimingMixin):
 
     def server_template_context(self):
         return {}
-
-    def tacacs_authentication(self, user, name, password):
-        if not hasattr(env, "tacacs_client"):
-            env.log("error", "TACACS+ authentication failed: no server configured")
-            return False
-        success = env.tacacs_client.authenticate(name, password).valid
-        return {"name": name, "is_admin": True} if success else False
 
 
 vs.custom = CustomApp()
