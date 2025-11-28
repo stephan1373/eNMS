@@ -850,9 +850,6 @@ class Controller(vs.TimingMixin):
             output.update(self.get_instance_tree("network", path, **kwargs))
         return output
 
-    def get_profiling_data(self):
-        return vs.profiling
-
     def get_properties(self, model, id):
         return db.fetch(model, id=id).get_properties()
 
