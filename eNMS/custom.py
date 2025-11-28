@@ -13,25 +13,6 @@ from eNMS.variables import vs
 
 
 class CustomApp(vs.TimingMixin):
-    def get_yaml_instance(self):
-        yaml = YAML(typ="safe")
-        yaml.default_style = '"'
-
-        def representer(dumper, data):
-            style = "|" if "\n" in data else None
-            data = data.lstrip()
-            return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
-
-        def tuple_constructor(loader, node):
-            return tuple(loader.construct_sequence(node))
-
-        yaml.constructor.add_constructor(
-            "tag:yaml.org,2002:python/tuple", tuple_constructor
-        )
-        yaml.representer.add_representer(str, representer)
-        yaml.representer.ignore_aliases = lambda *args: True
-        return yaml
-
     def generate_uuid(self):
         return str(uuid4())
 
