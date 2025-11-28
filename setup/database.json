@@ -48,7 +48,6 @@
     "link",
     "server",
     "service",
-    "snippet",
     "workflow_edge",
     "task",
     "credential",
@@ -66,7 +65,6 @@
       "run",
       "server",
       "service",
-      "snippet",
       "workflow_edge",
       "task",
       "credential",
@@ -172,9 +170,6 @@
         "status",
         "superworkflow_id"
       ],
-      "snippet": [
-        "id"
-      ],
       "task": [
         "id",
         "service_name",
@@ -207,7 +202,6 @@
     "pool": "Pool",
     "server": "Server",
     "service": "Service",
-    "snippet": "Snippet",
     "task": "Task",
     "user": "User",
     "workflow_edge": "WorkflowEdge"
@@ -348,9 +342,6 @@
       "logs",
       "service_changelogs",
       "soft_deleted"
-    ],
-    "snippet": [
-      "id"
     ],
     "network": [
       "id",

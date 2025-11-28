@@ -58,10 +58,6 @@
         "Credentials": {
           "endpoint": "/credential_table",
           "rbac": "admin"
-        },
-        "Snippets": {
-          "endpoint": "/snippet_table",
-          "rbac": "admin"
         }
       }
     },
