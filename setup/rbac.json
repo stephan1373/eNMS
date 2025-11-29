@@ -47,10 +47,6 @@
       "icon": "users",
       "rbac": "access",
       "pages": {
-        "Users": {
-          "endpoint": "/user_table",
-          "rbac": "admin"
-        },
         "Credentials": {
           "endpoint": "/credential_table",
           "rbac": "admin"
