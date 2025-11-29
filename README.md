@@ -97,6 +97,27 @@ ___
 
 eNMS is available in two versions: an **Open Core** version (this repository), and an **Enterprise Edition** with advanced features for production deployments.
 
+<div align="center">
+
+| Feature | Open Core | Enterprise Edition |
+|:-------:|:---------:|:------------------:|
+| Workflow Automation | ✓ | ✓ |
+| Configuration Management | ✓ | ✓ |
+| Network Visualization | ✓ | ✓ |
+| REST API | ✓ | ✓ |
+| **Multi-User Authentication** | ✗ | ✓ |
+| **Role-Based Access Control** | ✗ | ✓ |
+| **Advanced Scheduler** | ✗ | ✓ |
+| **TACACS+ / LDAP / Duo 2FA** | ✗ | ✓ |
+| **Service Import / Export** | ✗ | ✓ |
+| **Migration System** | ✗ | ✓ |
+| **Change Revert / Audit Trail** | ✗ | ✓ |
+| **Administration Panel** | ✗ | ✓ |
+| **Production Scripts & Tools** | ✗ | ✓ |
+| **Professional Support** | ✗ | ✓ |
+
+</div>
+
 ## Enterprise-Only Features
 
 ### Security & Authentication
@@ -139,29 +160,6 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 - **Priority Bug Fixes**: Expedited resolution of critical issues
 - **Implementation Assistance**: Help with deployment, customization, and best practices
 - **Regular Updates**: Access to security patches and feature updates
-
-## Comparison at a Glance
-
-<div align="center">
-
-| Feature | Open Core | Enterprise Edition |
-|:-------:|:---------:|:------------------:|
-| Workflow Automation | ✓ | ✓ |
-| Configuration Management | ✓ | ✓ |
-| Network Visualization | ✓ | ✓ |
-| REST API | ✓ | ✓ |
-| **Multi-User Authentication** | ✗ | ✓ |
-| **Role-Based Access Control** | ✗ | ✓ |
-| **Advanced Scheduler** | ✗ | ✓ |
-| **TACACS+ / LDAP / Duo 2FA** | ✗ | ✓ |
-| **Service Import / Export** | ✗ | ✓ |
-| **Migration System** | ✗ | ✓ |
-| **Change Revert / Audit Trail** | ✗ | ✓ |
-| **Administration Panel** | ✗ | ✓ |
-| **Production Scripts & Tools** | ✗ | ✓ |
-| **Professional Support** | ✗ | ✓ |
-
-</div>
 
 ## Get the Enterprise Edition
 
