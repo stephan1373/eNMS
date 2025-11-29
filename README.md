@@ -102,20 +102,19 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 ### Production-Ready Security & Authentication
 
 - **Multi-User Authentication System**: Full login page with secure session management
-- **Role-Based Access Control (RBAC)**: Configure granular permissions per user or group
-  - Control who can view, edit, or run specific workflows and services
-  - Define access levels for devices, configurations, and network resources
-  - Separate read/write/execute permissions for different teams
 - **Enterprise Authentication**: Support for TACACS+, LDAP, and Duo 2FA integration
+- **Role-Based Access Control (RBAC)**: Configure granular permissions per user or group
+  - Control who can view, edit, or run specific workflows and services (per user or per team)
+  - Define access levels for devices, configurations, and network resources
 - **User & Group Management**: Comprehensive administrative interface for managing teams and permissions
 
-### Advanced Automation & Scheduling
+### Scheduling
 
-- **Advanced Scheduler**: Schedule workflows with precise date/time or crontab expressions
+- **Scheduler Application**: Schedule workflows with precise date/time or crontab expressions
   - Supports complex scheduling patterns for recurring maintenance windows
   - Visual calendar interface for viewing and managing scheduled tasks
   - Integration with workflow execution history and reporting
-- **Scheduled Task Management**: Centralized view of all scheduled jobs across your infrastructure
+- **Task Management**: Centralized view of all scheduled jobs across your infrastructure
 
 ### Data Management & Migration
 
