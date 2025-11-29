@@ -142,6 +142,8 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 
 ## Comparison at a Glance
 
+<div align="center">
+
 | Feature | Open Core | Enterprise Edition |
 |:-------:|:---------:|:------------------:|
 | Workflow Automation | ✓ | ✓ |
@@ -158,6 +160,8 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 | **Administration Panel** | ✗ | ✓ |
 | **Production Scripts & Tools** | ✗ | ✓ |
 | **Professional Support** | ✗ | ✓ |
+
+</div>
 
 ## Get the Enterprise Edition
 
