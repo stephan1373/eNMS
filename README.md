@@ -163,7 +163,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 
 The Enterprise Edition is ideal for organizations deploying eNMS in production environments where security, compliance, multi-tenancy, and professional support are critical requirements.
 
-**Interested in upgrading?** Visit [www.enms.io](https://www.enms.io) or contact us at [contact@enms.io] for pricing and licensing information.
+**Interested in upgrading?** Visit [www.enms.io](https://www.enms.io) or contact us at [contact@enms.io](mailto:contact@enms.io) for pricing and licensing information.
 
 ___
 
