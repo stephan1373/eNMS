@@ -143,7 +143,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
   - Server health monitoring and performance metrics
   - Worker process management and load balancing
 - **Migration Mechanism**: Seamless backup and migration system for upgrading between eNMS versions
-  - Export/import your entire configuration in YAML or JSON format
+  - Export / import your entire database in YAML or JSON format
   - Version-controlled migrations ensure data integrity during upgrades
 - **Production Utilities**: Enterprise-grade maintenance scripts and tools
   - Database optimization and backup management
