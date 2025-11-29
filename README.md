@@ -143,7 +143,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 ## Comparison at a Glance
 
 | Feature | Open Core | Enterprise Edition |
-|---------|-----------|-------------------|
+|:-------:|:---------:|:------------------:|
 | Workflow Automation | ✓ | ✓ |
 | Configuration Management | ✓ | ✓ |
 | Network Visualization | ✓ | ✓ |
