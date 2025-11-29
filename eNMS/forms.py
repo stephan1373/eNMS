@@ -189,7 +189,6 @@ class FormFactory:
         self.generate_instance_insertion_forms()
         self.generate_service_forms()
         self.generate_filtering_forms()
-        self.generate_rbac_forms()
 
     def generate_filtering_forms(self):
         for model in vs.properties["filtering"]:
@@ -234,58 +233,6 @@ class FormFactory:
                     "names": StringField(widget=TextArea(), render_kw={"rows": 8}),
                 },
             )
-
-    def generate_rbac_forms(self):
-        class GroupForm(RbacForm):
-            template = "group"
-            form_type = HiddenField(default="group")
-            admin_only = BooleanField("Admin Only", default=False)
-            force_read_access = BooleanField("Always set 'Read' access", default=False)
-            users = MultipleInstanceField("Users", model="user")
-            menu = SelectMultipleField("Menu", choices=vs.rbac["menus"])
-            pages = SelectMultipleField("Pages", choices=vs.rbac["pages"])
-            get_requests = SelectMultipleField(
-                "GET Requests",
-                choices=[
-                    (key, key)
-                    for key, value in vs.rbac["get_requests"].items()
-                    if value == "access"
-                ],
-            )
-            post_requests = SelectMultipleField(
-                "POST Requests",
-                choices=[
-                    (key, key)
-                    for key, value in vs.rbac["post_requests"].items()
-                    if value == "access"
-                ],
-            )
-            delete_requests = SelectMultipleField(
-                "DELETE Requests",
-                choices=[
-                    (key, key)
-                    for key, value in vs.rbac["delete_requests"].items()
-                    if value == "access"
-                ],
-            )
-
-            @classmethod
-            def form_init(cls):
-                cls.pool_properties = []
-                for model, properties in vs.rbac["rbac_models"].items():
-                    field = SelectMultipleField(choices=list(properties.items()))
-                    setattr(cls, f"{model}_access", field)
-                    vs.form_properties["group"][f"{model}_access"] = {
-                        "type": "multiselect"
-                    }
-                for property in vs.rbac["rbac_models"]["device"]:
-                    property_name = f"rbac_pool_{property}"
-                    ui_name = property.split("_")[-1].capitalize()
-                    cls.pool_properties.append(property_name)
-                    field = MultipleInstanceField(ui_name, model="pool")
-                    setattr(cls, property_name, field)
-                    field_properties = {"type": "object-list", "model": "pool"}
-                    vs.form_properties["group"][property_name] = field_properties
 
     def generate_service_forms(self):
         for file in (vs.path / "eNMS" / "forms").glob("**/*.py"):
