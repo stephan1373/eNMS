@@ -18,10 +18,6 @@ a form in the UI for the script input parameters.
   - **Scheduling**: Services and workflows can be scheduled to start at a later time, or run periodically with CRON.
   - **Event-driven automation**: Services and workflows can be triggered from the REST API.
 
-# Architecture
-
-[![eNMS System Overview](docs/source/_static/eNMS_overview.PNG)](https://enms.readthedocs.io/en/latest/)
-
 ___
 
 # Main features
@@ -88,6 +84,12 @@ While services can be run directly and immediately from the UI, you can also sch
 Services can also be executed programmatically: eNMS has a REST API and a CLI interface that can be used to create, update and delete any type of objects, but also to trigger the execution of a service.
 
 - Docs: _[Scheduling](https://enms.readthedocs.io/en/latest/automation/scheduling/)_
+
+___
+
+# Architecture
+
+[![eNMS System Overview](docs/source/_static/eNMS_overview.PNG)](https://enms.readthedocs.io/en/latest/)
 
 ___
 
