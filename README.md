@@ -95,7 +95,7 @@ ___
 
 # Open Core vs Enterprise Edition
 
-eNMS is available in two versions: an **Open Core** version (this repository) for personal use and evaluation, and a **full Enterprise Edition** with advanced features for production deployments.
+eNMS is available in two versions: an **Open Core** version (this repository), and an **Enterprise Edition** with advanced features for production deployments.
 
 ## Enterprise-Only Features
 
@@ -182,22 +182,7 @@ The Enterprise Edition is ideal for organizations deploying eNMS in production e
 
 ___
 
-# Getting started
-
-## Online content
-
-You can follow us on _[Twitter](https://twitter.com/AutomationEnms)_ or _[Linkedin](https://www.linkedin.com/company/enms-automation)_ to receive notifications about new training content and releases.
-
-## Training Videos
-
-- _[eNMS Installation](https://www.youtube.com/watch?v=Zu2iLNaZDQc)_
-- _[Overview of eNMS](https://www.youtube.com/watch?v=XwU0yom_aY0&t=1205s)_
-
-## Podcasts
-
-- A _[podcast about eNMS and network automation](https://www.pythonpodcast.com/enms-network-automation-episode-232/)_
-
-## Quick Install
+# Quick Install
     Install python 3.8+ (earlier versions not supported)
     git clone https://github.com/afourmy/eNMS.git
     cd eNMS
