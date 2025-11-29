@@ -1508,64 +1508,6 @@ tables.task = class TaskTable extends Table {
   }
 };
 
-tables.group = class GroupTable extends Table {
-  addRow(kwargs) {
-    let row = super.addRow(kwargs);
-    row.users = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'user', ${row.instance}, {parent: '${this.id}', from: 'groups', to: 'users'})">
-      Users</a></b>`;
-    return row;
-  }
-
-  get controls() {
-    return [
-      this.columnDisplay(),
-      this.displayChangelogButton(),
-      this.refreshTableButton(),
-      this.copySearchLinkButton(),
-      this.clearSearchButton(),
-      this.copyTableButton(),
-      this.createNewButton(),
-      this.bulkEditButton(),
-      this.exportTableButton(),
-      ` <button
-        class="btn btn-primary"
-        onclick="eNMS.administration.updateDeviceRbac()"
-        data-tooltip="Update Device RBAC from Pools"
-        type="button"
-      >
-        <span class="glyphicon glyphicon-flash"></span>
-      </button>`,
-      this.bulkDeletionButton(),
-    ];
-  }
-
-  buttons(row) {
-    return [
-      `
-      <ul class="pagination pagination-lg" style="margin: 0px;">
-        ${this.changelogButton(row)}
-        <li>
-          <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('group', '${
-            row.id
-          }')" data-tooltip="Edit"
-            ><span class="glyphicon glyphicon-edit"></span
-          ></button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('group', '${row.id}', 'duplicate')"
-          data-tooltip="Duplicate"
-            ><span class="glyphicon glyphicon-duplicate"></span
-          ></button>
-        </li>
-        ${this.deleteInstanceButton(row)}
-      </ul>`,
-    ];
-  }
-};
-
 tables.user = class UserTable extends Table {
   addRow(kwargs) {
     let row = super.addRow(kwargs);
