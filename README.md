@@ -99,7 +99,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 
 ## Enterprise-Only Features
 
-### Production-Ready Security & Authentication
+### Security & Authentication
 
 - **Multi-User Authentication System**: Full login page with secure session management
 - **Enterprise Authentication**: Support for TACACS+, LDAP, and Duo 2FA integration
@@ -108,7 +108,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
   - Define access levels for devices, configurations, and network resources
 - **User & Group Management**: Comprehensive administrative interface for managing teams and permissions
 
-### Advanced Automation Features
+### Advanced Automation
 
 - **Scheduler Application**: Advanced scheduling capabilities for workflow automation
   - Schedule with crontab expressions or specific date/time
@@ -116,7 +116,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 - **Service Import / Export**: Package services and workflows as `.tgz` archives
   - Share automation solutions between different eNMS instances
   - Create backup archives of critical workflows
-  - Transfer configurations between dev / staging / production environments
+  - Transfer workflows between dev and production environments
 - **Change Tracking & Revert**: Complete audit trail with rollback capability
   - Every modification to devices, workflows, services, and configurations is logged (who changed what and when)
   - One-click revert to any previous state
