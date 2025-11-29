@@ -93,6 +93,95 @@ ___
 
 ___
 
+# Open Core vs Enterprise Edition
+
+eNMS is available in two versions: an **Open Core** version (this repository) for personal use and evaluation, and a **full Enterprise Edition** with advanced features for production deployments.
+
+## Enterprise-Only Features
+
+### Production-Ready Security & Authentication
+
+- **Multi-User Authentication System**: Full login page with secure session management
+- **Role-Based Access Control (RBAC)**: Configure granular permissions per user or group
+  - Control who can view, edit, or run specific workflows and services
+  - Define access levels for devices, configurations, and network resources
+  - Separate read/write/execute permissions for different teams
+- **Enterprise Authentication**: Support for TACACS+, LDAP, and Duo 2FA integration
+- **User & Group Management**: Comprehensive administrative interface for managing teams and permissions
+
+### Advanced Automation & Scheduling
+
+- **Advanced Scheduler**: Schedule workflows with precise date/time or crontab expressions
+  - Supports complex scheduling patterns for recurring maintenance windows
+  - Visual calendar interface for viewing and managing scheduled tasks
+  - Integration with workflow execution history and reporting
+- **Scheduled Task Management**: Centralized view of all scheduled jobs across your infrastructure
+
+### Data Management & Migration
+
+- **Migration Mechanism**: Seamless backup and migration system for upgrading between eNMS versions
+  - Export/import your entire configuration in YAML or JSON format
+  - Version-controlled migrations ensure data integrity during upgrades
+  - Rollback capability if migration issues occur
+- **Service Import / Export**: Package services and workflows as `.tgz` archives
+  - Share automation solutions between different eNMS instances
+  - Create backup archives of critical workflows
+  - Transfer configurations between dev/staging/production environments
+
+### Enterprise Administration
+
+- **Administration Panel**: Centralized dashboard for system management
+  - Server health monitoring and performance metrics
+  - Worker process management and load balancing
+  - Configuration management and system settings
+- **Production Utilities**: Enterprise-grade maintenance scripts and tools
+  - Database optimization and backup management
+  - Advanced debugging and log analysis
+  - Automated health checks and diagnostics
+
+### Audit & Compliance
+
+- **Change Tracking & Revert**: Complete audit trail with rollback capability
+  - Every modification to devices, workflows, services, and configurations is logged
+  - View detailed history of who changed what and when
+  - One-click revert to any previous state
+  - Essential for compliance and troubleshooting
+
+### Professional Support
+
+- **Expert Technical Support**: Direct access to eNMS developers
+- **Priority Bug Fixes**: Expedited resolution of critical issues
+- **Implementation Assistance**: Help with deployment, customization, and best practices
+- **Regular Updates**: Access to security patches and feature updates
+
+## Comparison at a Glance
+
+| Feature | Open Core | Enterprise Edition |
+|---------|-----------|-------------------|
+| Workflow Automation | ✓ | ✓ |
+| Configuration Management | ✓ | ✓ |
+| Network Visualization | ✓ | ✓ |
+| REST API | ✓ | ✓ |
+| Basic Scheduling (run now, run later) | ✓ | ✓ |
+| **Multi-User Authentication** | ✗ | ✓ |
+| **Role-Based Access Control (RBAC)** | ✗ | ✓ |
+| **Advanced Scheduler (crontab, calendar)** | ✗ | ✓ |
+| **TACACS+/LDAP/Duo 2FA** | ✗ | ✓ |
+| **Service Import/Export (.tgz)** | ✗ | ✓ |
+| **Migration System** | ✗ | ✓ |
+| **Change Revert/Audit Trail** | ✗ | ✓ |
+| **Administration Panel** | ✗ | ✓ |
+| **Production Scripts & Tools** | ✗ | ✓ |
+| **Professional Support** | ✗ | ✓ |
+
+## Get the Enterprise Edition
+
+The Enterprise Edition is ideal for organizations deploying eNMS in production environments where security, compliance, multi-tenancy, and professional support are critical requirements.
+
+**Interested in upgrading?** Visit [www.enms.io](https://www.enms.io) or contact us at [contact@enms.io] for pricing and licensing information.
+
+___
+
 # Getting started
 
 ## Online content
