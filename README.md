@@ -108,24 +108,18 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
   - Define access levels for devices, configurations, and network resources
 - **User & Group Management**: Comprehensive administrative interface for managing teams and permissions
 
-### Scheduling
+### Advanced Automation Features
 
-- **Scheduler Application**: Schedule workflows with precise date/time or crontab expressions
-  - Supports complex scheduling patterns for recurring maintenance windows
-  - Visual calendar interface for viewing and managing scheduled tasks
-  - Integration with workflow execution history and reporting
-- **Task Management**: Centralized view of all scheduled jobs across your infrastructure
-
-### Data Management & Migration
-
-- **Migration Mechanism**: Seamless backup and migration system for upgrading between eNMS versions
-  - Export/import your entire configuration in YAML or JSON format
-  - Version-controlled migrations ensure data integrity during upgrades
-  - Rollback capability if migration issues occur
+- **Scheduler Application**: Advanced scheduling capabilities for workflow automation
+  - Schedule with crontab expressions or specific date/time
+  - Centralized view and control of scheduled tasks (with calendar interface)
 - **Service Import / Export**: Package services and workflows as `.tgz` archives
   - Share automation solutions between different eNMS instances
   - Create backup archives of critical workflows
   - Transfer configurations between dev / staging / production environments
+- **Change Tracking & Revert**: Complete audit trail with rollback capability
+  - Every modification to devices, workflows, services, and configurations is logged (who changed what and when)
+  - One-click revert to any previous state
 
 ### Enterprise Administration
 
@@ -133,18 +127,14 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
   - Server health monitoring and performance metrics
   - Worker process management and load balancing
   - Configuration management and system settings
+- **Migration Mechanism**: Seamless backup and migration system for upgrading between eNMS versions
+  - Export/import your entire configuration in YAML or JSON format
+  - Version-controlled migrations ensure data integrity during upgrades
+  - Rollback capability if migration issues occur
 - **Production Utilities**: Enterprise-grade maintenance scripts and tools
   - Database optimization and backup management
   - Advanced debugging and log analysis
   - Automated health checks and diagnostics
-
-### Audit & Compliance
-
-- **Change Tracking & Revert**: Complete audit trail with rollback capability
-  - Every modification to devices, workflows, services, and configurations is logged
-  - View detailed history of who changed what and when
-  - One-click revert to any previous state
-  - Essential for compliance and troubleshooting
 
 ### Professional Support
 
