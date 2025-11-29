@@ -126,7 +126,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 - **Service Import / Export**: Package services and workflows as `.tgz` archives
   - Share automation solutions between different eNMS instances
   - Create backup archives of critical workflows
-  - Transfer configurations between dev/staging/production environments
+  - Transfer configurations between dev / staging / production environments
 
 ### Enterprise Administration
 
