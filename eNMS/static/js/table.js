@@ -1508,55 +1508,6 @@ tables.task = class TaskTable extends Table {
   }
 };
 
-tables.user = class UserTable extends Table {
-  addRow(kwargs) {
-    let row = super.addRow(kwargs);
-    row.groups = `<b><a href="#" onclick="eNMS.table.displayRelationTable(
-      'group', ${row.instance}, {parent: '${this.id}', from: 'users', to: 'groups'})">
-      Groups</a></b>`;
-    return row;
-  }
-
-  get controls() {
-    return [
-      this.columnDisplay(),
-      this.displayChangelogButton(),
-      this.refreshTableButton(),
-      this.bulkFilteringButton(),
-      this.copySearchLinkButton(),
-      this.clearSearchButton(),
-      this.copyTableButton(),
-      this.createNewButton(),
-      this.bulkEditButton(),
-      this.exportTableButton(),
-      this.bulkDeletionButton(),
-    ];
-  }
-
-  buttons(row) {
-    return [
-      `
-      <ul class="pagination pagination-lg" style="margin: 0px;">
-        ${this.changelogButton(row)}
-        <li>
-          <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('user', '${row.id}')" data-tooltip="Edit"
-            ><span class="glyphicon glyphicon-edit"></span
-          ></button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-sm btn-primary"
-          onclick="eNMS.base.showInstancePanel('user', '${row.id}', 'duplicate')"
-          data-tooltip="Duplicate"
-            ><span class="glyphicon glyphicon-duplicate"></span
-          ></button>
-        </li>
-        ${this.deleteInstanceButton(row)}
-      </ul>`,
-    ];
-  }
-};
-
 tables.credential = class CredentialTable extends Table {
   get controls() {
     return [
