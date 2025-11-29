@@ -105,7 +105,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 | **Advanced Scheduler** | ✗ | ✓ |
 | **TACACS+ / LDAP / Duo 2FA** | ✗ | ✓ |
 | **Service Import / Export** | ✗ | ✓ |
-| **Migration System** | ✗ | ✓ |
+| **Migration Mechanism** | ✗ | ✓ |
 | **Change Revert / Audit Trail** | ✗ | ✓ |
 | **Administration Panel** | ✗ | ✓ |
 | **Production Scripts & Tools** | ✗ | ✓ |
@@ -146,7 +146,7 @@ The Enterprise Edition is ideal for organizations deploying eNMS in production e
 - **Administration Panel**: Centralized dashboard for system management
   - Server health monitoring and performance metrics
   - Worker process management and load balancing
-- **Migration Mechanism**: Seamless backup and migration system for upgrading between eNMS versions
+- **Migration Mechanism**: Seamless backup and migration mechanism for upgrading between eNMS versions
   - Export / import your entire database in YAML or JSON format
   - Version-controlled migrations ensure data integrity during upgrades
 - **Production Utilities**: Enterprise-grade maintenance scripts and tools
