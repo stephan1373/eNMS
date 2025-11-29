@@ -51,10 +51,6 @@
           "endpoint": "/user_table",
           "rbac": "admin"
         },
-        "Groups": {
-          "endpoint": "/group_table",
-          "rbac": "admin"
-        },
         "Credentials": {
           "endpoint": "/credential_table",
           "rbac": "admin"

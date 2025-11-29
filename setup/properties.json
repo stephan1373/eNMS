@@ -61,13 +61,6 @@
         "default": "Custom"
       }
     },
-    "group": {
-      "custom_property": {
-        "pretty_name": "Custom Property",
-        "default": "CP",
-        "type": "str"
-      }
-    },
     "link": {
       "custom_property": {
         "pretty_name": "Custom Property",
@@ -2245,7 +2238,6 @@
       "longitude",
       "property1"
     ],
-    "group": ["name", "description", "creator", "admin_only", "email"],
     "link": [
       "name",
       "description",
