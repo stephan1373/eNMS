@@ -118,7 +118,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
   - Create backup archives of critical workflows
   - Transfer workflows between dev and production environments
 - **Change Tracking & Revert**: Complete audit trail with rollback capability
-  - Every modification to devices, workflows, services, and configurations is logged (who changed what and when)
+  - Every modification is logged (who changed what and when)
   - One-click revert to any previous state
 
 ### Enterprise Administration
