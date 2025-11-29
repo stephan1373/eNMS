@@ -162,14 +162,13 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 | Configuration Management | ✓ | ✓ |
 | Network Visualization | ✓ | ✓ |
 | REST API | ✓ | ✓ |
-| Basic Scheduling (run now, run later) | ✓ | ✓ |
 | **Multi-User Authentication** | ✗ | ✓ |
-| **Role-Based Access Control (RBAC)** | ✗ | ✓ |
-| **Advanced Scheduler (crontab, calendar)** | ✗ | ✓ |
-| **TACACS+/LDAP/Duo 2FA** | ✗ | ✓ |
-| **Service Import/Export (.tgz)** | ✗ | ✓ |
+| **Role-Based Access Control** | ✗ | ✓ |
+| **Advanced Scheduler** | ✗ | ✓ |
+| **TACACS+ / LDAP / Duo 2FA** | ✗ | ✓ |
+| **Service Import / Export** | ✗ | ✓ |
 | **Migration System** | ✗ | ✓ |
-| **Change Revert/Audit Trail** | ✗ | ✓ |
+| **Change Revert / Audit Trail** | ✗ | ✓ |
 | **Administration Panel** | ✗ | ✓ |
 | **Production Scripts & Tools** | ✗ | ✓ |
 | **Professional Support** | ✗ | ✓ |
