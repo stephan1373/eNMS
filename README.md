@@ -87,17 +87,37 @@ Services can also be executed programmatically: eNMS has a REST API and a CLI in
 
 ___
 
-# Architecture
-
-[![eNMS System Overview](docs/source/_static/eNMS_overview.PNG)](https://enms.readthedocs.io/en/latest/)
-
-___
 
 # Open Core vs Enterprise Edition
 
 eNMS is available in two versions: an **Open Core** version (this repository), and an **Enterprise Edition** with advanced features for production deployments.
 
-## Enterprise-Only Features
+<div align="center">
+
+| Feature | Open Core | Enterprise Edition |
+|:-------:|:---------:|:------------------:|
+| Workflow Automation | ✓ | ✓ |
+| Configuration Management | ✓ | ✓ |
+| Network Visualization | ✓ | ✓ |
+| REST API | ✓ | ✓ |
+| **Multi-User Authentication** | ✗ | ✓ |
+| **Role-Based Access Control** | ✗ | ✓ |
+| **Advanced Scheduler** | ✗ | ✓ |
+| **TACACS+ / LDAP / Duo 2FA** | ✗ | ✓ |
+| **Service Import / Export** | ✗ | ✓ |
+| **Migration Mechanism** | ✗ | ✓ |
+| **Change Revert / Audit Trail** | ✗ | ✓ |
+| **Administration Panel** | ✗ | ✓ |
+| **Production Scripts & Tools** | ✗ | ✓ |
+| **Professional Support** | ✗ | ✓ |
+
+</div>
+
+## Enterprise Edition
+
+The Enterprise Edition is ideal for organizations deploying eNMS in production environments where security, compliance, multi-tenancy, and professional support are critical requirements.
+
+**Interested in upgrading?** Visit [www.enms.io](https://www.enms.io) or contact us at [contact@enms.io](mailto:contact@enms.io) for pricing and licensing information.
 
 ### Security & Authentication
 
@@ -118,7 +138,7 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
   - Create backup archives of critical workflows
   - Transfer workflows between dev and production environments
 - **Change Tracking & Revert**: Complete audit trail with rollback capability
-  - Every modification to devices, workflows, services, and configurations is logged (who changed what and when)
+  - Every modification is logged (who changed what and when)
   - One-click revert to any previous state
 
 ### Enterprise Administration
@@ -126,8 +146,8 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 - **Administration Panel**: Centralized dashboard for system management
   - Server health monitoring and performance metrics
   - Worker process management and load balancing
-- **Migration Mechanism**: Seamless backup and migration system for upgrading between eNMS versions
-  - Export/import your entire configuration in YAML or JSON format
+- **Migration Mechanism**: Seamless backup and migration mechanism for upgrading between eNMS versions
+  - Export / import your entire database in YAML or JSON format
   - Version-controlled migrations ensure data integrity during upgrades
 - **Production Utilities**: Enterprise-grade maintenance scripts and tools
   - Database optimization and backup management
@@ -140,30 +160,11 @@ eNMS is available in two versions: an **Open Core** version (this repository), a
 - **Implementation Assistance**: Help with deployment, customization, and best practices
 - **Regular Updates**: Access to security patches and feature updates
 
-## Comparison at a Glance
+___
 
-| Feature | Open Core | Enterprise Edition |
-|---------|-----------|-------------------|
-| Workflow Automation | ✓ | ✓ |
-| Configuration Management | ✓ | ✓ |
-| Network Visualization | ✓ | ✓ |
-| REST API | ✓ | ✓ |
-| **Multi-User Authentication** | ✗ | ✓ |
-| **Role-Based Access Control** | ✗ | ✓ |
-| **Advanced Scheduler** | ✗ | ✓ |
-| **TACACS+ / LDAP / Duo 2FA** | ✗ | ✓ |
-| **Service Import / Export** | ✗ | ✓ |
-| **Migration System** | ✗ | ✓ |
-| **Change Revert / Audit Trail** | ✗ | ✓ |
-| **Administration Panel** | ✗ | ✓ |
-| **Production Scripts & Tools** | ✗ | ✓ |
-| **Professional Support** | ✗ | ✓ |
+# Architecture
 
-## Get the Enterprise Edition
-
-The Enterprise Edition is ideal for organizations deploying eNMS in production environments where security, compliance, multi-tenancy, and professional support are critical requirements.
-
-**Interested in upgrading?** Visit [www.enms.io](https://www.enms.io) or contact us at [contact@enms.io] for pricing and licensing information.
+[![eNMS System Overview](docs/source/_static/eNMS_overview.PNG)](https://enms.readthedocs.io/en/latest/)
 
 ___
 
