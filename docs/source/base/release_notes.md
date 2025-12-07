@@ -132,7 +132,7 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
       Commit: b7eae51e4fe7a3076a7c94ea9a78ee2a659de0ee
 - Minor update to configureNamespace function
   Commit: 891c255945ab85cf8e7c970805c4498a0adfa081
-- Refactor the SQL query monitoring mechnaism:
+- Refactor the SQL query monitoring mechanism:
   - Compute the query duration without executing it twice
     Commit: 65fe27e2f97cb79828ef5d35a4d69f01dda6c2ea
   - Add traceback to find out which line of code sent the query
@@ -163,7 +163,7 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   - Add support for properties in fetch function
   - Use 'in_' query to convert names to ID in form_postprocessing function
     Commit: 14664e221fc19829ef6f0e39ed3c41d9becea241
-  - Update fetch to support 'in_' queries
+  - Update fetch to support 'in_' queries (syntax: "property_in=[p1, p2, ...]")
   - Update objectify to use 'in_' query via fetch_all instead of fetch in a loop
   - Don't call objectify in Base.update if value is empty
     Commit: 53a24913d886c0e6ce96aa747802b6c51b30604f
@@ -239,6 +239,8 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
   - If the 'Subtitution Type' is set to 'Dict Substitution', validate the payload field by converting it to a JSON object
     with json.loads (replaces the "json_only" option of DictField previously)
     Commiy: 49874c2282fd443fa6be65321c84309e483bbc74
+  - NOTE: check whether Dict Substitution is truly needed, or if legacy REST services can be
+    made to use string substitution instead; if it works, dict substitution can be removed.
 - Outgoing Edge Mechanism:
   - Refactor the graph traversal algorithm to allow for edges other than success and failure: the user can define
     an "outgoing_edge" variable in python (e.g in post-processing) to decide which edge to follow next
