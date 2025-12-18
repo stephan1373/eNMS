@@ -16196,7 +16196,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-12-18 07:06:35.550204",
+    "last_modified": "2025-12-18 07:11:44.560222",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -16223,68 +16223,68 @@
     "persistent_id": "lLeg975hskY",
     "positions": {
       "[Introduction to eNMS] Configuration Rollback": [
-        303,
-        28
+        293,
+        30
       ],
       "[Introduction to eNMS] Configure Device": [
-        78,
-        -54
+        84,
+        -49
       ],
       "[Introduction to eNMS] Device Configuration": [
-        300,
-        -54
+        293,
+        -49
       ],
       "[Introduction to eNMS] Email Notification": [
-        306,
+        293,
         110
       ],
       "[Introduction to eNMS] File Transfer": [
         -125,
-        28
+        30
       ],
       "[Introduction to eNMS] Get Data with NAPALM": [
-        297,
+        293,
         -129
       ],
       "[Introduction to eNMS] Git Clone, Push and Pull": [
         503,
-        -54
+        -49
       ],
       "[Introduction to eNMS] Make a REST Call": [
-        510,
+        503,
         -129
       ],
       "[Introduction to eNMS] Mattermost Notification": [
-        -124,
+        -125,
         110
       ],
       "[Introduction to eNMS] NETCONF Automation": [
-        82,
+        84,
         110
       ],
       "[Introduction to eNMS] Ping a Device": [
-        509,
-        28
+        503,
+        30
       ],
       "[Introduction to eNMS] Run Playbook": [
-        -124,
+        -125,
         -129
       ],
       "[Introduction to eNMS] Run any Python Script": [
-        -123,
-        -54
+        -125,
+        -49
       ],
       "[Introduction to eNMS] Send Commands": [
-        81,
+        84,
         -129
       ],
       "[Introduction to eNMS] Slack Notification": [
-        519,
+        503,
         110
       ],
       "[Introduction to eNMS] Transfer a File": [
-        82,
-        28
+        84,
+        30
       ],
       "[Shared] End": [
         2161,
