@@ -956,6 +956,50 @@
     "Interaction of Restart Mechanism and Superworkflow"
   ],
   [
+    "[Introduction to eNMS] Configuration Rollback",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Configure Device",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Device Configuration",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] File Transfer",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Get Data with NAPALM",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Git Clone, Push and Pull",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Make a REST Call",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Run Playbook",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Run any Python Script",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Send Commands",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Transfer a File",
+    "Introduction to eNMS"
+  ],
+  [
     "[Large Device Configuration and Operational Data] Set Large Configuration and Operational Data",
     "Large Device Configuration and Operational Data"
   ],
@@ -1645,6 +1689,10 @@
   ],
   [
     "[Shared] End",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Shared] End",
     "Large Device Configuration and Operational Data"
   ],
   [
@@ -2178,6 +2226,10 @@
   [
     "[Shared] Start",
     "Interaction of Restart Mechanism and Superworkflow"
+  ],
+  [
+    "[Shared] Start",
+    "Introduction to eNMS"
   ],
   [
     "[Shared] Start",

@@ -16139,5 +16139,160 @@
     "vendor": "",
     "version": "",
     "waiting_time": 0
+  },
+  {
+    "admin_only": false,
+    "builder_link": "lLeg975hskY",
+    "category": "Other",
+    "close_connection": false,
+    "completion_time": 1,
+    "content_match": "",
+    "content_match_regex": false,
+    "conversion_method": "none",
+    "creation_time": "2025-12-18 06:36:54.306138",
+    "creator": "admin",
+    "credential_type": "any",
+    "custom_property": "Default Value",
+    "default_uuid": "bbccdc65-ec37-4a20-8193-365ccbdb0f13",
+    "definition": "Definition",
+    "delete_spaces_before_matching": false,
+    "description": "",
+    "device_query": "",
+    "device_query_property": "name",
+    "dict_match": {},
+    "disable_result_creation": false,
+    "disabled": false,
+    "disabled_info": "",
+    "display_only_failed_nodes": false,
+    "display_report": false,
+    "dry_run": false,
+    "email_report": false,
+    "high_performance": false,
+    "impacting": true,
+    "include_device_results": false,
+    "include_link_in_summary": false,
+    "initial_payload": {},
+    "iteration_devices": "",
+    "iteration_devices_property": "name",
+    "iteration_values": "",
+    "iteration_variable_name": "iteration_value",
+    "labels": {
+      "bd58528e-2701-4e40-84a2-2b9ad7c7fbe3": {
+        "alignment": "left",
+        "content": "eNMS is an open-source network automation platform that combines\ninventory management, visualization, and automation in a single solution.\nAutomate configuration changes, backups, and operational tasks across\nthousands of network devices without vendor lock-in.\n\neNMS is designed to be highly customizable. While it provides by default\na number of services leveraging libraries such as Ansible, Netmiko and Napalm,\nabsolutely any python script can be automatically integrated to the web platform,\nand used as component of a workflow.",
+        "positions": [
+          231,
+          -203
+        ],
+        "size": 14
+      }
+    },
+    "last_modified": "2025-12-18 06:49:07.339060",
+    "last_modified_by": "admin",
+    "last_run": "",
+    "log_level": 1,
+    "mail_bcc": "",
+    "mail_recipient": "",
+    "mail_sender": "",
+    "mail_subject": "",
+    "man_minutes": 0,
+    "man_minutes_total": 0,
+    "man_minutes_type": "workflow",
+    "mandatory_parameter": "Default Value",
+    "mandatory_parametrization": false,
+    "max_number_of_retries": 100,
+    "max_processes": 15,
+    "maximum_runs": 1,
+    "multiprocessing": false,
+    "name": "Introduction to eNMS",
+    "negative_logic": false,
+    "notification_header": "",
+    "number_of_retries": 0,
+    "operating_system": "",
+    "parameterized_form": "name = StringField('Name', [InputRequired()])\ninitial_payload = DictField()\ntarget_devices = MultipleInstanceField('Devices', model='device')\ntarget_pools = MultipleInstanceField('Pools', model='pool')\ndevice_query = StringField('Device Query', python=True, widget=TextArea(), render_kw={'rows': 2})\ndevice_query_property = SelectField('Query Property Type', choices=(('name', 'Name'), ('ip_address', 'IP address')))\nmultiprocessing = BooleanField('Multiprocessing', default=False)\nmax_processes = IntegerField('Maximum number of processes', default=15)",
+    "parameterized_form_template": "",
+    "persistent_id": "lLeg975hskY",
+    "positions": {
+      "[Introduction to eNMS] Configuration Rollback": [
+        315,
+        88
+      ],
+      "[Introduction to eNMS] Configure Device": [
+        106,
+        3
+      ],
+      "[Introduction to eNMS] Device Configuration": [
+        313,
+        2
+      ],
+      "[Introduction to eNMS] File Transfer": [
+        -96,
+        87
+      ],
+      "[Introduction to eNMS] Get Data with NAPALM": [
+        309,
+        -82
+      ],
+      "[Introduction to eNMS] Git Clone, Push and Pull": [
+        519,
+        86
+      ],
+      "[Introduction to eNMS] Make a REST Call": [
+        511,
+        0
+      ],
+      "[Introduction to eNMS] Run Playbook": [
+        -95,
+        -83
+      ],
+      "[Introduction to eNMS] Run any Python Script": [
+        -94,
+        3
+      ],
+      "[Introduction to eNMS] Send Commands": [
+        101,
+        -83
+      ],
+      "[Introduction to eNMS] Transfer a File": [
+        105,
+        87
+      ],
+      "[Shared] End": [
+        2161,
+        126
+      ],
+      "[Shared] Start": [
+        -673,
+        83
+      ]
+    },
+    "postprocessing": "",
+    "postprocessing_mode": "success",
+    "preprocessing": "",
+    "priority": 10,
+    "reply_to": "",
+    "report": "",
+    "report_format": "text",
+    "report_jinja2_template": false,
+    "reserved": false,
+    "restrict_to_owners": [],
+    "run_method": "per_device",
+    "scoped_name": "Introduction to eNMS",
+    "send_notification": false,
+    "send_notification_method": "mail",
+    "shared": false,
+    "show_user_logs": true,
+    "skip": {},
+    "skip_query": "",
+    "skip_value": "success",
+    "soft_deleted": false,
+    "time_between_retries": 10,
+    "update_target_pools": false,
+    "validation_condition": "none",
+    "validation_method": "text",
+    "validation_section": "results['result']",
+    "vendor": "",
+    "version": "",
+    "waiting_time": 0
   }
 ]

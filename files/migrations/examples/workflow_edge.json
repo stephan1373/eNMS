@@ -5688,5 +5688,25 @@
     "name": "2025-11-13 13:10:08.018708",
     "soft_deleted": false,
     "subtype": "success"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-12-18 06:43:41.357490",
+    "label": "success",
+    "last_modified": "2025-12-18 06:43:41.357424",
+    "last_modified_by": "admin",
+    "name": "2025-12-18 06:43:41.352646",
+    "soft_deleted": true,
+    "subtype": "success"
+  },
+  {
+    "color": "green",
+    "creation_time": "2025-12-18 06:44:48.751334",
+    "label": "",
+    "last_modified": "2025-12-18 06:45:23.805493",
+    "last_modified_by": "admin",
+    "name": "[Introduction to eNMS] 2025-12-18 06:45:23.807270",
+    "soft_deleted": true,
+    "subtype": "success"
   }
 ]
