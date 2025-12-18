@@ -16177,17 +16177,26 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {
+      "112a595e-b263-47ee-b1e0-a855e107feaa": {
+        "alignment": "left",
+        "content": "And many more...",
+        "positions": [
+          192,
+          170
+        ],
+        "size": 14
+      },
       "bd58528e-2701-4e40-84a2-2b9ad7c7fbe3": {
         "alignment": "left",
         "content": "eNMS is an open-source network automation platform that combines\ninventory management, visualization, and automation in a single solution.\nAutomate configuration changes, backups, and operational tasks across\nthousands of network devices without vendor lock-in.\n\neNMS is designed to be highly customizable. While it provides by default\na number of services leveraging libraries such as Ansible, Netmiko and Napalm,\nabsolutely any python script can be automatically integrated to the web platform,\nand used as component of a workflow.",
         "positions": [
-          231,
-          -203
+          226,
+          -258
         ],
         "size": 14
       }
     },
-    "last_modified": "2025-12-18 06:49:07.339060",
+    "last_modified": "2025-12-18 07:06:35.550204",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -16214,48 +16223,68 @@
     "persistent_id": "lLeg975hskY",
     "positions": {
       "[Introduction to eNMS] Configuration Rollback": [
-        315,
-        88
+        303,
+        28
       ],
       "[Introduction to eNMS] Configure Device": [
-        106,
-        3
+        78,
+        -54
       ],
       "[Introduction to eNMS] Device Configuration": [
-        313,
-        2
+        300,
+        -54
+      ],
+      "[Introduction to eNMS] Email Notification": [
+        306,
+        110
       ],
       "[Introduction to eNMS] File Transfer": [
-        -96,
-        87
+        -125,
+        28
       ],
       "[Introduction to eNMS] Get Data with NAPALM": [
-        309,
-        -82
+        297,
+        -129
       ],
       "[Introduction to eNMS] Git Clone, Push and Pull": [
-        519,
-        86
+        503,
+        -54
       ],
       "[Introduction to eNMS] Make a REST Call": [
-        511,
-        0
+        510,
+        -129
+      ],
+      "[Introduction to eNMS] Mattermost Notification": [
+        -124,
+        110
+      ],
+      "[Introduction to eNMS] NETCONF Automation": [
+        82,
+        110
+      ],
+      "[Introduction to eNMS] Ping a Device": [
+        509,
+        28
       ],
       "[Introduction to eNMS] Run Playbook": [
-        -95,
-        -83
+        -124,
+        -129
       ],
       "[Introduction to eNMS] Run any Python Script": [
-        -94,
-        3
+        -123,
+        -54
       ],
       "[Introduction to eNMS] Send Commands": [
-        101,
-        -83
+        81,
+        -129
+      ],
+      "[Introduction to eNMS] Slack Notification": [
+        519,
+        110
       ],
       "[Introduction to eNMS] Transfer a File": [
-        105,
-        87
+        82,
+        28
       ],
       "[Shared] End": [
         2161,

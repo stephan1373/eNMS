@@ -508,6 +508,10 @@
     "admin"
   ],
   [
+    "[Introduction to eNMS] Email Notification",
+    "admin"
+  ],
+  [
     "[Introduction to eNMS] File Transfer",
     "admin"
   ],
@@ -524,6 +528,18 @@
     "admin"
   ],
   [
+    "[Introduction to eNMS] Mattermost Notification",
+    "admin"
+  ],
+  [
+    "[Introduction to eNMS] NETCONF Automation",
+    "admin"
+  ],
+  [
+    "[Introduction to eNMS] Ping a Device",
+    "admin"
+  ],
+  [
     "[Introduction to eNMS] Run Playbook",
     "admin"
   ],
@@ -533,6 +549,10 @@
   ],
   [
     "[Introduction to eNMS] Send Commands",
+    "admin"
+  ],
+  [
+    "[Introduction to eNMS] Slack Notification",
     "admin"
   ],
   [

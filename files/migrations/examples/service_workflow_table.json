@@ -968,6 +968,10 @@
     "Introduction to eNMS"
   ],
   [
+    "[Introduction to eNMS] Email Notification",
+    "Introduction to eNMS"
+  ],
+  [
     "[Introduction to eNMS] File Transfer",
     "Introduction to eNMS"
   ],
@@ -984,6 +988,18 @@
     "Introduction to eNMS"
   ],
   [
+    "[Introduction to eNMS] Mattermost Notification",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] NETCONF Automation",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Ping a Device",
+    "Introduction to eNMS"
+  ],
+  [
     "[Introduction to eNMS] Run Playbook",
     "Introduction to eNMS"
   ],
@@ -993,6 +1009,10 @@
   ],
   [
     "[Introduction to eNMS] Send Commands",
+    "Introduction to eNMS"
+  ],
+  [
+    "[Introduction to eNMS] Slack Notification",
     "Introduction to eNMS"
   ],
   [
