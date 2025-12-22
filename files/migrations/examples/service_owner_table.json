@@ -108,10 +108,6 @@
     "admin"
   ],
   [
-    "Introduction to eNMS",
-    "admin"
-  ],
-  [
     "Large Workflow (30 Netmiko Services)",
     "admin"
   ],
@@ -493,70 +489,6 @@
   ],
   [
     "[Interaction of Restart Mechanism and Superworkflow] Service 3",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Configuration Rollback",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Configure Device",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Device Configuration",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Email Notification",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] File Transfer",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Get Data with NAPALM",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Git Clone, Push and Pull",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Make a REST Call",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Mattermost Notification",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] NETCONF Automation",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Ping a Device",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Run Playbook",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Run any Python Script",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Send Commands",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Slack Notification",
-    "admin"
-  ],
-  [
-    "[Introduction to eNMS] Transfer a File",
     "admin"
   ],
   [
