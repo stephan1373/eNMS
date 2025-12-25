@@ -664,8 +664,13 @@ class Run(AbstractBase):
         elif self.target_devices or self.target_pools:
             devices, pools = self.target_devices, self.target_pools
         else:
-            devices = getattr(self.placeholder or self.service, "target_devices")
-            pools = getattr(self.placeholder or self.service, "target_pools")
+            service = self.placeholder or self.service
+            devices = getattr(service, "target_devices")
+            pools = getattr(service, "target_pools")
+            query = getattr(service, "device_query")
+            if query:
+                property = getattr(service, "device_query_property")
+                devices |=self.runner.compute_devices_from_query(query, property)
         self.target_devices, self.target_pools = list(devices), list(pools)
         db.session.commit()
         return set(devices) | set().union(*(pool.devices for pool in pools))
