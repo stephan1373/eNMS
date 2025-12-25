@@ -648,7 +648,7 @@ class Run(AbstractBase):
         elif self.restart_run and self.payload["targets"] == "Restart run":
             devices = self.restart_run.target_devices
             pools = self.restart_run.target_pools
-        elif self.parameterized_run:
+        elif self.parameterized_run and self.payload["form"] & {"target_devices", "target_pools", "device_query"}:
             device_ids = self.payload["form"].get("target_devices", [])
             pool_ids = self.payload["form"].get("target_pools", [])
             devices = set(db.fetch_all("device", in_in=device_ids, user=self.creator))

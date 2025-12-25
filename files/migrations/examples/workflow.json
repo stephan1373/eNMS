@@ -6767,13 +6767,23 @@
           -177
         ]
       },
+      "8393d8a6-0edf-4d7d-9d9f-7fc452a60e9d": {
+        "alignment": "left",
+        "content": "Test 1: set the targets from the parameterized run.\nFor example, in the parameterized form, set Devices to \"Atlanta\",\nPools to \"Washington\", and the device query to \"Austin\". The workflow\nshould run on these 3 devices (disregarding the targets configured\nat workflow level)",
+        "positions": [
+          -82,
+          82
+        ],
+        "size": 14
+      },
       "9b543e1d-204c-45a2-bcb2-9619959a4924": {
         "alignment": "left",
-        "content": "The service targets are set to:\n- PaloAlto, Austin for devices field\n- Washington Pool\n- [\"NewYork\", \"Atlanta\"] for device query field\n=> Should run on 5 devices without parameterized run",
+        "content": "Test 2: edit the workflow to remove the following the \"target_devices\",\n\"target_pools\", and \"device_query\" from the parameterized form.\nThe workflow targets are set to:\n- PaloAlto, Austin for devices field\n- Washington Pool\n- [\"NewYork\", \"Atlanta\"] for device query field\n=> The workflow should now run on these 5 devices coming from the workflow\ntargets.",
         "positions": [
-          183,
-          77
-        ]
+          471,
+          98
+        ],
+        "size": 14
       },
       "cd8dd28f-bb19-4951-b208-b39a3c0f0571": {
         "alignment": "left",
@@ -6785,7 +6795,7 @@
         "size": 14
       }
     },
-    "last_modified": "2022-11-09 01:23:33.003877",
+    "last_modified": "2025-12-25 17:47:12.805023",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
