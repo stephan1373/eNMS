@@ -1,9 +1,11 @@
 from ast import literal_eval
 from json import loads
+from random import random
 from requests.auth import HTTPBasicAuth
 from sqlalchemy import Boolean, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import JSON
+from time import sleep
 from wtforms.widgets import TextArea
 
 from eNMS.database import db
@@ -67,6 +69,7 @@ class RestCallService(Service):
             return {"url": log_url, "kwargs": kwargs}
         credentials = run.get_credentials(device, add_secret=False)
         if self.credentials != "custom" or credentials["username"]:
+            sleep(random())
             kwargs["auth"] = HTTPBasicAuth(
                 credentials["username"], credentials["password"]
             )
