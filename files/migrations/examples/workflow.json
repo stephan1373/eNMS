@@ -9377,24 +9377,24 @@
     "labels": {
       "4a30f572-f837-428f-9f47-52f012b79779": {
         "alignment": "left",
-        "content": "We will now update the parameterized form by removing its properties\none by one, and check that as soon as a property is removed, its counterpart\nin the parent workflow is used instead.\n5) Edit the workflow to remove the \"device_query\" property from the\nparameterized form.\nNow that it is no longer defined in the form, the value of device query should\n come from the workflow, where it is set to [\"Atlanta\"].\n6) Run the workflow with empty parameterized form and check that the\nworkflow now runs on Atlanta.\n7) Run the workflow with devices set to [\"Jackson\", \"PaloAlto\"] and check\nthat the workflow runs on Atlanta, PaloAlto and Jackson.\n8) Edit the workflow to remove the \"target_devices\" property\n9) Run the workflow with empty parameterized form and check that it now\nruns on Austin and Atlanta.\n10) Edit the workflow to have no parameterized properties.\n11) Run the workflow with empty parameterized form, and check that it\n runs on the original workflow targets: Austin, Washington and Atlanta.",
+        "content": "3) Run the workflow with one parameterized device: check that only\nthat one device is used as a target.\n4) Run the workflow with \"Washington\" as parameterized pool and\n\"Boston\" as parameterized device query: check that only these two\ndevices are used as targets.\n5) Edit the workflow to have no parameterized properties.\n6) Run the workflow with empty parameterized form, and check that it\n runs on the original workflow targets: Austin, Washington and Atlanta.",
         "positions": [
-          311,
-          94
+          283,
+          93
         ],
         "size": 14
       },
       "4eaef783-740b-4b1a-973b-657d2fe0b42a": {
         "alignment": "left",
-        "content": "The parameterized form contains all target related properties:\n\"target_devices\", \"target_pools\", \"device_query\"\nand \"device_query_property\".\nAs soon as one of these \"target properties\" is detected by eNMS\n in the parameterized form, it takes precedence over what is defined\nin the parent workflow.\nThe parent workflow is configured to run on Austin (devices),\nWashington (pools) and Atlanta (device query).\n1) Run the workflow without parameterized form: it should run\non Austin, Washington and Atlanta.\n2) Run the workflow with parameterized form without setting\nany targets: it should abort with the \"No targets defined\" message.\n 3) Run the workflow with one parameterized device: check that only\nthat one device is used as a target.\n4) Run the workflow with \"Washington\" as parameterized pool and\n\"Boston\" as parameterized device query: check that only these two\ndevices are used as targets.",
+        "content": "The parameterized form contains all target related properties:\n\"target_devices\", \"target_pools\", \"device_query\"\nand \"device_query_property\".\nAs soon as one of these \"target properties\" is detected by eNMS\n in the parameterized form, it takes precedence over what is defined\nin the parent workflow.\nThe parent workflow is configured to run on Austin (devices),\nWashington (pools) and Atlanta (device query).\n1) Run the workflow without parameterized form: it should run\non Austin, Washington and Atlanta.\n2) Run the workflow with parameterized form without setting\nany targets: it should abort with the \"No targets defined\" message.",
         "positions": [
-          -395,
-          105
+          -334,
+          88
         ],
         "size": 14
       }
     },
-    "last_modified": "2022-11-09 01:23:33.336236",
+    "last_modified": "2025-12-25 19:36:50.357915",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
