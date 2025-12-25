@@ -260,7 +260,6 @@ class Environment(vs.TimingMixin):
                 task_queue="enms-task-queue",
                 workflows=[TemporalWorkflow],
                 activities=[temporal_job],
-
             )
             await worker.run()
 

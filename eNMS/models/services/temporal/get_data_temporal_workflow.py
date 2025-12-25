@@ -50,7 +50,7 @@ class GetTemporalDataService(Service):
                     "close_time": description.close_time,
                     "workflow_type": description.workflow_type,
                 },
-                **workflow_data
+                **workflow_data,
             }
 
         return asyncio_run(get_workflow_info())

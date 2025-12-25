@@ -10,6 +10,7 @@ from temporalio.worker import Worker
 async def print_input(name):
     return f"Hi {name}!"
 
+
 @workflow.defn
 class PrintInput:
     @workflow.run
@@ -22,6 +23,7 @@ class PrintInput:
         print(f"Workflow result: {result}")
         return result
 
+
 async def main():
     client = await Client.connect("localhost:7233")
     await Worker(
@@ -30,6 +32,7 @@ async def main():
         workflows=[PrintInput],
         activities=[print_input],
     ).run()
+
 
 if __name__ == "__main__":
     run(main())
