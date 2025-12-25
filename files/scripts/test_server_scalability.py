@@ -7,8 +7,9 @@ BASE_URL = "http://127.0.0.1:5000/rest"
 auth = HTTPBasicAuth("admin", "admin")
 
 def send_is_alive_request():
-    if get(f"{BASE_URL}/is_alive").status_code != 200:
-        print("error")
+    request = get(f"{BASE_URL}/is_alive")
+    if request.status_code != 200:
+        print(request)
 
 def send_get_instance_request():
     request = get(f"{BASE_URL}/instance/device/Washington", auth=auth)
