@@ -5185,10 +5185,10 @@
       },
       "a310fb32-d6ca-408d-87b1-83e5f95e36ff": {
         "alignment": "left",
-        "content": "This workflow must be run by user \"ny\" on two devices:\nBoston and Washington.\nny has access to Washington, but not Boston: Bostin should\nfail without prevent the workflow from running on Washington.\nThe restriction must apply to direct targets as well as\niteration and device targets.\n\nMust be run both in DxD and SxS w/ WF targets mode.",
+        "content": "This workflow must be run by user \"ny\" on two devices:\nBoston and Washington.\nny has access to Washington, but not Boston: Bostin should\nfail without preventing the workflow from running on Washington.\nThe restriction must apply to direct targets as well as\niteration and device targets.\n\nMust be run both in all 3 run methods: SxS, DxD and SxS w/ WF targets mode.",
         "positions": [
-          228,
-          -37
+          "191.8084716796875",
+          "-62.9193115234375"
         ],
         "size": 14
       }
