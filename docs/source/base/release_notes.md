@@ -374,8 +374,6 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
     - "temporal": use Temporal as a task queue
 - Add new "allow_redirects" option in REST Call Service
   Commit: 8dd630c906f44635e503b416cd03cab826c3f89d
-- Add new OpenShift Service
-  Commit: fc2af3462dfa8ece1432cf4910978930b6c48838
 - Refactor "Stop Run" mechanism:
   - Require "run" RBAC access for a user to be allowed to stop a workflow
   - Add new "You don't have permission to stop this workflow." alert in the UI
