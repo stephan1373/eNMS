@@ -1834,6 +1834,7 @@ class Controller(vs.TimingMixin):
                             no_update = vs.str_to_date(value) <= vs.str_to_date(db_date)
                     setattr(device, f"last_{property}_{timestamp}", value)
                 filepath = Path(dir.path) / property
+                no_update = no_update and getattr(device, property)
                 if not filepath.exists() or no_update:
                     continue
                 with open(filepath) as file:
