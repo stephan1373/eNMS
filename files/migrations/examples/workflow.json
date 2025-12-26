@@ -7483,26 +7483,28 @@
       },
       "20a6a733-4b79-4390-bf2b-ad05dbd6855f": {
         "alignment": "center",
-        "content": "Validate the result with the regex :\n(\\d\\.){3}\\d",
+        "content": "Validate the result with the regex :\n(\\d+\\.){3}\\d+\\/24",
         "positions": [
-          -51,
-          365
-        ]
+          -119,
+          369
+        ],
+        "size": 14
       },
       "3844a73f-340f-4b7a-9893-50c5b79998d9": {
         "alignment": "center",
-        "content": "Check that the \"textfsm_variable\" in the payload\ncan be matched with the \"(\\d\\.){3}\\d\" regular expression.",
+        "content": "Check that the \"textfsm_variable\" in the payload\ncan be matched with the \"(\\d+\\.){3}\\d+\\/24\" regular expression.",
         "positions": [
-          794,
-          255
-        ]
+          758,
+          257
+        ],
+        "size": 14
       },
       "52d15bff-498b-462d-843c-a23199073858": {
         "alignment": "center",
         "content": "Check that the results contains the dictionary\n{\"value\":[\"172.100.100.11/24\"]}\n",
         "positions": [
-          "-373.740966796875",
-          "36.5806884765625"
+          -373,
+          36
         ],
         "size": 14
       },
@@ -7510,22 +7512,22 @@
         "alignment": "center",
         "content": "Check that the \"regex_variable\" variable\nin the payload contains the dictionary\n{\"value\":[\"172.100.100.11/24\"]}\n",
         "positions": [
-          "462.259033203125",
-          "-115.4193115234375"
+          481,
+          -83
         ],
         "size": 14
       },
       "cf55f702-da90-466f-9ee6-9e207a0b4808": {
         "alignment": "left",
-        "content": "This workflow uses netmiko to run a \"show ip route\", and a \" Payload Extraction\"\nservice to extract data with regular expression and TextFSM.\nThat extracted information is stored both in the workflow payload and the results of the extraction\nservice :\n- the left side of the workflow uses the \"get_result\" method to retrieve the results and validate them.\n- the right side uses \"get_var\" to extract data from the payload and validate it.\nThis workflow is also used to test the RESTART mechanism. It must be restarted from both\nthe left side (validate via result) and the right side (validate via payload) to check that\nan older payload / result can be retrieved from the database.",
+        "content": "This workflow uses netmiko to run a \"show ip interface brief\", and a \" Payload Extraction\"\nservice to extract data with regular expression and TextFSM.\nThat extracted information is stored both in the workflow payload and the results of the extraction\nservice :\n- the left side of the workflow uses the \"get_result\" method to retrieve the results and validate them.\n- the right side uses \"get_var\" to extract data from the payload and validate it.\nThis workflow is also used to test the RESTART mechanism. It must be restarted from both\nthe left side (validate via result) and the right side (validate via payload) to check that\nan older payload / result can be retrieved from the database.",
         "positions": [
-          223,
-          134
+          216,
+          133
         ],
         "size": 14
       }
     },
-    "last_modified": "2025-12-26 03:38:19.211852",
+    "last_modified": "2025-12-26 03:39:41.535356",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 08:40:26.753246",
     "log_level": 1,
@@ -7552,12 +7554,12 @@
     "persistent_id": "juinZjoUWhk",
     "positions": {
       "[(R) Payload Extraction & Validation] Payload Extraction": [
-        -19,
-        -26
+        0,
+        -7
       ],
       "[(R) Payload Extraction & Validation] Validate dict via payload": [
-        451,
-        -43
+        473,
+        -8
       ],
       "[(R) Payload Extraction & Validation] Validate text via payload": [
         808,
@@ -7572,16 +7574,16 @@
         111
       ],
       "[(R) Payload Extraction & Validation] netmiko_show_ip_interface_brief": [
-        -18,
-        -145
+        6,
+        -116
       ],
       "[Shared] End": [
         279,
         262
       ],
       "[Shared] Start": [
-        -308,
-        -170
+        -336,
+        -147
       ]
     },
     "postprocessing": "",
