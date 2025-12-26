@@ -1579,7 +1579,7 @@ class GlobalVariables:
         if self.high_performance:
             with db.session_scope(commit=func == "factory", remove=self.in_process):
                 result = getattr(target, func)(_model, **kwargs)
-                if func == "delete":
+                if func == "delete" or not result:
                     return result
                 elif isinstance(result, list):
                     return [
