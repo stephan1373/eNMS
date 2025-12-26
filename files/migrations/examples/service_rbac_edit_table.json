@@ -600,7 +600,7 @@
     "Full UI Read + Edit Access"
   ],
   [
-    "[(R) Payload Extraction & Validation] netmiko_show_ip_route",
+    "[(R) Payload Extraction & Validation] netmiko_show_ip_interface_brief",
     "Full UI Read + Edit Access"
   ],
   [

@@ -368,7 +368,7 @@
     "(R) Payload Extraction & Validation"
   ],
   [
-    "[(R) Payload Extraction & Validation] netmiko_show_ip_route",
+    "[(R) Payload Extraction & Validation] netmiko_show_ip_interface_brief",
     "(R) Payload Extraction & Validation"
   ],
   [
