@@ -7499,19 +7499,21 @@
       },
       "52d15bff-498b-462d-843c-a23199073858": {
         "alignment": "center",
-        "content": "Check that the results contains the dictionary\n{\"value\":[\"1.1.1.1\",\"2.2.2.2\",\"3.3.3.3\"]}\n",
+        "content": "Check that the results contains the dictionary\n{\"value\":[\"172.100.100.11/24\"]}\n",
         "positions": [
-          -351,
-          32
-        ]
+          "-373.740966796875",
+          "36.5806884765625"
+        ],
+        "size": 14
       },
       "55b1e05d-4d84-4227-8774-65cf7ffd992f": {
         "alignment": "center",
-        "content": "Check that the \"regex_variable\" variable\nin the payload contains the dictionary\n{\"value\":[\"1.1.1.1\",\"2.2.2.2\",\"3.3.3.3\"]}\n",
+        "content": "Check that the \"regex_variable\" variable\nin the payload contains the dictionary\n{\"value\":[\"172.100.100.11/24\"]}\n",
         "positions": [
-          480,
-          -121
-        ]
+          "462.259033203125",
+          "-115.4193115234375"
+        ],
+        "size": 14
       },
       "cf55f702-da90-466f-9ee6-9e207a0b4808": {
         "alignment": "left",
@@ -7523,7 +7525,7 @@
         "size": 14
       }
     },
-    "last_modified": "2025-12-26 03:28:16.112734",
+    "last_modified": "2025-12-26 03:33:28.076237",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 08:40:26.753246",
     "log_level": 1,
