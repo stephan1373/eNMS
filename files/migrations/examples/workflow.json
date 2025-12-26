@@ -12133,10 +12133,10 @@
     "labels": {
       "1f72a9fa-2c2a-4e89-97f7-dde9b94f5386": {
         "alignment": "left",
-        "content": "The \"success\" value is computed with the \nfollowing check:\n\"boot system flash\" in previous_result",
+        "content": "The \"success\" value is computed with the \nfollowing check:\n\"no aaa root\" in previous_result",
         "positions": [
-          536,
-          483
+          568,
+          474
         ],
         "size": 14
       },
@@ -12151,15 +12151,15 @@
       },
       "cdec1722-5f82-4f64-8ffc-c6701773bb61": {
         "alignment": "left",
-        "content": "This workflow should be run twice:\n- a first time as-is, with \"Show Configuration\" in \"Dry Run\" mode\n- a second time with \"Dry Run\" unchecked on that same service\n\nIt has two targets: \"Washington\" (real router) and \"Router1\" (fake router).\n\n- In the case of a dry run, the \"results\" of \"Show Configuration\" are modified to\ninclude the output of the \"show configuration\" command as if it had successfully\nconnected to the device. The \"result\" key should then contain the configuration,\nand it will be used by the python snippet service that comes next to very that the\nstring \"\"boot system flash\" is present in the configuration. The \"success\" value of\nthat service depends on that check.\nBoth routers should pass.\n\n- In the case of a real run (the \"Dry Run\" checkbox of the first service must be\nunchecked), \"Router 1\" should fail at the first service (no connection can be\nestablished), and \"Washington\" should pass both services.",
+        "content": "This workflow should be run twice:\n- a first time as-is, with \"Show Configuration\" in \"Dry Run\" mode\n- a second time with \"Dry Run\" unchecked on that same service\n\nIt has two targets: \"Washington\" (real router) and \"Router1\" (fake router).\n\n- In the case of a dry run, the \"results\" of \"Show Configuration\" are modified to\ninclude the output of the \"show configuration\" command as if it had successfully\nconnected to the device. The \"result\" key should then contain the configuration,\nand it will be used by the python snippet service that comes next to very that the\nstring \"no aaa root\" is present in the configuration. The \"success\" value of\nthat service depends on that check.\nBoth routers should pass.\n\n- In the case of a real run (the \"Dry Run\" checkbox of the first service must be\nunchecked), \"Router 1\" should fail at the first service (no connection can be\nestablished), and \"Washington\" should pass both services.",
         "positions": [
-          "244.7530517578125",
-          "213"
+          238,
+          227
         ],
         "size": 14
       }
     },
-    "last_modified": "2024-02-19 06:12:19.131091",
+    "last_modified": "2025-12-26 17:10:07.585880",
     "last_modified_by": "admin",
     "last_run": "2024-02-13 06:53:52.236669",
     "log_level": 1,
