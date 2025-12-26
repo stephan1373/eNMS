@@ -685,6 +685,7 @@ Notes:
 - It is no longer possible to set device attribute from a python snippet or python code by doing
   "device.property = value". The factory function must be used instead:
   "factory("device", name=device.name, property=value)"
+- In "High Performance" mode, the "fetch" global function in the workflow builder returns namespaces instead of objects. It can no longer be used to fetch associated objects (e.g "pool.devices")
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------
