@@ -450,12 +450,6 @@ are made available to the user.
     -   **Type**: Dictionary.
     -   **Available**: Always.
             
-- `username`
-    -   **Meaning**: The username that created the run
-    -   **Type**: string
-    -   **Available**: Deprecated - will remove in the next major release; for new 
-        services, please consider using `user["name"]` instead.
-            
 - `workflow`
 
     -   **Meaning**: current workflow.
