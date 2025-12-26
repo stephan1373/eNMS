@@ -8814,10 +8814,10 @@
     "labels": {
       "31828760-4f10-4160-b0ef-8eaee9a1146a": {
         "alignment": "left",
-        "content": "Search for the [\"name\",\"configuration\",\"ip_address\"] of the\n5 first devices ordered alphabetically.\nUses post-processing to check,  for all 5 devices, that the\nIP address is set to 192.168.56.51 and the configuration\ncontains \"Command: show running-config\".",
+        "content": "Search for the [\"name\",\"configuration\",\"ip_address\"] of the\n5 first devices ordered alphabetically.\nUses post-processing to check that at least one of these devices\nhas its IP address set to 172.100.100.11.",
         "positions": [
-          -73,
-          -122
+          -68,
+          -108
         ],
         "size": 14
       },
@@ -8839,7 +8839,7 @@
         ]
       }
     },
-    "last_modified": "2025-12-26 10:13:09.742550",
+    "last_modified": "2025-12-26 10:18:15.770758",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 13:17:47.576371",
     "log_level": 1,
