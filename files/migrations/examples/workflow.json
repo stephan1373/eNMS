@@ -8823,10 +8823,10 @@
       },
       "502aae2b-86f8-4130-8dc0-d9a1c84fae6e": {
         "alignment": "left",
-        "content": "Search for the [\"name\",\"configuration_matches\",\"ip_address\"] of the\ndevices whose configuration is matched by the regular expression\n\"TRAFFIC-\\d\\d\".\nThe configuration_matches is a special property designed to return\nthe lines of the device configuration that matched the filter.\n\nUses post-processing to check that there are 27 devices that match,\nand that for each device, the two following lines are a match:\n\"L19: vrf instance CUSTOMER-TRAFFIC-28\"\n\"L32: no ip routing vrf CUSTOMER-TRAFFIC-28\"\nunder the \"configuration_matches\" property.\n",
+        "content": "Search for the [\"name\",\"configuration_matches\",\"ip_address\"] of the\ndevices whose configuration is matched by the regular expression\n\"no s.*\".\nThe configuration_matches is a special property designed to return\nthe lines of the device configuration that matched the filter.\n\nUses post-processing to check that for each device,\nthe two following lines are a match:\n\"L19: vrf instance CUSTOMER-TRAFFIC-28\"\n\"L32: no ip routing vrf CUSTOMER-TRAFFIC-28\"\nunder the \"configuration_matches\" property.\n",
         "positions": [
-          437,
-          -71
+          "379.5233154296875",
+          "-77.00000381469727"
         ],
         "size": 14
       },
@@ -8839,7 +8839,7 @@
         ]
       }
     },
-    "last_modified": "2025-12-26 10:18:15.770758",
+    "last_modified": "2025-12-26 10:42:06.960770",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 13:17:47.576371",
     "log_level": 1,
