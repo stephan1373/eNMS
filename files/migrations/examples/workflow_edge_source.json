@@ -103,7 +103,7 @@
   "2021-12-30 11:08:32.597472": "[Shared] Start",
   "2021-12-30 11:39:38.851253": "[POST Endpoint search] First 5 devices",
   "2021-12-30 12:25:03.239301": "[POST Endpoint search] Devices with i",
-  "2021-12-30 12:29:13.526131": "[POST Endpoint search] Configuration with regex TRAFFIC-dd",
+  "2021-12-30 12:29:13.526131": "[POST Endpoint search] Configuration with regex no s.*",
   "2021-12-31 03:20:01.023676": "[Shared] Start",
   "2021-12-31 03:20:01.894998": "[POST update, DELETE delete and GET & POST results] POST Create NewDevice",
   "2021-12-31 03:25:07.815735": "[POST update, DELETE delete and GET & POST results] POST Update NewDevice property1",

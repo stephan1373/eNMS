@@ -8823,10 +8823,10 @@
       },
       "502aae2b-86f8-4130-8dc0-d9a1c84fae6e": {
         "alignment": "left",
-        "content": "Search for the [\"name\",\"configuration_matches\",\"ip_address\"] of the\ndevices whose configuration is matched by the regular expression\n\"no s.*\".\nThe configuration_matches is a special property designed to return\nthe lines of the device configuration that matched the filter.\n\nUses post-processing to check that for each device,\nthe two following lines are a match:\n\"L19: vrf instance CUSTOMER-TRAFFIC-28\"\n\"L32: no ip routing vrf CUSTOMER-TRAFFIC-28\"\nunder the \"configuration_matches\" property.\n",
+        "content": "Search for the [\"name\",\"configuration_matches\",\"ip_address\"] of the\ndevices whose configuration is matched by the regular expression\n\"no s.*\".\nThe configuration_matches is a special property designed to return\nthe lines of the device configuration that matched the filter.\n\nUses post-processing to check that for each device,\nthe two following lines are a match:\n\"L15: no shutdown\",\n\"L17: no service interface inactive port-id allocation disabled\"\nunder the \"configuration_matches\" property.\n",
         "positions": [
-          "379.5233154296875",
-          "-77.00000381469727"
+          416,
+          -76
         ],
         "size": 14
       },
@@ -8839,7 +8839,7 @@
         ]
       }
     },
-    "last_modified": "2025-12-26 10:42:06.960770",
+    "last_modified": "2025-12-26 10:46:17.695400",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 13:17:47.576371",
     "log_level": 1,
@@ -8865,7 +8865,7 @@
     "parameterized_form_template": "",
     "persistent_id": "0HlI5D07_RI",
     "positions": {
-      "[POST Endpoint search] Configuration with regex TRAFFIC-dd": [
+      "[POST Endpoint search] Configuration with regex no s.*": [
         389,
         58
       ],
