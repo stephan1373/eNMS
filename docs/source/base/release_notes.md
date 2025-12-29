@@ -374,8 +374,6 @@ Version 5.3: JSON Migration, High Performance Mode and other Performance Improve
     - "temporal": use Temporal as a task queue
 - Add new "allow_redirects" option in REST Call Service
   Commit: 8dd630c906f44635e503b416cd03cab826c3f89d
-- Add new OpenShift Service
-  Commit: fc2af3462dfa8ece1432cf4910978930b6c48838
 - Refactor "Stop Run" mechanism:
   - Require "run" RBAC access for a user to be allowed to stop a workflow
   - Add new "You don't have permission to stop this workflow." alert in the UI
@@ -687,6 +685,7 @@ Notes:
 - It is no longer possible to set device attribute from a python snippet or python code by doing
   "device.property = value". The factory function must be used instead:
   "factory("device", name=device.name, property=value)"
+- In "High Performance" mode, the "fetch" global function in the workflow builder returns namespaces instead of objects. It can no longer be used to fetch associated objects (e.g "pool.devices")
 
 Version 5.2.0: Data Store and Various Improvements
 --------------------------------------------------

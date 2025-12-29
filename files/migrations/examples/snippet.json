@@ -174,5 +174,27 @@
     "last_modified_by": "admin",
     "name": "Database Mass Deletion",
     "version": ""
+  },
+  {
+    "category": "Scalability",
+    "code": "from concurrent.futures import ThreadPoolExecutor\nfrom requests import get\n\n\nBASE_URL = \"http://127.0.0.1:5000/rest\"\n\ndef send_is_alive_request():\n    request = get(f\"{BASE_URL}/is_alive\")\n    if request.status_code != 200:\n        print(request)\n\nwith ThreadPoolExecutor(max_workers=10) as pool:\n    for _ in range(100):\n        pool.submit(send_is_alive_request)\n",
+    "creation_time": "2025-12-25 15:31:41.238168",
+    "creator": "admin",
+    "description": "Make 1000 concurrent calls to /rest/is_alive (10 workers, 100 calls per worker) to test how well the server can respond to concurrent requests",
+    "last_modified": "2025-12-25 15:33:28.463377",
+    "last_modified_by": "admin",
+    "name": "Test Server Scalability with concurrent calls to REST is_alive endpoint",
+    "version": ""
+  },
+  {
+    "category": "Scalability",
+    "code": "from concurrent.futures import ThreadPoolExecutor\nfrom requests import get\nfrom requests.auth import HTTPBasicAuth\n\n\nBASE_URL = \"http://127.0.0.1:5000/rest\"\nauth = HTTPBasicAuth(\"admin\", \"admin\")\n\ndef send_get_instance_request():\n    request = get(f\"{BASE_URL}/instance/device/Washington\", auth=auth)\n    if request.status_code != 200:\n        print(request)\n\nwith ThreadPoolExecutor(max_workers=10) as pool:\n    for _ in range(100):\n        pool.submit(send_get_instance_request)\n",
+    "creation_time": "2025-12-25 15:34:40.241190",
+    "creator": "admin",
+    "description": "Make 1000 concurrent calls to /rest/instance/device (10 workers, 100 calls per worker) to test how well the server can respond to concurrent requests",
+    "last_modified": "2025-12-25 15:34:40.241148",
+    "last_modified_by": "admin",
+    "name": "Test Server Scalability with concurrent calls to REST get_instance endpoint",
+    "version": ""
   }
 ]

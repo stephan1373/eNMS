@@ -891,12 +891,13 @@ class RunEngine:
             now = datetime.now().replace(microsecond=0)
             results["duration"] = str(now - start)
             self.write_state("success", results["success"])
-            if isinstance(self.service, SimpleNamespace):
-                properties = vars(self.service)
-                properties.update({"target_devices": None, "target_pools": None})
-            else:
-                properties = self.service.get_properties(exclude=["positions"])
-            results["properties"] = properties
+            if self.is_main_run:
+                if isinstance(self.service, SimpleNamespace):
+                    properties = vars(self.service)
+                    properties.update({"target_devices": None, "target_pools": None})
+                else:
+                    properties = self.service.get_properties(exclude=["positions"])
+                results["properties"] = properties
             must_have_results = not self.has_result and not self.iteration_devices
             if self.is_main_run or len(self.run_targets) > 1 or must_have_results:
                 results = self.create_result(results, run_result=self.is_main_run)
@@ -1578,7 +1579,7 @@ class GlobalVariables:
         if self.high_performance:
             with db.session_scope(commit=func == "factory", remove=self.in_process):
                 result = getattr(target, func)(_model, **kwargs)
-                if func == "delete":
+                if func == "delete" or not result:
                     return result
                 elif isinstance(result, list):
                     return [

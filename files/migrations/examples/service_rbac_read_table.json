@@ -664,7 +664,7 @@
     "Full UI Read + Edit Access"
   ],
   [
-    "[(R) Payload Extraction & Validation] netmiko_show_ip_route",
+    "[(R) Payload Extraction & Validation] netmiko_show_ip_interface_brief",
     "Full UI Read + Edit Access"
   ],
   [
@@ -1128,7 +1128,7 @@
     "Full UI Read + Edit Access"
   ],
   [
-    "[POST Endpoint search] Configuration with regex TRAFFIC-dd",
+    "[POST Endpoint search] Configuration with regex no s.*",
     "Full UI Read + Edit Access"
   ],
   [

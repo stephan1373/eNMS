@@ -4607,7 +4607,7 @@
   },
   {
     "admin_only": false,
-    "builder_link": "juinZjoUWhk",
+    "builder_link": "",
     "completion_time": 1,
     "content_match": "",
     "content_match_regex": false,
@@ -4623,9 +4623,7 @@
     "device_query_property": "name",
     "dict_match": {
       "value": [
-        "1.1.1.1",
-        "2.2.2.2",
-        "3.3.3.3"
+        "172.100.100.11/24"
       ]
     },
     "disable_result_creation": false,
@@ -4644,7 +4642,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2022-11-09 01:23:33.101814",
+    "last_modified": "2025-12-26 03:33:03.163016",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -4698,9 +4696,9 @@
   },
   {
     "admin_only": false,
-    "builder_link": "juinZjoUWhk",
+    "builder_link": "",
     "completion_time": 1,
-    "content_match": "(\\d\\.){3}\\d",
+    "content_match": "(\\d+\\.){3}\\d+\\/24",
     "content_match_regex": true,
     "conversion_method": "none",
     "creation_time": "",
@@ -4729,7 +4727,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2024-05-12 08:40:19.167834",
+    "last_modified": "2025-12-26 03:38:10.856764",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -4771,7 +4769,7 @@
     "skip_query": "",
     "skip_value": "success",
     "soft_deleted": false,
-    "source_code": "result = {}\nresults[\"success\"] = True\nresults[\"result\"] = get_result(\"Payload Extraction\", device.name)[\"result\"][\"textfsm_variable\"][\"value\"][0][2]",
+    "source_code": "result = {}\nresults[\"success\"] = True\nresults[\"result\"] = get_result(\"Payload Extraction\", device.name)[\"result\"][\"textfsm_variable\"][\"value\"][0][1]",
     "time_between_retries": 10,
     "update_target_pools": false,
     "validation_condition": "success",
@@ -4783,7 +4781,7 @@
   },
   {
     "admin_only": false,
-    "builder_link": "juinZjoUWhk",
+    "builder_link": "",
     "completion_time": 1,
     "content_match": "",
     "content_match_regex": false,
@@ -4799,9 +4797,7 @@
     "device_query_property": "name",
     "dict_match": {
       "value": [
-        "1.1.1.1",
-        "2.2.2.2",
-        "3.3.3.3"
+        "172.100.100.11/24"
       ]
     },
     "disable_result_creation": false,
@@ -4820,7 +4816,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2022-11-09 01:23:33.105023",
+    "last_modified": "2025-12-26 03:33:28.076237",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -4874,9 +4870,9 @@
   },
   {
     "admin_only": false,
-    "builder_link": "juinZjoUWhk",
+    "builder_link": "",
     "completion_time": 1,
-    "content_match": "(\\d\\.){3}\\d",
+    "content_match": "(\\d+\\.){3}\\d+\\/24",
     "content_match_regex": true,
     "conversion_method": "none",
     "creation_time": "",
@@ -4905,7 +4901,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2024-05-12 08:40:24.186325",
+    "last_modified": "2025-12-26 03:38:19.211852",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -4947,7 +4943,7 @@
     "skip_query": "",
     "skip_value": "success",
     "soft_deleted": false,
-    "source_code": "result = {}\nresults[\"success\"] = True\nresults[\"result\"] = get_var(\"textfsm_variable\", device=device.name)[0][2]",
+    "source_code": "result = {}\nresults[\"success\"] = True\nresults[\"result\"] = get_var(\"textfsm_variable\", device=device.name)[0][1]",
     "time_between_retries": 10,
     "update_target_pools": false,
     "validation_condition": "success",
@@ -5044,7 +5040,7 @@
   },
   {
     "admin_only": false,
-    "builder_link": "DlPiD4Bd6WY",
+    "builder_link": "",
     "completion_time": 1,
     "content_match": "",
     "content_match_regex": false,
@@ -5075,7 +5071,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2022-12-05 11:09:23.524676",
+    "last_modified": "2025-12-26 09:30:59.930377",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -5117,7 +5113,7 @@
     "skip_query": "",
     "skip_value": "success",
     "soft_deleted": false,
-    "source_code": "result = {}\nresults[\"success\"] = (\n  get_var(\"list\", device=device.name) ==  [1, 2, 24]\n  and boolean\n  and a_dict == {\"a\": [\"o\", True, 4], \"ipv4\": {\"1.1.1.1\": {\"prefix_length\": 32}}, \"ipv6\": {}}\n)\nresults[\"result\"] = None",
+    "source_code": "result = {}\nresults[\"success\"] = (\n  get_var(\"list\", device=device.name) ==  [1, 2, 24]\n  and boolean\n  and a_dict == {\"a\": [\"o\", True, 4], \"172.100.100.11\": {\"prefix_length\": 24}}\n)\nresults[\"result\"] = None",
     "time_between_retries": 10,
     "update_target_pools": false,
     "validation_condition": "none",
@@ -11082,7 +11078,7 @@
   },
   {
     "admin_only": false,
-    "builder_link": "6eCKSkMmQXg",
+    "builder_link": "",
     "completion_time": 1,
     "content_match": "",
     "content_match_regex": false,
@@ -11113,7 +11109,7 @@
     "iteration_devices_property": "name",
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
-    "last_modified": "2024-02-13 06:36:27.284581",
+    "last_modified": "2025-12-26 17:10:07.585880",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -11155,7 +11151,7 @@
     "skip_query": "",
     "skip_value": "success",
     "soft_deleted": false,
-    "source_code": "previous_result = get_result(\"Show Configuration\", device=device.name)[\"result\"]\nresult = {}\nresults[\"success\"] = \"boot system flash\" in previous_result\nresults[\"result\"] = previous_result",
+    "source_code": "previous_result = get_result(\"Show Configuration\", device=device.name)[\"result\"]\nresult = {}\nresults[\"success\"] = \"no aaa root\" in previous_result\nresults[\"result\"] = previous_result",
     "time_between_retries": 10,
     "update_target_pools": false,
     "validation_condition": "none",

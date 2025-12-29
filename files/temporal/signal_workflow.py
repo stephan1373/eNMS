@@ -10,11 +10,11 @@ from temporalio.worker import Worker
 class SignalWorkflow:
     def __init__(self):
         self.value = None
-    
+
     @workflow.signal
     async def set_value(self, new_value):
         self.value = new_value
-    
+
     @workflow.run
     async def run(self):
         workflow.logger.info("Waiting for value...")
@@ -23,6 +23,7 @@ class SignalWorkflow:
         workflow.logger.info(f"Received value: {self.value}")
         print(f"Received value: {self.value}")
         return self.value
+
 
 async def main():
     client = await Client.connect("localhost:7233")

@@ -640,19 +640,23 @@ class Run(AbstractBase):
         devices, pools = [], []
         if self.restart_run and self.payload["targets"] == "Manually defined":
             devices = db.fetch_all(
-                "device", in_in=self.payload["restart_devices"], user=self.creator
+                "device", id_in=self.payload["restart_devices"], user=self.creator
             )
             pools = db.fetch_all(
-                "pool", in_in=self.payload["restart_pools"], user=self.creator
+                "pool", id_in=self.payload["restart_pools"], user=self.creator
             )
         elif self.restart_run and self.payload["targets"] == "Restart run":
             devices = self.restart_run.target_devices
             pools = self.restart_run.target_pools
-        elif self.parameterized_run:
+        elif self.parameterized_run and set(self.payload["form"]) & {
+            "target_devices",
+            "target_pools",
+            "device_query",
+        }:
             device_ids = self.payload["form"].get("target_devices", [])
             pool_ids = self.payload["form"].get("target_pools", [])
-            devices = set(db.fetch_all("device", in_in=device_ids, user=self.creator))
-            pools = db.fetch_all("pool", in_in=pool_ids, user=self.creator)
+            devices = set(db.fetch_all("device", id_in=device_ids, user=self.creator))
+            pools = db.fetch_all("pool", id_in=pool_ids, user=self.creator)
             query = self.payload["form"].get("device_query")
             if query:
                 property = self.payload["form"].get("device_query_property", "name")
@@ -660,8 +664,13 @@ class Run(AbstractBase):
         elif self.target_devices or self.target_pools:
             devices, pools = self.target_devices, self.target_pools
         else:
-            devices = getattr(self.placeholder or self.service, "target_devices")
-            pools = getattr(self.placeholder or self.service, "target_pools")
+            service = self.placeholder or self.service
+            devices = getattr(service, "target_devices")
+            pools = getattr(service, "target_pools")
+            query = getattr(service, "device_query")
+            if query:
+                property = getattr(service, "device_query_property")
+                devices |=self.runner.compute_devices_from_query(query, property)
         self.target_devices, self.target_pools = list(devices), list(pools)
         db.session.commit()
         return set(devices) | set().union(*(pool.devices for pool in pools))

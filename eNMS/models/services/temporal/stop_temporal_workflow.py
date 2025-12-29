@@ -24,9 +24,9 @@ class StopTemporalWorkflowService(Service):
     run_id = db.Column(db.SmallString)
     stop_method = db.Column(db.SmallString)
     terminate_reason = db.Column(db.SmallString)
-    
+
     __mapper_args__ = {"polymorphic_identity": "stop_temporal_workflow_service"}
-    
+
     def job(self, run, device=None):
         local_variables = locals()
         url = run.sub(run.server_url, local_variables)

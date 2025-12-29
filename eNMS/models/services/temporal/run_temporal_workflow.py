@@ -51,12 +51,14 @@ class TemporalRunService(Service):
         if run.dry_run:
             return {"url": url, "workflow_name": workflow_name, **kwargs}
         kwargs["execution_timeout"] = timedelta(seconds=self.timeout_seconds)
+
         async def trigger_workflow():
             client = await Client.connect(url)
             method = "execute_workflow" if self.wait_for_result else "start_workflow"
             result = await getattr(client, method)(workflow_name, **kwargs)
             status = "Completed" if self.wait_for_result else "Started (async)"
             return {"workflow_id": workflow_id, "status": status, "result": result}
+
         run.log("info", f"Starting Workflow ID: {workflow_id}", device)
         return asyncio_run(trigger_workflow())
 

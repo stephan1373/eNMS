@@ -5185,10 +5185,10 @@
       },
       "a310fb32-d6ca-408d-87b1-83e5f95e36ff": {
         "alignment": "left",
-        "content": "This workflow must be run by user \"ny\" on two devices:\nBoston and Washington.\nny has access to Washington, but not Boston: Bostin should\nfail without prevent the workflow from running on Washington.\nThe restriction must apply to direct targets as well as\niteration and device targets.\n\nMust be run both in DxD and SxS w/ WF targets mode.",
+        "content": "This workflow must be run by user \"ny\" on two devices:\nBoston and Washington.\nny has access to Washington, but not Boston: Bostin should\nfail without preventing the workflow from running on Washington.\nThe restriction must apply to direct targets as well as\niteration and device targets.\n\nMust be run both in all 3 run methods: SxS, DxD and SxS w/ WF targets mode.",
         "positions": [
-          228,
-          -37
+          "191.8084716796875",
+          "-62.9193115234375"
         ],
         "size": 14
       }
@@ -6739,7 +6739,7 @@
     "definition": "Definition",
     "delete_spaces_before_matching": false,
     "description": "",
-    "device_query": "[\"NewYork\", \"Atlanta\"]",
+    "device_query": "",
     "device_query_property": "name",
     "dict_match": {},
     "disable_result_creation": false,
@@ -6761,19 +6761,30 @@
     "labels": {
       "506f2796-55f8-4ddb-849c-c2229459838e": {
         "alignment": "left",
-        "content": "When running a superworkflow, the targets should come\nfrom the workflow itself and not the from the superworkflow.\nWith a parameterized run, the targets should come from the run.\nThe same principles should apply when defining targets\nfrom the device query field.",
+        "content": "When running a superworkflow, the targets should come\nfrom the workflow itself and not the from the superworkflow.\nWith a parameterized run, the targets should come from the\nparameterized form if the form has target properties (target\ndevices, target pools, and device query). If not, it should come\nfrom the targets configured at workflow level instead.",
         "positions": [
-          -122,
-          -177
-        ]
+          -134,
+          -169
+        ],
+        "size": 14
+      },
+      "8393d8a6-0edf-4d7d-9d9f-7fc452a60e9d": {
+        "alignment": "left",
+        "content": "Test 1: set the targets from the parameterized run.\nFor example, in the parameterized form, set Devices to \"Atlanta\",\nPools to \"Washington\", and the device query to \"Austin\". The workflow\nshould run on these 3 devices (disregarding the targets configured\nat workflow level)",
+        "positions": [
+          -82,
+          82
+        ],
+        "size": 14
       },
       "9b543e1d-204c-45a2-bcb2-9619959a4924": {
         "alignment": "left",
-        "content": "The service targets are set to:\n- PaloAlto, Austin for devices field\n- Washington Pool\n- [\"NewYork\", \"Atlanta\"] for device query field\n=> Should run on 5 devices without parameterized run",
+        "content": "Test 2: edit the workflow to remove the following the \"target_devices\",\n\"target_pools\", and \"device_query\" from the parameterized form.\nThe workflow targets are set to:\n- PaloAlto, Austin for devices field\n- Washington for pools field\n=> The workflow should now run on these 3 devices coming from the workflow\ntargets.",
         "positions": [
-          183,
-          77
-        ]
+          426,
+          99
+        ],
+        "size": 14
       },
       "cd8dd28f-bb19-4951-b208-b39a3c0f0571": {
         "alignment": "left",
@@ -6785,7 +6796,7 @@
         "size": 14
       }
     },
-    "last_modified": "2022-11-09 01:23:33.003877",
+    "last_modified": "2025-12-25 18:06:12.039211",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -7472,47 +7483,51 @@
       },
       "20a6a733-4b79-4390-bf2b-ad05dbd6855f": {
         "alignment": "center",
-        "content": "Validate the result with the regex :\n(\\d\\.){3}\\d",
+        "content": "Validate the result with the regex :\n(\\d+\\.){3}\\d+\\/24",
         "positions": [
-          -51,
-          365
-        ]
+          -119,
+          369
+        ],
+        "size": 14
       },
       "3844a73f-340f-4b7a-9893-50c5b79998d9": {
         "alignment": "center",
-        "content": "Check that the \"textfsm_variable\" in the payload\ncan be matched with the \"(\\d\\.){3}\\d\" regular expression.",
+        "content": "Check that the \"textfsm_variable\" in the payload\ncan be matched with the \"(\\d+\\.){3}\\d+\\/24\" regular expression.",
         "positions": [
-          794,
-          255
-        ]
+          758,
+          257
+        ],
+        "size": 14
       },
       "52d15bff-498b-462d-843c-a23199073858": {
         "alignment": "center",
-        "content": "Check that the results contains the dictionary\n{\"value\":[\"1.1.1.1\",\"2.2.2.2\",\"3.3.3.3\"]}\n",
+        "content": "Check that the results contains the dictionary\n{\"value\":[\"172.100.100.11/24\"]}\n",
         "positions": [
-          -351,
-          32
-        ]
+          -373,
+          36
+        ],
+        "size": 14
       },
       "55b1e05d-4d84-4227-8774-65cf7ffd992f": {
         "alignment": "center",
-        "content": "Check that the \"regex_variable\" variable\nin the payload contains the dictionary\n{\"value\":[\"1.1.1.1\",\"2.2.2.2\",\"3.3.3.3\"]}\n",
+        "content": "Check that the \"regex_variable\" variable\nin the payload contains the dictionary\n{\"value\":[\"172.100.100.11/24\"]}\n",
         "positions": [
-          480,
-          -121
-        ]
+          481,
+          -83
+        ],
+        "size": 14
       },
       "cf55f702-da90-466f-9ee6-9e207a0b4808": {
         "alignment": "left",
-        "content": "This workflow uses netmiko to run a \"show ip route\", and a \" Payload Extraction\"\nservice to extract data with regular expression and TextFSM.\nThat extracted information is stored both in the workflow payload and the results of the extraction\nservice :\n- the left side of the workflow uses the \"get_result\" method to retrieve the results and validate them.\n- the right side uses \"get_var\" to extract data from the payload and validate it.\nThis workflow is also used to test the RESTART mechanism. It must be restarted from both\nthe left side (validate via result) and the right side (validate via payload) to check that\nan older payload / result can be retrieved from the database.",
+        "content": "This workflow uses netmiko to run a \"show ip interface brief\", and a \" Payload Extraction\"\nservice to extract data with regular expression and TextFSM.\nThat extracted information is stored both in the workflow payload and the results of the extraction\nservice :\n- the left side of the workflow uses the \"get_result\" method to retrieve the results and validate them.\n- the right side uses \"get_var\" to extract data from the payload and validate it.\nThis workflow is also used to test the RESTART mechanism. It must be restarted from both\nthe left side (validate via result) and the right side (validate via payload) to check that\nan older payload / result can be retrieved from the database.",
         "positions": [
-          223,
-          134
+          216,
+          133
         ],
         "size": 14
       }
     },
-    "last_modified": "2024-05-12 08:40:24.186325",
+    "last_modified": "2025-12-26 03:39:41.535356",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 08:40:26.753246",
     "log_level": 1,
@@ -7539,12 +7554,12 @@
     "persistent_id": "juinZjoUWhk",
     "positions": {
       "[(R) Payload Extraction & Validation] Payload Extraction": [
-        -19,
-        -26
+        0,
+        -7
       ],
       "[(R) Payload Extraction & Validation] Validate dict via payload": [
-        451,
-        -43
+        473,
+        -8
       ],
       "[(R) Payload Extraction & Validation] Validate text via payload": [
         808,
@@ -7558,17 +7573,17 @@
         -362,
         111
       ],
-      "[(R) Payload Extraction & Validation] netmiko_show_ip_route": [
-        -18,
-        -145
+      "[(R) Payload Extraction & Validation] netmiko_show_ip_interface_brief": [
+        6,
+        -116
       ],
       "[Shared] End": [
         279,
         262
       ],
       "[Shared] Start": [
-        -308,
-        -170
+        -336,
+        -147
       ]
     },
     "postprocessing": "",
@@ -7637,7 +7652,7 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {},
-    "last_modified": "2022-12-05 11:12:12.209226",
+    "last_modified": "2025-12-26 09:30:59.930377",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -8799,19 +8814,19 @@
     "labels": {
       "31828760-4f10-4160-b0ef-8eaee9a1146a": {
         "alignment": "left",
-        "content": "Search for the [\"name\",\"configuration\",\"ip_address\"] of the\n5 first devices ordered alphabetically.\nUses post-processing to check,  for all 5 devices, that the\nIP address is set to 192.168.56.51 and the configuration\ncontains \"Command: show running-config\".",
+        "content": "Search for the [\"name\",\"configuration\",\"ip_address\"] of the\n5 first devices ordered alphabetically.\nUses post-processing to check that at least one of these devices\nhas its IP address set to 172.100.100.11.",
         "positions": [
-          -73,
-          -122
+          -68,
+          -108
         ],
         "size": 14
       },
       "502aae2b-86f8-4130-8dc0-d9a1c84fae6e": {
         "alignment": "left",
-        "content": "Search for the [\"name\",\"configuration_matches\",\"ip_address\"] of the\ndevices whose configuration is matched by the regular expression\n\"TRAFFIC-\\d\\d\".\nThe configuration_matches is a special property designed to return\nthe lines of the device configuration that matched the filter.\n\nUses post-processing to check that there are 27 devices that match,\nand that for each device, the two following lines are a match:\n\"L19: vrf instance CUSTOMER-TRAFFIC-28\"\n\"L32: no ip routing vrf CUSTOMER-TRAFFIC-28\"\nunder the \"configuration_matches\" property.\n",
+        "content": "Search for the [\"name\",\"configuration_matches\",\"ip_address\"] of the\ndevices whose configuration is matched by the regular expression\n\"no s.*\".\nThe configuration_matches is a special property designed to return\nthe lines of the device configuration that matched the filter.\n\nUses post-processing to check that for each device,\nthe two following lines are a match:\n\"L15: no shutdown\",\n\"L17: no service interface inactive port-id allocation disabled\"\nunder the \"configuration_matches\" property.\n",
         "positions": [
-          437,
-          -71
+          416,
+          -76
         ],
         "size": 14
       },
@@ -8824,7 +8839,7 @@
         ]
       }
     },
-    "last_modified": "2025-07-16 21:01:22.829953",
+    "last_modified": "2025-12-26 10:58:35.332239",
     "last_modified_by": "admin",
     "last_run": "2024-05-12 13:17:47.576371",
     "log_level": 1,
@@ -8850,7 +8865,7 @@
     "parameterized_form_template": "",
     "persistent_id": "0HlI5D07_RI",
     "positions": {
-      "[POST Endpoint search] Configuration with regex TRAFFIC-dd": [
+      "[POST Endpoint search] Configuration with regex no s.*": [
         389,
         58
       ],
@@ -9366,24 +9381,24 @@
     "labels": {
       "4a30f572-f837-428f-9f47-52f012b79779": {
         "alignment": "left",
-        "content": "We will now update the parameterized form by removing its properties\none by one, and check that as soon as a property is removed, its counterpart\nin the parent workflow is used instead.\n5) Edit the workflow to remove the \"device_query\" property from the\nparameterized form.\nNow that it is no longer defined in the form, the value of device query should\n come from the workflow, where it is set to [\"Atlanta\"].\n6) Run the workflow with empty parameterized form and check that the\nworkflow now runs on Atlanta.\n7) Run the workflow with devices set to [\"Jackson\", \"PaloAlto\"] and check\nthat the workflow runs on Atlanta, PaloAlto and Jackson.\n8) Edit the workflow to remove the \"target_devices\" property\n9) Run the workflow with empty parameterized form and check that it now\nruns on Austin and Atlanta.\n10) Edit the workflow to have no parameterized properties.\n11) Run the workflow with empty parameterized form, and check that it\n runs on the original workflow targets: Austin, Washington and Atlanta.",
+        "content": "3) Run the workflow with one parameterized device: check that only\nthat one device is used as a target.\n4) Run the workflow with \"Washington\" as parameterized pool and\n\"Boston\" as parameterized device query: check that only these two\ndevices are used as targets.\n5) Edit the workflow to have no parameterized properties.\n6) Run the workflow with empty parameterized form, and check that it\n runs on the original workflow targets: Austin, Washington and Atlanta.",
         "positions": [
-          311,
-          94
+          283,
+          93
         ],
         "size": 14
       },
       "4eaef783-740b-4b1a-973b-657d2fe0b42a": {
         "alignment": "left",
-        "content": "The parameterized form contains all target related properties:\n\"target_devices\", \"target_pools\", \"device_query\"\nand \"device_query_property\".\nAs soon as one of these \"target properties\" is detected by eNMS\n in the parameterized form, it takes precedence over what is defined\nin the parent workflow.\nThe parent workflow is configured to run on Austin (devices),\nWashington (pools) and Atlanta (device query).\n1) Run the workflow without parameterized form: it should run\non Austin, Washington and Atlanta.\n2) Run the workflow with parameterized form without setting\nany targets: it should abort with the \"No targets defined\" message.\n 3) Run the workflow with one parameterized device: check that only\nthat one device is used as a target.\n4) Run the workflow with \"Washington\" as parameterized pool and\n\"Boston\" as parameterized device query: check that only these two\ndevices are used as targets.",
+        "content": "The parameterized form contains all target related properties:\n\"target_devices\", \"target_pools\", \"device_query\"\nand \"device_query_property\".\nAs soon as one of these \"target properties\" is detected by eNMS\n in the parameterized form, it takes precedence over what is defined\nin the parent workflow.\nThe parent workflow is configured to run on Austin (devices),\nWashington (pools) and Atlanta (device query).\n1) Run the workflow without parameterized form: it should run\non Austin, Washington and Atlanta.\n2) Run the workflow with parameterized form without setting\nany targets: it should abort with the \"No targets defined\" message.",
         "positions": [
-          -395,
-          105
+          -334,
+          88
         ],
         "size": 14
       }
     },
-    "last_modified": "2022-11-09 01:23:33.336236",
+    "last_modified": "2025-12-25 19:36:50.357915",
     "last_modified_by": "admin",
     "last_run": "",
     "log_level": 1,
@@ -12118,10 +12133,10 @@
     "labels": {
       "1f72a9fa-2c2a-4e89-97f7-dde9b94f5386": {
         "alignment": "left",
-        "content": "The \"success\" value is computed with the \nfollowing check:\n\"boot system flash\" in previous_result",
+        "content": "The \"success\" value is computed with the \nfollowing check:\n\"no aaa root\" in previous_result",
         "positions": [
-          536,
-          483
+          568,
+          474
         ],
         "size": 14
       },
@@ -12136,15 +12151,15 @@
       },
       "cdec1722-5f82-4f64-8ffc-c6701773bb61": {
         "alignment": "left",
-        "content": "This workflow should be run twice:\n- a first time as-is, with \"Show Configuration\" in \"Dry Run\" mode\n- a second time with \"Dry Run\" unchecked on that same service\n\nIt has two targets: \"Washington\" (real router) and \"Router1\" (fake router).\n\n- In the case of a dry run, the \"results\" of \"Show Configuration\" are modified to\ninclude the output of the \"show configuration\" command as if it had successfully\nconnected to the device. The \"result\" key should then contain the configuration,\nand it will be used by the python snippet service that comes next to very that the\nstring \"\"boot system flash\" is present in the configuration. The \"success\" value of\nthat service depends on that check.\nBoth routers should pass.\n\n- In the case of a real run (the \"Dry Run\" checkbox of the first service must be\nunchecked), \"Router 1\" should fail at the first service (no connection can be\nestablished), and \"Washington\" should pass both services.",
+        "content": "This workflow should be run twice:\n- a first time as-is, with \"Show Configuration\" in \"Dry Run\" mode\n- a second time with \"Dry Run\" unchecked on that same service\n\nIt has two targets: \"Washington\" (real router) and \"Router1\" (fake router).\n\n- In the case of a dry run, the \"results\" of \"Show Configuration\" are modified to\ninclude the output of the \"show configuration\" command as if it had successfully\nconnected to the device. The \"result\" key should then contain the configuration,\nand it will be used by the python snippet service that comes next to very that the\nstring \"no aaa root\" is present in the configuration. The \"success\" value of\nthat service depends on that check.\nBoth routers should pass.\n\n- In the case of a real run (the \"Dry Run\" checkbox of the first service must be\nunchecked), \"Router 1\" should fail at the first service (no connection can be\nestablished), and \"Washington\" should pass both services.",
         "positions": [
-          "244.7530517578125",
-          "213"
+          238,
+          227
         ],
         "size": 14
       }
     },
-    "last_modified": "2024-02-19 06:12:19.131091",
+    "last_modified": "2025-12-26 17:10:07.585880",
     "last_modified_by": "admin",
     "last_run": "2024-02-13 06:53:52.236669",
     "log_level": 1,
@@ -14332,7 +14347,7 @@
     "iteration_values": "",
     "iteration_variable_name": "iteration_value",
     "labels": {},
-    "last_modified": "2025-06-16 09:39:58.306321",
+    "last_modified": "2025-12-26 11:15:33.034992",
     "last_modified_by": "admin",
     "last_run": "2025-06-16 09:34:02.619389",
     "log_level": 1,

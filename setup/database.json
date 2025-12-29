@@ -13,8 +13,8 @@
       "connect_args": {
         "check_same_thread": false
       },
-      "pool_size": 40,
-      "max_overflow": 20
+      "pool_size": 100,
+      "max_overflow": 40
     }
   },
   "columns": {

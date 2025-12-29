@@ -14,6 +14,7 @@ class SleepWorkflow:
         workflow.logger.info("Sleep completed successfully")
         return f"Slept for {sleep_seconds} seconds"
 
+
 @workflow.defn
 class SleepCatchCancelledErrorWorkflow:
     @workflow.run
@@ -29,12 +30,13 @@ class SleepCatchCancelledErrorWorkflow:
             print("Workflow was cancelled during sleep")
             return "Workflow cancelled"
 
+
 async def main():
     client = await Client.connect("localhost:7233")
     await Worker(
         client,
         task_queue="sleep-task-queue",
-        workflows=[SleepWorkflow, SleepCatchCancelledErrorWorkflow]
+        workflows=[SleepWorkflow, SleepCatchCancelledErrorWorkflow],
     ).run()
 
 

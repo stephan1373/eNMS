@@ -32,7 +32,9 @@ class GetTemporalResultService(Service):
         workflow_id = run.sub(run.workflow_id, local_variables)
         run_id = run.sub(run.run_id, local_variables)
         workflow_data = {"url": url, "workflow_id": workflow_id, "run_id": run_id}
-        run.log("info", f"Waiting for Result for Temporal workflow '{workflow_id}'", device)
+        run.log(
+            "info", f"Waiting for Result for Temporal workflow '{workflow_id}'", device
+        )
         if run.dry_run:
             return workflow_data
 
