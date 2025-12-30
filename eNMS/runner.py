@@ -310,7 +310,7 @@ class RunEngine:
         self.success = results["success"]
         result_kw = {
             "parent_runtime": self.parent_runtime,
-            "parent_service_id": self.main_run.service.id,
+            "parent_service_id": self.cache["main_run_service"]["id"],
             "path": self.path,
             "run_id": self.main_run.id,
             "service_id": self.service.id,
@@ -1101,7 +1101,7 @@ class NetworkManagement:
         return cache.get(device, {}).get(connection)
 
     def get_credentials(self, device, add_secret=True):
-        result, credential_type = {}, self.main_run.service.credential_type
+        result, credential_type = {}, self.cache["main_run_service"]["credential_type"]
         credential = None
         if self.credentials == "object":
             if self.high_performance:
