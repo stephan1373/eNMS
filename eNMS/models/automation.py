@@ -504,6 +504,7 @@ class Run(AbstractBase):
             },
             "main_run": self.base_properties,
             "main_run_service": {
+                "credential_type": self.service.credential_type,
                 "high_performance": self.service.high_performance,
                 "log_level": int(self.service.log_level),
                 "show_user_logs": self.service.show_user_logs,
